@@ -1,0 +1,563 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Noticeequipment.xml
+		Created on : 2015/02/15 10:33:38
+		Author : 工具自动生成
+		Description: 工具自动生成包含修复设备的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Noticeequipment">
+	<typeAlias alias="entityNoticeequipment" type="com.icomp.entity.base.Noticeequipment" />
+	<resultMap id="Noticeequipment-map" class="entityNoticeequipment">
+		<!-- 设备ID -->
+		<result property="noticeEquipmentID" column="NoticeEquipmentID" />
+		<!-- 设备类型(0钻头1刀片) -->
+		<result property="equipmentType" column="EquipmentType" />
+		<!-- RFID载体ID -->
+		<result property="rfidContainerID" column="RfidContainerID" />
+		<!-- 语言编码 -->
+		<result property="languageCode" column="LanguageCode" />
+		<!-- 设备名称 -->
+		<result property="equipmentName" column="EquipmentName" />
+		<!-- 设备编码 -->
+		<result property="equipmentCode" column="EquipmentCode" />
+		<!-- 刀具入库编码 -->
+		<result property="knifeInventoryCode" column="KnifeInventoryCode" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityNoticeequipment" resultMap="Noticeequipment-map">
+		SELECT
+		NoticeEquipmentID
+		,EquipmentType
+		,RfidContainerID
+		,LanguageCode
+		,EquipmentName
+		,EquipmentCode
+		,KnifeInventoryCode
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from noticeequipment
+		<dynamic prepend=" where ">
+			<isNotNull property="noticeEquipmentID" prepend="and ">
+				NoticeEquipmentID = #noticeEquipmentID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					NoticeEquipmentID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityNoticeequipment" resultMap="Noticeequipment-map">
+		SELECT
+		NoticeEquipmentID
+		,EquipmentType
+		,RfidContainerID
+		,LanguageCode
+		,EquipmentName
+		,EquipmentCode
+		,KnifeInventoryCode
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from noticeequipment
+		<dynamic prepend=" where ">
+			<isNotNull property="noticeEquipmentID" prepend="and ">
+				NoticeEquipmentID = #noticeEquipmentID#
+         </isNotNull>
+			<isNotNull property="equipmentType" prepend="and ">
+				EquipmentType = #equipmentType#
+         </isNotNull>
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="equipmentCode" prepend="and ">
+				EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					NoticeEquipmentID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityNoticeequipment" resultClass="int">
+		SELECT count(1)
+		from noticeequipment
+		<dynamic prepend=" where ">
+			<isNotNull property="noticeEquipmentID" prepend="and ">
+				NoticeEquipmentID = #noticeEquipmentID#
+         </isNotNull>
+			<isNotNull property="equipmentType" prepend="and ">
+				EquipmentType = #equipmentType#
+         </isNotNull>
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="equipmentCode" prepend="and ">
+				EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityNoticeequipment">
+		update noticeequipment
+		<dynamic prepend="set">
+			<isNotNull property="noticeEquipmentID">
+				NoticeEquipmentID = #noticeEquipmentID#
+         </isNotNull>
+			<isNull property="noticeEquipmentID">
+				NoticeEquipmentID = null
+         </isNull>
+			<isNotNull property="equipmentType">
+				,EquipmentType = #equipmentType#
+         </isNotNull>
+			<isNull property="equipmentType">
+				,EquipmentType = null
+         </isNull>
+			<isNotNull property="rfidContainerID">
+				,RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNull property="rfidContainerID">
+				,RfidContainerID = null
+         </isNull>
+			<isNotNull property="languageCode">
+				,LanguageCode = #languageCode#
+         </isNotNull>
+			<isNull property="languageCode">
+				,LanguageCode = null
+         </isNull>
+			<isNotNull property="equipmentName">
+				,EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNull property="equipmentName">
+				,EquipmentName = null
+         </isNull>
+			<isNotNull property="equipmentCode">
+				,EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNull property="equipmentCode">
+				,EquipmentCode = null
+         </isNull>
+			<isNotNull property="knifeInventoryCode">
+				,KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNull property="knifeInventoryCode">
+				,KnifeInventoryCode = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="noticeEquipmentIDWhere" prepend="and ">
+				NoticeEquipmentID = #noticeEquipmentIDWhere#
+         </isNotNull>
+			<isNotNull property="equipmentTypeWhere" prepend="and ">
+				EquipmentType = #equipmentTypeWhere#
+         </isNotNull>
+			<isNotNull property="rfidContainerIDWhere" prepend="and ">
+				RfidContainerID = #rfidContainerIDWhere#
+         </isNotNull>
+			<isNotNull property="languageCodeWhere" prepend="and ">
+				LanguageCode = #languageCodeWhere#
+         </isNotNull>
+			<isNotNull property="equipmentNameWhere" prepend="and ">
+				EquipmentName = #equipmentNameWhere#
+         </isNotNull>
+			<isNotNull property="equipmentCodeWhere" prepend="and ">
+				EquipmentCode = #equipmentCodeWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityNoticeequipment">
+		update noticeequipment
+		<dynamic prepend="set">
+			<isNotNull property="noticeEquipmentID"  prepend=",">
+				NoticeEquipmentID = #noticeEquipmentID#
+         </isNotNull>
+			<isNotNull property="equipmentType"  prepend=",">
+				EquipmentType = #equipmentType#
+         </isNotNull>
+			<isNotNull property="rfidContainerID"  prepend=",">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="languageCode"  prepend=",">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="equipmentName"  prepend=",">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="equipmentCode"  prepend=",">
+				EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode"  prepend=",">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="noticeEquipmentIDWhere" prepend="and ">
+				NoticeEquipmentID = #noticeEquipmentIDWhere#
+         </isNotNull>
+			<isNotNull property="equipmentTypeWhere" prepend="and ">
+				EquipmentType = #equipmentTypeWhere#
+         </isNotNull>
+			<isNotNull property="rfidContainerIDWhere" prepend="and ">
+				RfidContainerID = #rfidContainerIDWhere#
+         </isNotNull>
+			<isNotNull property="languageCodeWhere" prepend="and ">
+				LanguageCode = #languageCodeWhere#
+         </isNotNull>
+			<isNotNull property="equipmentNameWhere" prepend="and ">
+				EquipmentName = #equipmentNameWhere#
+         </isNotNull>
+			<isNotNull property="equipmentCodeWhere" prepend="and ">
+				EquipmentCode = #equipmentCodeWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityNoticeequipment">
+		<selectKey resultClass="java.lang.String" keyProperty="noticeEquipmentID">
+			SELECT #noticeEquipmentID# as noticeEquipmentID FROM DUAL
+     </selectKey>
+		insert into noticeequipment(
+		NoticeEquipmentID
+		,EquipmentType
+		,RfidContainerID
+		,LanguageCode
+		,EquipmentName
+		,EquipmentCode
+		,KnifeInventoryCode
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		)
+		Values (
+			<isNotNull property="noticeEquipmentID">
+				#noticeEquipmentID#
+         </isNotNull>
+			<isNull property="noticeEquipmentID">
+				null
+         </isNull>
+			<isNotNull property="equipmentType">
+				,#equipmentType#
+         </isNotNull>
+			<isNull property="equipmentType">
+				,null
+         </isNull>
+			<isNotNull property="rfidContainerID">
+				,#rfidContainerID#
+         </isNotNull>
+			<isNull property="rfidContainerID">
+				,null
+         </isNull>
+			<isNotNull property="languageCode">
+				,#languageCode#
+         </isNotNull>
+			<isNull property="languageCode">
+				,null
+         </isNull>
+			<isNotNull property="equipmentName">
+				,#equipmentName#
+         </isNotNull>
+			<isNull property="equipmentName">
+				,null
+         </isNull>
+			<isNotNull property="equipmentCode">
+				,#equipmentCode#
+         </isNotNull>
+			<isNull property="equipmentCode">
+				,null
+         </isNull>
+			<isNotNull property="knifeInventoryCode">
+				,#knifeInventoryCode#
+         </isNotNull>
+			<isNull property="knifeInventoryCode">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityNoticeequipment">
+		delete  from noticeequipment
+		<dynamic prepend=" where ">
+			<isNotNull property="noticeEquipmentIDWhere" prepend="and ">
+				NoticeEquipmentID = #noticeEquipmentIDWhere#
+         </isNotNull>
+			<isNotNull property="equipmentTypeWhere" prepend="and ">
+				EquipmentType = #equipmentTypeWhere#
+         </isNotNull>
+			<isNotNull property="rfidContainerIDWhere" prepend="and ">
+				RfidContainerID = #rfidContainerIDWhere#
+         </isNotNull>
+			<isNotNull property="languageCodeWhere" prepend="and ">
+				LanguageCode = #languageCodeWhere#
+         </isNotNull>
+			<isNotNull property="equipmentNameWhere" prepend="and ">
+				EquipmentName = #equipmentNameWhere#
+         </isNotNull>
+			<isNotNull property="equipmentCodeWhere" prepend="and ">
+				EquipmentCode = #equipmentCodeWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

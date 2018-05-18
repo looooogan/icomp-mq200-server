@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vcaplist.xml
+		Created on : 2014/08/19 15:48:46
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vcaplist">
+	<typeAlias alias="entityVcaplist" type="com.icomp.entity.base.Vcaplist" />
+	<resultMap id="Vcaplist-map" class="entityVcaplist">
+		<!-- 功能ID -->
+		<result property="capabilityID" column="CapabilityID" />
+		<!-- 职务ID -->
+		<result property="positionID" column="PositionID" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVcaplist" resultMap="Vcaplist-map">
+		SELECT
+		CapabilityID
+		,PositionID
+		from vcaplist
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVcaplist" resultMap="Vcaplist-map">
+		SELECT
+		CapabilityID
+		,PositionID
+		from vcaplist
+		<dynamic prepend=" where ">
+			<isNotNull property="capabilityID" prepend="and ">
+				CapabilityID = #capabilityID#
+         </isNotNull>
+			<isNotNull property="positionID" prepend="and ">
+				PositionID = #positionID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVcaplist" resultClass="int">
+		SELECT count(1)
+		from vcaplist
+		<dynamic prepend=" where ">
+			<isNotNull property="capabilityID" prepend="and ">
+				CapabilityID = #capabilityID#
+         </isNotNull>
+			<isNotNull property="positionID" prepend="and ">
+				PositionID = #positionID#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

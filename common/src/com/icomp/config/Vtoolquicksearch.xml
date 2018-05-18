@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vtoolquicksearch.xml
+		Created on : 2014/08/19 15:48:47
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByList_F ： 任意条件查询-ToolCode模糊查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vtoolquicksearch">
+	<typeAlias alias="entityVtoolquicksearch" type="com.icomp.entity.base.Vtoolquicksearch" />
+	<resultMap id="Vtoolquicksearch-map" class="entityVtoolquicksearch">
+		<!-- 采购ID -->
+		<result property="toolProcuredID" column="ToolProcuredID" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 采购批次 -->
+		<result property="procuredBatch" column="ProcuredBatch" />
+		<!-- 采购单价 -->
+		<result property="unitPrice" column="UnitPrice" />
+		<!-- 库存量 -->
+		<result property="inventory" column="Inventory" />
+		<!-- 刀具周转量 -->
+		<result property="toolTurnover" column="ToolTurnover" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVtoolquicksearch" resultMap="Vtoolquicksearch-map">
+		SELECT
+		ToolProcuredID
+		,ToolCode
+		,ProcuredBatch
+		,UnitPrice
+		,Inventory
+		,ToolTurnover
+		from vtoolquicksearch
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVtoolquicksearch" resultMap="Vtoolquicksearch-map">
+		SELECT
+		ToolProcuredID
+		,ToolCode
+		,ProcuredBatch
+		,UnitPrice
+		,Inventory
+		,ToolTurnover
+		from vtoolquicksearch
+		<dynamic prepend=" where ">
+			<isNotNull property="toolProcuredID" prepend="and ">
+				ToolProcuredID = #toolProcuredID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+			<isNotNull property="inventory" prepend="and ">
+				Inventory = #inventory#
+         </isNotNull>
+			<isNotNull property="toolTurnover" prepend="and ">
+				ToolTurnover = #toolTurnover#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	
+	<!-- 任意条件查询执行 -ToolCode模糊查询-->
+	<select id="searchByList_F" parameterClass="entityVtoolquicksearch" resultMap="Vtoolquicksearch-map">
+		SELECT
+		ToolProcuredID
+		,ToolCode
+		,ProcuredBatch
+		,UnitPrice
+		,Inventory
+		,ToolTurnover
+		from vtoolquicksearch
+		<dynamic prepend=" where ">
+			<isNotNull property="toolProcuredID" prepend="and ">
+				ToolProcuredID = #toolProcuredID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+			<isNotNull property="inventory" prepend="and ">
+				Inventory = #inventory#
+         </isNotNull>
+			<isNotNull property="toolTurnover" prepend="and ">
+				ToolTurnover = #toolTurnover#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVtoolquicksearch" resultClass="int">
+		SELECT count(1)
+		from vtoolquicksearch
+		<dynamic prepend=" where ">
+			<isNotNull property="toolProcuredID" prepend="and ">
+				ToolProcuredID = #toolProcuredID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+			<isNotNull property="inventory" prepend="and ">
+				Inventory = #inventory#
+         </isNotNull>
+			<isNotNull property="toolTurnover" prepend="and ">
+				ToolTurnover = #toolTurnover#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

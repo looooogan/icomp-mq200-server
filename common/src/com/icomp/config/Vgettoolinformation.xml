@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vgettoolinformation.xml
+		Created on : 2016/06/24 16:17:08
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgettoolinformation">
+	<typeAlias alias="entityVgettoolinformation" type="com.icomp.entity.base.Vgettoolinformation" />
+	<resultMap id="Vgettoolinformation-map" class="entityVgettoolinformation">
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 刀具入库编码 -->
+		<result property="knifeInventoryCode" column="KnifeInventoryCode" />
+		<!-- 刀具状态(0断刀1丢失2不合格3待分拣4待换装,5到寿,6厂内待刃磨,7.厂外待刃磨8刃磨完毕,9其他) -->
+		<result property="toolState" column="ToolState" />
+		<!-- 加工数量 -->
+		<result property="processAmount" column="ProcessAmount" />
+		<!-- 已使用(刃磨)次数[当使用次数等于可复用次数时刀具报废] -->
+		<result property="usageCounter" column="UsageCounter" />
+		<!-- 最后执行业务流程 -->
+		<result property="businessFlowLnkID" column="BusinessFlowLnkID" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!--  -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- RFID载体ID -->
+		<result property="rfidContainerID" column="RfidContainerID" />
+		<!-- RFID标签ID -->
+		<result property="rfidCode" column="RfidCode" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVgettoolinformation" resultMap="Vgettoolinformation-map">
+		SELECT
+		ToolCode
+		,ToolID
+		,KnifeInventoryCode
+		,ToolState
+		,ProcessAmount
+		,UsageCounter
+		,BusinessFlowLnkID
+		,UpdateTime
+		,UpdateUser
+		,RfidContainerID
+		,RfidCode
+		from vgettoolinformation
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVgettoolinformation" resultMap="Vgettoolinformation-map">
+		SELECT
+		ToolCode
+		,ToolID
+		,KnifeInventoryCode
+		,ToolState
+		,ProcessAmount
+		,UsageCounter
+		,BusinessFlowLnkID
+		,UpdateTime
+		,UpdateUser
+		,RfidContainerID
+		,RfidCode
+		from vgettoolinformation
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolState" prepend="and ">
+				ToolState = #toolState#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+			<isNotNull property="usageCounter" prepend="and ">
+				UsageCounter = #usageCounter#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="rfidCode" prepend="and ">
+				RfidCode = #rfidCode#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVgettoolinformation" resultClass="int">
+		SELECT count(1)
+		from vgettoolinformation
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolState" prepend="and ">
+				ToolState = #toolState#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+			<isNotNull property="usageCounter" prepend="and ">
+				UsageCounter = #usageCounter#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="rfidCode" prepend="and ">
+				RfidCode = #rfidCode#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

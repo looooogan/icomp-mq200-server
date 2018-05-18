@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<!-- 刀具质检  -->
+	<package name="V01B05" extends="icomp-default">
+	    <!-- 待质检刀具查询查询初始化Action -->
+		<action name="B05S001" class="b05S001Action" method="initb05S001">
+			<result name="success">/WEB-INF/jsp/v01b05/b05s001.jsp</result>
+		</action>	
+		<!--待质检刀具查询：确认质检通过与否	-->
+		<action name="deliveryplanEdit" class="b05S001Action" method="deliveryplanEdit">
+			<result name="success">/WEB-INF/jsp/v01b05/b05s001.jsp</result>
+		</action>
+		<!--待质检刀具查询：取得待质检刀具信息	-->
+		<action name="deliveryplanInfo" class="b05S001Action" method="deliveryplanInfo">
+			<result name="success">/WEB-INF/jsp/v01b05/b05s001.jsp</result>
+		</action>	
+	</package>
+</struts>  

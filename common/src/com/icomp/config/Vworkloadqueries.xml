@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vworkloadqueries.xml
+		Created on : 2014/08/20 14:52:19
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vworkloadqueries">
+	<typeAlias alias="entityVworkloadqueries" type="com.icomp.entity.base.Vworkloadqueries" />
+	<resultMap id="Vworkloadqueries-map-AssemblyLineName" class="entityVworkloadqueries">
+		<!-- 流水线名称 -->
+		<result property="assemblyLineName" column="AssemblyLineName" />
+	</resultMap>
+	<resultMap id="Vworkloadqueries-map-ProcessName" class="entityVworkloadqueries">
+		<!-- 流水线名称 -->
+		<result property="processName" column="ProcessName" />
+	</resultMap>
+	<resultMap id="Vworkloadqueries-map" class="entityVworkloadqueries">
+		<!--  -->
+		<result property="assemblyLineID" column="AssemblyLineID" />
+		<!-- 流水线编码 -->
+		<result property="assemblyLineCode" column="AssemblyLineCode" />
+		<!-- 流水线名称 -->
+		<result property="assemblyLineName" column="AssemblyLineName" />
+		<!--  -->
+		<result property="processID" column="processID" />
+		<!-- 工序编码 -->
+		<result property="processCode" column="processCode" />
+		<!-- 工序名称 -->
+		<result property="processName" column="ProcessName" />
+		<!--  -->
+		<result property="equipmentID" column="EquipmentID" />
+		<!-- 设备编码 -->
+		<result property="equipmentCode" column="EquipmentCode" />
+		<!-- 设备名称 -->
+		<result property="equipmentName" column="EquipmentName" />
+		<!-- 装入时间 -->
+		<result property="loadTime" column="LoadTime" />
+		<!-- 卸下时间 -->
+		<result property="outerTime" column="OuterTime" />
+		<!--  -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!--  -->
+		<result property="synthesisParametersNumber" column="SynthesisParametersNumber" />
+		<!-- 定额加工量 -->
+		<result property="quotaProcessingVolume" column="QuotaProcessingVolume" />
+		<!--  -->
+		<result property="processAmount" column="ProcessAmount" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVworkloadqueries" resultMap="Vworkloadqueries-map">
+		SELECT
+		AssemblyLineID
+		,AssemblyLineCode
+		,AssemblyLineName
+		,processID
+		,processCode
+		,ProcessName
+		,EquipmentID
+		,EquipmentCode
+		,EquipmentName
+		,LoadTime
+		,OuterTime
+		,SynthesisParametersCode
+		,SynthesisParametersNumber
+		,QuotaProcessingVolume
+		,ProcessAmount
+		from vworkloadqueries
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	<!-- 任意条件查询执行 -->
+	<select id="searchAssemblyLineNameByList" parameterClass="entityVworkloadqueries" resultMap="Vworkloadqueries-map-AssemblyLineName">
+		SELECT
+		DISTINCT 
+		AssemblyLineName
+		from vworkloadqueries
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	
+	<!-- 任意条件查询执行 -->
+	<select id="searchProcessNameByList" parameterClass="entityVworkloadqueries" resultMap="Vworkloadqueries-map-ProcessName">
+		SELECT
+		DISTINCT 
+		ProcessName
+		from vworkloadqueries
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVworkloadqueries" resultMap="Vworkloadqueries-map">
+		SELECT
+		AssemblyLineID
+		,AssemblyLineCode
+		,AssemblyLineName
+		,processID
+		,processCode
+		,ProcessName
+		,EquipmentID
+		,EquipmentCode
+		,EquipmentName
+		,LoadTime
+		,OuterTime
+		,SynthesisParametersCode
+		,SynthesisParametersNumber
+		,QuotaProcessingVolume
+		,ProcessAmount as ProcessAmount
+		from vworkloadqueries
+		where ProcessAmount>0
+		 <isNotNull property="assemblyLineID" prepend="and ">
+				AssemblyLineID = #assemblyLineID#
+         </isNotNull>
+			<isNotNull property="assemblyLineCode" prepend="and ">
+				AssemblyLineCode = #assemblyLineCode#
+         </isNotNull>
+			<isNotNull property="assemblyLineName" prepend="and ">
+				AssemblyLineName = #assemblyLineName#
+         </isNotNull>
+			<isNotNull property="processID" prepend="and ">
+				processID = #processID#
+         </isNotNull>
+			<isNotNull property="processCode" prepend="and ">
+				processCode = #processCode#
+         </isNotNull>
+			<isNotNull property="processName" prepend="and ">
+				ProcessName = #processName#
+         </isNotNull>
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+			<isNotNull property="equipmentCode" prepend="and ">
+				EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="loadTime" prepend="and ">
+				LoadTime = #loadTime#
+         </isNotNull>
+			<isNotNull property="outerTime" prepend="and ">
+				OuterTime = #outerTime#
+         </isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVworkloadqueries" resultClass="int">
+		SELECT count(*)
+		from vworkloadqueries
+		<dynamic prepend=" where ">
+			<isNotNull property="assemblyLineID" prepend="and ">
+				AssemblyLineID = #assemblyLineID#
+         </isNotNull>
+			<isNotNull property="assemblyLineCode" prepend="and ">
+				AssemblyLineCode = #assemblyLineCode#
+         </isNotNull>
+			<isNotNull property="assemblyLineName" prepend="and ">
+				AssemblyLineName = #assemblyLineName#
+         </isNotNull>
+			<isNotNull property="processID" prepend="and ">
+				processID = #processID#
+         </isNotNull>
+			<isNotNull property="processCode" prepend="and ">
+				processCode = #processCode#
+         </isNotNull>
+			<isNotNull property="processName" prepend="and ">
+				ProcessName = #processName#
+         </isNotNull>
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+			<isNotNull property="equipmentCode" prepend="and ">
+				EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="loadTime" prepend="and ">
+				LoadTime = #loadTime#
+         </isNotNull>
+			<isNotNull property="outerTime" prepend="and ">
+				OuterTime = #outerTime#
+         </isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

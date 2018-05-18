@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Productiondesign.xml
+		Created on : 2014/11/12 18:19:03
+		Author : 工具自动生成
+		Description: 工具自动生成包含生产计划的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Productiondesign">
+	<typeAlias alias="entityProductiondesign" type="com.icomp.entity.base.Productiondesign" />
+	<resultMap id="Productiondesign-map" class="entityProductiondesign">
+		<!-- 生产计划ID -->
+		<result property="productionDesignID" column="ProductionDesignID" />
+		<!-- 计划年 -->
+		<result property="productionYear" column="ProductionYear" />
+		<!-- 计划月 -->
+		<result property="productionMonth" column="ProductionMonth" />
+		<!-- 所属季度 -->
+		<result property="productionQuarter" column="ProductionQuarter" />
+		<!-- 生产零部件 -->
+		<result property="assemblyLineID" column="AssemblyLineID" />
+		<!-- 生产量 -->
+		<result property="production" column="Production" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityProductiondesign" resultMap="Productiondesign-map">
+		SELECT
+		ProductionDesignID
+		,ProductionYear
+		,ProductionMonth
+		,ProductionQuarter
+		,AssemblyLineID
+		,Production
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from productiondesign
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityProductiondesign" resultMap="Productiondesign-map">
+		SELECT
+		ProductionDesignID
+		,ProductionYear
+		,ProductionMonth
+		,ProductionQuarter
+		,AssemblyLineID
+		,Production
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from productiondesign
+		<dynamic prepend=" where ">
+			<isNotNull property="productionDesignID" prepend="and ">
+				ProductionDesignID = #productionDesignID#
+         </isNotNull>
+			<isNotNull property="productionYear" prepend="and ">
+				ProductionYear = #productionYear#
+         </isNotNull>
+			<isNotNull property="productionMonth" prepend="and ">
+				ProductionMonth = #productionMonth#
+         </isNotNull>
+			<isNotNull property="productionQuarter" prepend="and ">
+				ProductionQuarter = #productionQuarter#
+         </isNotNull>
+			<isNotNull property="assemblyLineID" prepend="and ">
+				AssemblyLineID = #assemblyLineID#
+         </isNotNull>
+			<isNotNull property="production" prepend="and ">
+				Production = #production#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityProductiondesign" resultClass="int">
+		SELECT count(1)
+		from productiondesign
+		<dynamic prepend=" where ">
+			<isNotNull property="productionDesignID" prepend="and ">
+				ProductionDesignID = #productionDesignID#
+         </isNotNull>
+			<isNotNull property="productionYear" prepend="and ">
+				ProductionYear = #productionYear#
+         </isNotNull>
+			<isNotNull property="productionMonth" prepend="and ">
+				ProductionMonth = #productionMonth#
+         </isNotNull>
+			<isNotNull property="productionQuarter" prepend="and ">
+				ProductionQuarter = #productionQuarter#
+         </isNotNull>
+			<isNotNull property="assemblyLineID" prepend="and ">
+				AssemblyLineID = #assemblyLineID#
+         </isNotNull>
+			<isNotNull property="production" prepend="and ">
+				Production = #production#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityProductiondesign">
+		update productiondesign
+		<dynamic prepend="set">
+			<isNotNull property="productionDesignID">
+				ProductionDesignID = #productionDesignID#
+         </isNotNull>
+			<isNull property="productionDesignID">
+				ProductionDesignID = null
+         </isNull>
+			<isNotNull property="productionYear">
+				,ProductionYear = #productionYear#
+         </isNotNull>
+			<isNull property="productionYear">
+				,ProductionYear = null
+         </isNull>
+			<isNotNull property="productionMonth">
+				,ProductionMonth = #productionMonth#
+         </isNotNull>
+			<isNull property="productionMonth">
+				,ProductionMonth = null
+         </isNull>
+			<isNotNull property="productionQuarter">
+				,ProductionQuarter = #productionQuarter#
+         </isNotNull>
+			<isNull property="productionQuarter">
+				,ProductionQuarter = null
+         </isNull>
+			<isNotNull property="assemblyLineID">
+				,AssemblyLineID = #assemblyLineID#
+         </isNotNull>
+			<isNull property="assemblyLineID">
+				,AssemblyLineID = null
+         </isNull>
+			<isNotNull property="production">
+				,Production = #production#
+         </isNotNull>
+			<isNull property="production">
+				,Production = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="productionDesignIDWhere" prepend="and ">
+				ProductionDesignID = #productionDesignIDWhere#
+         </isNotNull>
+			<isNotNull property="productionYearWhere" prepend="and ">
+				ProductionYear = #productionYearWhere#
+         </isNotNull>
+			<isNotNull property="productionMonthWhere" prepend="and ">
+				ProductionMonth = #productionMonthWhere#
+         </isNotNull>
+			<isNotNull property="productionQuarterWhere" prepend="and ">
+				ProductionQuarter = #productionQuarterWhere#
+         </isNotNull>
+			<isNotNull property="assemblyLineIDWhere" prepend="and ">
+				AssemblyLineID = #assemblyLineIDWhere#
+         </isNotNull>
+			<isNotNull property="productionWhere" prepend="and ">
+				Production = #productionWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityProductiondesign">
+		update productiondesign
+		<dynamic prepend="set">
+			<isNotNull property="productionDesignID"  prepend=",">
+				ProductionDesignID = #productionDesignID#
+         </isNotNull>
+			<isNotNull property="productionYear"  prepend=",">
+				ProductionYear = #productionYear#
+         </isNotNull>
+			<isNotNull property="productionMonth"  prepend=",">
+				ProductionMonth = #productionMonth#
+         </isNotNull>
+			<isNotNull property="productionQuarter"  prepend=",">
+				ProductionQuarter = #productionQuarter#
+         </isNotNull>
+			<isNotNull property="assemblyLineID"  prepend=",">
+				AssemblyLineID = #assemblyLineID#
+         </isNotNull>
+			<isNotNull property="production"  prepend=",">
+				Production = #production#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="productionDesignIDWhere" prepend="and ">
+				ProductionDesignID = #productionDesignIDWhere#
+         </isNotNull>
+			<isNotNull property="productionYearWhere" prepend="and ">
+				ProductionYear = #productionYearWhere#
+         </isNotNull>
+			<isNotNull property="productionMonthWhere" prepend="and ">
+				ProductionMonth = #productionMonthWhere#
+         </isNotNull>
+			<isNotNull property="productionQuarterWhere" prepend="and ">
+				ProductionQuarter = #productionQuarterWhere#
+         </isNotNull>
+			<isNotNull property="assemblyLineIDWhere" prepend="and ">
+				AssemblyLineID = #assemblyLineIDWhere#
+         </isNotNull>
+			<isNotNull property="productionWhere" prepend="and ">
+				Production = #productionWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityProductiondesign">
+		insert into productiondesign(
+		ProductionDesignID
+		,ProductionYear
+		,ProductionMonth
+		,ProductionQuarter
+		,AssemblyLineID
+		,Production
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		)
+		Values (
+			<isNotNull property="productionDesignID">
+				#productionDesignID#
+         </isNotNull>
+			<isNull property="productionDesignID">
+				null
+         </isNull>
+			<isNotNull property="productionYear">
+				,#productionYear#
+         </isNotNull>
+			<isNull property="productionYear">
+				,null
+         </isNull>
+			<isNotNull property="productionMonth">
+				,#productionMonth#
+         </isNotNull>
+			<isNull property="productionMonth">
+				,null
+         </isNull>
+			<isNotNull property="productionQuarter">
+				,#productionQuarter#
+         </isNotNull>
+			<isNull property="productionQuarter">
+				,null
+         </isNull>
+			<isNotNull property="assemblyLineID">
+				,#assemblyLineID#
+         </isNotNull>
+			<isNull property="assemblyLineID">
+				,null
+         </isNull>
+			<isNotNull property="production">
+				,#production#
+         </isNotNull>
+			<isNull property="production">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityProductiondesign">
+		delete  from productiondesign
+		<dynamic prepend="where">
+			<isNotNull property="productionDesignIDWhere" prepend="and ">
+				ProductionDesignID = #productionDesignIDWhere#
+         </isNotNull>
+			<isNotNull property="productionYearWhere" prepend="and ">
+				ProductionYear = #productionYearWhere#
+         </isNotNull>
+			<isNotNull property="productionMonthWhere" prepend="and ">
+				ProductionMonth = #productionMonthWhere#
+         </isNotNull>
+			<isNotNull property="productionQuarterWhere" prepend="and ">
+				ProductionQuarter = #productionQuarterWhere#
+         </isNotNull>
+			<isNotNull property="assemblyLineIDWhere" prepend="and ">
+				AssemblyLineID = #assemblyLineIDWhere#
+         </isNotNull>
+			<isNotNull property="productionWhere" prepend="and ">
+				Production = #productionWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

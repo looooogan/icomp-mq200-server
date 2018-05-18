@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="COMMON" extends="icomp-default">
+		 <!-- 页面初始化Action -->
+		<action name="initialization" class="commonAction" method="initialization">
+			<result name="success">/WEB-INF/jsp/login.jsp</result>
+		</action>
+		<!-- 用户登录Action -->
+		<action name="login" class="commonAction" method="login">
+			<result name="success">/WEB-INF/jsp/index.jsp</result>
+			<result name="error">/WEB-INF/jsp/login.jsp</result>
+		</action>
+		<!-- 系统初始化页面Action -->
+		<action name="init" class="commonAction" method="init">
+			<result name="success">/WEB-INF/jsp/welcome.jsp</result>
+		</action>
+		<!-- 修改密码页面Action -->
+		<action name="ChangePassword" class="commonAction" method="ChangePassword">
+		</action>
+		<!-- 验证登录用户Action -->
+		<action name="checkInput" class="commonAction" method="checkInput">
+			
+			<result name="error">/WEB-INF/jsp/login.jsp</result>
+		</action>
+		<!-- 更换系统显示语言Action -->
+		<action name="editLanguage" class="commonAction" method="editLanguage">
+			<result name="success">/WEB-INF/jsp/index.jsp</result>
+		</action>
+
+	</package>
+</struts>  

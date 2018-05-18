@@ -1,0 +1,1470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Outsidefactory.xml
+    Created on : 2016/02/25 19:22:51
+    Author : 工具自动生成
+    Description: 工具自动生成包含厂外修复表的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchBySumList ： 相同材料号记录合并，数量累加
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Outsidefactory">
+    <typeAlias alias="entityOutsidefactory" type="com.icomp.entity.base.Outsidefactory"/>
+    <resultMap id="Outsidefactory-map" class="entityOutsidefactory">
+        <!-- 厂外修复ID -->
+        <result property="outsideFactoryID" column="outsideFactoryID"/>
+        <!-- 通知单号 -->
+        <result property="orderNum" column="orderNum"/>
+        <!-- 商家ID -->
+        <result property="merchantsID" column="merchantsID"/>
+        <!-- 刀具ID -->
+        <result property="toolID" column="toolID"/>
+        <!-- 材料号 -->
+        <result property="materialNum" column="materialNum"/>
+        <!-- 出门单号 -->
+        <result property="outDoorNom" column="outDoorNom"/>
+        <!-- 修磨数量 -->
+        <result property="numberGrinding" column="numberGrinding"/>
+        <!-- 修复类型（0.厂外图层1.厂外复磨） -->
+        <result property="grindingType" column="grindingType"/>
+        <!-- 激光码 -->
+        <result property="laserCode" column="laserCode"/>
+        <!-- 刀具类型（0.钻头1.刀片 -->
+        <result property="toolType" column="toolType"/>
+        <!-- 出厂日期 -->
+        <result property="manufactureDate" column="manufactureDate"/>
+        <!-- 修复状态(0.未修复1.已修复2.其他） -->
+        <result property="repairState" column="repairState"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="delFlag" column="DelFlag"/>
+        <!-- 创建人 -->
+        <result property="createUser" column="CreateUser"/>
+        <!-- 创建时间 -->
+        <result property="createTime" column="CreateTime"/>
+        <!-- 更新人 -->
+        <result property="updateUser" column="updateUser"/>
+        <!-- 更新时间 -->
+        <result property="updateTime" column="updateTime"/>
+        <!-- 备注 -->
+        <result property="note" column="note"/>
+        <!-- 审批人 -->
+        <result property="approver" column="approver"/>
+        <!-- 版本号 -->
+        <result property="version" column="version"/>
+        <result property="expandSpace4" column="expandSpace4"/>
+        <result property="descr" column="descr"/>
+        <!-- 2017/08/25 王冉 变更↓↓↓　dazhong@YMSC -->
+        <!--<result property="number" column="number"/>-->
+        <!--<result property="date" column="date"/>-->
+        <!-- 2017/08/25 王冉 变更↑↑↑　dazhong@YMSC -->
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityOutsidefactory" resultMap="Outsidefactory-map">
+        SELECT
+        outsideFactoryID
+        ,orderNum
+        ,merchantsID
+        ,toolID
+        ,materialNum
+        ,numberGrinding
+        ,grindingType
+        ,laserCode
+        ,toolType
+        ,manufactureDate
+        ,approver
+        ,repairState
+        ,DelFlag
+        ,CreateUser
+        ,CreateTime
+        ,updateUser
+        ,updateTime
+        ,note
+        ,version
+        ,expandSpace4
+        ,descr
+        from outsidefactory
+        <dynamic prepend=" where ">
+            <isNotNull property="outsideFactoryID" prepend="and ">
+                outsideFactoryID = #outsideFactoryID#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            outsideFactoryID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityOutsidefactory" resultMap="Outsidefactory-map">
+        SELECT
+        outsideFactoryID
+        ,orderNum
+        ,merchantsID
+        ,toolID
+        ,materialNum
+        ,numberGrinding
+        ,grindingType
+        ,laserCode
+        ,toolType
+        ,manufactureDate
+        <!-- 2017/08/25 王冉 追加↓↓↓　dazhong@YMSC -->
+        ,outDoorNom
+        <!-- 2017/08/25 王冉 追加↑↑↑　dazhong@YMSC -->
+        <!-- 2017/08/25 王冉 变更↓↓↓　dazhong@YMSC -->
+        ,approver
+        <!-- 2017/08/25 王冉 变更↑↑↑　dazhong@YMSC -->
+        ,repairState
+        ,DelFlag
+        ,CreateUser
+        ,CreateTime
+        ,updateUser
+        ,updateTime
+        ,note
+        ,version
+        ,ReceiveNumber expandSpace4
+        ,descr
+        from outsidefactory
+        <dynamic prepend=" where ">
+            <isNotNull property="outsideFactoryID" prepend="and ">
+                outsideFactoryID = #outsideFactoryID#
+            </isNotNull>
+            <isNotNull property="orderNum" prepend="and ">
+                orderNum = #orderNum#
+            </isNotNull>
+            <isNotNull property="merchantsID" prepend="and ">
+                merchantsID = #merchantsID#
+            </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                toolID = #toolID#
+            </isNotNull>
+            <isNotNull property="materialNum" prepend="and ">
+                materialNum = #materialNum#
+            </isNotNull>
+            <isNotNull property="numberGrinding" prepend="and ">
+                numberGrinding = #numberGrinding#
+            </isNotNull>
+            <isNotNull property="grindingType" prepend="and ">
+                grindingType = #grindingType#
+            </isNotNull>
+            <isNotNull property="laserCode" prepend="and ">
+                laserCode = #laserCode#
+            </isNotNull>
+            <isNotNull property="toolType" prepend="and ">
+                toolType = #toolType#
+            </isNotNull>
+            <isNotNull property="dateStar" prepend="and ">
+                <![CDATA[
+				manufactureDate >= #dateStar#
+				]]>
+            </isNotNull>
+            <isNotNull property="dateEnd" prepend="and ">
+                <![CDATA[
+				manufactureDate <= #dateEnd#
+				]]>
+            </isNotNull>
+            <isNotNull property="manufactureDate" prepend="and ">
+                manufactureDate = #manufactureDate#
+            </isNotNull>
+            <isNotNull property="approver" prepend="and ">
+                approver = #approver#
+            </isNotNull>
+            <isNotNull property="repairState" prepend="and ">
+                repairState = #repairState#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                updateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                updateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="note" prepend="and ">
+                note = #note#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                version = #version#
+            </isNotNull>
+            <!-- 2017/08/25 王冉 追加↓↓↓　dazhong@YMSC -->
+            <isNotNull property="outDoorNom" prepend="and ">
+                outDoorNom = #outDoorNom#
+            </isNotNull>
+            <!-- 2017/08/25 王冉 追加↑↑↑　dazhong@YMSC -->
+        </dynamic>
+        <isNotNull property="groupString">
+            group by $groupString$
+        </isNotNull>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            manufactureDate DESC
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityOutsidefactory" resultClass="int">
+        SELECT count(1)
+        from outsidefactory
+        <dynamic prepend=" where ">
+            <isNotNull property="outsideFactoryID" prepend="and ">
+                outsideFactoryID = #outsideFactoryID#
+            </isNotNull>
+            <isNotNull property="orderNum" prepend="and ">
+                orderNum = #orderNum#
+            </isNotNull>
+            <isNotNull property="merchantsID" prepend="and ">
+                merchantsID = #merchantsID#
+            </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                toolID = #toolID#
+            </isNotNull>
+            <isNotNull property="materialNum" prepend="and ">
+                materialNum = #materialNum#
+            </isNotNull>
+            <isNotNull property="numberGrinding" prepend="and ">
+                numberGrinding = #numberGrinding#
+            </isNotNull>
+            <isNotNull property="grindingType" prepend="and ">
+                grindingType = #grindingType#
+            </isNotNull>
+            <isNotNull property="laserCode" prepend="and ">
+                laserCode = #laserCode#
+            </isNotNull>
+            <isNotNull property="toolType" prepend="and ">
+                toolType = #toolType#
+            </isNotNull>
+            <isNotNull property="manufactureDate" prepend="and ">
+                manufactureDate = #manufactureDate#
+            </isNotNull>
+            <isNotNull property="approver" prepend="and ">
+                approver = #approver#
+            </isNotNull>
+            <isNotNull property="repairState" prepend="and ">
+                repairState = #repairState#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                updateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                updateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="note" prepend="and ">
+                note = #note#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                version = #version#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+    <!-- 任意条件更新处理(未指定字段更新为：null) -->
+    <update id="update" parameterClass="entityOutsidefactory">
+        update outsidefactory
+        <dynamic prepend="set">
+            <isNotNull property="outsideFactoryID">
+                outsideFactoryID = #outsideFactoryID#
+            </isNotNull>
+            <isNull property="outsideFactoryID">
+                outsideFactoryID = null
+            </isNull>
+            <isNotNull property="orderNum">
+                ,orderNum = #orderNum#
+            </isNotNull>
+            <isNull property="orderNum">
+                ,orderNum = null
+            </isNull>
+            <isNotNull property="merchantsID">
+                ,merchantsID = #merchantsID#
+            </isNotNull>
+            <isNull property="merchantsID">
+                ,merchantsID = null
+            </isNull>
+            <isNotNull property="toolID">
+                ,toolID = #toolID#
+            </isNotNull>
+            <isNull property="toolID">
+                ,toolID = null
+            </isNull>
+            <isNotNull property="materialNum">
+                ,materialNum = #materialNum#
+            </isNotNull>
+            <isNull property="materialNum">
+                ,materialNum = null
+            </isNull>
+            <isNotNull property="numberGrinding">
+                ,numberGrinding = #numberGrinding#
+            </isNotNull>
+            <isNull property="numberGrinding">
+                ,numberGrinding = null
+            </isNull>
+            <isNotNull property="grindingType">
+                ,grindingType = #grindingType#
+            </isNotNull>
+            <isNull property="grindingType">
+                ,grindingType = null
+            </isNull>
+            <isNotNull property="laserCode">
+                ,laserCode = #laserCode#
+            </isNotNull>
+            <isNull property="laserCode">
+                ,laserCode = null
+            </isNull>
+            <isNotNull property="toolType">
+                ,toolType = #toolType#
+            </isNotNull>
+            <isNull property="toolType">
+                ,toolType = null
+            </isNull>
+            <isNotNull property="manufactureDate">
+                ,manufactureDate = #manufactureDate#
+            </isNotNull>
+            <isNull property="manufactureDate">
+                ,manufactureDate = null
+            </isNull>
+            <isNotNull property="approver">
+                ,approver = #approver#
+            </isNotNull>
+            <isNull property="approver">
+                ,approver = null
+            </isNull>
+            <isNotNull property="repairState">
+                ,repairState = #repairState#
+            </isNotNull>
+            <isNull property="repairState">
+                ,repairState = null
+            </isNull>
+            <isNotNull property="delFlag">
+                ,DelFlag = #delFlag#
+            </isNotNull>
+            <isNull property="delFlag">
+                ,DelFlag = null
+            </isNull>
+            <isNotNull property="createUser">
+                ,CreateUser = #createUser#
+            </isNotNull>
+            <isNull property="createUser">
+                ,CreateUser = null
+            </isNull>
+            <isNotNull property="createTime">
+                ,CreateTime = #createTime#
+            </isNotNull>
+            <isNull property="createTime">
+                ,CreateTime = null
+            </isNull>
+            <isNotNull property="updateUser">
+                ,updateUser = #updateUser#
+            </isNotNull>
+            <isNull property="updateUser">
+                ,updateUser = null
+            </isNull>
+            <isNotNull property="updateTime">
+                ,updateTime = #updateTime#
+            </isNotNull>
+            <isNull property="updateTime">
+                ,updateTime = null
+            </isNull>
+            <isNotNull property="note">
+                ,note = #note#
+            </isNotNull>
+            <isNull property="note">
+                ,note = null
+            </isNull>
+            <isNotNull property="version">
+                ,version = #version#
+            </isNotNull>
+            <isNull property="version">
+                ,version = null
+            </isNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="outsideFactoryIDWhere" prepend="and ">
+                outsideFactoryID = #outsideFactoryIDWhere#
+            </isNotNull>
+            <isNotNull property="orderNumWhere" prepend="and ">
+                orderNum = #orderNumWhere#
+            </isNotNull>
+            <isNotNull property="merchantsIDWhere" prepend="and ">
+                merchantsID = #merchantsIDWhere#
+            </isNotNull>
+            <isNotNull property="toolIDWhere" prepend="and ">
+                toolID = #toolIDWhere#
+            </isNotNull>
+            <isNotNull property="materialNumWhere" prepend="and ">
+                materialNum = #materialNumWhere#
+            </isNotNull>
+            <isNotNull property="numberGrindingWhere" prepend="and ">
+                numberGrinding = #numberGrindingWhere#
+            </isNotNull>
+            <isNotNull property="grindingTypeWhere" prepend="and ">
+                grindingType = #grindingTypeWhere#
+            </isNotNull>
+            <isNotNull property="laserCodeWhere" prepend="and ">
+                laserCode = #laserCodeWhere#
+            </isNotNull>
+            <isNotNull property="toolTypeWhere" prepend="and ">
+                toolType = #toolTypeWhere#
+            </isNotNull>
+            <isNotNull property="manufactureDateWhere" prepend="and ">
+                manufactureDate = #manufactureDateWhere#
+            </isNotNull>
+            <isNotNull property="approverWhere" prepend="and ">
+                approver = #approverWhere#
+            </isNotNull>
+            <isNotNull property="repairStateWhere" prepend="and ">
+                repairState = #repairStateWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                updateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                updateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="noteWhere" prepend="and ">
+                note = #noteWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                version = #versionWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 任意条件更新处理(未指定字段不更新) -->
+    <!-- 2017/08/25 宋健 变更↓↓↓　dazhong@YMSC -->
+    <update id="updateNonQuery" parameterClass="entityOutsidefactory">
+        update outsidefactory
+        set
+        <isNotNull property="delFlag">
+            DelFlag = #delFlag#
+        </isNotNull>
+        <isNotNull property="toolName">
+            ,toolName = #toolName#
+        </isNotNull>
+        <isNotNull property="numberGrinding">
+            ,numberGrinding = #numberGrinding#
+        </isNotNull>
+        <isNotNull property="note">
+            ,note = #note#
+        </isNotNull>
+        <isNotNull property="descr">
+            ,descr = #descr#
+        </isNotNull>
+        where
+        outsideFactoryID = #outsideFactoryID#
+    </update>
+
+    <update id="updateNonQuery2" parameterClass="entityOutsidefactory">
+        update outsidefactory
+        set
+        updateTime = #updateTime#
+        <isNotNull property="merchantsID">
+            ,merchantsID = #merchantsID#
+        </isNotNull>
+        <isNotNull property="manufactureDate">
+            ,manufactureDate = #manufactureDate#
+        </isNotNull>
+        <isNotNull property="approver">
+            ,approver = #approver#
+        </isNotNull>
+        <isNotNull property="sendUser">
+            ,sendUser = #sendUser#
+        </isNotNull>
+        <isNotNull property="updateUser">
+            ,updateUser = #updateUser#
+        </isNotNull>
+        where
+        outDoorNom = #outDoorNom#
+    </update>
+    <!-- 2017/08/25 宋健 变更↑↑↑　dazhong@YMSC -->
+
+    <!-- 插入处理 -->
+    <insert id="insert" parameterClass="entityOutsidefactory">
+        <selectKey resultClass="java.lang.String" keyProperty="outsideFactoryID">
+            SELECT #outsideFactoryID# as outsideFactoryID FROM DUAL
+        </selectKey>
+        insert into outsidefactory(
+        outsideFactoryID
+        ,outDoorNom
+        ,merchantsID
+        ,manufactureDate
+        ,approver
+        ,sendUser
+        ,materialNum
+        ,toolName
+        ,descr
+        ,laserCode
+        ,numberGrinding
+        ,note
+        ,toolType
+        ,CreateUser
+        ,CreateTime
+        ,DelFlag
+        ,version
+        <!-- 2017/08/25 王冉 追加↓↓↓　dazhong@YMSC -->
+        ,toolID
+        ,repairState
+        <!-- 2017/08/25 王冉 追加↑↑↑　dazhong@YMSC -->
+        )
+        Values (
+        <isNotNull property="outsideFactoryID">
+            #outsideFactoryID#
+        </isNotNull>
+        <isNull property="outsideFactoryID">
+            null
+        </isNull>
+        <isNotNull property="outDoorNom">
+            ,#outDoorNom#
+        </isNotNull>
+        <isNull property="outDoorNom">
+            ,null
+        </isNull>
+        <isNotNull property="merchantsID">
+            ,#merchantsID#
+        </isNotNull>
+        <isNull property="merchantsID">
+            ,null
+        </isNull>
+        <isNotNull property="manufactureDate">
+            ,#manufactureDate#
+        </isNotNull>
+        <isNull property="manufactureDate">
+            ,null
+        </isNull>
+        <isNotNull property="approver">
+            ,#approver#
+        </isNotNull>
+        <isNull property="approver">
+            ,null
+        </isNull>
+        <isNotNull property="sendUser">
+            ,#sendUser#
+        </isNotNull>
+        <isNull property="sendUser">
+            ,null
+        </isNull>
+        <isNotNull property="materialNum">
+            ,#materialNum#
+        </isNotNull>
+        <isNull property="materialNum">
+            ,null
+        </isNull>
+        <isNotNull property="toolName">
+            ,#toolName#
+        </isNotNull>
+        <isNull property="toolName">
+            ,null
+        </isNull>
+        <isNotNull property="descr">
+            ,#descr#
+        </isNotNull>
+        <isNull property="descr">
+            ,null
+        </isNull>
+        <isNotNull property="laserCode">
+            ,#laserCode#
+        </isNotNull>
+        <isNull property="laserCode">
+            ,null
+        </isNull>
+        <isNotNull property="numberGrinding">
+            ,#numberGrinding#
+        </isNotNull>
+        <isNull property="numberGrinding">
+            ,null
+        </isNull>
+        <isNotNull property="note">
+            ,#note#
+        </isNotNull>
+        <isNull property="note">
+            ,null
+        </isNull>
+        <isNotNull property="toolType">
+            ,#toolType#
+        </isNotNull>
+        <isNull property="toolType">
+            ,0
+        </isNull>
+        <isNotNull property="createUser">
+            ,#createUser#
+        </isNotNull>
+        <isNull property="createUser">
+            ,null
+        </isNull>
+        <isNotNull property="createTime">
+            ,#createTime#
+        </isNotNull>
+        <isNull property="createTime">
+            ,null
+        </isNull>
+        <isNotNull property="delFlag">
+            ,#delFlag#
+        </isNotNull>
+        <isNull property="delFlag">
+            ,null
+        </isNull>
+        <isNotNull property="version">
+            ,#version#
+        </isNotNull>
+        <isNull property="version">
+            ,null
+        </isNull>
+        <!-- 2017/08/25 王冉 追加↓↓↓　dazhong@YMSC -->
+        <isNotNull property="toolID">
+            ,#toolID#
+        </isNotNull>
+        <isNull property="toolID">
+            ,null
+        </isNull>
+        <isNotNull property="repairState">
+            ,#repairState#
+        </isNotNull>
+        <isNull property="repairState">
+            ,1
+        </isNull>
+        <!-- 2017/08/25 王冉 追加↑↑↑　dazhong@YMSC -->
+        )
+    </insert>
+
+    <!-- 任意条件删除处理 -->
+    <delete id="delete" parameterClass="entityOutsidefactory">
+        delete from outsidefactory
+        <dynamic prepend=" where ">
+            <isNotNull property="outsideFactoryIDWhere" prepend="and ">
+                outsideFactoryID = #outsideFactoryIDWhere#
+            </isNotNull>
+            <isNotNull property="orderNumWhere" prepend="and ">
+                orderNum = #orderNumWhere#
+            </isNotNull>
+            <isNotNull property="merchantsIDWhere" prepend="and ">
+                merchantsID = #merchantsIDWhere#
+            </isNotNull>
+            <isNotNull property="toolIDWhere" prepend="and ">
+                toolID = #toolIDWhere#
+            </isNotNull>
+            <isNotNull property="materialNumWhere" prepend="and ">
+                materialNum = #materialNumWhere#
+            </isNotNull>
+            <isNotNull property="numberGrindingWhere" prepend="and ">
+                numberGrinding = #numberGrindingWhere#
+            </isNotNull>
+            <isNotNull property="grindingTypeWhere" prepend="and ">
+                grindingType = #grindingTypeWhere#
+            </isNotNull>
+            <isNotNull property="laserCodeWhere" prepend="and ">
+                laserCode = #laserCodeWhere#
+            </isNotNull>
+            <isNotNull property="toolTypeWhere" prepend="and ">
+                toolType = #toolTypeWhere#
+            </isNotNull>
+            <isNotNull property="manufactureDateWhere" prepend="and ">
+                manufactureDate = #manufactureDateWhere#
+            </isNotNull>
+            <isNotNull property="approverWhere" prepend="and ">
+                approver = #approverWhere#
+            </isNotNull>
+            <isNotNull property="repairStateWhere" prepend="and ">
+                repairState = #repairStateWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                updateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                updateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="noteWhere" prepend="and ">
+                note = #noteWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                version = #versionWhere#
+            </isNotNull>
+        </dynamic>
+    </delete>
+    <resultMap id="Outsidefactorys-map" class="entityOutsidefactory">
+        <!-- 厂外修复ID -->
+        <result property="outsideFactoryID" column="outsideFactoryID"/>
+        <!-- 通知单号 -->
+        <result property="orderNum" column="orderNum"/>
+        <!-- 商家ID -->
+        <result property="merchantsID" column="merchantsID"/>
+        <!-- 刀具ID -->
+        <result property="toolID" column="toolID"/>
+        <!-- 刀具名称 -->
+        <result property="toolName" column="toolName"/>
+        <!-- 材料号 -->
+        <result property="materialNum" column="materialNum"/>
+        <!-- 出门单号 -->
+        <result property="outDoorNom" column="outDoorNom"/>
+        <!-- 回厂数量 -->
+        <result property="backFactoryNumber" column="backFactoryNumber"/>
+        <!-- 修磨数量 -->
+        <result property="numberGrinding" column="numberGrinding"/>
+        <!-- 修复类型（0.厂外图层1.厂外复磨） -->
+        <result property="grindingType" column="grindingType"/>
+        <!-- 出厂日期 -->
+        <result property="manufactureDate" column="manufactureDate"/>
+        <!-- 回厂日期 -->
+        <result property="createTime" column="CreateTime"/>
+        <!-- 2017/09/14 宋健 追加↓↓↓　dazhong@YMSC -->
+        <!-- 入库日期 -->
+        <result property="updateTime" column="updateTime"/>
+        <!-- 累计返厂数量 -->
+        <result property="receiveNumber" column="ReceiveNumber"/>
+        <!-- 2017/09/14 宋健 追加↑↑↑　dazhong@YMSC -->
+
+        <!-- 修复状态(0.未修复1.已修复2.其他） -->
+        <result property="repairState" column="repairState"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="delFlag" column="DelFlag"/>
+        <!-- 备注 -->
+        <result property="note" column="note"/>
+
+        <result property="expandSpace1" column="outFact"/>
+        <result property="expandSpace2" column="nulFact"/>
+        <result property="expandSpace3" column="ouerFact"/>
+        <result property="expandSpace4" column="expandSpace4"/>
+        <!-- 审批人 -->
+        <result property="approver" column="approver"/>
+        <!-- 刀具类型 -->
+        <result property="toolType" column="toolType"/>
+        <!-- 激光码 -->
+        <result property="laserCode" column="laserCode"/>
+        <result property="sendUser" column="sendUser"/>
+
+    </resultMap>
+
+    <!-- 2017/08/25 宋健 变更↓↓↓　dazhong@YMSC -->
+    <resultMap id="Outsidefactoryss-map" class="entityOutsidefactory">
+        <!-- 厂外修复ID -->
+        <result property="outsideFactoryID" column="outsideFactoryID"/>
+        <!-- 通知单号 -->
+        <result property="orderNum" column="orderNum"/>
+        <!-- 商家ID -->
+        <result property="merchantsID" column="merchantsID"/>
+        <!-- 刀具ID -->
+        <result property="toolID" column="toolID"/>
+        <!-- 材料号 -->
+        <result property="materialNum" column="materialNum"/>
+        <!-- 回厂数量 -->
+        <result property="backFactoryNumber" column="backFactoryNumber"/>
+        <!-- 回厂日期 -->
+        <result property="createTime" column="CreateTime"/>
+    </resultMap>
+    <!-- 2017/08/25 宋健 变更↑↑↑　dazhong@YMSC -->
+
+    <!-- 2017/09/14 宋健 变更↓↓↓　dazhong@YMSC -->
+    <!-- 任意条件查询出厂数据条数 -->
+    <select id="searchByPrimaryViewCount" parameterClass="entityOutsidefactory" resultClass="int">
+        SELECT count(1)
+        from (
+        SELECT count(1)
+        FROM outsidefactory outf
+        <dynamic prepend=" where ">
+
+            <isNotNull property="outsideFactoryID" prepend="and ">
+                outsideFactoryID = #outsideFactoryID#
+            </isNotNull>
+            <isNotNull property="orderNum" prepend="and ">
+                orderNum = #orderNum#
+            </isNotNull>
+            <isNotNull property="materialNum" prepend="and ">
+                materialNum = #materialNum#
+            </isNotNull>
+            <isNotNull property="outDoorNom" prepend="and ">
+                outDoorNom = #outDoorNom#
+            </isNotNull>
+            <isNotNull property="merchantsID" prepend="and ">
+                merchantsID = #merchantsID#
+            </isNotNull>
+            <isNotNull property="manufactureDate" prepend="and ">
+                <![CDATA[
+				DATE_FORMAT(manufactureDate, '%Y-%m-%d') = DATE_FORMAT(#manufactureDate#, '%Y-%m-%d')
+				]]>
+            </isNotNull>
+            <isNotNull property="repairState" prepend="and ">
+                repairState = #repairState#
+            </isNotNull>
+        <!-- 2017/09/12 王冉 变更↓↓↓　dazhong@YMSC -->
+        <!--<isNull property="repairState" prepend="and ">-->
+        <!--(repairState = '0' OR repairState = '1')-->
+        <!--</isNull>-->
+        <!-- 2017/09/12 王冉 变更↑↑↑　dazhong@YMSC -->
+            <isNotNull property="grindingType" prepend="and ">
+                grindingType = #grindingType#
+            </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                toolID = #toolID#
+            </isNotNull>
+            <isNotNull property="note" prepend="and ">
+                note = #note#
+            </isNotNull>
+            <isNotNull property="approver" prepend="and ">
+                approver like concat('%',#approver#,'%')
+            </isNotNull>
+            <isNotNull property="sendUser" prepend="and ">
+                sendUser like concat('%',#sendUser#,'%')
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="numberGrinding" prepend="and ">
+                numberGrinding = #numberGrinding#
+            </isNotNull>
+        </dynamic>
+        GROUP BY outf.outDoorNom
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        ) aa
+    </select>
+
+    <select id="searchByPrimaryView" parameterClass="entityOutsidefactory" resultMap="Outsidefactorys-map">
+        SELECT
+        outf.outsideFactoryID as outsideFactoryID,
+        outf.orderNum as orderNum,
+        outf.materialNum as materialNum,
+        outf.merchantsID as merchantsID,
+        outf.manufactureDate as manufactureDate,
+        outf.repairState as repairState,
+        outf.grindingType as grindingType,
+        outf.toolID as toolID,
+        outf.note as note,
+        outf.approver as approver,
+        outf.sendUser as sendUser,
+        outf.receiveNumber as receiveNumber,
+        outf.expandSpace4 as expandSpace4,
+        outf.laserCode as laserCode,
+        outf.toolType as toolType,
+        outf.outDoorNom as outDoorNom,
+        outf.delFlag as DelFlag,
+        outf.updateTime as updateTime,
+        (SELECT ToolName FROM tool t WHERE t.toolID = outf.toolID ) AS toolName,
+        (SELECT COUNT( repairState) FROM outsidefactory out1 where out1.repairState='1'and out1.orderNum = outf.orderNum and out1.materialNum=outf.materialNum) as outFact,
+        (SELECT COUNT( repairState) FROM outsidefactory out1 where out1.repairState='0'and out1.orderNum = outf.orderNum and out1.materialNum=outf.materialNum) as nulFact,
+        (SELECT COUNT( repairState) FROM outsidefactory out1 where out1.repairState='2'and out1.orderNum = outf.orderNum and out1.materialNum=outf.materialNum) as ouerFact,
+        outf.ReceiveNumber as backFactoryNumber,
+        (SELECT CreateTime FROM outsidefactoryhistory t1 where t1.outsideFactoryID = outf.outsideFactoryID) as CreateTime,
+        SUM(outf.numberGrinding) as numberGrinding
+        FROM outsidefactory outf
+        <dynamic prepend=" where ">
+
+            <isNotNull property="outsideFactoryID" prepend="and ">
+                outsideFactoryID = #outsideFactoryID#
+            </isNotNull>
+            <isNotNull property="orderNum" prepend="and ">
+                orderNum = #orderNum#
+            </isNotNull>
+            <isNotNull property="materialNum" prepend="and ">
+                materialNum = #materialNum#
+            </isNotNull>
+            <isNotNull property="outDoorNom" prepend="and ">
+                outDoorNom = #outDoorNom#
+            </isNotNull>
+            <isNotNull property="merchantsID" prepend="and ">
+                merchantsID = #merchantsID#
+            </isNotNull>
+            <isNotNull property="manufactureDate" prepend="and ">
+                <![CDATA[
+                DATE_FORMAT(manufactureDate, '%Y-%m-%d') = DATE_FORMAT(#manufactureDate#, '%Y-%m-%d')
+				]]>
+            </isNotNull>
+            <isNotNull property="repairState" prepend="and ">
+                repairState = #repairState#
+            </isNotNull>
+            <!-- 2017/09/12 王冉 变更↓↓↓　dazhong@YMSC -->
+            <!--<isNull property="repairState" prepend="and ">-->
+            <!--(repairState = '0' OR repairState = '1')-->
+            <!--</isNull>-->
+            <!-- 2017/09/12 王冉 变更↑↑↑　dazhong@YMSC -->
+            <isNotNull property="grindingType" prepend="and ">
+                grindingType = #grindingType#
+            </isNotNull>
+            <isNotNull property="approver" prepend="and ">
+                approver like concat('%',#approver#,'%')
+            </isNotNull>
+            <isNotNull property="sendUser" prepend="and ">
+                sendUser like concat('%',#sendUser#,'%')
+            </isNotNull>
+            <isNotNull property="note" prepend="and ">
+                note = #note#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="numberGrinding" prepend="and ">
+                numberGrinding = #numberGrinding#
+            </isNotNull>
+        </dynamic>
+        GROUP BY outf.outDoorNom
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            manufactureDate DESC
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+    <!-- 2017/09/14 宋健 变更↑↑↑　dazhong@YMSC -->
+
+    <select id="searchByPrimaryViewDetail" parameterClass="entityOutsidefactory" resultMap="Outsidefactoryss-map">
+        SELECT
+        outf.outsideFactoryID AS outsideFactoryID,
+        outf.orderNum AS orderNum,
+        outf.materialNum AS materialNum,
+        outf.merchantsID AS merchantsID,
+        outf.toolID AS toolID,
+        outf.backFactoryNumber AS backFactoryNumber,
+        outf.CreateTime AS createTime
+        FROM
+        outsidefactoryhistory outf
+        WHERE
+        outf.orderNum = #orderNum#
+    </select>
+
+    <!-- 2017/08/25 宋健 追加↓↓↓　dazhong@YMSC -->
+    <select id="searchByPrimaryViewForBack" parameterClass="entityOutsidefactory" resultMap="Outsidefactorys-map">
+        SELECT
+        outf.outsideFactoryID as outsideFactoryID,
+        outf.orderNum as orderNum,
+        outf.materialNum as materialNum,
+        outf.merchantsID as merchantsID,
+        outf.manufactureDate as manufactureDate,
+        outf.repairState as repairState,
+        outf.grindingType as grindingType,
+        outf.toolID as toolID,
+        outf.note as note,
+        <!-- 2017/08/26 宋健 变更↓↓↓　dazhong@YMSC -->
+        (SELECT UserName FROM userdetail WHERE CustomerID = outf.approver) as approver,
+        <!-- 2017/08/26 宋健 变更↑↑↑　dazhong@YMSC -->
+        outf.expandSpace4 as expandSpace4,
+        outf.laserCode as laserCode,
+        outf.toolType as toolType,
+        outf.outDoorNom as outDoorNom,
+        outf.delFlag as DelFlag,
+        outf.updateTime as updateTime,
+        (SELECT ToolName FROM tool t WHERE t.toolID = outf.toolID ) AS toolName,
+        (SELECT COUNT( repairState) FROM outsidefactory out1 where out1.repairState='1'and out1.orderNum = outf.orderNum and out1.materialNum=outf.materialNum) as outFact,
+        (SELECT COUNT( repairState) FROM outsidefactory out1 where out1.repairState='0'and out1.orderNum = outf.orderNum and out1.materialNum=outf.materialNum) as nulFact,
+        (SELECT COUNT( repairState) FROM outsidefactory out1 where out1.repairState='2'and out1.orderNum = outf.orderNum and out1.materialNum=outf.materialNum) as ouerFact,
+        outf.ReceiveNumber as backFactoryNumber,
+        (SELECT CreateTime FROM outsidefactoryhistory t1 where t1.outsideFactoryID = outf.outsideFactoryID) as CreateTime,
+        SUM(outf.numberGrinding) as numberGrinding
+        FROM outsidefactory outf
+        <dynamic prepend=" where ">
+
+            <isNotNull property="outsideFactoryID" prepend="and ">
+                outsideFactoryID = #outsideFactoryID#
+            </isNotNull>
+            <isNotNull property="orderNum" prepend="and ">
+                orderNum = #orderNum#
+            </isNotNull>
+            <isNotNull property="materialNum" prepend="and ">
+                materialNum = #materialNum#
+            </isNotNull>
+            <isNotNull property="outDoorNom" prepend="and ">
+                outDoorNom = #outDoorNom#
+            </isNotNull>
+            <isNotNull property="merchantsID" prepend="and ">
+                merchantsID = #merchantsID#
+            </isNotNull>
+            <isNotNull property="dateStar" prepend="and ">
+                <![CDATA[
+				manufactureDate >= #dateStar#
+				]]>
+            </isNotNull>
+            <isNotNull property="dateEnd" prepend="and ">
+                <![CDATA[
+				manufactureDate <= #dateEnd#
+				]]>
+            </isNotNull>
+            <isNull property="repairState" prepend="and ">
+                repairState = '2'
+            </isNull>
+            <isNotNull property="grindingType" prepend="and ">
+                grindingType = #grindingType#
+            </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                toolID = #toolID#
+            </isNotNull>
+            <isNotNull property="note" prepend="and ">
+                note = #note#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="numberGrinding" prepend="and ">
+                numberGrinding = #numberGrinding#
+            </isNotNull>
+        </dynamic>
+        GROUP BY outf.orderNum
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            orderNum
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+    <!-- 2017/08/25 宋健 追加↑↑↑　dazhong@YMSC -->
+
+    <!-- 2017/08/25 宋健 追加↓↓↓　dazhong@YMSC -->
+    <!-- 任意条件查询出厂数据条数 -->
+    <select id="searchByPrimaryViewCountForBack" parameterClass="entityOutsidefactory" resultClass="int">
+        SELECT count(1)
+        from (
+        SELECT count(1)
+        FROM outsidefactory outf
+        <dynamic prepend=" where ">
+
+            <isNotNull property="outsideFactoryID" prepend="and ">
+                outsideFactoryID = #outsideFactoryID#
+            </isNotNull>
+            <isNotNull property="orderNum" prepend="and ">
+                orderNum = #orderNum#
+            </isNotNull>
+            <isNotNull property="materialNum" prepend="and ">
+                materialNum = #materialNum#
+            </isNotNull>
+            <isNotNull property="outDoorNom" prepend="and ">
+                outDoorNom = #outDoorNom#
+            </isNotNull>
+            <isNotNull property="merchantsID" prepend="and ">
+                merchantsID = #merchantsID#
+            </isNotNull>
+            <isNotNull property="dateStar" prepend="and ">
+                <![CDATA[
+				manufactureDate >= #dateStar#
+				]]>
+            </isNotNull>
+            <isNotNull property="dateEnd" prepend="and ">
+                <![CDATA[
+				manufactureDate <= #dateEnd#
+				]]>
+            </isNotNull>
+            <isNull property="repairState" prepend="and ">
+                repairState = '2'
+            </isNull>
+            <isNotNull property="grindingType" prepend="and ">
+                grindingType = #grindingType#
+            </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                toolID = #toolID#
+            </isNotNull>
+            <isNotNull property="note" prepend="and ">
+                note = #note#
+            </isNotNull>
+            <isNotNull property="approver" prepend="and ">
+                approver = #approver#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="numberGrinding" prepend="and ">
+                numberGrinding = #numberGrinding#
+            </isNotNull>
+        </dynamic>
+        GROUP BY outf.orderNum
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        ) aa
+    </select>
+    <!-- 2017/08/25 宋健 追加↑↑↑　dazhong@YMSC -->
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchBySumList" parameterClass="entityOutsidefactory" resultMap="Outsidefactory-map">
+        SELECT
+        outsideFactoryID
+        ,orderNum
+        ,merchantsID
+        ,toolID
+        ,materialNum
+        ,sum(numberGrinding) as numberGrinding
+        ,grindingType
+        ,laserCode
+        ,toolType
+        ,manufactureDate
+        ,approver
+        ,repairState
+        ,DelFlag
+        ,CreateUser
+        ,CreateTime
+        ,updateUser
+        ,updateTime
+        ,note
+        ,version
+        ,expandSpace4
+        ,descr
+        from outsidefactory
+        <dynamic prepend=" where ">
+            <isNotNull property="outsideFactoryID" prepend="and ">
+                outsideFactoryID = #outsideFactoryID#
+            </isNotNull>
+            <isNotNull property="orderNum" prepend="and ">
+                orderNum = #orderNum#
+            </isNotNull>
+            <isNotNull property="merchantsID" prepend="and ">
+                merchantsID = #merchantsID#
+            </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                toolID = #toolID#
+            </isNotNull>
+            <isNotNull property="materialNum" prepend="and ">
+                materialNum = #materialNum#
+            </isNotNull>
+            <isNotNull property="numberGrinding" prepend="and ">
+                numberGrinding = #numberGrinding#
+            </isNotNull>
+            <isNotNull property="grindingType" prepend="and ">
+                grindingType = #grindingType#
+            </isNotNull>
+            <isNotNull property="laserCode" prepend="and ">
+                laserCode = #laserCode#
+            </isNotNull>
+            <isNotNull property="toolType" prepend="and ">
+                toolType = #toolType#
+            </isNotNull>
+            <isNotNull property="manufactureDate" prepend="and ">
+                manufactureDate = #manufactureDate#
+            </isNotNull>
+            <isNotNull property="approver" prepend="and ">
+                approver = #approver#
+            </isNotNull>
+            <isNotNull property="repairState" prepend="and ">
+                repairState = #repairState#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                updateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                updateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="note" prepend="and ">
+                note = #note#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                version = #version#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="groupString">
+            group by $groupString$
+        </isNotNull>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            outsideFactoryID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 批量插入厂外修复表 -->
+    <insert id="insertBatchs" parameterClass="java.util.List">
+        insert into outsidefactory(
+        outsideFactoryID
+        ,orderNum
+        ,merchantsID
+        ,toolID
+        ,materialNum
+        ,numberGrinding
+        ,grindingType
+        ,laserCode
+        ,toolType
+        ,manufactureDate
+        ,approver
+        ,repairState
+        ,DelFlag
+        ,CreateUser
+        ,CreateTime
+        ,updateUser
+        ,updateTime
+        ,note
+        ,version
+        ,expandSpace4
+        )
+        values
+        <iterate conjunction=",">
+            (
+            #[].outsideFactoryID#,
+            #[].orderNum#,
+            #[].merchantsID#,
+            #[].toolID#,
+            #[].materialNum#,
+            #[].numberGrinding#,
+            #[].grindingType#,
+            #[].laserCode#,
+            #[].toolType#,
+            #[].manufactureDate#,
+            #[].approver#,
+            #[].repairState#,
+            #[].delFlag#,
+            #[].createUser#,
+            #[].createTime#,
+            #[].updateUser#,
+            #[].updateTime#,
+            #[].note#,
+            #[].version#,
+            #[].expandSpace4#
+            )
+        </iterate>
+
+    </insert>
+
+
+    <!-- 修改流转表中的信息为待换装状态 -->
+    <update id="updateRepairStateByRfidConnerID" parameterClass="java.util.Map">
+        UPDATE outsidefactory o
+        SET
+        o.UpdateTime =now()
+        ,o.UpdateUser = #userID#
+        ,o.repairState = #repairState#
+        ,o.DelFlag = #delFlag#
+        WHERE
+        o.expandSpace4 IN
+        <iterate property="list" open="(" close=")" conjunction=",">
+            #list[]#
+        </iterate>
+
+    </update>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchOutsideFactoryList" parameterClass="entityOutsidefactory" resultMap="Outsidefactory-map">
+        SELECT
+        outsideFactoryID
+        ,orderNum
+        ,merchantsID
+        ,toolID
+        ,materialNum
+        ,numberGrinding
+        ,SUM(numberGrinding) as number
+        ,DATE_FORMAT(manufactureDate, '%d') as date
+        ,outDoorNom
+        ,grindingType
+        ,laserCode
+        ,toolType
+        ,manufactureDate
+        ,approver
+        ,repairState
+        ,DelFlag
+        ,CreateUser
+        ,CreateTime
+        ,updateUser
+        ,updateTime
+        ,note
+        ,version
+        ,expandSpace4
+        ,descr
+        FROM
+        outsidefactory
+        WHERE
+        DelFlag = 0
+        AND
+        DATE_FORMAT(manufactureDate, '%Y-%m')= DATE_FORMAT(#manufactureDate#, '%Y-%m')
+        GROUP BY
+        materialNum
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchAllOutsideFactoryList" parameterClass="entityOutsidefactory" resultMap="Outsidefactory-map">
+        SELECT
+        outsideFactoryID
+        ,orderNum
+        ,merchantsID
+        ,toolID
+        ,materialNum
+        ,numberGrinding
+        ,SUM(numberGrinding) as number
+        ,DATE_FORMAT(manufactureDate, '%d') as date
+        ,outDoorNom
+        ,grindingType
+        ,laserCode
+        ,toolType
+        ,approver
+        ,manufactureDate
+        ,repairState
+        ,DelFlag
+        ,CreateUser
+        ,CreateTime
+        ,updateUser
+        ,updateTime
+        ,note
+        ,version
+        ,expandSpace4
+        ,descr
+        FROM
+        outsidefactory
+        WHERE
+        DelFlag = 0
+        AND
+        DATE_FORMAT(manufactureDate, '%Y-%m')= DATE_FORMAT(#manufactureDate#, '%Y-%m')
+        GROUP BY
+        DATE_FORMAT(manufactureDate, '%Y-%m-%d'),materialNum
+        ORDER BY
+        materialNum,manufactureDate
+    </select>
+
+    <!-- 2017/09/12 宋健 变更↓↓↓　dazhong@YMSC -->
+    <resultMap id="OutsidefactoryD-map" class="entityOutsidefactory">
+        <!-- 厂外修复ID -->
+        <result property="outsideFactoryID" column="outsideFactoryID"/>
+        <!-- 通知单号 -->
+        <result property="orderNum" column="orderNum"/>
+        <!-- 刀具ID -->
+        <result property="toolID" column="toolID"/>
+        <!-- 名称 -->
+        <result property="toolName" column="toolName"/>
+        <!-- 材料号 -->
+        <result property="materialNum" column="materialNum"/>
+        <!-- 回厂日期 -->
+        <result property="createTime" column="CreateTime"/>
+        <!-- 描述 -->
+        <result property="descr" column="descr"/>
+        <!-- 刀具管理号 -->
+        <result property="laserCode" column="laserCode"/>
+        <!-- 发出数量 -->
+        <result property="numberGrinding" column="numberGrinding"/>
+        <!-- 最后返厂数量 -->
+        <result property="lastBackNum" column="lastBackNum"/>
+        <!-- 累计返厂数量 -->
+        <result property="receiveNumber" column="ReceiveNumber"/>
+        <!-- 最后返厂数量 -->
+        <result property="lastBackNum" column="lastBackNum"/>
+        <!-- 备注 -->
+        <result property="note" column="note"/>
+        <!-- 出门单号 -->
+        <result property="outDoorNom" column="outDoorNom"/>
+        <!-- 刀具类型（0.钻头1.刀片) -->
+        <result property="toolType" column="toolType"/>
+        <!-- 经手人 -->
+        <result property="approver" column="approver"/>
+        <!-- 邮寄人 -->
+        <result property="sendUser" column="sendUser"/>
+        <!-- 商家ID -->
+        <result property="merchantsID" column="merchantsID"/>
+        <!-- 出厂日期 -->
+        <result property="manufactureDate" column="manufactureDate"/>
+    </resultMap>
+    <!-- 2017/09/12 宋健 变更↑↑↑　dazhong@YMSC -->
+
+    <!-- 2017/09/12 宋健 追加↓↓↓　dazhong@YMSC -->
+    <select id="getDetailList" parameterClass="entityOutsidefactory" resultMap="OutsidefactoryD-map">
+        SELECT
+        outf.outsideFactoryID AS outsideFactoryID,
+        outf.orderNum AS orderNum,
+        IFNULL(outf.materialNum,'') AS materialNum,
+        outf.toolID AS toolID,
+        IFNULL(outf.toolName,'') AS toolName,
+        <!-- 2017/09/12 王冉 追加↓↓↓　dazhong@YMSC -->
+        IFNULL(outf.descr,'') AS descr,
+        <!-- 2017/09/12 王冉 追加↑↑↑　dazhong@YMSC -->
+        IFNULL(outf.laserCode,'') AS laserCode,
+        outf.numberGrinding AS numberGrinding,
+        outf.ReceiveNumber AS ReceiveNumber,
+        outf.CreateTime AS createTime,
+        outf.outDoorNom AS outDoorNom,
+        outf.toolType AS toolType,
+        outf.approver AS approver,
+        outf.sendUser AS sendUser,
+        outf.merchantsID AS merchantsID,
+        outf.manufactureDate AS manufactureDate,
+        <!-- 2017/09/12 王冉 变更↓↓↓　dazhong@YMSC -->
+        IFNULL((
+        SELECT
+        backFactoryNumber
+        FROM
+        outsidefactoryhistory
+        WHERE
+        IF(ISNULL(outf.laserCode),  materialNum = outf.materialNum, materialNum = outf.laserCode) and outDoorNum = #outDoorNom#
+        ORDER BY
+        CreateTime DESC
+        LIMIT 1
+        ),0) AS lastBackNum,
+        <!-- 2017/09/12 王冉 变更↑↑↑　dazhong@YMSC -->
+        IFNULL(outf.note,'') AS note
+        FROM
+        outsidefactory outf
+        WHERE
+        outf.outDoorNom = #outDoorNom#
+        AND
+        outf.DelFlag = 0
+        <!-- 2017/09/12 宋健 变更↓↓↓　dazhong@YMSC -->
+        ORDER BY
+        outf.CreateTime DESC
+        <!-- 2017/09/12 宋健 变更↑↑↑　dazhong@YMSC -->
+    </select>
+    <!-- 2017/09/12 宋健 追加↑↑↑　dazhong@YMSC -->
+
+</sqlMap>
+

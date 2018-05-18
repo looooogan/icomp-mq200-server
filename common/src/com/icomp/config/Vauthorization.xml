@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vauthorization.xml
+		Created on : 2016/08/04 11:22:50
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vauthorization">
+	<typeAlias alias="entityVauthorization" type="com.icomp.entity.base.Vauthorization" />
+	<resultMap id="Vauthorization-map" class="entityVauthorization">
+		<!-- 授权ID -->
+		<result property="authorizationID" column="authorizationID" />
+		<!-- 授权原因（0.断刀1.丢刀2.补领） -->
+		<result property="authorizedReason" column="authorizedReason" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 材料号或合成刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 授权时间 -->
+		<result property="authorizedTime" column="authorizedTime" />
+		<!--  -->
+		<result property="authorizationUser" column="AuthorizationUser" />
+		<!--  -->
+		<result property="empCard" column="EmpCard" />
+		<!--  -->
+		<result property="businessID" column="BusinessID" />
+		<!--  -->
+		<result property="businessName" column="BusinessName" />
+		<!-- 业务流程编码 -->
+		<result property="businessCode" column="businessCode" />
+		<!-- 备注（情况简介） -->
+		<result property="note" column="note" />
+		<!-- 授权原因（0.断刀1.丢刀2.补领） -->
+		<result property="toolReason" column="toolReason" />
+		<!--  -->
+		<result property="operator" column="Operator" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVauthorization" resultMap="Vauthorization-map">
+		SELECT
+		authorizationID
+		,authorizedReason
+		,ToolID
+		,ToolCode
+		,authorizedTime
+		,AuthorizationUser
+		,EmpCard
+		,BusinessID
+		,BusinessName
+		,businessCode
+		,note
+		,toolReason
+		,Operator
+		from vauthorization
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVauthorization" resultMap="Vauthorization-map">
+		SELECT
+		authorizationID
+		,authorizedReason
+		,ToolID
+		,ToolCode
+		,authorizedTime
+		,AuthorizationUser
+		,EmpCard
+		,BusinessID
+		,BusinessName
+		,businessCode
+		,note
+		,toolReason
+		,Operator
+		from vauthorization
+		<dynamic prepend=" where ">
+			<isNotNull property="authorizationID" prepend="and ">
+				authorizationID = #authorizationID#
+         </isNotNull>
+			<isNotNull property="authorizedReason" prepend="and ">
+				authorizedReason = #authorizedReason#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				authorizedTime >= #dateStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				authorizedTime <= #dateEnd#
+				]]>
+         </isNotNull>
+			<isNotNull property="authorizationUser" prepend="and ">
+				AuthorizationUser like concat('%',#authorizationUser#,'%')
+         </isNotNull>
+			<isNotNull property="empCard" prepend="or ">
+				EmpCard like concat('%',#empCard#,'%')
+         </isNotNull>
+			<isNotNull property="businessID" prepend="and ">
+				BusinessID = #businessID#
+         </isNotNull>
+			<isNotNull property="businessName" prepend="and ">
+				BusinessName = #businessName#
+         </isNotNull>
+			<isNotNull property="businessCode" prepend="and ">
+				businessCode = #businessCode#
+         </isNotNull>
+			<isNotNull property="note" prepend="and ">
+				note like concat('%',#note#,'%')
+         </isNotNull>
+			<isNotNull property="toolReason" prepend="and ">
+				toolReason = #toolReason#
+         </isNotNull>
+			<isNotNull property="operator" prepend="and ">
+				Operator = #operator#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVauthorization" resultClass="int">
+		SELECT count(1)
+		from vauthorization
+		<dynamic prepend=" where ">
+			<isNotNull property="authorizationID" prepend="and ">
+				authorizationID = #authorizationID#
+         </isNotNull>
+			<isNotNull property="authorizedReason" prepend="and ">
+				authorizedReason = #authorizedReason#
+
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="authorizedTime" prepend="and ">
+				authorizedTime = #authorizedTime#
+         </isNotNull>
+			<isNotNull property="authorizationUser" prepend="and ">
+				AuthorizationUser like concat('%',#authorizationUser#,'%')
+         </isNotNull>
+			<isNotNull property="empCard" prepend="or ">
+				EmpCard like concat('%',#empCard#,'%')
+         </isNotNull>
+			<isNotNull property="businessID" prepend="and ">
+				BusinessID = #businessID#
+         </isNotNull>
+			<isNotNull property="businessName" prepend="and ">
+				BusinessName = #businessName#
+         </isNotNull>
+			<isNotNull property="businessCode" prepend="and ">
+				businessCode = #businessCode#
+         </isNotNull>
+			<isNotNull property="note" prepend="and ">
+				note like concat('%',#note#,'%')
+         </isNotNull>
+			<isNotNull property="toolReason" prepend="and ">
+				toolReason = #toolReason#
+         </isNotNull>
+			<isNotNull property="operator" prepend="and ">
+				Operator = #operator#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

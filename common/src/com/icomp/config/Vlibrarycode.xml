@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vlibrarycode.xml
+		Created on : 2014/08/28 18:34:44
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByList_new ： 任意条件查询
+		searchByList_b08s011 ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vlibrarycode">
+	<typeAlias alias="entityVlibrarycode" type="com.icomp.entity.base.Vlibrarycode" />
+	<resultMap id="Vlibrarycode-map" class="entityVlibrarycode">
+		<!-- 库位码主键 -->
+		<result property="libraryCodeID" column="LibraryCodeID" />
+		<!--  -->
+		<result property="systeCodeShow" column="SysteCodeShow" />
+		<!-- 自定义编码 -->
+		<result property="customerCode" column="CustomerCode" />
+		<!-- 系统编码 -->
+		<result property="systeCode" column="SysteCode" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVlibrarycode" resultMap="Vlibrarycode-map">
+		SELECT
+		LibraryCodeID
+		,SysteCodeShow
+		,CustomerCode
+		,SysteCode
+		from vlibrarycode
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList_new" parameterClass="entityVlibrarycode" resultMap="Vlibrarycode-map">
+		SELECT
+		vlibrarycode.LibraryCodeID as LibraryCodeID
+		,SysteCodeShow
+		,CustomerCode
+		,SysteCode
+		from vlibrarycode
+		left join tool on vlibrarycode.LibraryCodeID=tool.LibraryCodeID
+		where tool.toolID is  null
+		 <isNotNull property="libraryCodeID" prepend="and ">
+				LibraryCodeID = #libraryCodeID#
+         </isNotNull>
+			<isNotNull property="systeCodeShow" prepend="and ">
+				SysteCodeShow = #systeCodeShow#
+         </isNotNull>
+			<isNotNull property="customerCode" prepend="and ">
+				CustomerCode = #customerCode#
+         </isNotNull>
+			<isNotNull property="systeCode" prepend="and ">
+				SysteCode = #systeCode#
+         </isNotNull>
+		<isNotNull property="orderString">
+			order by $orderString$
+    	</isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList_b08s011" parameterClass="entityVlibrarycode" resultMap="Vlibrarycode-map">
+		SELECT
+		LibraryCodeID
+		,SysteCodeShow
+		,CustomerCode
+		,SysteCode
+		from vlibrarycode 
+		where LibraryCodeID not in (select LibraryCodeID from stack)
+			<isNotNull property="libraryCodeID" prepend="and ">
+				LibraryCodeID = #libraryCodeID#
+         </isNotNull>
+			<isNotNull property="systeCodeShow" prepend="and ">
+				SysteCodeShow = #systeCodeShow#
+         </isNotNull>
+			<isNotNull property="customerCode" prepend="and ">
+				CustomerCode = #customerCode#
+         </isNotNull>
+			<isNotNull property="systeCode" prepend="and ">
+				SysteCode = #systeCode#
+         </isNotNull>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVlibrarycode" resultMap="Vlibrarycode-map">
+		SELECT
+		LibraryCodeID
+		,SysteCodeShow
+		,CustomerCode
+		,SysteCode
+		from vlibrarycode
+		<dynamic prepend=" where ">
+			<isNotNull property="libraryCodeID" prepend="and ">
+				LibraryCodeID = #libraryCodeID#
+         </isNotNull>
+			<isNotNull property="systeCodeShow" prepend="and ">
+				SysteCodeShow = #systeCodeShow#
+         </isNotNull>
+			<isNotNull property="customerCode" prepend="and ">
+				CustomerCode = #customerCode#
+         </isNotNull>
+			<isNotNull property="systeCode" prepend="and ">
+				SysteCode = #systeCode#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVlibrarycode" resultClass="int">
+		SELECT count(1)
+		from vlibrarycode
+		<dynamic prepend=" where ">
+			<isNotNull property="libraryCodeID" prepend="and ">
+				LibraryCodeID = #libraryCodeID#
+         </isNotNull>
+			<isNotNull property="systeCodeShow" prepend="and ">
+				SysteCodeShow = #systeCodeShow#
+         </isNotNull>
+			<isNotNull property="customerCode" prepend="and ">
+				CustomerCode = #customerCode#
+         </isNotNull>
+			<isNotNull property="systeCode" prepend="and ">
+				SysteCode = #systeCode#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

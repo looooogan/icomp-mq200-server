@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<!-- 入库信息查询ACTION注入	-->
+	<bean id="b01S001Action" class="com.icomp.v01b01.b01s001.action.B01S001Action" scope="prototype">
+		<property name="b01s001Business" ref="b01s001Business"/>
+	</bean>
+	
+	<!-- 出库信息查询ACTION注入	-->
+	<bean id="b01S002Action" class="com.icomp.v01b01.b01s002.action.B01S002Action" scope="prototype">
+		<property name="b01s002Business" ref="b01s002Business"/>
+	</bean>
+	
+	<!-- 待处理刀具信息查询ACTION注入	-->
+	<bean id="b01S003Action" class="com.icomp.v01b01.b01s003.action.B01S003Action" scope="prototype">
+		<property name="b01s003Business" ref="b01s003Business"/>
+	</bean>
+	
+	<!-- 换领申请信息查询ACTION注入	-->
+	<bean id="b01S004Action" class="com.icomp.v01b01.b01s004.action.B01S004Action" scope="prototype">
+		<property name="b01s004Business" ref="b01s004Business"/>
+	</bean>
+	
+	<!-- 申领信息查询ACTION注入	-->
+	<bean id="b01S005Action" class="com.icomp.v01b01.b01s005.action.B01S005Action" scope="prototype">
+		<property name="b01s005Business" ref="b01s005Business"/>
+	</bean>
+	
+	<!-- 更替刀具库存查询ACTION注入	-->
+	<bean id="b01S006Action" class="com.icomp.v01b01.b01s006.action.B01S006Action" scope="prototype">
+		<property name="b01s006Business" ref="b01s006Business"/>
+	</bean>
+	
+	<!-- 在途计划查询ACTION注入	-->
+	<bean id="b01S007Action" class="com.icomp.v01b01.b01s007.action.B01S007Action" scope="prototype">
+		<property name="b01s007Business" ref="b01s007Business"/>
+	</bean>
+	
+	<!-- 采购计划查询ACTION注入	-->
+	<bean id="b01S008Action" class="com.icomp.v01b01.b01s008.action.B01S008Action" scope="prototype">
+		<property name="b01s008Business" ref="b01s008Business"/>
+	</bean>
+	
+	<!-- 质检记录查询ACTION注入	-->
+	<bean id="b01S009Action" class="com.icomp.v01b01.b01s009.action.B01S009Action" scope="prototype">
+		<property name="b01s009Business" ref="b01s009Business"/>
+	</bean>
+	
+	<!-- 快速查询ACTION注入	-->
+	<bean id="b01S010Action" class="com.icomp.v01b01.b01s010.action.B01S010Action" scope="prototype">
+		<property name="b01s010Business" ref="b01s010Business"/>
+	</bean>
+	
+	<!-- 在途计划报警ACTION注入	-->
+	<bean id="b01S011Action" class="com.icomp.v01b01.b01s011.action.B01S011Action" scope="prototype">
+		<property name="b01s011Business" ref="b01s011Business"/>
+	</bean>
+	
+	<!-- 库存异常报警ACTION注入	-->
+	<bean id="b01S012Action" class="com.icomp.v01b01.b01s012.action.B01S012Action" scope="prototype">
+     <property name="b01s012Business" ref="b01s012Business"/>
+	</bean>
+	
+	<!-- 库存状况ACTION注入	-->
+	<bean id="b01S013Action" class="com.icomp.v01b01.b01s013.action.B01S013Action" scope="prototype">
+     <property name="b01s013Business" ref="b01s013Business"/>
+	</bean>
+	
+	<!-- 库存盘点ACTION注入	-->
+	<bean id="b01S014Action" class="com.icomp.v01b01.b01s014.action.B01S014Action" scope="prototype">
+     <property name="b01s014Business" ref="b01s014Business"/>
+	</bean>
+
+	<bean id="b01S015Action" class="com.icomp.v01b01.b01s015.action.B01S015Action" scope="prototype">
+		<property name="b01s015Business" ref="b01s015Business"/>
+	</bean>
+</beans>

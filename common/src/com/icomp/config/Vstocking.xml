@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vstocking.xml
+		Created on : 2014/11/13 14:08:26
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByList_F ： 任意条件查询-ToolCode模糊查询
+		searchByCount ：任意条件条数查询
+		searchByCount_F ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vstocking">
+	<typeAlias alias="entityVstocking" type="com.icomp.entity.base.Vstocking" />
+	<resultMap id="Vstocking-map" class="entityVstocking">
+		<!--  -->
+		<result property="toolCode" column="ToolCode" />
+		<!--  -->
+		<result property="checkTime" column="CheckTime" />
+		<!--  -->
+		<result property="checkUser" column="CheckUser" />
+		<!--  -->
+		<result property="libraryCount" column="LibraryCount" />
+		<!--  -->
+		<result property="realLibraryCount" column="RealLibraryCount" />
+		<!--  -->
+		<result property="removeUser" column="RemoveUser" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVstocking" resultMap="Vstocking-map">
+		SELECT
+		ToolCode
+		,CheckTime
+		,CheckUser
+		,LibraryCount
+		,RealLibraryCount
+		,RemoveUser
+		from vstocking
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVstocking" resultMap="Vstocking-map">
+		SELECT
+		ToolCode
+		,CheckTime
+		,CheckUser
+		,LibraryCount
+		,RealLibraryCount
+		,RemoveUser
+		from vstocking
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="checkTime" prepend="and ">
+				CheckTime = #checkTime#
+         </isNotNull>
+         	<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				CheckTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				CheckTime <= #dateEnd#
+				]]>
+         </isNotNull>
+			<isNotNull property="checkUser" prepend="and ">
+				CheckUser = #checkUser#
+         </isNotNull>
+			<isNotNull property="libraryCount" prepend="and ">
+				LibraryCount = #libraryCount#
+         </isNotNull>
+			<isNotNull property="realLibraryCount" prepend="and ">
+				RealLibraryCount = #realLibraryCount#
+         </isNotNull>
+			<isNotNull property="removeUser" prepend="and ">
+				RemoveUser = #removeUser#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList_F" parameterClass="entityVstocking" resultMap="Vstocking-map">
+		SELECT
+		t.ToolCode as ToolCode
+		,v.CheckTime
+		,v.CheckUser
+		,v.LibraryCount
+		,v.RealLibraryCount
+		,v.RemoveUser
+		from vStocking v right join tool t on v.ToolCode=t.ToolCode
+		<dynamic prepend=" where ">
+			<isNotNull property="inventoryStatus" prepend="and " >
+				case 
+				when #inventoryStatus#='0' then v.CheckTime is not null 
+				when #inventoryStatus#='1' then v.CheckTime is  null 
+				end
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="checkTime" prepend="and ">
+				CheckTime = #checkTime#
+         </isNotNull>
+         	<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				CheckTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				CheckTime <= #dateEnd#
+				]]>
+         </isNotNull>
+			<isNotNull property="checkUser" prepend="and ">
+				CheckUser = #checkUser#
+         </isNotNull>
+			<isNotNull property="libraryCount" prepend="and ">
+				LibraryCount = #libraryCount#
+         </isNotNull>
+			<isNotNull property="realLibraryCount" prepend="and ">
+				RealLibraryCount = #realLibraryCount#
+         </isNotNull>
+			<isNotNull property="removeUser" prepend="and ">
+				RemoveUser = #removeUser#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVstocking" resultClass="int">
+		SELECT count(1)
+		from vstocking
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="checkTime" prepend="and ">
+				CheckTime = #checkTime#
+         </isNotNull>
+         	<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				CheckTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				CheckTime <= #dateEnd#
+				]]>
+         </isNotNull>         
+			<isNotNull property="checkUser" prepend="and ">
+				CheckUser = #checkUser#
+         </isNotNull>
+			<isNotNull property="libraryCount" prepend="and ">
+				LibraryCount = #libraryCount#
+         </isNotNull>
+			<isNotNull property="realLibraryCount" prepend="and ">
+				RealLibraryCount = #realLibraryCount#
+         </isNotNull>
+			<isNotNull property="removeUser" prepend="and ">
+				RemoveUser = #removeUser#
+         </isNotNull>
+		</dynamic>
+	</select>
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount_F" parameterClass="entityVstocking" resultClass="int">
+		SELECT count(1)
+		from vStocking v right join tool t on v.ToolCode=t.ToolCode
+		<dynamic prepend=" where ">
+		<isNotNull property="inventoryStatus" prepend="and " >
+				case 
+				when #inventoryStatus#='0' then v.CheckTime is not null 
+				when #inventoryStatus#='1' then v.CheckTime is  null 
+				end
+         </isNotNull>
+		 <isNotNull property="toolCode" prepend="and ">
+             ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="checkTime" prepend="and ">
+				CheckTime = #checkTime#
+         </isNotNull>
+         	<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				CheckTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				CheckTime <= #dateEnd#
+				]]>
+         </isNotNull>         
+			<isNotNull property="checkUser" prepend="and ">
+				CheckUser = #checkUser#
+         </isNotNull>
+			<isNotNull property="libraryCount" prepend="and ">
+				LibraryCount = #libraryCount#
+         </isNotNull>
+			<isNotNull property="realLibraryCount" prepend="and ">
+				RealLibraryCount = #realLibraryCount#
+         </isNotNull>
+			<isNotNull property="removeUser" prepend="and ">
+				RemoveUser = #removeUser#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

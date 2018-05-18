@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vpositions.xml
+		Created on : 2014/08/19 15:48:47
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vpositions">
+	<typeAlias alias="entityVpositions" type="com.icomp.entity.base.Vpositions" />
+	<resultMap id="Vpositions-map" class="entityVpositions">
+		<!-- 职务ID -->
+		<result property="positionID" column="PositionID" />
+		<!-- 语言编码 -->
+		<result property="languageCode" column="LanguageCode" />
+		<!-- 语言名称 -->
+		<result property="languageName" column="LanguageName" />
+		<!-- 职务编码 -->
+		<result property="positionCode" column="PositionCode" />
+		<!-- 职务名称 -->
+		<result property="positionName" column="PositionName" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+		<!-- 部门ID -->
+		<result property="departmentID" column="DepartmentID" />
+		<!-- 部门名称 -->
+		<result property="departmentName" column="DepartmentName" />
+		<!-- 机构ID -->
+		<result property="agencyID" column="AgencyID" />
+		<!-- 机构名称 -->
+		<result property="agencyName" column="AgencyName" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVpositions" resultMap="Vpositions-map">
+		SELECT
+		PositionID
+		,LanguageCode
+		,LanguageName
+		,PositionCode
+		,PositionName
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		,DepartmentID
+		,DepartmentName
+		,AgencyID
+		,AgencyName
+		from vpositions
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVpositions" resultMap="Vpositions-map">
+		SELECT
+		PositionID
+		,LanguageCode
+		,LanguageName
+		,PositionCode
+		,PositionName
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		,DepartmentID
+		,DepartmentName
+		,AgencyID
+		,AgencyName
+		from vpositions
+		<dynamic prepend=" where ">
+			<isNotNull property="positionID" prepend="and ">
+				PositionID = #positionID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="languageName" prepend="and ">
+				LanguageName = #languageName#
+         </isNotNull>
+			<isNotNull property="positionCode" prepend="and ">
+				PositionCode = #positionCode#
+         </isNotNull>
+			<isNotNull property="positionName" prepend="and ">
+				PositionName = #positionName#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="departmentID" prepend="and ">
+				DepartmentID = #departmentID#
+         </isNotNull>
+			<isNotNull property="departmentName" prepend="and ">
+				DepartmentName = #departmentName#
+         </isNotNull>
+			<isNotNull property="agencyID" prepend="and ">
+				AgencyID = #agencyID#
+         </isNotNull>
+			<isNotNull property="agencyName" prepend="and ">
+				AgencyName = #agencyName#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVpositions" resultClass="int">
+		SELECT count(1)
+		from vpositions
+		<dynamic prepend=" where ">
+			<isNotNull property="positionID" prepend="and ">
+				PositionID = #positionID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="languageName" prepend="and ">
+				LanguageName = #languageName#
+         </isNotNull>
+			<isNotNull property="positionCode" prepend="and ">
+				PositionCode = #positionCode#
+         </isNotNull>
+			<isNotNull property="positionName" prepend="and ">
+				PositionName = #positionName#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="departmentID" prepend="and ">
+				DepartmentID = #departmentID#
+         </isNotNull>
+			<isNotNull property="departmentName" prepend="and ">
+				DepartmentName = #departmentName#
+         </isNotNull>
+			<isNotNull property="agencyID" prepend="and ">
+				AgencyID = #agencyID#
+         </isNotNull>
+			<isNotNull property="agencyName" prepend="and ">
+				AgencyName = #agencyName#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

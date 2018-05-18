@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+    <!-- b02s001Business注入 -->
+	<bean id="b02s001Business" class="com.icomp.v01b02.b02s001.business.impl.B02S001BusinessImpl"  scope="prototype">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b02s001Service" ref="icompv01b02s001Service" />
+	</bean>
+	<!--  换领申请信息查询 BUSINESS注入	-->
+    <bean id="v01b02s002Business" class="com.icomp.v01b02.b02s002.business.impl.B02S002BusinessImpl">
+    	<property name="service" ref="commonService"/>
+		<property name="icompv01b02s002Service" ref="icompv01b02s002Service"></property>
+    </bean>
+	<!-- 换领记录查询 -->
+	<!--  换领记录查询BUSINESS注入	-->
+    <bean id="v01b02s003Business" class="com.icomp.v01b02.b02s003.business.impl.B02S003BusinessImpl">
+    	<property name="service" ref="commonService"/>
+		<property name="icompv01b02s003service" ref="icompv01b02s003service"></property>
+    </bean>
+	<!--  对刀记录查询BUSINESS注入	-->
+    <bean id="b02s004Business" class="com.icomp.v01b02.b02s004.business.impl.B02S004BusinessImpl">
+    	<property name="service" ref="commonService"/>
+		<property name="icompv01b02s004service" ref="icompv01b02s004service"></property>
+    </bean>
+	<!--  对刀工作量汇总BUSINESS注入	--> 
+	<bean id="b02s005Business" class="com.icomp.v01b02.b02s005.business.impl.B02S005BusinessImpl">
+    	<property name="service" ref="commonService"/>
+		<property name="icompv01b02s005service" ref="icompv01b02s005service"></property>
+    </bean>
+	<!--  快速查询BUSINESS注入	--> 
+	<bean id="b02s006Business" class="com.icomp.v01b02.b02s006.business.impl.B02S006BusinessImpl">
+    	<property name="service" ref="commonService"/>
+		<property name="icompv01b02s006Service" ref="icompv01b02s006Service"></property>
+    </bean>
+    <!--  操作记录查询BUSINESS注入	--> 
+	<bean id="b02s007Business" class="com.icomp.v01b02.b02s007.business.impl.B02S007BusinessImpl">
+    	<property name="service" ref="commonService"/>
+		<property name="icompv01b02s007service" ref="icompv01b02s007service"></property>
+    </bean>
+    
+    <!-- 换领申请信息查询 Service注入 -->
+	<bean id="icompv01b02s001Service"
+		class="com.icomp.common.service.impl.icomp.v01b02.s001.ICOMPV01B02S001ServiceImpl"  scope="prototype">
+		<property name="vsynthesisexperienceDao" ref="vsynthesisexperienceDao"/>
+	</bean>	
+    <!-- 换领申请信息查询 Service注入 -->
+	<bean id="icompv01b02s002Service"
+		class="com.icomp.common.service.impl.icomp.v01b02.s002.ICOMPV01B02S002ServiceImpl"  scope="prototype">
+		<property name="vredemptionappliedDao" ref="vredemptionappliedDao"/>
+	</bean>	
+    <!--换领记录查询 Service注入 -->
+	<bean id="icompv01b02s003service"
+		class="com.icomp.common.service.impl.icomp.v01b02.s003.ICOMPV01B02S003ServiceImpl"  scope="prototype">
+		<property name="vredemptionappliedDao" ref="vredemptionappliedDao"/>
+	</bean>	
+    <!-- 对刀记录查询Service注入 -->
+	<bean id="icompv01b02s004service"
+		class="com.icomp.common.service.impl.icomp.v01b02.s004.ICOMPV01B02S004ServiceImpl"  scope="prototype">
+		<property name="vtoolsettingDao" ref="vtoolsettingDao"/>
+	</bean>	
+    <!-- 对刀工作量汇总Service注入 -->
+	<bean id="icompv01b02s005service"
+		class="com.icomp.common.service.impl.icomp.v01b02.s005.ICOMPV01B02S005ServiceImpl"  scope="prototype">
+		<property name="vtoolsettingDao" ref="vtoolsettingDao"/>
+	</bean>	
+    <!-- 快速查询Service注入 -->
+	<bean id="icompv01b02s006Service"
+		class="com.icomp.common.service.impl.icomp.v01b02.s006.ICOMPV01B02S006ServiceImpl"  scope="prototype">
+		<property name="synthesisknifeDao" ref="synthesisknifeDao"/>
+	</bean>	
+	<!--  操作记录查询Service注入	--> 
+	<bean id="icompv01b02s007service"
+		class="com.icomp.common.service.impl.icomp.v01b02.s007.ICOMPV01B02S007ServiceImpl"  scope="prototype">
+		<property name="voperationrecordDao" ref="voperationrecordDao"/>
+	</bean>				
+</beans>

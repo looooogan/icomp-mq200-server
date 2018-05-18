@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vtoolprocureds.xml
+		Created on : 2016/05/31 17:52:24
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vtoolprocureds">
+	<typeAlias alias="entityVtoolprocureds" type="com.icomp.entity.base.Vtoolprocureds" />
+	<resultMap id="Vtoolprocureds-map" class="entityVtoolprocureds">
+		<!-- 采购ID -->
+		<result property="toolProcuredID" column="ToolProcuredID" />
+		<!-- 订单号 -->
+		<result property="toolsOrdeNO" column="ToolsOrdeNO" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 刀具分类(0刀具1辅具2配套9其他） -->
+		<result property="toolType" column="ToolType" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 供货商 -->
+		<result property="supplier" column="Supplier" />
+		<!-- 采购批次 -->
+		<result property="procuredBatch" column="ProcuredBatch" />
+		<!-- 采购日期 -->
+		<result property="procuredTime" column="ProcuredTime" />
+		<!-- 采购单价 -->
+		<result property="unitPrice" column="UnitPrice" />
+		<!--  -->
+		<result property="procuredUser" column="ProcuredUser" />
+		<!-- 采购数量 -->
+		<result property="procuredCount" column="ProcuredCount" />
+		<!-- 是否入库(0是1否) -->
+		<result property="procuredInto" column="ProcuredInto" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVtoolprocureds" resultMap="Vtoolprocureds-map">
+		SELECT
+		ToolProcuredID
+		,ToolsOrdeNO
+		,ToolID
+		,ToolType
+		,ToolCode
+		,Supplier
+		,ProcuredBatch
+		,ProcuredTime
+		,UnitPrice
+		,ProcuredUser
+		,ProcuredCount
+		,ProcuredInto
+		from vtoolprocureds
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVtoolprocureds" resultMap="Vtoolprocureds-map">
+		SELECT
+		ToolProcuredID
+		,ToolsOrdeNO
+		,ToolID
+		,ToolType
+		,ToolCode
+		,Supplier
+		,ProcuredBatch
+		,ProcuredTime
+		,UnitPrice
+		,ProcuredUser
+		,ProcuredCount
+		,ProcuredInto
+		from vtoolprocureds
+		<dynamic prepend=" where ">
+			<isNotNull property="toolProcuredID" prepend="and ">
+				ToolProcuredID = #toolProcuredID#
+         </isNotNull>
+			<isNotNull property="toolsOrdeNO" prepend="and ">
+				ToolsOrdeNO = #toolsOrdeNO#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolType" prepend="and ">
+				ToolType like concat('%',#toolType#,'%')
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="supplier" prepend="and ">
+				Supplier like concat('%',#supplier#,'%')
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				ProcuredTime >= #dateStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				ProcuredTime <= #dateEnd#
+				]]>
+			</isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+			<isNotNull property="procuredUser" prepend="and ">
+				ProcuredUser = #procuredUser#
+         </isNotNull>
+			<isNotNull property="procuredCount" prepend="and ">
+				ProcuredCount = #procuredCount#
+         </isNotNull>
+			<isNotNull property="procuredInto" prepend="and ">
+				ProcuredInto = #procuredInto#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVtoolprocureds" resultClass="int">
+		SELECT count(1)
+		from vtoolprocureds
+		<dynamic prepend=" where ">
+			<isNotNull property="toolProcuredID" prepend="and ">
+				ToolProcuredID = #toolProcuredID#
+         </isNotNull>
+			<isNotNull property="toolsOrdeNO" prepend="and ">
+				ToolsOrdeNO = #toolsOrdeNO#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolType" prepend="and ">
+				ToolType like concat('%',#toolType#,'%')
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="supplier" prepend="and ">
+					Supplier like concat('%',#supplier#,'%')
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				ProcuredTime >= #dateStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				ProcuredTime <= #dateEnd#
+				]]>
+			</isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+			<isNotNull property="procuredUser" prepend="and ">
+				ProcuredUser = #procuredUser#
+         </isNotNull>
+			<isNotNull property="procuredCount" prepend="and ">
+				ProcuredCount = #procuredCount#
+         </isNotNull>
+			<isNotNull property="procuredInto" prepend="and ">
+				ProcuredInto = #procuredInto#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

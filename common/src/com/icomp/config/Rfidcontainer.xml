@@ -1,0 +1,899 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Rfidcontainer.xml
+    Created on : 2014/08/19 15:48:45
+    Author : 工具自动生成
+    Description: 工具自动生成包含RFID载体的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByLikeList ： 按激光码进行模糊查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Rfidcontainer">
+    <typeAlias alias="entityRfidcontainer" type="com.icomp.entity.base.Rfidcontainer"/>
+    <resultMap id="Rfidcontainer-map" class="entityRfidcontainer">
+        <!-- RFID载体ID -->
+        <result property="rfidContainerID" column="RfidContainerID"/>
+        <!-- 工具盘ID -->
+        <result property="toolShelfID" column="ToolShelfID"/>
+        <!-- RFID标签ID -->
+        <result property="rfidCode" column="RfidCode"/>
+        <!-- RFID重用次数 -->
+        <result property="rfidReCount" column="RfidReCount"/>
+        <!-- 激光识别码 -->
+        <result property="laserIdentificationCode" column="LaserIdentificationCode"/>
+        <!-- 绑定类型(0RFID 1 激光码 2 工具盘 9 其他) -->
+        <result property="bandType" column="BandType"/>
+        <!-- 查询方式(0库存1流转) -->
+        <result property="queryType" column="QueryType"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="delFlag" column="DelFlag"/>
+        <!-- 更新者 -->
+        <result property="updateUser" column="UpdateUser"/>
+        <!-- 更新时间 -->
+        <result property="updateTime" column="UpdateTime"/>
+        <!-- 操作人 -->
+        <result property="systemLogUser" column="SystemLogUser"/>
+        <!-- 版本号 -->
+        <result property="version" column="Version"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityRfidcontainer" resultMap="Rfidcontainer-map">
+        SELECT
+        RfidContainerID
+        ,ToolShelfID
+        ,RfidCode
+        ,RfidReCount
+        ,LaserIdentificationCode
+        ,BandType
+        ,QueryType
+        ,DelFlag
+        ,UpdateUser
+        ,UpdateTime
+        ,SystemLogUser
+        ,Version
+        from rfidcontainer
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerID" prepend="and ">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            RfidContainerID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityRfidcontainer" resultMap="Rfidcontainer-map">
+        SELECT
+        RfidContainerID
+        ,ToolShelfID
+        ,RfidCode
+        ,RfidReCount
+        ,LaserIdentificationCode
+        ,BandType
+        ,QueryType
+        ,DelFlag
+        ,UpdateUser
+        ,UpdateTime
+        ,SystemLogUser
+        ,Version
+        from rfidcontainer
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerID" prepend="and ">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="toolShelfID" prepend="and ">
+                ToolShelfID = #toolShelfID#
+            </isNotNull>
+            <isNotNull property="rfidCode" prepend="and ">
+                RfidCode = #rfidCode#
+            </isNotNull>
+            <isNotNull property="rfidReCount" prepend="and ">
+                RfidReCount = #rfidReCount#
+            </isNotNull>
+            <isNotNull property="laserIdentificationCode" prepend="and ">
+                LaserIdentificationCode = #laserIdentificationCode#
+            </isNotNull>
+            <isNotNull property="bandType" prepend="and ">
+                BandType = #bandType#
+            </isNotNull>
+            <isNotNull property="queryType" prepend="and ">
+                QueryType = #queryType#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="systemLogUser" prepend="and ">
+                SystemLogUser = #systemLogUser#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            RfidContainerID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 按激光码进行模糊查询 -->
+    <select id="searchByLikeList" parameterClass="entityRfidcontainer" resultMap="Rfidcontainer-map">
+        SELECT
+        RfidContainerID
+        ,ToolShelfID
+        ,RfidCode
+        ,RfidReCount
+        ,LaserIdentificationCode
+        ,BandType
+        ,QueryType
+        ,DelFlag
+        ,UpdateUser
+        ,UpdateTime
+        ,SystemLogUser
+        ,Version
+        from rfidcontainer
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerID" prepend="and ">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="toolShelfID" prepend="and ">
+                ToolShelfID = #toolShelfID#
+            </isNotNull>
+            <isNotNull property="rfidCode" prepend="and ">
+                RfidCode = #rfidCode#
+            </isNotNull>
+            <isNotNull property="rfidReCount" prepend="and ">
+                RfidReCount = #rfidReCount#
+            </isNotNull>
+            <isNotNull property="laserIdentificationCode" prepend="and ">
+                LaserIdentificationCode like concat('%',#laserIdentificationCode#,'%')
+            </isNotNull>
+            <isNotNull property="bandType" prepend="and ">
+                BandType = #bandType#
+            </isNotNull>
+            <isNotNull property="queryType" prepend="and ">
+                QueryType = #queryType#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="systemLogUser" prepend="and ">
+                SystemLogUser = #systemLogUser#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            RfidContainerID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityRfidcontainer" resultClass="int">
+        SELECT count(1)
+        from rfidcontainer
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerID" prepend="and ">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="toolShelfID" prepend="and ">
+                ToolShelfID = #toolShelfID#
+            </isNotNull>
+            <isNotNull property="rfidCode" prepend="and ">
+                RfidCode = #rfidCode#
+            </isNotNull>
+            <isNotNull property="rfidReCount" prepend="and ">
+                RfidReCount = #rfidReCount#
+            </isNotNull>
+            <isNotNull property="laserIdentificationCode" prepend="and ">
+                LaserIdentificationCode = #laserIdentificationCode#
+            </isNotNull>
+            <isNotNull property="bandType" prepend="and ">
+                BandType = #bandType#
+            </isNotNull>
+            <isNotNull property="queryType" prepend="and ">
+                QueryType = #queryType#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="systemLogUser" prepend="and ">
+                SystemLogUser = #systemLogUser#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+    <!-- 任意条件更新处理(未指定字段更新为：null) -->
+    <update id="update" parameterClass="entityRfidcontainer">
+        update rfidcontainer
+        <dynamic prepend="set">
+            <isNotNull property="rfidContainerID">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNull property="rfidContainerID">
+                RfidContainerID = null
+            </isNull>
+            <isNotNull property="toolShelfID">
+                ,ToolShelfID = #toolShelfID#
+            </isNotNull>
+            <isNull property="toolShelfID">
+                ,ToolShelfID = null
+            </isNull>
+            <isNotNull property="rfidCode">
+                ,RfidCode = #rfidCode#
+            </isNotNull>
+            <isNull property="rfidCode">
+                ,RfidCode = null
+            </isNull>
+            <isNotNull property="rfidReCount">
+                ,RfidReCount = #rfidReCount#
+            </isNotNull>
+            <isNull property="rfidReCount">
+                ,RfidReCount = null
+            </isNull>
+            <isNotNull property="laserIdentificationCode">
+                ,LaserIdentificationCode = #laserIdentificationCode#
+            </isNotNull>
+            <isNull property="laserIdentificationCode">
+                ,LaserIdentificationCode = null
+            </isNull>
+            <isNotNull property="bandType">
+                ,BandType = #bandType#
+            </isNotNull>
+            <isNull property="bandType">
+                ,BandType = null
+            </isNull>
+            <isNotNull property="queryType">
+                ,QueryType = #queryType#
+            </isNotNull>
+            <isNull property="queryType">
+                ,QueryType = null
+            </isNull>
+            <isNotNull property="delFlag">
+                ,DelFlag = #delFlag#
+            </isNotNull>
+            <isNull property="delFlag">
+                ,DelFlag = null
+            </isNull>
+            <isNotNull property="updateUser">
+                ,UpdateUser = #updateUser#
+            </isNotNull>
+            <isNull property="updateUser">
+                ,UpdateUser = null
+            </isNull>
+            <isNotNull property="updateTime">
+                ,UpdateTime = #updateTime#
+            </isNotNull>
+            <isNull property="updateTime">
+                ,UpdateTime = null
+            </isNull>
+            <isNotNull property="systemLogUser">
+                ,SystemLogUser = #systemLogUser#
+            </isNotNull>
+            <isNull property="systemLogUser">
+                ,SystemLogUser = null
+            </isNull>
+            <isNotNull property="version">
+                ,Version = #version#
+            </isNotNull>
+            <isNull property="version">
+                ,Version = null
+            </isNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerIDWhere" prepend="and ">
+                RfidContainerID = #rfidContainerIDWhere#
+            </isNotNull>
+            <isNotNull property="toolShelfIDWhere" prepend="and ">
+                ToolShelfID = #toolShelfIDWhere#
+            </isNotNull>
+            <isNotNull property="rfidCodeWhere" prepend="and ">
+                RfidCode = #rfidCodeWhere#
+            </isNotNull>
+            <isNotNull property="rfidReCountWhere" prepend="and ">
+                RfidReCount = #rfidReCountWhere#
+            </isNotNull>
+            <isNotNull property="laserIdentificationCodeWhere" prepend="and ">
+                LaserIdentificationCode = #laserIdentificationCodeWhere#
+            </isNotNull>
+            <isNotNull property="bandTypeWhere" prepend="and ">
+                BandType = #bandTypeWhere#
+            </isNotNull>
+            <isNotNull property="queryTypeWhere" prepend="and ">
+                QueryType = #queryTypeWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="systemLogUserWhere" prepend="and ">
+                SystemLogUser = #systemLogUserWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 任意条件更新处理(未指定字段不更新) -->
+    <update id="updateNonQuery" parameterClass="entityRfidcontainer">
+        update rfidcontainer
+        <dynamic prepend="set">
+            <isNotNull property="rfidContainerID" prepend=",">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="toolShelfID" prepend=",">
+                ToolShelfID = #toolShelfID#
+            </isNotNull>
+            <isNotNull property="rfidCode" prepend=",">
+                RfidCode = #rfidCode#
+            </isNotNull>
+            <isNotNull property="rfidReCount" prepend=",">
+                RfidReCount = #rfidReCount#
+            </isNotNull>
+            <isNotNull property="laserIdentificationCode" prepend=",">
+                LaserIdentificationCode = #laserIdentificationCode#
+            </isNotNull>
+            <isNotNull property="bandType" prepend=",">
+                BandType = #bandType#
+            </isNotNull>
+            <isNotNull property="queryType" prepend=",">
+                QueryType = #queryType#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend=",">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend=",">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend=",">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="systemLogUser" prepend=",">
+                SystemLogUser = #systemLogUser#
+            </isNotNull>
+            <isNotNull property="version" prepend=",">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerIDWhere" prepend="and ">
+                RfidContainerID = #rfidContainerIDWhere#
+            </isNotNull>
+            <isNotNull property="toolShelfIDWhere" prepend="and ">
+                ToolShelfID = #toolShelfIDWhere#
+            </isNotNull>
+            <isNotNull property="rfidCodeWhere" prepend="and ">
+                RfidCode = #rfidCodeWhere#
+            </isNotNull>
+            <isNotNull property="rfidReCountWhere" prepend="and ">
+                RfidReCount = #rfidReCountWhere#
+            </isNotNull>
+            <isNotNull property="laserIdentificationCodeWhere" prepend="and ">
+                LaserIdentificationCode = #laserIdentificationCodeWhere#
+            </isNotNull>
+            <isNotNull property="bandTypeWhere" prepend="and ">
+                BandType = #bandTypeWhere#
+            </isNotNull>
+            <isNotNull property="queryTypeWhere" prepend="and ">
+                QueryType = #queryTypeWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="systemLogUserWhere" prepend="and ">
+                SystemLogUser = #systemLogUserWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+    <!-- 根据RFID删除对应的载体 -->
+    <update id="updateDelByRfid" parameterClass="java.util.Map">
+        update rfidcontainer rf SET
+        rf.DelFlag = '0'
+        ,rf.QueryType ='0'
+        ,rf.UpdateUser=#userId#
+        ,rf.UpdateTime=#updateTime#
+        ,rf.SystemLogUser =#userId#
+        ,rf.Version = rf.Version+1
+        WHERE rf.RfidCode IN
+        <iterate property="list" open="(" close=")" conjunction=",">
+            #list[]#
+        </iterate>
+
+
+    </update>
+
+    <!-- 插入处理 -->
+    <insert id="insert" parameterClass="entityRfidcontainer">
+        <selectKey resultClass="java.lang.String" keyProperty="rfidContainerID">
+            SELECT #rfidContainerID# as rfidContainerID FROM DUAL
+        </selectKey>
+        insert into rfidcontainer(
+        RfidContainerID
+        ,ToolShelfID
+        ,RfidCode
+        ,RfidReCount
+        ,LaserIdentificationCode
+        ,BandType
+        ,QueryType
+        ,DelFlag
+        ,UpdateUser
+        ,UpdateTime
+        ,SystemLogUser
+        ,Version
+        )
+        Values (
+        <isNotNull property="rfidContainerID">
+            #rfidContainerID#
+        </isNotNull>
+        <isNull property="rfidContainerID">
+            null
+        </isNull>
+        <isNotNull property="toolShelfID">
+            ,#toolShelfID#
+        </isNotNull>
+        <isNull property="toolShelfID">
+            ,null
+        </isNull>
+        <isNotNull property="rfidCode">
+            ,#rfidCode#
+        </isNotNull>
+        <isNull property="rfidCode">
+            ,null
+        </isNull>
+        <isNotNull property="rfidReCount">
+            ,#rfidReCount#
+        </isNotNull>
+        <isNull property="rfidReCount">
+            ,null
+        </isNull>
+        <isNotNull property="laserIdentificationCode">
+            ,#laserIdentificationCode#
+        </isNotNull>
+        <isNull property="laserIdentificationCode">
+            ,null
+        </isNull>
+        <isNotNull property="bandType">
+            ,#bandType#
+        </isNotNull>
+        <isNull property="bandType">
+            ,null
+        </isNull>
+        <isNotNull property="queryType">
+            ,#queryType#
+        </isNotNull>
+        <isNull property="queryType">
+            ,null
+        </isNull>
+        <isNotNull property="delFlag">
+            ,#delFlag#
+        </isNotNull>
+        <isNull property="delFlag">
+            ,null
+        </isNull>
+        <isNotNull property="updateUser">
+            ,#updateUser#
+        </isNotNull>
+        <isNull property="updateUser">
+            ,null
+        </isNull>
+        <isNotNull property="updateTime">
+            ,#updateTime#
+        </isNotNull>
+        <isNull property="updateTime">
+            ,null
+        </isNull>
+        <isNotNull property="systemLogUser">
+            ,#systemLogUser#
+        </isNotNull>
+        <isNull property="systemLogUser">
+            ,null
+        </isNull>
+        <isNotNull property="version">
+            ,#version#
+        </isNotNull>
+        <isNull property="version">
+            ,null
+        </isNull>
+        )
+    </insert>
+
+    <!-- 任意条件删除处理 -->
+    <delete id="delete" parameterClass="entityRfidcontainer">
+        delete from rfidcontainer
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerIDWhere" prepend="and ">
+                RfidContainerID = #rfidContainerIDWhere#
+            </isNotNull>
+            <isNotNull property="toolShelfIDWhere" prepend="and ">
+                ToolShelfID = #toolShelfIDWhere#
+            </isNotNull>
+            <isNotNull property="rfidCodeWhere" prepend="and ">
+                RfidCode = #rfidCodeWhere#
+            </isNotNull>
+            <isNotNull property="rfidReCountWhere" prepend="and ">
+                RfidReCount = #rfidReCountWhere#
+            </isNotNull>
+            <isNotNull property="laserIdentificationCodeWhere" prepend="and ">
+                LaserIdentificationCode = #laserIdentificationCodeWhere#
+            </isNotNull>
+            <isNotNull property="bandTypeWhere" prepend="and ">
+                BandType = #bandTypeWhere#
+            </isNotNull>
+            <isNotNull property="queryTypeWhere" prepend="and ">
+                QueryType = #queryTypeWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="systemLogUserWhere" prepend="and ">
+                SystemLogUser = #systemLogUserWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+        </dynamic>
+    </delete>
+
+    <resultMap id="Rfidcontainer-map22" class="entityRfidcontainer">
+        <!-- RFID载体ID -->
+        <result property="rfidContainerID" column="RfidContainerID"/>
+        <!-- 材料号 -->
+        <result property="expandSpace1" column="ToolCode"/>
+        <!-- 库位码 -->
+        <result property="rfidCode" column="RfidCode"/>
+        <!-- 标签类型 -->
+        <result property="queryType" column="QueryType"/>
+    </resultMap>
+    <!-- 根据RFID找到toolCode -->
+    <select id="checkRFIDType" parameterClass="entityRfidcontainer" resultMap="Rfidcontainer-map22">
+        SELECT
+        DISTINCT
+        aa.RfidContainerID AS RfidContainerID,
+        aa.queryType AS  QueryType,
+        aa.RfidCode AS  RfidCode,
+        aa.ToolCode AS  ToolCode
+        FROM
+        ( SELECT
+        tf1.RfidContainerID AS RfidContainerID,
+        tf1.QueryType AS queryType,
+        tf1.RfidCode AS RfidCode,
+        t.ToolCode AS ToolCode
+        FROM rfidcontainer tf1
+        INNER JOIN  knifeinventory kv ON tf1.RfidContainerID = kv.RfidContainerID
+        INNER JOIN tool t ON kv.ToolID = t.ToolID
+        WHERE kv.DelFlag = '0' AND t.DelFlag = '0'
+
+        union all
+
+        (
+        SELECT
+        tf.RfidContainerID AS RfidContainerID,
+        tf.QueryType AS queryType,
+        tf.RfidCode AS RfidCode,
+        t.ToolCode AS ToolCode
+
+        FROM rfidcontainer tf
+        INNER JOIN  tooltransfer tt ON tf.RfidContainerID = tt.RfidContainerID
+        INNER JOIN tool t ON  tt.ToolID = t.ToolID
+        WHERE  tt.DelFlag = '0' AND t.DelFlag = '0'
+        )
+        ) aa
+        WHERE aa.RfidCode = #rfidCode#
+
+    </select>
+    <!-- 根据RFID找到toolCode -->
+    <select id="searchToolCodeByRfid" parameterClass="java.util.List" resultMap="Rfidcontainer-map">
+        SELECT
+        tk.RfidContainerID AS RfidContainerID,
+        tk.ToolCode AS ToolShelfID,
+        rf.RfidCode AS RfidCode,
+        rf.RfidReCount AS RfidReCount,
+        rf.LaserIdentificationCode AS LaserIdentificationCode,
+        rf.BandType AS BandType,
+        rf.QueryType AS QueryType,
+        rf.DelFlag AS DelFlag,
+        rf.UpdateUser AS UpdateUser,
+        rf.UpdateTime AS UpdateTime,
+        rf.SystemLogUser AS SystemLogUser,
+        rf.Version AS Version
+        FROM
+        rfidcontainer rf
+        INNER JOIN (
+        (
+        SELECT
+        ki.RfidContainerID AS RfidContainerID,
+        t.ToolCode AS ToolCode
+        FROM
+        knifeinventory ki
+        LEFT JOIN tool t ON ki.ToolID = t.ToolID
+        WHERE
+        ki.DelFlag = '0'
+        AND t.DelFlag = '0'
+        GROUP BY
+        RfidContainerID
+        )
+        UNION ALL
+        (
+        SELECT
+        tt.RfidContainerID AS RfidContainerID,
+        t.ToolCode AS ToolCode
+        FROM
+        tooltransfer tt
+        LEFT JOIN tool t ON tt.ToolID = t.ToolID
+        WHERE
+        tt.DelFlag = '0'
+        AND t.DelFlag = '0'
+        GROUP BY
+        tt.RfidContainerID
+        )
+        ) tk ON tk.RfidContainerID = rf.RfidContainerID
+        WHERE
+        rf.DelFlag = '0' AND rf.RfidCode IN
+        <iterate conjunction="," open="(" close=")">
+            #[]#
+        </iterate>
+
+        GROUP BY
+        rf.RfidCode,
+        tk.ToolCode
+    </select>
+
+
+    <!-- 根据RFID找到查询列表 -->
+    <select id="searchListByRfids" parameterClass="java.util.List" resultMap="Rfidcontainer-map">
+        SELECT
+        *
+        FROM
+        rfidcontainer rf
+        WHERE
+        rf.DelFlag = '0' AND rf.RfidCode IN
+        <iterate conjunction="," open="(" close=")">
+            #[]#
+        </iterate>
+    </select>
+
+
+    <!-- 取得钻头入库的信息 -->
+    <resultMap id="Rfidcontainer-map2" class="entityRfidcontainer">
+        <!-- RFID载体ID -->
+        <result property="rfidContainerID" column="RfidContainerID"/>
+        <!-- 材料号 -->
+        <result property="expandSpace1" column="ToolCode"/>
+        <!-- 库位码 -->
+        <result property="expandSpace2" column="LibraryCodeID"/>
+        <!-- 库存量 -->
+        <result property="expandSpace3" column="KnifelnventoryNumber"/>
+        <!-- 刀具ID -->
+        <result property="expandSpace4" column="ToolID"/>
+        <!-- 标签类型 -->
+        <result property="queryType" column="QueryType"/>
+    </resultMap>
+    <!-- 根据RFID找到查询列表 -->
+    <select id="searchListBySamle" parameterClass="java.util.Map" resultMap="Rfidcontainer-map">
+        SELECT
+        *
+        FROM
+        rfidcontainer rf
+        WHERE rf.DelFlag = '0' AND rf.QueryType != #queryType#
+        AND rf.RfidCode IN
+        <iterate property="list" conjunction="," open="(" close=")">
+            #list[]#
+        </iterate>
+    </select>
+    <!-- 根据RFIDCode找到查询的rfid -->
+    <select id="searchListBySamle1" parameterClass="java.util.List" resultMap="Rfidcontainer-map">
+        SELECT
+        *
+        FROM
+        rfidcontainer rf
+        WHERE rf.DelFlag = '0' AND rf.QueryType != #queryType#
+        AND rf.RfidCode IN
+        <iterate property="list" conjunction="," open="(" close=")">
+            #list[]#
+        </iterate>
+    </select>
+
+    <select id="searchByList2" parameterClass="entityRfidcontainer" resultMap="Rfidcontainer-map2">
+        SELECT
+        rf.RfidContainerID AS RfidContainerID
+        ,tl.ToolCode AS ToolCode
+        ,tl.LibraryCodeID AS LibraryCodeID
+        ,SUM(kn.KnifelnventoryNumber) AS KnifelnventoryNumber
+        ,tl.ToolID AS ToolID
+        ,rf.QueryType AS QueryType
+        from rfidcontainer rf
+
+        <!-- 2017/08/25 王冉 变更↓↓↓　dazhong@YMSC -->
+        LEFT JOIN knifeinventory kn ON kn.RfidContainerID = rf.RfidContainerID
+        <!-- 2017/08/25 王冉 变更↑↑↑　dazhong@YMSC -->
+        LEFT JOIN tool tl ON tl.ToolID = kn.ToolID
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerID" prepend="and ">
+                rf.RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="toolShelfID" prepend="and ">
+                ToolShelfID = #toolShelfID#
+            </isNotNull>
+            <isNotNull property="rfidCode" prepend="and ">
+                RfidCode = #rfidCode#
+            </isNotNull>
+            <isNotNull property="rfidReCount" prepend="and ">
+                RfidReCount = #rfidReCount#
+            </isNotNull>
+            <isNotNull property="laserIdentificationCode" prepend="and ">
+                LaserIdentificationCode = #laserIdentificationCode#
+            </isNotNull>
+            <isNotNull property="bandType" prepend="and ">
+                BandType = #bandType#
+            </isNotNull>
+            <isNotNull property="queryType" prepend="and ">
+                QueryType = #queryType#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                rf.DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="systemLogUser" prepend="and ">
+                SystemLogUser = #systemLogUser#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            RfidContainerID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 批量插入  -->
+    <insert id="insertBatchRfid" parameterClass="java.util.List">
+        insert into rfidcontainer(
+        RfidContainerID
+        ,RfidCode
+        ,RfidReCount
+        ,BandType
+        ,QueryType
+        ,DelFlag
+        ,UpdateUser
+        ,UpdateTime
+        ,SystemLogUser
+        )
+        Values
+        <iterate conjunction=",">
+            (
+            #list[].rfidContainerID#
+            ,#list[].rfidCode#
+            ,#list[].rfidReCount#
+            ,#list[].bandType#
+            ,#list[].queryType#
+            ,#list[].delFlag#
+            ,#list[].updateUser#
+            ,#list[].updateTime#
+            ,#list[].systemLogUser#
+            )
+        </iterate>
+    </insert>
+    <!-- 按材料号删除对应的标签 -->
+    <update id="deleteBatchByRfidCode" parameterClass="java.util.Map">
+        UPDATE
+         tool t
+        INNER JOIN knifeinventory kv ON t.ToolID = kv.ToolID
+        LEFT  JOIN rfidcontainer rf ON kv.RfidContainerID = rf.RfidContainerID
+        SET rf.DelFlag = '1'
+        WHERE t.ToolCode = #toolCode#
+        AND  t.DelFlag ='0'
+    </update>
+
+    <!-- 任意条件更新处理(未指定字段更新为：null) -->
+    <update id="deleteBatchByHasRfidCode" parameterClass="java.util.Map">
+        UPDATE
+        tool t
+        INNER JOIN knifeinventory kv ON t.ToolID = kv.ToolID
+        LEFT JOIN rfidcontainer rf ON kv.RfidContainerID = rf.RfidContainerID
+        SET rf.DelFlag = '1'
+        WHERE t.ToolCode = #toolCode#
+        AND t.DelFlag ='0'
+        AND rf.RfidCode NOT IN
+        <iterate property="list" conjunction="," open="(" close=")">
+            #list[]#
+        </iterate>
+
+    </update>
+
+    <!-- 按RFIDList删除 -->
+      <delete id="deleteByRfidCodeList" parameterClass="java.util.List">
+        DELETE FROM rfidcontainer
+        WHERE RfidCode IN
+        <iterate conjunction="," open="(" close=")">
+            #[]#
+        </iterate>
+    </delete>
+
+</sqlMap>
+

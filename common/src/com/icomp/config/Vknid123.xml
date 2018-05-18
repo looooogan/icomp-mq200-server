@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vknid123.xml
+		Created on : 2016/02/15 18:57:18
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vknid123">
+	<typeAlias alias="entityVknid123" type="com.icomp.entity.base.Vknid123" />
+	<resultMap id="Vknid123-map" class="entityVknid123">
+		<!-- 消耗类别(0:可刃磨钻头1可刃磨刀片2一次性刀片9其他 -->
+		<result property="toolConsumetype" column="ToolConsumetype" />
+		<!--  -->
+		<result property="systeCode" column="SysteCode" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 库存类型(0新刀1出厂回库2封存3返厂4外借5借入9其他) -->
+		<result property="knifeInventoryType" column="KnifeInventoryType" />
+		<!-- 姓名 -->
+		<result property="userName" column="UserName" />
+		<!-- 采购批次 -->
+		<result property="procuredBatch" column="ProcuredBatch" />
+		<!--  -->
+		<result property="inLiberNumber" column="inLiberNumber" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVknid123" resultMap="Vknid123-map">
+		SELECT
+		ToolConsumetype
+		,SysteCode
+		,CreateTime
+		,KnifeInventoryType
+		,UserName
+		,ProcuredBatch
+		,inLiberNumber
+		from vknid123
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVknid123" resultMap="Vknid123-map">
+		SELECT
+		ToolConsumetype
+		,SysteCode
+		,CreateTime
+		,KnifeInventoryType
+		,UserName
+		,ProcuredBatch
+		,inLiberNumber
+		from vknid123
+		<dynamic prepend=" where ">
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="systeCode" prepend="and ">
+				SysteCode = #systeCode#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="knifeInventoryType" prepend="and ">
+				KnifeInventoryType = #knifeInventoryType#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="inLiberNumber" prepend="and ">
+				inLiberNumber = #inLiberNumber#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVknid123" resultClass="int">
+		SELECT count(1)
+		from vknid123
+		<dynamic prepend=" where ">
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="systeCode" prepend="and ">
+				SysteCode = #systeCode#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="knifeInventoryType" prepend="and ">
+				KnifeInventoryType = #knifeInventoryType#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="inLiberNumber" prepend="and ">
+				inLiberNumber = #inLiberNumber#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

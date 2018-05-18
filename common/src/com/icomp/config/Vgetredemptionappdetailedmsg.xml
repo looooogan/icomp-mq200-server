@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vgetredemptionappdetailedmsg.xml
+		Created on : 2015/01/27 16:52:27
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgetredemptionappdetailedmsg">
+	<typeAlias alias="entityVgetredemptionappdetailedmsg" type="com.icomp.entity.base.Vgetredemptionappdetailedmsg" />
+	<resultMap id="Vgetredemptionappdetailedmsg-map" class="entityVgetredemptionappdetailedmsg">
+		<!-- 换领申请流水号 -->
+		<result property="redemptionAppliedID" column="RedemptionAppliedID" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 申请数量 -->
+		<result property="appliedNumber" column="AppliedNumber" />
+		<!-- 备货数量 -->
+		<result property="stockNumber" column="stockNumber" />
+		<!--  -->
+		<result property="inventoryCount_A" column="InventoryCount_A" />
+		<!--  -->
+		<result property="inventoryCount_B" column="InventoryCount_B" />
+		<!-- 送回数量 -->
+		<result property="returnNumber" column="ReturnNumber" />
+		<!-- 断刀数量 -->
+		<result property="brokenNumber" column="BrokenNumber" />
+		<!-- 丢失数量 -->
+		<result property="lostNumber" column="LostNumber" />
+		<!-- 可刃磨长度 -->
+		<result property="toolSharpenLength" column="ToolSharpenLength" />
+		<!-- 复磨标准 -->
+		<result property="toolSharpenCriterion" column="ToolSharpenCriterion" />
+		<!-- 处理状态((0申请中1已备货 2换领已送回 3换领未送回 4.换领完毕 ) -->
+		<result property="processingStatus" column="ProcessingStatus" />
+		<!-- 备货数量 -->
+		<result property="stockNumber" column="StockNumber" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVgetredemptionappdetailedmsg" resultMap="Vgetredemptionappdetailedmsg-map">
+		SELECT
+		RedemptionAppliedID
+		,ToolCode
+		,AppliedNumber
+		,StockNumber
+		,InventoryCount_A
+		,InventoryCount_B
+		,ReturnNumber
+		,BrokenNumber
+		,LostNumber
+		,ToolSharpenLength
+		,ToolSharpenCriterion
+		,ProcessingStatus
+		,StockNumber
+		from vgetredemptionappdetailedmsg
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVgetredemptionappdetailedmsg" resultMap="Vgetredemptionappdetailedmsg-map">
+		SELECT
+		RedemptionAppliedID
+		,ToolCode
+		,AppliedNumber
+		,StockNumber
+		,InventoryCount_A
+		,InventoryCount_B
+		,ReturnNumber
+		,BrokenNumber
+		,LostNumber
+		,ToolSharpenLength
+		,ToolSharpenCriterion
+		,ProcessingStatus
+		,StockNumber
+		from vgetredemptionappdetailedmsg
+		<dynamic prepend=" where ">
+			<isNotNull property="redemptionAppliedID" prepend="and ">
+				RedemptionAppliedID = #redemptionAppliedID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="appliedNumber" prepend="and ">
+				AppliedNumber = #appliedNumber#
+         </isNotNull>
+            <isNotNull property="stockNumber" prepend="and ">
+				StockNumber = #stockNumber#
+         </isNotNull>
+			<isNotNull property="inventoryCount_A" prepend="and ">
+				InventoryCount_A = #inventoryCount_A#
+         </isNotNull>
+			<isNotNull property="inventoryCount_B" prepend="and ">
+				InventoryCount_B = #inventoryCount_B#
+         </isNotNull>
+			<isNotNull property="returnNumber" prepend="and ">
+				ReturnNumber = #returnNumber#
+         </isNotNull>
+			<isNotNull property="brokenNumber" prepend="and ">
+				BrokenNumber = #brokenNumber#
+         </isNotNull>
+			<isNotNull property="lostNumber" prepend="and ">
+				LostNumber = #lostNumber#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="toolSharpenCriterion" prepend="and ">
+				ToolSharpenCriterion = #toolSharpenCriterion#
+         </isNotNull>
+			<isNotNull property="processingStatus" prepend="and ">
+				ProcessingStatus = #processingStatus#
+         </isNotNull>
+			<isNotNull property="stockNumber" prepend="and ">
+				StockNumber = #stockNumber#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVgetredemptionappdetailedmsg" resultClass="int">
+		SELECT count(1)
+		from vgetredemptionappdetailedmsg
+		<dynamic prepend=" where ">
+			<isNotNull property="redemptionAppliedID" prepend="and ">
+				RedemptionAppliedID = #redemptionAppliedID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="appliedNumber" prepend="and ">
+				AppliedNumber = #appliedNumber#
+         </isNotNull>
+            <isNotNull property="stockNumber" prepend="and ">
+				StockNumber = #stockNumber#
+         </isNotNull>
+			<isNotNull property="inventoryCount_A" prepend="and ">
+				InventoryCount_A = #inventoryCount_A#
+         </isNotNull>
+			<isNotNull property="inventoryCount_B" prepend="and ">
+				InventoryCount_B = #inventoryCount_B#
+         </isNotNull>
+			<isNotNull property="returnNumber" prepend="and ">
+				ReturnNumber = #returnNumber#
+         </isNotNull>
+			<isNotNull property="brokenNumber" prepend="and ">
+				BrokenNumber = #brokenNumber#
+         </isNotNull>
+			<isNotNull property="lostNumber" prepend="and ">
+				LostNumber = #lostNumber#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="toolSharpenCriterion" prepend="and ">
+				ToolSharpenCriterion = #toolSharpenCriterion#
+         </isNotNull>
+			<isNotNull property="processingStatus" prepend="and ">
+				ProcessingStatus = #processingStatus#
+         </isNotNull>
+			<isNotNull property="stockNumber" prepend="and ">
+				StockNumber = #stockNumber#
+         </isNotNull>
+		</dynamic>
+	</select>
+<!-- 按角色查询对应的信息 -->
+	<select id="searchListByRold" parameterClass="java.util.Map" resultMap="Vgetredemptionappdetailedmsg-map">
+		SELECT
+		RedemptionAppliedID
+		,ToolCode
+		,AppliedNumber
+		,InventoryCount_A
+		,InventoryCount_B
+		,ReturnNumber
+		,BrokenNumber
+		,LostNumber
+		,ToolSharpenLength
+		,ToolSharpenCriterion
+		,ProcessingStatus
+		,StockNumber
+		from vgetredemptionappdetailedmsg
+			WHERE RedemptionAppliedID = #redemptionAppliedID#
+			AND  ProcessingStatus in 
+			<iterate  property="list" open="(" close=")" conjunction= ","> 
+                        #list[]# 
+            </iterate>  
+	</select>
+</sqlMap>
+

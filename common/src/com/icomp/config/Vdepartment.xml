@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vdepartment.xml
+		Created on : 2014/08/19 15:48:46
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vdepartment">
+	<typeAlias alias="entityVdepartment" type="com.icomp.entity.base.Vdepartment" />
+	<resultMap id="Vdepartment-map" class="entityVdepartment">
+		<!-- 部门ID -->
+		<result property="departmentID" column="DepartmentID" />
+		<!-- 机构ID -->
+		<result property="departmentAgencyID" column="DepartmentAgencyID" />
+		<!-- 语言编码 -->
+		<result property="departmentLanguageCode" column="DepartmentLanguageCode" />
+		<!-- 部门编码 -->
+		<result property="departmentCode" column="DepartmentCode" />
+		<!-- 部门名称 -->
+		<result property="departmentName" column="DepartmentName" />
+		<!-- 部门电话 -->
+		<result property="departmentTel" column="DepartmentTel" />
+		<!-- 部门负责人 -->
+		<result property="departmentHead" column="DepartmentHead" />
+		<!-- 负责人手机 -->
+		<result property="departmentHeadMobile" column="DepartmentHeadMobile" />
+		<!-- 负责人电话 -->
+		<result property="departmentHeadTel" column="DepartmentHeadTel" />
+		<!-- 部门成立时间 -->
+		<result property="departmentCdate" column="DepartmentCdate" />
+		<!-- 部门描述 -->
+		<result property="departmentDescription" column="DepartmentDescription" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="departmentDelFlag" column="DepartmentDelFlag" />
+		<!-- 创建者 -->
+		<result property="departmentCreateUser" column="DepartmentCreateUser" />
+		<!-- 创建时间 -->
+		<result property="departmentCreateTime" column="DepartmentCreateTime" />
+		<!-- 更新者 -->
+		<result property="departmentUpdateUser" column="DepartmentUpdateUser" />
+		<!-- 更新时间 -->
+		<result property="departmentUpdateTime" column="DepartmentUpdateTime" />
+		<!-- 版本号 -->
+		<result property="departmentVersion" column="DepartmentVersion" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVdepartment" resultMap="Vdepartment-map">
+		SELECT
+		DepartmentID
+		,DepartmentAgencyID
+		,DepartmentLanguageCode
+		,DepartmentCode
+		,DepartmentName
+		,DepartmentTel
+		,DepartmentHead
+		,DepartmentHeadMobile
+		,DepartmentHeadTel
+		,DepartmentCdate
+		,DepartmentDescription
+		,DepartmentDelFlag
+		,DepartmentCreateUser
+		,DepartmentCreateTime
+		,DepartmentUpdateUser
+		,DepartmentUpdateTime
+		,DepartmentVersion
+		from vdepartment
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVdepartment" resultMap="Vdepartment-map">
+		SELECT
+		DepartmentID
+		,DepartmentAgencyID
+		,DepartmentLanguageCode
+		,DepartmentCode
+		,DepartmentName
+		,DepartmentTel
+		,DepartmentHead
+		,DepartmentHeadMobile
+		,DepartmentHeadTel
+		,DepartmentCdate
+		,DepartmentDescription
+		,DepartmentDelFlag
+		,DepartmentCreateUser
+		,DepartmentCreateTime
+		,DepartmentUpdateUser
+		,DepartmentUpdateTime
+		,DepartmentVersion
+		from vdepartment
+		<dynamic prepend=" where ">
+			<isNotNull property="departmentID" prepend="and ">
+				DepartmentID = #departmentID#
+         </isNotNull>
+			<isNotNull property="departmentAgencyID" prepend="and ">
+				DepartmentAgencyID = #departmentAgencyID#
+         </isNotNull>
+			<isNotNull property="departmentLanguageCode" prepend="and ">
+				DepartmentLanguageCode = #departmentLanguageCode#
+         </isNotNull>
+			<isNotNull property="departmentCode" prepend="and ">
+				DepartmentCode = #departmentCode#
+         </isNotNull>
+			<isNotNull property="departmentName" prepend="and ">
+				DepartmentName = #departmentName#
+         </isNotNull>
+			<isNotNull property="departmentTel" prepend="and ">
+				DepartmentTel = #departmentTel#
+         </isNotNull>
+			<isNotNull property="departmentHead" prepend="and ">
+				DepartmentHead = #departmentHead#
+         </isNotNull>
+			<isNotNull property="departmentHeadMobile" prepend="and ">
+				DepartmentHeadMobile = #departmentHeadMobile#
+         </isNotNull>
+			<isNotNull property="departmentHeadTel" prepend="and ">
+				DepartmentHeadTel = #departmentHeadTel#
+         </isNotNull>
+			<isNotNull property="departmentCdate" prepend="and ">
+				DepartmentCdate = #departmentCdate#
+         </isNotNull>
+			<isNotNull property="departmentDescription" prepend="and ">
+				DepartmentDescription = #departmentDescription#
+         </isNotNull>
+			<isNotNull property="departmentDelFlag" prepend="and ">
+				DepartmentDelFlag = #departmentDelFlag#
+         </isNotNull>
+			<isNotNull property="departmentCreateUser" prepend="and ">
+				DepartmentCreateUser = #departmentCreateUser#
+         </isNotNull>
+			<isNotNull property="departmentCreateTime" prepend="and ">
+				DepartmentCreateTime = #departmentCreateTime#
+         </isNotNull>
+			<isNotNull property="departmentUpdateUser" prepend="and ">
+				DepartmentUpdateUser = #departmentUpdateUser#
+         </isNotNull>
+			<isNotNull property="departmentUpdateTime" prepend="and ">
+				DepartmentUpdateTime = #departmentUpdateTime#
+         </isNotNull>
+			<isNotNull property="departmentVersion" prepend="and ">
+				DepartmentVersion = #departmentVersion#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVdepartment" resultClass="int">
+		SELECT count(1)
+		from vdepartment
+		<dynamic prepend=" where ">
+			<isNotNull property="departmentID" prepend="and ">
+				DepartmentID = #departmentID#
+         </isNotNull>
+			<isNotNull property="departmentAgencyID" prepend="and ">
+				DepartmentAgencyID = #departmentAgencyID#
+         </isNotNull>
+			<isNotNull property="departmentLanguageCode" prepend="and ">
+				DepartmentLanguageCode = #departmentLanguageCode#
+         </isNotNull>
+			<isNotNull property="departmentCode" prepend="and ">
+				DepartmentCode = #departmentCode#
+         </isNotNull>
+			<isNotNull property="departmentName" prepend="and ">
+				DepartmentName = #departmentName#
+         </isNotNull>
+			<isNotNull property="departmentTel" prepend="and ">
+				DepartmentTel = #departmentTel#
+         </isNotNull>
+			<isNotNull property="departmentHead" prepend="and ">
+				DepartmentHead = #departmentHead#
+         </isNotNull>
+			<isNotNull property="departmentHeadMobile" prepend="and ">
+				DepartmentHeadMobile = #departmentHeadMobile#
+         </isNotNull>
+			<isNotNull property="departmentHeadTel" prepend="and ">
+				DepartmentHeadTel = #departmentHeadTel#
+         </isNotNull>
+			<isNotNull property="departmentCdate" prepend="and ">
+				DepartmentCdate = #departmentCdate#
+         </isNotNull>
+			<isNotNull property="departmentDescription" prepend="and ">
+				DepartmentDescription = #departmentDescription#
+         </isNotNull>
+			<isNotNull property="departmentDelFlag" prepend="and ">
+				DepartmentDelFlag = #departmentDelFlag#
+         </isNotNull>
+			<isNotNull property="departmentCreateUser" prepend="and ">
+				DepartmentCreateUser = #departmentCreateUser#
+         </isNotNull>
+			<isNotNull property="departmentCreateTime" prepend="and ">
+				DepartmentCreateTime = #departmentCreateTime#
+         </isNotNull>
+			<isNotNull property="departmentUpdateUser" prepend="and ">
+				DepartmentUpdateUser = #departmentUpdateUser#
+         </isNotNull>
+			<isNotNull property="departmentUpdateTime" prepend="and ">
+				DepartmentUpdateTime = #departmentUpdateTime#
+         </isNotNull>
+			<isNotNull property="departmentVersion" prepend="and ">
+				DepartmentVersion = #departmentVersion#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

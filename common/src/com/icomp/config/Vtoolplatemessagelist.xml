@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Vtoolplatemessagelist.xml
+    Created on : 2014/12/26 14:30:49
+    Author : 工具自动生成
+    Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vtoolplatemessagelist">
+    <typeAlias alias="entityVtoolplatemessagelist" type="com.icomp.entity.base.Vtoolplatemessagelist"/>
+    <resultMap id="Vtoolplatemessagelist-map" class="entityVtoolplatemessagelist">
+        <!-- 工具盘ID -->
+        <result property="toolShelfID" column="ToolShelfID"/>
+        <!-- 工具盘编号 -->
+        <result property="toolShelfCode" column="ToolShelfCode"/>
+        <!--  -->
+        <result property="toolShelfPlaceNumber" column="ToolShelfPlaceNumber"/>
+        <!-- 刀具入库编码 -->
+        <result property="knifeInventoryCode" column="KnifeInventoryCode"/>
+        <!-- 工具盘位置ID -->
+        <result property="toolshelfplace" column="toolshelfplace"/>
+        <!-- 工具盘位置号 -->
+        <result property="placeNumber" column="PlaceNumber"/>
+        <!-- 工具盘位置编码 -->
+        <result property="placeCode" column="PlaceCode"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityVtoolplatemessagelist" resultMap="Vtoolplatemessagelist-map">
+        SELECT
+        ToolShelfID
+        ,ToolShelfCode
+        ,ToolShelfPlaceNumber
+        ,KnifeInventoryCode
+        ,toolshelfplace
+        ,PlaceNumber
+        ,PlaceCode
+        from vtoolplatemessagelist
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="0">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityVtoolplatemessagelist" resultMap="Vtoolplatemessagelist-map">
+        SELECT
+        ToolShelfID
+        ,ToolShelfCode
+        ,ToolShelfPlaceNumber
+        ,KnifeInventoryCode
+        ,toolshelfplace
+        ,PlaceNumber
+        ,PlaceCode
+        from vtoolplatemessagelist
+        <dynamic prepend=" where ">
+            <isNotNull property="toolShelfID" prepend="and ">
+                ToolShelfID = #toolShelfID#
+            </isNotNull>
+            <isNotNull property="toolShelfCode" prepend="and ">
+                ToolShelfCode = #toolShelfCode#
+            </isNotNull>
+            <isNotNull property="toolShelfPlaceNumber" prepend="and ">
+                ToolShelfPlaceNumber = #toolShelfPlaceNumber#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCode" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+            <isNotNull property="toolshelfplace" prepend="and ">
+                toolshelfplace = #toolshelfplace#
+            </isNotNull>
+            <isNotNull property="placeNumber" prepend="and ">
+                PlaceNumber = #placeNumber#
+            </isNotNull>
+            <isNotNull property="placeCode" prepend="and ">
+                PlaceCode = #placeCode#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="0">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+    <!-- 任意条件查询个数-->
+    <select id="searchByCount" parameterClass="entityVtoolplatemessagelist" resultClass="int">
+        SELECT
+        count(1)
+        from vtoolplatemessagelist
+        <dynamic prepend=" where ">
+            <isNotNull property="toolShelfID" prepend="and ">
+                ToolShelfID = #toolShelfID#
+            </isNotNull>
+            <isNotNull property="toolShelfCode" prepend="and ">
+                ToolShelfCode = #toolShelfCode#
+            </isNotNull>
+            <isNotNull property="toolShelfPlaceNumber" prepend="and ">
+                ToolShelfPlaceNumber = #toolShelfPlaceNumber#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCode" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+            <isNotNull property="toolshelfplace" prepend="and ">
+                toolshelfplace = #toolshelfplace#
+            </isNotNull>
+            <isNotNull property="placeNumber" prepend="and ">
+                PlaceNumber = #placeNumber#
+            </isNotNull>
+            <isNotNull property="placeCode" prepend="and ">
+                PlaceCode = #placeCode#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="0">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+
+    <!-- 根据工具盘ID取出空盘的位置号 -->
+    <select id="searchIsNullByPanId" parameterClass="entityVtoolplatemessagelist" resultMap="Vtoolplatemessagelist-map">
+		SELECT 
+		* 
+		FROM vtoolplatemessagelist vl
+		WHERE  vl.ToolShelfID = #toolShelfID#
+		 AND KnifeInventoryCode IS  NULL
+	</select>
+
+    <!-- 工具盘信息 -->
+    <select id="searchAllToolPan" resultMap="Vtoolplatemessagelist-map">
+        SELECT
+             ToolShelfID
+            ,ToolShelfCode
+            ,ToolShelfPlaceNumber
+            ,KnifeInventoryCode
+            ,toolshelfplace
+            ,MIN(PlaceNumber) AS PlaceNumber
+            ,COUNT(1) AS PlaceCode
+        from vtoolplatemessagelist v
+        WHERE v.KnifeInventoryCode IS  NULL  ||  v.KnifeInventoryCode =''
+        GROUP BY v.ToolShelfID
+	</select>
+
+    <!--  根据刀具入库编码查找对应工具盘 -->
+    <select id="searchListByStrlist" parameterClass="java.util.List" resultMap="Vtoolplatemessagelist-map">
+        SELECT
+        *
+        from vtoolplatemessagelist vp
+        WHERE vp.KnifeInventoryCode IN
+        <iterate open="(" close=")" conjunction=",">
+            #[]#
+        </iterate>
+        GROUP BY vp.ToolShelfID
+    </select>
+
+</sqlMap>
+

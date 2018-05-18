@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vparts.xml
+		Created on : 2016/03/03 16:41:44
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vparts">
+	<typeAlias alias="entityVparts" type="com.icomp.entity.base.Vparts" />
+	<resultMap id="Vparts-map" class="entityVparts">
+		<!-- 零部件ID -->
+		<result property="partsID" column="PartsID" />
+		<!-- 零部件编码 -->
+		<result property="partsCode" column="PartsCode" />
+		<!-- 零部件名称 -->
+		<result property="partsName" column="PartsName" />
+		<!-- 零部件型号（0:1.6L,1:1.4T） -->
+		<result property="partsType" column="PartsType" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 创建者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVparts" resultMap="Vparts-map">
+		SELECT
+		PartsID
+		,PartsCode
+		,PartsName
+		,PartsType
+		,DelFlag
+		,CreateTime
+		,CreateUser
+		,UpdateTime
+		,UpdateUser
+		,Version
+		from vparts
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVparts" resultMap="Vparts-map">
+		SELECT
+		PartsID
+		,PartsCode
+		,PartsName
+		,PartsType
+		,DelFlag
+		,CreateTime
+		,CreateUser
+		,UpdateTime
+		,UpdateUser
+		,Version
+		from vparts
+		<dynamic prepend=" where ">
+			<isNotNull property="partsID" prepend="and ">
+				PartsID = #partsID#
+         </isNotNull>
+			<isNotNull property="partsCode" prepend="and ">
+				PartsCode = #partsCode#
+         </isNotNull>
+			<isNotNull property="partsName" prepend="and ">
+				PartsName like concat('%',#partsName#,'%')
+			</isNotNull>
+			<isNotNull property="partsType" prepend="and ">
+				PartsType = #partsType#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		ORDER BY PartsCode + 0
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVparts" resultClass="int">
+		SELECT count(1)
+		from vparts
+		<dynamic prepend=" where ">
+			<isNotNull property="partsID" prepend="and ">
+				PartsID = #partsID#
+         </isNotNull>
+			<isNotNull property="partsCode" prepend="and ">
+				PartsCode = #partsCode#
+         </isNotNull>
+			<isNotNull property="partsName" prepend="and ">
+				PartsName = #partsName#
+         </isNotNull>
+			<isNotNull property="partsType" prepend="and ">
+				PartsType = #partsType#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

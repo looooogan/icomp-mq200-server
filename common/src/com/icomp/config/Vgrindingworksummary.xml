@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vgrindingworksummary.xml
+		Created on : 2014/08/20 14:52:18
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgrindingworksummary">
+	<typeAlias alias="entityVgrindingworksummary" type="com.icomp.entity.base.Vgrindingworksummary" />
+	<resultMap id="Vgrindingworksummary-map" class="entityVgrindingworksummary">
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 修复时间 -->
+		<result property="noticeTime" column="NoticeTime" />
+		<!-- 姓名 -->
+		<result property="userName" column="UserName" />
+		<!-- 刀具已刃磨长度 -->
+		<result property="toolGrindingLength" column="ToolGrindingLength" />
+		<!--总加工数量-->
+		<result property="toolProcessingVolume" column="ToolProcessingVolume" />
+		<!-- 刀具长度 -->
+		<result property="toolLength" column="ToolLength" />
+		<!-- 可刃磨长度 -->
+		<result property="toolSharpenLength" column="ToolSharpenLength" />
+		<!-- 修复前测量长度 -->
+		<result property="noticeLength" column="NoticeLength" />
+		<!-- 修复后测量长度 -->
+		<result property="noticeOldLength" column="NoticeOldLength" />
+		<!-- 采购单价 -->
+		<result property="unitPrice" column="UnitPrice" />
+		<!-- 刀具入库编码 -->
+		<result property="knifeInventoryCode" column="KnifeInventoryCode" />
+		<!-- 已使用(刃磨)次数[当使用次数等于可复用次数时刀具报废] -->
+		<result property="usageCounter" column="UsageCounter" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVgrindingworksummary" resultMap="Vgrindingworksummary-map">
+		SELECT
+		ToolCode
+		,NoticeTime
+		,UserName
+		,ToolGrindingLength
+		,ToolProcessingVolume
+		,ToolLength
+		,ToolSharpenLength
+		,NoticeLength
+		,NoticeOldLength
+		,UnitPrice
+		,KnifeInventoryCode
+		,UsageCounter
+		from vgrindingworksummary
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVgrindingworksummary" resultMap="Vgrindingworksummary-map">
+		SELECT
+		ToolCode
+		,NoticeTime
+		,UserName
+		,ToolGrindingLength
+		,ToolProcessingVolume
+		,ToolLength
+		,ToolSharpenLength
+		,NoticeLength
+		,NoticeOldLength
+		,UnitPrice
+		,KnifeInventoryCode
+		,UsageCounter
+		from vgrindingworksummary
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="noticeTime" prepend="and ">
+				NoticeTime = #noticeTime#
+         </isNotNull>
+         	<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				NoticeTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				NoticeTime <= #dateEnd#
+				]]>
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+			<isNotNull property="toolGrindingLength" prepend="and ">
+				ToolGrindingLength = #toolGrindingLength#
+         </isNotNull>
+			<isNotNull property="toolProcessingVolume" prepend="and ">
+				ToolProcessingVolume = #toolProcessingVolume#
+         </isNotNull>
+			<isNotNull property="toolLength" prepend="and ">
+				ToolLength = #toolLength#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="noticeLength" prepend="and ">
+				NoticeLength = #noticeLength#
+         </isNotNull>
+			<isNotNull property="noticeOldLength" prepend="and ">
+				NoticeOldLength = #noticeOldLength#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="usageCounter" prepend="and ">
+				UsageCounter = #usageCounter#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVgrindingworksummary" resultClass="int">
+		SELECT count(1)
+		from vgrindingworksummary
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="noticeTime" prepend="and ">
+				NoticeTime = #noticeTime#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+			<isNotNull property="toolGrindingLength" prepend="and ">
+				ToolGrindingLength = #toolGrindingLength#
+         </isNotNull>
+			<isNotNull property="toolProcessingVolume" prepend="and ">
+				ToolProcessingVolume = #toolProcessingVolume#
+         </isNotNull>
+			<isNotNull property="toolLength" prepend="and ">
+				ToolLength = #toolLength#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="noticeLength" prepend="and ">
+				NoticeLength = #noticeLength#
+         </isNotNull>
+			<isNotNull property="noticeOldLength" prepend="and ">
+				NoticeOldLength = #noticeOldLength#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="usageCounter" prepend="and ">
+				UsageCounter = #usageCounter#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

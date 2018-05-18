@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : .xml
+    Created on : 2016/02/25 15:44:05
+    Author : 工具自动生成
+    Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vtoolnoticehistory">
+    <typeAlias alias="entityVtoolnoticehistory" type="com.icomp.entity.base.Vtoolnoticehistory"/>
+    <resultMap id="Vtoolnoticehistory-map" class="entityVtoolnoticehistory">
+        <!-- 刀具分类(0刀具1辅具2配套9其他） -->
+        <result property="toolType" column="ToolType"/>
+        <!-- 刀具编码 -->
+        <result property="systeCode" column="SysteCode"/>
+        <!-- 修复时间 -->
+        <result property="noticeTime" column="NoticeTime"/>
+        <!-- 操作人 -->
+        <result property="toolRepairNoticeUser" column="ToolRepairNoticeUser"/>
+        <!--  -->
+        <result property="repairID" column="repairID"/>
+        <!-- 设备编码 -->
+        <result property="equipmentCode" column="EquipmentCode"/>
+        <!-- 修复数量 -->
+        <result property="noticeCount" column="NoticeCount"/>
+        <!-- 修复原因(0断刀1正常刃磨) -->
+        <result property="repairedBecause" column="RepairedBecause"/>
+        <result property="empCard" column="EmpCard"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityVtoolnoticehistory" resultMap="Vtoolnoticehistory-map">
+        SELECT
+        ToolType
+        ,SysteCode
+        ,NoticeTime
+        ,ToolRepairNoticeUser
+        ,repairID
+        ,EquipmentCode
+        ,NoticeCount
+        ,RepairedBecause
+        ,EmpCard
+        from vtoolnoticehistory
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityVtoolnoticehistory" resultMap="Vtoolnoticehistory-map">
+        SELECT
+        ToolType
+        ,SysteCode
+        ,NoticeTime
+        ,ToolRepairNoticeUser
+        ,repairID
+        ,EquipmentCode
+        ,NoticeCount
+        ,RepairedBecause
+        ,EmpCard
+        from vtoolnoticehistory
+        <dynamic prepend=" where ">
+            <isNotNull property="toolType" prepend="and ">
+                ToolType like concat('%',#toolType#,'%')
+            </isNotNull>
+            <isNotNull property="systeCode" prepend="and ">
+                SysteCode like concat('%',#systeCode#,'%')
+            </isNotNull>
+            <isNotNull property="dateStar" prepend="and ">
+                <![CDATA[
+				NoticeTime >= #dateStar#
+				]]>
+            </isNotNull>
+            <isNotNull property="dateEnd" prepend="and ">
+                <![CDATA[
+				NoticeTime <= #dateEnd#
+				]]>
+            </isNotNull>
+            <isNotNull property="repairID" prepend="and ">
+                repairID like concat('%',#repairID#,'%')
+            </isNotNull>
+            <isNotNull property="toolRepairNoticeUser" prepend="and ">
+                ToolRepairNoticeUser = #toolRepairNoticeUser#
+            </isNotNull>
+            <isNotNull property="empCard" prepend="or ">
+                EmpCard like concat('%',#empCard#,'%')
+            </isNotNull>
+
+            <isNotNull property="equipmentCode" prepend="and ">
+                EquipmentCode = #equipmentCode#
+            </isNotNull>
+            <isNotNull property="noticeCount" prepend="and ">
+                NoticeCount = #noticeCount#
+            </isNotNull>
+            <isNotNull property="repairedBecause" prepend="and ">
+                RepairedBecause = #repairedBecause#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityVtoolnoticehistory" resultClass="int">
+        SELECT count(1)
+        from vtoolnoticehistory
+        <dynamic prepend=" where ">
+            <isNotNull property="toolType" prepend="and ">
+                ToolType like concat('%',#toolType#,'%')
+            </isNotNull>
+            <isNotNull property="systeCode" prepend="and ">
+                SysteCode like concat('%',#systeCode#,'%')
+            </isNotNull>
+            <isNotNull property="dateStar" prepend="and ">
+                <![CDATA[
+				NoticeTime >= #dateStar#
+				]]>
+            </isNotNull>
+            <isNotNull property="dateEnd" prepend="and ">
+                <![CDATA[
+				NoticeTime <= #dateEnd#
+				]]>
+            </isNotNull>
+            <isNotNull property="repairID" prepend="and ">
+                repairID like concat('%',#repairID#,'%')
+            </isNotNull>
+            <isNotNull property="toolRepairNoticeUser" prepend="and ">
+                ToolRepairNoticeUser = #toolRepairNoticeUser#
+            </isNotNull>
+            <isNotNull property="empCard" prepend="or ">
+                EmpCard like concat('%',#empCard#,'%')
+            </isNotNull>
+
+            <isNotNull property="equipmentCode" prepend="and ">
+                EquipmentCode = #equipmentCode#
+            </isNotNull>
+            <isNotNull property="noticeCount" prepend="and ">
+                NoticeCount = #noticeCount#
+            </isNotNull>
+            <isNotNull property="repairedBecause" prepend="and ">
+                RepairedBecause = #repairedBecause#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+    </select>
+
+</sqlMap>
+

@@ -1,0 +1,1804 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Tooltransfer.xml
+    Created on : 2016/03/11 13:10:45
+    Author : 工具自动生成
+    Description: 工具自动生成包含的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByList2 ： 查询待报废刀具列表信息
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Tooltransfer">
+    <typeAlias alias="entityTooltransfer" type="com.icomp.entity.base.Tooltransfer"/>
+    <resultMap id="Tooltransfer-map" class="entityTooltransfer">
+        <!-- RFID载体ID -->
+        <result property="rfidContainerID" column="RfidContainerID"/>
+        <!-- 刀具入库编码 -->
+        <result property="knifeInventoryCode" column="KnifeInventoryCode"/>
+        <!-- 刀具ID -->
+        <result property="toolID" column="ToolID"/>
+        <!-- 采购批次 -->
+        <result property="procuredBatch" column="ProcuredBatch"/>
+        <!-- 最后执行业务流程 -->
+        <result property="businessFlowLnkID" column="BusinessFlowLnkID"/>
+        <!-- 加工数量 -->
+        <result property="processAmount" column="ProcessAmount"/>
+        <!-- 当前数量 -->
+        <result property="toolDurable" column="ToolDurable"/>
+        <!-- 可使用(刃磨)次数 -->
+        <result property="toolSharpennum" column="ToolSharpennum"/>
+        <!-- 复磨标准 -->
+        <result property="toolSharpenCriterion" column="ToolSharpenCriterion"/>
+        <!-- 刀具长度 -->
+        <result property="toolLength" column="ToolLength"/>
+        <!-- 可刃磨长度 -->
+        <result property="toolSharpenLength" column="ToolSharpenLength"/>
+        <!-- 已使用(刃磨)次数[当使用次数等于可复用次数时刀具报废] -->
+        <result property="usageCounter" column="UsageCounter"/>
+        <!-- 刀具已刃磨长度 -->
+        <result property="toolGrindingLength" column="ToolGrindingLength"/>
+        <!-- 刀具安装合成刀状态(0未安装1已安装2卸下9其他) -->
+        <result property="installationState" column="InstallationState"/>
+        <!-- 刀具状态(0断刀1丢失2不合格3待分拣4待换装,5到寿,6厂内待刃磨,7.厂外待刃磨8刃磨完毕,9其他) -->
+        <result property="toolState" column="ToolState"/>
+        <!-- 申领区分(0扩能1外借2工艺试验3补充周转量) -->
+        <result property="replacementFlag" column="ReplacementFlag"/>
+        <!-- 确认人(断刀、丢失、不合格的状态选择时需要上级确认) -->
+        <result property="confirmedUser" column="ConfirmedUser"/>
+        <!-- 刀具部门(0库存,1对刀室,2刃磨室,3,车间) -->
+        <result property="toolThisState" column="ToolThisState"/>
+        <!-- 库存状态(0正常1报废2返厂3封存4.流转9其他) -->
+        <result property="stockState" column="StockState"/>
+        <!-- 报废确认区分(0未确认1已确认) -->
+        <result property="discardeFlag" column="discardeFlag"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="delFlag" column="DelFlag"/>
+        <!-- 更新时间 -->
+        <result property="updateTime" column="UpdateTime"/>
+        <!-- 更新者 -->
+        <result property="updateUser" column="UpdateUser"/>
+        <!-- 创建时间 -->
+        <result property="createTime" column="CreateTime"/>
+        <!-- 创建者 -->
+        <result property="createUser" column="CreateUser"/>
+        <!-- 版本号 -->
+        <result property="version" column="Version"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityTooltransfer" resultMap="Tooltransfer-map">
+        SELECT
+        RfidContainerID
+        ,KnifeInventoryCode
+        ,ToolID
+        ,ProcuredBatch
+        ,BusinessFlowLnkID
+        ,ProcessAmount
+        ,ToolDurable
+        ,ToolSharpennum
+        ,ToolSharpenCriterion
+        ,ToolLength
+        ,ToolSharpenLength
+        ,UsageCounter
+        ,ToolGrindingLength
+        ,InstallationState
+        ,ToolState
+        ,ReplacementFlag
+        ,ConfirmedUser
+        ,ToolThisState
+        ,StockState
+        ,discardeFlag
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        from tooltransfer
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerID" prepend="and ">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCode" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            RfidContainerID
+            ,KnifeInventoryCode
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityTooltransfer" resultMap="Tooltransfer-map">
+        SELECT
+        RfidContainerID
+        ,KnifeInventoryCode
+        ,ToolID
+        ,ProcuredBatch
+        ,BusinessFlowLnkID
+        ,ProcessAmount
+        ,ToolDurable
+        ,ToolSharpennum
+        ,ToolSharpenCriterion
+        ,ToolLength
+        ,ToolSharpenLength
+        ,UsageCounter
+        ,ToolGrindingLength
+        ,InstallationState
+        ,ToolState
+        ,ReplacementFlag
+        ,ConfirmedUser
+        ,ToolThisState
+        ,StockState
+        ,discardeFlag
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        from tooltransfer
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerID" prepend="and ">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCode" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="procuredBatch" prepend="and ">
+                ProcuredBatch = #procuredBatch#
+            </isNotNull>
+            <isNotNull property="businessFlowLnkID" prepend="and ">
+                BusinessFlowLnkID = #businessFlowLnkID#
+            </isNotNull>
+            <isNotNull property="processAmount" prepend="and ">
+                ProcessAmount = #processAmount#
+            </isNotNull>
+            <isNotNull property="toolDurable" prepend="and ">
+                ToolDurable = #toolDurable#
+            </isNotNull>
+            <isNotNull property="toolSharpennum" prepend="and ">
+                ToolSharpennum = #toolSharpennum#
+            </isNotNull>
+            <isNotNull property="toolSharpenCriterion" prepend="and ">
+                ToolSharpenCriterion = #toolSharpenCriterion#
+            </isNotNull>
+            <isNotNull property="toolLength" prepend="and ">
+                ToolLength = #toolLength#
+            </isNotNull>
+            <isNotNull property="toolSharpenLength" prepend="and ">
+                ToolSharpenLength = #toolSharpenLength#
+            </isNotNull>
+            <isNotNull property="usageCounter" prepend="and ">
+                UsageCounter = #usageCounter#
+            </isNotNull>
+            <isNotNull property="toolGrindingLength" prepend="and ">
+                ToolGrindingLength = #toolGrindingLength#
+            </isNotNull>
+            <isNotNull property="installationState" prepend="and ">
+                InstallationState = #installationState#
+            </isNotNull>
+            <isNotNull property="toolState" prepend="and ">
+                ToolState = #toolState#
+            </isNotNull>
+            <isNotNull property="replacementFlag" prepend="and ">
+                ReplacementFlag = #replacementFlag#
+            </isNotNull>
+            <isNotNull property="confirmedUser" prepend="and ">
+                ConfirmedUser = #confirmedUser#
+            </isNotNull>
+            <isNotNull property="toolThisState" prepend="and ">
+                ToolThisState = #toolThisState#
+            </isNotNull>
+            <isNotNull property="stockState" prepend="and ">
+                StockState = #stockState#
+            </isNotNull>
+            <isNotNull property="discardeFlag" prepend="and ">
+                discardeFlag = #discardeFlag#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            RfidContainerID
+            ,KnifeInventoryCode
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 查询待报废刀具列表信息 -->
+    <select id="searchByList2" parameterClass="entityTooltransfer" resultMap="Tooltransfer-map">
+        SELECT
+        RfidContainerID
+        ,KnifeInventoryCode
+        ,ToolID
+        ,ProcuredBatch
+        ,BusinessFlowLnkID
+        ,ProcessAmount
+        ,SUM(ToolDurable) AS ToolDurable
+        ,ToolSharpennum
+        ,ToolSharpenCriterion
+        ,ToolLength
+        ,ToolSharpenLength
+        ,UsageCounter
+        ,ToolGrindingLength
+        ,InstallationState
+        ,ToolState
+        ,ReplacementFlag
+        ,ConfirmedUser
+        ,ToolThisState
+        ,StockState
+        ,discardeFlag
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        from tooltransfer
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerID" prepend="and ">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCode" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="procuredBatch" prepend="and ">
+                ProcuredBatch = #procuredBatch#
+            </isNotNull>
+            <isNotNull property="businessFlowLnkID" prepend="and ">
+                BusinessFlowLnkID = #businessFlowLnkID#
+            </isNotNull>
+            <isNotNull property="processAmount" prepend="and ">
+                ProcessAmount = #processAmount#
+            </isNotNull>
+            <isNotNull property="toolDurable" prepend="and ">
+                ToolDurable = #toolDurable#
+            </isNotNull>
+            <isNotNull property="toolSharpennum" prepend="and ">
+                ToolSharpennum = #toolSharpennum#
+            </isNotNull>
+            <isNotNull property="toolSharpenCriterion" prepend="and ">
+                ToolSharpenCriterion = #toolSharpenCriterion#
+            </isNotNull>
+            <isNotNull property="toolLength" prepend="and ">
+                ToolLength = #toolLength#
+            </isNotNull>
+            <isNotNull property="toolSharpenLength" prepend="and ">
+                ToolSharpenLength = #toolSharpenLength#
+            </isNotNull>
+            <isNotNull property="usageCounter" prepend="and ">
+                UsageCounter = #usageCounter#
+            </isNotNull>
+            <isNotNull property="toolGrindingLength" prepend="and ">
+                ToolGrindingLength = #toolGrindingLength#
+            </isNotNull>
+            <isNotNull property="installationState" prepend="and ">
+                InstallationState = #installationState#
+            </isNotNull>
+            <isNotNull property="toolState" prepend="and ">
+                ToolState = #toolState#
+            </isNotNull>
+            <isNotNull property="replacementFlag" prepend="and ">
+                ReplacementFlag = #replacementFlag#
+            </isNotNull>
+            <isNotNull property="confirmedUser" prepend="and ">
+                ConfirmedUser = #confirmedUser#
+            </isNotNull>
+            <isNotNull property="toolThisState" prepend="and ">
+                ToolThisState = #toolThisState#
+            </isNotNull>
+            <isNotNull property="stockState" prepend="and ">
+                StockState = #stockState#
+            </isNotNull>
+            <isNotNull property="discardeFlag" prepend="and ">
+                discardeFlag = #discardeFlag#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="groupString">
+            group by $groupString$
+        </isNotNull>
+        <isNull property="groupString">
+            group by
+            ToolID
+            ,ConfirmedUser
+            ,ToolState
+        </isNull>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            RfidContainerID
+            ,KnifeInventoryCode
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityTooltransfer" resultClass="int">
+        SELECT count(1)
+        from tooltransfer
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerID" prepend="and ">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCode" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="procuredBatch" prepend="and ">
+                ProcuredBatch = #procuredBatch#
+            </isNotNull>
+            <isNotNull property="businessFlowLnkID" prepend="and ">
+                BusinessFlowLnkID = #businessFlowLnkID#
+            </isNotNull>
+            <isNotNull property="processAmount" prepend="and ">
+                ProcessAmount = #processAmount#
+            </isNotNull>
+            <isNotNull property="toolDurable" prepend="and ">
+                ToolDurable = #toolDurable#
+            </isNotNull>
+            <isNotNull property="toolSharpennum" prepend="and ">
+                ToolSharpennum = #toolSharpennum#
+            </isNotNull>
+            <isNotNull property="toolSharpenCriterion" prepend="and ">
+                ToolSharpenCriterion = #toolSharpenCriterion#
+            </isNotNull>
+            <isNotNull property="toolLength" prepend="and ">
+                ToolLength = #toolLength#
+            </isNotNull>
+            <isNotNull property="toolSharpenLength" prepend="and ">
+                ToolSharpenLength = #toolSharpenLength#
+            </isNotNull>
+            <isNotNull property="usageCounter" prepend="and ">
+                UsageCounter = #usageCounter#
+            </isNotNull>
+            <isNotNull property="toolGrindingLength" prepend="and ">
+                ToolGrindingLength = #toolGrindingLength#
+            </isNotNull>
+            <isNotNull property="installationState" prepend="and ">
+                InstallationState = #installationState#
+            </isNotNull>
+            <isNotNull property="toolState" prepend="and ">
+                ToolState = #toolState#
+            </isNotNull>
+            <isNotNull property="replacementFlag" prepend="and ">
+                ReplacementFlag = #replacementFlag#
+            </isNotNull>
+            <isNotNull property="confirmedUser" prepend="and ">
+                ConfirmedUser = #confirmedUser#
+            </isNotNull>
+            <isNotNull property="toolThisState" prepend="and ">
+                ToolThisState = #toolThisState#
+            </isNotNull>
+            <isNotNull property="stockState" prepend="and ">
+                StockState = #stockState#
+            </isNotNull>
+            <isNotNull property="discardeFlag" prepend="and ">
+                discardeFlag = #discardeFlag#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+    <!-- 任意条件更新处理(未指定字段更新为：null) -->
+    <update id="update" parameterClass="entityTooltransfer">
+        update tooltransfer
+        <dynamic prepend="set">
+            <isNotNull property="rfidContainerID">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNull property="rfidContainerID">
+                RfidContainerID = null
+            </isNull>
+            <isNotNull property="knifeInventoryCode">
+                ,KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+            <isNull property="knifeInventoryCode">
+                ,KnifeInventoryCode = null
+            </isNull>
+            <isNotNull property="toolID">
+                ,ToolID = #toolID#
+            </isNotNull>
+            <isNull property="toolID">
+                ,ToolID = null
+            </isNull>
+            <isNotNull property="procuredBatch">
+                ,ProcuredBatch = #procuredBatch#
+            </isNotNull>
+            <isNull property="procuredBatch">
+                ,ProcuredBatch = null
+            </isNull>
+            <isNotNull property="businessFlowLnkID">
+                ,BusinessFlowLnkID = #businessFlowLnkID#
+            </isNotNull>
+            <isNull property="businessFlowLnkID">
+                ,BusinessFlowLnkID = null
+            </isNull>
+            <isNotNull property="processAmount">
+                ,ProcessAmount = #processAmount#
+            </isNotNull>
+            <isNull property="processAmount">
+                ,ProcessAmount = null
+            </isNull>
+            <isNotNull property="toolDurable">
+                ,ToolDurable = #toolDurable#
+            </isNotNull>
+            <isNull property="toolDurable">
+                ,ToolDurable = null
+            </isNull>
+            <isNotNull property="toolSharpennum">
+                ,ToolSharpennum = #toolSharpennum#
+            </isNotNull>
+            <isNull property="toolSharpennum">
+                ,ToolSharpennum = null
+            </isNull>
+            <isNotNull property="toolSharpenCriterion">
+                ,ToolSharpenCriterion = #toolSharpenCriterion#
+            </isNotNull>
+            <isNull property="toolSharpenCriterion">
+                ,ToolSharpenCriterion = null
+            </isNull>
+            <isNotNull property="toolLength">
+                ,ToolLength = #toolLength#
+            </isNotNull>
+            <isNull property="toolLength">
+                ,ToolLength = null
+            </isNull>
+            <isNotNull property="toolSharpenLength">
+                ,ToolSharpenLength = #toolSharpenLength#
+            </isNotNull>
+            <isNull property="toolSharpenLength">
+                ,ToolSharpenLength = null
+            </isNull>
+            <isNotNull property="usageCounter">
+                ,UsageCounter = #usageCounter#
+            </isNotNull>
+            <isNull property="usageCounter">
+                ,UsageCounter = null
+            </isNull>
+            <isNotNull property="toolGrindingLength">
+                ,ToolGrindingLength = #toolGrindingLength#
+            </isNotNull>
+            <isNull property="toolGrindingLength">
+                ,ToolGrindingLength = null
+            </isNull>
+            <isNotNull property="installationState">
+                ,InstallationState = #installationState#
+            </isNotNull>
+            <isNull property="installationState">
+                ,InstallationState = null
+            </isNull>
+            <isNotNull property="toolState">
+                ,ToolState = #toolState#
+            </isNotNull>
+            <isNull property="toolState">
+                ,ToolState = null
+            </isNull>
+            <isNotNull property="replacementFlag">
+                ,ReplacementFlag = #replacementFlag#
+            </isNotNull>
+            <isNull property="replacementFlag">
+                ,ReplacementFlag = null
+            </isNull>
+            <isNotNull property="confirmedUser">
+                ,ConfirmedUser = #confirmedUser#
+            </isNotNull>
+            <isNull property="confirmedUser">
+                ,ConfirmedUser = null
+            </isNull>
+            <isNotNull property="toolThisState">
+                ,ToolThisState = #toolThisState#
+            </isNotNull>
+            <isNull property="toolThisState">
+                ,ToolThisState = null
+            </isNull>
+            <isNotNull property="stockState">
+                ,StockState = #stockState#
+            </isNotNull>
+            <isNull property="stockState">
+                ,StockState = null
+            </isNull>
+            <isNotNull property="discardeFlag">
+                ,discardeFlag = #discardeFlag#
+            </isNotNull>
+            <isNull property="discardeFlag">
+                ,discardeFlag = null
+            </isNull>
+            <isNotNull property="delFlag">
+                ,DelFlag = #delFlag#
+            </isNotNull>
+            <isNull property="delFlag">
+                ,DelFlag = null
+            </isNull>
+            <isNotNull property="updateTime">
+                ,UpdateTime = #updateTime#
+            </isNotNull>
+            <isNull property="updateTime">
+                ,UpdateTime = null
+            </isNull>
+            <isNotNull property="updateUser">
+                ,UpdateUser = #updateUser#
+            </isNotNull>
+            <isNull property="updateUser">
+                ,UpdateUser = null
+            </isNull>
+            <isNotNull property="createTime">
+                ,CreateTime = #createTime#
+            </isNotNull>
+            <isNull property="createTime">
+                ,CreateTime = null
+            </isNull>
+            <isNotNull property="createUser">
+                ,CreateUser = #createUser#
+            </isNotNull>
+            <isNull property="createUser">
+                ,CreateUser = null
+            </isNull>
+            <isNotNull property="version">
+                ,Version = #version#
+            </isNotNull>
+            <isNull property="version">
+                ,Version = null
+            </isNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerIDWhere" prepend="and ">
+                RfidContainerID = #rfidContainerIDWhere#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCodeWhere#
+            </isNotNull>
+            <isNotNull property="toolIDWhere" prepend="and ">
+                ToolID = #toolIDWhere#
+            </isNotNull>
+            <isNotNull property="procuredBatchWhere" prepend="and ">
+                ProcuredBatch = #procuredBatchWhere#
+            </isNotNull>
+            <isNotNull property="businessFlowLnkIDWhere" prepend="and ">
+                BusinessFlowLnkID = #businessFlowLnkIDWhere#
+            </isNotNull>
+            <isNotNull property="processAmountWhere" prepend="and ">
+                ProcessAmount = #processAmountWhere#
+            </isNotNull>
+            <isNotNull property="toolDurableWhere" prepend="and ">
+                ToolDurable = #toolDurableWhere#
+            </isNotNull>
+            <isNotNull property="toolSharpennumWhere" prepend="and ">
+                ToolSharpennum = #toolSharpennumWhere#
+            </isNotNull>
+            <isNotNull property="toolSharpenCriterionWhere" prepend="and ">
+                ToolSharpenCriterion = #toolSharpenCriterionWhere#
+            </isNotNull>
+            <isNotNull property="toolLengthWhere" prepend="and ">
+                ToolLength = #toolLengthWhere#
+            </isNotNull>
+            <isNotNull property="toolSharpenLengthWhere" prepend="and ">
+                ToolSharpenLength = #toolSharpenLengthWhere#
+            </isNotNull>
+            <isNotNull property="usageCounterWhere" prepend="and ">
+                UsageCounter = #usageCounterWhere#
+            </isNotNull>
+            <isNotNull property="toolGrindingLengthWhere" prepend="and ">
+                ToolGrindingLength = #toolGrindingLengthWhere#
+            </isNotNull>
+            <isNotNull property="installationStateWhere" prepend="and ">
+                InstallationState = #installationStateWhere#
+            </isNotNull>
+            <isNotNull property="toolStateWhere" prepend="and ">
+                ToolState = #toolStateWhere#
+            </isNotNull>
+            <isNotNull property="replacementFlagWhere" prepend="and ">
+                ReplacementFlag = #replacementFlagWhere#
+            </isNotNull>
+            <isNotNull property="confirmedUserWhere" prepend="and ">
+                ConfirmedUser = #confirmedUserWhere#
+            </isNotNull>
+            <isNotNull property="toolThisStateWhere" prepend="and ">
+                ToolThisState = #toolThisStateWhere#
+            </isNotNull>
+            <isNotNull property="stockStateWhere" prepend="and ">
+                StockState = #stockStateWhere#
+            </isNotNull>
+            <isNotNull property="discardeFlagWhere" prepend="and ">
+                discardeFlag = #discardeFlagWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 任意条件更新处理(未指定字段不更新) -->
+    <update id="updateNonQuery" parameterClass="entityTooltransfer">
+        update tooltransfer
+        <dynamic prepend="set">
+            <isNotNull property="rfidContainerID" prepend=",">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCode" prepend=",">
+                KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+            <isNotNull property="toolID" prepend=",">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="procuredBatch" prepend=",">
+                ProcuredBatch = #procuredBatch#
+            </isNotNull>
+            <isNotNull property="businessFlowLnkID" prepend=",">
+                BusinessFlowLnkID = #businessFlowLnkID#
+            </isNotNull>
+            <isNotNull property="processAmount" prepend=",">
+                ProcessAmount = #processAmount#
+            </isNotNull>
+            <isNotNull property="toolDurable" prepend=",">
+                ToolDurable = #toolDurable#
+            </isNotNull>
+            <isNotNull property="toolSharpennum" prepend=",">
+                ToolSharpennum = #toolSharpennum#
+            </isNotNull>
+            <isNotNull property="toolSharpenCriterion" prepend=",">
+                ToolSharpenCriterion = #toolSharpenCriterion#
+            </isNotNull>
+            <isNotNull property="toolLength" prepend=",">
+                ToolLength = #toolLength#
+            </isNotNull>
+            <isNotNull property="toolSharpenLength" prepend=",">
+                ToolSharpenLength = #toolSharpenLength#
+            </isNotNull>
+            <isNotNull property="usageCounter" prepend=",">
+                UsageCounter = #usageCounter#
+            </isNotNull>
+            <isNotNull property="toolGrindingLength" prepend=",">
+                ToolGrindingLength = #toolGrindingLength#
+            </isNotNull>
+            <isNotNull property="installationState" prepend=",">
+                InstallationState = #installationState#
+            </isNotNull>
+            <isNotNull property="toolState" prepend=",">
+                ToolState = #toolState#
+            </isNotNull>
+            <isNotNull property="replacementFlag" prepend=",">
+                ReplacementFlag = #replacementFlag#
+            </isNotNull>
+            <isNotNull property="confirmedUser" prepend=",">
+                ConfirmedUser = #confirmedUser#
+            </isNotNull>
+            <isNotNull property="toolThisState" prepend=",">
+                ToolThisState = #toolThisState#
+            </isNotNull>
+            <isNotNull property="stockState" prepend=",">
+                StockState = #stockState#
+            </isNotNull>
+            <isNotNull property="discardeFlag" prepend=",">
+                discardeFlag = #discardeFlag#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend=",">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend=",">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend=",">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend=",">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend=",">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="version" prepend=",">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerIDWhere" prepend="and ">
+                RfidContainerID = #rfidContainerIDWhere#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCodeWhere#
+            </isNotNull>
+            <isNotNull property="toolIDWhere" prepend="and ">
+                ToolID = #toolIDWhere#
+            </isNotNull>
+            <isNotNull property="procuredBatchWhere" prepend="and ">
+                ProcuredBatch = #procuredBatchWhere#
+            </isNotNull>
+            <isNotNull property="businessFlowLnkIDWhere" prepend="and ">
+                BusinessFlowLnkID = #businessFlowLnkIDWhere#
+            </isNotNull>
+            <isNotNull property="processAmountWhere" prepend="and ">
+                ProcessAmount = #processAmountWhere#
+            </isNotNull>
+            <isNotNull property="toolDurableWhere" prepend="and ">
+                ToolDurable = #toolDurableWhere#
+            </isNotNull>
+            <isNotNull property="toolSharpennumWhere" prepend="and ">
+                ToolSharpennum = #toolSharpennumWhere#
+            </isNotNull>
+            <isNotNull property="toolSharpenCriterionWhere" prepend="and ">
+                ToolSharpenCriterion = #toolSharpenCriterionWhere#
+            </isNotNull>
+            <isNotNull property="toolLengthWhere" prepend="and ">
+                ToolLength = #toolLengthWhere#
+            </isNotNull>
+            <isNotNull property="toolSharpenLengthWhere" prepend="and ">
+                ToolSharpenLength = #toolSharpenLengthWhere#
+            </isNotNull>
+            <isNotNull property="usageCounterWhere" prepend="and ">
+                UsageCounter = #usageCounterWhere#
+            </isNotNull>
+            <isNotNull property="toolGrindingLengthWhere" prepend="and ">
+                ToolGrindingLength = #toolGrindingLengthWhere#
+            </isNotNull>
+            <isNotNull property="installationStateWhere" prepend="and ">
+                InstallationState = #installationStateWhere#
+            </isNotNull>
+            <isNotNull property="toolStateWhere" prepend="and ">
+                ToolState = #toolStateWhere#
+            </isNotNull>
+            <isNotNull property="replacementFlagWhere" prepend="and ">
+                ReplacementFlag = #replacementFlagWhere#
+            </isNotNull>
+            <isNotNull property="confirmedUserWhere" prepend="and ">
+                ConfirmedUser = #confirmedUserWhere#
+            </isNotNull>
+            <isNotNull property="toolThisStateWhere" prepend="and ">
+                ToolThisState = #toolThisStateWhere#
+            </isNotNull>
+            <isNotNull property="stockStateWhere" prepend="and ">
+                StockState = #stockStateWhere#
+            </isNotNull>
+            <isNotNull property="discardeFlagWhere" prepend="and ">
+                discardeFlag = #discardeFlagWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $staIndex$
+        </isGreaterThan>
+    </update>
+
+    <!-- 插入处理 -->
+    <insert id="insert" parameterClass="entityTooltransfer">
+        <selectKey resultClass="java.lang.String" keyProperty="rfidContainerID">
+            SELECT #rfidContainerID# as rfidContainerID FROM DUAL
+        </selectKey>
+        insert into tooltransfer(
+        RfidContainerID
+        ,KnifeInventoryCode
+        ,ToolID
+        ,ProcuredBatch
+        ,BusinessFlowLnkID
+        ,ProcessAmount
+        ,ToolDurable
+        ,ToolSharpennum
+        ,ToolSharpenCriterion
+        ,ToolLength
+        ,ToolSharpenLength
+        ,UsageCounter
+        ,ToolGrindingLength
+        ,InstallationState
+        ,ToolState
+        ,ReplacementFlag
+        ,ConfirmedUser
+        ,ToolThisState
+        ,StockState
+        ,discardeFlag
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        )
+        Values (
+        <isNotNull property="rfidContainerID">
+            #rfidContainerID#
+        </isNotNull>
+        <isNull property="rfidContainerID">
+            null
+        </isNull>
+        <isNotNull property="knifeInventoryCode">
+            ,#knifeInventoryCode#
+        </isNotNull>
+        <isNull property="knifeInventoryCode">
+            ,null
+        </isNull>
+        <isNotNull property="toolID">
+            ,#toolID#
+        </isNotNull>
+        <isNull property="toolID">
+            ,null
+        </isNull>
+        <isNotNull property="procuredBatch">
+            ,#procuredBatch#
+        </isNotNull>
+        <isNull property="procuredBatch">
+            ,null
+        </isNull>
+        <isNotNull property="businessFlowLnkID">
+            ,#businessFlowLnkID#
+        </isNotNull>
+        <isNull property="businessFlowLnkID">
+            ,null
+        </isNull>
+        <isNotNull property="processAmount">
+            ,#processAmount#
+        </isNotNull>
+        <isNull property="processAmount">
+            ,null
+        </isNull>
+        <isNotNull property="toolDurable">
+            ,#toolDurable#
+        </isNotNull>
+        <isNull property="toolDurable">
+            ,null
+        </isNull>
+        <isNotNull property="toolSharpennum">
+            ,#toolSharpennum#
+        </isNotNull>
+        <isNull property="toolSharpennum">
+            ,null
+        </isNull>
+        <isNotNull property="toolSharpenCriterion">
+            ,#toolSharpenCriterion#
+        </isNotNull>
+        <isNull property="toolSharpenCriterion">
+            ,null
+        </isNull>
+        <isNotNull property="toolLength">
+            ,#toolLength#
+        </isNotNull>
+        <isNull property="toolLength">
+            ,null
+        </isNull>
+        <isNotNull property="toolSharpenLength">
+            ,#toolSharpenLength#
+        </isNotNull>
+        <isNull property="toolSharpenLength">
+            ,null
+        </isNull>
+        <isNotNull property="usageCounter">
+            ,#usageCounter#
+        </isNotNull>
+        <isNull property="usageCounter">
+            ,null
+        </isNull>
+        <isNotNull property="toolGrindingLength">
+            ,#toolGrindingLength#
+        </isNotNull>
+        <isNull property="toolGrindingLength">
+            ,null
+        </isNull>
+        <isNotNull property="installationState">
+            ,#installationState#
+        </isNotNull>
+        <isNull property="installationState">
+            ,null
+        </isNull>
+        <isNotNull property="toolState">
+            ,#toolState#
+        </isNotNull>
+        <isNull property="toolState">
+            ,null
+        </isNull>
+        <isNotNull property="replacementFlag">
+            ,#replacementFlag#
+        </isNotNull>
+        <isNull property="replacementFlag">
+            ,null
+        </isNull>
+        <isNotNull property="confirmedUser">
+            ,#confirmedUser#
+        </isNotNull>
+        <isNull property="confirmedUser">
+            ,null
+        </isNull>
+        <isNotNull property="toolThisState">
+            ,#toolThisState#
+        </isNotNull>
+        <isNull property="toolThisState">
+            ,null
+        </isNull>
+        <isNotNull property="stockState">
+            ,#stockState#
+        </isNotNull>
+        <isNull property="stockState">
+            ,null
+        </isNull>
+        <isNotNull property="discardeFlag">
+            ,#discardeFlag#
+        </isNotNull>
+        <isNull property="discardeFlag">
+            ,null
+        </isNull>
+        <isNotNull property="delFlag">
+            ,#delFlag#
+        </isNotNull>
+        <isNull property="delFlag">
+            ,null
+        </isNull>
+        <isNotNull property="updateTime">
+            ,#updateTime#
+        </isNotNull>
+        <isNull property="updateTime">
+            ,null
+        </isNull>
+        <isNotNull property="updateUser">
+            ,#updateUser#
+        </isNotNull>
+        <isNull property="updateUser">
+            ,null
+        </isNull>
+        <isNotNull property="createTime">
+            ,#createTime#
+        </isNotNull>
+        <isNull property="createTime">
+            ,null
+        </isNull>
+        <isNotNull property="createUser">
+            ,#createUser#
+        </isNotNull>
+        <isNull property="createUser">
+            ,null
+        </isNull>
+        <isNotNull property="version">
+            ,#version#
+        </isNotNull>
+        <isNull property="version">
+            ,null
+        </isNull>
+        )
+    </insert>
+
+    <!-- 任意条件删除处理 -->
+    <delete id="delete" parameterClass="entityTooltransfer">
+        delete from tooltransfer
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerIDWhere" prepend="and ">
+                RfidContainerID = #rfidContainerIDWhere#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCodeWhere#
+            </isNotNull>
+            <isNotNull property="toolIDWhere" prepend="and ">
+                ToolID = #toolIDWhere#
+            </isNotNull>
+            <isNotNull property="procuredBatchWhere" prepend="and ">
+                ProcuredBatch = #procuredBatchWhere#
+            </isNotNull>
+            <isNotNull property="businessFlowLnkIDWhere" prepend="and ">
+                BusinessFlowLnkID = #businessFlowLnkIDWhere#
+            </isNotNull>
+            <isNotNull property="processAmountWhere" prepend="and ">
+                ProcessAmount = #processAmountWhere#
+            </isNotNull>
+            <isNotNull property="toolDurableWhere" prepend="and ">
+                ToolDurable = #toolDurableWhere#
+            </isNotNull>
+            <isNotNull property="toolSharpennumWhere" prepend="and ">
+                ToolSharpennum = #toolSharpennumWhere#
+            </isNotNull>
+            <isNotNull property="toolSharpenCriterionWhere" prepend="and ">
+                ToolSharpenCriterion = #toolSharpenCriterionWhere#
+            </isNotNull>
+            <isNotNull property="toolLengthWhere" prepend="and ">
+                ToolLength = #toolLengthWhere#
+            </isNotNull>
+            <isNotNull property="toolSharpenLengthWhere" prepend="and ">
+                ToolSharpenLength = #toolSharpenLengthWhere#
+            </isNotNull>
+            <isNotNull property="usageCounterWhere" prepend="and ">
+                UsageCounter = #usageCounterWhere#
+            </isNotNull>
+            <isNotNull property="toolGrindingLengthWhere" prepend="and ">
+                ToolGrindingLength = #toolGrindingLengthWhere#
+            </isNotNull>
+            <isNotNull property="installationStateWhere" prepend="and ">
+                InstallationState = #installationStateWhere#
+            </isNotNull>
+            <isNotNull property="toolStateWhere" prepend="and ">
+                ToolState = #toolStateWhere#
+            </isNotNull>
+            <isNotNull property="replacementFlagWhere" prepend="and ">
+                ReplacementFlag = #replacementFlagWhere#
+            </isNotNull>
+            <isNotNull property="confirmedUserWhere" prepend="and ">
+                ConfirmedUser = #confirmedUserWhere#
+            </isNotNull>
+            <isNotNull property="toolThisStateWhere" prepend="and ">
+                ToolThisState = #toolThisStateWhere#
+            </isNotNull>
+            <isNotNull property="stockStateWhere" prepend="and ">
+                StockState = #stockStateWhere#
+            </isNotNull>
+            <isNotNull property="discardeFlagWhere" prepend="and ">
+                discardeFlag = #discardeFlagWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+        </dynamic>
+    </delete>
+
+    <resultMap id="Tooltransfer-map_3" class="entityTooltransfer">
+        <!-- 材料号 -->
+        <result property="expandSpace1" column="ToolCode"/>
+        <!-- 刀具入库编码 -->
+        <result property="knifeInventoryCode" column="KnifeInventoryCode"/>
+        <!-- 刀具ID -->
+        <result property="toolID" column="ToolID"/>
+        <!-- 刀具状态(0断刀1丢失2不合格3待分拣4待换装,5到寿,6厂内待刃磨,7.厂外待刃磨8刃磨完毕,9其他) -->
+        <result property="toolState" column="ToolState"/>
+        <!-- 数量 -->
+        <result property="toolDurable" column="ToolDurable"/>
+    </resultMap>
+
+    <select id="searchByList_F" parameterClass="entityTooltransfer" resultMap="Tooltransfer-map_3">
+        SELECT
+        t.ToolID AS toolID,
+        t.ToolCode as ToolCode,
+        tf.ToolState as ToolState,
+        SUM(tf.ToolDurable) as ToolDurable
+        FROM tooltransfer tf
+        LEFT JOIN tool t on t.ToolID = tf.ToolID
+        <dynamic prepend=" where ">
+
+            <isNotNull property="expandSpace1" prepend="and ">
+                ToolCode = #expandSpace1#
+            </isNotNull>
+            <isNotNull property="toolState" prepend="and ">
+                ToolState = #toolState#
+            </isNotNull>
+        </dynamic>
+        GROUP BY tf.ToolID
+        <isGreaterThan property="staIndex" compareValue="0">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+
+    </select>
+
+    <select id="getSynthesisknifeToolMsg" parameterClass="entityTooltransfer" resultMap="Tooltransfer-map_3">
+        SELECT
+        t.ToolID AS toolID,
+        t.ToolCode as ToolCode,
+       tt.KnifeInventoryCode AS  KnifeInventoryCode,
+        t.ToolConsumetype as ToolState,
+        COUNT(1) as ToolDurable
+        FROM  tooltransfer tt
+        INNER JOIN tool t  ON tt.ToolID = t.ToolID
+        WHERE tt.DelFlag = '0'
+        AND  t.ToolConsumetype != 9
+
+        GROUP BY tt.RfidContainerID,tt.ToolID
+        HAVING tt.RfidContainerID = #rfidContainerID#
+
+    </select>
+    <!-- 任意条件更新处理(未指定字段不更新) -->
+    <update id="updateDateByToolID" parameterClass="entityTooltransfer">
+        update tooltransfer
+        <dynamic prepend="set">
+            <isNotNull property="rfidContainerID" prepend=",">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCode" prepend=",">
+                KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+            <isNotNull property="toolID" prepend=",">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="businessFlowLnkID" prepend=",">
+                BusinessFlowLnkID = #businessFlowLnkID#
+            </isNotNull>
+            <isNotNull property="toolDurable" prepend=",">
+                ToolDurable =
+                #toolDurable#
+            </isNotNull>
+            <isNotNull property="toolSharpennum" prepend=",">
+                ToolSharpennum = #toolSharpennum#
+            </isNotNull>
+            <isNotNull property="toolSharpenCriterion" prepend=",">
+                ToolSharpenCriterion = #toolSharpenCriterion#
+            </isNotNull>
+            <isNotNull property="toolLength" prepend=",">
+                ToolLength =
+                #toolLength#
+            </isNotNull>
+            <isNotNull property="toolSharpenLength" prepend=",">
+                ToolSharpenLength = #toolSharpenLength#
+            </isNotNull>
+            <isNotNull property="usageCounter" prepend=",">
+                UsageCounter =
+                #usageCounter#
+            </isNotNull>
+            <isNotNull property="toolGrindingLength" prepend=",">
+                ToolGrindingLength = #toolGrindingLength#
+            </isNotNull>
+            <isNotNull property="installationState" prepend=",">
+                InstallationState = #installationState#
+            </isNotNull>
+            <isNotNull property="toolState" prepend=",">
+                ToolState =
+                #toolState#
+            </isNotNull>
+            <isNotNull property="replacementFlag" prepend=",">
+                ReplacementFlag = #replacementFlag#
+            </isNotNull>
+            <isNotNull property="confirmedUser" prepend=",">
+                ConfirmedUser =
+                #confirmedUser#
+            </isNotNull>
+            <isNotNull property="toolThisState" prepend=",">
+                ToolThisState =
+                #toolThisState#
+            </isNotNull>
+            <isNotNull property="stockState" prepend=",">
+                StockState =
+                #stockState#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend=",">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend=",">
+                UpdateTime =
+                #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend=",">
+                UpdateUser =
+                #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend=",">
+                CreateTime =
+                #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend=",">
+                CreateUser =
+                #createUser#
+            </isNotNull>
+            <isNotNull property="version" prepend=",">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerIDWhere" prepend="and ">
+                RfidContainerID = #rfidContainerIDWhere#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCodeWhere#
+            </isNotNull>
+            <isNotNull property="toolIDWhere" prepend="and ">
+                ToolID =
+                #toolIDWhere#
+            </isNotNull>
+
+            <isNotNull property="businessFlowLnkIDWhere" prepend="and ">
+                BusinessFlowLnkID = #businessFlowLnkIDWhere#
+            </isNotNull>
+            <isNotNull property="toolDurableWhere" prepend="and ">
+                ToolDurable
+                = #toolDurableWhere#
+            </isNotNull>
+            <isNotNull property="toolSharpennumWhere" prepend="and ">
+                ToolSharpennum = #toolSharpennumWhere#
+            </isNotNull>
+            <isNotNull property="toolSharpenCriterionWhere" prepend="and ">
+                ToolSharpenCriterion = #toolSharpenCriterionWhere#
+            </isNotNull>
+            <isNotNull property="toolLengthWhere" prepend="and ">
+                ToolLength =
+                #toolLengthWhere#
+            </isNotNull>
+            <isNotNull property="toolSharpenLengthWhere" prepend="and ">
+                ToolSharpenLength = #toolSharpenLengthWhere#
+            </isNotNull>
+            <isNotNull property="usageCounterWhere" prepend="and ">
+                UsageCounter = #usageCounterWhere#
+            </isNotNull>
+            <isNotNull property="toolGrindingLengthWhere" prepend="and ">
+                ToolGrindingLength = #toolGrindingLengthWhere#
+            </isNotNull>
+            <isNotNull property="installationStateWhere" prepend="and ">
+                InstallationState = #installationStateWhere#
+            </isNotNull>
+            <isNotNull property="toolStateWhere" prepend="and ">
+                ToolState =
+                #toolStateWhere#
+            </isNotNull>
+            <isNotNull property="replacementFlagWhere" prepend="and ">
+                ReplacementFlag = #replacementFlagWhere#
+            </isNotNull>
+            <isNotNull property="confirmedUserWhere" prepend="and ">
+                ConfirmedUser = #confirmedUserWhere#
+            </isNotNull>
+            <isNotNull property="stockStateWhere" prepend="and ">
+                StockState =
+                #stockStateWhere#
+            </isNotNull>
+            <isNotNull property="toolThisStateWhere" prepend="and ">
+                ToolThisState =
+                #toolThisStateWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag =
+                #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime =
+                #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser =
+                #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime =
+                #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser =
+                #createUserWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version =
+                #versionWhere#
+            </isNotNull>
+        </dynamic>
+        LIMIT $rowCount$
+    </update>
+
+
+    <!-- 批量插入  -->
+    <insert id="insertBatchs" parameterClass="java.util.List">
+        insert into tooltransfer(
+        RfidContainerID
+        ,InstallationState
+        ,ToolState
+        ,ToolID
+        ,ToolThisState
+        ,KnifeInventoryCode
+        ,ProcuredBatch
+        ,BusinessFlowLnkID
+        ,StockState
+        ,DelFlag
+        ,CreateUser
+        ,CreateTime
+        ,UpdateUser
+        ,UpdateTime
+        )
+        Values
+        <iterate conjunction=",">
+            (
+            #list[].rfidContainerID#
+            ,#list[].installationState#
+            ,#list[].toolState#
+            ,#list[].toolID#
+            ,#list[].toolThisState#
+            ,#list[].knifeInventoryCode#
+            ,#list[].procuredBatch#
+            ,#list[].businessFlowLnkID#
+            ,#list[].stockState#
+            ,#list[].delFlag#
+            ,#list[].createUser#
+            ,#list[].createTime#
+            ,#list[].updateUser#
+            ,#list[].updateTime#
+            )
+        </iterate>
+    </insert>
+    <!--查询当前载体是否在流转表中存在-->
+    <select id="getRfidConnerIDed" parameterClass="list" resultMap="Tooltransfer-map">
+        SELECT
+        *
+        FROM tooltransfer tf
+        WHERE tf.DelFlag = '0'
+        AND tf.RfidContainerID IN
+        <iterate conjunction="," open="(" close=")">
+            #[]#
+        </iterate>
+    </select>
+
+    <delete id="updateBatchbyttRfidConID" parameterClass="java.util.List">
+        DELETE FROM tooltransfer
+        WHERE RfidContainerID IN
+        <iterate conjunction="," open="(" close=")">
+            #[]#
+        </iterate>
+    </delete>
+
+    <!-- 根据RFIDlist删除流转中的数据 -->
+    <update id="updateBatchDeFlagByRfid" parameterClass="java.util.Map">
+        UPDATE tooltransfer tt SET
+        tt.DelFlag = #delFlag#
+        ,tt.UpdateTime
+        =#updateTime#
+        ,tt.UpdateUser =#userId#
+        ,tt.Version = tt.Version + 1
+        WHERE
+        tt.RfidContainerID IN (
+        SELECT
+        rf.RfidContainerID
+        FROM
+        rfidcontainer
+        rf
+        WHERE
+        rf.RfidCode IN
+        <iterate property="list" open="(" close=")" conjunction=",">
+            #list[]#
+        </iterate>
+        )
+    </update>
+    <resultMap id="Tooltransfer-map_33" class="entityTooltransfer">
+        <!-- 材料号 -->
+        <result property="expandSpace1" column="ToolCode"/>
+        <!-- 刀具ID -->
+        <result property="toolID" column="ToolID"/>
+
+        <result property="toolState" column="ToolState"/>
+        <!-- 载体-->
+        <result property="rfidContainerID" column="RfidContainerID"/>
+    </resultMap>
+
+    <select id="getToolMsg" parameterClass="entityTooltransfer" resultMap="Tooltransfer-map_33">
+               SELECT
+            DISTINCT
+            aa.RfidContainerID AS RfidContainerID,
+            aa.ToolConsumetype AS  ToolState,
+            aa.ToolID AS  ToolID,
+            aa.ToolCode AS  ToolCode
+            FROM
+            ( SELECT
+            tf1.RfidContainerID AS RfidContainerID,
+            t.ToolConsumetype AS ToolConsumetype,
+            t.ToolID  AS ToolID,
+            t.ToolCode AS ToolCode
+            FROM rfidcontainer tf1
+            INNER JOIN  knifeinventory kv ON tf1.RfidContainerID = kv.RfidContainerID
+            INNER JOIN tool t ON kv.ToolID = t.ToolID
+            WHERE kv.DelFlag = '0' AND t.DelFlag = '0'
+
+            union all
+
+            (
+            SELECT
+            tf.RfidContainerID AS RfidContainerID,
+            t.ToolConsumetype AS ToolConsumetype,
+            t.ToolID  AS ToolID,
+            t.ToolCode AS ToolCode
+
+            FROM rfidcontainer tf
+            INNER JOIN  tooltransfer tt ON tf.RfidContainerID = tt.RfidContainerID
+            INNER JOIN tool t ON  tt.ToolID = t.ToolID
+            WHERE  tt.DelFlag = '0' AND t.DelFlag = '0'
+            )
+            ) aa
+            WHERE aa.RfidContainerID = #rfidContainerID#
+
+    </select>
+
+
+    <select id="getToolMsgTools" parameterClass="entityTooltransfer" resultMap="Tooltransfer-map">
+          SELECT
+			    tt.RfidContainerID
+                ,t.ToolConsumetype AS  KnifeInventoryCode
+                ,t.ToolID AS  ToolID
+                ,t.ToolCode  AS  ProcuredBatch
+                ,tt.BusinessFlowLnkID
+                ,tt.ProcessAmount
+                ,tt.ToolDurable
+                ,tt.ToolSharpennum
+                ,tt.ToolSharpenCriterion
+                ,tt.ToolLength
+                ,tt.ToolSharpenLength
+                ,tt.UsageCounter
+                ,tt.ToolGrindingLength
+                ,tt.InstallationState
+                ,tt.ToolState
+                ,tt.ReplacementFlag
+                ,tt.ConfirmedUser
+                ,tt.ToolThisState
+                ,tt.StockState
+                ,tt.discardeFlag
+                ,tt.DelFlag
+                ,tt.UpdateTime
+                ,tt.UpdateUser
+                ,tt.CreateTime
+                ,tt.CreateUser
+                ,tt.Version
+            FROM rfidcontainer tf
+            INNER JOIN  tooltransfer tt ON tf.RfidContainerID = tt.RfidContainerID
+            INNER JOIN tool t ON  tt.ToolID = t.ToolID
+            WHERE  tt.DelFlag = '0' AND t.DelFlag = '0'
+									AND  	tt.RfidContainerID = #rfidContainerID#
+
+    </select>
+
+
+    <!-- 任意条件更新处理(未指定字段更新为：null) -->
+    <update id="updatecontainerCount" parameterClass="entityTooltransfer">
+        UPDATE tooltransfer tt
+        SET tt.ToolDurable = (tt.ToolDurable  - #toolDurable#),
+        tt.UpdateTime =  #updateTime#,
+        tt.UpdateUser = #updateUser#
+        WHERE tt.RfidContainerID = #rfidContainerID#
+        AND tt.ToolID  = #toolID#
+        AND tt.DelFlag = 0
+    </update>
+
+    <!-- 按RFIDList删除 -->
+    <delete id="deleteByRfidCodeList" parameterClass="java.util.List">
+        DELETE
+        FROM
+        tt,rf
+        using tooltransfer tt,rfidcontainer rf
+        where
+        1=1
+        and tt.RfidContainerID = rf.RfidContainerID
+        and rf.RfidCode IN
+        <iterate conjunction="," open="(" close=")">
+            #[]#
+        </iterate>
+    </delete>
+
+
+    <select id="searchByListGrouby" parameterClass="entityTooltransfer" resultMap="Tooltransfer-map">
+        SELECT
+        RfidContainerID
+        ,KnifeInventoryCode
+        ,ToolID
+        ,ProcuredBatch
+        ,BusinessFlowLnkID
+        ,ProcessAmount
+        ,SUM(ToolDurable) AS ToolDurable
+        ,ToolSharpennum
+        ,ToolSharpenCriterion
+        ,ToolLength
+        ,ToolSharpenLength
+        ,UsageCounter
+        ,ToolGrindingLength
+        ,InstallationState
+        ,ToolState
+        ,ReplacementFlag
+        ,ConfirmedUser
+        ,ToolThisState
+        ,StockState
+        ,discardeFlag
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        from tooltransfer
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerID" prepend="and ">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCode" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="procuredBatch" prepend="and ">
+                ProcuredBatch = #procuredBatch#
+            </isNotNull>
+            <isNotNull property="businessFlowLnkID" prepend="and ">
+                BusinessFlowLnkID = #businessFlowLnkID#
+            </isNotNull>
+            <isNotNull property="processAmount" prepend="and ">
+                ProcessAmount = #processAmount#
+            </isNotNull>
+            <isNotNull property="toolDurable" prepend="and ">
+                ToolDurable = #toolDurable#
+            </isNotNull>
+            <isNotNull property="toolSharpennum" prepend="and ">
+                ToolSharpennum = #toolSharpennum#
+            </isNotNull>
+            <isNotNull property="toolSharpenCriterion" prepend="and ">
+                ToolSharpenCriterion = #toolSharpenCriterion#
+            </isNotNull>
+            <isNotNull property="toolLength" prepend="and ">
+                ToolLength = #toolLength#
+            </isNotNull>
+            <isNotNull property="toolSharpenLength" prepend="and ">
+                ToolSharpenLength = #toolSharpenLength#
+            </isNotNull>
+            <isNotNull property="usageCounter" prepend="and ">
+                UsageCounter = #usageCounter#
+            </isNotNull>
+            <isNotNull property="toolGrindingLength" prepend="and ">
+                ToolGrindingLength = #toolGrindingLength#
+            </isNotNull>
+            <isNotNull property="installationState" prepend="and ">
+                InstallationState = #installationState#
+            </isNotNull>
+            <isNotNull property="toolState" prepend="and ">
+                ToolState = #toolState#
+            </isNotNull>
+            <isNotNull property="replacementFlag" prepend="and ">
+                ReplacementFlag = #replacementFlag#
+            </isNotNull>
+            <isNotNull property="confirmedUser" prepend="and ">
+                ConfirmedUser = #confirmedUser#
+            </isNotNull>
+            <isNotNull property="toolThisState" prepend="and ">
+                ToolThisState = #toolThisState#
+            </isNotNull>
+            <isNotNull property="stockState" prepend="and ">
+                StockState = #stockState#
+            </isNotNull>
+            <isNotNull property="discardeFlag" prepend="and ">
+                discardeFlag = #discardeFlag#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            GROUP by ToolID
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 按RFIDList删除 -->
+    <update id="updatStateByRfidConner" parameterClass="java.util.Map">
+        UPDATE tooltransfer tt
+        SET tt.UsageCounter =(tt.UsageCounter+1)
+        ,tt.UpdateTime = #updateTime#
+        ,tt.UpdateUser = #updateUser#
+        ,tt.BusinessFlowLnkID = #businessFlowLnkID#
+        ,tt.StockState = #stockState#
+        ,tt.ToolThisState = #toolThisState#
+        ,tt.ToolState = #toolState#
+        WHERE
+        tt.DelFlag = 0
+        AND tt.RfidContainerID IN
+        <iterate property="list" conjunction="," open="(" close=")">
+            #list[]#
+        </iterate>
+    </update>
+    <!-- 按照RFIDcode修改状态 -->
+    <update id="updateToolStateBatchByRfid" parameterClass="java.util.Map">
+        UPDATE tooltransfer tt
+        SET
+        tt.UpdateTime =now()
+        ,tt.UpdateUser = #userID#
+        ,tt.ToolState = #toolState#
+        WHERE
+        tt.RfidContainerID IN (
+        SELECT
+        rf.RfidContainerID
+        FROM
+        rfidcontainer rf
+        WHERE
+        rf.RfidCode IN
+        <iterate property="list" open="(" close=")" conjunction=",">
+            #list[]#
+        </iterate>
+        )
+    </update>
+    <!-- 修改流转表中的信息为待换装状态 -->
+    <update id="updateToolStateBatchByRFIDConnerID" parameterClass="java.util.Map">
+        UPDATE tooltransfer tt
+        SET
+        tt.UpdateTime =now()
+        ,tt.UpdateUser = #userID#
+        ,tt.ToolState = #toolState#
+        WHERE
+        tt.RfidContainerID IN
+        <iterate property="list" open="(" close=")" conjunction=",">
+            #list[]#
+        </iterate>
+    </update>
+    <!-- 修改流转表中的信息为待换装状态加1 -->
+    <update id="updateToolStateBatchByRFIDConnerIDAddOne" parameterClass="java.util.Map">
+        UPDATE tooltransfer tt
+        SET
+        tt.UpdateTime =now()
+        ,tt.UpdateUser = #userID#
+        ,tt.ToolState = #toolState#
+        ,tt.UsageCounter = tt.UsageCounter +1
+        WHERE
+        tt.RfidContainerID IN
+        <iterate property="list" open="(" close=")" conjunction=",">
+            #list[]#
+        </iterate>
+    </update>
+
+    <!-- 2017/09/12 宋健 追加↓↓↓　dazhong@YMSC -->
+    <!-- 任意条件查询执行 -->
+    <select id="searchTooltransferList" parameterClass="entityTooltransfer" resultMap="Tooltransfer-map">
+        SELECT
+        RfidContainerID
+        ,KnifeInventoryCode
+        ,ToolID
+        ,ProcuredBatch
+        ,BusinessFlowLnkID
+        ,ProcessAmount
+        ,ToolDurable
+        ,ToolSharpennum
+        ,ToolSharpenCriterion
+        ,ToolLength
+        ,ToolSharpenLength
+        ,UsageCounter
+        ,ToolGrindingLength
+        ,InstallationState
+        ,ToolState
+        ,ReplacementFlag
+        ,ConfirmedUser
+        ,ToolThisState
+        ,StockState
+        ,discardeFlag
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        from tooltransfer
+        where
+        RfidContainerID = #rfidContainerID#
+        and ToolID = #toolID#
+        and DelFlag = #delFlag#
+    </select>
+    <!-- 2017/09/12 宋健 追加↑↑↑　dazhong@YMSC -->
+</sqlMap>
+

@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Vworkshopsummary.xml
+    Created on : 2016/03/10 14:58:49
+    Author : 工具自动生成
+    Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vworkshopsummary">
+    <typeAlias alias="entityVworkshopsummary" type="com.icomp.entity.base.Vworkshopsummary"/>
+    <resultMap id="Vworkshopsummary-map" class="entityVworkshopsummary">
+        <!-- 流水线名称 -->
+        <result property="assemblyLineName" column="AssemblyLineName"/>
+        <!-- 流水线ID -->
+        <result property="assemblyLineID" column="AssemblyLineID"/>
+        <!-- 零部件名称 -->
+        <result property="partsName" column="PartsName"/>
+        <!-- 零部件ID -->
+        <result property="partsID" column="PartsID"/>
+        <!-- 工序名称 -->
+        <result property="processName" column="ProcessName"/>
+        <!-- 工序ID -->
+        <result property="processID" column="ProcessID"/>
+        <!-- 零部件型号（0:1.6L,1:1.4T） -->
+        <result property="partsType" column="PartsType"/>
+        <!-- 设备名称 -->
+        <result property="equipmentName" column="EquipmentName"/>
+        <!-- 设备ID -->
+        <result property="equipmentID" column="EquipmentID"/>
+        <!-- 卸下时间 -->
+        <result property="outerTime" column="OuterTime"/>
+        <!-- 合成刀具编号 -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+        <!-- 轴编码 -->
+        <result property="axleCode" column="axleCode"/>
+        <!-- 轴ID -->
+        <result property="axleID" column="axleID"/>
+        <!--  -->
+        <result property="processAmount" column="ProcessAmount"/>
+        <!--  -->
+        <result property="synconsume" column="synconsume"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityVworkshopsummary" resultMap="Vworkshopsummary-map">
+        SELECT
+        AssemblyLineName
+        ,AssemblyLineID
+        ,PartsName
+        ,PartsID
+        ,ProcessName
+        ,ProcessID
+        ,PartsType
+        ,EquipmentName
+        ,EquipmentID
+        ,OuterTime
+        ,SynthesisParametersCode
+        ,axleCode
+        ,axleID
+        ,ProcessAmount
+        ,synconsume
+        from vworkshopsummary
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityVworkshopsummary" resultMap="Vworkshopsummary-map">
+        SELECT
+        AssemblyLineName
+        ,AssemblyLineID
+        ,PartsName
+        ,PartsID
+        ,ProcessName
+        ,ProcessID
+        ,PartsType
+        ,EquipmentName
+        ,EquipmentID
+        ,OuterTime
+        ,SynthesisParametersCode
+        ,axleCode
+        ,axleID
+        ,ProcessAmount
+        ,synconsume
+        from vworkshopsummary
+        <dynamic prepend=" where ">
+            <isNotNull property="assemblyLineName" prepend="and ">
+                AssemblyLineName = #assemblyLineName#
+            </isNotNull>
+            <isNotNull property="assemblyLineID" prepend="and ">
+                AssemblyLineID = #assemblyLineID#
+            </isNotNull>
+            <isNotNull property="partsName" prepend="and ">
+                PartsName = #partsName#
+            </isNotNull>
+            <isNotNull property="partsID" prepend="and ">
+                PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="processName" prepend="and ">
+                ProcessName = #processName#
+            </isNotNull>
+            <isNotNull property="processID" prepend="and ">
+                ProcessID = #processID#
+            </isNotNull>
+            <isNotNull property="partsType" prepend="and ">
+                PartsType = #partsType#
+            </isNotNull>
+            <isNotNull property="equipmentName" prepend="and ">
+                EquipmentName = #equipmentName#
+            </isNotNull>
+            <isNotNull property="equipmentID" prepend="and ">
+                EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="dateStar" prepend="and ">
+                <![CDATA[
+				OuterTime >= #dateStar#
+				]]>
+            </isNotNull>
+            <isNotNull property="dateEnd" prepend="and ">
+                <![CDATA[
+				OuterTime <= #dateEnd#
+				]]>
+            </isNotNull>
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCode#
+            </isNotNull>
+            <isNotNull property="axleCode" prepend="and ">
+                axleCode = #axleCode#
+            </isNotNull>
+            <isNotNull property="axleID" prepend="and ">
+                axleID = #axleID#
+            </isNotNull>
+            <isNotNull property="processAmount" prepend="and ">
+                ProcessAmount = #processAmount#
+            </isNotNull>
+            <isNotNull property="synconsume" prepend="and ">
+                synconsume = #synconsume#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityVworkshopsummary" resultClass="int">
+        SELECT
+        COUNT(1)
+        FROM (
+        SELECT
+        aa.AssemblyLineName AS AssemblyLineName,
+        aa.AssemblyLineID AS AssemblyLineID,
+        aa.PartsName AS PartsName,
+        aa.PartsID AS PartsID,
+        aa.ProcessName AS ProcessName,
+        aa.ProcessID AS ProcessID,
+        aa.PartsType AS PartsType,
+        aa.EquipmentName AS EquipmentName,
+        aa.EquipmentID AS EquipmentID,
+        aa.OuterTime AS OuterTime,
+        aa.SynthesisParametersCode AS SynthesisParametersCode,
+        aa.axleCode AS axleCode,
+        aa.axleID AS axleID,
+        COUNT(1) AS synconsume,
+        sum(aa.ProcessAmount) AS ProcessAmount
+        FROM
+        (
+        SELECT
+        ab.AssemblyLineName AS AssemblyLineName,
+        ab.AssemblyLineID AS AssemblyLineID,
+        pa.PartsName AS PartsName,
+        pa.PartsID AS PartsID,
+        pa.PartsCode as PartsCode,
+        pc.ProcessName AS ProcessName,
+        pc.ProcessID AS ProcessID,
+        pa.PartsType AS PartsType,
+        eq.EquipmentName AS EquipmentName,
+        eq.EquipmentID AS EquipmentID,
+        ssc.OuterTime AS OuterTime,
+        ssc.SynthesisParametersCode AS SynthesisParametersCode,
+        ax.axleCode AS axleCode,
+        ax.axleID AS axleID,
+        ssc.ProcessAmount AS ProcessAmount
+        FROM
+        synthesistoolsmachining ssc
+        inner JOIN assemblyline ab ON ab.AssemblyLineID = ssc.AssemblyLineID
+        inner JOIN parts pa ON pa.PartsID = ssc.PartsID
+        inner JOIN process pc ON pc.ProcessID = ssc.ProcessID
+        inner JOIN equipment eq ON eq.EquipmentID = ssc.EquipmentID
+        inner JOIN axle ax ON ax.axleID = ssc.AxleID
+        WHERE
+        ssc.DelFlag = '0'and
+        ab.DelFlag = '0'and
+        pa.DelFlag = '0'and
+        pc.DelFlag = '0'and
+        eq.DelFlag = '0'and
+        ax.DelFlag = '0'AND
+        ssc.OuterTime is NOT NULL
+
+
+        GROUP BY
+        ab.AssemblyLineID,
+        pc.ProcessID,
+        eq.EquipmentID,
+        ax.axleCode,
+        pa.PartsCode,
+        ssc.SynthesisParametersCode,
+        ssc.SynthesisParametersNumber,
+        ssc.OuterTime
+        ORDER BY ssc.OuterTime desc
+        ) aa
+        <dynamic prepend=" where ">
+            <isNotNull property="assemblyLineName" prepend="and ">
+                aa.AssemblyLineName = #assemblyLineName#
+            </isNotNull>
+            <isNotNull property="assemblyLineID" prepend="and ">
+                aa.AssemblyLineID = #assemblyLineID#
+            </isNotNull>
+            <isNotNull property="partsName" prepend="and ">
+                aa.PartsName = #partsName#
+            </isNotNull>
+            <isNotNull property="partsID" prepend="and ">
+                aa.PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="processName" prepend="and ">
+                aa.ProcessName = #processName#
+            </isNotNull>
+            <isNotNull property="processID" prepend="and ">
+                aa.ProcessID = #processID#
+            </isNotNull>
+            <isNotNull property="partsType" prepend="and ">
+                aa.PartsType = #partsType#
+            </isNotNull>
+            <isNotNull property="equipmentName" prepend="and ">
+                aa.EquipmentName = #equipmentName#
+            </isNotNull>
+            <isNotNull property="equipmentID" prepend="and ">
+                aa.EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="dateStar" prepend="and ">
+                <![CDATA[
+				OuterTime >= #dateStar#
+				]]>
+            </isNotNull>
+            <isNotNull property="dateEnd" prepend="and ">
+                <![CDATA[
+				OuterTime <= #dateEnd#
+				]]>
+            </isNotNull>
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                aa.SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+            </isNotNull>
+            <isNotNull property="axleCode" prepend="and ">
+                aa.axleCode = #axleCode#
+            </isNotNull>
+            <isNotNull property="axleID" prepend="and ">
+                aa.axleID = #axleID#
+            </isNotNull>
+            <isNotNull property="processAmount" prepend="and ">
+                aa.ProcessAmount = #processAmount#
+            </isNotNull>
+        </dynamic>
+        GROUP BY
+        aa.AssemblyLineID,
+        aa.ProcessID,
+        aa.EquipmentID,
+        aa.axleCode,
+        aa.PartsCode,
+        aa.SynthesisParametersCode
+        ORDER BY aa.OuterTime desc
+        )bb
+
+    </select>
+
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList1" parameterClass="entityVworkshopsummary" resultMap="Vworkshopsummary-map">
+        SELECT
+        aa.AssemblyLineName AS AssemblyLineName,
+        aa.AssemblyLineID AS AssemblyLineID,
+        aa.PartsName AS PartsName,
+        aa.PartsID AS PartsID,
+        aa.ProcessName AS ProcessName,
+        aa.ProcessID AS ProcessID,
+        aa.PartsType AS PartsType,
+        aa.EquipmentName AS EquipmentName,
+        aa.EquipmentID AS EquipmentID,
+        aa.OuterTime AS OuterTime,
+        aa.SynthesisParametersCode AS SynthesisParametersCode,
+        aa.axleCode AS axleCode,
+        aa.axleID AS axleID,
+        sum(aa.synconsume) AS synconsume,
+        SUM(aa.ProcessAmount) ProcessAmount
+        FROM
+        (
+        SELECT
+        ab.AssemblyLineName AS AssemblyLineName,
+        ab.AssemblyLineID AS AssemblyLineID,
+        pa.PartsName AS PartsName,
+        pa.PartsID AS PartsID,
+        pa.PartsCode as PartsCode,
+        pc.ProcessName AS ProcessName,
+        pc.ProcessID AS ProcessID,
+        pa.PartsType AS PartsType,
+        eq.EquipmentName AS EquipmentName,
+        eq.EquipmentID AS EquipmentID,
+        ssc.OuterTime AS OuterTime,
+        ssc.SynthesisParametersCode AS SynthesisParametersCode,
+        ax.axleCode AS axleCode,
+        ax.axleID AS axleID,
+
+        COUNT(1) AS synconsume,
+        sp.CreateType AS CreateType,
+        CASE WHEN sp.CreateType = '6' THEN ssc.ProcessAmount
+        ELSE ssc.ProcessAmount*COUNT(1) END ProcessAmount
+        FROM
+        synthesistoolsmachining ssc
+        inner JOIN assemblyline ab ON ab.AssemblyLineID = ssc.AssemblyLineID
+        inner JOIN parts pa ON pa.PartsID = ssc.PartsID
+        inner JOIN process pc ON pc.ProcessID = ssc.ProcessID
+        inner JOIN equipment eq ON eq.EquipmentID = ssc.EquipmentID
+        inner JOIN axle ax ON ax.axleID = ssc.AxleID
+        inner JOIN  synthesisparameters sp on ssc.SynthesisParametersCode = sp.SynthesisParametersCode
+        WHERE
+        ssc.DelFlag = '0'and
+        ab.DelFlag = '0'and
+        pa.DelFlag = '0'and
+        pc.DelFlag = '0'and
+        eq.DelFlag = '0'and
+        ax.DelFlag = '0'AND
+        ssc.OuterTime is NOT NULL
+        GROUP BY ssc.OuterTime
+        ORDER BY ssc.OuterTime desc
+        ) aa
+        <dynamic prepend=" where ">
+            <isNotNull property="assemblyLineName" prepend="and ">
+                aa.AssemblyLineName = #assemblyLineName#
+            </isNotNull>
+            <isNotNull property="assemblyLineID" prepend="and ">
+                aa.AssemblyLineID = #assemblyLineID#
+            </isNotNull>
+            <isNotNull property="partsName" prepend="and ">
+                aa.PartsName = #partsName#
+            </isNotNull>
+            <isNotNull property="partsID" prepend="and ">
+                aa.PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="processName" prepend="and ">
+                aa.ProcessName = #processName#
+            </isNotNull>
+            <isNotNull property="processID" prepend="and ">
+                aa.ProcessID = #processID#
+            </isNotNull>
+            <isNotNull property="partsType" prepend="and ">
+                aa.PartsType = #partsType#
+            </isNotNull>
+            <isNotNull property="equipmentName" prepend="and ">
+                aa.EquipmentName = #equipmentName#
+            </isNotNull>
+            <isNotNull property="equipmentID" prepend="and ">
+                aa.EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="dateStar" prepend="and ">
+                <![CDATA[
+				OuterTime >= #dateStar#
+				]]>
+            </isNotNull>
+            <isNotNull property="dateEnd" prepend="and ">
+                <![CDATA[
+				OuterTime <= #dateEnd#
+				]]>
+            </isNotNull>
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                aa.SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+            </isNotNull>
+            <isNotNull property="axleCode" prepend="and ">
+                aa.axleCode = #axleCode#
+            </isNotNull>
+            <isNotNull property="axleID" prepend="and ">
+                aa.axleID = #axleID#
+            </isNotNull>
+            <isNotNull property="processAmount" prepend="and ">
+                aa.ProcessAmount = #processAmount#
+            </isNotNull>
+        </dynamic>
+        GROUP BY
+        aa.AssemblyLineID,
+        aa.ProcessID,
+        aa.EquipmentID,
+        aa.axleCode,
+        aa.PartsCode,
+        aa.SynthesisParametersCode
+        ORDER BY aa.OuterTime desc
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+</sqlMap>
+

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Vtoolalarmparam.xml
+    Created on : 2016/05/27 11:57:12
+    Author : 工具自动生成
+    Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vtoolalarmparam">
+    <typeAlias alias="entityVtoolalarmparam" type="com.icomp.entity.base.Vtoolalarmparam"/>
+    <resultMap id="Vtoolalarmparam-map" class="entityVtoolalarmparam">
+        <!-- 刀具ID -->
+        <result property="toolID" column="toolID"/>
+        <!-- 消耗类别(0:可刃磨钻头1可刃磨刀片2一次性刀片9其他 -->
+        <result property="toolConsumetype" column="ToolConsumetype"/>
+        <!-- 刀具编码 -->
+        <result property="toolCode" column="ToolCode"/>
+        <!-- 标准库存量 -->
+        <result property="standard" column="Standard"/>
+        <!--  -->
+        <result property="knifelnventoryNumber" column="KnifelnventoryNumber"/>
+        <!--  -->
+        <result property="cstandard" column="Cstandard"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityVtoolalarmparam" resultMap="Vtoolalarmparam-map">
+        SELECT
+        toolID
+        ,ToolConsumetype
+        ,ToolCode
+        ,Standard
+        ,KnifelnventoryNumber
+        ,Cstandard
+        from vtoolalarmparam
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityVtoolalarmparam" resultMap="Vtoolalarmparam-map">
+        SELECT
+        toolID
+        ,ToolConsumetype
+        ,ToolCode
+        ,Standard
+        ,KnifelnventoryNumber
+        ,Cstandard
+        from vtoolalarmparam
+        <dynamic prepend=" where ">
+            <isNotNull property="toolID" prepend="and ">
+                toolID = #toolID#
+            </isNotNull>
+            <isNotNull property="toolConsumetype" prepend="and ">
+                ToolConsumetype like concat('%',#toolConsumetype#,'%')
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">
+                ToolCode = #toolCode#
+            </isNotNull>
+            <isNotNull property="standard" prepend="and ">
+                Standard = #standard#
+            </isNotNull>
+            <isNotNull property="knifelnventoryNumber" prepend="and ">
+                KnifelnventoryNumber = #knifelnventoryNumber#
+            </isNotNull>
+            <isNotNull property="cstandard" prepend="and ">
+                Cstandard = #cstandard#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+    <resultMap id="Vtoolalarmparam-map-1" class="entityVtoolalarmparam">
+        <!-- 刀具ID -->
+        <result property="toolID" column="toolID"/>
+        <!-- 刀具编码 -->
+        <result property="toolCode" column="ToolCode"/>
+        <!-- 标准库存量 -->
+        <result property="standard" column="ToolMin"/>
+        <!--  -->
+        <result property="cstandard" column="ToolMax"/>
+        <!--  -->
+        <result property="knifelnventoryNumber" column="KnifelnventoryNumber"/>
+        <result property="expandSpace1" column="lessZero"/>
+        <result property="expandSpace2" column="moreZero"/>
+
+    </resultMap>
+    <!-- 查询库存新刀异常信息 -->
+    <select id="searchNewVentoryList" parameterClass="entityVtoolalarmparam" resultMap="Vtoolalarmparam-map-1">
+        SELECT
+        cc.toolID AS toolID,
+        cc.ToolCode AS ToolCode,
+        cc.ToolMin AS ToolMin,
+        cc.ToolMax AS ToolMax,
+        cc.KnifelnventoryNumber AS KnifelnventoryNumber,
+        (cc.KnifelnventoryNumber - cc.ToolMin) AS lessZero,
+        (cc.KnifelnventoryNumber - cc.toolMax) AS moreZero
+        FROM
+        (
+        SELECT
+        aa.toolID AS toolID,
+        aa.ToolCode AS ToolCode,
+        aa.ToolMin AS ToolMin,
+        aa.ToolMax AS ToolMax,
+        ifnull(bb.KnifelnventoryNumber, 0) AS KnifelnventoryNumber
+        FROM
+        (
+        SELECT
+        *
+        FROM
+        tool t
+        WHERE
+        t.ToolType = 0
+        AND t.DelFlag = 0
+        ) aa
+        LEFT OUTER JOIN (
+        SELECT
+        k.ToolID AS ToolID,
+        SUM(KnifelnventoryNumber) AS KnifelnventoryNumber
+        FROM
+        knifeinventory k
+        WHERE
+        k.DelFlag = '0'
+        GROUP BY
+        k.ToolID
+        ) bb ON aa.ToolID = bb.ToolID
+        ) cc
+        WHERE
+        <![CDATA[
+	    cc.KnifelnventoryNumber > cc.ToolMax
+        OR cc.KnifelnventoryNumber < cc.ToolMin
+				]]>
+        ORDER BY cc.ToolCode
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+
+    <!-- 查询库存新刀异常信息 -->
+    <select id="searchNewVentoryCount" parameterClass="entityVtoolalarmparam" resultClass="int">
+	    SELECT
+        COUNT(1)
+        FROM
+        (
+        SELECT
+        aa.toolID AS toolID,
+        aa.ToolCode AS ToolCode,
+        aa.ToolMin AS ToolMin,
+        aa.ToolMax AS ToolMax,
+        ifnull(bb.KnifelnventoryNumber, 0) AS KnifelnventoryNumber
+        FROM
+        (
+        SELECT
+        *
+        FROM
+        tool t
+        WHERE
+        t.ToolType = 0
+        AND t.DelFlag = 0
+        ) aa
+        LEFT OUTER JOIN (
+        SELECT
+        k.ToolID AS ToolID,
+        SUM(KnifelnventoryNumber) AS KnifelnventoryNumber
+        FROM
+        knifeinventory k
+        WHERE
+        k.DelFlag = '0'
+        GROUP BY
+        k.ToolID
+        ) bb ON aa.ToolID = bb.ToolID
+        ) cc
+        WHERE
+        <![CDATA[
+	    cc.KnifelnventoryNumber > cc.ToolMax
+        OR cc.KnifelnventoryNumber < cc.ToolMin
+				]]>
+        ORDER BY cc.ToolCode
+	</select>
+
+
+    <!-- 查询备刀库异常信息 -->
+    <select id="searchTooltreantList" parameterClass="entityVtoolalarmparam" resultMap="Vtoolalarmparam-map-1">
+        SELECT
+        cc.toolID AS toolID,
+        cc.ToolCode AS ToolCode,
+        cc.ToolMin AS ToolMin,
+        cc.ToolMax AS ToolMax,
+        cc.KnifelnventoryNumber AS KnifelnventoryNumber,
+        (cc.KnifelnventoryNumber - cc.ToolMin) AS lessZero,
+        (cc.KnifelnventoryNumber - cc.toolMax) AS moreZero
+        FROM
+        (
+        SELECT
+        aa.toolID AS toolID,
+        aa.ToolCode AS ToolCode,
+        aa.ToolMin AS ToolMin,
+        aa.ToolMax AS ToolMax,
+        ifnull(bb.SpareKnifeSum, 0) AS KnifelnventoryNumber
+        FROM
+        (
+        SELECT
+        *
+        FROM
+        tool t
+        WHERE
+        t.ToolType = 0
+        AND t.DelFlag = 0
+        ) aa
+        LEFT JOIN tooltransfertotal bb ON aa.ToolCode = bb.ToolCode
+        ) cc
+
+        WHERE
+        <![CDATA[
+	    cc.KnifelnventoryNumber > cc.ToolMax
+        OR cc.KnifelnventoryNumber < cc.ToolMin
+				]]>
+        ORDER BY cc.ToolCode
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+
+    <!-- 查询备刀库异常数量 -->
+    <select id="searchTooltreantCount" parameterClass="entityVtoolalarmparam" resultClass="int">
+	    SELECT
+        COUNT(1)
+        FROM
+        (
+        SELECT
+        aa.toolID AS toolID,
+        aa.ToolCode AS ToolCode,
+        aa.ToolMin AS ToolMin,
+        aa.ToolMax AS ToolMax,
+        ifnull(bb.SpareKnifeSum, 0) AS KnifelnventoryNumber
+        FROM
+        (
+        SELECT
+        *
+        FROM
+        tool t
+        WHERE
+        t.ToolType = 0
+        AND t.DelFlag = 0
+        ) aa
+        LEFT JOIN tooltransfertotal bb ON aa.ToolCode = bb.ToolCode
+        ) cc
+        WHERE
+        <![CDATA[
+	    cc.KnifelnventoryNumber > cc.ToolMax
+        OR cc.KnifelnventoryNumber < cc.ToolMin
+				]]>
+        ORDER BY cc.ToolCode
+	</select>
+
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityVtoolalarmparam" resultClass="int">
+		SELECT count(1)
+		FROM
+		(
+		SELECT
+		ki.toolID as toolID,
+		t.ToolCode AS ToolConsumetype,
+		t.ToolCode AS ToolCode,
+		t.standard as Standard,
+		SUM(ki.KnifelnventoryNumber) as KnifelnventoryNumber,
+		SUM(ki.KnifelnventoryNumber) - t.standard as Cstandard
+		from knifeinventory ki
+		LEFT JOIN tool t ON  t.ToolID = ki.ToolID
+		where t.DelFlag='0' and ki.DelFlag='0'
+		GROUP BY ki.ToolID
+		) aa
+		where aa.KnifelnventoryNumber &lt; aa.Standard
+	</select>
+    <select id="searcy" parameterClass="entityVtoolalarmparam" resultMap="Vtoolalarmparam-map">
+		SELECT
+		aa.toolID,
+		aa.ToolConsumetype,
+		aa.ToolCode,
+		aa.Standard,
+		aa.KnifelnventoryNumber,
+		aa.Cstandard
+		FROM
+		(
+		SELECT
+		ki.toolID as toolID,
+		t.ToolCode AS ToolConsumetype,
+		t.ToolCode AS ToolCode,
+		t.standard as Standard,
+		SUM(ki.KnifelnventoryNumber) as KnifelnventoryNumber,
+		SUM(ki.KnifelnventoryNumber) - t.standard as Cstandard
+		from knifeinventory ki
+		LEFT JOIN tool t ON  t.ToolID = ki.ToolID
+		where t.DelFlag='0' and ki.DelFlag='0'
+		GROUP BY ki.ToolID
+		) aa
+
+		where aa.KnifelnventoryNumber  &lt;  aa.Standard OR aa.KnifelnventoryNumber  &gt; aa.Standard
+	</select>
+
+
+</sqlMap>
+

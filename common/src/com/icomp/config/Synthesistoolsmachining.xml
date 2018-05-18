@@ -1,0 +1,1110 @@
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Synthesistoolsmachining">
+    <typeAlias alias="entitySynthesistoolsmachining" type="com.icomp.entity.base.Synthesistoolsmachining"/>
+    <resultMap id="Synthesistoolsmachining-map" class="entitySynthesistoolsmachining">
+        <!-- 加工编号(年月日时分秒 14位字符串) -->
+        <result property="synthesisNumber" column="SynthesisNumber"/>
+        <!-- 合成刀具号码 -->
+        <result property="synthesisParametersNumber" column="SynthesisParametersNumber"/>
+        <!-- 合成刀具编号 -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+        <!-- 流水线ID -->
+        <result property="assemblyLineID" column="AssemblyLineID"/>
+        <!-- 设备ID -->
+        <result property="equipmentID" column="EquipmentID"/>
+        <!-- 轴ID -->
+        <result property="processID" column="ProcessID"/>
+        <!--  -->
+        <result property="partsID" column="PartsID"/>
+        <!-- 轴ID -->
+        <result property="axleID" column="AxleID"/>
+        <!-- 卸下时间 -->
+        <result property="outerTime" column="OuterTime"/>
+        <!-- 操作人 -->
+        <result property="outerUser" column="OuterUser"/>
+        <!-- 卸下原因(0正常卸下1打刀2不合格9其他)(可维护) -->
+        <result property="removeReason" column="RemoveReason"/>
+        <!-- 加工数量 -->
+        <result property="processAmount" column="ProcessAmount"/>
+        <!-- 卸下确认人(不合格卸下时需要进行确认) -->
+        <result property="removeUser" column="RemoveUser"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="delFlag" column="DelFlag"/>
+        <!-- 更新时间 -->
+        <result property="updateTime" column="UpdateTime"/>
+        <!-- 更新者 -->
+        <result property="updateUser" column="UpdateUser"/>
+        <!-- 创建时间 -->
+        <result property="createTime" column="CreateTime"/>
+        <!-- 创建者 -->
+        <result property="createUser" column="CreateUser"/>
+        <!-- 版本号 -->
+        <result property="version" column="Version"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entitySynthesistoolsmachining" resultMap="Synthesistoolsmachining-map">
+        SELECT
+        SynthesisNumber
+        ,SynthesisParametersNumber
+        ,SynthesisParametersCode
+        ,AssemblyLineID
+        ,EquipmentID
+        ,ProcessID
+        ,PartsID
+        ,AxleID
+        ,OuterTime
+        ,OuterUser
+        ,RemoveReason
+        ,ProcessAmount
+        ,RemoveUser
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        from synthesistoolsmachining
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisNumber" prepend="and ">
+                SynthesisNumber = #synthesisNumber#
+            </isNotNull>
+            <isNotNull property="synthesisParametersNumber" prepend="and ">
+                SynthesisParametersNumber = #synthesisParametersNumber#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            SynthesisNumber
+            ,SynthesisParametersNumber
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entitySynthesistoolsmachining" resultMap="Synthesistoolsmachining-map">
+        SELECT
+        SynthesisNumber
+        ,SynthesisParametersNumber
+        ,SynthesisParametersCode
+        ,AssemblyLineID
+        ,EquipmentID
+        ,ProcessID
+        ,PartsID
+        ,AxleID
+        ,OuterTime
+        ,OuterUser
+        ,RemoveReason
+        ,ProcessAmount
+        ,RemoveUser
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        from synthesistoolsmachining
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisNumber" prepend="and ">
+                SynthesisNumber = #synthesisNumber#
+            </isNotNull>
+            <isNotNull property="synthesisParametersNumber" prepend="and ">
+                SynthesisParametersNumber = #synthesisParametersNumber#
+            </isNotNull>
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCode#
+            </isNotNull>
+            <isNotNull property="assemblyLineID" prepend="and ">
+                AssemblyLineID = #assemblyLineID#
+            </isNotNull>
+            <isNotNull property="equipmentID" prepend="and ">
+                EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="processID" prepend="and ">
+                ProcessID = #processID#
+            </isNotNull>
+            <isNotNull property="partsID" prepend="and ">
+                PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="axleID" prepend="and ">
+                AxleID = #axleID#
+            </isNotNull>
+            <isNotNull property="outerTime" prepend="and ">
+                OuterTime = #outerTime#
+            </isNotNull>
+            <isNotNull property="outerUser" prepend="and ">
+                OuterUser = #outerUser#
+            </isNotNull>
+            <isNotNull property="removeReason" prepend="and ">
+                RemoveReason = #removeReason#
+            </isNotNull>
+            <isNotNull property="processAmount" prepend="and ">
+                ProcessAmount = #processAmount#
+            </isNotNull>
+            <isNotNull property="removeUser" prepend="and ">
+                RemoveUser = #removeUser#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+            <isNotNull property="rfidContainerID" prepend="and ">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            SynthesisNumber
+            ,SynthesisParametersNumber
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entitySynthesistoolsmachining" resultClass="int">
+        SELECT count(1)
+        from synthesistoolsmachining
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisNumber" prepend="and ">
+                SynthesisNumber = #synthesisNumber#
+            </isNotNull>
+            <isNotNull property="synthesisParametersNumber" prepend="and ">
+                SynthesisParametersNumber = #synthesisParametersNumber#
+            </isNotNull>
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCode#
+            </isNotNull>
+            <isNotNull property="assemblyLineID" prepend="and ">
+                AssemblyLineID = #assemblyLineID#
+            </isNotNull>
+            <isNotNull property="equipmentID" prepend="and ">
+                EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="processID" prepend="and ">
+                ProcessID = #processID#
+            </isNotNull>
+            <isNotNull property="partsID" prepend="and ">
+                PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="axleID" prepend="and ">
+                AxleID = #axleID#
+            </isNotNull>
+            <isNotNull property="outerTime" prepend="and ">
+                OuterTime = #outerTime#
+            </isNotNull>
+            <isNotNull property="outerUser" prepend="and ">
+                OuterUser = #outerUser#
+            </isNotNull>
+            <isNotNull property="removeReason" prepend="and ">
+                RemoveReason = #removeReason#
+            </isNotNull>
+            <isNotNull property="processAmount" prepend="and ">
+                ProcessAmount = #processAmount#
+            </isNotNull>
+            <isNotNull property="removeUser" prepend="and ">
+                RemoveUser = #removeUser#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+            <isNotNull property="rfidContainerID" prepend="and ">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+    <!-- 任意条件更新处理(未指定字段更新为：null) -->
+    <update id="update" parameterClass="entitySynthesistoolsmachining">
+        update synthesistoolsmachining
+        <dynamic prepend="set">
+            <isNotNull property="synthesisNumber">
+                SynthesisNumber = #synthesisNumber#
+            </isNotNull>
+            <isNull property="synthesisNumber">
+                SynthesisNumber = null
+            </isNull>
+            <isNotNull property="synthesisParametersNumber">
+                ,SynthesisParametersNumber = #synthesisParametersNumber#
+            </isNotNull>
+            <isNull property="synthesisParametersNumber">
+                ,SynthesisParametersNumber = null
+            </isNull>
+            <isNotNull property="synthesisParametersCode">
+                ,SynthesisParametersCode = #synthesisParametersCode#
+            </isNotNull>
+            <isNull property="synthesisParametersCode">
+                ,SynthesisParametersCode = null
+            </isNull>
+            <isNotNull property="assemblyLineID">
+                ,AssemblyLineID = #assemblyLineID#
+            </isNotNull>
+            <isNull property="assemblyLineID">
+                ,AssemblyLineID = null
+            </isNull>
+            <isNotNull property="equipmentID">
+                ,EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNull property="equipmentID">
+                ,EquipmentID = null
+            </isNull>
+            <isNotNull property="processID">
+                ,ProcessID = #processID#
+            </isNotNull>
+            <isNull property="processID">
+                ,ProcessID = null
+            </isNull>
+            <isNotNull property="partsID">
+                ,PartsID = #partsID#
+            </isNotNull>
+            <isNull property="partsID">
+                ,PartsID = null
+            </isNull>
+            <isNotNull property="axleID">
+                ,AxleID = #axleID#
+            </isNotNull>
+            <isNull property="axleID">
+                ,AxleID = null
+            </isNull>
+            <isNotNull property="outerTime">
+                ,OuterTime = #outerTime#
+            </isNotNull>
+            <isNull property="outerTime">
+                ,OuterTime = null
+            </isNull>
+            <isNotNull property="outerUser">
+                ,OuterUser = #outerUser#
+            </isNotNull>
+            <isNull property="outerUser">
+                ,OuterUser = null
+            </isNull>
+            <isNotNull property="removeReason">
+                ,RemoveReason = #removeReason#
+            </isNotNull>
+            <isNull property="removeReason">
+                ,RemoveReason = null
+            </isNull>
+            <isNotNull property="processAmount">
+                ,ProcessAmount = #processAmount#
+            </isNotNull>
+            <isNull property="processAmount">
+                ,ProcessAmount = null
+            </isNull>
+            <isNotNull property="removeUser">
+                ,RemoveUser = #removeUser#
+            </isNotNull>
+            <isNull property="removeUser">
+                ,RemoveUser = null
+            </isNull>
+            <isNotNull property="delFlag">
+                ,DelFlag = #delFlag#
+            </isNotNull>
+            <isNull property="delFlag">
+                ,DelFlag = null
+            </isNull>
+            <isNotNull property="updateTime">
+                ,UpdateTime = #updateTime#
+            </isNotNull>
+            <isNull property="updateTime">
+                ,UpdateTime = null
+            </isNull>
+            <isNotNull property="updateUser">
+                ,UpdateUser = #updateUser#
+            </isNotNull>
+            <isNull property="updateUser">
+                ,UpdateUser = null
+            </isNull>
+            <isNotNull property="createTime">
+                ,CreateTime = #createTime#
+            </isNotNull>
+            <isNull property="createTime">
+                ,CreateTime = null
+            </isNull>
+            <isNotNull property="createUser">
+                ,CreateUser = #createUser#
+            </isNotNull>
+            <isNull property="createUser">
+                ,CreateUser = null
+            </isNull>
+            <isNotNull property="version">
+                ,Version = #version#
+            </isNotNull>
+            <isNull property="version">
+                ,Version = null
+            </isNull>
+            <isNotNull property="rfidContainerID">
+                ,RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNull property="rfidContainerID">
+                ,RfidContainerID = null
+            </isNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisNumberWhere" prepend="and ">
+                SynthesisNumber = #synthesisNumberWhere#
+            </isNotNull>
+            <isNotNull property="synthesisParametersNumberWhere" prepend="and ">
+                SynthesisParametersNumber = #synthesisParametersNumberWhere#
+            </isNotNull>
+            <isNotNull property="synthesisParametersCodeWhere" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCodeWhere#
+            </isNotNull>
+            <isNotNull property="assemblyLineIDWhere" prepend="and ">
+                AssemblyLineID = #assemblyLineIDWhere#
+            </isNotNull>
+            <isNotNull property="equipmentIDWhere" prepend="and ">
+                EquipmentID = #equipmentIDWhere#
+            </isNotNull>
+            <isNotNull property="processIDWhere" prepend="and ">
+                ProcessID = #processIDWhere#
+            </isNotNull>
+            <isNotNull property="partsIDWhere" prepend="and ">
+                PartsID = #partsIDWhere#
+            </isNotNull>
+            <isNotNull property="axleIDWhere" prepend="and ">
+                AxleID = #axleIDWhere#
+            </isNotNull>
+            <isNotNull property="outerTimeWhere" prepend="and ">
+                OuterTime = #outerTimeWhere#
+            </isNotNull>
+            <isNotNull property="outerUserWhere" prepend="and ">
+                OuterUser = #outerUserWhere#
+            </isNotNull>
+            <isNotNull property="removeReasonWhere" prepend="and ">
+                RemoveReason = #removeReasonWhere#
+            </isNotNull>
+            <isNotNull property="processAmountWhere" prepend="and ">
+                ProcessAmount = #processAmountWhere#
+            </isNotNull>
+            <isNotNull property="removeUserWhere" prepend="and ">
+                RemoveUser = #removeUserWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+            <isNotNull property="rfidContainerIDWhere" prepend="and ">
+                RfidContainerID = #rfidContainerIDWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 任意条件更新处理(未指定字段不更新) -->
+    <update id="updateNonQuery" parameterClass="entitySynthesistoolsmachining">
+        update synthesistoolsmachining
+        <dynamic prepend="set">
+            <isNotNull property="synthesisNumber" prepend=",">
+                SynthesisNumber = #synthesisNumber#
+            </isNotNull>
+            <isNotNull property="synthesisParametersNumber" prepend=",">
+                SynthesisParametersNumber = #synthesisParametersNumber#
+            </isNotNull>
+            <isNotNull property="synthesisParametersCode" prepend=",">
+                SynthesisParametersCode = #synthesisParametersCode#
+            </isNotNull>
+            <isNotNull property="assemblyLineID" prepend=",">
+                AssemblyLineID = #assemblyLineID#
+            </isNotNull>
+            <isNotNull property="equipmentID" prepend=",">
+                EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="processID" prepend=",">
+                ProcessID = #processID#
+            </isNotNull>
+            <isNotNull property="partsID" prepend=",">
+                PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="axleID" prepend=",">
+                AxleID = #axleID#
+            </isNotNull>
+            <isNotNull property="outerTime" prepend=",">
+                OuterTime = #outerTime#
+            </isNotNull>
+            <isNotNull property="outerUser" prepend=",">
+                OuterUser = #outerUser#
+            </isNotNull>
+            <isNotNull property="removeReason" prepend=",">
+                RemoveReason = #removeReason#
+            </isNotNull>
+            <isNotNull property="processAmount" prepend=",">
+                ProcessAmount = #processAmount#
+            </isNotNull>
+            <isNotNull property="removeUser" prepend=",">
+                RemoveUser = #removeUser#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend=",">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend=",">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend=",">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend=",">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend=",">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="version" prepend=",">
+                Version = #version#
+            </isNotNull>
+            <isNotNull property="rfidContainerID" prepend=",">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisNumberWhere" prepend="and ">
+                SynthesisNumber = #synthesisNumberWhere#
+            </isNotNull>
+            <isNotNull property="synthesisParametersNumberWhere" prepend="and ">
+                SynthesisParametersNumber = #synthesisParametersNumberWhere#
+            </isNotNull>
+            <isNotNull property="synthesisParametersCodeWhere" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCodeWhere#
+            </isNotNull>
+            <isNotNull property="assemblyLineIDWhere" prepend="and ">
+                AssemblyLineID = #assemblyLineIDWhere#
+            </isNotNull>
+            <isNotNull property="equipmentIDWhere" prepend="and ">
+                EquipmentID = #equipmentIDWhere#
+            </isNotNull>
+            <isNotNull property="processIDWhere" prepend="and ">
+                ProcessID = #processIDWhere#
+            </isNotNull>
+            <isNotNull property="partsIDWhere" prepend="and ">
+                PartsID = #partsIDWhere#
+            </isNotNull>
+            <isNotNull property="axleIDWhere" prepend="and ">
+                AxleID = #axleIDWhere#
+            </isNotNull>
+            <isNotNull property="outerTimeWhere" prepend="and ">
+                OuterTime = #outerTimeWhere#
+            </isNotNull>
+            <isNotNull property="outerUserWhere" prepend="and ">
+                OuterUser = #outerUserWhere#
+            </isNotNull>
+            <isNotNull property="removeReasonWhere" prepend="and ">
+                RemoveReason = #removeReasonWhere#
+            </isNotNull>
+            <isNotNull property="processAmountWhere" prepend="and ">
+                ProcessAmount = #processAmountWhere#
+            </isNotNull>
+            <isNotNull property="removeUserWhere" prepend="and ">
+                RemoveUser = #removeUserWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+            <isNotNull property="rfidContainerIDWhere" prepend="and ">
+                RfidContainerID = #rfidContainerIDWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 插入处理 -->
+    <insert id="insert" parameterClass="entitySynthesistoolsmachining">
+        <selectKey resultClass="java.lang.String" keyProperty="synthesisNumber">
+            SELECT #synthesisNumber# as synthesisNumber FROM DUAL
+        </selectKey>
+        insert into synthesistoolsmachining(
+        SynthesisNumber
+        ,SynthesisParametersNumber
+        ,SynthesisParametersCode
+        ,AssemblyLineID
+        ,EquipmentID
+        ,ProcessID
+        ,PartsID
+        ,AxleID
+        ,OuterTime
+        ,OuterUser
+        ,RemoveReason
+        ,ProcessAmount
+        ,RemoveUser
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        ,RfidContainerID
+        )
+        Values (
+        <isNotNull property="synthesisNumber">
+            #synthesisNumber#
+        </isNotNull>
+        <isNull property="synthesisNumber">
+            null
+        </isNull>
+        <isNotNull property="synthesisParametersNumber">
+            ,#synthesisParametersNumber#
+        </isNotNull>
+        <isNull property="synthesisParametersNumber">
+            ,null
+        </isNull>
+        <isNotNull property="synthesisParametersCode">
+            ,#synthesisParametersCode#
+        </isNotNull>
+        <isNull property="synthesisParametersCode">
+            ,null
+        </isNull>
+        <isNotNull property="assemblyLineID">
+            ,#assemblyLineID#
+        </isNotNull>
+        <isNull property="assemblyLineID">
+            ,null
+        </isNull>
+        <isNotNull property="equipmentID">
+            ,#equipmentID#
+        </isNotNull>
+        <isNull property="equipmentID">
+            ,null
+        </isNull>
+        <isNotNull property="processID">
+            ,#processID#
+        </isNotNull>
+        <isNull property="processID">
+            ,null
+        </isNull>
+        <isNotNull property="partsID">
+            ,#partsID#
+        </isNotNull>
+        <isNull property="partsID">
+            ,null
+        </isNull>
+        <isNotNull property="axleID">
+            ,#axleID#
+        </isNotNull>
+        <isNull property="axleID">
+            ,null
+        </isNull>
+        <isNotNull property="outerTime">
+            ,#outerTime#
+        </isNotNull>
+        <isNull property="outerTime">
+            ,null
+        </isNull>
+        <isNotNull property="outerUser">
+            ,#outerUser#
+        </isNotNull>
+        <isNull property="outerUser">
+            ,null
+        </isNull>
+        <isNotNull property="removeReason">
+            ,#removeReason#
+        </isNotNull>
+        <isNull property="removeReason">
+            ,null
+        </isNull>
+        <isNotNull property="processAmount">
+            ,#processAmount#
+        </isNotNull>
+        <isNull property="processAmount">
+            ,null
+        </isNull>
+        <isNotNull property="removeUser">
+            ,#removeUser#
+        </isNotNull>
+        <isNull property="removeUser">
+            ,null
+        </isNull>
+        <isNotNull property="delFlag">
+            ,#delFlag#
+        </isNotNull>
+        <isNull property="delFlag">
+            ,null
+        </isNull>
+        <isNotNull property="updateTime">
+            ,#updateTime#
+        </isNotNull>
+        <isNull property="updateTime">
+            ,null
+        </isNull>
+        <isNotNull property="updateUser">
+            ,#updateUser#
+        </isNotNull>
+        <isNull property="updateUser">
+            ,null
+        </isNull>
+        <isNotNull property="createTime">
+            ,#createTime#
+        </isNotNull>
+        <isNull property="createTime">
+            ,null
+        </isNull>
+        <isNotNull property="createUser">
+            ,#createUser#
+        </isNotNull>
+        <isNull property="createUser">
+            ,null
+        </isNull>
+        <isNotNull property="version">
+            ,#version#
+        </isNotNull>
+        <isNull property="version">
+            ,null
+        </isNull>
+        <isNotNull property="rfidContainerID">
+            ,#rfidContainerID#
+        </isNotNull>
+        <isNull property="rfidContainerID">
+            ,null
+        </isNull>
+        )
+    </insert>
+
+    <!-- 任意条件删除处理 -->
+    <delete id="delete" parameterClass="entitySynthesistoolsmachining">
+        delete from synthesistoolsmachining
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisNumberWhere" prepend="and ">
+                SynthesisNumber = #synthesisNumberWhere#
+            </isNotNull>
+            <isNotNull property="synthesisParametersNumberWhere" prepend="and ">
+                SynthesisParametersNumber = #synthesisParametersNumberWhere#
+            </isNotNull>
+            <isNotNull property="synthesisParametersCodeWhere" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCodeWhere#
+            </isNotNull>
+            <isNotNull property="assemblyLineIDWhere" prepend="and ">
+                AssemblyLineID = #assemblyLineIDWhere#
+            </isNotNull>
+            <isNotNull property="equipmentIDWhere" prepend="and ">
+                EquipmentID = #equipmentIDWhere#
+            </isNotNull>
+            <isNotNull property="processIDWhere" prepend="and ">
+                ProcessID = #processIDWhere#
+            </isNotNull>
+            <isNotNull property="partsIDWhere" prepend="and ">
+                PartsID = #partsIDWhere#
+            </isNotNull>
+            <isNotNull property="axleIDWhere" prepend="and ">
+                AxleID = #axleIDWhere#
+            </isNotNull>
+            <isNotNull property="outerTimeWhere" prepend="and ">
+                OuterTime = #outerTimeWhere#
+            </isNotNull>
+            <isNotNull property="outerUserWhere" prepend="and ">
+                OuterUser = #outerUserWhere#
+            </isNotNull>
+            <isNotNull property="removeReasonWhere" prepend="and ">
+                RemoveReason = #removeReasonWhere#
+            </isNotNull>
+            <isNotNull property="processAmountWhere" prepend="and ">
+                ProcessAmount = #processAmountWhere#
+            </isNotNull>
+            <isNotNull property="removeUserWhere" prepend="and ">
+                RemoveUser = #removeUserWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+            <isNotNull property="rfidContainerIDWhere" prepend="and ">
+                RfidContainerID = #rfidContainerIDWhere#
+            </isNotNull>
+        </dynamic>
+    </delete>
+    <!-- 批量插入  -->
+    <insert id="insertBachs" parameterClass="java.util.List">
+        insert into rfidcontainer(
+        SynthesisNumber
+        ,SynthesisParametersNumber
+        ,SynthesisParametersCode
+        ,AssemblyLineID
+        ,EquipmentID
+        ,AxleID
+        ,OuterTime
+        ,OuterUser
+        ,RemoveReason
+        ,ProcessAmount
+        ,RemoveUser
+        ,DelFlag
+        ,UpdateUser
+        ,UpdateTime
+        )
+        Values
+        <iterate conjunction=",">
+            (
+            #list[].SynthesisNumber#
+            ,#list[].SynthesisParametersNumber#
+            ,#list[].SynthesisParametersCode#
+            ,#list[].AssemblyLineID#
+            ,#list[].EquipmentID#
+            ,#list[].AxleID#
+            ,#list[].RemoveUser#
+            ,#list[].OuterTime#
+            ,#list[].OuterUser#
+            ,#list[].RemoveReason#
+            ,#list[].ProcessAmount#
+            ,#list[].delFlag#
+            ,#list[].updateTime#
+            ,#list[].updateUser#
+            )
+        </iterate>
+    </insert>
+
+    <typeAlias alias="entitySynthesistoolsmachininginfo" type="com.icomp.entity.base.Synthesistoolsmachininginfo"/>
+    <resultMap id="Synthesistoolsmachininginfo-map" class="entitySynthesistoolsmachininginfo">
+        <!-- 加工编号(年月日时分秒 14位字符串) -->
+        <result property="synthesisNumber" column="SynthesisNumber"/>
+        <!-- 合成刀具编号 -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+        <!-- 合成刀具号码 -->
+        <result property="synthesisParametersNumber" column="SynthesisParametersNumber"/>
+        <!-- 流水线ID -->
+        <result property="assemblyLineID" column="AssemblyLineID"/>
+        <!-- 流水线名称 -->
+        <result property="assemblyLineName" column="AssemblyLineName"/>
+        <!-- 轴ID -->
+        <result property="processID" column="ProcessID"/>
+        <!-- 工序名称 -->
+        <result property="processName" column="ProcessName"/>
+        <!-- 设备ID -->
+        <result property="equipmentID" column="EquipmentID"/>
+        <!-- 设备名称 -->
+        <result property="equipmentName" column="EquipmentName"/>
+        <!-- 轴ID -->
+        <result property="axleID" column="AxleID"/>
+        <!-- 轴名称 -->
+        <result property="axleName" column="axleName"/>
+        <!--  -->
+        <result property="partsID" column="PartsID"/>
+        <!-- 零部件名称 -->
+        <result property="partsName" column="PartsName"/>
+        <!-- 创建时间 -->
+        <result property="createTime" column="CreateTime"/>
+        <!--  -->
+        <result property="createUser" column="CreateUser"/>
+        <!--  -->
+        <result property="outerTime" column="OuterTime"/>
+        <!--  -->
+        <result property="outerUser" column="OuterUser"/>
+        <!--  -->
+        <result property="removeReason" column="RemoveReason"/>
+        <!--  -->
+        <result property="toolDurable" column="ToolDurable"/>
+        <!-- 加工数量 -->
+        <result property="processAmount" column="ProcessAmount"/>
+    </resultMap>
+    <!-- 任意条件查询执行-换刀记录 -->
+    <select id="searchListByInfo" parameterClass="entitySynthesistoolsmachininginfo" resultMap="Synthesistoolsmachininginfo-map">
+        SELECT
+        DISTINCT
+        stm.SynthesisNumber
+        ,stm.SynthesisParametersCode
+        ,stm.SynthesisParametersNumber
+        ,stm.AssemblyLineID
+        ,al.AssemblyLineName
+        ,stm.ProcessID
+        ,p.ProcessName
+        ,stm.EquipmentID
+        ,e.EquipmentName
+        ,stm.AxleID
+        ,ax.axleName
+        ,stm.PartsID
+        ,pa.PartsName
+        ,stm.CreateTime
+        ,(SELECT us.UserName FROM userdetail us WHERE( us.CustomerID = stm.CreateUser )) AS CreateUser
+        ,IFNULL(stm.OuterTime,'') AS OuterTime
+        ,IFNULL((SELECT us.UserName FROM userdetail us WHERE( us.CustomerID = stm.OuterUser )),'') AS OuterUser
+        ,IFNULL(stm.RemoveReason,'') as RemoveReason
+        ,IFNULL(o.ToolDurable,'') as ToolDurable
+        ,stm.ProcessAmount
+        from synthesistoolsmachining stm
+        LEFT OUTER JOIN equipment e ON stm.EquipmentID = e.EquipmentID
+        INNER JOIN axle ax ON stm.AxleID = ax.axleID
+        INNER JOIN assemblyline al ON stm.AssemblyLineID = al.AssemblyLineID
+        INNER JOIN process p ON stm.ProcessID = p.ProcessID
+        INNER JOIN parts pa ON stm.PartsID = pa.PartsID
+        INNER JOIN synthesisparameters sp ON sp.SynthesisParametersCode = stm.SynthesisParametersCode
+        INNER JOIN oplink o ON ((o.AssemblyLineID = stm.AssemblyLineID) AND (o.AssemblyLineID = stm.AssemblyLineID) AND (o.AxleID=stm.AxleID )AND (o.EquipmentID=stm.EquipmentID) AND (o.PartsID=stm.PartsID) AND (o.ProcessID = stm.ProcessID)
+        AND (sp.SynthesisParametersID = o.SynthesisParametersID))
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisNumber" prepend="and ">
+                stm.SynthesisNumber = #synthesisNumber#
+            </isNotNull>
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                stm. SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+            </isNotNull>
+            <isNotNull property="synthesisParametersNumber" prepend="and ">
+                stm. SynthesisParametersNumber = #synthesisParametersNumber#
+            </isNotNull>
+            <isNotNull property="assemblyLineID" prepend="and ">
+                stm. AssemblyLineID = #assemblyLineID#
+            </isNotNull>
+            <isNotNull property="processID" prepend="and ">
+                stm. ProcessID = #processID#
+            </isNotNull>
+            <isNotNull property="equipmentID" prepend="and ">
+                stm. EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="axleID" prepend="and ">
+                stm. AxleID = #axleID#
+            </isNotNull>
+            <isNotNull property="partsID" prepend="and ">
+                stm. PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                stm. CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="dateStar" prepend="and ">
+                <![CDATA[
+			     stm.OuterTime >= #dateStar#
+				]]>
+            </isNotNull>
+            <isNotNull property="dateEnd" prepend="and ">
+                <![CDATA[
+				     stm.OuterTime <= #dateEnd#
+				]]>
+            </isNotNull>
+
+
+            <isNotNull property="outerUser" prepend="and ">
+                OuterUser = #outerUser#
+            </isNotNull>
+            <isNotNull property="removeReason" prepend="and ">
+                stm. RemoveReason = #removeReason#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询数量-换刀记录 -->
+    <select id="searchListByInfoCount" parameterClass="entitySynthesistoolsmachininginfo" resultClass="int">
+        SELECT
+        COUNT(1)
+        FROM (
+        SELECT
+        DISTINCT
+        stm.SynthesisNumber
+        ,stm.SynthesisParametersCode
+        ,stm.SynthesisParametersNumber
+        ,stm.AssemblyLineID
+        ,al.AssemblyLineName
+        ,stm.ProcessID
+        ,p.ProcessName
+        ,stm.EquipmentID
+        ,e.EquipmentName
+        ,stm.AxleID
+        ,ax.axleName
+        ,stm.PartsID
+        ,pa.PartsName
+        ,stm.CreateTime
+        ,(SELECT us.UserName FROM userdetail us WHERE( us.CustomerID = stm.CreateUser )) AS CreateUser
+        ,IFNULL(stm.OuterTime,'') AS OuterTime
+        ,IFNULL((SELECT us.UserName FROM userdetail us WHERE( us.CustomerID = stm.OuterUser )),'') AS OuterUser
+        ,IFNULL(stm.RemoveReason,'') as RemoveReason
+        ,IFNULL(o.ToolDurable,'') as ToolDurable
+        ,stm.ProcessAmount
+        from synthesistoolsmachining stm
+        LEFT OUTER JOIN equipment e ON stm.EquipmentID = e.EquipmentID
+        INNER JOIN axle ax ON stm.AxleID = ax.axleID
+        INNER JOIN assemblyline al ON stm.AssemblyLineID = al.AssemblyLineID
+        INNER JOIN process p ON stm.ProcessID = p.ProcessID
+        INNER JOIN parts pa ON stm.PartsID = pa.PartsID
+        INNER JOIN synthesisparameters sp ON sp.SynthesisParametersCode = stm.SynthesisParametersCode
+        INNER JOIN oplink o ON ((o.AssemblyLineID = stm.AssemblyLineID) AND (o.AssemblyLineID = stm.AssemblyLineID) AND (o.AxleID=stm.AxleID )AND (o.EquipmentID=stm.EquipmentID) AND (o.PartsID=stm.PartsID) AND (o.ProcessID = stm.ProcessID)
+        AND (sp.SynthesisParametersID = o.SynthesisParametersID))
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisNumber" prepend="and ">
+                stm.SynthesisNumber = #synthesisNumber#
+            </isNotNull>
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                stm. SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+            </isNotNull>
+            <isNotNull property="synthesisParametersNumber" prepend="and ">
+                stm. SynthesisParametersNumber = #synthesisParametersNumber#
+            </isNotNull>
+            <isNotNull property="assemblyLineID" prepend="and ">
+                stm. AssemblyLineID = #assemblyLineID#
+            </isNotNull>
+            <isNotNull property="processID" prepend="and ">
+                stm. ProcessID = #processID#
+            </isNotNull>
+            <isNotNull property="equipmentID" prepend="and ">
+                stm. EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="axleID" prepend="and ">
+                stm. AxleID = #axleID#
+            </isNotNull>
+            <isNotNull property="partsID" prepend="and ">
+                stm. PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                stm. CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="dateStar" prepend="and ">
+                <![CDATA[
+			     stm.OuterTime >= #dateStar#
+				]]>
+            </isNotNull>
+            <isNotNull property="dateEnd" prepend="and ">
+                <![CDATA[
+				     stm.OuterTime <= #dateEnd#
+				]]>
+            </isNotNull>
+
+
+            <isNotNull property="outerUser" prepend="and ">
+                OuterUser = #outerUser#
+            </isNotNull>
+            <isNotNull property="removeReason" prepend="and ">
+                stm. RemoveReason = #removeReason#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        )aa
+    </select>
+
+<!-- 批量插入处理 -->
+	<insert id="insertBatchs" parameterClass="java.util.List">
+		insert into synthesistoolsmachining(
+		SynthesisNumber
+		,SynthesisParametersNumber
+		,SynthesisParametersCode
+        ,AssemblyLineID
+        ,EquipmentID
+        ,AxleID
+        ,ProcessID
+        ,PartsID
+		,OuterTime
+		,OuterUser
+		,RemoveReason
+		,ProcessAmount
+		,RemoveUser
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		,RfidContainerID
+		)
+		Values
+		 <iterate  conjunction =","  >
+            (
+				#list[].synthesisNumber#
+				,#list[].synthesisParametersNumber#
+				,#list[].synthesisParametersCode#
+				,#list[].assemblyLineID#
+				,#list[].equipmentID#
+				,#list[].axleID#
+				,#list[].processID#
+				,#list[].partsID#
+				,#list[].outerTime#
+				,#list[].outerUser#
+				,#list[].removeReason#
+				,#list[].processAmount#
+				,#list[].removeUser#
+				,#list[].delFlag#
+				,#list[].updateTime#
+				,#list[].updateUser#
+				,#list[].createTime#
+				,#list[].createUser#
+				,#list[].version#
+				,#list[].rfidContainerID#
+		  )
+        </iterate >
+
+
+	</insert>
+</sqlMap>
+

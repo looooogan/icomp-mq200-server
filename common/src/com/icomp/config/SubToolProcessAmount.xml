@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Agency.xml Created on : 2014/08/19 15:48:44 Author : 工具自动生成
+		Description: 工具自动生成包含机构的单表增删改查SQL语句. searchByPrimaryKey ： 主键查询
+		searchByList ： 任意条件查询 searchByCount ：任意条件条数查询 insert ： 插入处理 update ：
+		更新处理（未指定项目更新为null） updateNonQuery ：更新处理（未指定项目不更新） delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="SubToolProcessAmount">
+	<typeAlias alias="entitySubToolProcessAmount"
+		type="com.icomp.entity.base.SubToolProcessAmount" />
+	<resultMap id="SubToolProcessAmount-map" class="entitySubToolProcessAmount">
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 安上周期 -->
+		<result property="loadTime" column="LoadTime" />
+		<!-- 加工数量 -->
+		<result property="processAmount" column="ProcessAmount" />
+		<!-- 安上次数 -->
+		<result property="loadCount" column="LoadCount" />
+	</resultMap>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entitySubToolProcessAmount"
+		resultMap="SubToolProcessAmount-map">
+	<![CDATA[	select
+		tool.ToolCode,date_format(SynthesisToolsMachining.LoadTime,'%Y%m%d')
+		AS LoadTime,
+		CASE WHEN count(ProcessAmount) IS NULL THEN
+		0
+		ELSE
+		SUM(ProcessAmount)
+		END ProcessAmount ,
+		count(ProcessAmount) LoadCount from tool
+		LEFT JOIN ToolTransfer on ToolTransfer.ToolID = tool.ToolID
+		LEFT JOIN MachiningExperience on MachiningExperience.KnifeInventoryCode =
+		ToolTransfer.KnifeInventoryCode
+		LEFT JOIN SynthesisToolsMachining on
+		SynthesisToolsMachining.SynthesisNumber =
+		MachiningExperience.SynthesisNumber
+		WHERE tool.ToolType = '0' AND ToolCode = #toolCode#
+		GROUP BY
+		tool.ToolCode,LoadTime
+		order by tool.ToolCode,LoadTime ]]>
+	</select>
+
+</sqlMap>
+

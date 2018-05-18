@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+<!-- 决策分析 -->
+	<!-- 报废分析ACTION注入	-->
+	<bean id="b06S001Action" class="com.icomp.v01b06.b06s001.action.B06S001Action" scope="prototype">
+		<property name="b06s001Business" ref="b06s001Business"/>
+	</bean>
+	
+	<!-- 加工异常分析ACTION注入	-->
+	<bean id="b06S002Action" class="com.icomp.v01b06.b06s002.action.B06S002Action" scope="prototype">
+		<property name="b06s002Business" ref="b06s002Business"/>
+	</bean>
+	
+	<!-- 建议采购计划ACTION注入	-->
+	<bean id="b06S003Action" class="com.icomp.v01b06.b06s003.action.B06S003Action" scope="prototype">
+		<property name="b06s003Business" ref="b06s003Business"/>
+	</bean>
+	
+	<!-- 刀具供应商分析ACTION注入	-->
+	<bean id="b06S004Action" class="com.icomp.v01b06.b06s004.action.B06S004Action" scope="prototype">
+		<property name="b06s004Business" ref="b06s004Business"/>
+	</bean>
+	
+	<!-- 刀具实时分布状况ACTION注入	-->
+	<bean id="b06S005Action" class="com.icomp.v01b06.b06s005.action.B06S005Action" scope="prototype">
+		<property name="b06s005Business" ref="b06s005Business"/>
+	</bean>
+	
+	<!-- 定额执行情况分析ACTION注入	-->
+	<bean id="b06S006Action" class="com.icomp.v01b06.b06s006.action.B06S006Action" scope="prototype">
+		<property name="b06s006Business" ref="b06s006Business"/>
+	</bean>
+	
+	<!-- 刀具消耗量分析ACTION注入	-->
+	<bean id="b06S007Action" class="com.icomp.v01b06.b06s007.action.B06S007Action" scope="prototype">
+		<property name="b06s007Business" ref="b06s007Business"/>
+	</bean>
+	
+	<!-- 刀具资金占用情况分析ACTION注入	-->
+	<bean id="b06S008Action" class="com.icomp.v01b06.b06s008.action.B06S008Action" scope="prototype">
+		<property name="b06s008Business" ref="b06s008Business"/>
+	</bean>
+	
+	<!-- 成本摊销ACTION注入	-->
+	<bean id="b06S009Action" class="com.icomp.v01b06.b06s009.action.B06S009Action" scope="prototype">
+		<property name="b06s009Business" ref="b06s009Business"/>
+	</bean>
+	
+	<!-- 刀具报废ACTION注入	-->
+	<bean id="b06S010Action" class="com.icomp.v01b06.b06s010.action.B06S010Action" scope="prototype">
+		<property name="b06s010Business" ref="b06s010Business"/>
+	</bean>
+</beans>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<!-- 加工信息	 -->
+	<!-- 工作量查询ACTION注入	-->
+		<bean id="b04S001Action" class="com.icomp.v01b04.b04s001.action.B04S001Action" scope="prototype">
+			<property name="b04s001Business" ref="b04s001Business"/>
+			<property name="b04s003Business" ref="b04s003Business"/>
+		</bean>
+	
+	<!-- 车间刀具状态查询ACTION注入	-->
+		<bean id="b04S002Action" class="com.icomp.v01b04.b04s002.action.B04S002Action" scope="prototype">
+			<property name="b04s002Business" ref="b04s002Business"/>
+		</bean>
+	
+	<!-- 加工量异常报警ACTION注入	-->
+		<bean id="b04S003Action" class="com.icomp.v01b04.b04s003.action.B04S003Action" scope="prototype">
+			<property name="b04s003Business" ref="b04s003Business"/>
+		</bean>
+	
+	<!-- 刀具消耗查询ACTION注入	-->
+		<bean id="b04S004Action" class="com.icomp.v01b04.b04s004.action.B04S004Action" scope="prototype">
+			<property name="b04s004Business" ref="b04s004Business"/>
+		</bean>
+	
+	<!-- 车间工作量汇总ACTION注入	-->
+		<bean id="b04S005Action" class="com.icomp.v01b04.b04s005.action.B04S005Action" scope="prototype">
+			<property name="b04s005Business" ref="b04s005Business"/>
+		</bean>
+		
+	<!-- 加工信息快速查询ACTION注入	-->
+		<bean id="b04S006Action" class="com.icomp.v01b04.b04s006.action.B04S006Action" scope="prototype">
+			<property name="b04s006Business" ref="b04s006Business"/>
+		</bean>
+	<bean id="b04S007Action" class="com.icomp.v01b04.b04s007.action.B04S007Action" scope="prototype">
+		<property name="b04s007Business" ref="b04s007Business"/>
+	</bean>
+</beans>

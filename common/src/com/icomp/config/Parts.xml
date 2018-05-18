@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Parts.xml
+    Created on : 2016/03/03 16:41:44
+    Author : 工具自动生成
+    Description: 工具自动生成包含的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Parts">
+    <typeAlias alias="entityParts" type="com.icomp.entity.base.Parts"/>
+    <resultMap id="Parts-map" class="entityParts">
+        <!-- 零部件ID -->
+        <result property="partsID" column="PartsID"/>
+        <!-- 轴ID -->
+        <result property="axleID" column="AxleID"/>
+        <!-- 语言编码 -->
+        <result property="languageCode" column="LanguageCode"/>
+        <!-- 零部件编码 -->
+        <result property="partsCode" column="PartsCode"/>
+        <!-- 零部件型号（0:1.6L,1:1.4T） -->
+        <result property="partsType" column="PartsType"/>
+        <!-- 零部件名称 -->
+        <result property="partsName" column="PartsName"/>
+        <!-- 版本号 -->
+        <result property="version" column="Version"/>
+        <!-- 更新时间 -->
+        <result property="updateTime" column="UpdateTime"/>
+        <!-- 更新者 -->
+        <result property="updateUser" column="UpdateUser"/>
+        <!-- 创建时间 -->
+        <result property="createTime" column="CreateTime"/>
+        <!-- 创建者 -->
+        <result property="createUser" column="CreateUser"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="delFlag" column="DelFlag"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityParts" resultMap="Parts-map">
+        SELECT
+        PartsID
+        ,AxleID
+        ,LanguageCode
+        ,PartsCode
+        ,PartsType
+        ,PartsName
+        ,Version
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,DelFlag
+        from parts
+        <dynamic prepend=" where ">
+            <isNotNull property="partsID" prepend="and ">
+                PartsID = #partsID#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            PartsID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityParts" resultMap="Parts-map">
+        SELECT
+        PartsID
+        ,AxleID
+        ,LanguageCode
+        ,PartsCode
+        ,PartsType
+        ,PartsName
+        ,Version
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,DelFlag
+        from parts
+        <dynamic prepend=" where ">
+            <isNotNull property="partsID" prepend="and ">
+                PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="axleID" prepend="and ">
+                AxleID = #axleID#
+            </isNotNull>
+            <isNotNull property="languageCode" prepend="and ">
+                LanguageCode = #languageCode#
+            </isNotNull>
+            <isNotNull property="partsCode" prepend="and ">
+                PartsCode = #partsCode#
+            </isNotNull>
+            <isNotNull property="partsType" prepend="and ">
+                PartsType = #partsType#
+            </isNotNull>
+            <isNotNull property="partsName" prepend="and ">
+                PartsName = #partsName#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            PartsID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityParts" resultClass="int">
+        SELECT count(1)
+        from parts
+        <dynamic prepend=" where ">
+            <isNotNull property="partsID" prepend="and ">
+                PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="axleID" prepend="and ">
+                AxleID = #axleID#
+            </isNotNull>
+            <isNotNull property="languageCode" prepend="and ">
+                LanguageCode = #languageCode#
+            </isNotNull>
+            <isNotNull property="partsCode" prepend="and ">
+                PartsCode = #partsCode#
+            </isNotNull>
+            <isNotNull property="partsType" prepend="and ">
+                PartsType = #partsType#
+            </isNotNull>
+            <isNotNull property="partsName" prepend="and ">
+                PartsName = #partsName#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+    <!-- 任意条件更新处理(未指定字段更新为：null) -->
+    <update id="update" parameterClass="entityParts">
+        update parts
+        <dynamic prepend="set">
+            <isNotNull property="partsID">
+                PartsID = #partsID#
+            </isNotNull>
+            <isNull property="partsID">
+                PartsID = null
+            </isNull>
+            <isNotNull property="axleID">
+                ,AxleID = #axleID#
+            </isNotNull>
+            <isNull property="axleID">
+                ,AxleID = null
+            </isNull>
+            <isNotNull property="languageCode">
+                ,LanguageCode = #languageCode#
+            </isNotNull>
+            <isNull property="languageCode">
+                ,LanguageCode = null
+            </isNull>
+            <isNotNull property="partsCode">
+                ,PartsCode = #partsCode#
+            </isNotNull>
+            <isNull property="partsCode">
+                ,PartsCode = null
+            </isNull>
+            <isNotNull property="partsType">
+                ,PartsType = #partsType#
+            </isNotNull>
+            <isNull property="partsType">
+                ,PartsType = null
+            </isNull>
+            <isNotNull property="partsName">
+                ,PartsName = #partsName#
+            </isNotNull>
+            <isNull property="partsName">
+                ,PartsName = null
+            </isNull>
+            <isNotNull property="version">
+                ,Version = #version#
+            </isNotNull>
+            <isNull property="version">
+                ,Version = null
+            </isNull>
+            <isNotNull property="updateTime">
+                ,UpdateTime = #updateTime#
+            </isNotNull>
+            <isNull property="updateTime">
+                ,UpdateTime = null
+            </isNull>
+            <isNotNull property="updateUser">
+                ,UpdateUser = #updateUser#
+            </isNotNull>
+            <isNull property="updateUser">
+                ,UpdateUser = null
+            </isNull>
+            <isNotNull property="createTime">
+                ,CreateTime = #createTime#
+            </isNotNull>
+            <isNull property="createTime">
+                ,CreateTime = null
+            </isNull>
+            <isNotNull property="createUser">
+                ,CreateUser = #createUser#
+            </isNotNull>
+            <isNull property="createUser">
+                ,CreateUser = null
+            </isNull>
+            <isNotNull property="delFlag">
+                ,DelFlag = #delFlag#
+            </isNotNull>
+            <isNull property="delFlag">
+                ,DelFlag = null
+            </isNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="partsIDWhere" prepend="and ">
+                PartsID = #partsIDWhere#
+            </isNotNull>
+            <isNotNull property="axleIDWhere" prepend="and ">
+                AxleID = #axleIDWhere#
+            </isNotNull>
+            <isNotNull property="languageCodeWhere" prepend="and ">
+                LanguageCode = #languageCodeWhere#
+            </isNotNull>
+            <isNotNull property="partsCodeWhere" prepend="and ">
+                PartsCode = #partsCodeWhere#
+            </isNotNull>
+            <isNotNull property="partsTypeWhere" prepend="and ">
+                PartsType = #partsTypeWhere#
+            </isNotNull>
+            <isNotNull property="partsNameWhere" prepend="and ">
+                PartsName = #partsNameWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 任意条件更新处理(未指定字段不更新) -->
+    <update id="updateNonQuery" parameterClass="entityParts">
+        update parts
+        <dynamic prepend="set">
+            <isNotNull property="partsID" prepend=",">
+                PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="axleID" prepend=",">
+                AxleID = #axleID#
+            </isNotNull>
+            <isNotNull property="languageCode" prepend=",">
+                LanguageCode = #languageCode#
+            </isNotNull>
+            <isNotNull property="partsCode" prepend=",">
+                PartsCode = #partsCode#
+            </isNotNull>
+            <isNotNull property="partsType" prepend=",">
+                PartsType = #partsType#
+            </isNotNull>
+            <isNotNull property="partsName" prepend=",">
+                PartsName = #partsName#
+            </isNotNull>
+            <isNotNull property="version" prepend=",">
+                Version = #version#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend=",">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend=",">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend=",">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend=",">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend=",">
+                DelFlag = #delFlag#
+            </isNotNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="partsIDWhere" prepend="and ">
+                PartsID = #partsIDWhere#
+            </isNotNull>
+            <isNotNull property="axleIDWhere" prepend="and ">
+                AxleID = #axleIDWhere#
+            </isNotNull>
+            <isNotNull property="languageCodeWhere" prepend="and ">
+                LanguageCode = #languageCodeWhere#
+            </isNotNull>
+            <isNotNull property="partsCodeWhere" prepend="and ">
+                PartsCode = #partsCodeWhere#
+            </isNotNull>
+            <isNotNull property="partsTypeWhere" prepend="and ">
+                PartsType = #partsTypeWhere#
+            </isNotNull>
+            <isNotNull property="partsNameWhere" prepend="and ">
+                PartsName = #partsNameWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 插入处理 	<selectKey resultClass="java.lang.String" keyProperty="partsID">
+            SELECT #partsID# as partsID FROM DUAL
+     </selectKey>-->
+    <insert id="insert" parameterClass="entityParts">
+
+        insert into parts(
+        PartsID
+        ,AxleID
+        ,LanguageCode
+        ,PartsCode
+        ,PartsType
+        ,PartsName
+        ,Version
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,DelFlag
+        )
+        Values (
+        <isNotNull property="partsID">
+            #partsID#
+        </isNotNull>
+        <isNull property="partsID">
+            null
+        </isNull>
+        <isNotNull property="axleID">
+            ,#axleID#
+        </isNotNull>
+        <isNull property="axleID">
+            ,null
+        </isNull>
+        <isNotNull property="languageCode">
+            ,#languageCode#
+        </isNotNull>
+        <isNull property="languageCode">
+            ,null
+        </isNull>
+        <isNotNull property="partsCode">
+            ,#partsCode#
+        </isNotNull>
+        <isNull property="partsCode">
+            ,null
+        </isNull>
+        <isNotNull property="partsType">
+            ,#partsType#
+        </isNotNull>
+        <isNull property="partsType">
+            ,null
+        </isNull>
+        <isNotNull property="partsName">
+            ,#partsName#
+        </isNotNull>
+        <isNull property="partsName">
+            ,null
+        </isNull>
+        <isNotNull property="version">
+            ,#version#
+        </isNotNull>
+        <isNull property="version">
+            ,null
+        </isNull>
+        <isNotNull property="updateTime">
+            ,#updateTime#
+        </isNotNull>
+        <isNull property="updateTime">
+            ,null
+        </isNull>
+        <isNotNull property="updateUser">
+            ,#updateUser#
+        </isNotNull>
+        <isNull property="updateUser">
+            ,null
+        </isNull>
+        <isNotNull property="createTime">
+            ,#createTime#
+        </isNotNull>
+        <isNull property="createTime">
+            ,null
+        </isNull>
+        <isNotNull property="createUser">
+            ,#createUser#
+        </isNotNull>
+        <isNull property="createUser">
+            ,null
+        </isNull>
+        <isNotNull property="delFlag">
+            ,#delFlag#
+        </isNotNull>
+        <isNull property="delFlag">
+            ,null
+        </isNull>
+        )
+    </insert>
+
+    <!-- 任意条件删除处理 -->
+    <delete id="delete" parameterClass="entityParts">
+        delete from parts
+        <dynamic prepend=" where ">
+            <isNotNull property="partsIDWhere" prepend="and ">
+                PartsID = #partsIDWhere#
+            </isNotNull>
+            <isNotNull property="axleIDWhere" prepend="and ">
+                AxleID = #axleIDWhere#
+            </isNotNull>
+            <isNotNull property="languageCodeWhere" prepend="and ">
+                LanguageCode = #languageCodeWhere#
+            </isNotNull>
+            <isNotNull property="partsCodeWhere" prepend="and ">
+                PartsCode = #partsCodeWhere#
+            </isNotNull>
+            <isNotNull property="partsTypeWhere" prepend="and ">
+                PartsType = #partsTypeWhere#
+            </isNotNull>
+            <isNotNull property="partsNameWhere" prepend="and ">
+                PartsName = #partsNameWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+        </dynamic>
+    </delete>
+
+    <!-- 根据id查询零部件-->
+    <select id="getPartsList" parameterClass="entityParts" resultMap="Parts-map">
+		SELECT
+		p.PartsID AS PartsID,
+		p.PartsName AS PartsName,
+		p.PartsType AS PartsType,
+		o.AxleID AS AxleID
+		FROM oplink o
+		LEFT JOIN parts p ON p.PartsID = o.PartsID AND p.AxleID = o.AxleID
+		WHERE p.DelFlag ='0'
+	</select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchListByName" parameterClass="entityParts" resultMap="Parts-map">
+        SELECT
+        PartsID
+        ,AxleID
+        ,LanguageCode
+        ,PartsCode
+        ,PartsType
+        ,PartsName
+        ,Version
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,DelFlag
+        from parts
+        <dynamic prepend=" where ">
+            <isNotNull property="partsCode" prepend="and ">
+                PartsCode like concat('%',#partsCode#,'%')
+            </isNotNull>
+            <isNotNull property="partsName" prepend="and ">
+                PartsName = #partsName#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchListById" parameterClass="java.lang.String" resultClass="entityParts">
+        SELECT
+        t.PartsID,
+        t.PartsName
+        FROM
+        parts t
+        WHERE
+        t.PartsID IN(
+        SELECT DISTINCT
+        t1.PartsID
+        FROM
+        oplink t1
+        LEFT JOIN assemblyline t2 ON t1.AssemblyLineID = t2.AssemblyLineID
+        WHERE
+        t1.AssemblyLineID = #id#
+        )
+        ORDER BY t.PartsName
+    </select>
+
+
+</sqlMap>
+

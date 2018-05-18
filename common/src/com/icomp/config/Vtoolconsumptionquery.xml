@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vtoolconsumptionquery.xml
+		Created on : 2014/11/25 13:42:05
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByList_F ： 任意条件查询-ToolCode模糊查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vtoolconsumptionquery">
+	<typeAlias alias="entityVtoolconsumptionquery" type="com.icomp.entity.base.Vtoolconsumptionquery" />
+	<resultMap id="Vtoolconsumptionquery-map" class="entityVtoolconsumptionquery">
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 供应商 -->
+		<result property="toolSupplier" column="ToolSupplier" />
+		<!-- 品牌 -->
+		<result property="toolBrand" column="ToolBrand" />
+		<!-- 采购批次 -->
+		<result property="procuredBatch" column="ProcuredBatch" />
+		<!-- 采购单价 -->
+		<result property="unitPrice" column="UnitPrice" />
+		<!-- 库存状态(0正常1报废2返厂3封存9其他) -->
+		<result property="stockState" column="StockState" />
+		<!-- 刀具已刃磨长度 -->
+		<result property="toolGrindingLength" column="ToolGrindingLength" />
+		<!-- 刀具长度 -->
+		<result property="toolLength" column="ToolLength" />
+		<!-- 可刃磨长度 -->
+		<result property="toolSharpenLength" column="ToolSharpenLength" />
+		<!-- 可使用次数 -->
+		<result property="toolNum" column="ToolNum" />
+		<!-- 消耗类别(0:可刃磨钻头1可刃磨刀片2一次性刀片9其他 -->
+		<result property="toolConsumetype" column="ToolConsumetype" />
+		<!--  -->
+		<result property="planGrindingTimes" column="planGrindingTimes" />
+		<!-- 可使用(刃磨)次数 -->
+		<result property="toolSharpennum" column="ToolSharpennum" />
+		<!--  -->
+		<result property="toolProcessingVolume" column="ToolProcessingVolume" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVtoolconsumptionquery" resultMap="Vtoolconsumptionquery-map">
+		SELECT
+		ToolCode
+		,ToolSupplier
+		,ToolBrand
+		,ProcuredBatch
+		,UnitPrice
+		,StockState
+		,ToolGrindingLength
+		,ToolLength
+		,ToolSharpenLength
+		,ToolNum
+		,ToolConsumetype
+		,planGrindingTimes
+		,ToolSharpennum
+		,ToolProcessingVolume
+		from vtoolconsumptionquery
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVtoolconsumptionquery" resultMap="Vtoolconsumptionquery-map">
+		SELECT
+		ToolCode
+		,ToolSupplier
+		,ToolBrand
+		,ProcuredBatch
+		,UnitPrice
+		,StockState
+		,ToolGrindingLength
+		,ToolLength
+		,ToolSharpenLength
+		,ToolNum
+		,ToolConsumetype
+		,planGrindingTimes
+		,ToolSharpennum
+		,ToolProcessingVolume
+		from vtoolconsumptionquery
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolSupplier" prepend="and ">
+				ToolSupplier = #toolSupplier#
+         </isNotNull>
+			<isNotNull property="toolBrand" prepend="and ">
+				ToolBrand = #toolBrand#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+			<isNotNull property="stockState" prepend="and ">
+				StockState = #stockState#
+         </isNotNull>
+			<isNotNull property="toolGrindingLength" prepend="and ">
+				ToolGrindingLength = #toolGrindingLength#
+         </isNotNull>
+			<isNotNull property="toolLength" prepend="and ">
+				ToolLength = #toolLength#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="toolNum" prepend="and ">
+				ToolNum = #toolNum#
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="planGrindingTimes" prepend="and ">
+				planGrindingTimes = #planGrindingTimes#
+         </isNotNull>
+			<isNotNull property="toolSharpennum" prepend="and ">
+				ToolSharpennum = #toolSharpennum#
+         </isNotNull>
+			<isNotNull property="toolProcessingVolume" prepend="and ">
+				ToolProcessingVolume = #toolProcessingVolume#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList_F" parameterClass="entityVtoolconsumptionquery" resultMap="Vtoolconsumptionquery-map">
+		SELECT
+		ToolCode
+		,ToolSupplier
+		,ToolBrand
+		,ProcuredBatch
+		,UnitPrice
+		,StockState
+		,ToolGrindingLength
+		,ToolLength
+		,ToolSharpenLength
+		,ToolNum as ToolNum
+		,ToolConsumetype
+		,planGrindingTimes
+		,ToolSharpennumas ToolSharpennum
+		,ToolProcessingVolume as ToolProcessingVolume
+		from vtoolconsumptionquery
+		<dynamic prepend=" where ">
+		 <isNotNull property="toolCode" prepend="and ">
+             ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolSupplier" prepend="and ">
+				ToolSupplier = #toolSupplier#
+         </isNotNull>
+			<isNotNull property="toolBrand" prepend="and ">
+				ToolBrand = #toolBrand#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+			<isNotNull property="stockState" prepend="and ">
+				StockState = #stockState#
+         </isNotNull>
+			<isNotNull property="toolGrindingLength" prepend="and ">
+				ToolGrindingLength = #toolGrindingLength#
+         </isNotNull>
+			<isNotNull property="toolLength" prepend="and ">
+				ToolLength = #toolLength#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="toolNum" prepend="and ">
+				ToolNum = #toolNum#
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="planGrindingTimes" prepend="and ">
+				planGrindingTimes = #planGrindingTimes#
+         </isNotNull>
+			<isNotNull property="toolSharpennum" prepend="and ">
+				ToolSharpennum = #toolSharpennum#
+         </isNotNull>
+			<isNotNull property="toolProcessingVolume" prepend="and ">
+				ToolProcessingVolume = #toolProcessingVolume#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVtoolconsumptionquery" resultClass="int">
+		SELECT count(1)
+		from vtoolconsumptionquery
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolSupplier" prepend="and ">
+				ToolSupplier = #toolSupplier#
+         </isNotNull>
+			<isNotNull property="toolBrand" prepend="and ">
+				ToolBrand = #toolBrand#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+			<isNotNull property="stockState" prepend="and ">
+				StockState = #stockState#
+         </isNotNull>
+			<isNotNull property="toolGrindingLength" prepend="and ">
+				ToolGrindingLength = #toolGrindingLength#
+         </isNotNull>
+			<isNotNull property="toolLength" prepend="and ">
+				ToolLength = #toolLength#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="toolNum" prepend="and ">
+				ToolNum = #toolNum#
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="planGrindingTimes" prepend="and ">
+				planGrindingTimes = #planGrindingTimes#
+         </isNotNull>
+			<isNotNull property="toolSharpennum" prepend="and ">
+				ToolSharpennum = #toolSharpennum#
+         </isNotNull>
+			<isNotNull property="toolProcessingVolume" prepend="and ">
+				ToolProcessingVolume = #toolProcessingVolume#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

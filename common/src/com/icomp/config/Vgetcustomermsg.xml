@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vgetcustomermsg.xml
+		Created on : 2016/04/29 15:47:19
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgetcustomermsg">
+	<typeAlias alias="entityVgetcustomermsg" type="com.icomp.entity.base.Vgetcustomermsg" />
+	<resultMap id="Vgetcustomermsg-map" class="entityVgetcustomermsg">
+		<!-- 员工卡号[20位员工卡] -->
+		<result property="employeeCard" column="EmployeeCard" />
+		<!-- 用户ID[自动生成20位字符串] -->
+		<result property="customerID" column="CustomerID" />
+		<!-- 姓名 -->
+		<result property="userName" column="UserName" />
+		<!-- 职务ID -->
+		<result property="positionID" column="PositionID" />
+		<!-- 职务名称 -->
+		<result property="positionName" column="PositionName" />
+		<!-- 部门ID -->
+		<result property="departmentID" column="DepartmentID" />
+		<!--  -->
+		<result property="rfidContainerID" column="RfidContainerID" />
+		<!-- 部门名称 -->
+		<result property="departmentName" column="DepartmentName" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVgetcustomermsg" resultMap="Vgetcustomermsg-map">
+		SELECT
+		EmployeeCard
+		,CustomerID
+		,UserName
+		,PositionID
+		,PositionName
+		,DepartmentID
+		,RfidContainerID
+		,DepartmentName
+		from vgetcustomermsg
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVgetcustomermsg" resultMap="Vgetcustomermsg-map">
+		SELECT
+		EmployeeCard
+		,CustomerID
+		,UserName
+		,PositionID
+		,PositionName
+		,DepartmentID
+		,RfidContainerID
+		,DepartmentName
+		from vgetcustomermsg
+		<dynamic prepend=" where ">
+			<isNotNull property="employeeCard" prepend="and ">
+				EmployeeCard = #employeeCard#
+         </isNotNull>
+			<isNotNull property="customerID" prepend="and ">
+				CustomerID = #customerID#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+			<isNotNull property="positionID" prepend="and ">
+				PositionID = #positionID#
+         </isNotNull>
+			<isNotNull property="positionName" prepend="and ">
+				PositionName = #positionName#
+         </isNotNull>
+			<isNotNull property="departmentID" prepend="and ">
+				DepartmentID = #departmentID#
+         </isNotNull>
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="departmentName" prepend="and ">
+				DepartmentName = #departmentName#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVgetcustomermsg" resultClass="int">
+		SELECT count(1)
+		from vgetcustomermsg
+		<dynamic prepend=" where ">
+			<isNotNull property="employeeCard" prepend="and ">
+				EmployeeCard = #employeeCard#
+         </isNotNull>
+			<isNotNull property="customerID" prepend="and ">
+				CustomerID = #customerID#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+			<isNotNull property="positionID" prepend="and ">
+				PositionID = #positionID#
+         </isNotNull>
+			<isNotNull property="positionName" prepend="and ">
+				PositionName = #positionName#
+         </isNotNull>
+			<isNotNull property="departmentID" prepend="and ">
+				DepartmentID = #departmentID#
+         </isNotNull>
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="departmentName" prepend="and ">
+				DepartmentName = #departmentName#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

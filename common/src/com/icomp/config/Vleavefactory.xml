@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vleavefactory.xml
+		Created on : 2014/09/01 11:07:39
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByList_F ： 任意条件查询-ToolCode模糊查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vleavefactory">
+	<typeAlias alias="entityVleavefactory" type="com.icomp.entity.base.Vleavefactory" />
+	<resultMap id="Vleavefactory-map" class="entityVleavefactory">
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 出库原因(0申领1换领2外借) -->
+		<result property="libraryCause" column="LibraryCause" />
+		<!-- 领取时间 -->
+		<result property="receiveTime" column="ReceiveTime" />
+		<!-- 领取人 -->
+		<result property="receiveUser" column="ReceiveUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<resultMap id="Vleavefactory-map-2" class="entityVleavefactory">
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 出库原因(0申领1换领2外借) -->
+		<result property="libraryCause" column="LibraryCause" />
+		<!-- 领取时间 -->
+		<result property="receiveTime" column="ReceiveTime" />
+		<!-- 领取人 -->
+		<result property="receiveUser" column="ReceiveUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+		<result property="totalCount" column="totalCount" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVleavefactory" resultMap="Vleavefactory-map">
+		SELECT
+		ToolCode
+		,ToolID
+		,DelFlag
+		,LibraryCause
+		,ReceiveTime
+		,ReceiveUser
+		,Version
+		from vleavefactory
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVleavefactory" resultMap="Vleavefactory-map">
+		SELECT
+		ToolCode
+		,ToolID
+		,DelFlag
+		,LibraryCause
+		,ReceiveTime
+		,ReceiveUser
+		,Version
+		from vleavefactory
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="libraryCause" prepend="and ">
+				LibraryCause = #libraryCause#
+         </isNotNull>
+			<isNotNull property="receiveTime" prepend="and ">
+				ReceiveTime = #receiveTime#
+         </isNotNull>
+         	<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				ReceiveTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				ReceiveTime <= #dateEnd#
+				]]>
+         </isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	<!-- 任意条件查询执行-ToolCode模糊查询 -->
+	<select id="searchByList_F" parameterClass="entityVleavefactory" resultMap="Vleavefactory-map-2">
+		SELECT
+		ToolCode
+		,ToolID
+		,DelFlag
+		,LibraryCause
+		,ReceiveTime
+		,ReceiveUser
+		,Version
+		, count(*) as totalCount
+		from vleavefactory
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="libraryCause" prepend="and ">
+				LibraryCause = #libraryCause#
+         </isNotNull>
+			<isNotNull property="receiveTime" prepend="and ">
+				ReceiveTime = #receiveTime#
+         </isNotNull>
+         	<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				ReceiveTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				ReceiveTime <= #dateEnd#
+				]]>
+         </isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		group by ToolID,date_format(ReceiveTime,'%Y%m%d%H%i%S'),ReceiveUser,LibraryCause
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVleavefactory" resultClass="int">
+		SELECT count(*)
+		from(
+		SELECT count(*)
+		from vleavefactory
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="libraryCause" prepend="and ">
+				LibraryCause = #libraryCause#
+         </isNotNull>
+			<isNotNull property="receiveTime" prepend="and ">
+				ReceiveTime = #receiveTime#
+         </isNotNull>
+         	<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				ReceiveTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				ReceiveTime <= #dateEnd#
+				]]>
+         </isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		group by ToolID,date_format(ReceiveTime,'%Y%m%d%H%i%S'),ReceiveUser,LibraryCause)a
+	</select>
+
+</sqlMap>
+

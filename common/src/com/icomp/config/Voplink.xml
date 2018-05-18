@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Voplink.xml
+		Created on : 2016/03/03 10:24:39
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Voplink">
+	<typeAlias alias="entityVoplink" type="com.icomp.entity.base.Voplink" />
+	<resultMap id="Voplink-map" class="entityVoplink">
+		<!-- OplinkID -->
+		<result property="oplinkID" column="OplinkID" />
+		<!--  -->
+		<result property="lastProcess" column="LastProcess" />
+		<!-- 耐用度 -->
+		<result property="toolDurable" column="toolDurable" />
+		<!-- 流水线ID -->
+		<result property="assemblyLineID" column="AssemblyLineID" />
+		<!-- 流水线编码 -->
+		<result property="assemblyLineCode" column="AssemblyLineCode" />
+		<!-- 流水线名称 -->
+		<result property="assemblyLineName" column="AssemblyLineName" />
+		<!-- 设备ID -->
+		<result property="equipmentID" column="EquipmentID" />
+		<!-- 设备编码 -->
+		<result property="equipmentCode" column="EquipmentCode" />
+		<!-- 设备名称 -->
+		<result property="equipmentName" column="EquipmentName" />
+		<!-- 工序ID -->
+		<result property="processID" column="ProcessID" />
+		<!-- 工序编码 -->
+		<result property="processCode" column="ProcessCode" />
+		<!-- 工序名称 -->
+		<result property="processName" column="ProcessName" />
+		<!-- 零部件ID -->
+		<result property="partsID" column="PartsID" />
+		<!-- 零部件编码 -->
+		<result property="partsCode" column="PartsCode" />
+		<!-- 零部件名称 -->
+		<result property="partsName" column="PartsName" />
+		<!-- 合成刀具参数ID -->
+		<result property="synthesisParametersID" column="SynthesisParametersID" />
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!-- 轴名称 -->
+		<result property="axleName" column="axleName" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVoplink" resultMap="Voplink-map">
+		SELECT
+		OplinkID
+		,LastProcess
+		,toolDurable
+		,AssemblyLineID
+		,AssemblyLineCode
+		,AssemblyLineName
+		,EquipmentID
+		,EquipmentCode
+		,EquipmentName
+		,ProcessID
+		,ProcessCode
+		,ProcessName
+		,PartsID
+		,PartsCode
+		,PartsName
+		,SynthesisParametersID
+		,SynthesisParametersCode
+		,axleName
+		from voplink
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVoplink" resultMap="Voplink-map">
+		SELECT
+		OplinkID
+		,LastProcess
+		,toolDurable
+		,AssemblyLineID
+		,AssemblyLineCode
+		,AssemblyLineName
+		,EquipmentID
+		,EquipmentCode
+		,EquipmentName
+		,ProcessID
+		,ProcessCode
+		,ProcessName
+		,PartsID
+		,PartsCode
+		,PartsName
+		,SynthesisParametersID
+		,SynthesisParametersCode
+		,axleName
+		from voplink
+		<dynamic prepend=" where ">
+			<isNotNull property="oplinkID" prepend="and ">
+				OplinkID = #oplinkID#
+         </isNotNull>
+			<isNotNull property="lastProcess" prepend="and ">
+				LastProcess = #lastProcess#
+         </isNotNull>
+			<isNotNull property="toolDurable" prepend="and ">
+				toolDurable = #toolDurable#
+         </isNotNull>
+			<isNotNull property="assemblyLineID" prepend="and ">
+				AssemblyLineID = #assemblyLineID#
+         </isNotNull>
+			<isNotNull property="assemblyLineCode" prepend="and ">
+				AssemblyLineCode = #assemblyLineCode#
+         </isNotNull>
+			<isNotNull property="assemblyLineName" prepend="and ">
+				AssemblyLineName = #assemblyLineName#
+         </isNotNull>
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+			<isNotNull property="equipmentCode" prepend="and ">
+				EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="processID" prepend="and ">
+				ProcessID = #processID#
+         </isNotNull>
+			<isNotNull property="processCode" prepend="and ">
+				ProcessCode = #processCode#
+         </isNotNull>
+			<isNotNull property="processName" prepend="and ">
+				ProcessName = #processName#
+         </isNotNull>
+			<isNotNull property="partsID" prepend="and ">
+				PartsID = #partsID#
+         </isNotNull>
+			<isNotNull property="partsCode" prepend="and ">
+				PartsCode = #partsCode#
+         </isNotNull>
+			<isNotNull property="partsName" prepend="and ">
+				PartsName = #partsName#
+         </isNotNull>
+			<isNotNull property="synthesisParametersID" prepend="and ">
+				SynthesisParametersID = #synthesisParametersID#
+         </isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+			</isNotNull>
+			<isNotNull property="axleName" prepend="and ">
+				axleName = #axleName#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVoplink" resultClass="int">
+		SELECT count(1)
+		from voplink
+		<dynamic prepend=" where ">
+			<isNotNull property="oplinkID" prepend="and ">
+				OplinkID = #oplinkID#
+         </isNotNull>
+			<isNotNull property="lastProcess" prepend="and ">
+				LastProcess = #lastProcess#
+         </isNotNull>
+			<isNotNull property="toolDurable" prepend="and ">
+				toolDurable = #toolDurable#
+         </isNotNull>
+			<isNotNull property="assemblyLineID" prepend="and ">
+				AssemblyLineID = #assemblyLineID#
+         </isNotNull>
+			<isNotNull property="assemblyLineCode" prepend="and ">
+				AssemblyLineCode = #assemblyLineCode#
+         </isNotNull>
+			<isNotNull property="assemblyLineName" prepend="and ">
+				AssemblyLineName = #assemblyLineName#
+         </isNotNull>
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+			<isNotNull property="equipmentCode" prepend="and ">
+				EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="processID" prepend="and ">
+				ProcessID = #processID#
+         </isNotNull>
+			<isNotNull property="processCode" prepend="and ">
+				ProcessCode = #processCode#
+         </isNotNull>
+			<isNotNull property="processName" prepend="and ">
+				ProcessName = #processName#
+         </isNotNull>
+			<isNotNull property="partsID" prepend="and ">
+				PartsID = #partsID#
+         </isNotNull>
+			<isNotNull property="partsCode" prepend="and ">
+				PartsCode = #partsCode#
+         </isNotNull>
+			<isNotNull property="partsName" prepend="and ">
+				PartsName = #partsName#
+         </isNotNull>
+			<isNotNull property="synthesisParametersID" prepend="and ">
+				SynthesisParametersID = #synthesisParametersID#
+         </isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+         </isNotNull>
+			<isNotNull property="axleName" prepend="and ">
+				axleName = #axleName#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

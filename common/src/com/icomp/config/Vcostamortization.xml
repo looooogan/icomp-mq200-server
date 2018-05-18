@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Vcostamortization.xml
+    Created on : 2016/05/30 11:44:01
+    Author : 工具自动生成
+    Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vcostamortization">
+    <typeAlias alias="entityVcostamortization" type="com.icomp.entity.base.Vcostamortization"/>
+    <resultMap id="Vcostamortization-map" class="entityVcostamortization">
+        <!-- 卸下时间 -->
+        <result property="outerTime" column="OuterTime"/>
+        <!-- 零部件名称 -->
+        <result property="partsName" column="PartsName"/>
+        <!-- 零部件 -->
+        <result property="partsID" column="PartsID"/>
+        <!-- 加工数量 -->
+        <result property="processAmount" column="ProcessAmount"/>
+        <!-- 刀具分类(0刀具1辅具2配套9其他） -->
+        <result property="toolType" column="ToolType"/>
+        <!-- 刀具编码 -->
+        <result property="toolCode" column="ToolCode"/>
+        <!--  -->
+        <result property="unitPrice" column="UnitPrice"/>
+        <!--  -->
+        <result property="userNumber" column="UserNumber"/>
+        <!--  -->
+        <result property="amortizationRMB" column="AmortizationRMB"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="delFlag" column="DelFlag"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityVcostamortization" resultMap="Vcostamortization-map">
+        SELECT
+        OuterTime
+        ,PartsName
+        ,PartsID
+        ,ProcessAmount
+        ,ToolType
+        ,ToolCode
+        ,UnitPrice
+        ,UserNumber
+        ,AmortizationRMB
+        ,DelFlag
+        from vcostamortization
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityVcostamortization" resultMap="Vcostamortization-map">
+        SELECT
+        OuterTime
+        ,PartsName
+        ,PartsID
+        ,ProcessAmount
+        ,ToolType
+        ,ToolCode
+        ,UnitPrice
+        ,UserNumber
+        ,AmortizationRMB
+        ,DelFlag
+        from vcostamortization
+        <dynamic prepend=" where ">
+            <isNotNull property="dateStar" prepend="and ">
+                <![CDATA[
+				OuterTime >= #dateStar#
+				]]>
+            </isNotNull>
+            <isNotNull property="dateEnd" prepend="and ">
+                <![CDATA[
+				OuterTime <= #dateEnd#
+				]]>
+            </isNotNull>
+            <isNotNull property="partsName" prepend="and ">
+                PartsName = #partsName#
+            </isNotNull>
+            <isNotNull property="partsID" prepend="and ">
+                PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="processAmount" prepend="and ">
+                ProcessAmount = #processAmount#
+            </isNotNull>
+            <isNotNull property="toolType" prepend="and ">
+                ToolType like concat('%',#toolType#,'%')
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">
+                ToolCode = #toolCode#
+            </isNotNull>
+            <isNotNull property="unitPrice" prepend="and ">
+                UnitPrice = #unitPrice#
+            </isNotNull>
+            <isNotNull property="userNumber" prepend="and ">
+                UserNumber = #userNumber#
+            </isNotNull>
+            <isNotNull property="amortizationRMB" prepend="and ">
+                AmortizationRMB = #amortizationRMB#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+    <resultMap id="Vcostamortizations-map" class="entityVcostamortization">
+        <!-- 卸下时间 -->
+        <result property="outerTime" column="OuterTime"/>
+        <!-- 零部件名称 -->
+        <result property="partsName" column="PartsName"/>
+        <!-- 零部件ID -->
+        <result property="partsID" column="PartsID"/>
+        <!-- 刀具分类(0刀具1辅具2配套9其他） -->
+        <result property="toolType" column="ToolType"/>
+        <!-- 刀具编码 -->
+        <result property="toolCode" column="ToolCode"/>
+        <!--  -->
+        <result property="unitPrice" column="UnitPrice"/>
+        <!--  -->
+        <result property="userNumber" column="UserNumber"/>
+        <!--  -->
+        <result property="amortizationRMB" column="AmortizationRMB"/>
+
+    </resultMap>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByLists" parameterClass="entityVcostamortization" resultMap="Vcostamortizations-map">
+        SELECT
+        *
+        FROM (
+        SELECT
+        OuterTime,
+        PartsName,
+        PartsID,
+        ToolType,
+        ToolCode,
+        UnitPrice AS UnitPrice,
+        sum(UserNumber) AS UserNumber,
+        '' as AmortizationRMB
+        FROM(
+        SELECT
+        ts.OuterTime as OuterTime,
+        pa.PartsName as PartsName,
+        pa.PartsID as PartsID,
+        ts.ProcessAmount as ProcessAmount,
+        SUBSTRING(t1.ToolCode FROM 1 FOR 1) as ToolType,
+        t1.ToolCode as ToolCode,
+        t1.toolID,
+        IFNULL(t1.ToolPrice/t1.ToolNumber,0) as UnitPrice,
+        case when t1.ToolParametersType=0 then (select IF(sum(tch.changeNum),sum(tch.changeNum),0) from toolchangehistory tch where tch.ToolCode = t1.ToolCode)
+        else 1 end UserNumber,
+        ts.DelFlag as DelFlag
+        FROM
+        toolsmachining ts
+        INNER JOIN oplink op on ((op.EquipmentID= ts.EquipmentID) AND (op.PartsID = ts.PartsID) AND (ts.AxleID =op.AxleID) AND (ts.AssemblyLineID = op.AssemblyLineID))
+        INNER JOIN parts pa on pa.PartsID = op.PartsID
+        INNER JOIN tool t1 ON ts.ToolID = t1.ToolID
+        WHERE ts.DelFlag = '0' and t1.ToolType = '0'
+        <isNotNull property="dateStar" prepend="and ">
+            <![CDATA[
+				OuterTime >= #dateStar#
+				]]>
+        </isNotNull>
+        <isNotNull property="dateEnd" prepend="and ">
+            <![CDATA[
+				OuterTime <= #dateEnd#
+				]]>
+        </isNotNull>
+        GROUP BY ts.SynthesisNumber,ts.KnifeInventoryCode
+        ) AS ttls
+        GROUP BY PartsName,ToolCode
+        ) aa
+        <dynamic prepend=" where ">
+            <isNotNull property="partsName" prepend="and ">
+                PartsName = #partsName#
+            </isNotNull>
+            <isNotNull property="partsID" prepend="and ">
+                PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="toolType" prepend="and ">
+                ToolType like concat('%',#toolType#,'%')
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+            </isNotNull>
+            <isNotNull property="unitPrice" prepend="and ">
+                UnitPrice = #unitPrice#
+            </isNotNull>
+            <isNotNull property="userNumber" prepend="and ">
+                UserNumber = #userNumber#
+            </isNotNull>
+            <isNotNull property="amortizationRMB" prepend="and ">
+                AmortizationRMB = #amortizationRMB#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByLists2" parameterClass="entityVcostamortization" resultMap="Vcostamortizations-map">
+        SELECT
+        *
+        FROM (
+        SELECT
+        OuterTime,
+        PartsName,
+        PartsID,
+        ToolType,
+        ToolCode,
+        UnitPrice AS UnitPrice,
+        COUNT(1) AS UserNumber,
+        '' as AmortizationRMB
+        FROM(
+        SELECT
+        ts.ReceiveTime as OuterTime,
+        '' as PartsName,
+        '' as PartsID,
+        '' as ProcessAmount,
+        SUBSTRING(t1.ToolCode FROM 1 FOR 1) as ToolType,
+        t1.ToolCode as ToolCode,
+        t1.toolID,
+        IFNULL(t1.ToolPrice,0) as UnitPrice,
+        '' AS UserNumber,
+        ts.DelFlag as DelFlag
+        FROM
+        toollibraryhistory ts
+        INNER JOIN tool t1 ON ts.ToolID = t1.ToolID
+        WHERE ts.DelFlag = '0' and t1.ToolType = '0'
+        <isNotNull property="dateStar" prepend="and ">
+            <![CDATA[
+				ReceiveTime >= #dateStar#
+				]]>
+        </isNotNull>
+        <isNotNull property="dateEnd" prepend="and ">
+            <![CDATA[
+				ReceiveTime <= #dateEnd#
+				]]>
+        </isNotNull>
+        ) AS ttls
+        GROUP BY ToolCode
+        ) aa
+        <dynamic prepend=" where ">
+            <isNotNull property="toolType" prepend="and ">
+                ToolType like concat('%',#toolType#,'%')
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+            </isNotNull>
+            <isNotNull property="unitPrice" prepend="and ">
+                UnitPrice = #unitPrice#
+            </isNotNull>
+            <isNotNull property="userNumber" prepend="and ">
+                UserNumber = #userNumber#
+            </isNotNull>
+            <isNotNull property="amortizationRMB" prepend="and ">
+                AmortizationRMB = #amortizationRMB#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityVcostamortization" resultClass="int">
+        SELECT count(1)
+        FROM (
+        SELECT
+        OuterTime,
+        PartsName,
+        PartsID,
+        ToolType,
+        ToolCode,
+        UnitPrice AS UnitPrice,
+        COUNT(1) AS UserNumber,
+        '' as AmortizationRMB
+        FROM(
+        SELECT
+        ts.OuterTime as OuterTime,
+        pa.PartsName as PartsName,
+        pa.PartsID as PartsID,
+        ts.ProcessAmount as ProcessAmount,
+        SUBSTRING(t1.ToolCode FROM 1 FOR 1) as ToolType,
+        t.ToolCode as ToolCode,
+        t1.toolID,
+        IFNULL(t.avgPrices/t1.ToolCutNumber,0) as UnitPrice,
+        '' AS UserNumber,
+        ts.DelFlag as DelFlag
+        FROM
+        toolsmachining ts
+        INNER JOIN oplink op on ((op.EquipmentID= ts.EquipmentID) AND (op.PartsID = ts.PartsID) AND (ts.AxleID =op.AxleID) AND (ts.AssemblyLineID = op.AssemblyLineID))
+        INNER JOIN parts pa on pa.PartsID = op.PartsID
+        INNER JOIN toolsprice t on t.ToolID = ts.ToolID
+        INNER JOIN tool t1 ON ts.ToolID = t1.ToolID
+        WHERE ts.DelFlag = '0' and t1.ToolType = '0'
+        <isNotNull property="dateStar" prepend="and ">
+            <![CDATA[
+				OuterTime >= #dateStar#
+				]]>
+        </isNotNull>
+        <isNotNull property="dateEnd" prepend="and ">
+            <![CDATA[
+				OuterTime <= #dateEnd#
+				]]>
+        </isNotNull>
+        GROUP BY ts.SynthesisNumber,ts.KnifeInventoryCode
+        ) AS ttls
+        GROUP BY PartsName,ToolCode
+        ) aa
+        <dynamic prepend=" where ">
+            <isNotNull property="partsName" prepend="and ">
+                PartsName = #partsName#
+            </isNotNull>
+            <isNotNull property="partsID" prepend="and ">
+                PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="toolType" prepend="and ">
+                ToolType like concat('%',#toolType#,'%')
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+            </isNotNull>
+            <isNotNull property="unitPrice" prepend="and ">
+                UnitPrice = #unitPrice#
+            </isNotNull>
+            <isNotNull property="userNumber" prepend="and ">
+                UserNumber = #userNumber#
+            </isNotNull>
+            <isNotNull property="amortizationRMB" prepend="and ">
+                AmortizationRMB = #amortizationRMB#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+    </select>
+
+    <select id="searchByCount2" parameterClass="entityVcostamortization" resultClass="int">
+        SELECT  count(1) from (
+        SELECT
+        *
+        FROM (
+        SELECT
+        OuterTime,
+        PartsName,
+        PartsID,
+        ToolType,
+        ToolCode,
+        UnitPrice AS UnitPrice,
+        COUNT(1) AS UserNumber,
+        '' as AmortizationRMB
+        FROM(
+        SELECT
+        ts.ReceiveTime as OuterTime,
+        '' as PartsName,
+        '' as PartsID,
+        '' as ProcessAmount,
+        SUBSTRING(t1.ToolCode FROM 1 FOR 1) as ToolType,
+        t1.ToolCode as ToolCode,
+        t1.toolID,
+        IFNULL(t1.ToolPrice,0) as UnitPrice,
+        '' AS UserNumber,
+        ts.DelFlag as DelFlag
+        FROM
+        toollibraryhistory ts
+        INNER JOIN tool t1 ON ts.ToolID = t1.ToolID
+        WHERE ts.DelFlag = '0' and t1.ToolType = '0'
+        <isNotNull property="dateStar" prepend="and ">
+            <![CDATA[
+				ReceiveTime >= #dateStar#
+				]]>
+        </isNotNull>
+        <isNotNull property="dateEnd" prepend="and ">
+            <![CDATA[
+				ReceiveTime <= #dateEnd#
+				]]>
+        </isNotNull>
+        ) AS ttls
+        GROUP BY ToolCode
+        ) aa
+        ) bb
+        <dynamic prepend=" where ">
+            <isNotNull property="toolType" prepend="and ">
+                ToolType like concat('%',#toolType#,'%')
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+            </isNotNull>
+            <isNotNull property="unitPrice" prepend="and ">
+                UnitPrice = #unitPrice#
+            </isNotNull>
+            <isNotNull property="userNumber" prepend="and ">
+                UserNumber = #userNumber#
+            </isNotNull>
+            <isNotNull property="amortizationRMB" prepend="and ">
+                AmortizationRMB = #amortizationRMB#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+    </select>
+
+</sqlMap>
+

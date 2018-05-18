@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="SynthesisExchange">
+	<typeAlias alias="entitySynthesisExchange" type="com.icomp.entity.base.SynthesisExchange" />
+	<resultMap id="SynthesisExchange-map" class="entitySynthesisExchange">
+		<!-- 机构ID -->
+		<result property="id" column="id" />
+		<!-- 机构ID -->
+		<result property="rfid" column="rfid" />
+		<!-- 语言编码 -->
+		<result property="toolID" column="toolID" />
+		<!-- 机构名称 -->
+		<result property="toolCode" column="toolCode" />
+		<result property="synthesisParametersID" column="SynthesisParametersID" />
+
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entitySynthesisExchange" resultMap="SynthesisExchange-map">
+		SELECT
+		id
+		,rfid
+		,toolID
+		,toolCode
+		,synthesisParametersID
+		from synthesisexchange
+		<dynamic prepend=" where ">
+			<isNotNull property="rfidWhere" prepend="and ">
+				rfid = #rfidWhere#
+			</isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entitySynthesisExchange" resultMap="SynthesisExchange-map">
+		SELECT
+		id
+		,rfid
+		,toolID
+		,toolCode
+		,synthesisParametersID
+		from synthesisexchange
+		<dynamic prepend=" where ">
+			<isNotNull property="rfidWhere" prepend="and ">
+				rfid = #rfidWhere#
+			</isNotNull>
+		</dynamic>
+	</select>
+
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entitySynthesisExchange">
+		insert into synthesisexchange(
+		id
+		 ,rfid
+		,toolID
+		,toolCode
+		,synthesisParametersID
+		)
+		Values (
+		<isNotNull property="id">
+			#id#
+		</isNotNull>
+		<isNull property="id">
+			null
+		</isNull>
+		<isNotNull property="rfid">
+			,#rfid#
+		</isNotNull>
+			<isNull property="rfid">
+				,null
+         </isNull>
+			<isNotNull property="toolID">
+				,#toolID#
+         </isNotNull>
+			<isNull property="toolID">
+				,null
+         </isNull>
+			<isNotNull property="toolCode">
+				,#toolCode#
+         </isNotNull>
+			<isNull property="toolCode">
+				,null
+         </isNull>
+			<isNotNull property="synthesisParametersID">
+				,#synthesisParametersID#
+         </isNotNull>
+			<isNull property="synthesisParametersID">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entitySynthesisExchange">
+		delete  from synthesisexchange
+		<dynamic prepend=" where ">
+			<isNotNull property="rfidWhere" prepend="and ">
+				rfid = #rfidWhere#
+			</isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

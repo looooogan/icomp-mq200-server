@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vpurchaseplan.xml
+		Created on : 2014/08/27 13:18:16
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vpurchaseplan">
+	<typeAlias alias="entityVpurchaseplan" type="com.icomp.entity.base.Vpurchaseplan" />
+	<resultMap id="Vpurchaseplan-map" class="entityVpurchaseplan">
+		<!-- 采购ID -->
+		<result property="toolProcuredID" column="ToolProcuredID" />
+		<!-- 采购批次 -->
+		<result property="procuredBatch" column="ProcuredBatch" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 供应商 -->
+		<result property="toolSupplier" column="ToolSupplier" />
+		<!-- 品牌 -->
+		<result property="toolBrand" column="ToolBrand" />
+		<!-- 采购数量 -->
+		<result property="procuredCount" column="ProcuredCount" />
+		<!-- 采购单价 -->
+		<result property="unitPrice" column="UnitPrice" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 采购者(关联用户ID) -->
+		<result property="procuredUser" column="ProcuredUser" />
+		<!-- 采购日期 -->
+		<result property="procuredTime" column="ProcuredTime" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVpurchaseplan" resultMap="Vpurchaseplan-map">
+		SELECT
+		ToolProcuredID
+		,ProcuredBatch
+		,ToolCode
+		,ToolSupplier
+		,ToolBrand
+		,ProcuredCount
+		,UnitPrice
+		,CreateUser
+		,CreateTime
+		,ProcuredUser
+		,ProcuredTime
+		from vpurchaseplan
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVpurchaseplan" resultMap="Vpurchaseplan-map">
+		SELECT
+		ToolProcuredID
+		,ProcuredBatch
+		,ToolCode
+		,ToolSupplier
+		,ToolBrand
+		,ProcuredCount
+		,UnitPrice
+		,CreateUser
+		,CreateTime
+		,ProcuredUser
+		,ProcuredTime
+		from vpurchaseplan
+		<dynamic prepend=" where ">
+			<isNotNull property="toolProcuredID" prepend="and ">
+				ToolProcuredID = #toolProcuredID#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolSupplier" prepend="and ">
+				ToolSupplier = #toolSupplier#
+         </isNotNull>
+			<isNotNull property="toolBrand" prepend="and ">
+				ToolBrand = #toolBrand#
+         </isNotNull>
+			<isNotNull property="procuredCount" prepend="and ">
+				ProcuredCount = #procuredCount#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="procuredUser" prepend="and ">
+				ProcuredUser = #procuredUser#
+         </isNotNull>
+			<isNotNull property="procuredTime" prepend="and ">
+				ProcuredTime = #procuredTime#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVpurchaseplan" resultClass="int">
+		SELECT count(1)
+		from vpurchaseplan
+		<dynamic prepend=" where ">
+			<isNotNull property="toolProcuredID" prepend="and ">
+				ToolProcuredID = #toolProcuredID#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolSupplier" prepend="and ">
+				ToolSupplier = #toolSupplier#
+         </isNotNull>
+			<isNotNull property="toolBrand" prepend="and ">
+				ToolBrand = #toolBrand#
+         </isNotNull>
+			<isNotNull property="procuredCount" prepend="and ">
+				ProcuredCount = #procuredCount#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="procuredUser" prepend="and ">
+				ProcuredUser = #procuredUser#
+         </isNotNull>
+			<isNotNull property="procuredTime" prepend="and ">
+				ProcuredTime = #procuredTime#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

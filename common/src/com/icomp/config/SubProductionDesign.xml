@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Agency.xml Created on : 2014/08/19 15:48:44 Author : 工具自动生成
+		Description: 工具自动生成包含机构的单表增删改查SQL语句. searchByPrimaryKey ： 主键查询
+		searchByList ： 任意条件查询 searchByCount ：任意条件条数查询 insert ： 插入处理 update ：
+		更新处理（未指定项目更新为null） updateNonQuery ：更新处理（未指定项目不更新） delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="SubProductionDesign">
+	<typeAlias alias="entitySubProductionDesign" type="com.icomp.entity.base.SubProductionDesign" />
+	<resultMap id="SubProductionDesign-map" class="entitySubProductionDesign">
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 计划年月 -->
+		<result property="productiontime" column="Productiontime" />
+		<!-- 计划季度 -->
+		<result property="productionQuarter" column="ProductionQuarter" />
+		<!-- 零部件ID -->
+		<result property="assemblyLineID" column="AssemblyLineID" />
+		<!-- 零部件名称 -->
+		<result property="assemblyLineName" column="AssemblyLineName" />
+		<!-- 计划产量 -->
+		<result property="production" column="Production" />
+		<!-- 计划年份 -->
+		<result property="productionYear" column="ProductionYear" />
+	</resultMap>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entitySubProductionDesign"
+		resultMap="SubProductionDesign-map">
+		<![CDATA[ 
+          
+		SELECT jh.ToolCode, jh.Productiontime
+		, jh.ProductionQuarter,jh.AssemblyLineID,jh.Production ,
+		jh.AssemblyLineName,
+		jh.ProductionYear
+		from (
+		select
+		SynthesisCutterLocation.ToolCode,
+		ProductionDesign.ProductionYear,
+		CONCAT(ProductionDesign.ProductionYear,ProductionDesign.ProductionMonth)
+		as Productiontime,
+		ProductionDesign.ProductionQuarter,
+		ProductionDesign.AssemblyLineID,
+		AssemblyLine.AssemblyLineName,
+		sum(ProductionDesign.Production) Production
+
+		from ProductionDesign
+		INNER JOIN AssemblyLine on AssemblyLine.AssemblyLineID =
+		ProductionDesign.AssemblyLineID
+		INNER JOIN oplink on oplink.AssemblyLineID = AssemblyLine.AssemblyLineID
+		INNER JOIN SynthesisParameters on
+		SynthesisParameters.SynthesisParametersID =
+		oplink.SynthesisParametersID
+		INNER JOIN SynthesisCutterLocation on
+		SynthesisCutterLocation.SynthesisParametersID =
+		SynthesisParameters.SynthesisParametersID
+		group by SynthesisCutterLocation.ToolCode,
+		ProductionDesign.ProductionYear,
+		ProductionDesign.ProductionMonth,
+		ProductionDesign.ProductionQuarter,
+		ProductionDesign.AssemblyLineID
+		) as jh
+		WHERE ToolCode = #toolCode#
+		     and Productiontime >= #productiontime#
+		     and Productiontime <= #newProductiontime#
+           ]]>
+	</select>
+
+</sqlMap>
+

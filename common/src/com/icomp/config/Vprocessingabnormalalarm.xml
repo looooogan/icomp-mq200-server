@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vprocessingabnormalalarm.xml
+		Created on : 2014/10/18 15:03:46
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		searchByCount_F ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vprocessingabnormalalarm">
+	<typeAlias alias="entityVprocessingabnormalalarm" type="com.icomp.entity.base.Vprocessingabnormalalarm" />
+	<resultMap id="Vprocessingabnormalalarm-map" class="entityVprocessingabnormalalarm">
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!-- 合成刀具编号(例如：001、002、003) -->
+		<result property="synthesisParametersNumber" column="SynthesisParametersNumber" />
+		<!-- 合成刀具参数ID -->
+		<result property="synthesisParametersID" column="SynthesisParametersID" />
+		<!-- 定额加工量 -->
+		<result property="quotaProcessingVolume" column="QuotaProcessingVolume" />
+		<!-- 加工数量 -->
+		<result property="processAmount" column="ProcessAmount" />
+		<!--  -->
+		<result property="toolAlarmRatio" column="ToolAlarmRatio" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVprocessingabnormalalarm" resultMap="Vprocessingabnormalalarm-map">
+		SELECT
+		SynthesisParametersCode
+		,SynthesisParametersNumber
+		,SynthesisParametersID
+		,QuotaProcessingVolume
+		,ProcessAmount
+		,ToolAlarmRatio
+		from vprocessingabnormalalarm
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVprocessingabnormalalarm" resultMap="Vprocessingabnormalalarm-map">
+		SELECT
+		SynthesisParametersCode
+		,SynthesisParametersNumber
+		,SynthesisParametersID
+		,QuotaProcessingVolume
+		,ProcessAmount
+		,ToolAlarmRatio
+		from vprocessingabnormalalarm
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="synthesisParametersID" prepend="and ">
+				SynthesisParametersID = #synthesisParametersID#
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+			<isNotNull property="toolAlarmRatio" prepend="and ">
+				ToolAlarmRatio = #toolAlarmRatio#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="0">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList_F" parameterClass="entityVprocessingabnormalalarm" resultMap="Vprocessingabnormalalarm-map">
+		SELECT
+		SynthesisParametersCode
+		,SynthesisParametersNumber
+		,SynthesisParametersID
+		,QuotaProcessingVolume
+		,ProcessAmount
+		,ToolAlarmRatio
+		from vprocessingabnormalalarm
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode like concat('%',#synthesisParametersCode #,'%')
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="synthesisParametersID" prepend="and ">
+				SynthesisParametersID = #synthesisParametersID#
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+			<isNotNull property="toolAlarmRatio" prepend="and ">
+				ToolAlarmRatio = #toolAlarmRatio#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="0">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVprocessingabnormalalarm" resultClass="int">
+		SELECT count(1)
+		from vprocessingabnormalalarm
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="synthesisParametersID" prepend="and ">
+				SynthesisParametersID = #synthesisParametersID#
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+			<isNotNull property="toolAlarmRatio" prepend="and ">
+				ToolAlarmRatio = #toolAlarmRatio#
+         </isNotNull>
+		</dynamic>
+	</select>
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount_F" parameterClass="entityVprocessingabnormalalarm" resultClass="int">
+		SELECT count(1)
+		from vprocessingabnormalalarm
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="synthesisParametersID" prepend="and ">
+				SynthesisParametersID = #synthesisParametersID#
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+			<isNotNull property="toolAlarmRatio" prepend="and ">
+				ToolAlarmRatio = #toolAlarmRatio#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Toolrepairnotice.xml
+		Created on : 2014/11/12 18:19:04
+		Author : 工具自动生成
+		Description: 工具自动生成包含刀具修复通知(需要领取人到库房领取)的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Toolrepairnotice">
+	<typeAlias alias="entityToolrepairnotice" type="com.icomp.entity.base.Toolrepairnotice" />
+	<resultMap id="Toolrepairnotice-map" class="entityToolrepairnotice">
+		<!-- 修复通知流水号 -->
+		<result property="toolRepairNoticeID" column="ToolRepairNoticeID" />
+		<!-- RFID标签ID -->
+		<result property="rfidCode" column="RfidCode" />
+		<!-- 通知时间 -->
+		<result property="noticeTime" column="NoticeTime" />
+		<!-- 操作人 -->
+		<result property="toolRepairNoticeUser" column="ToolRepairNoticeUser" />
+		<!-- 领取人 -->
+		<result property="receiveUser" column="ReceiveUser" />
+		<!-- 领取时间 -->
+		<result property="receiveTime" column="ReceiveTime" />
+		<!-- 送回人 -->
+		<result property="returnUser" column="ReturnUser" />
+		<!-- 送回时间 -->
+		<result property="returnTime" column="ReturnTime" />
+		<!-- 应送回数量 -->
+		<result property="sentBackNumber" column="SentBackNumber" />
+		<!-- 实际送回数量 -->
+		<result property="realSentBackNumber" column="RealSentBackNumber" />
+		<!-- 修复丢失 -->
+		<result property="recoverLostNumber" column="RecoverLostNumber" />
+		<!-- 丢失确认人 -->
+		<result property="lostIdentifyingUser" column="LostIdentifyingUser" />
+		<!-- 修复方式(0厂内复磨1厂内维修2厂内图层3出厂图层4出厂维修) -->
+		<result property="repairWay" column="RepairWay" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityToolrepairnotice" resultMap="Toolrepairnotice-map">
+		SELECT
+		ToolRepairNoticeID
+		,RfidCode
+		,NoticeTime
+		,ToolRepairNoticeUser
+		,ReceiveUser
+		,ReceiveTime
+		,ReturnUser
+		,ReturnTime
+		,SentBackNumber
+		,RealSentBackNumber
+		,RecoverLostNumber
+		,LostIdentifyingUser
+		,RepairWay
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from toolrepairnotice
+		<dynamic prepend=" where ">
+			<isNotNull property="toolRepairNoticeID" prepend="and ">
+				ToolRepairNoticeID = #toolRepairNoticeID#
+         </isNotNull>
+			<isNotNull property="rfidCode" prepend="and ">
+				RfidCode = #rfidCode#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					ToolRepairNoticeID
+					,RfidCode
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityToolrepairnotice" resultMap="Toolrepairnotice-map">
+		SELECT
+		ToolRepairNoticeID
+		,RfidCode
+		,NoticeTime
+		,ToolRepairNoticeUser
+		,ReceiveUser
+		,ReceiveTime
+		,ReturnUser
+		,ReturnTime
+		,SentBackNumber
+		,RealSentBackNumber
+		,RecoverLostNumber
+		,LostIdentifyingUser
+		,RepairWay
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from toolrepairnotice
+		<dynamic prepend=" where ">
+			<isNotNull property="toolRepairNoticeID" prepend="and ">
+				ToolRepairNoticeID = #toolRepairNoticeID#
+         </isNotNull>
+			<isNotNull property="rfidCode" prepend="and ">
+				RfidCode = #rfidCode#
+         </isNotNull>
+			<isNotNull property="noticeTime" prepend="and ">
+				NoticeTime = #noticeTime#
+         </isNotNull>
+			<isNotNull property="toolRepairNoticeUser" prepend="and ">
+				ToolRepairNoticeUser = #toolRepairNoticeUser#
+         </isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="receiveTime" prepend="and ">
+				ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNotNull property="returnUser" prepend="and ">
+				ReturnUser = #returnUser#
+         </isNotNull>
+			<isNotNull property="returnTime" prepend="and ">
+				ReturnTime = #returnTime#
+         </isNotNull>
+			<isNotNull property="sentBackNumber" prepend="and ">
+				SentBackNumber = #sentBackNumber#
+         </isNotNull>
+			<isNotNull property="realSentBackNumber" prepend="and ">
+				RealSentBackNumber = #realSentBackNumber#
+         </isNotNull>
+			<isNotNull property="recoverLostNumber" prepend="and ">
+				RecoverLostNumber = #recoverLostNumber#
+         </isNotNull>
+			<isNotNull property="lostIdentifyingUser" prepend="and ">
+				LostIdentifyingUser = #lostIdentifyingUser#
+         </isNotNull>
+			<isNotNull property="repairWay" prepend="and ">
+				RepairWay = #repairWay#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					ToolRepairNoticeID DESC
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+    <!-- 取得修复通知单列表 -->
+	<select id="searchByListGroupId" parameterClass="entityToolrepairnotice" resultMap="Toolrepairnotice-map">
+		SELECT
+		ToolRepairNoticeID
+		,RfidCode
+		,NoticeTime
+		,ToolRepairNoticeUser
+		,ReceiveUser
+		,ReceiveTime
+		,ReturnUser
+		,ReturnTime
+		,SentBackNumber
+		,RealSentBackNumber
+		,RecoverLostNumber
+		,LostIdentifyingUser
+		,RepairWay
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from toolrepairnotice
+        WHERE  DelFlag = '0' AND ReceiveUser IS NULL  || ReceiveUser = ''
+        GROUP BY ToolRepairNoticeID
+        ORDER BY ToolRepairNoticeID DESC
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityToolrepairnotice" resultClass="int">
+		SELECT count(1)
+		from toolrepairnotice
+		<dynamic prepend=" where ">
+			<isNotNull property="toolRepairNoticeID" prepend="and ">
+				ToolRepairNoticeID = #toolRepairNoticeID#
+         </isNotNull>
+			<isNotNull property="rfidCode" prepend="and ">
+				RfidCode = #rfidCode#
+         </isNotNull>
+			<isNotNull property="noticeTime" prepend="and ">
+				NoticeTime = #noticeTime#
+         </isNotNull>
+			<isNotNull property="toolRepairNoticeUser" prepend="and ">
+				ToolRepairNoticeUser = #toolRepairNoticeUser#
+         </isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="receiveTime" prepend="and ">
+				ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNotNull property="returnUser" prepend="and ">
+				ReturnUser = #returnUser#
+         </isNotNull>
+			<isNotNull property="returnTime" prepend="and ">
+				ReturnTime = #returnTime#
+         </isNotNull>
+			<isNotNull property="sentBackNumber" prepend="and ">
+				SentBackNumber = #sentBackNumber#
+         </isNotNull>
+			<isNotNull property="realSentBackNumber" prepend="and ">
+				RealSentBackNumber = #realSentBackNumber#
+         </isNotNull>
+			<isNotNull property="recoverLostNumber" prepend="and ">
+				RecoverLostNumber = #recoverLostNumber#
+         </isNotNull>
+			<isNotNull property="lostIdentifyingUser" prepend="and ">
+				LostIdentifyingUser = #lostIdentifyingUser#
+         </isNotNull>
+			<isNotNull property="repairWay" prepend="and ">
+				RepairWay = #repairWay#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityToolrepairnotice">
+		update toolrepairnotice
+		<dynamic prepend="set">
+			<isNotNull property="toolRepairNoticeID">
+				ToolRepairNoticeID = #toolRepairNoticeID#
+         </isNotNull>
+			<isNull property="toolRepairNoticeID">
+				ToolRepairNoticeID = null
+         </isNull>
+			<isNotNull property="rfidCode">
+				,RfidCode = #rfidCode#
+         </isNotNull>
+			<isNull property="rfidCode">
+				,RfidCode = null
+         </isNull>
+			<isNotNull property="noticeTime">
+				,NoticeTime = #noticeTime#
+         </isNotNull>
+			<isNull property="noticeTime">
+				,NoticeTime = null
+         </isNull>
+			<isNotNull property="toolRepairNoticeUser">
+				,ToolRepairNoticeUser = #toolRepairNoticeUser#
+         </isNotNull>
+			<isNull property="toolRepairNoticeUser">
+				,ToolRepairNoticeUser = null
+         </isNull>
+			<isNotNull property="receiveUser">
+				,ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNull property="receiveUser">
+				,ReceiveUser = null
+         </isNull>
+			<isNotNull property="receiveTime">
+				,ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNull property="receiveTime">
+				,ReceiveTime = null
+         </isNull>
+			<isNotNull property="returnUser">
+				,ReturnUser = #returnUser#
+         </isNotNull>
+			<isNull property="returnUser">
+				,ReturnUser = null
+         </isNull>
+			<isNotNull property="returnTime">
+				,ReturnTime = #returnTime#
+         </isNotNull>
+			<isNull property="returnTime">
+				,ReturnTime = null
+         </isNull>
+			<isNotNull property="sentBackNumber">
+				,SentBackNumber = #sentBackNumber#
+         </isNotNull>
+			<isNull property="sentBackNumber">
+				,SentBackNumber = null
+         </isNull>
+			<isNotNull property="realSentBackNumber">
+				,RealSentBackNumber = #realSentBackNumber#
+         </isNotNull>
+			<isNull property="realSentBackNumber">
+				,RealSentBackNumber = null
+         </isNull>
+			<isNotNull property="recoverLostNumber">
+				,RecoverLostNumber = #recoverLostNumber#
+         </isNotNull>
+			<isNull property="recoverLostNumber">
+				,RecoverLostNumber = null
+         </isNull>
+			<isNotNull property="lostIdentifyingUser">
+				,LostIdentifyingUser = #lostIdentifyingUser#
+         </isNotNull>
+			<isNull property="lostIdentifyingUser">
+				,LostIdentifyingUser = null
+         </isNull>
+			<isNotNull property="repairWay">
+				,RepairWay = #repairWay#
+         </isNotNull>
+			<isNull property="repairWay">
+				,RepairWay = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="toolRepairNoticeIDWhere" prepend="and ">
+				ToolRepairNoticeID = #toolRepairNoticeIDWhere#
+         </isNotNull>
+			<isNotNull property="rfidCodeWhere" prepend="and ">
+				RfidCode = #rfidCodeWhere#
+         </isNotNull>
+			<isNotNull property="noticeTimeWhere" prepend="and ">
+				NoticeTime = #noticeTimeWhere#
+         </isNotNull>
+			<isNotNull property="toolRepairNoticeUserWhere" prepend="and ">
+				ToolRepairNoticeUser = #toolRepairNoticeUserWhere#
+         </isNotNull>
+			<isNotNull property="receiveUserWhere" prepend="and ">
+				ReceiveUser = #receiveUserWhere#
+         </isNotNull>
+			<isNotNull property="receiveTimeWhere" prepend="and ">
+				ReceiveTime = #receiveTimeWhere#
+         </isNotNull>
+			<isNotNull property="returnUserWhere" prepend="and ">
+				ReturnUser = #returnUserWhere#
+         </isNotNull>
+			<isNotNull property="returnTimeWhere" prepend="and ">
+				ReturnTime = #returnTimeWhere#
+         </isNotNull>
+			<isNotNull property="sentBackNumberWhere" prepend="and ">
+				SentBackNumber = #sentBackNumberWhere#
+         </isNotNull>
+			<isNotNull property="realSentBackNumberWhere" prepend="and ">
+				RealSentBackNumber = #realSentBackNumberWhere#
+         </isNotNull>
+			<isNotNull property="recoverLostNumberWhere" prepend="and ">
+				RecoverLostNumber = #recoverLostNumberWhere#
+         </isNotNull>
+			<isNotNull property="lostIdentifyingUserWhere" prepend="and ">
+				LostIdentifyingUser = #lostIdentifyingUserWhere#
+         </isNotNull>
+			<isNotNull property="repairWayWhere" prepend="and ">
+				RepairWay = #repairWayWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityToolrepairnotice">
+		update toolrepairnotice
+		<dynamic prepend="set">
+			<isNotNull property="toolRepairNoticeID"  prepend=",">
+				ToolRepairNoticeID = #toolRepairNoticeID#
+         </isNotNull>
+			<isNotNull property="rfidCode"  prepend=",">
+				RfidCode = #rfidCode#
+         </isNotNull>
+			<isNotNull property="noticeTime"  prepend=",">
+				NoticeTime = #noticeTime#
+         </isNotNull>
+			<isNotNull property="toolRepairNoticeUser"  prepend=",">
+				ToolRepairNoticeUser = #toolRepairNoticeUser#
+         </isNotNull>
+			<isNotNull property="receiveUser"  prepend=",">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="receiveTime"  prepend=",">
+				ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNotNull property="returnUser"  prepend=",">
+				ReturnUser = #returnUser#
+         </isNotNull>
+			<isNotNull property="returnTime"  prepend=",">
+				ReturnTime = #returnTime#
+         </isNotNull>
+			<isNotNull property="sentBackNumber"  prepend=",">
+				SentBackNumber = #sentBackNumber#
+         </isNotNull>
+			<isNotNull property="realSentBackNumber"  prepend=",">
+				RealSentBackNumber = #realSentBackNumber#
+         </isNotNull>
+			<isNotNull property="recoverLostNumber"  prepend=",">
+				RecoverLostNumber = #recoverLostNumber#
+         </isNotNull>
+			<isNotNull property="lostIdentifyingUser"  prepend=",">
+				LostIdentifyingUser = #lostIdentifyingUser#
+         </isNotNull>
+			<isNotNull property="repairWay"  prepend=",">
+				RepairWay = #repairWay#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="toolRepairNoticeIDWhere" prepend="and ">
+				ToolRepairNoticeID = #toolRepairNoticeIDWhere#
+         </isNotNull>
+			<isNotNull property="rfidCodeWhere" prepend="and ">
+				RfidCode = #rfidCodeWhere#
+         </isNotNull>
+			<isNotNull property="noticeTimeWhere" prepend="and ">
+				NoticeTime = #noticeTimeWhere#
+         </isNotNull>
+			<isNotNull property="toolRepairNoticeUserWhere" prepend="and ">
+				ToolRepairNoticeUser = #toolRepairNoticeUserWhere#
+         </isNotNull>
+			<isNotNull property="receiveUserWhere" prepend="and ">
+				ReceiveUser = #receiveUserWhere#
+         </isNotNull>
+			<isNotNull property="receiveTimeWhere" prepend="and ">
+				ReceiveTime = #receiveTimeWhere#
+         </isNotNull>
+			<isNotNull property="returnUserWhere" prepend="and ">
+				ReturnUser = #returnUserWhere#
+         </isNotNull>
+			<isNotNull property="returnTimeWhere" prepend="and ">
+				ReturnTime = #returnTimeWhere#
+         </isNotNull>
+			<isNotNull property="sentBackNumberWhere" prepend="and ">
+				SentBackNumber = #sentBackNumberWhere#
+         </isNotNull>
+			<isNotNull property="realSentBackNumberWhere" prepend="and ">
+				RealSentBackNumber = #realSentBackNumberWhere#
+         </isNotNull>
+			<isNotNull property="recoverLostNumberWhere" prepend="and ">
+				RecoverLostNumber = #recoverLostNumberWhere#
+         </isNotNull>
+			<isNotNull property="lostIdentifyingUserWhere" prepend="and ">
+				LostIdentifyingUser = #lostIdentifyingUserWhere#
+         </isNotNull>
+			<isNotNull property="repairWayWhere" prepend="and ">
+				RepairWay = #repairWayWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityToolrepairnotice">
+		<selectKey resultClass="java.lang.String" keyProperty="toolRepairNoticeID">
+			SELECT #toolRepairNoticeID# as toolRepairNoticeID FROM DUAL
+     </selectKey>
+		insert into toolrepairnotice(
+		ToolRepairNoticeID
+		,RfidCode
+		,NoticeTime
+		,ToolRepairNoticeUser
+		,ReceiveUser
+		,ReceiveTime
+		,ReturnUser
+		,ReturnTime
+		,SentBackNumber
+		,RealSentBackNumber
+		,RecoverLostNumber
+		,LostIdentifyingUser
+		,RepairWay
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		)
+		Values (
+			<isNotNull property="toolRepairNoticeID">
+				#toolRepairNoticeID#
+         </isNotNull>
+			<isNull property="toolRepairNoticeID">
+				null
+         </isNull>
+			<isNotNull property="rfidCode">
+				,#rfidCode#
+         </isNotNull>
+			<isNull property="rfidCode">
+				,null
+         </isNull>
+			<isNotNull property="noticeTime">
+				,#noticeTime#
+         </isNotNull>
+			<isNull property="noticeTime">
+				,null
+         </isNull>
+			<isNotNull property="toolRepairNoticeUser">
+				,#toolRepairNoticeUser#
+         </isNotNull>
+			<isNull property="toolRepairNoticeUser">
+				,null
+         </isNull>
+			<isNotNull property="receiveUser">
+				,#receiveUser#
+         </isNotNull>
+			<isNull property="receiveUser">
+				,null
+         </isNull>
+			<isNotNull property="receiveTime">
+				,#receiveTime#
+         </isNotNull>
+			<isNull property="receiveTime">
+				,null
+         </isNull>
+			<isNotNull property="returnUser">
+				,#returnUser#
+         </isNotNull>
+			<isNull property="returnUser">
+				,null
+         </isNull>
+			<isNotNull property="returnTime">
+				,#returnTime#
+         </isNotNull>
+			<isNull property="returnTime">
+				,null
+         </isNull>
+			<isNotNull property="sentBackNumber">
+				,#sentBackNumber#
+         </isNotNull>
+			<isNull property="sentBackNumber">
+				,null
+         </isNull>
+			<isNotNull property="realSentBackNumber">
+				,#realSentBackNumber#
+         </isNotNull>
+			<isNull property="realSentBackNumber">
+				,null
+         </isNull>
+			<isNotNull property="recoverLostNumber">
+				,#recoverLostNumber#
+         </isNotNull>
+			<isNull property="recoverLostNumber">
+				,null
+         </isNull>
+			<isNotNull property="lostIdentifyingUser">
+				,#lostIdentifyingUser#
+         </isNotNull>
+			<isNull property="lostIdentifyingUser">
+				,null
+         </isNull>
+			<isNotNull property="repairWay">
+				,#repairWay#
+         </isNotNull>
+			<isNull property="repairWay">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+		)
+	</insert>
+<!-- 批量插入处理 -->
+	<insert id="saveToolRepairNotice" parameterClass ="java.util.List">
+		insert into toolrepairnotice(
+		ToolRepairNoticeID
+		,RfidCode
+		,NoticeTime
+		,SentBackNumber
+		,RealSentBackNumber
+		,RepairWay
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		)
+		values
+           <iterate  conjunction =","  >
+            (
+               #list[].toolRepairNoticeID#,
+               #list[].rfidCode#,
+               #list[].noticeTime#,
+               #list[].sentBackNumber#,
+               #list[].realSentBackNumber#,
+               #list[].repairWay#,
+               #list[].delFlag#,
+               #list[].updateTime#,
+               #list[].updateUser#,
+               #list[].createTime#,
+               #list[].createUser#,
+               #list[].version#
+           )
+           </iterate >
+	</insert>
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityToolrepairnotice">
+		delete  from toolrepairnotice
+		<dynamic prepend=" where ">
+			<isNotNull property="toolRepairNoticeIDWhere" prepend="and ">
+				ToolRepairNoticeID = #toolRepairNoticeIDWhere#
+         </isNotNull>
+			<isNotNull property="rfidCodeWhere" prepend="and ">
+				RfidCode = #rfidCodeWhere#
+         </isNotNull>
+			<isNotNull property="noticeTimeWhere" prepend="and ">
+				NoticeTime = #noticeTimeWhere#
+         </isNotNull>
+			<isNotNull property="toolRepairNoticeUserWhere" prepend="and ">
+				ToolRepairNoticeUser = #toolRepairNoticeUserWhere#
+         </isNotNull>
+			<isNotNull property="receiveUserWhere" prepend="and ">
+				ReceiveUser = #receiveUserWhere#
+         </isNotNull>
+			<isNotNull property="receiveTimeWhere" prepend="and ">
+				ReceiveTime = #receiveTimeWhere#
+         </isNotNull>
+			<isNotNull property="returnUserWhere" prepend="and ">
+				ReturnUser = #returnUserWhere#
+         </isNotNull>
+			<isNotNull property="returnTimeWhere" prepend="and ">
+				ReturnTime = #returnTimeWhere#
+         </isNotNull>
+			<isNotNull property="sentBackNumberWhere" prepend="and ">
+				SentBackNumber = #sentBackNumberWhere#
+         </isNotNull>
+			<isNotNull property="realSentBackNumberWhere" prepend="and ">
+				RealSentBackNumber = #realSentBackNumberWhere#
+         </isNotNull>
+			<isNotNull property="recoverLostNumberWhere" prepend="and ">
+				RecoverLostNumber = #recoverLostNumberWhere#
+         </isNotNull>
+			<isNotNull property="lostIdentifyingUserWhere" prepend="and ">
+				LostIdentifyingUser = #lostIdentifyingUserWhere#
+         </isNotNull>
+			<isNotNull property="repairWayWhere" prepend="and ">
+				RepairWay = #repairWayWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

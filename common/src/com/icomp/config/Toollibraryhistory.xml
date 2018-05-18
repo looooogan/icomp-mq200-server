@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Toollibraryhistory.xml
+		Created on : 2016/06/13 17:12:07
+		Author : 工具自动生成
+		Description: 工具自动生成包含的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Toollibraryhistory">
+	<typeAlias alias="entityToollibraryhistory" type="com.icomp.entity.base.Toollibraryhistory" />
+	<resultMap id="Toollibraryhistory-map" class="entityToollibraryhistory">
+		<!-- 出库ID -->
+		<result property="toolLiberyID" column="ToolLiberyID" />
+		<!-- 刀具入库编码 -->
+		<result property="knifeInventoryCode" column="KnifeInventoryCode" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 领取人 -->
+		<result property="receiveUser" column="ReceiveUser" />
+		<!-- 领取数量 -->
+		<result property="receiveCount" column="ReceiveCount" />
+		<!-- 领取时间 -->
+		<result property="receiveTime" column="ReceiveTime" />
+		<!-- 出库原因(0申领1换领2外借) -->
+		<result property="libraryCause" column="LibraryCause" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 上传状态 -->
+		<result property="state" column="State" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityToollibraryhistory" resultMap="Toollibraryhistory-map">
+		SELECT
+		ToolLiberyID
+		,KnifeInventoryCode
+		,ToolID
+		,ReceiveUser
+		,ReceiveCount
+		,ReceiveTime
+		,LibraryCause
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		,DelFlag
+		,State
+		from toollibraryhistory
+		<dynamic prepend=" where ">
+			<isNotNull property="toolLiberyID" prepend="and ">
+				ToolLiberyID = #toolLiberyID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					ToolLiberyID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityToollibraryhistory" resultMap="Toollibraryhistory-map">
+		SELECT
+		ToolLiberyID
+		,KnifeInventoryCode
+		,ToolID
+		,ReceiveUser
+		,ReceiveCount
+		,ReceiveTime
+		,LibraryCause
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		,DelFlag
+		,State
+		from toollibraryhistory
+		<dynamic prepend=" where ">
+			<isNotNull property="toolLiberyID" prepend="and ">
+				ToolLiberyID = #toolLiberyID#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="receiveCount" prepend="and ">
+				ReceiveCount = #receiveCount#
+         </isNotNull>
+			<isNotNull property="receiveTime" prepend="and ">
+				ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNotNull property="libraryCause" prepend="and ">
+				LibraryCause = #libraryCause#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="state" prepend="and ">
+				State = #state#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					ToolLiberyID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityToollibraryhistory" resultClass="int">
+		SELECT count(1)
+		from toollibraryhistory
+		<dynamic prepend=" where ">
+			<isNotNull property="toolLiberyID" prepend="and ">
+				ToolLiberyID = #toolLiberyID#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="receiveCount" prepend="and ">
+				ReceiveCount = #receiveCount#
+         </isNotNull>
+			<isNotNull property="receiveTime" prepend="and ">
+				ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNotNull property="libraryCause" prepend="and ">
+				LibraryCause = #libraryCause#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="state" prepend="and ">
+				State = #state#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityToollibraryhistory">
+		update toollibraryhistory
+		<dynamic prepend="set">
+			<isNotNull property="toolLiberyID">
+				ToolLiberyID = #toolLiberyID#
+         </isNotNull>
+			<isNull property="toolLiberyID">
+				ToolLiberyID = null
+         </isNull>
+			<isNotNull property="knifeInventoryCode">
+				,KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNull property="knifeInventoryCode">
+				,KnifeInventoryCode = null
+         </isNull>
+			<isNotNull property="toolID">
+				,ToolID = #toolID#
+         </isNotNull>
+			<isNull property="toolID">
+				,ToolID = null
+         </isNull>
+			<isNotNull property="receiveUser">
+				,ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNull property="receiveUser">
+				,ReceiveUser = null
+         </isNull>
+			<isNotNull property="receiveCount">
+				,ReceiveCount = #receiveCount#
+         </isNotNull>
+			<isNull property="receiveCount">
+				,ReceiveCount = null
+         </isNull>
+			<isNotNull property="receiveTime">
+				,ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNull property="receiveTime">
+				,ReceiveTime = null
+         </isNull>
+			<isNotNull property="libraryCause">
+				,LibraryCause = #libraryCause#
+         </isNotNull>
+			<isNull property="libraryCause">
+				,LibraryCause = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="state">
+				,State = #state#
+         </isNotNull>
+			<isNull property="state">
+				,State = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="toolLiberyIDWhere" prepend="and ">
+				ToolLiberyID = #toolLiberyIDWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				ToolID = #toolIDWhere#
+         </isNotNull>
+			<isNotNull property="receiveUserWhere" prepend="and ">
+				ReceiveUser = #receiveUserWhere#
+         </isNotNull>
+			<isNotNull property="receiveCountWhere" prepend="and ">
+				ReceiveCount = #receiveCountWhere#
+         </isNotNull>
+			<isNotNull property="receiveTimeWhere" prepend="and ">
+				ReceiveTime = #receiveTimeWhere#
+         </isNotNull>
+			<isNotNull property="libraryCauseWhere" prepend="and ">
+				LibraryCause = #libraryCauseWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="stateWhere" prepend="and ">
+				State = #stateWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityToollibraryhistory">
+		update toollibraryhistory
+		<dynamic prepend="set">
+			<isNotNull property="toolLiberyID"  prepend=",">
+				ToolLiberyID = #toolLiberyID#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode"  prepend=",">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolID"  prepend=",">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="receiveUser"  prepend=",">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="receiveCount"  prepend=",">
+				ReceiveCount = #receiveCount#
+         </isNotNull>
+			<isNotNull property="receiveTime"  prepend=",">
+				ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNotNull property="libraryCause"  prepend=",">
+				LibraryCause = #libraryCause#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="state"  prepend=",">
+				State = #state#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="toolLiberyIDWhere" prepend="and ">
+				ToolLiberyID = #toolLiberyIDWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				ToolID = #toolIDWhere#
+         </isNotNull>
+			<isNotNull property="receiveUserWhere" prepend="and ">
+				ReceiveUser = #receiveUserWhere#
+         </isNotNull>
+			<isNotNull property="receiveCountWhere" prepend="and ">
+				ReceiveCount = #receiveCountWhere#
+         </isNotNull>
+			<isNotNull property="receiveTimeWhere" prepend="and ">
+				ReceiveTime = #receiveTimeWhere#
+         </isNotNull>
+			<isNotNull property="libraryCauseWhere" prepend="and ">
+				LibraryCause = #libraryCauseWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="stateWhere" prepend="and ">
+				State = #stateWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityToollibraryhistory">
+		<selectKey resultClass="java.lang.String" keyProperty="toolLiberyID">
+			SELECT #toolLiberyID# as toolLiberyID FROM DUAL
+     </selectKey>
+		insert into toollibraryhistory(
+		ToolLiberyID
+		,KnifeInventoryCode
+		,ToolID
+		,ReceiveUser
+		,ReceiveCount
+		,ReceiveTime
+		,LibraryCause
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		,DelFlag
+		,State
+		)
+		Values (
+			<isNotNull property="toolLiberyID">
+				#toolLiberyID#
+         </isNotNull>
+			<isNull property="toolLiberyID">
+				null
+         </isNull>
+			<isNotNull property="knifeInventoryCode">
+				,#knifeInventoryCode#
+         </isNotNull>
+			<isNull property="knifeInventoryCode">
+				,null
+         </isNull>
+			<isNotNull property="toolID">
+				,#toolID#
+         </isNotNull>
+			<isNull property="toolID">
+				,null
+         </isNull>
+			<isNotNull property="receiveUser">
+				,#receiveUser#
+         </isNotNull>
+			<isNull property="receiveUser">
+				,null
+         </isNull>
+			<isNotNull property="receiveCount">
+				,#receiveCount#
+         </isNotNull>
+			<isNull property="receiveCount">
+				,null
+         </isNull>
+			<isNotNull property="receiveTime">
+				,#receiveTime#
+         </isNotNull>
+			<isNull property="receiveTime">
+				,null
+         </isNull>
+			<isNotNull property="libraryCause">
+				,#libraryCause#
+         </isNotNull>
+			<isNull property="libraryCause">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="state">
+				,#state#
+         </isNotNull>
+			<isNull property="state">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityToollibraryhistory">
+		delete  from toollibraryhistory
+		<dynamic prepend=" where ">
+			<isNotNull property="toolLiberyIDWhere" prepend="and ">
+				ToolLiberyID = #toolLiberyIDWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				ToolID = #toolIDWhere#
+         </isNotNull>
+			<isNotNull property="receiveUserWhere" prepend="and ">
+				ReceiveUser = #receiveUserWhere#
+         </isNotNull>
+			<isNotNull property="receiveCountWhere" prepend="and ">
+				ReceiveCount = #receiveCountWhere#
+         </isNotNull>
+			<isNotNull property="receiveTimeWhere" prepend="and ">
+				ReceiveTime = #receiveTimeWhere#
+         </isNotNull>
+			<isNotNull property="libraryCauseWhere" prepend="and ">
+				LibraryCause = #libraryCauseWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="stateWhere" prepend="and ">
+				State = #stateWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+	<!-- 批量插入处理 -->
+	<insert id="insertBatchs" parameterClass="java.util.List">
+		insert into toollibraryhistory(
+		KnifeInventoryCode
+		,ReceiveUser
+		,ReceiveTime
+		,LibraryCause
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		,DelFlag
+		)
+		Values
+		  <iterate  conjunction =","  >
+            (
+				#list[].knifeInventoryCode#
+				,#list[].receiveUser#
+				,#list[].receiveTime#
+				,#list[].libraryCause#
+				,#list[].updateTime#
+				,#list[].updateUser#
+				,#list[].createTime#
+				,#list[].createUser#
+				,#list[].version#
+				,#list[].delFlag#
+		 	)
+           </iterate >
+
+	</insert>
+
+
+</sqlMap>
+

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Quicksearch.xml
+		Created on : 2014/08/19 15:48:45
+		Author : 工具自动生成
+		Description: 工具自动生成包含快速查询临时表的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Quicksearch">
+	<typeAlias alias="entityQuicksearch" type="com.icomp.entity.base.Quicksearch" />
+	<resultMap id="Quicksearch-map" class="entityQuicksearch">
+		<!-- RFID载体ID -->
+		<result property="rfidContainerID" column="RfidContainerID" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityQuicksearch" resultMap="Quicksearch-map">
+		SELECT
+		RfidContainerID
+		from quicksearch
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityQuicksearch" resultMap="Quicksearch-map">
+		SELECT
+		RfidContainerID
+		from quicksearch
+		<dynamic prepend=" where ">
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityQuicksearch" resultClass="int">
+		SELECT count(1)
+		from quicksearch
+		<dynamic prepend=" where ">
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityQuicksearch">
+		update quicksearch
+		<dynamic prepend="set">
+			<isNotNull property="rfidContainerID">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNull property="rfidContainerID">
+				RfidContainerID = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="rfidContainerIDWhere" prepend="and ">
+				RfidContainerID = #rfidContainerIDWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityQuicksearch">
+		update quicksearch
+		<dynamic prepend="set">
+			<isNotNull property="rfidContainerID"  prepend=",">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="rfidContainerIDWhere" prepend="and ">
+				RfidContainerID = #rfidContainerIDWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityQuicksearch">
+		insert into quicksearch(
+		RfidContainerID
+		)
+		Values (
+			<isNotNull property="rfidContainerID">
+				#rfidContainerID#
+         </isNotNull>
+			<isNull property="rfidContainerID">
+				null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityQuicksearch">
+		delete  from quicksearch
+		<dynamic prepend=" where ">
+			<isNotNull property="rfidContainerIDWhere" prepend="and ">
+				RfidContainerID = #rfidContainerIDWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

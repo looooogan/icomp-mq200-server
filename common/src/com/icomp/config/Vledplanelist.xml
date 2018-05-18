@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vledplanelist.xml
+		Created on : 2014/11/28 16:09:55
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vledplanelist">
+	<typeAlias alias="entityVledplanelist" type="com.icomp.entity.base.Vledplanelist" />
+	<resultMap id="Vledplanelist-map" class="entityVledplanelist">
+		<!-- 专机领用申请ID -->
+		<result property="ledPlaneID" column="LedPlaneID" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 领用数量 -->
+		<result property="ledPlaneCount" column="LedPlaneCount" />
+		<!-- 领用时间 -->
+		<result property="ledPlaneTime" column="LedPlaneTime" />
+		<!-- 领用人 -->
+		<result property="ledPlaneUser" column="LedPlaneUser" />
+		<!-- 送回数量 -->
+		<result property="returnCount" column="ReturnCount" />
+		<!-- 送回时间 -->
+		<result property="returnTime" column="ReturnTime" />
+		<!-- 处理状态(0:新建1备货2领取3送回确认) -->
+		<result property="ledPlaneStauts" column="LedPlaneStauts" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 姓名 -->
+		<result property="userName" column="UserName" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVledplanelist" resultMap="Vledplanelist-map">
+		SELECT
+		LedPlaneID
+		,ToolID
+		,LedPlaneCount
+		,LedPlaneTime
+		,LedPlaneUser
+		,ReturnCount
+		,ReturnTime
+		,LedPlaneStauts
+		,ToolCode
+		,UserName
+		from vledplanelist
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVledplanelist" resultMap="Vledplanelist-map">
+		SELECT
+		LedPlaneID
+		,ToolID
+		,LedPlaneCount
+		,LedPlaneTime
+		,LedPlaneUser
+		,ReturnCount
+		,ReturnTime
+		,LedPlaneStauts
+		,ToolCode
+		,UserName
+		from vledplanelist
+		<dynamic prepend=" where ">
+			<isNotNull property="ledPlaneID" prepend="and ">
+				LedPlaneID = #ledPlaneID#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="ledPlaneCount" prepend="and ">
+				LedPlaneCount = #ledPlaneCount#
+         </isNotNull>
+			<isNotNull property="ledPlaneTime" prepend="and ">
+				LedPlaneTime = #ledPlaneTime#
+         </isNotNull>
+			<isNotNull property="ledPlaneUser" prepend="and ">
+				LedPlaneUser = #ledPlaneUser#
+         </isNotNull>
+			<isNotNull property="returnCount" prepend="and ">
+				ReturnCount = #returnCount#
+         </isNotNull>
+			<isNotNull property="returnTime" prepend="and ">
+				ReturnTime = #returnTime#
+         </isNotNull>
+			<isNotNull property="ledPlaneStauts" prepend="and ">
+				LedPlaneStauts = #ledPlaneStauts#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVledplanelist" resultClass="int">
+		SELECT count(1)
+		from vledplanelist
+		<dynamic prepend=" where ">
+			<isNotNull property="ledPlaneID" prepend="and ">
+				LedPlaneID = #ledPlaneID#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="ledPlaneCount" prepend="and ">
+				LedPlaneCount = #ledPlaneCount#
+         </isNotNull>
+			<isNotNull property="ledPlaneTime" prepend="and ">
+				LedPlaneTime = #ledPlaneTime#
+         </isNotNull>
+			<isNotNull property="ledPlaneUser" prepend="and ">
+				LedPlaneUser = #ledPlaneUser#
+         </isNotNull>
+			<isNotNull property="returnCount" prepend="and ">
+				ReturnCount = #returnCount#
+         </isNotNull>
+			<isNotNull property="returnTime" prepend="and ">
+				ReturnTime = #returnTime#
+         </isNotNull>
+			<isNotNull property="ledPlaneStauts" prepend="and ">
+				LedPlaneStauts = #ledPlaneStauts#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

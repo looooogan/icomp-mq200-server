@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vgetpositioncapability.xml
+		Created on : 2014/12/19 11:14:12
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgetpositioncapability">
+	<typeAlias alias="entityVgetpositioncapability" type="com.icomp.entity.base.Vgetpositioncapability" />
+	<resultMap id="Vgetpositioncapability-map" class="entityVgetpositioncapability">
+		<!-- 用户ID[自动生成20位字符串] -->
+		<result property="customerID" column="CustomerID" />
+		<!-- 姓名 -->
+		<result property="userName" column="UserName" />
+		<!-- 用户名[16位数字字母组合] -->
+		<result property="loginName" column="loginName" />
+		<!-- 职务ID -->
+		<result property="positionID" column="PositionID" />
+		<!-- 职务编码 -->
+		<result property="positionCode" column="PositionCode" />
+		<!-- 职务名称 -->
+		<result property="positionName" column="PositionName" />
+		<!-- 功能ID -->
+		<result property="capabilityID" column="CapabilityID" />
+		<!-- 功能编码 -->
+		<result property="capabilityCode" column="CapabilityCode" />
+		<!-- 功能名称 -->
+		<result property="capabilityName" column="CapabilityName" />
+		<!-- 功能URL -->
+		<result property="capabilityUrl" column="CapabilityUrl" />
+		<!-- 功能级别 -->
+		<result property="capabilityLevel" column="CapabilityLevel" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVgetpositioncapability" resultMap="Vgetpositioncapability-map">
+		SELECT
+		CustomerID
+		,UserName
+		,loginName
+		,PositionID
+		,PositionCode
+		,PositionName
+		,CapabilityID
+		,CapabilityCode
+		,CapabilityName
+		,CapabilityUrl
+		,CapabilityLevel
+		from vgetpositioncapability
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVgetpositioncapability" resultMap="Vgetpositioncapability-map">
+		SELECT
+		CustomerID
+		,UserName
+		,loginName
+		,PositionID
+		,PositionCode
+		,PositionName
+		,CapabilityID
+		,CapabilityCode
+		,CapabilityName
+		,CapabilityUrl
+		,CapabilityLevel
+		from vgetpositioncapability
+		<dynamic prepend=" where ">
+			<isNotNull property="customerID" prepend="and ">
+				CustomerID = #customerID#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+			<isNotNull property="loginName" prepend="and ">
+				loginName = #loginName#
+         </isNotNull>
+			<isNotNull property="positionID" prepend="and ">
+				PositionID = #positionID#
+         </isNotNull>
+			<isNotNull property="positionCode" prepend="and ">
+				PositionCode = #positionCode#
+         </isNotNull>
+			<isNotNull property="positionName" prepend="and ">
+				PositionName = #positionName#
+         </isNotNull>
+			<isNotNull property="capabilityID" prepend="and ">
+				CapabilityID = #capabilityID#
+         </isNotNull>
+			<isNotNull property="capabilityCode" prepend="and ">
+				CapabilityCode = #capabilityCode#
+         </isNotNull>
+			<isNotNull property="capabilityName" prepend="and ">
+				CapabilityName = #capabilityName#
+         </isNotNull>
+			<isNotNull property="capabilityUrl" prepend="and ">
+				CapabilityUrl = #capabilityUrl#
+         </isNotNull>
+			<isNotNull property="capabilityLevel" prepend="and ">
+				CapabilityLevel = #capabilityLevel#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVgetpositioncapability" resultClass="int">
+		SELECT count(1)
+		from vgetpositioncapability
+		<dynamic prepend=" where ">
+			<isNotNull property="customerID" prepend="and ">
+				CustomerID = #customerID#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+			<isNotNull property="loginName" prepend="and ">
+				loginName = #loginName#
+         </isNotNull>
+			<isNotNull property="positionID" prepend="and ">
+				PositionID = #positionID#
+         </isNotNull>
+			<isNotNull property="positionCode" prepend="and ">
+				PositionCode = #positionCode#
+         </isNotNull>
+			<isNotNull property="positionName" prepend="and ">
+				PositionName = #positionName#
+         </isNotNull>
+			<isNotNull property="capabilityID" prepend="and ">
+				CapabilityID = #capabilityID#
+         </isNotNull>
+			<isNotNull property="capabilityCode" prepend="and ">
+				CapabilityCode = #capabilityCode#
+         </isNotNull>
+			<isNotNull property="capabilityName" prepend="and ">
+				CapabilityName = #capabilityName#
+         </isNotNull>
+			<isNotNull property="capabilityUrl" prepend="and ">
+				CapabilityUrl = #capabilityUrl#
+         </isNotNull>
+			<isNotNull property="capabilityLevel" prepend="and ">
+				CapabilityLevel = #capabilityLevel#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

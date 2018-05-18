@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vtoolsetting.xml
+		Created on : 2014/08/19 15:48:47
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList_F ： 任意条件查询-SynthesisParametersCode模糊查询
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		searchByListWithGroup : 分组，按任意条件查询执行
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vtoolsetting">
+	<typeAlias alias="entityVtoolsetting" type="com.icomp.entity.base.Vtoolsetting" />
+	<resultMap id="Vtoolsetting-map" class="entityVtoolsetting">
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!-- 位置号 -->
+		<result property="synthesisCutterNumber" column="SynthesisCutterNumber" />
+		<!-- 最后执行业务流程 -->
+		<result property="businessFlowLnkID" column="BusinessFlowLnkID" />
+		<!-- 操作时间 -->
+		<result property="operationTime" column="OperationTime" />
+		<!-- 转出人 -->
+		<result property="arrivalUser" column="ArrivalUser" />
+		<!-- 接收人 -->
+		<result property="recipientUser" column="RecipientUser" />
+		<!-- 交接原因(0送入车间1旧刀回收2不合格送回3对刀) -->
+		<result property="transitionBecause" column="TransitionBecause" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+		<!-- 使用状态(0设备装入1设备卸下2回收旧刀3组装新刀4不合格送回)(该状态绑定到带标签的数据上) -->
+		<result property="loadState" column="LoadState" />
+		<!-- 对刀人 -->
+		<result property="knifeMan" column="KnifeMan" />
+	</resultMap>
+	
+	
+	<resultMap id="Vtoolsetting-map-2" class="entityVtoolsetting">
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!-- 位置号 -->
+		<result property="synthesisCutterNumber" column="SynthesisCutterNumber" />
+		<!-- 最后执行业务流程 -->
+		<result property="businessFlowLnkID" column="BusinessFlowLnkID" />
+		<!-- 操作时间 -->
+		<result property="operationTime" column="OperationTime" />
+		<!-- 转出人 -->
+		<result property="arrivalUser" column="ArrivalUser" />
+		<!-- 接收人 -->
+		<result property="recipientUser" column="RecipientUser" />
+		<!-- 交接原因(0送入车间1旧刀回收2不合格送回3对刀) -->
+		<result property="transitionBecause" column="TransitionBecause" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+		<!-- 使用状态(0设备装入1设备卸下2回收旧刀3组装新刀4不合格送回)(该状态绑定到带标签的数据上) -->
+		<result property="loadState" column="LoadState" />
+		<!-- 对刀人 -->
+		<result property="knifeMan" column="KnifeMan" />
+		<!--对刀数量-->
+		<result property="totalCount" column="totalCount" />
+		<!--不合格卸下数量-->
+		<result property="states" column="states" />
+	</resultMap>
+	
+	
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVtoolsetting" resultMap="Vtoolsetting-map">
+		SELECT
+		SynthesisParametersCode
+		,SynthesisCutterNumber
+		,BusinessFlowLnkID
+		,OperationTime
+		,ArrivalUser
+		,RecipientUser
+		,TransitionBecause
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		,LoadState
+		,KnifeMan
+		from vtoolsetting
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVtoolsetting" resultMap="Vtoolsetting-map">
+		SELECT
+		SynthesisParametersCode
+		,SynthesisCutterNumber
+		,BusinessFlowLnkID
+		,OperationTime
+		,ArrivalUser
+		,RecipientUser
+		,TransitionBecause
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		,LoadState
+		,KnifeMan
+		from vtoolsetting
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumber" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="operationTime" prepend="and ">
+				OperationTime = #operationTime#
+         </isNotNull>
+        	<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				OperationTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				OperationTime <= #dateEnd#
+				]]>
+         </isNotNull>         
+			<isNotNull property="arrivalUser" prepend="and ">
+				ArrivalUser = #arrivalUser#
+         </isNotNull>
+			<isNotNull property="recipientUser" prepend="and ">
+				RecipientUser = #recipientUser#
+         </isNotNull>
+			<isNotNull property="transitionBecause" prepend="and ">
+				TransitionBecause = #transitionBecause#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="loadState" prepend="and ">
+				LoadState = #loadState#
+         </isNotNull>
+			<isNotNull property="knifeMan" prepend="and ">
+				KnifeMan = #knifeMan#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	<!-- 任意条件查询执行-SynthesisParametersCode模糊查询 -->
+	<select id="searchByList_F" parameterClass="entityVtoolsetting" resultMap="Vtoolsetting-map">
+		SELECT
+		SynthesisParametersCode
+		,SynthesisCutterNumber
+		,BusinessFlowLnkID
+		,OperationTime
+		,ArrivalUser
+		,RecipientUser
+		,TransitionBecause
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		,LoadState
+		,KnifeMan
+		from vtoolsetting
+		where KnifeMan is not null
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumber" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="operationTime" prepend="and ">
+				OperationTime = #operationTime#
+         </isNotNull>
+        	<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				OperationTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				OperationTime <= #dateEnd#
+				]]>
+         </isNotNull>         
+			<isNotNull property="arrivalUser" prepend="and ">
+				ArrivalUser = #arrivalUser#
+         </isNotNull>
+			<isNotNull property="recipientUser" prepend="and ">
+				RecipientUser = #recipientUser#
+         </isNotNull>
+			<isNotNull property="transitionBecause" prepend="and ">
+				TransitionBecause = #transitionBecause#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="loadState" prepend="and ">
+				LoadState = #loadState#
+         </isNotNull>
+			<isNotNull property="knifeMan" prepend="and ">
+				KnifeMan = #knifeMan#
+         </isNotNull>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	
+	
+	
+	<!-- 分组，按任意条件查询执行 -->
+	<select id="searchByListWithGroup" parameterClass="entityVtoolsetting" resultMap="Vtoolsetting-map-2">
+		SELECT
+		SynthesisParametersCode
+		,SynthesisCutterNumber
+		,BusinessFlowLnkID
+		,LEFT(OperationTime,10) as OperationTime
+		,ArrivalUser
+		,RecipientUser
+		,TransitionBecause
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		,LoadState
+		,KnifeMan
+		,count(*) as totalCount
+		,(select count(*) 
+			from SynthesisKnife sexp 
+			where sexp.LoadState=4 
+			and sexp.KnifeMan= vtoolsetting.KnifeMan 
+			and sexp.SynthesisCutterNumber 
+			and LEFT (sexp.UpdateTime,10)=LEFT (vtoolsetting.UpdateTime,10)) as states
+		from vtoolsetting
+		where  KnifeMan is not null
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumber" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+		 <isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="operationTime" prepend="and ">
+				OperationTime = #operationTime#
+         </isNotNull>
+        	<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				OperationTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				OperationTime <= #dateEnd#
+				]]>
+         </isNotNull>         
+			<isNotNull property="arrivalUser" prepend="and ">
+				ArrivalUser = #arrivalUser#
+         </isNotNull>
+			<isNotNull property="recipientUser" prepend="and ">
+				RecipientUser = #recipientUser#
+         </isNotNull>
+			<isNotNull property="transitionBecause" prepend="and ">
+				TransitionBecause = #transitionBecause#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="loadState" prepend="and ">
+				LoadState = #loadState#
+         </isNotNull>
+			<isNotNull property="knifeMan" prepend="and ">
+				KnifeMan = #knifeMan#
+         </isNotNull>
+		     group by KnifeMan,LEFT (UpdateTime,10)
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVtoolsetting" resultClass="int">
+		SELECT count(1)
+		from vtoolsetting
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumber" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="operationTime" prepend="and ">
+				OperationTime = #operationTime#
+         </isNotNull>
+        	<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				OperationTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				OperationTime <= #dateEnd#
+				]]>
+         </isNotNull>            
+			<isNotNull property="arrivalUser" prepend="and ">
+				ArrivalUser = #arrivalUser#
+         </isNotNull>
+			<isNotNull property="recipientUser" prepend="and ">
+				RecipientUser = #recipientUser#
+         </isNotNull>
+			<isNotNull property="transitionBecause" prepend="and ">
+				TransitionBecause = #transitionBecause#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="loadState" prepend="and ">
+				LoadState = #loadState#
+         </isNotNull>
+			<isNotNull property="knifeMan" prepend="and ">
+				KnifeMan = #knifeMan#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

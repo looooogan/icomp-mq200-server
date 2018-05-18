@@ -1,0 +1,1017 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Werkzeugeanforderun.xml
+    Created on : 2016/05/18 14:26:37
+    Author : 工具自动生成
+    Description: 工具自动生成包含的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Werkzeugeanforderun">
+    <typeAlias alias="entityWerkzeugeanforderun" type="com.icomp.entity.base.Werkzeugeanforderun"/>
+    <resultMap id="Werkzeugeanforderun-map" class="entityWerkzeugeanforderun">
+        <!-- 材料号 -->
+        <result property="materialNr" column="MaterialNr"/>
+        <!-- 订货名称 -->
+        <result property="bestellBezeichnung" column="BestellBezeichnung"/>
+        <!-- 数量 -->
+        <result property="menge" column="Menge"/>
+        <!-- 单位 -->
+        <result property="einheit" column="Einheit"/>
+        <!-- 单价 -->
+        <result property="unitPreis" column="UnitPreis"/>
+        <!-- 金额 -->
+        <result property="betrag" column="Betrag"/>
+        <!-- 供货商 -->
+        <result property="lieferant" column="Lieferant"/>
+        <!-- 使用点 -->
+        <result property="einsAtzort" column="EinsAtzort"/>
+        <!-- 供货周期 -->
+        <result property="liefertermin" column="Liefertermin"/>
+        <!-- 科目代码 -->
+        <result property="subjectCode" column="SubjectCode"/>
+        <!-- 费用代码 -->
+        <result property="expenseCode" column="ExpenseCode"/>
+        <!-- 备注 -->
+        <result property="notes" column="Notes"/>
+        <!-- 需求号 -->
+        <result property="demandCode" column="DemandCode"/>
+        <!-- 录入日期 -->
+        <result property="typingDate" column="TypingDate"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="delFlag" column="DelFlag"/>
+        <!-- 创建者 -->
+        <result property="createUser" column="CreateUser"/>
+        <!-- 创建时间 -->
+        <result property="createTime" column="CreateTime"/>
+        <!-- 更新者 -->
+        <result property="updateUser" column="UpdateUser"/>
+        <!-- 更新时间 -->
+        <result property="updateTime" column="UpdateTime"/>
+        <!-- 版本号 -->
+        <result property="version" column="Version"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityWerkzeugeanforderun" resultMap="Werkzeugeanforderun-map">
+        SELECT
+        MaterialNr
+        ,BestellBezeichnung
+        ,Menge
+        ,Einheit
+        ,UnitPreis
+        ,Betrag
+        ,Lieferant
+        ,EinsAtzort
+        ,Liefertermin
+        ,SubjectCode
+        ,ExpenseCode
+        ,Notes
+        ,DemandCode
+        ,TypingDate
+        ,DelFlag
+        ,CreateUser
+        ,CreateTime
+        ,UpdateUser
+        ,UpdateTime
+        ,Version
+        from werkzeugeanforderun
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityWerkzeugeanforderun" resultMap="Werkzeugeanforderun-map">
+        SELECT
+        MaterialNr
+        ,BestellBezeichnung
+        ,Menge
+        ,Einheit
+        ,UnitPreis
+        ,Betrag
+        ,Lieferant
+        ,EinsAtzort
+        ,Liefertermin
+        ,SubjectCode
+        ,ExpenseCode
+        ,Notes
+        ,DemandCode
+        ,TypingDate
+        ,DelFlag
+        ,CreateUser
+        ,CreateTime
+        ,UpdateUser
+        ,UpdateTime
+        ,Version
+        from werkzeugeanforderun
+        <dynamic prepend=" where ">
+            <isNotNull property="materialNr" prepend="and ">
+                MaterialNr = #materialNr#
+            </isNotNull>
+            <isNotNull property="bestellBezeichnung" prepend="and ">
+                BestellBezeichnung = #bestellBezeichnung#
+            </isNotNull>
+            <isNotNull property="menge" prepend="and ">
+                Menge = #menge#
+            </isNotNull>
+            <isNotNull property="einheit" prepend="and ">
+                Einheit = #einheit#
+            </isNotNull>
+            <isNotNull property="unitPreis" prepend="and ">
+                UnitPreis = #unitPreis#
+            </isNotNull>
+            <isNotNull property="betrag" prepend="and ">
+                Betrag = #betrag#
+            </isNotNull>
+            <isNotNull property="lieferant" prepend="and ">
+                Lieferant = #lieferant#
+            </isNotNull>
+            <isNotNull property="einsAtzort" prepend="and ">
+                EinsAtzort = #einsAtzort#
+            </isNotNull>
+            <isNotNull property="liefertermin" prepend="and ">
+                Liefertermin = #liefertermin#
+            </isNotNull>
+            <isNotNull property="subjectCode" prepend="and ">
+                SubjectCode = #subjectCode#
+            </isNotNull>
+            <isNotNull property="expenseCode" prepend="and ">
+                ExpenseCode = #expenseCode#
+            </isNotNull>
+            <isNotNull property="notes" prepend="and ">
+                Notes = #notes#
+            </isNotNull>
+            <isNotNull property="demandCode" prepend="and ">
+                DemandCode = #demandCode#
+            </isNotNull>
+            <isNotNull property="typingDate" prepend="and ">
+                TypingDate = #typingDate#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityWerkzeugeanforderun" resultClass="int">
+        SELECT count(1)
+        from werkzeugeanforderun
+        <dynamic prepend=" where ">
+            <isNotNull property="materialNr" prepend="and ">
+                MaterialNr = #materialNr#
+            </isNotNull>
+            <isNotNull property="bestellBezeichnung" prepend="and ">
+                BestellBezeichnung = #bestellBezeichnung#
+            </isNotNull>
+            <isNotNull property="menge" prepend="and ">
+                Menge = #menge#
+            </isNotNull>
+            <isNotNull property="einheit" prepend="and ">
+                Einheit = #einheit#
+            </isNotNull>
+            <isNotNull property="unitPreis" prepend="and ">
+                UnitPreis = #unitPreis#
+            </isNotNull>
+            <isNotNull property="betrag" prepend="and ">
+                Betrag = #betrag#
+            </isNotNull>
+            <isNotNull property="lieferant" prepend="and ">
+                Lieferant = #lieferant#
+            </isNotNull>
+            <isNotNull property="einsAtzort" prepend="and ">
+                EinsAtzort = #einsAtzort#
+            </isNotNull>
+            <isNotNull property="liefertermin" prepend="and ">
+                Liefertermin = #liefertermin#
+            </isNotNull>
+            <isNotNull property="subjectCode" prepend="and ">
+                SubjectCode = #subjectCode#
+            </isNotNull>
+            <isNotNull property="expenseCode" prepend="and ">
+                ExpenseCode = #expenseCode#
+            </isNotNull>
+            <isNotNull property="notes" prepend="and ">
+                Notes = #notes#
+            </isNotNull>
+            <isNotNull property="demandCode" prepend="and ">
+                DemandCode = #demandCode#
+            </isNotNull>
+            <isNotNull property="typingDate" prepend="and ">
+                TypingDate = #typingDate#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+    <!-- 任意条件更新处理(未指定字段更新为：null) -->
+    <update id="update" parameterClass="entityWerkzeugeanforderun">
+        update werkzeugeanforderun
+        <dynamic prepend="set">
+            <isNotNull property="materialNr">
+                MaterialNr = #materialNr#
+            </isNotNull>
+            <isNull property="materialNr">
+                MaterialNr = null
+            </isNull>
+            <isNotNull property="bestellBezeichnung">
+                ,BestellBezeichnung = #bestellBezeichnung#
+            </isNotNull>
+            <isNull property="bestellBezeichnung">
+                ,BestellBezeichnung = null
+            </isNull>
+            <isNotNull property="menge">
+                ,Menge = #menge#
+            </isNotNull>
+            <isNull property="menge">
+                ,Menge = null
+            </isNull>
+            <isNotNull property="einheit">
+                ,Einheit = #einheit#
+            </isNotNull>
+            <isNull property="einheit">
+                ,Einheit = null
+            </isNull>
+            <isNotNull property="unitPreis">
+                ,UnitPreis = #unitPreis#
+            </isNotNull>
+            <isNull property="unitPreis">
+                ,UnitPreis = null
+            </isNull>
+            <isNotNull property="betrag">
+                ,Betrag = #betrag#
+            </isNotNull>
+            <isNull property="betrag">
+                ,Betrag = null
+            </isNull>
+            <isNotNull property="lieferant">
+                ,Lieferant = #lieferant#
+            </isNotNull>
+            <isNull property="lieferant">
+                ,Lieferant = null
+            </isNull>
+            <isNotNull property="einsAtzort">
+                ,EinsAtzort = #einsAtzort#
+            </isNotNull>
+            <isNull property="einsAtzort">
+                ,EinsAtzort = null
+            </isNull>
+            <isNotNull property="liefertermin">
+                ,Liefertermin = #liefertermin#
+            </isNotNull>
+            <isNull property="liefertermin">
+                ,Liefertermin = null
+            </isNull>
+            <isNotNull property="subjectCode">
+                ,SubjectCode = #subjectCode#
+            </isNotNull>
+            <isNull property="subjectCode">
+                ,SubjectCode = null
+            </isNull>
+            <isNotNull property="expenseCode">
+                ,ExpenseCode = #expenseCode#
+            </isNotNull>
+            <isNull property="expenseCode">
+                ,ExpenseCode = null
+            </isNull>
+            <isNotNull property="notes">
+                ,Notes = #notes#
+            </isNotNull>
+            <isNull property="notes">
+                ,Notes = null
+            </isNull>
+            <isNotNull property="demandCode">
+                ,DemandCode = #demandCode#
+            </isNotNull>
+            <isNull property="demandCode">
+                ,DemandCode = null
+            </isNull>
+            <isNotNull property="typingDate">
+                ,TypingDate = #typingDate#
+            </isNotNull>
+            <isNull property="typingDate">
+                ,TypingDate = null
+            </isNull>
+            <isNotNull property="delFlag">
+                ,DelFlag = #delFlag#
+            </isNotNull>
+            <isNull property="delFlag">
+                ,DelFlag = null
+            </isNull>
+            <isNotNull property="createUser">
+                ,CreateUser = #createUser#
+            </isNotNull>
+            <isNull property="createUser">
+                ,CreateUser = null
+            </isNull>
+            <isNotNull property="createTime">
+                ,CreateTime = #createTime#
+            </isNotNull>
+            <isNull property="createTime">
+                ,CreateTime = null
+            </isNull>
+            <isNotNull property="updateUser">
+                ,UpdateUser = #updateUser#
+            </isNotNull>
+            <isNull property="updateUser">
+                ,UpdateUser = null
+            </isNull>
+            <isNotNull property="updateTime">
+                ,UpdateTime = #updateTime#
+            </isNotNull>
+            <isNull property="updateTime">
+                ,UpdateTime = null
+            </isNull>
+            <isNotNull property="version">
+                ,Version = #version#
+            </isNotNull>
+            <isNull property="version">
+                ,Version = null
+            </isNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="materialNrWhere" prepend="and ">
+                MaterialNr = #materialNrWhere#
+            </isNotNull>
+            <isNotNull property="bestellBezeichnungWhere" prepend="and ">
+                BestellBezeichnung = #bestellBezeichnungWhere#
+            </isNotNull>
+            <isNotNull property="mengeWhere" prepend="and ">
+                Menge = #mengeWhere#
+            </isNotNull>
+            <isNotNull property="einheitWhere" prepend="and ">
+                Einheit = #einheitWhere#
+            </isNotNull>
+            <isNotNull property="unitPreisWhere" prepend="and ">
+                UnitPreis = #unitPreisWhere#
+            </isNotNull>
+            <isNotNull property="betragWhere" prepend="and ">
+                Betrag = #betragWhere#
+            </isNotNull>
+            <isNotNull property="lieferantWhere" prepend="and ">
+                Lieferant = #lieferantWhere#
+            </isNotNull>
+            <isNotNull property="einsAtzortWhere" prepend="and ">
+                EinsAtzort = #einsAtzortWhere#
+            </isNotNull>
+            <isNotNull property="lieferterminWhere" prepend="and ">
+                Liefertermin = #lieferterminWhere#
+            </isNotNull>
+            <isNotNull property="subjectCodeWhere" prepend="and ">
+                SubjectCode = #subjectCodeWhere#
+            </isNotNull>
+            <isNotNull property="expenseCodeWhere" prepend="and ">
+                ExpenseCode = #expenseCodeWhere#
+            </isNotNull>
+            <isNotNull property="notesWhere" prepend="and ">
+                Notes = #notesWhere#
+            </isNotNull>
+            <isNotNull property="demandCodeWhere" prepend="and ">
+                DemandCode = #demandCodeWhere#
+            </isNotNull>
+            <isNotNull property="typingDateWhere" prepend="and ">
+                TypingDate = #typingDateWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+    <update id="updates" parameterClass="entityWerkzeugeanforderun">
+        update werkzeugeanforderun
+        <dynamic prepend="set">
+            <isNotNull property="materialNr">
+                MaterialNr = #materialNr#
+            </isNotNull>
+            <isNull property="materialNr">
+                MaterialNr = null
+            </isNull>
+            <isNotNull property="bestellBezeichnung">
+                ,BestellBezeichnung = #bestellBezeichnung#
+            </isNotNull>
+            <isNull property="bestellBezeichnung">
+                ,BestellBezeichnung = null
+            </isNull>
+            <isNotNull property="menge">
+                ,Menge = #menge#
+            </isNotNull>
+            <isNull property="menge">
+                ,Menge = null
+            </isNull>
+            <isNotNull property="einheit">
+                ,Einheit = #einheit#
+            </isNotNull>
+            <isNull property="einheit">
+                ,Einheit = null
+            </isNull>
+            <isNotNull property="unitPreis">
+                ,UnitPreis = #unitPreis#
+            </isNotNull>
+            <isNull property="unitPreis">
+                ,UnitPreis = null
+            </isNull>
+            <isNotNull property="betrag">
+                ,Betrag = #betrag#
+            </isNotNull>
+            <isNull property="betrag">
+                ,Betrag = null
+            </isNull>
+            <isNotNull property="lieferant">
+                ,Lieferant = #lieferant#
+            </isNotNull>
+            <isNull property="lieferant">
+                ,Lieferant = null
+            </isNull>
+            <isNotNull property="einsAtzort">
+                ,EinsAtzort = #einsAtzort#
+            </isNotNull>
+            <isNull property="einsAtzort">
+                ,EinsAtzort = null
+            </isNull>
+            <isNotNull property="liefertermin">
+                ,Liefertermin = #liefertermin#
+            </isNotNull>
+            <isNull property="liefertermin">
+                ,Liefertermin = null
+            </isNull>
+            <isNotNull property="subjectCode">
+                ,SubjectCode = #subjectCode#
+            </isNotNull>
+            <isNull property="subjectCode">
+                ,SubjectCode = null
+            </isNull>
+            <isNotNull property="expenseCode">
+                ,ExpenseCode = #expenseCode#
+            </isNotNull>
+            <isNull property="expenseCode">
+                ,ExpenseCode = null
+            </isNull>
+            <isNotNull property="notes">
+                ,Notes = #notes#
+            </isNotNull>
+            <isNull property="notes">
+                ,Notes = null
+            </isNull>
+            <isNotNull property="demandCode">
+                ,DemandCode = #demandCode#
+            </isNotNull>
+            <isNull property="demandCode">
+                ,DemandCode = null
+            </isNull>
+            <isNotNull property="typingDate">
+                ,TypingDate = #typingDate#
+            </isNotNull>
+            <isNull property="typingDate">
+                ,TypingDate = null
+            </isNull>
+            <isNotNull property="delFlag">
+                ,DelFlag = #delFlag#
+            </isNotNull>
+            <isNull property="delFlag">
+                ,DelFlag = null
+            </isNull>
+            <isNotNull property="createUser">
+                ,CreateUser = #createUser#
+            </isNotNull>
+            <isNull property="createUser">
+                ,CreateUser = null
+            </isNull>
+            <isNotNull property="createTime">
+                ,CreateTime = #createTime#
+            </isNotNull>
+            <isNull property="createTime">
+                ,CreateTime = null
+            </isNull>
+            <isNotNull property="updateUser">
+                ,UpdateUser = #updateUser#
+            </isNotNull>
+            <isNull property="updateUser">
+                ,UpdateUser = null
+            </isNull>
+            <isNotNull property="updateTime">
+                ,UpdateTime = #updateTime#
+            </isNotNull>
+            <isNull property="updateTime">
+                ,UpdateTime = null
+            </isNull>
+            <isNotNull property="version">
+                ,Version = #version#
+            </isNotNull>
+            <isNull property="version">
+                ,Version = null
+            </isNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="werkIDWhere" prepend="and ">
+                DemandCode = #demandCodeWhere#
+            </isNotNull>
+        </dynamic>
+
+    </update>
+
+    <!-- 任意条件更新处理(未指定字段不更新) -->
+    <update id="updateNonQuery" parameterClass="entityWerkzeugeanforderun">
+        update werkzeugeanforderun
+        <dynamic prepend="set">
+            <isNotNull property="materialNr" prepend=",">
+                MaterialNr = #materialNr#
+            </isNotNull>
+            <isNotNull property="bestellBezeichnung" prepend=",">
+                BestellBezeichnung = #bestellBezeichnung#
+            </isNotNull>
+            <isNotNull property="menge" prepend=",">
+                Menge = #menge#
+            </isNotNull>
+            <isNotNull property="einheit" prepend=",">
+                Einheit = #einheit#
+            </isNotNull>
+            <isNotNull property="unitPreis" prepend=",">
+                UnitPreis = #unitPreis#
+            </isNotNull>
+            <isNotNull property="betrag" prepend=",">
+                Betrag = #betrag#
+            </isNotNull>
+            <isNotNull property="lieferant" prepend=",">
+                Lieferant = #lieferant#
+            </isNotNull>
+            <isNotNull property="einsAtzort" prepend=",">
+                EinsAtzort = #einsAtzort#
+            </isNotNull>
+            <isNotNull property="liefertermin" prepend=",">
+                Liefertermin = #liefertermin#
+            </isNotNull>
+            <isNotNull property="subjectCode" prepend=",">
+                SubjectCode = #subjectCode#
+            </isNotNull>
+            <isNotNull property="expenseCode" prepend=",">
+                ExpenseCode = #expenseCode#
+            </isNotNull>
+            <isNotNull property="notes" prepend=",">
+                Notes = #notes#
+            </isNotNull>
+            <isNotNull property="demandCode" prepend=",">
+                DemandCode = #demandCode#
+            </isNotNull>
+            <isNotNull property="typingDate" prepend=",">
+                TypingDate = #typingDate#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend=",">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="createUser" prepend=",">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend=",">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend=",">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend=",">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="version" prepend=",">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="materialNrWhere" prepend="and ">
+                MaterialNr = #materialNrWhere#
+            </isNotNull>
+            <isNotNull property="bestellBezeichnungWhere" prepend="and ">
+                BestellBezeichnung = #bestellBezeichnungWhere#
+            </isNotNull>
+            <isNotNull property="mengeWhere" prepend="and ">
+                Menge = #mengeWhere#
+            </isNotNull>
+            <isNotNull property="einheitWhere" prepend="and ">
+                Einheit = #einheitWhere#
+            </isNotNull>
+            <isNotNull property="unitPreisWhere" prepend="and ">
+                UnitPreis = #unitPreisWhere#
+            </isNotNull>
+            <isNotNull property="betragWhere" prepend="and ">
+                Betrag = #betragWhere#
+            </isNotNull>
+            <isNotNull property="lieferantWhere" prepend="and ">
+                Lieferant = #lieferantWhere#
+            </isNotNull>
+            <isNotNull property="einsAtzortWhere" prepend="and ">
+                EinsAtzort = #einsAtzortWhere#
+            </isNotNull>
+            <isNotNull property="lieferterminWhere" prepend="and ">
+                Liefertermin = #lieferterminWhere#
+            </isNotNull>
+            <isNotNull property="subjectCodeWhere" prepend="and ">
+                SubjectCode = #subjectCodeWhere#
+            </isNotNull>
+            <isNotNull property="expenseCodeWhere" prepend="and ">
+                ExpenseCode = #expenseCodeWhere#
+            </isNotNull>
+            <isNotNull property="notesWhere" prepend="and ">
+                Notes = #notesWhere#
+            </isNotNull>
+            <isNotNull property="demandCodeWhere" prepend="and ">
+                DemandCode = #demandCodeWhere#
+            </isNotNull>
+            <isNotNull property="typingDateWhere" prepend="and ">
+                TypingDate = #typingDateWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+    <!-- 批量插入处理 -->
+    <insert id="insertBatchs" parameterClass="java.util.List">
+        insert into werkzeugeanforderun(
+
+        DemandCode
+        ,MaterialNr
+        ,BestellBezeichnung
+        ,Menge
+        ,Einheit
+        ,UnitPreis
+        ,Betrag
+        ,Lieferant
+        ,EinsAtzort
+        ,Liefertermin
+        ,SubjectCode
+        ,ExpenseCode
+        ,Notes
+        ,TypingDate
+        ,DelFlag
+        ,CreateUser
+        ,CreateTime
+        )
+        Values
+        <iterate conjunction=",">
+            (
+            #list[].demandCode#
+            , #list[].materialNr#
+            ,#list[].bestellBezeichnung#
+            ,#list[].menge#
+            ,#list[].einheit#
+            ,#list[].unitPreis#
+            ,#list[].betrag#
+            ,#list[].lieferant#
+            ,#list[].einsAtzort#
+            ,#list[].liefertermin#
+            ,#list[].subjectCode#
+            ,#list[].expenseCode#
+            ,#list[].notes#
+            ,#list[].typingDate#
+            ,#list[].delFlag#
+            ,#list[].createUser#
+            ,#list[].createTime#
+            )
+        </iterate>
+
+    </insert>
+
+    <!-- 插入处理 -->
+    <insert id="insert" parameterClass="entityWerkzeugeanforderun">
+        insert into werkzeugeanforderun(
+        MaterialNr
+        ,BestellBezeichnung
+        ,Menge
+        ,Einheit
+        ,UnitPreis
+        ,Betrag
+        ,Lieferant
+        ,EinsAtzort
+        ,Liefertermin
+        ,SubjectCode
+        ,ExpenseCode
+        ,Notes
+        ,DemandCode
+        ,TypingDate
+        ,DelFlag
+        ,CreateUser
+        ,CreateTime
+        ,UpdateUser
+        ,UpdateTime
+        ,Version
+        )
+        Values (
+        <isNotNull property="materialNr">
+            #materialNr#
+        </isNotNull>
+        <isNull property="materialNr">
+            null
+        </isNull>
+        <isNotNull property="bestellBezeichnung">
+            ,#bestellBezeichnung#
+        </isNotNull>
+        <isNull property="bestellBezeichnung">
+            ,null
+        </isNull>
+        <isNotNull property="menge">
+            ,#menge#
+        </isNotNull>
+        <isNull property="menge">
+            ,null
+        </isNull>
+        <isNotNull property="einheit">
+            ,#einheit#
+        </isNotNull>
+        <isNull property="einheit">
+            ,null
+        </isNull>
+        <isNotNull property="unitPreis">
+            ,#unitPreis#
+        </isNotNull>
+        <isNull property="unitPreis">
+            ,null
+        </isNull>
+        <isNotNull property="betrag">
+            ,#betrag#
+        </isNotNull>
+        <isNull property="betrag">
+            ,null
+        </isNull>
+        <isNotNull property="lieferant">
+            ,#lieferant#
+        </isNotNull>
+        <isNull property="lieferant">
+            ,null
+        </isNull>
+        <isNotNull property="einsAtzort">
+            ,#einsAtzort#
+        </isNotNull>
+        <isNull property="einsAtzort">
+            ,null
+        </isNull>
+        <isNotNull property="liefertermin">
+            ,#liefertermin#
+        </isNotNull>
+        <isNull property="liefertermin">
+            ,null
+        </isNull>
+        <isNotNull property="subjectCode">
+            ,#subjectCode#
+        </isNotNull>
+        <isNull property="subjectCode">
+            ,null
+        </isNull>
+        <isNotNull property="expenseCode">
+            ,#expenseCode#
+        </isNotNull>
+        <isNull property="expenseCode">
+            ,null
+        </isNull>
+        <isNotNull property="notes">
+            ,#notes#
+        </isNotNull>
+        <isNull property="notes">
+            ,null
+        </isNull>
+        <isNotNull property="demandCode">
+            ,#demandCode#
+        </isNotNull>
+        <isNull property="demandCode">
+            ,null
+        </isNull>
+        <isNotNull property="typingDate">
+            ,#typingDate#
+        </isNotNull>
+        <isNull property="typingDate">
+            ,null
+        </isNull>
+        <isNotNull property="delFlag">
+            ,#delFlag#
+        </isNotNull>
+        <isNull property="delFlag">
+            ,null
+        </isNull>
+        <isNotNull property="createUser">
+            ,#createUser#
+        </isNotNull>
+        <isNull property="createUser">
+            ,null
+        </isNull>
+        <isNotNull property="createTime">
+            ,#createTime#
+        </isNotNull>
+        <isNull property="createTime">
+            ,null
+        </isNull>
+        <isNotNull property="updateUser">
+            ,#updateUser#
+        </isNotNull>
+        <isNull property="updateUser">
+            ,null
+        </isNull>
+        <isNotNull property="updateTime">
+            ,#updateTime#
+        </isNotNull>
+        <isNull property="updateTime">
+            ,null
+        </isNull>
+        <isNotNull property="version">
+            ,#version#
+        </isNotNull>
+        <isNull property="version">
+            ,null
+        </isNull>
+        )
+    </insert>
+
+    <!-- 任意条件删除处理 -->
+    <delete id="delete" parameterClass="entityWerkzeugeanforderun">
+        delete from werkzeugeanforderun
+        <dynamic prepend=" where ">
+            <isNotNull property="materialNrWhere" prepend="and ">
+                MaterialNr = #materialNrWhere#
+            </isNotNull>
+            <isNotNull property="bestellBezeichnungWhere" prepend="and ">
+                BestellBezeichnung = #bestellBezeichnungWhere#
+            </isNotNull>
+            <isNotNull property="mengeWhere" prepend="and ">
+                Menge = #mengeWhere#
+            </isNotNull>
+            <isNotNull property="einheitWhere" prepend="and ">
+                Einheit = #einheitWhere#
+            </isNotNull>
+            <isNotNull property="unitPreisWhere" prepend="and ">
+                UnitPreis = #unitPreisWhere#
+            </isNotNull>
+            <isNotNull property="betragWhere" prepend="and ">
+                Betrag = #betragWhere#
+            </isNotNull>
+            <isNotNull property="lieferantWhere" prepend="and ">
+                Lieferant = #lieferantWhere#
+            </isNotNull>
+            <isNotNull property="einsAtzortWhere" prepend="and ">
+                EinsAtzort = #einsAtzortWhere#
+            </isNotNull>
+            <isNotNull property="lieferterminWhere" prepend="and ">
+                Liefertermin = #lieferterminWhere#
+            </isNotNull>
+            <isNotNull property="subjectCodeWhere" prepend="and ">
+                SubjectCode = #subjectCodeWhere#
+            </isNotNull>
+            <isNotNull property="expenseCodeWhere" prepend="and ">
+                ExpenseCode = #expenseCodeWhere#
+            </isNotNull>
+            <isNotNull property="notesWhere" prepend="and ">
+                Notes = #notesWhere#
+            </isNotNull>
+            <isNotNull property="demandCodeWhere" prepend="and ">
+                DemandCode = #demandCodeWhere#
+            </isNotNull>
+            <isNotNull property="typingDateWhere" prepend="and ">
+                TypingDate = #typingDateWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+        </dynamic>
+    </delete>
+    <select id="searchByLists" resultMap="Werkzeugeanforderun-map">
+		SELECT
+		*
+		from werkzeugeanforderun we
+       where we.DelFlag='0'
+	</select>
+
+
+    <resultMap id="Werkzeugeanforderun-map-1" class="entityWerkzeugeanforderun">
+        <!-- 需求号 -->
+        <result property="demandCode" column="DemandCode"/>
+        <!-- 到货状态（0未全到货，1全部到货） -->
+        <result property="delFlag" column="DelFlag"/>
+    </resultMap>
+    <!--查询需求单号-只查询未全到货的信息  -->
+    <select id="findNoDemandCode" resultMap="Werkzeugeanforderun-map-1">
+           SELECT
+            aa.DemandCode AS DemandCode,
+            aa.DelFlag  AS DelFlag
+            FROM
+            (
+            SELECT
+            we.DemandCode,
+            we.DelFlag
+            FROM `werkzeugeanforderun` we
+            GROUP BY DemandCode,DelFlag
+            ORDER BY we.DelFlag
+            )aa
+            GROUP BY aa.DemandCode
+            HAVING aa.DelFlag = '0'
+	</select>
+
+    <!-- 删除原有的需求单号 -->
+    <delete id="deleteListByDemands" parameterClass="java.util.List">
+        DELETE
+        FROM
+        werkzeugeanforderun
+        where
+         DemandCode IN
+        <iterate conjunction="," open="(" close=")">
+            #[]#
+        </iterate>
+    </delete>
+
+
+</sqlMap>
+

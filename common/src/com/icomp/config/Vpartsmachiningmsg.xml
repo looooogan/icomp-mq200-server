@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Vpartsmachiningmsg.xml
+    Created on : 2016/06/13 16:54:39
+    Author : 工具自动生成
+    Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vpartsmachiningmsg">
+    <typeAlias alias="entityVpartsmachiningmsg" type="com.icomp.entity.base.Vpartsmachiningmsg"/>
+    <resultMap id="Vpartsmachiningmsg-map" class="entityVpartsmachiningmsg">
+        <!-- 零部件 -->
+        <result property="partsID" column="PartsID"/>
+        <!-- 卸下时间 -->
+        <result property="outerTime" column="OuterTime"/>
+        <!-- 刀具ID -->
+        <result property="toolID" column="ToolID"/>
+        <!-- 刀具编码 -->
+        <result property="toolCode" column="ToolCode"/>
+        <!-- 刀具分类(0刀具1辅具2配套9其他） -->
+        <result property="toolType" column="ToolType"/>
+        <!-- 消耗类别(0:可刃磨钻头1可刃磨刀片2一次性刀片9其他 -->
+        <result property="toolConsumetype" column="ToolConsumetype"/>
+        <!-- 修磨类别(0:厂内修磨，1厂外修磨，2厂外涂层 -->
+        <result property="toolGrinding" column="ToolGrinding"/>
+        <!-- 加工数量 -->
+        <result property="processAmount" column="ProcessAmount"/>
+        <!--  -->
+        <result property="avgFrequencyUse" column="avgFrequencyUse"/>
+        <!--  -->
+        <result property="usedCounts" column="usedCounts"/>
+        <!--  -->
+        <result property="stockCounts" column="stockCounts"/>
+        <!--  -->
+        <result property="activeCounts" column="activeCounts"/>
+        <!--  -->
+        <result property="goingNewCounts" column="goingNewCounts"/>
+        <!--  -->
+        <result property="goingOldCounts" column="goingOldCounts"/>
+        <!--  -->
+        <result property="procuresCycle" column="procuresCycle"/>
+        <!--  -->
+        <result property="purchaseCounts" column="purchaseCounts"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityVpartsmachiningmsg" resultMap="Vpartsmachiningmsg-map">
+        SELECT
+        PartsID
+        ,OuterTime
+        ,ToolID
+        ,ToolCode
+        ,ToolType
+        ,ToolConsumetype
+        ,ToolGrinding
+        ,ProcessAmount
+        ,avgFrequencyUse
+        ,usedCounts
+        ,stockCounts
+        ,activeCounts
+        ,goingNewCounts
+        ,goingOldCounts
+        ,procuresCycle
+        ,purchaseCounts
+        from vpartsmachiningmsg
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityVpartsmachiningmsg" resultMap="Vpartsmachiningmsg-map">
+        SELECT
+        PartsID
+        ,OuterTime
+        ,ToolID
+        ,ToolCode
+        ,ToolType
+        ,ToolConsumetype
+        ,ToolGrinding
+        ,ProcessAmount
+        ,avgFrequencyUse
+        ,usedCounts
+        ,stockCounts
+        ,activeCounts
+        ,goingNewCounts
+        ,goingOldCounts
+        ,procuresCycle
+        ,purchaseCounts
+        from vpartsmachiningmsg
+        <dynamic prepend=" where ">
+            <isNotNull property="partsID" prepend="and ">
+                PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="outerTime" prepend="and ">
+                OuterTime = #outerTime#
+            </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">ToolCode like concat('%',#toolCode#,'%')</isNotNull>
+            <isNotNull property="toolType" prepend="and ">
+                ToolType = #toolType#
+            </isNotNull>
+            <isNotNull property="toolConsumetype" prepend="and ">
+                ToolConsumetype = #toolConsumetype#
+            </isNotNull>
+            <isNotNull property="toolGrinding" prepend="and ">
+                ToolGrinding = #toolGrinding#
+            </isNotNull>
+            <isNotNull property="processAmount" prepend="and ">
+                ProcessAmount = #processAmount#
+            </isNotNull>
+            <isNotNull property="avgFrequencyUse" prepend="and ">
+                avgFrequencyUse = #avgFrequencyUse#
+            </isNotNull>
+            <isNotNull property="usedCounts" prepend="and ">
+                usedCounts = #usedCounts#
+            </isNotNull>
+            <isNotNull property="stockCounts" prepend="and ">
+                stockCounts = #stockCounts#
+            </isNotNull>
+            <isNotNull property="activeCounts" prepend="and ">
+                activeCounts = #activeCounts#
+            </isNotNull>
+            <isNotNull property="goingNewCounts" prepend="and ">
+                goingNewCounts = #goingNewCounts#
+            </isNotNull>
+            <isNotNull property="goingOldCounts" prepend="and ">
+                goingOldCounts = #goingOldCounts#
+            </isNotNull>
+            <isNotNull property="procuresCycle" prepend="and ">
+                procuresCycle = #procuresCycle#
+            </isNotNull>
+            <isNotNull property="purchaseCounts" prepend="and ">
+                purchaseCounts = #purchaseCounts#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityVpartsmachiningmsg" resultClass="int">
+        SELECT count(1)
+        from vpartsmachiningmsg
+        <dynamic prepend=" where ">
+            <isNotNull property="partsID" prepend="and ">
+                PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="outerTime" prepend="and ">
+                OuterTime = #outerTime#
+            </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">ToolCode like concat('%',#toolCode#,'%')</isNotNull>
+            <isNotNull property="toolType" prepend="and ">
+                ToolType = #toolType#
+            </isNotNull>
+            <isNotNull property="toolConsumetype" prepend="and ">
+                ToolConsumetype = #toolConsumetype#
+            </isNotNull>
+            <isNotNull property="toolGrinding" prepend="and ">
+                ToolGrinding = #toolGrinding#
+            </isNotNull>
+            <isNotNull property="processAmount" prepend="and ">
+                ProcessAmount = #processAmount#
+            </isNotNull>
+            <isNotNull property="avgFrequencyUse" prepend="and ">
+                avgFrequencyUse = #avgFrequencyUse#
+            </isNotNull>
+            <isNotNull property="usedCounts" prepend="and ">
+                usedCounts = #usedCounts#
+            </isNotNull>
+            <isNotNull property="stockCounts" prepend="and ">
+                stockCounts = #stockCounts#
+            </isNotNull>
+            <isNotNull property="activeCounts" prepend="and ">
+                activeCounts = #activeCounts#
+            </isNotNull>
+            <isNotNull property="goingNewCounts" prepend="and ">
+                goingNewCounts = #goingNewCounts#
+            </isNotNull>
+            <isNotNull property="goingOldCounts" prepend="and ">
+                goingOldCounts = #goingOldCounts#
+            </isNotNull>
+            <isNotNull property="procuresCycle" prepend="and ">
+                procuresCycle = #procuresCycle#
+            </isNotNull>
+            <isNotNull property="purchaseCounts" prepend="and ">
+                purchaseCounts = #purchaseCounts#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+
+    <!-- 按时间和零部件查询 -->
+    <select id="searchListByTime" parameterClass="entityVpartsmachiningmsg" resultMap="Vpartsmachiningmsg-map">
+        SELECT
+        ts.PartsID AS PartsID,
+        ts.OuterTime AS OuterTime,
+        t.ToolID AS ToolID,
+        t.ToolCode AS ToolCode,
+        t.ToolType AS ToolType,
+        t.ToolConsumetype AS ToolConsumetype,
+        t.ToolGrinding AS ToolGrinding,
+        SUM(ts.ProcessAmount) AS ProcessAmount,
+        ifnull((t.ToolCutNumber),1) AS avgFrequencyUse,
+        NULL AS usedCounts,
+        (SELECT ifnull(SUM(kn.KnifelnventoryNumber),0)FROM knifeinventory kn WHERE kn.ToolID = t.ToolID AND kn.DelFlag = '0') AS stockCounts,
+        (SELECT SpareKnifeSum+GrindingFactorySnum+StayExternalGrindingSum+ProductionLineSum FROM tooltransferTotal tot WHERE tot.ToolCode = t.ToolCode) activeCounts,
+        (select ProcuredCount from toolprocured  tpro where tpro.ToolCode = t.ToolCode ) AS goingNewCounts,
+        IF(otf.goingOldCounts,otf.goingOldCounts,'0') goingOldCounts,
+        NULL AS procuresCycle,
+        NULL AS purchaseCounts
+        FROM
+        toolsmachining ts
+        INNER JOIN tool t ON ts.ToolID = t.ToolID
+        LEFT JOIN  (
+        SELECT
+        CASE WHEN tool.ToolParametersType = '1' THEN SUM(ouf.numberGrinding)- (SUM(ouf.ReceiveNumber) - (select SUM(UsageCounter) from tooltransfer ttf WHERE ttf.ToolID = ouf.ToolID)/tool.ToolNumber)
+        ELSE (SUM(ouf.numberGrinding) - SUM(ouf.ReceiveNumber))/2 end goingOldCounts,
+        ouf.toolID
+        FROM
+        outsidefactory ouf
+        INNER JOIN tool tool ON ouf.ToolID = tool.ToolID
+        WHERE
+        ouf.toolID = tool.ToolID
+        AND ouf.repairState = '1'
+        GROUP BY ouf.ToolID ) otf on ts.toolID = otf.ToolID
+        WHERE ts.DelFlag = '0' AND t.ToolType = '0'
+        <isNotNull property="partsID" prepend="and ">
+            ts.PartsID = #partsID#
+        </isNotNull>
+        <isNotNull property="dateStar" prepend="and ">
+            <![CDATA[
+				ts.OuterTime  >=#dateStar#
+					]]>
+        </isNotNull>
+        <isNotNull property="dateEnd" prepend="and ">
+            <![CDATA[
+                ts.OuterTime<= #dateEnd#
+					]]>
+        </isNotNull>
+        <isNotNull property="toolID" prepend="and ">
+            ToolID = #toolID#
+        </isNotNull>
+        <isNotNull property="toolCode" prepend="and ">
+            ToolCode = #toolCode#
+        </isNotNull>
+        <isNotNull property="toolType" prepend="and ">
+            ToolType = #toolType#
+        </isNotNull>
+        <isNotNull property="toolConsumetype" prepend="and ">
+            ToolConsumetype = #toolConsumetype#
+        </isNotNull>
+        <isNotNull property="toolGrinding" prepend="and ">
+            ToolGrinding = #toolGrinding#
+        </isNotNull>
+        <isNotNull property="processAmount" prepend="and ">
+            ProcessAmount = #processAmount#
+        </isNotNull>
+        <isNotNull property="avgFrequencyUse" prepend="and ">
+            avgFrequencyUse = #avgFrequencyUse#
+        </isNotNull>
+        <isNotNull property="usedCounts" prepend="and ">
+            usedCounts = #usedCounts#
+        </isNotNull>
+        <isNotNull property="stockCounts" prepend="and ">
+            stockCounts = #stockCounts#
+        </isNotNull>
+        <isNotNull property="activeCounts" prepend="and ">
+            activeCounts = #activeCounts#
+        </isNotNull>
+        <isNotNull property="goingNewCounts" prepend="and ">
+            goingNewCounts = #goingNewCounts#
+        </isNotNull>
+        <isNotNull property="goingOldCounts" prepend="and ">
+            goingOldCounts = #goingOldCounts#
+        </isNotNull>
+        <isNotNull property="procuresCycle" prepend="and ">
+            procuresCycle = #procuresCycle#
+        </isNotNull>
+        <isNotNull property="purchaseCounts" prepend="and ">
+            purchaseCounts = #purchaseCounts#
+        </isNotNull>
+        <isNotNull property="groupString">
+            GROUP BY $groupString$
+        </isNotNull>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <select id="searchByCount1" parameterClass="entityVpartsmachiningmsg" resultClass="int">
+        SELECT
+        COUNT(1)
+        FROM
+        (
+        SELECT
+        ts.PartsID AS PartsID,
+        ts.OuterTime AS OuterTime,
+        t.ToolID AS ToolID,
+        t.ToolCode AS ToolCode,
+        t.ToolType AS ToolType,
+        t.ToolConsumetype AS ToolConsumetype,
+        t.ToolGrinding AS ToolGrinding,
+        SUM(ts.ProcessAmount) AS ProcessAmount,
+        (SELECT ifnull(AVG(UsageCounter),1) FROM scrap s WHERE s.toolID = t.ToolID) AS avgFrequencyUse,
+        NULL AS usedCounts,
+        (SELECT ifnull(SUM(kn.KnifelnventoryNumber),0)FROM knifeinventory kn WHERE kn.ToolID = t.ToolID AND kn.DelFlag = '0') AS stockCounts,
+        (SELECT COUNT(1) FROM tooltransfer tt WHERE tt.ToolID = t.ToolID AND tt.DelFlag = '0' AND tt.StockState = '4') AS activeCounts,
+        (select ProcuredCount from toolprocured  tpro where tpro.ToolCode = t.ToolCode ) AS goingNewCounts,
+        (SELECT COUNT(1) FROM outsidefactory ouf WHERE ouf.toolID = t.ToolID AND ouf.repairState = '1' ) AS goingOldCounts,
+        NULL AS procuresCycle,
+        NULL AS purchaseCounts
+        FROM
+        toolsmachining ts
+        INNER JOIN tool t ON ts.ToolID = t.ToolID
+        WHERE ts.DelFlag = '0' AND t.ToolType = '0'
+        <isNotNull property="partsID" prepend="and ">
+            ts.PartsID = #partsID#
+        </isNotNull>
+        <isNotNull property="dateStar" prepend="and ">
+            <![CDATA[
+				ts.OuterTime  >=#dateStar#
+					]]>
+        </isNotNull>
+        <isNotNull property="dateEnd" prepend="and ">
+            <![CDATA[
+                ts.OuterTime<= #dateEnd#
+					]]>
+        </isNotNull>
+        <isNotNull property="toolID" prepend="and ">
+            ToolID = #toolID#
+        </isNotNull>
+        <isNotNull property="toolCode" prepend="and ">
+            ToolCode = #toolCode#
+        </isNotNull>
+        <isNotNull property="toolType" prepend="and ">
+            ToolType = #toolType#
+        </isNotNull>
+        <isNotNull property="toolConsumetype" prepend="and ">
+            ToolConsumetype = #toolConsumetype#
+        </isNotNull>
+        <isNotNull property="toolGrinding" prepend="and ">
+            ToolGrinding = #toolGrinding#
+        </isNotNull>
+        <isNotNull property="processAmount" prepend="and ">
+            ProcessAmount = #processAmount#
+        </isNotNull>
+        <isNotNull property="avgFrequencyUse" prepend="and ">
+            avgFrequencyUse = #avgFrequencyUse#
+        </isNotNull>
+        <isNotNull property="usedCounts" prepend="and ">
+            usedCounts = #usedCounts#
+        </isNotNull>
+        <isNotNull property="stockCounts" prepend="and ">
+            stockCounts = #stockCounts#
+        </isNotNull>
+        <isNotNull property="activeCounts" prepend="and ">
+            activeCounts = #activeCounts#
+        </isNotNull>
+        <isNotNull property="goingNewCounts" prepend="and ">
+            goingNewCounts = #goingNewCounts#
+        </isNotNull>
+        <isNotNull property="goingOldCounts" prepend="and ">
+            goingOldCounts = #goingOldCounts#
+        </isNotNull>
+        <isNotNull property="procuresCycle" prepend="and ">
+            procuresCycle = #procuresCycle#
+        </isNotNull>
+        <isNotNull property="purchaseCounts" prepend="and ">
+            purchaseCounts = #purchaseCounts#
+        </isNotNull>
+        <isNotNull property="groupString">
+            GROUP BY $groupString$
+        </isNotNull>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        )aa
+    </select>
+
+
+</sqlMap>
+

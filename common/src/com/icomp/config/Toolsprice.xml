@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Toolsprice.xml
+    Created on : 2016/09/03 09:55:10
+    Author : 工具自动生成
+    Description: 工具自动生成包含的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Toolsprice">
+    <typeAlias alias="entityToolsprice" type="com.icomp.entity.base.Toolsprice"/>
+    <resultMap id="Toolsprice-map" class="entityToolsprice">
+        <!-- 刀具id -->
+        <result property="toolID" column="ToolID"/>
+        <!-- 材料号 -->
+        <result property="toolCode" column="ToolCode"/>
+        <!-- 平均价 -->
+        <result property="avgPrices" column="avgPrices"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityToolsprice" resultMap="Toolsprice-map">
+        SELECT
+        ToolID
+        ,ToolCode
+        ,avgPrices
+        from toolsprice
+        <dynamic prepend=" where ">
+            <isNotNull property="toolID" prepend="and ">
+                ToolID = #toolID#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            ToolID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityToolsprice" resultMap="Toolsprice-map">
+        SELECT
+        ToolID
+        ,ToolCode
+        ,avgPrices
+        from toolsprice
+        <dynamic prepend=" where ">
+            <isNotNull property="toolID" prepend="and ">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">
+                ToolCode = #toolCode#
+            </isNotNull>
+            <isNotNull property="avgPrices" prepend="and ">
+                avgPrices = #avgPrices#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            ToolID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityToolsprice" resultClass="int">
+        SELECT count(1)
+        from toolsprice
+        <dynamic prepend=" where ">
+            <isNotNull property="toolID" prepend="and ">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">
+                ToolCode = #toolCode#
+            </isNotNull>
+            <isNotNull property="avgPrices" prepend="and ">
+                avgPrices = #avgPrices#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+    <!-- 任意条件更新处理(未指定字段更新为：null) -->
+    <update id="update" parameterClass="entityToolsprice">
+        update toolsprice
+        <dynamic prepend="set">
+            <isNotNull property="toolID">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNull property="toolID">
+                ToolID = null
+            </isNull>
+            <isNotNull property="toolCode">
+                ,ToolCode = #toolCode#
+            </isNotNull>
+            <isNull property="toolCode">
+                ,ToolCode = null
+            </isNull>
+            <isNotNull property="avgPrices">
+                ,avgPrices = #avgPrices#
+            </isNotNull>
+            <isNull property="avgPrices">
+                ,avgPrices = null
+            </isNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="toolIDWhere" prepend="and ">
+                ToolID = #toolIDWhere#
+            </isNotNull>
+            <isNotNull property="toolCodeWhere" prepend="and ">
+                ToolCode = #toolCodeWhere#
+            </isNotNull>
+            <isNotNull property="avgPricesWhere" prepend="and ">
+                avgPrices = #avgPricesWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 任意条件更新处理(未指定字段不更新) -->
+    <update id="updateNonQuery" parameterClass="entityToolsprice">
+        update toolsprice
+        <dynamic prepend="set">
+            <isNotNull property="toolID" prepend=",">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="toolCode" prepend=",">
+                ToolCode = #toolCode#
+            </isNotNull>
+            <isNotNull property="avgPrices" prepend=",">
+                avgPrices = #avgPrices#
+            </isNotNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="toolIDWhere" prepend="and ">
+                ToolID = #toolIDWhere#
+            </isNotNull>
+            <isNotNull property="toolCodeWhere" prepend="and ">
+                ToolCode = #toolCodeWhere#
+            </isNotNull>
+            <isNotNull property="avgPricesWhere" prepend="and ">
+                avgPrices = #avgPricesWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 插入处理 -->
+    <insert id="insert" parameterClass="entityToolsprice">
+        <selectKey resultClass="java.lang.String" keyProperty="toolID">
+            SELECT #toolID# as toolID FROM DUAL
+        </selectKey>
+        insert into toolsprice(
+        ToolID
+        ,ToolCode
+        ,avgPrices
+        )
+        Values (
+        <isNotNull property="toolID">
+            #toolID#
+        </isNotNull>
+        <isNull property="toolID">
+            null
+        </isNull>
+        <isNotNull property="toolCode">
+            ,#toolCode#
+        </isNotNull>
+        <isNull property="toolCode">
+            ,null
+        </isNull>
+        <isNotNull property="avgPrices">
+            ,#avgPrices#
+        </isNotNull>
+        <isNull property="avgPrices">
+            ,null
+        </isNull>
+        )
+    </insert>
+
+    <!-- 任意条件删除处理 -->
+    <delete id="delete" parameterClass="entityToolsprice">
+        delete from toolsprice
+        <dynamic prepend=" where ">
+            <isNotNull property="toolIDWhere" prepend="and ">
+                ToolID = #toolIDWhere#
+            </isNotNull>
+            <isNotNull property="toolCodeWhere" prepend="and ">
+                ToolCode = #toolCodeWhere#
+            </isNotNull>
+            <isNotNull property="avgPricesWhere" prepend="and ">
+                avgPrices = #avgPricesWhere#
+            </isNotNull>
+        </dynamic>
+    </delete>
+
+    <!-- 按照ToolID删除原来的信息 -->
+    <delete id="deleteAllByID" parameterClass="java.util.List">
+        delete from toolsprice
+        WHERE ToolID IN
+        <iterate conjunction="," open="(" close=")">
+            #[]#
+        </iterate>
+    </delete>
+
+
+    <!-- 数据批量插入 -->
+    <insert id="insertBatch" parameterClass="java.util.List">
+        insert into toolsprice(
+        ToolID
+        ,ToolCode
+        ,avgPrices
+        )
+        Values
+        <iterate conjunction=",">
+            (
+            #list[].toolID#
+            ,#list[].toolCode#
+            ,#list[].avgPrices#
+            )
+        </iterate>
+    </insert>
+
+</sqlMap>
+

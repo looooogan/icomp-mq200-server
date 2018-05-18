@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+        "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+    <settings cacheModelsEnabled="true" enhancementEnabled="true"
+              lazyLoadingEnabled="true" errorTracingEnabled="true" maxRequests="32"
+              maxSessions="10" maxTransactions="5" useStatementNamespaces="true"/>
+    <!-- 机构  -->
+    <sqlMap resource="com/icomp/config/Agency.xml"/>
+    <!-- 流水线  -->
+    <sqlMap resource="com/icomp/config/Assemblyline.xml"/>
+    <!-- 刀具借入-借出  -->
+    <sqlMap resource="com/icomp/config/Borrowinglending.xml"/>
+    <!-- 内置编码  -->
+    <sqlMap resource="com/icomp/config/Builtincode.xml"/>
+    <!-- 内置编码映射  -->
+    <sqlMap resource="com/icomp/config/Builtincodemapping.xml"/>
+    <!-- 业务流程  -->
+    <sqlMap resource="com/icomp/config/Business.xml"/>
+    <!-- 业务流  -->
+    <sqlMap resource="com/icomp/config/Businessflow.xml"/>
+    <!-- 业务-流程中间表  -->
+    <sqlMap resource="com/icomp/config/Businessflowlnk.xml"/>
+    <!-- 功能  -->
+    <sqlMap resource="com/icomp/config/Capability.xml"/>
+    <!-- 区分定义  -->
+    <sqlMap resource="com/icomp/config/Comlist.xml"/>
+    <!-- 用户表  -->
+    <sqlMap resource="com/icomp/config/Customer.xml"/>
+    <!-- 到货计划  -->
+    <sqlMap resource="com/icomp/config/Deliveryplan.xml"/>
+    <!-- 部门  -->
+    <sqlMap resource="com/icomp/config/Department.xml"/>
+    <!-- 系统显示项目配置(兼顾打印项目)  -->
+    <sqlMap resource="com/icomp/config/Displayeditemconfiguration.xml"/>
+    <!-- 部门-职务中间表  -->
+    <sqlMap resource="com/icomp/config/Dplink.xml"/>
+    <!-- 设备  -->
+    <sqlMap resource="com/icomp/config/Equipment.xml"/>
+    <!-- 手持机  -->
+    <sqlMap resource="com/icomp/config/Handset.xml"/>
+    <!-- 新刀库存表  -->
+    <sqlMap resource="com/icomp/config/Knifeinventory.xml"/>
+    <!-- 语言  -->
+    <sqlMap resource="com/icomp/config/Languagetable.xml"/>
+    <!-- 库位码  -->
+    <sqlMap resource="com/icomp/config/Librarycode.xml"/>
+    <!-- 加工履历（在刀具安上设备上需要记录当前合成刀与刀具的绑定关系）  -->
+    <sqlMap resource="com/icomp/config/Machiningexperience.xml"/>
+    <!-- 主键生成  -->
+    <sqlMap resource="com/icomp/config/Nextkeyvalue.xml"/>
+    <!-- 修复设备  -->
+    <sqlMap resource="com/icomp/config/Noticeequipment.xml"/>
+    <!-- 加工零部件  -->
+    <sqlMap resource="com/icomp/config/Parts.xml"/>
+    <!-- 职务-操作  -->
+    <sqlMap resource="com/icomp/config/Polink.xml"/>
+    <!-- 职务  -->
+    <sqlMap resource="com/icomp/config/Position.xml"/>
+    <!-- 工序  -->
+    <sqlMap resource="com/icomp/config/Process.xml"/>
+    <!-- 采购计划  -->
+    <sqlMap resource="com/icomp/config/Procurementplans.xml"/>
+    <!-- 快速查询临时表  -->
+    <sqlMap resource="com/icomp/config/Quicksearch.xml"/>
+    <!-- 换领申请  -->
+    <sqlMap resource="com/icomp/config/Redemptionapplied.xml"/>
+    <!-- 申领申请  -->
+    <sqlMap resource="com/icomp/config/Replacement.xml"/>
+    <!-- RFID载体  -->
+    <sqlMap resource="com/icomp/config/Rfidcontainer.xml"/>
+    <!-- 标签采购  -->
+    <sqlMap resource="com/icomp/config/Rfidpurchase.xml"/>
+    <!-- 系统-功能  -->
+    <sqlMap resource="com/icomp/config/Sclink.xml"/>
+    <!-- 货架基础表  -->
+    <sqlMap resource="com/icomp/config/Stack.xml"/>
+    <!-- 库存盘点  -->
+    <sqlMap resource="com/icomp/config/Stocking.xml"/>
+    <!-- 合成刀位置  -->
+    <sqlMap resource="com/icomp/config/Synthesiscutterlocation.xml"/>
+    <!-- 合成刀流转履历  -->
+    <sqlMap resource="com/icomp/config/Synthesisexperience.xml"/>
+    <!-- 合成刀库  -->
+    <sqlMap resource="com/icomp/config/Synthesisknife.xml"/>
+    <!-- 合成刀具参数  -->
+    <sqlMap resource="com/icomp/config/Synthesisparameters.xml"/>
+    <!-- 合成刀具加工  -->
+    <sqlMap resource="com/icomp/config/Synthesistoolsmachining.xml"/>
+    <!-- 系统  -->
+    <sqlMap resource="com/icomp/config/System.xml"/>
+    <!-- 日志  -->
+    <sqlMap resource="com/icomp/config/Systemlog.xml"/>
+    <!-- 刀具参数  -->
+    <sqlMap resource="com/icomp/config/Tool.xml"/>
+    <!-- 刀具告警参数-->
+    <sqlMap resource="com/icomp/config/Toolalarmparam.xml"/>
+    <!-- 刀具出库履历  -->
+    <sqlMap resource="com/icomp/config/Toollibraryhistory.xml"/>
+    <!-- 刀具修复履历  -->
+    <sqlMap resource="com/icomp/config/Toolnoticehistory.xml"/>
+    <!-- 刀具采购  -->
+    <sqlMap resource="com/icomp/config/Toolprocured.xml"/>
+    <!-- 刀具修复通知(需要领取人到库房领取)  -->
+    <sqlMap resource="com/icomp/config/Toolrepairnotice.xml"/>
+    <!-- 工具盘  -->
+    <sqlMap resource="com/icomp/config/Toolshelf.xml"/>
+    <!-- 工具盘位置信息  -->
+    <sqlMap resource="com/icomp/config/Toolshelflnk.xml"/>
+    <!-- 工具盘位置  -->
+    <sqlMap resource="com/icomp/config/Toolshelfplace.xml"/>
+    <!-- 刀具流转  -->
+    <sqlMap resource="com/icomp/config/Tooltransfer.xml"/>
+    <!-- 刀具流转履历  -->
+    <sqlMap resource="com/icomp/config/Tooltransferhistory.xml"/>
+    <!-- 刀具全生命周期  -->
+    <sqlMap resource="com/icomp/config/Toolwholelifecycle.xml"/>
+    <!-- 筒刀详细  -->
+    <sqlMap resource="com/icomp/config/Tubedetailinfo.xml"/>
+    <!-- 用户明细  -->
+    <sqlMap resource="com/icomp/config/Userdetail.xml"/>
+
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vagency.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vanalysisabnormalprocessing.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vanalysistoolfunds.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vassemblyline.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vbatchlist.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vbusiness.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vcaplist.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vcomlist.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vconsumptiontool.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vcostabsorption.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vcustomer.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vcuttingtoolstate.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vdepartment.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vdept.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vdisplayeditemconfiguration.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vequipment.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vgetbackworkshopmag.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vgetboxmessage.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vgetfacilitieslibrary.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vgetrenewalapplication.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vgetreturnfactorytool.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vgetsealedsafekeepingtool.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vgetsynthesistoolinfo.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vgettoolplate.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vgrantlist.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vgrindingquicksearch.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vgrindingrecord.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vgrindingworksummary.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vhandset.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vinspectionrecord.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vinventoryalarm.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vinventorystatus.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vknifeinventory.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vleavefactory.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vlibrarycode.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Voperationrecord.xml"/>
+    <!-- 零部件配置 -->
+    <sqlMap resource="com/icomp/config/Vparts.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vposition.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vpositions.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vprocess.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vprocessingabnormalalarm.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vprocessingtools.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vprocurementplans.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vproductiondesign.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vpurchaseplan.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vpurchasingorder.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vqualityinspection.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vrepairticket.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vreplacement.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vreplacesynthesis.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vscrapanalysis.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vstack.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vstocking.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vstockinglist.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vsuggestionpurchaseplan.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vsynthesisparameters.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vsystemlog.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vtool.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vtoolconsumptionquery.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vtoollist.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vtoolparam.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vtoolprocured.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vtoolquicksearch.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vtoolrealtimedistribution.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vtoolsetting.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vtoolstack.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vtoolsupplieranalysis.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vtransitalarm.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vtransitplan.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vtreasuryrepairtool.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vworkloadqueries.xml"/>
+    <!-- c01s011设备安上 -->
+    <sqlMap resource="com/icomp/config/Vputequipmenton.xml"/>
+    <!-- c01s013设备卸下 -->
+    <sqlMap resource="com/icomp/config/Vgetequipmentunloadingmsg.xml"/>
+    <!-- c01s014取得修复通知单刀具信息 -->
+    <sqlMap resource="com/icomp/config/Vgetrepairnoticetoolmsg.xml"/>
+    <!-- 取得刀具回库信息  -->
+    <sqlMap resource="com/icomp/config/Vgetbacktoollibrary.xml"/>
+    <!-- 取得刀具复磨按上信息  -->
+    <sqlMap resource="com/icomp/config/Vgetgrindingonmsg.xml"/>
+    <!-- 取得刃磨设备中刀具信息  -->
+    <sqlMap resource="com/icomp/config/Vgrindingtoolmsg.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vquerytoollist.xml"/>
+    <!-- 获取申请单列表详细信息  -->
+    <sqlMap resource="com/icomp/config/Vgetredemptionappdetailedmsg.xml"/>
+    <!-- 取得货架信息  -->
+    <sqlMap resource="com/icomp/config/Vgetshelfinformation.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vsynthesis.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vprocessamount.xml"/>
+    <!-- 合成刀流转参数id  -->
+    <sqlMap resource="com/icomp/config/Vsynthesisexperience.xml"/>
+    <!--	换领申请信息查询  -->
+    <sqlMap resource="com/icomp/config/Vredemptionapplied.xml"/>
+    <!-- 根据合成刀具RFID取得设备信息  -->
+    <sqlMap resource="com/icomp/config/Vgetequipmentnamebyrfid.xml"/>
+    <!-- 根据合成刀具RFID取得待收回合成刀具信息 -->
+    <sqlMap resource="com/icomp/config/Vgetbacktoolnamebyrfid.xml"/>
+    <!-- 取得修复刀具编码和数量  -->
+    <sqlMap resource="com/icomp/config/Vgettoolcodeandnumberbyid.xml"/>
+    <!-- 取得工具盘信息 -->
+    <sqlMap resource="com/icomp/config/Vgettoolshelfmessage.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vgetboxmessages.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/SubToolAvgToolSharpennum.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/SubToolProcessAmount.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/SubProductionDesign.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Productiondesign.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/SubAvgProcessAmount.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vgetsynthesistooldownmsg.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Voplink.xml"/>
+    <!-- 生产线关联  -->
+    <sqlMap resource="com/icomp/config/Oplink.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vtooldiscarde.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vtoolsupplier.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vtoolplancount.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vprice.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vreplacerfid.xml"/>
+    <!-- 专机领用申请  -->
+    <sqlMap resource="com/icomp/config/Ledplane.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vledplane.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vledplanelist.xml"/>
+    <!-- 工具盘VIEW  -->
+    <sqlMap resource="com/icomp/config/Vtoolshelf.xml"/>
+    <!-- VIEW  -->
+
+    <sqlMap resource="com/icomp/config/Vgetrenewalapplication_New.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vgetpositioncapability.xml"/>
+    <!-- 刀具盘信息  -->
+    <sqlMap resource="com/icomp/config/Vtoolplatemessagelist.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vgetsynthesisexperience.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vprocessingquickquery.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vredemptionappdetailedmsgnew.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vsynthesistoolsmachining.xml"/>
+    <!--库存预警-->
+    <sqlMap resource="com/icomp/config/Vtoolalarmparam.xml"/>
+    <!--报废 -->
+    <sqlMap resource="com/icomp/config/Scrap.xml"/>
+    <!--授权查询-->
+    <sqlMap resource="com/icomp/config/Authorization.xml"/>
+    <!--授权查询-->
+    <sqlMap resource="com/icomp/config/Vauthorization.xml"/>
+    <!-- 厂外修复商家 -->
+    <sqlMap resource="com/icomp/config/Merchants.xml"/>
+    <!--出库查询-->
+    <sqlMap resource="com/icomp/config/Vtoollibraryhistory.xml"/>
+    <!--厂内修磨-->
+    <sqlMap resource="com/icomp/config/Vtoolnoticehistory.xml"/>
+    <!--厂外修磨视图-->
+    <sqlMap resource="com/icomp/config/Voutsidefactory.xml"/>
+    <!--厂内修磨-->
+    <sqlMap resource="com/icomp/config/Outsidefactory.xml"/>
+    <!--报废原因分析-->
+    <sqlMap resource="com/icomp/config/Vscrap.xml"/>
+    <!--车间工作量汇总-->
+    <sqlMap resource="com/icomp/config/Vworkshopsummary.xml"/>
+    <!--加工异常预警-->
+    <sqlMap resource="com/icomp/config/Vtoolsmachining.xml"/>
+    <!--加工异常分析-->
+    <sqlMap resource="com/icomp/config/Vanalysis.xml"/>
+    <!--合成刀具状态查询-->
+    <sqlMap resource="com/icomp/config/Vsynthesiscondition.xml"/>
+    <sqlMap resource="com/icomp/config/TooltransferTotal.xml"/>
+    <!--轴表-->
+    <sqlMap resource="com/icomp/config/Axle.xml"/>
+    <!--刀具实时分布状况-->
+    <sqlMap resource="com/icomp/config/Distribution.xml"/>
+    <!--刀具占用分析-->
+    <sqlMap resource="com/icomp/config/Capitaltakes.xml"/>
+    <!--刀具消耗-->
+    <sqlMap resource="com/icomp/config/Vamortization.xml"/>
+    <!--成本摊销-->
+    <sqlMap resource="com/icomp/config/Vcostamortization.xml"/>
+    <!--采购查询-->
+    <sqlMap resource="com/icomp/config/Vtoolprocureds.xml"/>
+    <!-- 容器表 -->
+    <sqlMap resource="com/icomp/config/Containercarrier.xml"/>
+    <!-- 取得设备列表  -->
+    <sqlMap resource="com/icomp/config/Vgetequipmentlist.xml"/>
+    <!-- 取得修磨设备列表  -->
+    <sqlMap resource="com/icomp/config/Vgetnoticeequipmentlist.xml"/>
+    <!-- 取得刀具信息列表  -->
+    <sqlMap resource="com/icomp/config/Vgettoolinfolist.xml"/>
+    <!-- 取得合成刀具卸下设备信息列表  -->
+    <sqlMap resource="com/icomp/config/Vgetdownsynthistoolsmsg.xml"/>
+    <!-- 取得刀具绑定信息列表  -->
+    <sqlMap resource="com/icomp/config/Vgettoolbindinginfo.xml"/>
+    <!-- 快速查询刀具信息列表  -->
+    <sqlMap resource="com/icomp/config/Vgettoolinformation.xml"/>
+    <!-- 快速查询员工卡信息列表  -->
+    <sqlMap resource="com/icomp/config/Vgetuserinfo.xml"/>
+    <!-- 快速查询合成刀信息列表  -->
+    <sqlMap resource="com/icomp/config/Vgetsynthsisinfo.xml"/>
+    <!-- 快速查询合成刀流转信息列表  -->
+    <sqlMap resource="com/icomp/config/Vgetsynthsistooltransferinfo.xml"/>
+    <!-- 快速查询设备信息列表  -->
+    <sqlMap resource="com/icomp/config/Vgetequipmentinfo.xml"/>
+    <!-- 快速查询容器信息列表  -->
+    <sqlMap resource="com/icomp/config/Vgetcontainercarrierinfo.xml"/>
+    <!-- 流水线及设备列表  -->
+    <sqlMap resource="com/icomp/config/Vgetassequipmentlist.xml"/>
+    <!-- 库存新刀信息  -->
+    <sqlMap resource="com/icomp/config/Vknifeinventoryinfo.xml"/>
+    <!--中间表设备-->
+    <sqlMap resource="com/icomp/config/Voplinkdown.xml"/>
+    <!--取得合成刀具信息表-->
+    <sqlMap resource="com/icomp/config/Vgetsynsistoolmsg.xml"/>
+    <!-- 快速查询库位标签  -->
+    <sqlMap resource="com/icomp/config/Vgetinventorymsg.xml"/>
+    <!--预警-->
+    <sqlMap resource="com/icomp/config/Warning.xml"/>
+    <!--视图预警-->
+    <sqlMap resource="com/icomp/config/Vwarning.xml"/>
+    <!--查询员工信息-->
+    <sqlMap resource="com/icomp/config/Vgetcustomerinfo.xml"/>
+    <!--费单品初始化-->
+    <sqlMap resource="com/icomp/config/Vsingleproduct.xml"/>
+
+    <sqlMap resource="com/icomp/config/Toolsmachining.xml"/>
+    <sqlMap resource="com/icomp/config/SynthesisExchange.xml"/>
+    <!-- 刀具优化 -->
+    <sqlMap resource="com/icomp/config/Tooloptimization.xml"/>
+    <!--刀具需求单-->
+    <sqlMap resource="com/icomp/config/Werkzeugeanforderun.xml"/>
+    <!--快速查询库存新刀-->
+    <sqlMap resource="com/icomp/config/Vgetknifeinventoryinfo.xml"/>
+    <sqlMap resource="com/icomp/config/Vgetcustomermsg.xml"/>
+    <!--职务查找用户-->
+    <sqlMap resource="com/icomp/config/Vapplyuser.xml"/>
+    <!--激光码绑定-->
+    <sqlMap resource="com/icomp/config/Leasertabe.xml"/>
+    <!-- 查询砂轮信息  -->
+    <sqlMap resource="com/icomp/config/Vgetwheelinfo.xml"/>
+    <sqlMap resource="com/icomp/config/Vgetwheelsmachiningmsg.xml"/>
+    <!--入库履历查询-->
+    <sqlMap resource="com/icomp/config/Storagerecord.xml"/>
+    <!--采购计划-->
+    <sqlMap resource="com/icomp/config/Formulas.xml"/>
+    <!--授权开关-->
+    <sqlMap resource="com/icomp/config/Onoff.xml"/>
+    <sqlMap resource="com/icomp/config/Vtoolsop.xml"/>
+    <!-- VIEW  -->
+    <sqlMap resource="com/icomp/config/Vpartsmachiningmsg.xml"/>
+    <sqlMap resource="com/icomp/config/Vtoolshertool.xml"/>
+    <sqlMap resource="com/icomp/config/Toolsprice.xml"/>
+    <sqlMap resource="com/icomp/config/ToolChangehistory.xml"/>
+
+    <!--合成刀参数替换刀-->
+    <sqlMap resource="com/icomp/config/ToolReplace.xml"/>
+</sqlMapConfig>
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="icomp"
+  id="myeclipse.1395046950898"
+  context-root="/icomp"
+  j2ee-spec="5.0"
+  archive="icomp.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

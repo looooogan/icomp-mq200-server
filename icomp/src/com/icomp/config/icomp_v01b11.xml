@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="V01B11" extends="icomp-default">
+	     <!-- 用户管理页面初始化Action -->
+		<action name="B11S004" class="b11S004Action" method="initb11S004">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s004.jsp</result>
+		</action>
+		<!-- 修改组织结构列表选择 -->
+		<action name="changeAgency" class="b11S004Action" method="changeAgency">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s004.jsp</result>
+		</action>
+		<!-- 修改部门列表选择 -->
+		<action name="changeDepartment" class="b11S004Action" method="changeDepartment">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s004.jsp</result>
+		</action>
+		<!-- 取得用户(详细)信息 -->
+		<action name="userInfo" class="b11S004Action" method="userInfo">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s004.jsp</result>
+		</action>
+		<!-- 用户详细信息 -->
+		<action name="userDetail" class="b11S004Action" method="userDetail">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s004.jsp</result>
+		</action>
+		<!-- 添加用户信息 -->
+		<action name="userAdd" class="b11S004Action" method="userAdd">
+			<result name="success">/WEB-INF/jsp/v01b06/b11S004.jsp</result>
+		</action>
+		<!-- 编辑用户信息 -->
+		<action name="userEdit" class="b11S004Action" method="userEdit">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s004.jsp</result>
+		</action>
+		<!-- 删除用户信息 -->
+		<action name="userDelete" class="b11S004Action" method="userDelete">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s004.jsp</result>
+		</action>
+		
+		<!-- 角色管理页面初始化Action -->
+		<action name="B11S003" class="b11S003Action" method="initb11S003">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s003.jsp</result>
+		</action>
+		
+		<!-- 修改组织结构列表选择 -->
+		<action name="getAgency" class="b11S003Action" method="changeAgency">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s003.jsp</result>
+		</action>
+		<!-- 修改部门列表选择 -->
+		<action name="getDepartment" class="b11S003Action" method="changeDepartment">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s003.jsp</result>
+		</action>
+		<!-- 取得角色(详细)信息 -->
+		<action name="roleInfo" class="b11S003Action" method="roleInfo">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s003.jsp</result>
+		</action>
+		<!-- 添加角色信息 -->
+		<action name="roleAdd" class="b11S003Action" method="roleAdd">
+			<result name="success">/WEB-INF/jsp/v01b06/b11S003.jsp</result>
+		</action>
+		<!-- 编辑角色信息 -->
+		<action name="roleEdit" class="b11S003Action" method="roleEdit">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s003.jsp</result>
+		</action>
+		<!-- 删除角色信息 -->
+		<action name="roleDelete" class="b11S003Action" method="roleDelete">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s003.jsp</result>
+		</action>
+		
+		
+		<!-- 权限管理页面初始化Action -->
+		<action name="B11S001" class="b11S001Action" method="initb11S001">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s001.jsp</result>
+		</action>
+		<!-- 权限管理页面结构列表选择 -->
+		<action name="selAgency" class="b11S001Action" method="changeAgency">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s004.jsp</result>
+		</action>
+		<!-- 权限管理页面部门列表选择 -->
+		<action name="selDepartment" class="b11S001Action" method="changeDepartment">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s004.jsp</result>
+		</action>
+		<!-- 权限管理页面权限保存 -->
+		<action name="gruantSave" class="b11S001Action" method="gruantSave">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s004.jsp</result>
+		</action>
+		
+		
+			
+		<!-- 部门管理页面初始化Action -->
+		<action name="B11S002" class="b11S002Action" method="initb11S002">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s002.jsp</result>
+		</action>
+		<!-- 修改组织结构列表选择 -->
+		<action name="changeAgency" class="b11S002Action" method="changeAgency">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s002.jsp</result>
+		</action>
+		<!-- 删除部门信息 -->
+		<action name="departmentDelete" class="b11S002Action" method="departmentDelete">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s002.jsp</result>
+		</action>	
+		<!-- 取得部门信息 -->
+		<action name="departmentInfo" class="b11S002Action" method="departmentInfo">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s002.jsp</result>
+		</action>	
+		<!-- 编辑部门信息 -->
+		<action name="departmentEdit" class="b11S002Action" method="departmentEdit">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s002.jsp</result>
+		</action>	
+		<!-- 新建部门信息 -->
+		<action name="departmentAdd" class="b11S002Action" method="departmentAdd">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s002.jsp</result>
+		</action>
+
+
+
+
+
+		<!--刀具激光码绑定-->
+		<action name="B11S005" class="b11S005Action" method="initb11S005">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s005.jsp</result>
+		</action>
+		<action name="leaserEdit" class="b11S005Action" method="leaserEdit">
+			<result name="success">/WEB-INF/jsp/v01b11/b11s005.jsp</result>
+		</action>
+	</package>
+</struts>  

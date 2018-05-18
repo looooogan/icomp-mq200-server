@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vledplane.xml
+		Created on : 2014/11/27 16:35:10
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vledplane">
+	<typeAlias alias="entityVledplane" type="com.icomp.entity.base.Vledplane" />
+	<resultMap id="Vledplane-map" class="entityVledplane">
+		<!-- RFID标签ID -->
+		<result property="rfidCode" column="RfidCode" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 设备名称 -->
+		<result property="equipmentName" column="EquipmentName" />
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!--  -->
+		<result property="toolCount" column="ToolCount" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVledplane" resultMap="Vledplane-map">
+		SELECT
+		RfidCode
+		,ToolCode
+		,EquipmentName
+		,SynthesisParametersCode
+		,ToolCount
+		from vledplane
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVledplane" resultMap="Vledplane-map">
+		SELECT
+		RfidCode
+		,ToolCode
+		,EquipmentName
+		,SynthesisParametersCode
+		,ToolCount
+		from vledplane
+		<dynamic prepend=" where ">
+			<isNotNull property="rfidCode" prepend="and ">
+				RfidCode = #rfidCode#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="toolCount" prepend="and ">
+				ToolCount = #toolCount#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVledplane" resultClass="int">
+		SELECT count(1)
+		from vledplane
+		<dynamic prepend=" where ">
+			<isNotNull property="rfidCode" prepend="and ">
+				RfidCode = #rfidCode#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="toolCount" prepend="and ">
+				ToolCount = #toolCount#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

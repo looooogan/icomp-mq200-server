@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vsynthesistoolsmachining.xml
+		Created on : 2015/03/11 17:50:19
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vsynthesistoolsmachining">
+	<typeAlias alias="entityVsynthesistoolsmachining" type="com.icomp.entity.base.Vsynthesistoolsmachining" />
+	<resultMap id="Vsynthesistoolsmachining-map" class="entityVsynthesistoolsmachining">
+		<!-- 卸下时间 -->
+		<result property="outerTime" column="OuterTime" />
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="delflag" />
+		<!-- 设备ID -->
+		<result property="equipmentID" column="EquipmentID" />
+		<!-- 流水线ID -->
+		<result property="assemblyLineID" column="AssemblyLineID" />
+		<!-- 设备编码 -->
+		<result property="equipmentCode" column="EquipmentCode" />
+		<!-- 设备名称 -->
+		<result property="equipmentName" column="EquipmentName" />
+		<!-- 设备名称 -->
+		<result property="processAmount" column="ProcessAmount" />
+		<!-- 流水线编码 -->
+		<result property="assemblyLineCode" column="AssemblyLineCode" />
+		<!-- 流水线名称 -->
+		<result property="assemblyLineName" column="AssemblyLineName" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVsynthesistoolsmachining" resultMap="Vsynthesistoolsmachining-map">
+		SELECT
+		OuterTime
+		,SynthesisParametersCode
+		,delflag
+		,EquipmentID
+		,AssemblyLineID
+		,EquipmentCode
+		,EquipmentName
+		,AssemblyLineCode
+		,AssemblyLineName
+		,ProcessAmount
+		from vsynthesistoolsmachining
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVsynthesistoolsmachining" resultMap="Vsynthesistoolsmachining-map">
+		SELECT
+		OuterTime
+		,SynthesisParametersCode
+		,delflag
+		,EquipmentID
+		,AssemblyLineID
+		,EquipmentCode
+		,EquipmentName
+		,AssemblyLineCode
+		,AssemblyLineName
+		,ProcessAmount
+		from vsynthesistoolsmachining
+		<dynamic prepend=" where ">
+			<isNotNull property="outerTime" prepend="and ">
+				OuterTime = #outerTime#
+         </isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="delflag" prepend="and ">
+				delflag = #delflag#
+         </isNotNull>
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+			<isNotNull property="assemblyLineID" prepend="and ">
+				AssemblyLineID = #assemblyLineID#
+         </isNotNull>
+			<isNotNull property="equipmentCode" prepend="and ">
+				EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="assemblyLineCode" prepend="and ">
+				AssemblyLineCode = #assemblyLineCode#
+         </isNotNull>
+			<isNotNull property="assemblyLineName" prepend="and ">
+				AssemblyLineName = #assemblyLineName#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="year" >
+				GROUP BY date_format(OuterTime,'%Y')
+			</isNotNull>
+			<isNotNull property="month" >
+				GROUP BY date_format(OuterTime,'%Y-%m')
+			</isNotNull>
+			<isNotNull property="day" >
+				GROUP BY date_format(OuterTime,'%Y-%m-%d')
+			</isNotNull>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	<!-- 汇总查询执行 -->
+	<select id="searchSummaryByTime" parameterClass="entityVsynthesistoolsmachining" resultMap="Vsynthesistoolsmachining-map">
+		SELECT
+			OuterTime
+			,SynthesisParametersCode
+			,delflag
+			,EquipmentID
+			,AssemblyLineID
+			,EquipmentCode
+			,EquipmentName
+			,AssemblyLineCode
+			,AssemblyLineName
+			,SUM(ProcessAmount) as ProcessAmount
+		from vsynthesistoolsmachining
+		<dynamic prepend=" where ">
+		<isNotNull property="beginTime" prepend="and ">
+				   <![CDATA[
+				OuterTime >= #beginTime#
+        		  ]]>
+         </isNotNull>
+			<isNotNull property="endTime" prepend="and ">
+			   <![CDATA[
+				OuterTime <= #endTime#
+          		]]>
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				delflag = #delFlag#
+			</isNotNull>
+         </dynamic>
+			<isNotNull property="year" >
+				GROUP BY date_format(OuterTime,'%Y'),EquipmentID
+			</isNotNull>
+			<isNotNull property="month" >
+				GROUP BY date_format(OuterTime,'%Y-%m'),EquipmentID
+			</isNotNull>
+			<isNotNull property="day" >
+				GROUP BY date_format(OuterTime,'%Y-%m-%d'),EquipmentID
+			</isNotNull>
+			<isNotNull property="orderString">
+			order by $orderString$
+     		</isNotNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	
+	<!-- 汇总查询执行数量 -->
+	<select id="searchSummaryCount" parameterClass="entityVsynthesistoolsmachining" resultMap="Vsynthesistoolsmachining-map">
+		SELECT
+			OuterTime
+			,SynthesisParametersCode
+			,delflag
+			,EquipmentID
+			,AssemblyLineID
+			,EquipmentCode
+			,EquipmentName
+			,AssemblyLineCode
+			,AssemblyLineName
+			,SUM(ProcessAmount) as ProcessAmount
+		from vsynthesistoolsmachining
+		<dynamic prepend=" where ">
+			<isNotNull property="beginTime" prepend="and ">
+				   <![CDATA[
+				OuterTime >= #beginTime#
+        		  ]]>
+         </isNotNull>
+			<isNotNull property="endTime" prepend="and ">
+			   <![CDATA[
+				OuterTime <= #endTime#
+          		]]>
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+			</isNotNull>
+			</dynamic>
+			<isNotNull property="year" >
+				GROUP BY date_format(OuterTime,'%Y'),EquipmentID
+			</isNotNull>
+			<isNotNull property="month" >
+				GROUP BY date_format(OuterTime,'%Y-%m'),EquipmentID
+			</isNotNull>
+			<isNotNull property="day" >
+				GROUP BY date_format(OuterTime,'%Y-%m-%d'),EquipmentID
+			</isNotNull>
+				<isNotNull property="orderString">
+			order by $orderString$
+     		</isNotNull>
+	</select>
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVsynthesistoolsmachining" resultClass="int">
+		SELECT count(1)
+		from vsynthesistoolsmachining
+		<dynamic prepend=" where ">
+			<isNotNull property="outerTime" prepend="and ">
+				OuterTime = #outerTime#
+         </isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="delflag" prepend="and ">
+				delflag = #delflag#
+         </isNotNull>
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+			<isNotNull property="assemblyLineID" prepend="and ">
+				AssemblyLineID = #assemblyLineID#
+         </isNotNull>
+			<isNotNull property="equipmentCode" prepend="and ">
+				EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="assemblyLineCode" prepend="and ">
+				AssemblyLineCode = #assemblyLineCode#
+         </isNotNull>
+			<isNotNull property="assemblyLineName" prepend="and ">
+				AssemblyLineName = #assemblyLineName#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vcapability.xml
+		Created on : 2014/11/12 18:19:04
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vcapability">
+	<typeAlias alias="entityVcapability" type="com.icomp.entity.base.Vcapability" />
+	<resultMap id="Vcapability-map" class="entityVcapability">
+		<!-- 功能ID -->
+		<result property="capabilityID" column="CapabilityID" />
+		<!-- 语言编码 -->
+		<result property="languageCode" column="LanguageCode" />
+		<!-- 功能编码 -->
+		<result property="capabilityCode" column="CapabilityCode" />
+		<!-- 功能名称 -->
+		<result property="capabilityName" column="CapabilityName" />
+		<!-- 功能级别 -->
+		<result property="capabilityLevel" column="CapabilityLevel" />
+		<!-- 功能顺序 -->
+		<result property="capabilityOrder" column="CapabilityOrder" />
+		<!-- 归属区分(0:管理平台1:手持机9:手持机授权) -->
+		<result property="belongFlag" column="BelongFlag" />
+		<!-- 是否菜单(0是1否) -->
+		<result property="menuFlag" column="MenuFlag" />
+		<!-- 功能ID -->
+		<result property="upCapabilityID" column="upCapabilityID" />
+		<!-- 功能名称 -->
+		<result property="upCapabilityName" column="upCapabilityName" />
+		<!-- 功能级别 -->
+		<result property="upCapabilityLevel" column="upCapabilityLevel" />
+		<!-- 功能顺序 -->
+		<result property="upCapabilityOrder" column="upCapabilityOrder" />
+		<!-- 功能URL -->
+		<result property="capabilityUrl" column="CapabilityUrl" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVcapability" resultMap="Vcapability-map">
+		SELECT
+		CapabilityID
+		,LanguageCode
+		,CapabilityCode
+		,CapabilityName
+		,CapabilityLevel
+		,CapabilityOrder
+		,BelongFlag
+		,MenuFlag
+		,upCapabilityID
+		,upCapabilityName
+		,upCapabilityLevel
+		,upCapabilityOrder
+		,CapabilityUrl
+		,Version
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,DelFlag
+		from vcapability
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVcapability" resultMap="Vcapability-map">
+		SELECT
+		CapabilityID
+		,LanguageCode
+		,CapabilityCode
+		,CapabilityName
+		,CapabilityLevel
+		,CapabilityOrder
+		,BelongFlag
+		,MenuFlag
+		,upCapabilityID
+		,upCapabilityName
+		,upCapabilityLevel
+		,upCapabilityOrder
+		,CapabilityUrl
+		,Version
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,DelFlag
+		from vcapability
+		<dynamic prepend=" where ">
+			<isNotNull property="capabilityID" prepend="and ">
+				CapabilityID = #capabilityID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="capabilityCode" prepend="and ">
+				CapabilityCode = #capabilityCode#
+         </isNotNull>
+			<isNotNull property="capabilityName" prepend="and ">
+				CapabilityName = #capabilityName#
+         </isNotNull>
+			<isNotNull property="capabilityLevel" prepend="and ">
+				CapabilityLevel = #capabilityLevel#
+         </isNotNull>
+			<isNotNull property="capabilityOrder" prepend="and ">
+				CapabilityOrder = #capabilityOrder#
+         </isNotNull>
+			<isNotNull property="belongFlag" prepend="and ">
+				BelongFlag = #belongFlag#
+         </isNotNull>
+			<isNotNull property="menuFlag" prepend="and ">
+				MenuFlag = #menuFlag#
+         </isNotNull>
+			<isNotNull property="upCapabilityID" prepend="and ">
+				upCapabilityID = #upCapabilityID#
+         </isNotNull>
+			<isNotNull property="upCapabilityName" prepend="and ">
+				upCapabilityName = #upCapabilityName#
+         </isNotNull>
+			<isNotNull property="upCapabilityLevel" prepend="and ">
+				upCapabilityLevel = #upCapabilityLevel#
+         </isNotNull>
+			<isNotNull property="upCapabilityOrder" prepend="and ">
+				upCapabilityOrder = #upCapabilityOrder#
+         </isNotNull>
+			<isNotNull property="capabilityUrl" prepend="and ">
+				CapabilityUrl = #capabilityUrl#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVcapability" resultClass="int">
+		SELECT count(1)
+		from vcapability
+		<dynamic prepend=" where ">
+			<isNotNull property="capabilityID" prepend="and ">
+				CapabilityID = #capabilityID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="capabilityCode" prepend="and ">
+				CapabilityCode = #capabilityCode#
+         </isNotNull>
+			<isNotNull property="capabilityName" prepend="and ">
+				CapabilityName = #capabilityName#
+         </isNotNull>
+			<isNotNull property="capabilityLevel" prepend="and ">
+				CapabilityLevel = #capabilityLevel#
+         </isNotNull>
+			<isNotNull property="capabilityOrder" prepend="and ">
+				CapabilityOrder = #capabilityOrder#
+         </isNotNull>
+			<isNotNull property="belongFlag" prepend="and ">
+				BelongFlag = #belongFlag#
+         </isNotNull>
+			<isNotNull property="menuFlag" prepend="and ">
+				MenuFlag = #menuFlag#
+         </isNotNull>
+			<isNotNull property="upCapabilityID" prepend="and ">
+				upCapabilityID = #upCapabilityID#
+         </isNotNull>
+			<isNotNull property="upCapabilityName" prepend="and ">
+				upCapabilityName = #upCapabilityName#
+         </isNotNull>
+			<isNotNull property="upCapabilityLevel" prepend="and ">
+				upCapabilityLevel = #upCapabilityLevel#
+         </isNotNull>
+			<isNotNull property="upCapabilityOrder" prepend="and ">
+				upCapabilityOrder = #upCapabilityOrder#
+         </isNotNull>
+			<isNotNull property="capabilityUrl" prepend="and ">
+				CapabilityUrl = #capabilityUrl#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

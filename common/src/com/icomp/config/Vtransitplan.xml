@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vtransitplan.xml
+		Created on : 2014/10/10 16:11:50
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vtransitplan">
+	<typeAlias alias="entityVtransitplan" type="com.icomp.entity.base.Vtransitplan" />
+	<resultMap id="Vtransitplan-map" class="entityVtransitplan">
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 供应商 -->
+		<result property="toolSupplier" column="ToolSupplier" />
+		<!-- 品牌 -->
+		<result property="toolBrand" column="ToolBrand" />
+		<!-- 采购批次 -->
+		<result property="procuredBatch" column="ProcuredBatch" />
+		<!-- 采购数量 -->
+		<result property="procuredCount" column="ProcuredCount" />
+		<!--  -->
+		<result property="deliveryPlanID" column="DeliveryPlanID" />
+		<!-- 预计到货时间 -->
+		<result property="theyTime" column="TheyTime" />
+		<!-- 预计到货数量 -->
+		<result property="theyCount" column="TheyCount" />
+		<!-- 实际到货时间 -->
+		<result property="realityTheyTime" column="RealityTheyTime" />
+		<!-- 实际到货数量 -->
+		<result property="realityTheyCount" column="RealityTheyCount" />
+		<!-- 货品状态(0未到货1已到货2质检通过3质检未通过) -->
+		<result property="theyStatus" column="TheyStatus" />
+		<!-- 到货交接人 -->
+		<result property="transferPeople" column="TransferPeople" />
+		<!-- 采购单价 -->
+		<result property="unitPrice" column="UnitPrice" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVtransitplan" resultMap="Vtransitplan-map">
+		SELECT
+		ToolID
+		,ToolCode
+		,ToolSupplier
+		,ToolBrand
+		,ProcuredBatch
+		,ProcuredCount
+		,DeliveryPlanID
+		,TheyTime
+		,TheyCount
+		,RealityTheyTime
+		,RealityTheyCount
+		,TheyStatus
+		,TransferPeople
+		,UnitPrice
+		from vtransitplan
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVtransitplan" resultMap="Vtransitplan-map">
+		SELECT
+		ToolID
+		,ToolCode
+		,ToolSupplier
+		,ToolBrand
+		,ProcuredBatch
+		,ProcuredCount
+		,DeliveryPlanID
+		,TheyTime
+		,TheyCount
+		,RealityTheyTime
+		,RealityTheyCount
+		,TheyStatus
+		,TransferPeople
+		,UnitPrice
+		from vtransitplan
+		<dynamic prepend=" where ">
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolSupplier" prepend="and ">
+				ToolSupplier = #toolSupplier#
+         </isNotNull>
+			<isNotNull property="toolBrand" prepend="and ">
+				ToolBrand = #toolBrand#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="procuredCount" prepend="and ">
+				ProcuredCount = #procuredCount#
+         </isNotNull>
+			<isNotNull property="deliveryPlanID" prepend="and ">
+				DeliveryPlanID = #deliveryPlanID#
+         </isNotNull>
+			<isNotNull property="theyTime" prepend="and ">
+				TheyTime = #theyTime#
+         </isNotNull>
+			<isNotNull property="theyCount" prepend="and ">
+				TheyCount = #theyCount#
+         </isNotNull>
+			<isNotNull property="realityTheyTime" prepend="and ">
+				RealityTheyTime = #realityTheyTime#
+         </isNotNull>
+			<isNotNull property="realityTheyCount" prepend="and ">
+				RealityTheyCount = #realityTheyCount#
+         </isNotNull>
+			<isNotNull property="theyStatus" prepend="and ">
+				TheyStatus = #theyStatus#
+         </isNotNull>
+			<isNotNull property="transferPeople" prepend="and ">
+				TransferPeople = #transferPeople#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVtransitplan" resultClass="int">
+		SELECT count(1)
+		from vtransitplan
+		<dynamic prepend=" where ">
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolSupplier" prepend="and ">
+				ToolSupplier = #toolSupplier#
+         </isNotNull>
+			<isNotNull property="toolBrand" prepend="and ">
+				ToolBrand = #toolBrand#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="procuredCount" prepend="and ">
+				ProcuredCount = #procuredCount#
+         </isNotNull>
+			<isNotNull property="deliveryPlanID" prepend="and ">
+				DeliveryPlanID = #deliveryPlanID#
+         </isNotNull>
+			<isNotNull property="theyTime" prepend="and ">
+				TheyTime = #theyTime#
+         </isNotNull>
+			<isNotNull property="theyCount" prepend="and ">
+				TheyCount = #theyCount#
+         </isNotNull>
+			<isNotNull property="realityTheyTime" prepend="and ">
+				RealityTheyTime = #realityTheyTime#
+         </isNotNull>
+			<isNotNull property="realityTheyCount" prepend="and ">
+				RealityTheyCount = #realityTheyCount#
+         </isNotNull>
+			<isNotNull property="theyStatus" prepend="and ">
+				TheyStatus = #theyStatus#
+         </isNotNull>
+			<isNotNull property="transferPeople" prepend="and ">
+				TransferPeople = #transferPeople#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

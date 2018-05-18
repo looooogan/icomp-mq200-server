@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+<!-- 决策分析BUSINESS注入 -->
+
+	<!--  报废分析注入BUSINESS注入	-->
+	<bean id="b06s001Business"
+		class="com.icomp.v01b06.b06s001.business.impl.B06S001BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b06s001Service" ref="icompv01b06s001Service" />
+	</bean>
+
+	<!--  加工异常分析BUSINESS注入	-->
+	<bean id="b06s002Business"
+		class="com.icomp.v01b06.b06s002.business.impl.B06S002BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b06s002Service" ref="icompv01b06s002Service" />
+	</bean>
+
+	<!--  建议采购计划BUSINESS注入	-->
+	<bean id="b06s003Business"
+		class="com.icomp.v01b06.b06s003.business.impl.B06S003BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b06s003Service" ref="icompv01b06s003Service" />
+	</bean>
+
+	<!--  刀具供应商分析BUSINESS注入	-->
+	<bean id="b06s004Business"
+		class="com.icomp.v01b06.b06s004.business.impl.B06S004BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b06s004Service" ref="icompv01b06s004Service" />
+	</bean>
+
+	<!--  刀具实时分布状况BUSINESS注入	-->
+	<bean id="b06s005Business"
+		class="com.icomp.v01b06.b06s005.business.impl.B06S005BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b06s005Service" ref="icompv01b06s005Service" />
+	</bean>
+
+	<!--  定额执行情况分析BUSINESS注入	-->
+	<bean id="b06s006Business"
+		class="com.icomp.v01b06.b06s006.business.impl.B06S006BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b06s002Service" ref="icompv01b06s002Service" />
+	</bean>
+
+	<!-- 刀具消耗量分析 BUSINESS注入	-->
+	<bean id="b06s007Business" class="com.icomp.v01b06.b06s007.business.impl.B06S007BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b06s007Service" ref="icompv01b06s007Service" />
+	</bean>
+
+	<!--  刀具资金占用情况分析BUSINESS注入	-->
+	<bean id="b06s008Business"
+		class="com.icomp.v01b06.b06s008.business.impl.B06S008BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b06s008Service" ref="icompv01b06s008Service" />
+	</bean>
+
+	<!-- 成本摊销 BUSINESS注入	-->
+	<bean id="b06s009Business"
+		class="com.icomp.v01b06.b06s009.business.impl.B06S009BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b06s009Service" ref="icompv01b06s009Service" />
+	</bean>
+
+	<!-- 刀具报废 BUSINESS注入	-->
+	<bean id="b06s010Business"
+		class="com.icomp.v01b06.b06s010.business.impl.B06S010BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b06s010Service" ref="icompv01b06s010Service" />
+	</bean>
+
+
+<!-- 决策分析Service注入 -->
+
+	<!-- 报废分析注入Service注入 -->
+	<bean id="icompv01b06s001Service"
+		class="com.icomp.common.service.impl.icomp.v01b06.s001.ICOMPV01B06S001ServiceImpl">
+		<property name="vscrapanalysisDao" ref="vscrapanalysisDao" />
+		<property name="vscrapDao" ref="vscrapDao" />
+		<property name="businessDao" ref="businessDao" />
+
+
+	</bean>
+
+	<!-- 加工异常分析Service注入 -->
+	<bean id="icompv01b06s002Service"
+		class="com.icomp.common.service.impl.icomp.v01b06.s002.ICOMPV01B06S002ServiceImpl">
+		<property name="vanalysisabnormalprocessingDao" ref="vanalysisabnormalprocessingDao" />
+		<property name="vanalysisDao" ref="vanalysisDao" />
+		<property name="processDao" ref="processDao" />
+		<property name="partsDao"   ref="partsDao" />
+		<!--2017/09/19 宋王冉 追加↓↓↓　dazhong@YMSC-->
+		<property name="assemblylineDao"   ref="assemblylineDao" />
+		<!--2017/09/19 王冉 追加↓↓↓　dazhong@YMSC-->
+
+
+
+</bean>
+
+<!--建议采购计划 Service注入 -->
+	<bean id="icompv01b06s003Service"
+		class="com.icomp.common.service.impl.icomp.v01b06.s003.ICOMPV01B06S003ServiceImpl">
+		<property name="procurementplansDao" ref="procurementplansDao" />
+		<property name="displayeditemconfigurationDao" ref="displayeditemconfigurationDao" />
+		<property name="partsDao" ref="partsDao" />
+		<property name="knifeinventoryDao" ref="knifeinventoryDao" />		
+		<property name="comlistDao" ref="comlistDao" />
+		<property name="toolDao" ref="toolDao" />
+		<property name="tooltransferDao" ref="tooltransferDao" />
+		<property name="subToolAvgToolSharpennumDao" ref="subToolAvgToolSharpennumDao" />
+		<property name="subToolProcessAmountDao" ref="subToolProcessAmountDao" />
+		<property name="subProductionDesignDao" ref="subProductionDesignDao" />
+		<property name="subAvgProcessAmountDao" ref="subAvgProcessAmountDao" />
+	</bean>
+
+	<!-- 刀具供应商分析Service注入 -->
+	<bean id="icompv01b06s004Service"
+		class="com.icomp.common.service.impl.icomp.v01b06.s004.ICOMPV01B06S004ServiceImpl">
+		<property name="toolDao" ref="toolDao" />
+		<property name="tooltransferDao" ref="tooltransferDao" />
+		<property name="vtoolplancountDao" ref="vtoolplancountDao" />
+		<property name="vtoolsupplierDao" ref="vtoolsupplierDao" />
+		<property name="subAvgProcessAmountDao" ref="subAvgProcessAmountDao" />
+	</bean>
+
+	<!--刀具实时分布状况Service注入 -->
+	<bean id="icompv01b06s005Service"
+		class="com.icomp.common.service.impl.icomp.v01b06.s005.ICOMPV01B06S005ServiceImpl">
+		<property name="vtoolrealtimedistributionDao" ref="vtoolrealtimedistributionDao" />
+		<property name="distributionDao" ref="distributionDao"/>
+
+	</bean>
+
+	<!-- 定额执行情况分析Service注入 -->
+	<bean id="icompv01b06s006Service"
+		class="com.icomp.common.service.impl.icomp.v01b06.s006.ICOMPV01B06S006ServiceImpl">
+		<property name="vanalysisabnormalprocessingDao" ref="vanalysisabnormalprocessingDao" />
+	</bean>
+	<!-- 刀具消耗量分析Service注入 -->
+	<bean id="icompv01b06s007Service"
+		class="com.icomp.common.service.impl.icomp.v01b06.s007.ICOMPV01B06S007ServiceImpl">
+		<property name="vconsumptiontoolDao" ref="vconsumptiontoolDao" />
+	</bean>
+
+	<!-- 刀具资金占用情况分析Service注入 -->
+	<bean id="icompv01b06s008Service"
+		class="com.icomp.common.service.impl.icomp.v01b06.s008.ICOMPV01B06S008ServiceImpl">
+		<property name="vpriceDao" ref="vpriceDao" />
+		<property name="businessflowlnkDao" ref="businessflowlnkDao" />
+		<property name="businessDao" ref="businessDao" />
+		<property name="capitalTakesDao" ref="capitaltakesDao" />
+
+	</bean>
+
+	<!-- 成本摊销Service注入 -->
+	<bean id="icompv01b06s009Service"
+		class="com.icomp.common.service.impl.icomp.v01b06.s009.ICOMPV01B06S009ServiceImpl">
+		<property name="vcostabsorptionDao" ref="vcostabsorptionDao" />
+		<property name="vcostamortizationDao" ref="vcostamortizationDao" />
+		<property name="assemblylineDao" ref="assemblylineDao" />
+		<property name="axleDao" ref="axleDao"/>
+		<property name="processDao" ref="processDao"/>
+		<property name="partsDao" ref="partsDao"/>
+	</bean>
+
+	<!-- 刀具报废Service注入 -->
+	<bean id="icompv01b06s010Service"
+		class="com.icomp.common.service.impl.icomp.v01b06.s010.ICOMPV01B06S010ServiceImpl">
+		<property name="vtooldiscardeDao" ref="vtooldiscardeDao" />
+		<property name="tooltransferDao" ref="tooltransferDao" />
+	</bean>
+
+
+</beans>

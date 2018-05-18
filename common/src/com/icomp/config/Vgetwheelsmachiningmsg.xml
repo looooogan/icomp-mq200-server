@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vgetwheelsmachiningmsg.xml
+		Created on : 2016/05/28 15:40:43
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgetwheelsmachiningmsg">
+	<typeAlias alias="entityVgetwheelsmachiningmsg" type="com.icomp.entity.base.Vgetwheelsmachiningmsg" />
+	<resultMap id="Vgetwheelsmachiningmsg-map" class="entityVgetwheelsmachiningmsg">
+		<!-- 合成刀具参数ID -->
+		<result property="synthesisParametersID" column="SynthesisParametersID" />
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!-- 定额加工量 -->
+		<result property="quotaProcessingVolume" column="QuotaProcessingVolume" />
+		<!-- 组成类型(0刀片1钻头2复合刀具3热套类) -->
+		<result property="createType" column="CreateType" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="toolID" />
+		<!-- 刀具编码(应该装入合成刀的编码) -->
+		<result property="toolCode" column="ToolCode" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVgetwheelsmachiningmsg" resultMap="Vgetwheelsmachiningmsg-map">
+		SELECT
+		SynthesisParametersID
+		,SynthesisParametersCode
+		,QuotaProcessingVolume
+		,CreateType
+		,toolID
+		,ToolCode
+		from vgetwheelsmachiningmsg
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVgetwheelsmachiningmsg" resultMap="Vgetwheelsmachiningmsg-map">
+		SELECT
+		SynthesisParametersID
+		,SynthesisParametersCode
+		,QuotaProcessingVolume
+		,CreateType
+		,toolID
+		,ToolCode
+		from vgetwheelsmachiningmsg
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersID" prepend="and ">
+				SynthesisParametersID = #synthesisParametersID#
+         </isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="createType" prepend="and ">
+				CreateType = #createType#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				toolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVgetwheelsmachiningmsg" resultClass="int">
+		SELECT count(1)
+		from vgetwheelsmachiningmsg
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersID" prepend="and ">
+				SynthesisParametersID = #synthesisParametersID#
+         </isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="createType" prepend="and ">
+				CreateType = #createType#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				toolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

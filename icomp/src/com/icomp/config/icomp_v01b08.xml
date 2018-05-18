@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="V01B08" extends="icomp-default">
+		<!-- 初始化页面 -->
+		<action name="B08S*" class="b08S{1}Action" method="initb08S{1}">
+			<result>/WEB-INF/jsp/v01b08/b08s{1}.jsp</result>
+		</action>
+		<!--  新建功能ActionAction -->
+		<action name="capabilityAdd" class="b08S001Action" method="capabilityAdd">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s001.jsp</result>
+		</action>
+		<!-- 功能信息查询Action -->
+		<action name="capabilityInfo" class="b08S001Action" method="capabilityInfo">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s001.jsp</result>
+		</action>
+		<!-- 编辑功能Action -->
+		<action name="capablitiyEdit" class="b08S001Action" method="capablitiyEdit">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s001.jsp</result>
+		</action>
+		<!-- 删除功能Action -->
+		<action name="capabilityDel" class="b08S001Action" method="capabilityDel">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s001.jsp</result>
+		</action>
+
+
+		<!-- 删除功能Action -->
+		<action name="libraryCodeDelete" class="b08S002Action" method="libraryCodeDelete">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s002.jsp</result>
+		</action>
+
+		<!-- 内置编码信息查询Action -->
+		<action name="libraryCodeInfo" class="b08S002Action" method="libraryCodeInfo">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s002.jsp</result>
+		</action>
+		<action name="onOffch" class="b08S002Action" method="onOffch">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s002.jsp</result>
+		</action>
+
+		<!-- 编辑功能Action -->
+		<action name="libraryCodeEdit" class="b08S002Action" method="libraryCodeEdit">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s002.jsp</result>
+		</action>
+
+
+		<!-- 删除功能Action -->
+		<action name="languageTableDelete" class="b08S003Action" method="languageTableDelete">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s003.jsp</result>
+		</action>
+		<!-- 启用功能Action -->
+		<action name="languageStartUse" class="b08S003Action"
+			method="languageStartUse">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s003.jsp</result>
+		</action>
+		<!-- 取得待处理语言功能Action -->
+		<action name="languageTableInfo" class="b08S003Action" method="languageTableInfo">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s003.jsp</result>
+		</action>
+
+		<!-- 编辑功能Action -->
+		<action name="languageTableEdit" class="b08S003Action" method="languageTableEdit">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s003.jsp</result>
+		</action>
+
+		<!-- 新建功能Action -->
+		<action name="languageTableAdd" class="b08S003Action" method="languageTableAdd">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s003.jsp</result>
+		</action>
+
+
+		<!-- 删除功能Action -->
+		<action name="toolAlarmDelete" class="b08S004Action"
+			method="toolAlarmDelete">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s004.jsp</result>
+		</action>
+		<!-- 启用功能Action -->
+		<action name="toolAlarmStartUse" class="b08S004Action"
+			method="toolAlarmStartUse">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s004.jsp</result>
+		</action>
+		<!-- 取得待处理语言功能Action -->
+		<action name="toolAlarmInfo" class="b08S004Action" method="toolAlarmInfo">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s004.jsp</result>
+		</action>
+
+		<!-- 编辑功能Action -->
+		<action name="toolAlarmEdit" class="b08S004Action" method="toolAlarmEdit">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s004.jsp</result>
+		</action>
+
+		<!-- 新建功能Action -->
+		<action name="toolAlarmAdd" class="b08S004Action" method="toolAlarmAdd">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s004.jsp</result>
+		</action>
+
+		<!-- 新建功能Action -->
+		<action name="comlistAdd" class="b08S005Action" method="comlistAdd">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s005.jsp</result>
+		</action>
+
+		<!-- 删除功能Action -->
+		<action name="comlistDelete" class="b08S005Action" method="comlistDelete">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s005.jsp</result>
+		</action>
+
+		<!-- 取得待处理区分定义功能Action -->
+		<action name="comlistInfo" class="b08S005Action" method="comlistInfo">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s005.jsp</result>
+		</action>
+
+		<!-- 编辑功能Action -->
+		<action name="comlistEdit" class="b08S005Action" method="comlistEdit">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s005.jsp</result>
+		</action>
+
+		<!-- 删除功能Action -->
+		<action name="handSetDelete" class="b08S006Action" method="handSetDelete">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s006.jsp</result>
+		</action>
+
+		<!-- 新建功能Action -->
+		<action name="handSetAdd" class="b08S006Action" method="handSetAdd">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s006.jsp</result>
+		</action>
+
+		<!-- 取得待处理手持机功能Action -->
+		<action name="handSetInfo" class="b08S006Action" method="handSetInfo">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s006.jsp</result>
+		</action>
+
+		<!-- 编辑功能Action -->
+		<action name="handSetEdit" class="b08S006Action" method="handSetEdit">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s006.jsp</result>
+		</action>
+		
+		<!-- 删除功能Action -->
+		<action name="equipmentDelete" class="b08S007Action" method="equipmentDelete">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s007.jsp</result>
+		</action>
+
+		<!-- 新建功能Action -->
+		<action name="equipmentAdd" class="b08S007Action" method="equipmentAdd">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s007.jsp</result>
+		</action>
+		
+		<!-- 编辑设备的功能Action -->
+		<action name="equipmentEdit" class="b08S007Action" method="equipmentEdit">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s007.jsp</result>
+		</action>
+
+		<!-- 取得设备的功能Action -->
+		<action name="equipmentInfo" class="b08S007Action" method="equipmentInfo">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s007.jsp</result>
+		</action>
+
+		<!-- 删除功能Action -->
+		<action name="processDelete" class="b08S008Action" method="processDelete">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s008.jsp</result>
+		</action>
+
+		<!-- 新建功能Action -->
+		<action name="processAdd" class="b08S008Action" method="processAdd">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s008.jsp</result>
+		</action>
+
+		<!-- 取得待处理的零部件信息功能Action -->
+		<action name="processInfo" class="b08S008Action" method="processInfo">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s008.jsp</result>
+		</action>
+		<!-- 取得流水信息Action -->
+		<action name="assemblyLineInfo" class="b08S008Action" method="assemblyLineInfo">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s008.jsp</result>
+		</action>
+
+		<!-- 编辑功能Action -->
+		<action name="processEdit" class="b08S008Action" method="processEdit">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s008.jsp</result>
+		</action>
+		<!-- 添加流水线Action -->
+		<action name="assemblyLineAdd" class="b08S008Action" method="assemblyLineAdd">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s008.jsp</result>
+		</action>
+		<!-- 编辑流水线Action -->
+		<action name="assemblyLineEdit" class="b08S008Action" method="assemblyLineEdit">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s008.jsp</result>
+		</action>
+		
+		<!-- 取得流水线下的工序功能Action -->
+		<action name="changeAssemblyline" class="b08S008Action" method="changeAssemblyline">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s008.jsp</result>
+		</action>
+
+		<!-- 删除功能Action -->
+		<action name="partsDelete" class="b08S009Action" method="partsDelete">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s009.jsp</result>
+		</action>
+
+		<!-- 新建功能Action -->
+		<action name="partsAdd" class="b08S009Action" method="partsAdd">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s009.jsp</result>
+		</action>
+
+		<!-- 取得功能Action -->
+		<action name="productionDesignInfo" class="b08S010Action" method="productionDesignInfo">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s010.jsp</result>
+		</action>
+
+		<!-- 编辑功能Action -->
+		<action name="productionDesignEdit" class="b08S010Action" method="productionDesignEdit">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s010.jsp</result>
+		</action>
+
+		<!-- 新建功能Action -->
+		<action name="productionDesignAdd" class="b08S010Action" method="productionDesignAdd">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s010.jsp</result>
+		</action>
+
+		<!-- 取得待处理的零部件信息功能Action -->
+		<action name="partsInfo" class="b08S009Action" method="partsInfo">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s009.jsp</result>
+		</action>
+
+		<!-- 编辑功能Action -->
+		<action name="partsEdit" class="b08S009Action" method="partsEdit">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s009.jsp</result>
+		</action>
+		
+		<!-- 删除功能Action -->
+		<action name="stackDelete" class="b08S011Action" method="stackDelete">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s011.jsp</result>
+		</action>
+
+		<!-- 新建功能Action -->
+		<action name="stackAdd" class="b08S011Action" method="stackAdd">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s011.jsp</result>
+		</action>	
+		
+		<!-- 取得待处理库房货架配置功能Action -->
+		<action name="stackInfo" class="b08S011Action" method="stackInfo">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s011.jsp</result>
+		</action>
+		
+		<!-- 编辑功能Action -->
+		<action name="stackEdit" class="b08S011Action" method="stackEdit">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s011.jsp</result>
+		</action>
+		<!-- 零部件配置页面取得Action -->
+		<action name="assemblyLineInfo" class="b08S012Action" method="assemblyLineInfo">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s012.jsp</result>
+		</action>	
+		<!-- 零部件配置页面编辑Action -->
+		<action name="assemblyLineEdit" class="b08S012Action" method="assemblyLineEdit">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s012.jsp</result>
+		</action>	
+		<!-- 零部件配置页面新建Action -->
+		<action name="assemblyLineAdd" class="b08S012Action" method="assemblyLineAdd">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s012.jsp</result>
+		</action>	
+		<!-- 零部件配置页面删除Action -->
+		<action name="assemblyLineDelete" class="b08S012Action" method="assemblyLineDelete">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s012.jsp</result>
+		</action>	
+		
+		<action name="oplinkInfo" class="b08S013Action" method="oplinkInfo">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s013.jsp</result>
+		</action>
+		
+		<action name="oplinkEdit" class="b08S013Action" method="oplinkEdit">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s013.jsp</result>
+		</action>
+		
+		<action name="oplinkAdd" class="b08S013Action" method="oplinkAdd">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s013.jsp</result>
+		</action>
+		
+		<action name="oplinkDelete" class="b08S013Action" method="oplinkDelete">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s013.jsp</result>
+		</action>
+		<action name="prossAndBuss8" class="b08S013Action" method="prossAndBuss8">
+
+		</action>
+		
+		<!-- 新建刀具盘 -->
+		<action name="toolshelfAdd" class="b08S014Action" method="toolshelfAdd">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s014.jsp</result>
+		</action>
+		
+		<!-- 删除刀具盘-->
+		<action name="toolshelfDelete" class="b08S014Action" method="toolshelfDelete">
+			<result name="success">/WEB-INF/jsp/v01b08/b08s014.jsp</result>
+		</action>
+	</package>
+</struts>  

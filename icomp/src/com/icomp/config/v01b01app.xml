@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+<!-- 库存信息 -->
+	<!-- 入库信息查询BUSINESS注入  star_001	-->
+		<!--  BUSINESS注入-->
+		<bean id="b01s001Business" class="com.icomp.v01b01.b01s001.business.impl.B01S001BusinessImpl">
+			<property name="service" ref="commonService"/>
+		 	<property name="icompv01b01s001Service" ref="icompv01b01s001Service"/>
+		</bean>
+		<!-- Service注入 -->
+		<bean id="icompv01b01s001Service" class="com.icomp.common.service.impl.icomp.v01b01.s001.ICOMPV01B01S001ServiceImpl">
+			<property name="vknifeinventoryDao" ref="vknifeinventoryDao"/>
+			<property name="storagerecordDao" ref="storagerecordDao"/>
+			<property name="userdetailDao" ref="userdetailDao"/>
+		</bean>
+	<!-- 入库信息查询BUSINESS注入  end_001	-->
+
+	<!-- 出库信息查询   star_002   -->
+		<!--  BUSINESS注入	-->
+		<bean id="b01s002Business"
+			class="com.icomp.v01b01.b01s002.business.impl.B01S002BusinessImpl">
+			<property name="service" ref="commonService" />
+			<property name="icompv01b01s002Service" ref="icompv01b01s002Service"></property>
+		</bean>
+		<!-- Service注入 -->
+		<bean id="icompv01b01s002Service" class="com.icomp.common.service.impl.icomp.v01b01.s002.ICOMPV01B01S002ServiceImpl" scope="prototype">
+			<property name="vtoollibraryhistoryDao" ref="vtoollibraryhistoryDao" />
+			<property name="userdetailDao" ref="userdetailDao" />
+		</bean>
+	<!-- 出库信息查询   end_002   -->
+
+
+	<!-- 待处理刀具信息查询  star_003   -->
+		<!--  BUSINESS注入	-->
+		<bean id="b01s003Business" class="com.icomp.v01b01.b01s003.business.impl.B01S003BusinessImpl">
+			<property name="service" ref="commonService" />
+			<property name="icompv01b01s003Service" ref="icompv01b01s003Service"></property>
+		</bean>
+		<!-- Service注入 -->
+		<bean id="icompv01b01s003Service" class="com.icomp.common.service.impl.icomp.v01b01.s003.ICOMPV01B01S003ServiceImpl" scope="prototype">
+			<property name="vprocessingtoolsDao" ref="vprocessingtoolsDao" />
+		</bean>
+	<!-- 待处理刀具信息查询   end_003   -->
+
+
+	<!-- 换领申请信息查询   star_004   -->
+		<!--  BUSINESS注入	-->
+		<bean id="b01s004Business"
+			class="com.icomp.v01b01.b01s004.business.impl.B01S004BusinessImpl">
+			<property name="service" ref="commonService" />
+			<property name="icompv01b01s004Service" ref="icompv01b01s004Service"></property>
+		</bean>
+		<!-- Service注入 -->
+		<bean id="icompv01b01s004Service" scope="prototype"
+			class="com.icomp.common.service.impl.icomp.v01b01.s004.ICOMPV01B01S004ServiceImpl">
+			<property name="redemptionappliedDao" ref="redemptionappliedDao" />
+			<property name="vredemptionappliedDao" ref="vredemptionappliedDao" />
+			<property name="userdetailDao" ref="userdetailDao" />
+		</bean>
+	<!-- 换领申请信息查询   end_004   -->
+
+
+	<!-- 申请信息查询   star_005   -->
+		<!--  BUSINESS注入	-->
+		<bean id="b01s005Business"
+			class="com.icomp.v01b01.b01s005.business.impl.B01S005BusinessImpl">
+			<property name="service" ref="commonService" />
+			<property name="icompv01b01s005Service" ref="icompv01b01s005Service"></property>
+		</bean>
+		<!-- Service注入 -->
+		<bean id="icompv01b01s005Service"
+			class="com.icomp.common.service.impl.icomp.v01b01.s005.ICOMPV01B01S005ServiceImpl"
+			scope="prototype">
+			<property name="replacementDao" ref="vreplacementDao" />
+			<property name="replacementDaos" ref="replacementDao"/>
+			<property name="departmentDao" ref="departmentDao" />
+			<property name="vapplyuserDao" ref="vapplyuserDao" />
+			<property name="userdetailDao" ref="userdetailDao" />
+			<property name="toolDao" ref="toolDao" />
+			<property name="customerDao" ref="customerDao" />
+			<!--<property name="knifeinventoryDao" ref="knifeinventoryDao" />-->
+
+		</bean>
+	<!-- 申请信息查询   end_005   -->
+
+
+
+	<!-- 更替刀具库存查询   star_006   -->
+		<!--  BUSINESS注入	-->
+		<bean id="b01s006Business"
+			class="com.icomp.v01b01.b01s006.business.impl.B01S006BusinessImpl">
+			<property name="service" ref="commonService" />
+			<property name="icompv01b01s006Service" ref="icompv01b01s006Service"></property>
+		</bean>
+		<!-- Service注入 -->
+		<bean id="icompv01b01s006Service"
+			class="com.icomp.common.service.impl.icomp.v01b01.s006.ICOMPV01B01S006ServiceImpl"
+			scope="prototype">
+			<property name="vreplacesynthesisDao" ref="vreplacesynthesisDao" />
+		</bean>
+	<!-- 更替刀具库存查询   end_006   -->
+
+
+	<!-- 在途计划查询   star_007   -->
+		<!--  BUSINESS注入	-->
+		<bean id="b01s007Business"
+			class="com.icomp.v01b01.b01s007.business.impl.B01S007BusinessImpl">
+			<property name="service" ref="commonService" />
+			<property name="icompv01b01s007Service" ref="icompv01b01s007Service"/>
+		</bean>
+		<!-- Service注入 -->
+		<bean id="icompv01b01s007Service"
+			class="com.icomp.common.service.impl.icomp.v01b01.s007.ICOMPV01B01S007ServiceImpl"
+			scope="prototype">
+			<property name="vtransitplanDao" ref="vtransitplanDao" />
+			<property name="deliveryplanDao" ref="deliveryplanDao" />
+		</bean>
+	<!-- 在途计划查询   end_007   -->
+
+	<!-- 采购计划查询   star_008   -->
+		<!--  BUSINESS注入	-->
+		<bean id="b01s008Business" class="com.icomp.v01b01.b01s008.business.impl.B01S008BusinessImpl">
+			<property name="service" ref="commonService"/>
+			<property name="icompv01b01s008Service" ref="icompv01b01s008Service"/>
+		</bean>
+		<!-- Service注入 -->
+		<bean id="icompv01b01s008Service" class="com.icomp.common.service.impl.icomp.v01b01.s008.ICOMPV01B01S008ServiceImpl" scope="prototype">
+			<property name="vpurchaseplanDao" ref="vpurchaseplanDao" />
+		</bean>
+	<!-- 采购计划查询   end_008   -->
+
+
+	<!-- 采购计划查询   star_009   -->
+		<!--  BUSINESS注入	-->
+		<bean id="b01s009Business" class="com.icomp.v01b01.b01s009.business.impl.B11S009BusinessImpl">
+			<property name="service" ref="commonService"/>
+			<property name="icompv01b01s009Service" ref="icompv01b01s009Service"/>
+		</bean>
+		<!-- Service注入 -->
+		<bean id="icompv01b01s009Service" class="com.icomp.common.service.impl.icomp.v01b01.s009.ICOMPV01B01S009ServiceImpl" scope="prototype">
+			<property name="vinspectionrecordDao" ref="vinspectionrecordDao" />
+		</bean>
+	<!-- 采购计划查询   end_009   -->
+
+
+	<!-- 库存信息快速查询   star_010   -->
+		<!--  BUSINESS注入	-->
+		<bean id="b01s010Business" class="com.icomp.v01b01.b01s010.business.impl.B01S010BusinessImpl">
+			<property name="service" ref="commonService"/>
+			<property name="icompv01b01s010Service" ref="icompv01b01s010Service"/>
+		</bean>
+		<!-- Service注入 -->
+		<bean id="icompv01b01s010Service" class="com.icomp.common.service.impl.icomp.v01b01.s010.ICOMPV01B01S010ServiceImpl" scope="prototype">
+			<property name="vtoolquicksearchDao" ref="vtoolquicksearchDao" />
+			<property name="subToolProcessAmountDao" ref="subToolProcessAmountDao" />
+			<property name="subToolAvgToolSharpennumDao" ref="subToolAvgToolSharpennumDao" />
+		</bean>
+	<!-- 库存信息快速查询   end_010   -->
+
+
+	<!-- 在途计划报警   star_011   -->
+		<!--  BUSINESS注入	-->
+		<bean id="b01s011Business" class="com.icomp.v01b01.b01s011.business.impl.B01S011BusinessImpl">
+			<property name="service" ref="commonService"/>
+			<property name="icompv01b01s011Service" ref="icompv01b01s011Service"/>
+		</bean>
+		<!-- Service注入 -->
+		<bean id="icompv01b01s011Service" class="com.icomp.common.service.impl.icomp.v01b01.s011.ICOMPV01B01S011ServiceImpl" scope="prototype">
+			<property name="vtransitalarmDao" ref="vtransitalarmDao" />
+			<property name="toolalarmparamDao" ref="toolalarmparamDao"/>
+		</bean>
+	<!-- 在途计划报警   end_011   -->
+
+
+
+	<!-- 库存异常报警   star_012   -->
+		<!--  BUSINESS注入	-->
+		<bean id="b01s012Business"
+			class="com.icomp.v01b01.b01s012.business.impl.B01S012BusinessImpl">
+			<property name="service" ref="commonService" />
+			<property name="icompv01b01s012Service" ref="icompv01b01s012Service" />
+		</bean>
+		<!-- Service注入 -->
+		<bean id="icompv01b01s012Service"
+			class="com.icomp.common.service.impl.icomp.v01b01.s012.ICOMPV01B01S012ServiceImpl"
+			scope="prototype">
+			<property name="vinventoryalarmDao" ref="vinventoryalarmDao" />
+			<property name="subToolProcessAmountDao" ref="subToolProcessAmountDao" />
+			<property name="subToolAvgToolSharpennumDao" ref="subToolAvgToolSharpennumDao" />
+			<property name="vauthorizationDao" ref="vauthorizationDao" />
+			<property name="businessDao" ref="businessDao" />
+
+		</bean>
+	<!-- 库存异常报警   end_012   -->
+
+	<!-- 库存状况查询   star_013   -->
+		<!--  BUSINESS注入	-->
+		<bean id="b01s013Business"
+			class="com.icomp.v01b01.b01s013.business.impl.B01S013BusinessImpl">
+			<property name="service" ref="commonService" />
+			<property name="icompv01b01s013Service" ref="icompv01b01s013Service" />
+		</bean>
+		<!-- Service注入 -->
+		<bean id="icompv01b01s013Service"
+			class="com.icomp.common.service.impl.icomp.v01b01.s013.ICOMPV01B01S013ServiceImpl"
+			scope="prototype">
+			<property name="vinventorystatusDao" ref="vinventorystatusDao" />
+			<property name="vtoolsopDao" ref="vtoolsopDao" />
+			<property name="userdetailDao" ref="userdetailDao" />
+		</bean>
+	<!-- 库存状况查询   end_013   -->
+	
+	<!-- 库存盘点查询   star_014   -->
+		<!--  BUSINESS注入	-->
+		<bean id="b01s014Business"
+			class="com.icomp.v01b01.b01s014.business.impl.B01S014BusinessImpl">
+			<property name="service" ref="commonService" />
+			<property name="icompv01b01s014Service" ref="icompv01b01s014Service" />
+		</bean>
+		<!-- Service注入 -->
+		<bean id="icompv01b01s014Service"
+			class="com.icomp.common.service.impl.icomp.v01b01.s014.ICOMPV01B01S014ServiceImpl"
+			scope="prototype">
+			<property name="vstockingDao" ref="vstockingDao" />
+			<property name="toolDao" ref="toolDao" />
+		</bean>
+	<!-- 库存盘点查询   end_014   -->
+
+	<!--  BUSINESS注入	-->
+	<bean id="b01s015Business"
+		  class="com.icomp.v01b01.b01s015.business.impl.B01S015BusinessImpl">
+		<property name="service" ref="commonService" />
+		<property name="icompv01b01s015Service" ref="icompv01b01s015Service" />
+	</bean>
+	<bean id="icompv01b01s015Service"
+		  class="com.icomp.common.service.impl.icomp.v01b01.s015.ICOMPV01B01S015ServiceImpl"
+		  scope="prototype">
+		<property name="toolChangehistoryDao" ref="toolChangehistoryDao" />
+		<property name="assemblylineDao" ref="assemblylineDao"/>
+		<property name="axleDao" ref="axleDao"/>
+		<property name="processDao" ref="processDao"/>
+		<property name="equipmentDao" ref="equipmentDao"/>
+		<property name="partsDao" ref="partsDao"/>
+	</bean>
+</beans>

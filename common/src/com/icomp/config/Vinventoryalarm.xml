@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vinventoryalarm.xml
+		Created on : 2014/11/17 09:29:24
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByList_F ： 任意条件查询-ToolCode模糊查询
+		searchByCount ：任意条件条数查询
+		searchByCount_F ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vinventoryalarm">
+	<typeAlias alias="entityVinventoryalarm" type="com.icomp.entity.base.Vinventoryalarm" />
+	<resultMap id="Vinventoryalarm-map" class="entityVinventoryalarm">
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 刀具名称 -->
+		<result property="toolName" column="ToolName" />
+		<!-- 刀具周转量 -->
+		<result property="toolTurnover" column="ToolTurnover" />
+		<!--  -->
+		<result property="inventoryCount" column="InventoryCount" />
+		<!--  -->
+		<result property="transferCount" column="TransferCount" />
+		<!--  -->
+		<result property="passageCount" column="PassageCount" />
+		<!--  -->
+		<result property="toolAlarmRatio" column="ToolAlarmRatio" />
+	</resultMap>
+	<resultMap class="java.util.HashMap" id="getItemsResult">
+		<result property="itemName" column="ToolCode"/>
+		<result property="itemValue" column="Counts"/>
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVinventoryalarm" resultMap="Vinventoryalarm-map">
+		SELECT
+		ToolID
+		,ToolCode
+		,ToolName
+		,ToolTurnover
+		,InventoryCount
+		,TransferCount
+		,PassageCount
+		,ToolAlarmRatio
+		from vinventoryalarm
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVinventoryalarm" resultMap="Vinventoryalarm-map">
+		SELECT
+		ToolID
+		,ToolCode
+		,ToolName
+		,ToolTurnover
+		,InventoryCount
+		,TransferCount
+		,PassageCount
+		,ToolAlarmRatio
+		from vinventoryalarm
+		<dynamic prepend=" where ">
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="toolTurnover" prepend="and ">
+				ToolTurnover = #toolTurnover#
+         </isNotNull>
+			<isNotNull property="inventoryCount" prepend="and ">
+				InventoryCount = #inventoryCount#
+         </isNotNull>
+			<isNotNull property="transferCount" prepend="and ">
+				TransferCount = #transferCount#
+         </isNotNull>
+			<isNotNull property="passageCount" prepend="and ">
+				PassageCount = #passageCount#
+         </isNotNull>
+			<isNotNull property="toolAlarmRatio" prepend="and ">
+				ToolAlarmRatio = #toolAlarmRatio#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList_F" parameterClass="entityVinventoryalarm" resultMap="Vinventoryalarm-map">
+		SELECT
+		ToolID
+		,ToolCode
+		,ToolName
+		,ToolTurnover
+		,InventoryCount
+		,TransferCount
+		,PassageCount
+		,ToolAlarmRatio
+		from vinventoryalarm
+		<dynamic prepend=" where ">
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode like concat('%',#$toolCode$#,'%')
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="toolTurnover" prepend="and ">
+				ToolTurnover = #toolTurnover#
+         </isNotNull>
+			<isNotNull property="inventoryCount" prepend="and ">
+				InventoryCount = #inventoryCount#
+         </isNotNull>
+			<isNotNull property="transferCount" prepend="and ">
+				TransferCount = #transferCount#
+         </isNotNull>
+			<isNotNull property="passageCount" prepend="and ">
+				PassageCount = #passageCount#
+         </isNotNull>
+			<isNotNull property="toolAlarmRatio" prepend="and ">
+				ToolAlarmRatio = #toolAlarmRatio#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVinventoryalarm" resultClass="int">
+		SELECT count(1)
+		from vinventoryalarm
+		<dynamic prepend=" where ">
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="toolTurnover" prepend="and ">
+				ToolTurnover = #toolTurnover#
+         </isNotNull>
+			<isNotNull property="inventoryCount" prepend="and ">
+				InventoryCount = #inventoryCount#
+         </isNotNull>
+			<isNotNull property="transferCount" prepend="and ">
+				TransferCount = #transferCount#
+         </isNotNull>
+			<isNotNull property="passageCount" prepend="and ">
+				PassageCount = #passageCount#
+         </isNotNull>
+			<isNotNull property="toolAlarmRatio" prepend="and ">
+				ToolAlarmRatio = #toolAlarmRatio#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount_F" parameterClass="entityVinventoryalarm" resultClass="int">
+		SELECT count(1)
+		from vinventoryalarm
+		<dynamic prepend=" where ">
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="toolTurnover" prepend="and ">
+				ToolTurnover = #toolTurnover#
+         </isNotNull>
+			<isNotNull property="inventoryCount" prepend="and ">
+				InventoryCount = #inventoryCount#
+         </isNotNull>
+			<isNotNull property="transferCount" prepend="and ">
+				TransferCount = #transferCount#
+         </isNotNull>
+			<isNotNull property="passageCount" prepend="and ">
+				PassageCount = #passageCount#
+         </isNotNull>
+			<isNotNull property="toolAlarmRatio" prepend="and ">
+				ToolAlarmRatio = #toolAlarmRatio#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+<select id="getTurnover" parameterClass="entityVinventoryalarm" resultMap="getItemsResult">
+		select 
+		b.ToolCode as ToolCode,
+		FLOOR(c.LoadCount/b.dates) as Counts
+		from
+		(
+			select a.ToolCode as ToolCode,
+			COUNT(a.dates) as dates
+			from (
+				select
+				tool.ToolCode,
+				left(MachiningExperience.UpdateTime ,10) as dates
+				from tool
+				LEFT JOIN ToolTransfer on ToolTransfer.ToolID = tool.ToolID
+				LEFT JOIN MachiningExperience on MachiningExperience.KnifeInventoryCode = ToolTransfer.KnifeInventoryCode
+				LEFT JOIN SynthesisToolsMachining on 		SynthesisToolsMachining.SynthesisNumber =	MachiningExperience.SynthesisNumber
+				WHERE tool.ToolType = '0' 
+				GROUP BY tool.ToolCode,left(MachiningExperience.UpdateTime ,10)
+			) as a
+			GROUP BY a.ToolCode
+		) as b
+		,(
+		select
+		tool.ToolCode,
+		count(tool.ToolCode) LoadCount 
+		from tool
+		LEFT JOIN ToolTransfer on ToolTransfer.ToolID = tool.ToolID
+		LEFT JOIN MachiningExperience on MachiningExperience.KnifeInventoryCode = ToolTransfer.KnifeInventoryCode
+		LEFT JOIN SynthesisToolsMachining on SynthesisToolsMachining.SynthesisNumber =	MachiningExperience.SynthesisNumber
+		WHERE tool.ToolType = '0' 
+		GROUP BY tool.ToolCode
+		)as c where b.ToolCode=c.ToolCode
+
+</select>
+
+</sqlMap>
+

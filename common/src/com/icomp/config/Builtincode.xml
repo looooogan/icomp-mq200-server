@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Builtincode.xml
+		Created on : 2014/08/19 15:48:44
+		Author : 工具自动生成
+		Description: 工具自动生成包含内置编码的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Builtincode">
+	<typeAlias alias="entityBuiltincode" type="com.icomp.entity.base.Builtincode" />
+	<resultMap id="Builtincode-map" class="entityBuiltincode">
+		<!-- 内置编码ID -->
+		<result property="builtInCodeID" column="BuiltInCodeID" />
+		<!-- 编码类型 -->
+		<result property="codeType" column="CodeType" />
+		<!-- 当前值 -->
+		<result property="oldkeyValue" column="OldkeyValue" />
+		<!-- 下一个值 -->
+		<result property="nextKeyValue" column="NextKeyValue" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+		<!-- 前缀 -->
+		<result property="prefix" column="Prefix" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityBuiltincode" resultMap="Builtincode-map">
+		SELECT
+		BuiltInCodeID
+		,CodeType
+		,OldkeyValue
+		,NextKeyValue
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		,Prefix
+		from builtincode
+		<dynamic prepend=" where ">
+			<isNotNull property="builtInCodeID" prepend="and ">
+				BuiltInCodeID = #builtInCodeID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					BuiltInCodeID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityBuiltincode" resultMap="Builtincode-map">
+		SELECT
+		BuiltInCodeID
+		,CodeType
+		,OldkeyValue
+		,NextKeyValue
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		,Prefix
+		from builtincode
+		<dynamic prepend=" where ">
+			<isNotNull property="builtInCodeID" prepend="and ">
+				BuiltInCodeID = #builtInCodeID#
+         </isNotNull>
+			<isNotNull property="codeType" prepend="and ">
+				CodeType = #codeType#
+         </isNotNull>
+			<isNotNull property="oldkeyValue" prepend="and ">
+				OldkeyValue = #oldkeyValue#
+         </isNotNull>
+			<isNotNull property="nextKeyValue" prepend="and ">
+				NextKeyValue = #nextKeyValue#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="prefix" prepend="and ">
+				Prefix = #prefix#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					BuiltInCodeID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityBuiltincode" resultClass="int">
+		SELECT count(1)
+		from builtincode
+		<dynamic prepend=" where ">
+			<isNotNull property="builtInCodeID" prepend="and ">
+				BuiltInCodeID = #builtInCodeID#
+         </isNotNull>
+			<isNotNull property="codeType" prepend="and ">
+				CodeType = #codeType#
+         </isNotNull>
+			<isNotNull property="oldkeyValue" prepend="and ">
+				OldkeyValue = #oldkeyValue#
+         </isNotNull>
+			<isNotNull property="nextKeyValue" prepend="and ">
+				NextKeyValue = #nextKeyValue#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="prefix" prepend="and ">
+				Prefix = #prefix#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityBuiltincode">
+		update builtincode
+		<dynamic prepend="set">
+			<isNotNull property="builtInCodeID">
+				BuiltInCodeID = #builtInCodeID#
+         </isNotNull>
+			<isNull property="builtInCodeID">
+				BuiltInCodeID = null
+         </isNull>
+			<isNotNull property="codeType">
+				,CodeType = #codeType#
+         </isNotNull>
+			<isNull property="codeType">
+				,CodeType = null
+         </isNull>
+			<isNotNull property="oldkeyValue">
+				,OldkeyValue = #oldkeyValue#
+         </isNotNull>
+			<isNull property="oldkeyValue">
+				,OldkeyValue = null
+         </isNull>
+			<isNotNull property="nextKeyValue">
+				,NextKeyValue = #nextKeyValue#
+         </isNotNull>
+			<isNull property="nextKeyValue">
+				,NextKeyValue = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+			<isNotNull property="prefix">
+				,Prefix = #prefix#
+         </isNotNull>
+			<isNull property="prefix">
+				,Prefix = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="builtInCodeIDWhere" prepend="and ">
+				BuiltInCodeID = #builtInCodeIDWhere#
+         </isNotNull>
+			<isNotNull property="codeTypeWhere" prepend="and ">
+				CodeType = #codeTypeWhere#
+         </isNotNull>
+			<isNotNull property="oldkeyValueWhere" prepend="and ">
+				OldkeyValue = #oldkeyValueWhere#
+         </isNotNull>
+			<isNotNull property="nextKeyValueWhere" prepend="and ">
+				NextKeyValue = #nextKeyValueWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+			<isNotNull property="prefixWhere" prepend="and ">
+				Prefix = #prefixWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityBuiltincode">
+		update builtincode
+		<dynamic prepend="set">
+			<isNotNull property="builtInCodeID"  prepend=",">
+				BuiltInCodeID = #builtInCodeID#
+         </isNotNull>
+			<isNotNull property="codeType"  prepend=",">
+				CodeType = #codeType#
+         </isNotNull>
+			<isNotNull property="oldkeyValue"  prepend=",">
+				OldkeyValue = #oldkeyValue#
+         </isNotNull>
+			<isNotNull property="nextKeyValue"  prepend=",">
+				NextKeyValue = #nextKeyValue#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="prefix"  prepend=",">
+				Prefix = #prefix#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="builtInCodeIDWhere" prepend="and ">
+				BuiltInCodeID = #builtInCodeIDWhere#
+         </isNotNull>
+			<isNotNull property="codeTypeWhere" prepend="and ">
+				CodeType = #codeTypeWhere#
+         </isNotNull>
+			<isNotNull property="oldkeyValueWhere" prepend="and ">
+				OldkeyValue = #oldkeyValueWhere#
+         </isNotNull>
+			<isNotNull property="nextKeyValueWhere" prepend="and ">
+				NextKeyValue = #nextKeyValueWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+			<isNotNull property="prefixWhere" prepend="and ">
+				Prefix = #prefixWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityBuiltincode">
+		<selectKey resultClass="java.lang.String" keyProperty="builtInCodeID">
+			SELECT #builtInCodeID# as builtInCodeID FROM DUAL
+     </selectKey>
+		insert into builtincode(
+		BuiltInCodeID
+		,CodeType
+		,OldkeyValue
+		,NextKeyValue
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		,Prefix
+		)
+		Values (
+			<isNotNull property="builtInCodeID">
+				#builtInCodeID#
+         </isNotNull>
+			<isNull property="builtInCodeID">
+				null
+         </isNull>
+			<isNotNull property="codeType">
+				,#codeType#
+         </isNotNull>
+			<isNull property="codeType">
+				,null
+         </isNull>
+			<isNotNull property="oldkeyValue">
+				,#oldkeyValue#
+         </isNotNull>
+			<isNull property="oldkeyValue">
+				,null
+         </isNull>
+			<isNotNull property="nextKeyValue">
+				,#nextKeyValue#
+         </isNotNull>
+			<isNull property="nextKeyValue">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+			<isNotNull property="prefix">
+				,#prefix#
+         </isNotNull>
+			<isNull property="prefix">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityBuiltincode">
+		delete  from builtincode
+		<dynamic prepend=" where ">
+			<isNotNull property="builtInCodeIDWhere" prepend="and ">
+				BuiltInCodeID = #builtInCodeIDWhere#
+         </isNotNull>
+			<isNotNull property="codeTypeWhere" prepend="and ">
+				CodeType = #codeTypeWhere#
+         </isNotNull>
+			<isNotNull property="oldkeyValueWhere" prepend="and ">
+				OldkeyValue = #oldkeyValueWhere#
+         </isNotNull>
+			<isNotNull property="nextKeyValueWhere" prepend="and ">
+				NextKeyValue = #nextKeyValueWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+			<isNotNull property="prefixWhere" prepend="and ">
+				Prefix = #prefixWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

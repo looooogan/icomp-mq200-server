@@ -1,0 +1,29 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="icomp:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/icomp_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="icomp/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="icomp" />
+          <element id="module-output" name="icomp_v01b12" />
+          <element id="module-output" name="common" />
+          <element id="module-output" name="icomp_v01b01" />
+          <element id="module-output" name="icomp_v01b02" />
+          <element id="module-output" name="icomp_v01b03" />
+          <element id="module-output" name="icomp_v01b04" />
+          <element id="module-output" name="icomp_v01b05" />
+          <element id="module-output" name="icomp_v01b06" />
+          <element id="module-output" name="icomp_v01b07" />
+          <element id="module-output" name="icomp_v01b08" />
+          <element id="module-output" name="icomp_v01b09" />
+          <element id="module-output" name="icomp_v01b10" />
+          <element id="module-output" name="icomp_v01b11" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="activation" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

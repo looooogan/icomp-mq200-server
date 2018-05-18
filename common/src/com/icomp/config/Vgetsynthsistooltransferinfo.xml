@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Vgetsynthsistooltransferinfo.xml
+    Created on : 2016/05/16 13:44:03
+    Author : 工具自动生成
+    Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgetsynthsistooltransferinfo">
+    <typeAlias alias="entityVgetsynthsistooltransferinfo" type="com.icomp.entity.base.Vgetsynthsistooltransferinfo"/>
+    <resultMap id="Vgetsynthsistooltransferinfo-map" class="entityVgetsynthsistooltransferinfo">
+        <!-- 合成刀具编码(系统唯一) -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+        <!-- 合成刀具参数ID -->
+        <result property="synthesisParametersID" column="SynthesisParametersID"/>
+        <!-- 加工数量 -->
+        <result property="processAmount" column="ProcessAmount"/>
+        <!-- 更新时间 -->
+        <result property="updateTime" column="UpdateTime"/>
+        <!--  -->
+        <result property="updateUser" column="UpdateUser"/>
+        <!--  -->
+        <result property="businessFlowLnkID" column="BusinessFlowLnkID"/>
+        <!-- 使用状态(0设备装入1设备卸下2回收旧刀3组装新刀4不合格送回5车间待安上)(该状态绑定到带标签的数据上) -->
+        <result property="loadState" column="LoadState"/>
+        <!-- RFID(辅具或配套上打孔安装的RFID) -->
+        <result property="rfid" column="Rfid"/>
+        <!-- 2017/09/14 王冉 追加↓↓↓　dazhong@YMSC -->
+        <result property="usageCounter" column="UsageCounter"/>
+        <!-- 2017/09/14 王冉 追加↑↑↑　dazhong@YMSC -->
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityVgetsynthsistooltransferinfo" resultMap="Vgetsynthsistooltransferinfo-map">
+        SELECT
+        SynthesisParametersCode
+        ,SynthesisParametersID
+        ,ProcessAmount
+        ,UpdateTime
+        ,UpdateUser
+        ,BusinessFlowLnkID
+        ,LoadState
+        ,Rfid
+        <!-- 2017/09/14 王冉 追加↓↓↓　dazhong@YMSC -->
+        ,UsageCounter
+        <!-- 2017/09/14 王冉 追加↑↑↑　dazhong@YMSC -->
+        from vgetsynthsistooltransferinfo
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+    <!-- 2017/09/14 王冉 追加↓↓↓　dazhong@YMSC -->
+    <resultMap id="Vgetsynthsistooltransferinfo-map2" class="entityVgetsynthsistooltransferinfo">
+        <!-- 合成刀具编码(系统唯一) -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+        <!-- 合成刀具参数ID -->
+        <result property="synthesisParametersID" column="SynthesisParametersID"/>
+        <!-- 加工数量 -->
+        <result property="processAmount" column="ProcessAmount"/>
+        <result property="processAmount2" column="ProcessAmount2"/>
+        <!-- 更新时间 -->
+        <result property="updateTime" column="UpdateTime"/>
+        <!--  -->
+        <result property="updateUser" column="UpdateUser"/>
+        <!--  -->
+        <result property="businessFlowLnkID" column="BusinessFlowLnkID"/>
+        <!-- 使用状态(0设备装入1设备卸下2回收旧刀3组装新刀4不合格送回5车间待安上)(该状态绑定到带标签的数据上) -->
+        <result property="loadState" column="LoadState"/>
+        <!-- RFID(辅具或配套上打孔安装的RFID) -->
+        <result property="rfid" column="Rfid"/>
+
+        <result property="usageCounter" column="UsageCounter"/>
+    </resultMap>
+    <!-- 2017/09/14 王冉 追加↑↑↑　dazhong@YMSC -->
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityVgetsynthsistooltransferinfo" resultMap="Vgetsynthsistooltransferinfo-map2">
+        SELECT
+        sk.SynthesisParametersCode AS SynthesisParametersCode,
+        sk.SynthesisParametersNumber AS SynthesisParametersID,
+        tt.ProcessAmount AS ProcessAmount,
+        tt.UpdateTime AS UpdateTime,
+        u.UserName AS UpdateUser,
+        tt.BusinessFlowLnkID AS BusinessFlowLnkID,
+        sk.LoadState AS LoadState,
+        sk.rFID AS Rfid
+        <!-- 2017/09/14 王冉 追加↓↓↓　dazhong@YMSC -->
+        ,tt.UsageCounter AS UsageCounter
+        ,(select ma.ProcessAmount from synthesistoolsmachining ma WHERE ma.RfidContainerID = sk.rFID ORDER BY ma.CreateTime DESC LIMIT 1) ProcessAmount2
+        <!-- 2017/09/14 王冉 追加↑↑↑　dazhong@YMSC -->
+        FROM synthesisknife sk
+        JOIN synthesisparameters sp ON sp.SynthesisParametersCode = sk.SynthesisParametersCode
+        JOIN tooltransfer tt ON tt.RfidContainerID = sk.rFID
+        JOIN userdetail u ON u.CustomerID = tt.UpdateUser
+        WHERE
+        tt.DelFlag = '0'
+        AND sk.DelFlag = '0'
+        AND sp.DelFlag = '0'
+        <isNotNull property="synthesisParametersCode" prepend="and ">
+            sk.SynthesisParametersCode = #synthesisParametersCode#
+        </isNotNull>
+        <isNotNull property="synthesisParametersID" prepend="and ">
+            sk. SynthesisParametersID = #synthesisParametersID#
+        </isNotNull>
+        <isNotNull property="processAmount" prepend="and ">
+            tt. ProcessAmount = #processAmount#
+        </isNotNull>
+        <isNotNull property="updateTime" prepend="and ">
+            tt. UpdateTime = #updateTime#
+        </isNotNull>
+        <isNotNull property="updateUser" prepend="and ">
+            u. UpdateUser = #updateUser#
+        </isNotNull>
+        <isNotNull property="businessFlowLnkID" prepend="and ">
+            tt. BusinessFlowLnkID = #businessFlowLnkID#
+        </isNotNull>
+        <isNotNull property="loadState" prepend="and ">
+            sk. LoadState = #loadState#
+        </isNotNull>
+        <isNotNull property="rfid" prepend="and ">
+            sk. Rfid = #rfid#
+        </isNotNull>
+        GROUP BY
+        sk.rFID
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityVgetsynthsistooltransferinfo" resultClass="int">
+        SELECT count(1)
+        from vgetsynthsistooltransferinfo
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCode#
+            </isNotNull>
+            <isNotNull property="synthesisParametersID" prepend="and ">
+                SynthesisParametersID = #synthesisParametersID#
+            </isNotNull>
+            <isNotNull property="processAmount" prepend="and ">
+                ProcessAmount = #processAmount#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="businessFlowLnkID" prepend="and ">
+                BusinessFlowLnkID = #businessFlowLnkID#
+            </isNotNull>
+            <isNotNull property="loadState" prepend="and ">
+                LoadState = #loadState#
+            </isNotNull>
+            <isNotNull property="rfid" prepend="and ">
+                Rfid = #rfid#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+</sqlMap>
+

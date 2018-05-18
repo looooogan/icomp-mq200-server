@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Procurementplans.xml
+		Created on : 2014/09/10 18:38:25
+		Author : 工具自动生成
+		Description: 工具自动生成包含采购计划的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Procurementplans">
+	<typeAlias alias="entityProcurementplans" type="com.icomp.entity.base.Procurementplans" />
+	<resultMap id="Procurementplans-map" class="entityProcurementplans">
+		<!-- 采购计划ID -->
+		<result property="procurementPlansID" column="ProcurementPlansID" />
+		<!-- 采购计划编号 -->
+		<result property="procurementPlansCode" column="ProcurementPlansCode" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 库存量 -->
+		<result property="inventory" column="Inventory" />
+		<!-- 生产计划(总数) -->
+		<result property="productionPlan" column="ProductionPlan" />
+		<!-- 计划周期(天数) -->
+		<result property="planningCycles" column="PlanningCycles" />
+		<!-- 加工效率(个/每天) -->
+		<result property="efficiency" column="Efficiency" />
+		<!-- 应采购数量 -->
+		<result property="procurementCount" column="ProcurementCount" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag2" column="DelFlag2" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityProcurementplans" resultMap="Procurementplans-map">
+		SELECT
+		ProcurementPlansID
+		,ProcurementPlansCode
+		,ToolID
+		,Inventory
+		,ProductionPlan
+		,PlanningCycles
+		,Efficiency
+		,ProcurementCount
+		,Version
+		,CreateTime
+		,CreateUser
+		,UpdateTime
+		,UpdateUser
+		,DelFlag
+		,DelFlag2
+		from procurementplans
+		<dynamic prepend=" where ">
+			<isNotNull property="procurementPlansID" prepend="and ">
+				ProcurementPlansID = #procurementPlansID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					ProcurementPlansID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityProcurementplans" resultMap="Procurementplans-map">
+		SELECT
+		ProcurementPlansID
+		,ProcurementPlansCode
+		,ToolID
+		,Inventory
+		,ProductionPlan
+		,PlanningCycles
+		,Efficiency
+		,ProcurementCount
+		,Version
+		,CreateTime
+		,CreateUser
+		,UpdateTime
+		,UpdateUser
+		,DelFlag
+		,DelFlag2
+		from procurementplans
+		<dynamic prepend=" where ">
+			<isNotNull property="procurementPlansID" prepend="and ">
+				ProcurementPlansID = #procurementPlansID#
+         </isNotNull>
+			<isNotNull property="procurementPlansCode" prepend="and ">
+				ProcurementPlansCode = #procurementPlansCode#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="inventory" prepend="and ">
+				Inventory = #inventory#
+         </isNotNull>
+			<isNotNull property="productionPlan" prepend="and ">
+				ProductionPlan = #productionPlan#
+         </isNotNull>
+			<isNotNull property="planningCycles" prepend="and ">
+				PlanningCycles = #planningCycles#
+         </isNotNull>
+			<isNotNull property="efficiency" prepend="and ">
+				Efficiency = #efficiency#
+         </isNotNull>
+			<isNotNull property="procurementCount" prepend="and ">
+				ProcurementCount = #procurementCount#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				CreateTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				CreateTime <= #dateEnd#
+				]]>
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="delFlag2" prepend="and ">
+				DelFlag2 = #delFlag2#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					ProcurementPlansID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityProcurementplans" resultClass="int">
+		SELECT count(1)
+		from procurementplans
+		<dynamic prepend=" where ">
+			<isNotNull property="procurementPlansID" prepend="and ">
+				ProcurementPlansID = #procurementPlansID#
+         </isNotNull>
+			<isNotNull property="procurementPlansCode" prepend="and ">
+				ProcurementPlansCode = #procurementPlansCode#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="inventory" prepend="and ">
+				Inventory = #inventory#
+         </isNotNull>
+			<isNotNull property="productionPlan" prepend="and ">
+				ProductionPlan = #productionPlan#
+         </isNotNull>
+			<isNotNull property="planningCycles" prepend="and ">
+				PlanningCycles = #planningCycles#
+         </isNotNull>
+			<isNotNull property="efficiency" prepend="and ">
+				Efficiency = #efficiency#
+         </isNotNull>
+			<isNotNull property="procurementCount" prepend="and ">
+				ProcurementCount = #procurementCount#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+         <isNotNull property="delFlag2" prepend="and ">
+				DelFlag2 = #delFlag2#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityProcurementplans">
+		update procurementplans
+		<dynamic prepend="set">
+			<isNotNull property="procurementPlansID">
+				ProcurementPlansID = #procurementPlansID#
+         </isNotNull>
+			<isNull property="procurementPlansID">
+				ProcurementPlansID = null
+         </isNull>
+			<isNotNull property="procurementPlansCode">
+				,ProcurementPlansCode = #procurementPlansCode#
+         </isNotNull>
+			<isNull property="procurementPlansCode">
+				,ProcurementPlansCode = null
+         </isNull>
+			<isNotNull property="toolID">
+				,ToolID = #toolID#
+         </isNotNull>
+			<isNull property="toolID">
+				,ToolID = null
+         </isNull>
+			<isNotNull property="inventory">
+				,Inventory = #inventory#
+         </isNotNull>
+			<isNull property="inventory">
+				,Inventory = null
+         </isNull>
+			<isNotNull property="productionPlan">
+				,ProductionPlan = #productionPlan#
+         </isNotNull>
+			<isNull property="productionPlan">
+				,ProductionPlan = null
+         </isNull>
+			<isNotNull property="planningCycles">
+				,PlanningCycles = #planningCycles#
+         </isNotNull>
+			<isNull property="planningCycles">
+				,PlanningCycles = null
+         </isNull>
+			<isNotNull property="efficiency">
+				,Efficiency = #efficiency#
+         </isNotNull>
+			<isNull property="efficiency">
+				,Efficiency = null
+         </isNull>
+			<isNotNull property="procurementCount">
+				,ProcurementCount = #procurementCount#
+         </isNotNull>
+			<isNull property="procurementCount">
+				,ProcurementCount = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+         <isNotNull property="delFlag2">
+				,DelFlag2 = #delFlag2#
+         </isNotNull>
+			<isNull property="delFlag2">
+				,DelFlag2 = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="procurementPlansIDWhere" prepend="and ">
+				ProcurementPlansID = #procurementPlansIDWhere#
+         </isNotNull>
+			<isNotNull property="procurementPlansCodeWhere" prepend="and ">
+				ProcurementPlansCode = #procurementPlansCodeWhere#
+         </isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				ToolID = #toolIDWhere#
+         </isNotNull>
+			<isNotNull property="inventoryWhere" prepend="and ">
+				Inventory = #inventoryWhere#
+         </isNotNull>
+			<isNotNull property="productionPlanWhere" prepend="and ">
+				ProductionPlan = #productionPlanWhere#
+         </isNotNull>
+			<isNotNull property="planningCyclesWhere" prepend="and ">
+				PlanningCycles = #planningCyclesWhere#
+         </isNotNull>
+			<isNotNull property="efficiencyWhere" prepend="and ">
+				Efficiency = #efficiencyWhere#
+         </isNotNull>
+			<isNotNull property="procurementCountWhere" prepend="and ">
+				ProcurementCount = #procurementCountWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+         <isNotNull property="delFlag2Where" prepend="and ">
+				DelFlag2 = #delFlag2Where#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityProcurementplans">
+		update procurementplans
+		<dynamic prepend="set">
+			<isNotNull property="procurementPlansID"  prepend=",">
+				ProcurementPlansID = #procurementPlansID#
+         </isNotNull>
+			<isNotNull property="procurementPlansCode"  prepend=",">
+				ProcurementPlansCode = #procurementPlansCode#
+         </isNotNull>
+			<isNotNull property="toolID"  prepend=",">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="inventory"  prepend=",">
+				Inventory = #inventory#
+         </isNotNull>
+			<isNotNull property="productionPlan"  prepend=",">
+				ProductionPlan = #productionPlan#
+         </isNotNull>
+			<isNotNull property="planningCycles"  prepend=",">
+				PlanningCycles = #planningCycles#
+         </isNotNull>
+			<isNotNull property="efficiency"  prepend=",">
+				Efficiency = #efficiency#
+         </isNotNull>
+			<isNotNull property="procurementCount"  prepend=",">
+				ProcurementCount = #procurementCount#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+         <isNotNull property="delFlag2"  prepend=",">
+				DelFlag2 = #delFlag2#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="procurementPlansIDWhere" prepend="and ">
+				ProcurementPlansID = #procurementPlansIDWhere#
+         </isNotNull>
+			<isNotNull property="procurementPlansCodeWhere" prepend="and ">
+				ProcurementPlansCode = #procurementPlansCodeWhere#
+         </isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				ToolID = #toolIDWhere#
+         </isNotNull>
+			<isNotNull property="inventoryWhere" prepend="and ">
+				Inventory = #inventoryWhere#
+         </isNotNull>
+			<isNotNull property="productionPlanWhere" prepend="and ">
+				ProductionPlan = #productionPlanWhere#
+         </isNotNull>
+			<isNotNull property="planningCyclesWhere" prepend="and ">
+				PlanningCycles = #planningCyclesWhere#
+         </isNotNull>
+			<isNotNull property="efficiencyWhere" prepend="and ">
+				Efficiency = #efficiencyWhere#
+         </isNotNull>
+			<isNotNull property="procurementCountWhere" prepend="and ">
+				ProcurementCount = #procurementCountWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+         <isNotNull property="delFlag2Where" prepend="and ">
+				DelFlag2 = #delFlag2Where#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityProcurementplans">
+		<selectKey resultClass="java.lang.String" keyProperty="procurementPlansID">
+			SELECT #procurementPlansID# as procurementPlansID FROM DUAL
+     </selectKey>
+		insert into procurementplans(
+		ProcurementPlansID
+		,ProcurementPlansCode
+		,ToolID
+		,Inventory
+		,ProductionPlan
+		,PlanningCycles
+		,Efficiency
+		,ProcurementCount
+		,Version
+		,CreateTime
+		,CreateUser
+		,UpdateTime
+		,UpdateUser
+		,DelFlag
+		,DelFlag2
+		)
+		Values (
+			<isNotNull property="procurementPlansID">
+				#procurementPlansID#
+         </isNotNull>
+			<isNull property="procurementPlansID">
+				null
+         </isNull>
+			<isNotNull property="procurementPlansCode">
+				,#procurementPlansCode#
+         </isNotNull>
+			<isNull property="procurementPlansCode">
+				,null
+         </isNull>
+			<isNotNull property="toolID">
+				,#toolID#
+         </isNotNull>
+			<isNull property="toolID">
+				,null
+         </isNull>
+			<isNotNull property="inventory">
+				,#inventory#
+         </isNotNull>
+			<isNull property="inventory">
+				,null
+         </isNull>
+			<isNotNull property="productionPlan">
+				,#productionPlan#
+         </isNotNull>
+			<isNull property="productionPlan">
+				,null
+         </isNull>
+			<isNotNull property="planningCycles">
+				,#planningCycles#
+         </isNotNull>
+			<isNull property="planningCycles">
+				,null
+         </isNull>
+			<isNotNull property="efficiency">
+				,#efficiency#
+         </isNotNull>
+			<isNull property="efficiency">
+				,null
+         </isNull>
+			<isNotNull property="procurementCount">
+				,#procurementCount#
+         </isNotNull>
+			<isNull property="procurementCount">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+         <isNotNull property="delFlag2">
+				,#delFlag2#
+         </isNotNull>
+			<isNull property="delFlag2">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityProcurementplans">
+		delete  from procurementplans
+		<dynamic prepend=" where ">
+			<isNotNull property="procurementPlansIDWhere" prepend="and ">
+				ProcurementPlansID = #procurementPlansIDWhere#
+         </isNotNull>
+			<isNotNull property="procurementPlansCodeWhere" prepend="and ">
+				ProcurementPlansCode = #procurementPlansCodeWhere#
+         </isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				ToolID = #toolIDWhere#
+         </isNotNull>
+			<isNotNull property="inventoryWhere" prepend="and ">
+				Inventory = #inventoryWhere#
+         </isNotNull>
+			<isNotNull property="productionPlanWhere" prepend="and ">
+				ProductionPlan = #productionPlanWhere#
+         </isNotNull>
+			<isNotNull property="planningCyclesWhere" prepend="and ">
+				PlanningCycles = #planningCyclesWhere#
+         </isNotNull>
+			<isNotNull property="efficiencyWhere" prepend="and ">
+				Efficiency = #efficiencyWhere#
+         </isNotNull>
+			<isNotNull property="procurementCountWhere" prepend="and ">
+				ProcurementCount = #procurementCountWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+<!-- 建议采购计划生成查询 	-->
+	<select id="searchByProcurementplans" parameterClass="com.icomp.entity.base.Parts" resultClass="com.icomp.entity.base.EntityProcurementplansWhere">
+		SELECT
+		DISTINCT
+		t.ToolID AS ToolID,
+		t.ToolCode AS ToolCode,
+		t.ToolName AS ToolName,
+		(SELECT COUNT(ki.KnifeInventoryCode)
+		FROM knifeinventory ki WHERE ki.ToolID = t.ToolID AND
+		ki.KnifeInventoryType != '4' AND ki.KnifeInventoryType != '5') AS
+		Inventory,
+		(SELECT SUM(a.ProcessAmount)/COUNT(a.ProcessAmount) AS ProcessAmount
+		FROM (SELECT AVG(stm.ProcessAmount) as ProcessAmount
+		FROM parts p INNER JOIN synthesisparameters sp ON p.PartsID = sp.PartsID
+		INNER JOIN synthesistoolsmachining stm ON stm.SynthesisParametersCode
+		= sp.SynthesisParametersCode
+		WHERE p.PartsID = p.PartsID GROUP BY day(stm.UpdateTime)) a
+		) AS Efficiency,
+		t.QuotaProcessingVolume AS QuotaProcessingVolume
+		FROM parts p
+		INNER JOIN synthesisparameters sp ON sp.PartsID = p.PartsID
+		INNER JOIN synthesiscutterlocation scl ON scl.SynthesisParametersID =
+		sp.SynthesisParametersID
+		INNER JOIN tool t ON t.ToolCode = scl.ToolCode
+	<dynamic prepend=" where ">
+	<isNotNull property="partsID">
+			p.PartsID = #partsID#
+         </isNotNull>
+	</dynamic>
+	</select>
+<!-- 批量插入 -->
+ <insert id="batchInsert" parameterClass="java.util.List" >
+	     insert into procurementplans(
+		 ProcurementPlansID
+		,ProcurementPlansCode
+		,ToolID
+		,Inventory
+		,ProductionPlan
+		,PlanningCycles
+		,Efficiency
+		,ProcurementCount
+		,Version
+		,CreateTime
+		,CreateUser
+		,DelFlag
+		) 
+	     values 
+	     <iterate  conjunction =","  > 
+	      (
+	         #list[].procurementPlansID#,
+	         #list[].procurementPlansCode#,
+	         #list[].toolID#,
+	         #list[].inventory#,
+	         #list[].productionPlan#,
+	         #list[].planningCycles#,
+	         #list[].efficiency#,
+	         #list[].procurementCount#,
+	         #list[].version#,
+	         #list[].createTime#,
+	         #list[].createUser#,
+	         #list[].delFlag#
+	     )
+	     </iterate > 
+	  
+  </insert >
+
+
+</sqlMap>
+

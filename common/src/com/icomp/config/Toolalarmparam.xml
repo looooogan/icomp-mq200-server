@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Toolalarmparam.xml
+		Created on : 2014/09/24 14:05:43
+		Author : 工具自动生成
+		Description: 工具自动生成包含刀具告警参数的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Toolalarmparam">
+	<typeAlias alias="entityToolalarmparam" type="com.icomp.entity.base.Toolalarmparam" />
+	<resultMap id="Toolalarmparam-map" class="entityToolalarmparam">
+		<!--  -->
+		<result property="toolAlarmParamID" column="ToolAlarmParamID" />
+		<!-- 告警类别(0库存异常报警1在途计划报警2加工异常报警) -->
+		<result property="toolAlarmType" column="ToolAlarmType" />
+		<!-- 告警系数 -->
+		<result property="toolAlarmRatio" column="ToolAlarmRatio" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 操作人 -->
+		<result property="systemLogUser" column="SystemLogUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityToolalarmparam" resultMap="Toolalarmparam-map">
+		SELECT
+		ToolAlarmParamID
+		,ToolAlarmType
+		,ToolAlarmRatio
+		,DelFlag
+		,UpdateUser
+		,UpdateTime
+		,SystemLogUser
+		,Version
+		from toolalarmparam
+		<dynamic prepend=" where ">
+			<isNotNull property="toolAlarmParamID" prepend="and ">
+				ToolAlarmParamID = #toolAlarmParamID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					ToolAlarmParamID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityToolalarmparam" resultMap="Toolalarmparam-map">
+		SELECT
+		ToolAlarmParamID
+		,ToolAlarmType
+		,ToolAlarmRatio
+		,DelFlag
+		,UpdateUser
+		,UpdateTime
+		,SystemLogUser
+		,Version
+		from toolalarmparam
+		<dynamic prepend=" where ">
+			<isNotNull property="toolAlarmParamID" prepend="and ">
+				ToolAlarmParamID = #toolAlarmParamID#
+         </isNotNull>
+			<isNotNull property="toolAlarmType" prepend="and ">
+				ToolAlarmType = #toolAlarmType#
+         </isNotNull>
+			<isNotNull property="toolAlarmRatio" prepend="and ">
+				ToolAlarmRatio = #toolAlarmRatio#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="systemLogUser" prepend="and ">
+				SystemLogUser = #systemLogUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					ToolAlarmParamID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityToolalarmparam" resultClass="int">
+		SELECT count(1)
+		from toolalarmparam
+		<dynamic prepend=" where ">
+			<isNotNull property="toolAlarmParamID" prepend="and ">
+				ToolAlarmParamID = #toolAlarmParamID#
+         </isNotNull>
+			<isNotNull property="toolAlarmType" prepend="and ">
+				ToolAlarmType = #toolAlarmType#
+         </isNotNull>
+			<isNotNull property="toolAlarmRatio" prepend="and ">
+				ToolAlarmRatio = #toolAlarmRatio#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="systemLogUser" prepend="and ">
+				SystemLogUser = #systemLogUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityToolalarmparam">
+		update toolalarmparam
+		<dynamic prepend="set">
+			<isNotNull property="toolAlarmParamID">
+				ToolAlarmParamID = #toolAlarmParamID#
+         </isNotNull>
+			<isNull property="toolAlarmParamID">
+				ToolAlarmParamID = null
+         </isNull>
+			<isNotNull property="toolAlarmType">
+				,ToolAlarmType = #toolAlarmType#
+         </isNotNull>
+			<isNull property="toolAlarmType">
+				,ToolAlarmType = null
+         </isNull>
+			<isNotNull property="toolAlarmRatio">
+				,ToolAlarmRatio = #toolAlarmRatio#
+         </isNotNull>
+			<isNull property="toolAlarmRatio">
+				,ToolAlarmRatio = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="systemLogUser">
+				,SystemLogUser = #systemLogUser#
+         </isNotNull>
+			<isNull property="systemLogUser">
+				,SystemLogUser = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="toolAlarmParamIDWhere" prepend="and ">
+				ToolAlarmParamID = #toolAlarmParamIDWhere#
+         </isNotNull>
+			<isNotNull property="toolAlarmTypeWhere" prepend="and ">
+				ToolAlarmType = #toolAlarmTypeWhere#
+         </isNotNull>
+			<isNotNull property="toolAlarmRatioWhere" prepend="and ">
+				ToolAlarmRatio = #toolAlarmRatioWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="systemLogUserWhere" prepend="and ">
+				SystemLogUser = #systemLogUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityToolalarmparam">
+		update toolalarmparam
+		<dynamic prepend="set">
+			<isNotNull property="toolAlarmParamID"  prepend=",">
+				ToolAlarmParamID = #toolAlarmParamID#
+         </isNotNull>
+			<isNotNull property="toolAlarmType"  prepend=",">
+				ToolAlarmType = #toolAlarmType#
+         </isNotNull>
+			<isNotNull property="toolAlarmRatio"  prepend=",">
+				ToolAlarmRatio = #toolAlarmRatio#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="systemLogUser"  prepend=",">
+				SystemLogUser = #systemLogUser#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="toolAlarmParamIDWhere" prepend="and ">
+				ToolAlarmParamID = #toolAlarmParamIDWhere#
+         </isNotNull>
+			<isNotNull property="toolAlarmTypeWhere" prepend="and ">
+				ToolAlarmType = #toolAlarmTypeWhere#
+         </isNotNull>
+			<isNotNull property="toolAlarmRatioWhere" prepend="and ">
+				ToolAlarmRatio = #toolAlarmRatioWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="systemLogUserWhere" prepend="and ">
+				SystemLogUser = #systemLogUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityToolalarmparam">
+		<selectKey resultClass="java.lang.String" keyProperty="toolAlarmParamID">
+			SELECT #toolAlarmParamID# as toolAlarmParamID FROM DUAL
+     </selectKey>
+		insert into toolalarmparam(
+		ToolAlarmParamID
+		,ToolAlarmType
+		,ToolAlarmRatio
+		,DelFlag
+		,UpdateUser
+		,UpdateTime
+		,SystemLogUser
+		,Version
+		)
+		Values (
+			<isNotNull property="toolAlarmParamID">
+				#toolAlarmParamID#
+         </isNotNull>
+			<isNull property="toolAlarmParamID">
+				null
+         </isNull>
+			<isNotNull property="toolAlarmType">
+				,#toolAlarmType#
+         </isNotNull>
+			<isNull property="toolAlarmType">
+				,null
+         </isNull>
+			<isNotNull property="toolAlarmRatio">
+				,#toolAlarmRatio#
+         </isNotNull>
+			<isNull property="toolAlarmRatio">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="systemLogUser">
+				,#systemLogUser#
+         </isNotNull>
+			<isNull property="systemLogUser">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityToolalarmparam">
+		delete  fromtoolalarmparam
+		<dynamic prepend=" where ">
+			<isNotNull property="toolAlarmParamIDWhere" prepend="and ">
+				ToolAlarmParamID = #toolAlarmParamIDWhere#
+         </isNotNull>
+			<isNotNull property="toolAlarmTypeWhere" prepend="and ">
+				ToolAlarmType = #toolAlarmTypeWhere#
+         </isNotNull>
+			<isNotNull property="toolAlarmRatioWhere" prepend="and ">
+				ToolAlarmRatio = #toolAlarmRatioWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="systemLogUserWhere" prepend="and ">
+				SystemLogUser = #systemLogUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

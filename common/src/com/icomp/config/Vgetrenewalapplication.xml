@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vgetrenewalapplication.xml
+		Created on : 2014/10/09 19:48:12
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgetrenewalapplication">
+	<typeAlias alias="entityVgetrenewalapplication" type="com.icomp.entity.base.Vgetrenewalapplication" />
+	<resultMap id="Vgetrenewalapplication-map" class="entityVgetrenewalapplication">
+		<!-- RFID(辅具或配套上打孔安装的RFID) -->
+		<result property="rfid" column="Rfid" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 刀具名称 -->
+		<result property="toolName" column="ToolName" />
+		<!-- 卸下方式(0装盒1装盘3保留) -->
+		<result property="offloadType" column="OffloadType" />
+		<!-- 是否安装(0安装1卸下9其他) -->
+		<result property="installFlag" column="InstallFlag" />
+		<!-- 组成类型(0刀片1钻头2复合刀具3热套类) -->
+		<result property="createType" column="CreateType" />
+		<!--  -->
+		<result property="appleCount" column="AppleCount" />
+		<!--  -->
+		<result property="inventoryCount_A" column="InventoryCount_A" />
+		<!--  -->
+		<result property="inventoryCount_B" column="InventoryCount_B" />
+		<!--  -->
+		<result property="breakKnifeCount" column="BreakKnifeCount" />
+		<!--  -->
+		<result property="lostKnifeCount" column="LostKnifeCount" />
+		<!-- 确认人(断刀、丢失、不合格的状态选择时需要上级确认) -->
+		<result property="confirmedUser" column="ConfirmedUser" />
+		<!--  -->
+		<result property="confirmedName" column="ConfirmedName" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVgetrenewalapplication" resultMap="Vgetrenewalapplication-map">
+		SELECT
+		Rfid
+		,ToolCode
+		,ToolName
+		,OffloadType
+		,InstallFlag
+		,CreateType
+		,AppleCount
+		,InventoryCount_A
+		,InventoryCount_B
+		,BreakKnifeCount
+		,LostKnifeCount
+		,ConfirmedUser
+		,ConfirmedName
+		from vgetrenewalapplication
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVgetrenewalapplication" resultMap="Vgetrenewalapplication-map">
+		SELECT
+		Rfid
+		,ToolCode
+		,ToolName
+		,OffloadType
+		,InstallFlag
+		,CreateType
+		,AppleCount
+		,InventoryCount_A
+		,InventoryCount_B
+		,BreakKnifeCount
+		,LostKnifeCount
+		,ConfirmedUser
+		,ConfirmedName
+		from vgetrenewalapplication
+		<dynamic prepend=" where ">
+			<isNotNull property="rfid" prepend="and ">
+				Rfid = #rfid#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="offloadType" prepend="and ">
+				OffloadType = #offloadType#
+         </isNotNull>
+			<isNotNull property="installFlag" prepend="and ">
+				InstallFlag = #installFlag#
+         </isNotNull>
+			<isNotNull property="createType" prepend="and ">
+				CreateType = #createType#
+         </isNotNull>
+			<isNotNull property="appleCount" prepend="and ">
+				AppleCount = #appleCount#
+         </isNotNull>
+			<isNotNull property="inventoryCount_A" prepend="and ">
+				InventoryCount_A = #inventoryCount_A#
+         </isNotNull>
+			<isNotNull property="inventoryCount_B" prepend="and ">
+				InventoryCount_B = #inventoryCount_B#
+         </isNotNull>
+			<isNotNull property="breakKnifeCount" prepend="and ">
+				BreakKnifeCount = #breakKnifeCount#
+         </isNotNull>
+			<isNotNull property="lostKnifeCount" prepend="and ">
+				LostKnifeCount = #lostKnifeCount#
+         </isNotNull>
+			<isNotNull property="confirmedUser" prepend="and ">
+				ConfirmedUser = #confirmedUser#
+         </isNotNull>
+			<isNotNull property="confirmedName" prepend="and ">
+				ConfirmedName = #confirmedName#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVgetrenewalapplication" resultClass="int">
+		SELECT count(1)
+		from vgetrenewalapplication
+		<dynamic prepend=" where ">
+			<isNotNull property="rfid" prepend="and ">
+				Rfid = #rfid#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="offloadType" prepend="and ">
+				OffloadType = #offloadType#
+         </isNotNull>
+			<isNotNull property="installFlag" prepend="and ">
+				InstallFlag = #installFlag#
+         </isNotNull>
+			<isNotNull property="createType" prepend="and ">
+				CreateType = #createType#
+         </isNotNull>
+			<isNotNull property="appleCount" prepend="and ">
+				AppleCount = #appleCount#
+         </isNotNull>
+			<isNotNull property="inventoryCount_A" prepend="and ">
+				InventoryCount_A = #inventoryCount_A#
+         </isNotNull>
+			<isNotNull property="inventoryCount_B" prepend="and ">
+				InventoryCount_B = #inventoryCount_B#
+         </isNotNull>
+			<isNotNull property="breakKnifeCount" prepend="and ">
+				BreakKnifeCount = #breakKnifeCount#
+         </isNotNull>
+			<isNotNull property="lostKnifeCount" prepend="and ">
+				LostKnifeCount = #lostKnifeCount#
+         </isNotNull>
+			<isNotNull property="confirmedUser" prepend="and ">
+				ConfirmedUser = #confirmedUser#
+         </isNotNull>
+			<isNotNull property="confirmedName" prepend="and ">
+				ConfirmedName = #confirmedName#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

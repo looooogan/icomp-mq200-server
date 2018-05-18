@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+<!--日志管理 -->
+	<!-- 日志级别配置ACTION注入	-->
+	<bean id="b10S001Action" class="com.icomp.v01b10.b10s001.action.B10S001Action" scope="prototype">
+<!--		<property name="b10s001Business" ref="b10s001Business"/>-->
+	</bean>
+	
+	<!-- 手持机日志ACTION注入	-->
+	<bean id="b10S002Action" class="com.icomp.v01b10.b10s002.action.B10S002Action" scope="prototype">
+		<property name="b10s002Business" ref="b10s002Business"/>
+	</bean>
+	
+	<!-- 管理平台日志ACTION注入	-->
+	<bean id="b10S003Action" class="com.icomp.v01b10.b10s003.action.B10S003Action" scope="prototype">
+		<property name="b10s003Business" ref="b10s003Business"/>
+	</bean>
+
+</beans>

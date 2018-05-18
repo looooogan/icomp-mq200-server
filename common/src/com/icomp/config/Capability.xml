@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Capability.xml Created on : 2014/08/19 15:48:44 Author :
+		工具自动生成 Description: 工具自动生成包含功能的单表增删改查SQL语句. searchByPrimaryKey ： 主键查询
+		searchByList ： 任意条件查询 searchByCount ：任意条件条数查询 insert ： 插入处理 update ：
+		更新处理（未指定项目更新为null） updateNonQuery ：更新处理（未指定项目不更新） delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Capability">
+	<typeAlias alias="entityCapability" type="com.icomp.entity.base.Capability" />
+	<resultMap id="Capability-map" class="entityCapability">
+		<!-- 功能ID -->
+		<result property="capabilityID" column="CapabilityID" />
+		<!-- 上级功能ID -->
+		<result property="capCapabilityID" column="CapCapabilityID" />
+		<!-- 语言编码 -->
+		<result property="languageCode" column="LanguageCode" />
+		<!-- 功能编码 -->
+		<result property="capabilityCode" column="CapabilityCode" />
+		<!-- 功能名称 -->
+		<result property="capabilityName" column="CapabilityName" />
+		<!-- 功能级别 -->
+		<result property="capabilityLevel" column="CapabilityLevel" />
+		<!-- 功能顺序 -->
+		<result property="capabilityOrder" column="CapabilityOrder" />
+		<!-- 功能URL -->
+		<result property="capabilityUrl" column="CapabilityUrl" />
+		<!-- 功能图片 -->
+		<result property="capabilityImg" column="CapabilityImg" />
+		<!-- 归属区分(0:管理平台1:手持机9:手持机授权) -->
+		<result property="belongFlag" column="BelongFlag" />
+		<!-- 是否菜单(0是1否) -->
+		<result property="menuFlag" column="MenuFlag" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityCapability"
+		resultMap="Capability-map">
+		SELECT
+		CapabilityID
+		,CapCapabilityID
+		,LanguageCode
+		,CapabilityCode
+		,CapabilityName
+		,CapabilityLevel
+		,CapabilityOrder
+		,CapabilityUrl
+		,CapabilityImg
+		,BelongFlag
+		,MenuFlag
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from capability
+		<dynamic prepend=" where ">
+			<isNotNull property="capabilityID" prepend="and ">
+				CapabilityID =
+				#capabilityID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+			CapabilityID
+     </isNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT
+			$rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityCapability"
+		resultMap="Capability-map">
+		SELECT
+		CapabilityID
+		,CapCapabilityID
+		,LanguageCode
+		,CapabilityCode
+		,CapabilityName
+		,CapabilityLevel
+		,CapabilityOrder
+		,CapabilityUrl
+		,CapabilityImg
+		,BelongFlag
+		,MenuFlag
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from capability
+		<dynamic prepend=" where ">
+			<isNotNull property="capabilityID" prepend="and ">
+				CapabilityID =
+				#capabilityID#
+         </isNotNull>
+			<isNotNull property="capCapabilityID" prepend="and ">
+				CapCapabilityID = #capCapabilityID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode =
+				#languageCode#
+         </isNotNull>
+			<isNotNull property="capabilityCode" prepend="and ">
+				CapabilityCode = #capabilityCode#
+         </isNotNull>
+			<isNotNull property="capabilityName" prepend="and ">
+				CapabilityName = #capabilityName#
+         </isNotNull>
+			<isNotNull property="capabilityLevel" prepend="and ">
+				CapabilityLevel = #capabilityLevel#
+         </isNotNull>
+			<isNotNull property="capabilityOrder" prepend="and ">
+				CapabilityOrder = #capabilityOrder#
+         </isNotNull>
+			<isNotNull property="capabilityUrl" prepend="and ">
+				CapabilityUrl =
+				#capabilityUrl#
+         </isNotNull>
+			<isNotNull property="capabilityImg" prepend="and ">
+				CapabilityImg =
+				#capabilityImg#
+         </isNotNull>
+			<isNotNull property="belongFlag" prepend="and ">
+				BelongFlag =
+				#belongFlag#
+         </isNotNull>
+			<isNotNull property="menuFlag" prepend="and ">
+				MenuFlag =
+				#menuFlag#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser =
+				#createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime =
+				#createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser =
+				#updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime =
+				#updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+			</isNotNull>
+			<isNotNull property="states" prepend="and ">
+				$states$
+			</isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+			CapabilityID
+     </isNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT
+			$rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByListByLevel" parameterClass="entityCapability"
+		resultMap="Capability-map">
+		SELECT
+		CapabilityID
+		,CapCapabilityID
+		,LanguageCode
+		,CapabilityCode
+		,CapabilityName
+		,CapabilityLevel
+		,CapabilityOrder
+		,CapabilityUrl
+		,CapabilityImg
+		,BelongFlag
+		,MenuFlag
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from capability
+		<dynamic prepend=" where ">
+			<isNotNull property="capabilityID" prepend="and ">
+				CapabilityID =
+				#capabilityID#
+         </isNotNull>
+			<isNotNull property="capCapabilityID" prepend="and ">
+				CapCapabilityID = #capCapabilityID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode =
+				#languageCode#
+         </isNotNull>
+			<isNotNull property="capabilityCode" prepend="and ">
+				CapabilityCode = #capabilityCode#
+         </isNotNull>
+			<isNotNull property="capabilityName" prepend="and ">
+				CapabilityName = #capabilityName#
+         </isNotNull>
+			<isNotNull property="capabilityOrder" prepend="and ">
+				CapabilityOrder = #capabilityOrder#
+         </isNotNull>
+			<isNotNull property="capabilityUrl" prepend="and ">
+				CapabilityUrl =
+				#capabilityUrl#
+         </isNotNull>
+			<isNotNull property="capabilityImg" prepend="and ">
+				CapabilityImg =
+				#capabilityImg#
+         </isNotNull>
+			<isNotNull property="belongFlag" prepend="and ">
+				BelongFlag =
+				#belongFlag#
+         </isNotNull>
+			<isNotNull property="menuFlag" prepend="and ">
+				MenuFlag =
+				#menuFlag#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser =
+				#createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime =
+				#createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser =
+				#updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime =
+				#updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+			</isNotNull>
+		<isNotNull prepend="and" property="capabilityLevel"> 
+           <![CDATA[ 
+           CapabilityLevel <= #capabilityLevel# 
+           ]]>
+		</isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+    	</isNotNull>
+		<isNull property="orderString">
+			order by
+			CapabilityID
+     	</isNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT
+			$rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityCapability"
+		resultClass="int">
+		SELECT count(1)
+		from capability
+		<dynamic prepend=" where ">
+			<isNotNull property="capabilityID" prepend="and ">
+				CapabilityID =
+				#capabilityID#
+         </isNotNull>
+			<isNotNull property="capCapabilityID" prepend="and ">
+				CapCapabilityID = #capCapabilityID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode =
+				#languageCode#
+         </isNotNull>
+			<isNotNull property="capabilityCode" prepend="and ">
+				CapabilityCode = #capabilityCode#
+         </isNotNull>
+			<isNotNull property="capabilityName" prepend="and ">
+				CapabilityName = #capabilityName#
+         </isNotNull>
+			<isNotNull property="capabilityLevel" prepend="and ">
+				CapabilityLevel = #capabilityLevel#
+         </isNotNull>
+			<isNotNull property="capabilityOrder" prepend="and ">
+				CapabilityOrder = #capabilityOrder#
+         </isNotNull>
+			<isNotNull property="capabilityUrl" prepend="and ">
+				CapabilityUrl =
+				#capabilityUrl#
+         </isNotNull>
+			<isNotNull property="capabilityImg" prepend="and ">
+				CapabilityImg =
+				#capabilityImg#
+         </isNotNull>
+			<isNotNull property="belongFlag" prepend="and ">
+				BelongFlag =
+				#belongFlag#
+         </isNotNull>
+			<isNotNull property="menuFlag" prepend="and ">
+				MenuFlag =
+				#menuFlag#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser =
+				#createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime =
+				#createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser =
+				#updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime =
+				#updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+			</isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityCapability">
+		update capability
+		<dynamic prepend="set">
+			<isNotNull property="capabilityID">
+				CapabilityID = #capabilityID#
+			</isNotNull>
+			<isNull property="capabilityID">
+				CapabilityID = null
+         </isNull>
+			<isNotNull property="capCapabilityID">
+				,CapCapabilityID = #capCapabilityID#
+			</isNotNull>
+			<isNull property="capCapabilityID">
+				,CapCapabilityID = null
+         </isNull>
+			<isNotNull property="languageCode">
+				,LanguageCode = #languageCode#
+			</isNotNull>
+			<isNull property="languageCode">
+				,LanguageCode = null
+         </isNull>
+			<isNotNull property="capabilityCode">
+				,CapabilityCode = #capabilityCode#
+			</isNotNull>
+			<isNull property="capabilityCode">
+				,CapabilityCode = null
+         </isNull>
+			<isNotNull property="capabilityName">
+				,CapabilityName = #capabilityName#
+			</isNotNull>
+			<isNull property="capabilityName">
+				,CapabilityName = null
+         </isNull>
+			<isNotNull property="capabilityLevel">
+				,CapabilityLevel = #capabilityLevel#
+			</isNotNull>
+			<isNull property="capabilityLevel">
+				,CapabilityLevel = null
+         </isNull>
+			<isNotNull property="capabilityOrder">
+				,CapabilityOrder = #capabilityOrder#
+			</isNotNull>
+			<isNull property="capabilityOrder">
+				,CapabilityOrder = null
+         </isNull>
+			<isNotNull property="capabilityUrl">
+				,CapabilityUrl = #capabilityUrl#
+			</isNotNull>
+			<isNull property="capabilityUrl">
+				,CapabilityUrl = null
+         </isNull>
+			<isNotNull property="capabilityImg">
+				,CapabilityImg = #capabilityImg#
+			</isNotNull>
+			<isNull property="capabilityImg">
+				,CapabilityImg = null
+         </isNull>
+			<isNotNull property="belongFlag">
+				,BelongFlag = #belongFlag#
+         </isNotNull>
+			<isNull property="belongFlag">
+				,BelongFlag = null
+         </isNull>
+			<isNotNull property="menuFlag">
+				,MenuFlag = #menuFlag#
+         </isNotNull>
+			<isNull property="menuFlag">
+				,MenuFlag = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="capabilityIDWhere" prepend="and ">
+				CapabilityID = #capabilityIDWhere#
+         </isNotNull>
+			<isNotNull property="capCapabilityIDWhere" prepend="and ">
+				CapCapabilityID = #capCapabilityIDWhere#
+         </isNotNull>
+			<isNotNull property="languageCodeWhere" prepend="and ">
+				LanguageCode = #languageCodeWhere#
+         </isNotNull>
+			<isNotNull property="capabilityCodeWhere" prepend="and ">
+				CapabilityCode = #capabilityCodeWhere#
+         </isNotNull>
+			<isNotNull property="capabilityNameWhere" prepend="and ">
+				CapabilityName = #capabilityNameWhere#
+         </isNotNull>
+			<isNotNull property="capabilityLevelWhere" prepend="and ">
+				CapabilityLevel = #capabilityLevelWhere#
+         </isNotNull>
+			<isNotNull property="capabilityOrderWhere" prepend="and ">
+				CapabilityOrder = #capabilityOrderWhere#
+         </isNotNull>
+			<isNotNull property="capabilityUrlWhere" prepend="and ">
+				CapabilityUrl = #capabilityUrlWhere#
+         </isNotNull>
+			<isNotNull property="capabilityImgWhere" prepend="and ">
+				CapabilityImg = #capabilityImgWhere#
+         </isNotNull>
+			<isNotNull property="belongFlagWhere" prepend="and ">
+				BelongFlag =
+				#belongFlagWhere#
+         </isNotNull>
+			<isNotNull property="menuFlagWhere" prepend="and ">
+				MenuFlag =
+				#menuFlagWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag =
+				#delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser =
+				#createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime =
+				#createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser =
+				#updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime =
+				#updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version =
+				#versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityCapability">
+		update capability
+		<dynamic prepend="set">
+			<isNotNull property="capabilityID" prepend=",">
+				CapabilityID =
+				#capabilityID#
+         </isNotNull>
+			<isNotNull property="capCapabilityID" prepend=",">
+				CapCapabilityID = #capCapabilityID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend=",">
+				LanguageCode =
+				#languageCode#
+         </isNotNull>
+			<isNotNull property="capabilityCode" prepend=",">
+				CapabilityCode = #capabilityCode#
+         </isNotNull>
+			<isNotNull property="capabilityName" prepend=",">
+				CapabilityName = #capabilityName#
+         </isNotNull>
+			<isNotNull property="capabilityLevel" prepend=",">
+				CapabilityLevel = #capabilityLevel#
+         </isNotNull>
+			<isNotNull property="capabilityOrder" prepend=",">
+				CapabilityOrder = #capabilityOrder#
+         </isNotNull>
+			<isNotNull property="capabilityUrl" prepend=",">
+				CapabilityUrl =
+				#capabilityUrl#
+         </isNotNull>
+			<isNotNull property="capabilityImg" prepend=",">
+				CapabilityImg =
+				#capabilityImg#
+         </isNotNull>
+			<isNotNull property="belongFlag" prepend=",">
+				BelongFlag =
+				#belongFlag#
+         </isNotNull>
+			<isNotNull property="menuFlag" prepend=",">
+				MenuFlag =
+				#menuFlag#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend=",">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="createUser" prepend=",">
+				CreateUser =
+				#createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend=",">
+				CreateTime =
+				#createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend=",">
+				UpdateUser =
+				#updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend=",">
+				UpdateTime =
+				#updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend=",">
+				Version = #version#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="capabilityIDWhere" prepend="and ">
+				CapabilityID = #capabilityIDWhere#
+         </isNotNull>
+			<isNotNull property="capCapabilityIDWhere" prepend="and ">
+				CapCapabilityID = #capCapabilityIDWhere#
+         </isNotNull>
+			<isNotNull property="languageCodeWhere" prepend="and ">
+				LanguageCode = #languageCodeWhere#
+         </isNotNull>
+			<isNotNull property="capabilityCodeWhere" prepend="and ">
+				CapabilityCode = #capabilityCodeWhere#
+         </isNotNull>
+			<isNotNull property="capabilityNameWhere" prepend="and ">
+				CapabilityName = #capabilityNameWhere#
+         </isNotNull>
+			<isNotNull property="capabilityLevelWhere" prepend="and ">
+				CapabilityLevel = #capabilityLevelWhere#
+         </isNotNull>
+			<isNotNull property="capabilityOrderWhere" prepend="and ">
+				CapabilityOrder = #capabilityOrderWhere#
+         </isNotNull>
+			<isNotNull property="capabilityUrlWhere" prepend="and ">
+				CapabilityUrl = #capabilityUrlWhere#
+         </isNotNull>
+			<isNotNull property="capabilityImgWhere" prepend="and ">
+				CapabilityImg = #capabilityImgWhere#
+         </isNotNull>
+			<isNotNull property="belongFlagWhere" prepend="and ">
+				BelongFlag =
+				#belongFlagWhere#
+         </isNotNull>
+			<isNotNull property="menuFlagWhere" prepend="and ">
+				MenuFlag =
+				#menuFlagWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag =
+				#delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser =
+				#createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime =
+				#createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser =
+				#updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime =
+				#updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version =
+				#versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityCapability">
+		<selectKey resultClass="java.lang.String" keyProperty="capabilityID">
+			SELECT #capabilityID# as capabilityID FROM DUAL
+     </selectKey>
+		insert into capability(
+		CapabilityID
+		,CapCapabilityID
+		,LanguageCode
+		,CapabilityCode
+		,CapabilityName
+		,CapabilityLevel
+		,CapabilityOrder
+		,CapabilityUrl
+		,CapabilityImg
+		,BelongFlag
+		,MenuFlag
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		)
+		Values (
+		<isNotNull property="capabilityID">
+			#capabilityID#
+         </isNotNull>
+		<isNull property="capabilityID">
+			null
+         </isNull>
+		<isNotNull property="capCapabilityID">
+			,#capCapabilityID#
+         </isNotNull>
+		<isNull property="capCapabilityID">
+			,null
+         </isNull>
+		<isNotNull property="languageCode">
+			,#languageCode#
+         </isNotNull>
+		<isNull property="languageCode">
+			,null
+         </isNull>
+		<isNotNull property="capabilityCode">
+			,#capabilityCode#
+         </isNotNull>
+		<isNull property="capabilityCode">
+			,null
+         </isNull>
+		<isNotNull property="capabilityName">
+			,#capabilityName#
+         </isNotNull>
+		<isNull property="capabilityName">
+			,null
+         </isNull>
+		<isNotNull property="capabilityLevel">
+			,#capabilityLevel#
+         </isNotNull>
+		<isNull property="capabilityLevel">
+			,null
+         </isNull>
+		<isNotNull property="capabilityOrder">
+			,#capabilityOrder#
+         </isNotNull>
+		<isNull property="capabilityOrder">
+			,null
+         </isNull>
+		<isNotNull property="capabilityUrl">
+			,#capabilityUrl#
+         </isNotNull>
+		<isNull property="capabilityUrl">
+			,null
+         </isNull>
+		<isNotNull property="capabilityImg">
+			,#capabilityImg#
+         </isNotNull>
+		<isNull property="capabilityImg">
+			,null
+         </isNull>
+		<isNotNull property="belongFlag">
+			,#belongFlag#
+         </isNotNull>
+		<isNull property="belongFlag">
+			,null
+         </isNull>
+		<isNotNull property="menuFlag">
+			,#menuFlag#
+         </isNotNull>
+		<isNull property="menuFlag">
+			,null
+         </isNull>
+		<isNotNull property="delFlag">
+			,#delFlag#
+         </isNotNull>
+		<isNull property="delFlag">
+			,null
+         </isNull>
+		<isNotNull property="createUser">
+			,#createUser#
+         </isNotNull>
+		<isNull property="createUser">
+			,null
+         </isNull>
+		<isNotNull property="createTime">
+			,#createTime#
+         </isNotNull>
+		<isNull property="createTime">
+			,null
+         </isNull>
+		<isNotNull property="updateUser">
+			,#updateUser#
+         </isNotNull>
+		<isNull property="updateUser">
+			,null
+         </isNull>
+		<isNotNull property="updateTime">
+			,#updateTime#
+         </isNotNull>
+		<isNull property="updateTime">
+			,null
+         </isNull>
+		<isNotNull property="version">
+			,#version#
+         </isNotNull>
+		<isNull property="version">
+			,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityCapability">
+		delete from capability
+		<dynamic prepend=" where ">
+			<isNotNull property="capabilityIDWhere" prepend="and ">
+				CapabilityID = #capabilityIDWhere#
+         </isNotNull>
+			<isNotNull property="capCapabilityIDWhere" prepend="and ">
+				CapCapabilityID = #capCapabilityIDWhere#
+         </isNotNull>
+			<isNotNull property="languageCodeWhere" prepend="and ">
+				LanguageCode = #languageCodeWhere#
+         </isNotNull>
+			<isNotNull property="capabilityCodeWhere" prepend="and ">
+				CapabilityCode = #capabilityCodeWhere#
+         </isNotNull>
+			<isNotNull property="capabilityNameWhere" prepend="and ">
+				CapabilityName = #capabilityNameWhere#
+         </isNotNull>
+			<isNotNull property="capabilityLevelWhere" prepend="and ">
+				CapabilityLevel = #capabilityLevelWhere#
+         </isNotNull>
+			<isNotNull property="capabilityOrderWhere" prepend="and ">
+				CapabilityOrder = #capabilityOrderWhere#
+         </isNotNull>
+			<isNotNull property="capabilityUrlWhere" prepend="and ">
+				CapabilityUrl = #capabilityUrlWhere#
+         </isNotNull>
+			<isNotNull property="capabilityImgWhere" prepend="and ">
+				CapabilityImg = #capabilityImgWhere#
+         </isNotNull>
+			<isNotNull property="belongFlagWhere" prepend="and ">
+				BelongFlag =
+				#belongFlagWhere#
+         </isNotNull>
+			<isNotNull property="menuFlagWhere" prepend="and ">
+				MenuFlag =
+				#menuFlagWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag =
+				#delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser =
+				#createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime =
+				#createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser =
+				#updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime =
+				#updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version =
+				#versionWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

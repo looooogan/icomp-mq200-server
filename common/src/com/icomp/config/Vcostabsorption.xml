@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vcostabsorption.xml
+		Created on : 2015/04/22 18:46:22
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vcostabsorption">
+	<typeAlias alias="entityVcostabsorption" type="com.icomp.entity.base.Vcostabsorption" />
+	<resultMap id="Vcostabsorption-map" class="entityVcostabsorption">
+		<!-- 零部件名称 -->
+		<result property="partsName" column="PartsName" />
+		<!-- 设备名称 -->
+		<result property="equipmentname" column="Equipmentname" />
+		<!-- 工序名称 -->
+		<result property="processName" column="ProcessName" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 刀具名称 -->
+		<result property="toolName" column="ToolName" />
+		<!--  -->
+		<result property="price" column="Price" />
+		<!--  -->
+		<result property="consumedCount" column="consumedCount" />
+		<!--  -->
+		<result property="processAmount" column="ProcessAmount" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVcostabsorption" resultMap="Vcostabsorption-map">
+		SELECT
+		PartsName
+		,Equipmentname
+		,ProcessName
+		,ToolCode
+		,ToolName
+		,Price
+		,consumedCount
+		,ProcessAmount
+		from vcostabsorption
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVcostabsorption" resultMap="Vcostabsorption-map">
+		SELECT
+		PartsName
+		,Equipmentname
+		,ProcessName
+		,ToolCode
+		,ToolName
+		,Price
+		,consumedCount
+		,ProcessAmount
+		from vcostabsorption
+		<dynamic prepend=" where ">
+			<isNotNull property="partsName" prepend="and ">
+				PartsName = #partsName#
+         </isNotNull>
+			<isNotNull property="equipmentname" prepend="and ">
+				Equipmentname = #equipmentname#
+         </isNotNull>
+			<isNotNull property="processName" prepend="and ">
+				ProcessName = #processName#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="price" prepend="and ">
+				Price = #price#
+         </isNotNull>
+			<isNotNull property="consumedCount" prepend="and ">
+				consumedCount = #consumedCount#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVcostabsorption" resultClass="int">
+		SELECT count(1)
+		from vcostabsorption
+		<dynamic prepend=" where ">
+			<isNotNull property="partsName" prepend="and ">
+				PartsName = #partsName#
+         </isNotNull>
+			<isNotNull property="equipmentname" prepend="and ">
+				Equipmentname = #equipmentname#
+         </isNotNull>
+			<isNotNull property="processName" prepend="and ">
+				ProcessName = #processName#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="price" prepend="and ">
+				Price = #price#
+         </isNotNull>
+			<isNotNull property="consumedCount" prepend="and ">
+				consumedCount = #consumedCount#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

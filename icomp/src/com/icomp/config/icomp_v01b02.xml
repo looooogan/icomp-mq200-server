@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="V01B02" extends="icomp-default">
+	    <!-- 待处理刀具信息查询初始化Action -->
+		<action name="B02S001" class="b02S001Action" method="initb02S001">
+			<result name="success">/WEB-INF/jsp/v01b02/b02s001.jsp</result>
+		</action>	
+		<!-- 换领申请信息查询初始化Action -->
+		<action name="B02S002" class="b02S002Action" method="initb02S002">
+			<result name="success">/WEB-INF/jsp/v01b02/b02s002.jsp</result>
+		</action>	
+		<!-- 换领记录查询初始化Action -->
+		<action name="B02S003" class="b02S003Action" method="initb02S003">
+			<result name="success">/WEB-INF/jsp/v01b02/b02s003.jsp</result>
+		</action>	
+		<!-- 对刀记录查询初始化Action -->
+		<action name="B02S004" class="b02S004Action" method="initb02S004">
+			<result name="success">/WEB-INF/jsp/v01b02/b02s004.jsp</result>
+		</action>	
+		<!-- 对刀工作量汇总初始化Action -->
+		<action name="B02S005" class="b02S005Action" method="initb02S005">
+			<result name="success">/WEB-INF/jsp/v01b02/b02s005.jsp</result>
+		</action>	
+		<!-- 快速查询初始化Action -->
+		<action name="B02S006" class="b02S006Action" method="initb02S006">
+			<result name="success">/WEB-INF/jsp/v01b02/b02s006.jsp</result>
+		</action>	
+		<!-- 操作记录查询初始化Action -->
+		<action name="B02S007" class="b02S007Action" method="initb02S007">
+			<result name="success">/WEB-INF/jsp/v01b02/b02s007.jsp</result>
+		</action>					
+	</package>
+</struts>  

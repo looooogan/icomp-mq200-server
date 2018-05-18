@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vsynthesis.xml
+		Created on : 2014/10/22 19:25:59
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vsynthesis">
+	<typeAlias alias="entityVsynthesis" type="com.icomp.entity.base.Vsynthesis" />
+	<resultMap id="Vsynthesis-map" class="entityVsynthesis">
+		<!-- 定额加工量 -->
+		<result property="quotaProcessingVolume" column="QuotaProcessingVolume" />
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!-- X坐标 -->
+		<result property="xPoint" column="XPoint" />
+		<!-- Y坐标 -->
+		<result property="yPoint" column="YPoint" />
+		<!-- RFID(辅具或配套上打孔安装的RFID) -->
+		<result property="rFID" column="RFID" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVsynthesis" resultMap="Vsynthesis-map">
+		SELECT
+		QuotaProcessingVolume
+		,SynthesisParametersCode
+		,XPoint
+		,YPoint
+		,RFID
+		from vsynthesis
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVsynthesis" resultMap="Vsynthesis-map">
+		SELECT
+		QuotaProcessingVolume
+		,SynthesisParametersCode
+		,XPoint
+		,YPoint
+		,RFID
+		from vsynthesis
+		<dynamic prepend=" where ">
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="xPoint" prepend="and ">
+				XPoint = #xPoint#
+         </isNotNull>
+			<isNotNull property="yPoint" prepend="and ">
+				YPoint = #yPoint#
+         </isNotNull>
+			<isNotNull property="rFID" prepend="and ">
+				RFID = #rFID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="0">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVsynthesis" resultClass="int">
+		SELECT count(1)
+		from vsynthesis
+		<dynamic prepend=" where ">
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="xPoint" prepend="and ">
+				XPoint = #xPoint#
+         </isNotNull>
+			<isNotNull property="yPoint" prepend="and ">
+				YPoint = #yPoint#
+         </isNotNull>
+			<isNotNull property="rFID" prepend="and ">
+				RFID = #rFID#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

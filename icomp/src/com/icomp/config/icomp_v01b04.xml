@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<!-- 加工信息 -->
+		<package name="V01B04" extends="icomp-default">
+        <!-- 初始化页面 -->
+		<action name="B04S*" class="b04S{1}Action" method="initb04S{1}">
+			<result >/WEB-INF/jsp/v01b04/b04s{1}.jsp</result>
+		</action>
+		<action name="prossAndBuss" class="b04S004Action" method="prossAndBuss">
+
+		</action>
+		<action name="prossAndBuss1" class="b04S004Action" method="prossAndBuss1">
+
+		</action>
+		<action name="prossAndBuss2" class="b04S004Action" method="prossAndBuss2">
+
+		</action>
+		<action name="prossAndBuss3" class="b04S004Action" method="prossAndBuss3">
+
+		</action>
+			<action name="prossAnd" class="b04S002Action" method="prossAnd">
+		</action>
+		<action name="warningAdd" class="b04S007Action" method="warningAdd">
+		</action>
+		<action name="waningSsp" class="b04S007Action" method="waningSsp">
+		</action>
+	</package>
+</struts>  

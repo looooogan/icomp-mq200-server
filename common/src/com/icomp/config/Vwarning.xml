@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vwarning.xml
+		Created on : 2016/03/26 13:54:04
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vwarning">
+	<typeAlias alias="entityVwarning" type="com.icomp.entity.base.Vwarning" />
+	<resultMap id="Vwarning-map" class="entityVwarning">
+		<!-- 预警ID -->
+		<result property="warningID" column="WarningID" />
+		<!-- 功能 -->
+		<result property="warningFunction" column="WarningFunction" />
+		<!-- 员工卡号[20位员工卡] -->
+		<result property="employeeCard" column="EmployeeCard" />
+		<!-- 姓名 -->
+		<result property="warningName" column="WarningName" />
+		<!-- 启动/停用 -->
+		<result property="sorT" column="SorT" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVwarning" resultMap="Vwarning-map">
+		SELECT
+		WarningID
+		,WarningFunction
+		,EmployeeCard
+		,WarningName
+		,SorT
+		from vwarning
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVwarning" resultMap="Vwarning-map">
+		SELECT
+		WarningID
+		,WarningFunction
+		,EmployeeCard
+		,WarningName
+		,SorT
+		from vwarning
+		<dynamic prepend=" where ">
+			<isNotNull property="warningID" prepend="and ">
+				WarningID = #warningID#
+         </isNotNull>
+			<isNotNull property="warningFunction" prepend="and ">
+				WarningFunction = #warningFunction#
+         </isNotNull>
+			<isNotNull property="employeeCard" prepend="and ">
+				EmployeeCard = #employeeCard#
+         </isNotNull>
+			<isNotNull property="warningName" prepend="and ">
+				WarningName like concat('%',#warningName#,'%')
+         </isNotNull>
+			<isNotNull property="sorT" prepend="and ">
+				SorT = #sorT#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVwarning" resultClass="int">
+		SELECT count(1)
+		from vwarning
+		<dynamic prepend=" where ">
+			<isNotNull property="warningID" prepend="and ">
+				WarningID = #warningID#
+         </isNotNull>
+			<isNotNull property="warningFunction" prepend="and ">
+				WarningFunction = #warningFunction#
+         </isNotNull>
+			<isNotNull property="employeeCard" prepend="and ">
+				EmployeeCard = #employeeCard#
+         </isNotNull>
+			<isNotNull property="warningName" prepend="and ">
+				WarningName = #warningName#
+         </isNotNull>
+			<isNotNull property="sorT" prepend="and ">
+				SorT = #sorT#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

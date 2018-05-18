@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"> 
+	<jaxws:server id="C02S009Wsdl"  
+	    serviceBean="#c02S009Wsdl"
+	     serviceClass="com.icomp.wsdl.v01c02.c02s009.endpoint.impl.C02S009WsdlImpl"
+        address="/C02S009WsdlService"/> 
+    
+</beans>

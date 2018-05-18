@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vtooldiscarde.xml Created on : 2014/11/20 13:12:40 Author :
+		工具自动生成 Description: 工具自动生成包含VIEW的单表增删改查SQL语句. searchByPrimaryKey ：
+		主键查询 searchByList ： 任意条件查询
+		searchByList_F ： 任意条件查询-toolCode模糊查询
+		 searchByCount ：任意条件条数查询
+		  insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null） updateNonQuery ：更新处理（未指定项目不更新） delete ：
+		删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vtooldiscarde">
+	<typeAlias alias="entityVtooldiscarde" type="com.icomp.entity.base.Vtooldiscarde" />
+	<resultMap id="Vtooldiscarde-map" class="entityVtooldiscarde">
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 消耗类别(0:可刃磨钻头1可刃磨刀片2一次性刀片9其他 -->
+		<result property="toolConsumetype" column="ToolConsumetype" />
+		<!-- 区分文本 -->
+		<result property="toolConsumetypeText" column="ToolConsumetypeText" />
+		<!--  -->
+		<result property="toolCount" column="toolCount" />
+		<!--  -->
+		<result property="discardeTime" column="discardeTime" />
+		<!-- 报废确认区分(0未确认1已确认) -->
+		<result property="discardeFlag" column="discardeFlag" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVtooldiscarde"
+		resultMap="Vtooldiscarde-map">
+		SELECT
+		ToolCode
+		,ToolConsumetype
+		,ToolConsumetypeText
+		,toolCount
+		,discardeTime
+		,discardeFlag
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by discardeTime
+     </isNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVtooldiscarde"
+		resultMap="Vtooldiscarde-map">
+		SELECT
+		ToolCode
+		,ToolConsumetype
+		,ToolConsumetypeText
+		,toolCount
+		,discardeTime
+		,discardeFlag
+		from vtooldiscarde
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode =
+				#toolCode#
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="toolCount" prepend="and ">
+				toolCount =
+				#toolCount#
+         </isNotNull>
+			<isNotNull property="stringStar" prepend="and ">
+				<![CDATA[ 
+				discardeTime >= #stringStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="stringEnd" prepend="and ">
+				<![CDATA[ 
+				discardeTime <= #stringEnd#
+				]]>
+			</isNotNull>
+			<isNotNull property="discardeFlag" prepend="and ">
+				discardeFlag =
+				#discardeFlag#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -toolCode模糊查询 -->
+	<select id="searchByList_F" parameterClass="entityVtooldiscarde"
+		resultMap="Vtooldiscarde-map">
+		SELECT
+		ToolCode
+		,ToolConsumetype
+		,ToolConsumetypeText
+		,toolCount
+		,discardeTime
+		,discardeFlag
+		from vtooldiscarde
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="toolCount" prepend="and ">
+				toolCount =
+				#toolCount#
+         </isNotNull>
+			<isNotNull property="stringStar" prepend="and ">
+				<![CDATA[ 
+				discardeTime >= #stringStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="stringEnd" prepend="and ">
+				<![CDATA[ 
+				discardeTime <= #stringEnd#
+				]]>
+			</isNotNull>
+			<isNotNull property="discardeFlag" prepend="and ">
+				discardeFlag =
+				#discardeFlag#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVtooldiscarde"
+		resultClass="int">
+		SELECT count(1)
+		from vtooldiscarde
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="toolCount" prepend="and ">
+				toolCount =
+				#toolCount#
+         </isNotNull>
+			<isNotNull property="stringStar" prepend="and ">
+				<![CDATA[ 
+				discardeTime >= #stringStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="stringEnd" prepend="and ">
+				<![CDATA[ 
+				discardeTime <= #stringEnd#
+				]]>
+			</isNotNull>
+			<isNotNull property="discardeFlag" prepend="and ">
+				discardeFlag =
+				#discardeFlag#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

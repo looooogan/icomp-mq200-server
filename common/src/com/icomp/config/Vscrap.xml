@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Vscrap.xml
+    Created on : 2016/05/24 17:19:47
+    Author : 工具自动生成
+    Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vscrap">
+    <typeAlias alias="entityVscrap" type="com.icomp.entity.base.Vscrap"/>
+    <resultMap id="Vscrap-map" class="entityVscrap">
+        <!-- 刀具类型 -->
+        <result property="toolType" column="ToolType"/>
+        <!-- 刀具编码 -->
+        <result property="toolCode" column="ToolCode"/>
+        <!-- 刀具ID -->
+        <result property="toolID" column="ToolID"/>
+        <!-- 报废ID -->
+        <result property="scrapID" column="scrapID"/>
+        <!-- 创建时间 -->
+        <result property="createTimes" column="CreateTimes"/>
+        <!-- 业务流程ID -->
+        <result property="businessID" column="BusinessID"/>
+        <!-- 业务流程名 -->
+        <result property="businessName" column="BusinessName"/>
+        <!--  -->
+        <result property="createUsers" column="CreateUsers"/>
+        <!-- 报废状态（0.断刀1.丢刀2.到寿3.出库报废4.其他） -->
+        <result property="scrapCause" column="scrapCause"/>
+        <!-- 报废数量 -->
+        <result property="scrapNumber" column="scrapNumber"/>
+        <!--  -->
+        <result property="authorizationUser" column="authorizationUser"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityVscrap" resultMap="Vscrap-map">
+        SELECT
+        ToolType
+        ,ToolCode
+        ,ToolID
+        ,scrapID
+        ,CreateTimes
+        ,BusinessID
+        ,BusinessName
+        ,CreateUsers
+        ,scrapCause
+        ,authorizationUser
+        from vscrap
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityVscrap" resultMap="Vscrap-map">
+        SELECT
+        ToolType
+        ,ToolCode
+        ,ToolID
+        ,scrapID
+        ,CreateTimes
+        ,BusinessID
+        ,BusinessName
+        ,CreateUsers
+        ,scrapCause
+        <!-- 2017/07/03 宋健 追加↓↓↓　dazhong@YMSC -->
+        ,scrapNumber
+        <!-- 2017/07/03 宋健 追加↑↑↑　dazhong@YMSC -->
+        ,authorizationUser
+        from vscrap
+        <dynamic prepend=" where ">
+            <isNotNull property="toolType" prepend="and ">
+                ToolType like concat('%',#toolType#,'%')
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+            </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="scrapID" prepend="and ">
+                scrapID = #scrapID#
+            </isNotNull>
+            <isNotNull property="dateStar" prepend="and ">
+                <![CDATA[
+				CreateTimes >= #dateStar#
+				]]>
+            </isNotNull>
+            <isNotNull property="dateEnd" prepend="and ">
+                <![CDATA[
+				CreateTimes <= #dateEnd#
+				]]>
+            </isNotNull>
+            <isNotNull property="businessID" prepend="and ">
+                 BusinessID = #businessID#
+            </isNotNull>
+            <isNotNull property="businessName" prepend="and ">
+                BusinessName = #businessName#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUsers like concat('%',#createUser#,'%')
+            </isNotNull>
+            <isNotNull property="scrapCause" prepend="and ">
+                scrapCause = #scrapCause#
+            </isNotNull>
+            <isNotNull property="authorizationUser" prepend="and ">
+                authorizationUser = #authorizationUser#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityVscrap" resultClass="int">
+        SELECT count(1)
+        from vscrap
+        <dynamic prepend=" where ">
+            <isNotNull property="toolType" prepend="and ">
+                ToolType like concat('%',#toolType#,'%')
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">                 ToolCode like concat('%',#toolCode#,'%')             </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="scrapID" prepend="and ">
+                scrapID = #scrapID#
+            </isNotNull>
+            <isNotNull property="createTimes" prepend="and ">
+                CreateTimes = #createTimes#
+            </isNotNull>
+            <isNotNull property="businessID" prepend="and ">
+                BusinessID = #businessID#
+            </isNotNull>
+            <isNotNull property="businessName" prepend="and ">
+                BusinessName = #businessName#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUsers like concat('%',#createUser#,'%')
+            </isNotNull>
+            <isNotNull property="scrapCause" prepend="and ">
+                scrapCause = #scrapCause#
+            </isNotNull>
+            <isNotNull property="authorizationUser" prepend="and ">
+                authorizationUser = #authorizationUser#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+</sqlMap>
+

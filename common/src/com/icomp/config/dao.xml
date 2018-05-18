@@ -1,0 +1,934 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+    <!-- 机构  -->
+    <bean id="agencyDao" class="com.icomp.dao.impl.AgencyDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 权限 -->
+    <bean id="authorizationDao" class="com.icomp.dao.impl.AuthorizationDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 流水线  -->
+    <bean id="assemblylineDao" class="com.icomp.dao.impl.AssemblylineDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 刀具借入-借出  -->
+    <bean id="borrowinglendingDao" class="com.icomp.dao.impl.BorrowinglendingDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 内置编码  -->
+    <bean id="builtincodeDao" class="com.icomp.dao.impl.BuiltincodeDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 内置编码映射  -->
+    <bean id="builtincodemappingDao" class="com.icomp.dao.impl.BuiltincodemappingDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 业务流程  -->
+    <bean id="businessDao" class="com.icomp.dao.impl.BusinessDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 业务流  -->
+    <bean id="businessflowDao" class="com.icomp.dao.impl.BusinessflowDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 业务-流程中间表  -->
+    <bean id="businessflowlnkDao" class="com.icomp.dao.impl.BusinessflowlnkDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 功能  -->
+    <bean id="capabilityDao" class="com.icomp.dao.impl.CapabilityDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 区分定义  -->
+    <bean id="comlistDao" class="com.icomp.dao.impl.ComlistDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 用户表  -->
+    <bean id="customerDao" class="com.icomp.dao.impl.CustomerDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 到货计划  -->
+    <bean id="deliveryplanDao" class="com.icomp.dao.impl.DeliveryplanDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 部门  -->
+    <bean id="departmentDao" class="com.icomp.dao.impl.DepartmentDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 系统显示项目配置(兼顾打印项目)  -->
+    <bean id="displayeditemconfigurationDao" class="com.icomp.dao.impl.DisplayeditemconfigurationDaoImpl"
+          scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 部门-职务中间表  -->
+    <bean id="dplinkDao" class="com.icomp.dao.impl.DplinkDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 设备  -->
+    <bean id="equipmentDao" class="com.icomp.dao.impl.EquipmentDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 手持机  -->
+    <bean id="handsetDao" class="com.icomp.dao.impl.HandsetDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 新刀库存表  -->
+    <bean id="knifeinventoryDao" class="com.icomp.dao.impl.KnifeinventoryDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 语言  -->
+    <bean id="languagetableDao" class="com.icomp.dao.impl.LanguagetableDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 库位码  -->
+    <bean id="librarycodeDao" class="com.icomp.dao.impl.LibrarycodeDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 加工履历（在刀具安上设备上需要记录当前合成刀与刀具的绑定关系）  -->
+    <bean id="machiningexperienceDao" class="com.icomp.dao.impl.MachiningexperienceDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 主键生成  -->
+    <bean id="nextkeyvalueDao" class="com.icomp.dao.impl.NextkeyvalueDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 修复设备  -->
+    <bean id="noticeequipmentDao" class="com.icomp.dao.impl.NoticeequipmentDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 生产线关联  -->
+    <bean id="oplinkDao" class="com.icomp.dao.impl.OplinkDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 加工零部件  -->
+    <bean id="partsDao" class="com.icomp.dao.impl.PartsDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 职务-操作  -->
+    <bean id="polinkDao" class="com.icomp.dao.impl.PolinkDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 职务  -->
+    <bean id="positionDao" class="com.icomp.dao.impl.PositionDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 工序  -->
+    <bean id="processDao" class="com.icomp.dao.impl.ProcessDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 采购计划  -->
+    <bean id="procurementplansDao" class="com.icomp.dao.impl.ProcurementplansDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 生产计划  -->
+    <bean id="productiondesignDao" class="com.icomp.dao.impl.ProductiondesignDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 快速查询临时表  -->
+    <bean id="quicksearchDao" class="com.icomp.dao.impl.QuicksearchDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 换领申请  -->
+    <bean id="redemptionappliedDao" class="com.icomp.dao.impl.RedemptionappliedDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 申领申请  -->
+    <bean id="replacementDao" class="com.icomp.dao.impl.ReplacementDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- RFID载体  -->
+    <bean id="rfidcontainerDao" class="com.icomp.dao.impl.RfidcontainerDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 标签采购  -->
+    <bean id="rfidpurchaseDao" class="com.icomp.dao.impl.RfidpurchaseDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 系统-功能  -->
+    <bean id="sclinkDao" class="com.icomp.dao.impl.SclinkDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 货架基础表  -->
+    <bean id="stackDao" class="com.icomp.dao.impl.StackDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 库存盘点  -->
+    <bean id="stockingDao" class="com.icomp.dao.impl.StockingDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 合成刀位置  -->
+    <bean id="synthesiscutterlocationDao" class="com.icomp.dao.impl.SynthesiscutterlocationDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 合成刀流转履历  -->
+    <bean id="synthesisexperienceDao" class="com.icomp.dao.impl.SynthesisexperienceDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 合成刀库  -->
+    <bean id="synthesisknifeDao" class="com.icomp.dao.impl.SynthesisknifeDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 合成刀具参数  -->
+    <bean id="synthesisparametersDao" class="com.icomp.dao.impl.SynthesisparametersDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 合成刀具加工  -->
+    <bean id="synthesistoolsmachiningDao" class="com.icomp.dao.impl.SynthesistoolsmachiningDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 合成刀具加工  -->
+    <bean id="vsynthesistoolsmachiningDao" class="com.icomp.dao.impl.VsynthesistoolsmachiningDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 系统  -->
+    <bean id="systemDao" class="com.icomp.dao.impl.SystemDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 日志  -->
+    <bean id="systemlogDao" class="com.icomp.dao.impl.SystemlogDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 刀具参数  -->
+    <bean id="toolDao" class="com.icomp.dao.impl.ToolDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 刀具参数替换  -->
+    <bean id="toolReplaceDao" class="com.icomp.dao.impl.ToolReplaceDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <bean id="synthesisExchangeDao" class="com.icomp.dao.impl.SynthesisExchangeDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 刀具告警参数
+  -->
+    <bean id="toolalarmparamDao" class="com.icomp.dao.impl.ToolalarmparamDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 刀具出库履历  -->
+    <bean id="toollibraryhistoryDao" class="com.icomp.dao.impl.ToollibraryhistoryDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 刀具修复履历  -->
+    <bean id="toolnoticehistoryDao" class="com.icomp.dao.impl.ToolnoticehistoryDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 刀具采购  -->
+    <bean id="toolprocuredDao" class="com.icomp.dao.impl.ToolprocuredDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 刀具修复通知(需要领取人到库房领取)  -->
+    <bean id="toolrepairnoticeDao" class="com.icomp.dao.impl.ToolrepairnoticeDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 工具盘  -->
+    <bean id="toolshelfDao" class="com.icomp.dao.impl.ToolshelfDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 工具盘位置信息  -->
+    <bean id="toolshelflnkDao" class="com.icomp.dao.impl.ToolshelflnkDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 工具盘位置  -->
+    <bean id="toolshelfplaceDao" class="com.icomp.dao.impl.ToolshelfplaceDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 刀具流转  -->
+    <bean id="tooltransferDao" class="com.icomp.dao.impl.TooltransferDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 刀具流转履历  -->
+    <bean id="tooltransferhistoryDao" class="com.icomp.dao.impl.TooltransferhistoryDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 刀具全生命周期  -->
+    <bean id="toolwholelifecycleDao" class="com.icomp.dao.impl.ToolwholelifecycleDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 用户明细  -->
+    <bean id="userdetailDao" class="com.icomp.dao.impl.UserdetailDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vagencyDao" class="com.icomp.dao.impl.VagencyDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vanalysisabnormalprocessingDao" class="com.icomp.dao.impl.VanalysisabnormalprocessingDaoImpl"
+          scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vanalysistoolfundsDao" class="com.icomp.dao.impl.VanalysistoolfundsDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vassemblylineDao" class="com.icomp.dao.impl.VassemblylineDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vbatchlistDao" class="com.icomp.dao.impl.VbatchlistDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vbusinessDao" class="com.icomp.dao.impl.VbusinessDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vcapabilityDao" class="com.icomp.dao.impl.VcapabilityDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vcaplistDao" class="com.icomp.dao.impl.VcaplistDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vcomlistDao" class="com.icomp.dao.impl.VcomlistDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vconsumptiontoolDao" class="com.icomp.dao.impl.VconsumptiontoolDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vcostabsorptionDao" class="com.icomp.dao.impl.VcostabsorptionDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vcustomerDao" class="com.icomp.dao.impl.VcustomerDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vcuttingtoolstateDao" class="com.icomp.dao.impl.VcuttingtoolstateDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vdepartmentDao" class="com.icomp.dao.impl.VdepartmentDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vdeptDao" class="com.icomp.dao.impl.VdeptDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vdisplayeditemconfigurationDao" class="com.icomp.dao.impl.VdisplayeditemconfigurationDaoImpl"
+          scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vequipmentDao" class="com.icomp.dao.impl.VequipmentDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetbacktoollibraryDao" class="com.icomp.dao.impl.VgetbacktoollibraryDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetbacktoolnamebyrfidDao" class="com.icomp.dao.impl.VgetbacktoolnamebyrfidDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetbackworkshopmagDao" class="com.icomp.dao.impl.VgetbackworkshopmagDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetboxmessageDao" class="com.icomp.dao.impl.VgetboxmessageDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetboxmessagesDao" class="com.icomp.dao.impl.VgetboxmessagesDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetequipmentnamebyrfidDao" class="com.icomp.dao.impl.VgetequipmentnamebyrfidDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetequipmentunloadingmsgDao" class="com.icomp.dao.impl.VgetequipmentunloadingmsgDaoImpl"
+          scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetfacilitieslibraryDao" class="com.icomp.dao.impl.VgetfacilitieslibraryDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetgrindingonmsgDao" class="com.icomp.dao.impl.VgetgrindingonmsgDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetredemptionappdetailedmsgDao" class="com.icomp.dao.impl.VgetredemptionappdetailedmsgDaoImpl"
+          scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetrenewalapplicationDao" class="com.icomp.dao.impl.VgetrenewalapplicationDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetrepairnoticetoolmsgDao" class="com.icomp.dao.impl.VgetrepairnoticetoolmsgDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetreturnfactorytoolDao" class="com.icomp.dao.impl.VgetreturnfactorytoolDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetsealedsafekeepingtoolDao" class="com.icomp.dao.impl.VgetsealedsafekeepingtoolDaoImpl"
+          scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetshelfinformationDao" class="com.icomp.dao.impl.VgetshelfinformationDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetsynthesistoolinfoDao" class="com.icomp.dao.impl.VgetsynthesistoolinfoDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgettoolcodeandnumberbyidDao" class="com.icomp.dao.impl.VgettoolcodeandnumberbyidDaoImpl"
+          scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgettoolplateDao" class="com.icomp.dao.impl.VgettoolplateDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgettoolshelfmessageDao" class="com.icomp.dao.impl.VgettoolshelfmessageDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgrantlistDao" class="com.icomp.dao.impl.VgrantlistDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgrindingquicksearchDao" class="com.icomp.dao.impl.VgrindingquicksearchDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgrindingrecordDao" class="com.icomp.dao.impl.VgrindingrecordDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgrindingtoolmsgDao" class="com.icomp.dao.impl.VgrindingtoolmsgDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgrindingworksummaryDao" class="com.icomp.dao.impl.VgrindingworksummaryDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vhandsetDao" class="com.icomp.dao.impl.VhandsetDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vinspectionrecordDao" class="com.icomp.dao.impl.VinspectionrecordDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vinventoryalarmDao" class="com.icomp.dao.impl.VinventoryalarmDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vinventorystatusDao" class="com.icomp.dao.impl.VinventorystatusDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vknifeinventoryDao" class="com.icomp.dao.impl.VknifeinventoryDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vleavefactoryDao" class="com.icomp.dao.impl.VleavefactoryDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vlibrarycodeDao" class="com.icomp.dao.impl.VlibrarycodeDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="voperationrecordDao" class="com.icomp.dao.impl.VoperationrecordDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vpartsDao" class="com.icomp.dao.impl.VpartsDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vpositionDao" class="com.icomp.dao.impl.VpositionDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vpositionsDao" class="com.icomp.dao.impl.VpositionsDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vprocessDao" class="com.icomp.dao.impl.VprocessDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vprocessamountDao" class="com.icomp.dao.impl.VprocessamountDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vprocessingabnormalalarmDao" class="com.icomp.dao.impl.VprocessingabnormalalarmDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vprocessingtoolsDao" class="com.icomp.dao.impl.VprocessingtoolsDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vprocurementplansDao" class="com.icomp.dao.impl.VprocurementplansDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vproductiondesignDao" class="com.icomp.dao.impl.VproductiondesignDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vpurchaseplanDao" class="com.icomp.dao.impl.VpurchaseplanDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vpurchasingorderDao" class="com.icomp.dao.impl.VpurchasingorderDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vputequipmentonDao" class="com.icomp.dao.impl.VputequipmentonDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vqualityinspectionDao" class="com.icomp.dao.impl.VqualityinspectionDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vquerytoollistDao" class="com.icomp.dao.impl.VquerytoollistDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vredemptionappliedDao" class="com.icomp.dao.impl.VredemptionappliedDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vrepairticketDao" class="com.icomp.dao.impl.VrepairticketDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vreplacementDao" class="com.icomp.dao.impl.VreplacementDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vreplacesynthesisDao" class="com.icomp.dao.impl.VreplacesynthesisDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vscrapanalysisDao" class="com.icomp.dao.impl.VscrapanalysisDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vstackDao" class="com.icomp.dao.impl.VstackDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vstockingDao" class="com.icomp.dao.impl.VstockingDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vstockinglistDao" class="com.icomp.dao.impl.VstockinglistDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vsuggestionpurchaseplanDao" class="com.icomp.dao.impl.VsuggestionpurchaseplanDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vsynthesisDao" class="com.icomp.dao.impl.VsynthesisDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vsynthesisexperienceDao" class="com.icomp.dao.impl.VsynthesisexperienceDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vsynthesisparametersDao" class="com.icomp.dao.impl.VsynthesisparametersDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vsystemlogDao" class="com.icomp.dao.impl.VsystemlogDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vtoolDao" class="com.icomp.dao.impl.VtoolDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vtoolconsumptionqueryDao" class="com.icomp.dao.impl.VtoolconsumptionqueryDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vtoollistDao" class="com.icomp.dao.impl.VtoollistDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vtoolparamDao" class="com.icomp.dao.impl.VtoolparamDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vtoolprocuredDao" class="com.icomp.dao.impl.VtoolprocuredDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vtoolquicksearchDao" class="com.icomp.dao.impl.VtoolquicksearchDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vtoolrealtimedistributionDao" class="com.icomp.dao.impl.VtoolrealtimedistributionDaoImpl"
+          scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vtoolsettingDao" class="com.icomp.dao.impl.VtoolsettingDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vtoolstackDao" class="com.icomp.dao.impl.VtoolstackDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vtoolsupplieranalysisDao" class="com.icomp.dao.impl.VtoolsupplieranalysisDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vtransitalarmDao" class="com.icomp.dao.impl.VtransitalarmDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vtransitplanDao" class="com.icomp.dao.impl.VtransitplanDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vtreasuryrepairtoolDao" class="com.icomp.dao.impl.VtreasuryrepairtoolDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vworkloadqueriesDao" class="com.icomp.dao.impl.VworkloadqueriesDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="subToolAvgToolSharpennumDao" class="com.icomp.dao.impl.SubToolAvgToolSharpennumDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="subToolProcessAmountDao" class="com.icomp.dao.impl.SubToolProcessAmountDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="subProductionDesignDao" class="com.icomp.dao.impl.SubProductionDesignDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="subAvgProcessAmountDao" class="com.icomp.dao.impl.SubAvgProcessAmountDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <bean id="vgetsynthesistooldownmsgDao" class="com.icomp.dao.impl.VgetsynthesistooldownmsgDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+
+    <!-- VIEW  -->
+    <bean id="voplinkDao" class="com.icomp.dao.impl.VoplinkDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vtooldiscardeDao" class="com.icomp.dao.impl.VtooldiscardeDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vtoolsupplierDao" class="com.icomp.dao.impl.VtoolsupplierDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vtoolplancountDao" class="com.icomp.dao.impl.VtoolplancountDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vpriceDao" class="com.icomp.dao.impl.VpriceDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vreplacerfidDao" class="com.icomp.dao.impl.VreplacerfidDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 专机领用申请  -->
+    <bean id="ledplaneDao" class="com.icomp.dao.impl.LedplaneDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vledplaneDao" class="com.icomp.dao.impl.VledplaneDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vledplanelistDao" class="com.icomp.dao.impl.VledplanelistDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 工具盘VIEW  -->
+    <bean id="vtoolshelfDao" class="com.icomp.dao.impl.VtoolshelfDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetrenewalapplicationNewDao" class="com.icomp.dao.impl.Vgetrenewalapplication_NewDaoImpl"
+          scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetpositioncapabilityDao" class="com.icomp.dao.impl.VgetpositioncapabilityDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 刀具盘信息  -->
+    <bean id="vtoolplatemessagelistDao" class="com.icomp.dao.impl.VtoolplatemessagelistDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetsynthesisexperienceDao" class="com.icomp.dao.impl.VgetsynthesisexperienceDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vprocessingquickqueryDao" class="com.icomp.dao.impl.VprocessingquickqueryDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <bean id="vredemptionappdetailedmsgnewDao" class="com.icomp.dao.impl.VredemptionappdetailedmsgnewDaoImpl"
+          scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 出库查询 -->
+    <bean id="vtoollibraryhistoryDao" class="com.icomp.dao.impl.VtoollibraryhistoryDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!--授权查询-->
+    <bean scope="prototype" class="com.icomp.dao.impl.VauthorizationDaoImpl" id="vauthorizationDao">
+        <property ref="sqlMapClient" name="dataSource"/>
+    </bean>
+    <!--厂内修磨-->
+    <bean scope="prototype" class="com.icomp.dao.impl.VtoolnoticehistoryDaoImpl" id="vtoolnoticehistoryDao">
+        <property ref="sqlMapClient" name="dataSource"/>
+    </bean>
+    <!--厂外修磨视图-->
+    <bean scope="prototype" class="com.icomp.dao.impl.VoutsidefactoryDaoImpl" id="voutsidefactoryDao">
+        <property ref="sqlMapClient" name="dataSource"/>
+    </bean>
+    <!-- 厂外修复表 -->
+    <bean scope="prototype" class="com.icomp.dao.impl.OutsidefactoryDaoImpl" id="outsidefactoryDao">
+        <property ref="sqlMapClient" name="dataSource"/>
+    </bean>
+    <!-- 厂外修复商家 -->
+    <bean scope="prototype" class="com.icomp.dao.impl.MerchantsDaoImpl" id="merchantsDao">
+        <property ref="sqlMapClient" name="dataSource"/>
+    </bean>
+    <!--库存预警-->
+    <bean scope="prototype" class="com.icomp.dao.impl.VtoolalarmparamDaoImpl" id="vtoolalarmparamDao">
+        <property ref="sqlMapClient" name="dataSource"/>
+    </bean>
+    <!--报废原因-->
+    <bean scope="prototype" class="com.icomp.dao.impl.VscrapDaoImpl" id="vscrapDao">
+        <property ref="sqlMapClient" name="dataSource"/>
+    </bean>
+    <!--报废原因1 -->
+    <bean scope="prototype" class="com.icomp.dao.impl.ScrapDaoImpl" id="scrapDao">
+        <property ref="sqlMapClient" name="dataSource"/>
+    </bean>
+    <!--车间工作量汇总-->
+    <bean scope="prototype" class="com.icomp.dao.impl.VworkshopsummaryDaoImpl" id="vworkshopsummaryDao">
+        <property ref="sqlMapClient" name="dataSource"/>
+    </bean>
+    <!--加工量异常预警-->
+    <bean scope="prototype" class="com.icomp.dao.impl.VtoolsmachiningDaoImpl" id="vtoolsmachiningDao">
+        <property ref="sqlMapClient" name="dataSource"/>
+    </bean>
+    <!--加工异常分析-->
+    <bean scope="prototype" class="com.icomp.dao.impl.VanalysisDaoImpl" id="vanalysisDao">
+        <property ref="sqlMapClient" name="dataSource"/>
+    </bean>
+    <!--合成刀具状态查询-->
+    <bean scope="prototype" class="com.icomp.dao.impl.VsynthesisconditionDaoImpl" id="vsynthesisconditionDao">
+        <property ref="sqlMapClient" name="dataSource"/>
+    </bean>
+    <!-- 轴表 -->
+    <bean scope="prototype" class="com.icomp.dao.impl.AxleDaoImpl" id="axleDao">
+        <property name="dataSource" ref="sqlMapClient"/>
+    </bean>
+    <!--刀具消耗-->
+    <bean scope="prototype" class="com.icomp.dao.impl.VamortizationDaoImpl" id="vamortizationDao">
+        <property ref="sqlMapClient" name="dataSource"/> </bean>
+    <!--成本摊销-->
+    <bean scope="prototype" class="com.icomp.dao.impl.VcostamortizationDaoImpl" id="vcostamortizationDao">
+        <property ref="sqlMapClient" name="dataSource"/> </bean>
+    <!--采购查询-->
+    <bean scope="prototype" class="com.icomp.dao.impl.VtoolprocuredsDaoImpl" id="vtoolprocuredsDao">
+        <property ref="sqlMapClient" name="dataSource"/> </bean>
+    <!-- 取得设备列表  -->
+    <bean id="vgetequipmentlistDao" class="com.icomp.dao.impl.VgetequipmentlistDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 取得卸下设备的合成刀具的信息  -->
+    <bean id="vgetdownsynthistoolsmsgDao" class="com.icomp.dao.impl.VgetdownsynthistoolsmsgDaoImpl"  scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 取得修磨设备列表  -->
+    <bean id="vgetnoticeequipmentlistDao" class="com.icomp.dao.impl.VgetnoticeequipmentlistDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!--  取得修磨刀具信息列表  -->
+    <bean id="vgettoolinfolistDao" class="com.icomp.dao.impl.VgettoolinfolistDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"/>
+    </bean>
+    <!--  刀具加工   -->
+    <bean id="toolsmachiningDao" class="com.icomp.dao.impl.ToolsmachiningDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"/>
+    </bean>
+    <!-- 取得刀具绑定信息  -->
+    <bean id="vgettoolbindinginfoDao" class="com.icomp.dao.impl.VgettoolbindinginfoDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 快速查询刀具信息 -->
+    <bean id="vgettoolinformationDao" class="com.icomp.dao.impl.VgettoolinformationDaoImpl"  scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 快速查询用户信息  -->
+    <bean id="vgetuserinfoDao" class="com.icomp.dao.impl.VgetuserinfoDaoImpl"  scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 快速查询合成刀信息  -->
+    <bean id="vgetsynthsisinfoDao" class="com.icomp.dao.impl.VgetsynthsisinfoDaoImpl"  scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 快速查询合成刀流转信息  -->
+    <bean id="vgetsynthsistooltransferinfoDao" class="com.icomp.dao.impl.VgetsynthsistooltransferinfoDaoImpl"  scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 快速查询设备信息  -->
+    <bean id="vgetequipmentinfoDao" class="com.icomp.dao.impl.VgetequipmentinfoDaoImpl"  scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 快速查询容器信息  -->
+    <bean id="vgetcontainercarrierinfoDao" class="com.icomp.dao.impl.VgetcontainercarrierinfoDaoImpl"  scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 刀具实时分布 -->
+    <bean id="distributionDao" class="com.icomp.dao.impl.DistributionDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!--刀具资金占用分析-->
+    <bean id="capitaltakesDao" class="com.icomp.dao.impl.CapitalTakesDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 容器表 -->
+    <bean scope="prototype" class="com.icomp.dao.impl.ContainercarrierDaoImpl" id="containercarrierDao">
+        <property ref="sqlMapClient" name="dataSource"/> </bean>
+    <!-- 用户信息  -->
+    <bean id="vgetcustomerinfoDao" class="com.icomp.dao.impl.VgetcustomerinfoDaoImpl"  scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 流水线与设备表  -->
+    <bean id="vgetassequipmentlistDao" class="com.icomp.dao.impl.VgetassequipmentlistDaoImpl"  scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 库存新刀信息  -->
+    <bean id="vknifeinventoryinfoDao" class="com.icomp.dao.impl.VknifeinventoryinfoDaoImpl"  scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!--中间表设备-->
+    <bean scope="prototype" class="com.icomp.dao.impl.VoplinkdownDaoImpl" id="voplinkdownDao">
+        <property ref="sqlMapClient" name="dataSource"/>
+    </bean>
+    <!-- 取得合成刀具信息表  -->
+    <bean id="vgetsynsistoolmsgDao" class="com.icomp.dao.impl.VgetsynsistoolmsgDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!--预警-->
+    <bean scope="prototype" class="com.icomp.dao.impl.WarningDaoImpl" id="warningDao">
+        <property ref="sqlMapClient" name="dataSource"/>
+    </bean>
+    <!--视图预警-->
+    <bean scope="prototype" class="com.icomp.dao.impl.VwarningDaoImpl" id="vwarningDao">
+        <property ref="sqlMapClient" name="dataSource"/>
+    </bean>
+    <!-- 快速查询库位标签  -->
+    <bean id="vgetinventorymsgDao" class="com.icomp.dao.impl.VgetinventorymsgDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!--非单品刀具初始化-->
+    <bean scope="prototype" class="com.icomp.dao.impl.VsingleproductDaoImpl" id="vsingleproductDao">
+        <property ref="sqlMapClient" name="dataSource"/>
+    </bean>
+
+    <!--非单品刀具初始化-->
+    <bean scope="prototype" class="com.icomp.dao.impl.TooloptimizationDaoImpl" id="tooloptimizationDao">
+        <property ref="sqlMapClient" name="dataSource"/>
+    </bean>
+    <!--刀具需求单-->
+    <bean scope="prototype" class="com.icomp.dao.impl.WerkzeugeanforderunDaoImpl" id="werkzeugeanforderunDao">
+        <property ref="sqlMapClient" name="dataSource"/>
+    </bean>
+    <!-- 快速查询库存新刀  -->
+    <bean id="vgetknifeinventoryinfoDao" class="com.icomp.dao.impl.VgetknifeinventoryinfoDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vgetcustomermsgDao" class="com.icomp.dao.impl.VgetcustomermsgDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <bean scope="prototype" class="com.icomp.dao.impl.VapplyuserDaoImpl" id="vapplyuserDao">
+        <property ref="sqlMapClient" name="dataSource"/>
+    </bean>
+    <!--激光码绑定-->
+    <bean id="leasertabeDao" class="com.icomp.dao.impl.LeasertabeDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- 查询砂轮信息  -->
+    <bean id="vgetwheelinfoDao" class="com.icomp.dao.impl.VgetwheelinfoDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <bean id="vgetwheelsmachiningmsgDao" class="com.icomp.dao.impl.VgetwheelsmachiningmsgDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!--入库履历-->
+    <bean id="storagerecordDao" class="com.icomp.dao.impl.StoragerecordDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!--采购计划-->
+    <bean id="formulasDao" class="com.icomp.dao.impl.FormulasDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vpartsmachiningmsgDao" class="com.icomp.dao.impl.VpartsmachiningmsgDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!-- VIEW  -->
+    <bean id="vtoolsopDao" class="com.icomp.dao.impl.VtoolsopDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!--授权开关-->
+    <bean id="onoffDao" class="com.icomp.dao.impl.OnoffDaoImpl" scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!--预警-->
+    <bean id="vtoolshertoolDao" class="com.icomp.dao.impl.VtoolshertoolDaoImpl"  scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!--   -->
+    <bean id="toolspriceDao" class="com.icomp.dao.impl.ToolspriceDaoImpl"  scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+    <!--   -->
+    <bean id="tubedetailinfoDao" class="com.icomp.dao.impl.TubedetailinfoDaoImpl"  scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+
+    <bean id="toolChangehistoryDao" class="com.icomp.dao.impl.ToolChangehistoryDaoImpl"  scope="prototype">
+        <property name="dataSource" ref="sqlMapClient"></property>
+    </bean>
+</beans>
+

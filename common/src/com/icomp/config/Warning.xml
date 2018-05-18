@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Warning.xml
+    Created on : 2016/03/26 13:54:04
+    Author : 工具自动生成
+    Description: 工具自动生成包含的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Warning">
+    <typeAlias alias="entityWarning" type="com.icomp.entity.base.Warning"/>
+    <resultMap id="Warning-map" class="entityWarning">
+        <!-- 预警ID -->
+        <result property="warningID" column="WarningID"/>
+        <!-- 功能 -->
+        <result property="warningFunction" column="WarningFunction"/>
+        <!-- 用户ID[自动生成20位字符串] -->
+        <result property="customerID" column="CustomerID"/>
+        <!-- 员工卡号[20位员工卡] -->
+        <result property="employeeCard" column="EmployeeCard"/>
+        <!-- 启动/停用 -->
+        <result property="sorT" column="SorT"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="delFlag" column="DelFlag"/>
+        <!-- 创建人 -->
+        <result property="createUser" column="CreateUser"/>
+        <!-- 创建时间 -->
+        <result property="createTime" column="CreateTime"/>
+        <!-- 更新人 -->
+        <result property="updateUser" column="updateUser"/>
+        <!-- 更新时间 -->
+        <result property="updateTime" column="updateTime"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityWarning" resultMap="Warning-map">
+        SELECT
+        WarningID
+        ,WarningFunction
+        ,CustomerID
+        ,EmployeeCard
+        ,SorT
+        ,DelFlag
+        ,CreateUser
+        ,CreateTime
+        ,updateUser
+        ,updateTime
+        from warning
+        <dynamic prepend=" where ">
+            <isNotNull property="warningID" prepend="and ">
+                WarningID = #warningID#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            WarningID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityWarning" resultMap="Warning-map">
+        SELECT
+        WarningID
+        ,WarningFunction
+        ,CustomerID
+        ,EmployeeCard
+        ,SorT
+        ,DelFlag
+        ,CreateUser
+        ,CreateTime
+        ,updateUser
+        ,updateTime
+        from warning
+        <dynamic prepend=" where ">
+            <isNotNull property="warningID" prepend="and ">
+                WarningID = #warningID#
+            </isNotNull>
+            <isNotNull property="warningFunction" prepend="and ">
+                WarningFunction = #warningFunction#
+            </isNotNull>
+            <isNotNull property="customerID" prepend="and ">
+                CustomerID = #customerID#
+            </isNotNull>
+            <isNotNull property="employeeCard" prepend="and ">
+                EmployeeCard = #employeeCard#
+            </isNotNull>
+            <isNotNull property="sorT" prepend="and ">
+                SorT = #sorT#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                updateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                updateTime = #updateTime#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            WarningID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityWarning" resultClass="int">
+        SELECT count(1)
+        from warning
+        <dynamic prepend=" where ">
+            <isNotNull property="warningID" prepend="and ">
+                WarningID = #warningID#
+            </isNotNull>
+            <isNotNull property="warningFunction" prepend="and ">
+                WarningFunction = #warningFunction#
+            </isNotNull>
+            <isNotNull property="customerID" prepend="and ">
+                CustomerID = #customerID#
+            </isNotNull>
+            <isNotNull property="employeeCard" prepend="and ">
+                EmployeeCard = #employeeCard#
+            </isNotNull>
+            <isNotNull property="sorT" prepend="and ">
+                SorT = #sorT#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                updateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                updateTime = #updateTime#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+    <!-- 任意条件更新处理(未指定字段更新为：null) -->
+    <update id="update" parameterClass="entityWarning">
+        update warning
+        <dynamic prepend="set">
+            <isNotNull property="warningID">
+                WarningID = #warningID#
+            </isNotNull>
+            <isNull property="warningID">
+                WarningID = null
+            </isNull>
+            <isNotNull property="warningFunction">
+                ,WarningFunction = #warningFunction#
+            </isNotNull>
+            <isNull property="warningFunction">
+                ,WarningFunction = null
+            </isNull>
+            <isNotNull property="customerID">
+                ,CustomerID = #customerID#
+            </isNotNull>
+            <isNull property="customerID">
+                ,CustomerID = null
+            </isNull>
+            <isNotNull property="employeeCard">
+                ,EmployeeCard = #employeeCard#
+            </isNotNull>
+            <isNull property="employeeCard">
+                ,EmployeeCard = null
+            </isNull>
+            <isNotNull property="sorT">
+                ,SorT = #sorT#
+            </isNotNull>
+            <isNull property="sorT">
+                ,SorT = null
+            </isNull>
+            <isNotNull property="delFlag">
+                ,DelFlag = #delFlag#
+            </isNotNull>
+            <isNull property="delFlag">
+                ,DelFlag = null
+            </isNull>
+            <isNotNull property="createUser">
+                ,CreateUser = #createUser#
+            </isNotNull>
+            <isNull property="createUser">
+                ,CreateUser = null
+            </isNull>
+            <isNotNull property="createTime">
+                ,CreateTime = #createTime#
+            </isNotNull>
+            <isNull property="createTime">
+                ,CreateTime = null
+            </isNull>
+            <isNotNull property="updateUser">
+                ,updateUser = #updateUser#
+            </isNotNull>
+            <isNull property="updateUser">
+                ,updateUser = null
+            </isNull>
+            <isNotNull property="updateTime">
+                ,updateTime = #updateTime#
+            </isNotNull>
+            <isNull property="updateTime">
+                ,updateTime = null
+            </isNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="warningIDWhere" prepend="and ">
+                WarningID = #warningIDWhere#
+            </isNotNull>
+            <isNotNull property="warningFunctionWhere" prepend="and ">
+                WarningFunction = #warningFunctionWhere#
+            </isNotNull>
+            <isNotNull property="customerIDWhere" prepend="and ">
+                CustomerID = #customerIDWhere#
+            </isNotNull>
+            <isNotNull property="employeeCardWhere" prepend="and ">
+                EmployeeCard = #employeeCardWhere#
+            </isNotNull>
+            <isNotNull property="sorTWhere" prepend="and ">
+                SorT = #sorTWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                updateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                updateTime = #updateTimeWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 任意条件更新处理(未指定字段不更新) -->
+    <update id="updateNonQuery" parameterClass="entityWarning">
+        update warning
+        <dynamic prepend="set">
+            <isNotNull property="warningID" prepend=",">
+                WarningID = #warningID#
+            </isNotNull>
+            <isNotNull property="warningFunction" prepend=",">
+                WarningFunction = #warningFunction#
+            </isNotNull>
+            <isNotNull property="customerID" prepend=",">
+                CustomerID = #customerID#
+            </isNotNull>
+            <isNotNull property="employeeCard" prepend=",">
+                EmployeeCard = #employeeCard#
+            </isNotNull>
+            <isNotNull property="sorT" prepend=",">
+                SorT = #sorT#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend=",">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="createUser" prepend=",">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend=",">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend=",">
+                updateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend=",">
+                updateTime = #updateTime#
+            </isNotNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="warningIDWhere" prepend="and ">
+                WarningID = #warningIDWhere#
+            </isNotNull>
+            <isNotNull property="warningFunctionWhere" prepend="and ">
+                WarningFunction = #warningFunctionWhere#
+            </isNotNull>
+            <isNotNull property="customerIDWhere" prepend="and ">
+                CustomerID = #customerIDWhere#
+            </isNotNull>
+            <isNotNull property="employeeCardWhere" prepend="and ">
+                EmployeeCard = #employeeCardWhere#
+            </isNotNull>
+            <isNotNull property="sorTWhere" prepend="and ">
+                SorT = #sorTWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                updateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                updateTime = #updateTimeWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 插入处理 -->
+    <insert id="insert" parameterClass="entityWarning">
+        <selectKey resultClass="java.lang.String" keyProperty="warningID">
+            SELECT #warningID# as warningID FROM DUAL
+        </selectKey>
+        insert into warning(
+        WarningID
+        ,WarningFunction
+        ,CustomerID
+        ,EmployeeCard
+        ,SorT
+        ,DelFlag
+        ,CreateUser
+        ,CreateTime
+        ,updateUser
+        ,updateTime
+        )
+        Values (
+        <isNotNull property="warningID">
+            #warningID#
+        </isNotNull>
+        <isNull property="warningID">
+            null
+        </isNull>
+        <isNotNull property="warningFunction">
+            ,#warningFunction#
+        </isNotNull>
+        <isNull property="warningFunction">
+            ,null
+        </isNull>
+        <isNotNull property="customerID">
+            ,#customerID#
+        </isNotNull>
+        <isNull property="customerID">
+            ,null
+        </isNull>
+        <isNotNull property="employeeCard">
+            ,#employeeCard#
+        </isNotNull>
+        <isNull property="employeeCard">
+            ,null
+        </isNull>
+        <isNotNull property="sorT">
+            ,#sorT#
+        </isNotNull>
+        <isNull property="sorT">
+            ,null
+        </isNull>
+        <isNotNull property="delFlag">
+            ,#delFlag#
+        </isNotNull>
+        <isNull property="delFlag">
+            ,null
+        </isNull>
+        <isNotNull property="createUser">
+            ,#createUser#
+        </isNotNull>
+        <isNull property="createUser">
+            ,null
+        </isNull>
+        <isNotNull property="createTime">
+            ,#createTime#
+        </isNotNull>
+        <isNull property="createTime">
+            ,null
+        </isNull>
+        <isNotNull property="updateUser">
+            ,#updateUser#
+        </isNotNull>
+        <isNull property="updateUser">
+            ,null
+        </isNull>
+        <isNotNull property="updateTime">
+            ,#updateTime#
+        </isNotNull>
+        <isNull property="updateTime">
+            ,null
+        </isNull>
+        )
+    </insert>
+
+    <!-- 任意条件删除处理 -->
+    <delete id="delete" parameterClass="entityWarning">
+        delete from warning
+        <dynamic prepend=" where ">
+            <isNotNull property="warningIDWhere" prepend="and ">
+                WarningID = #warningIDWhere#
+            </isNotNull>
+            <isNotNull property="warningFunctionWhere" prepend="and ">
+                WarningFunction = #warningFunctionWhere#
+            </isNotNull>
+            <isNotNull property="customerIDWhere" prepend="and ">
+                CustomerID = #customerIDWhere#
+            </isNotNull>
+            <isNotNull property="employeeCardWhere" prepend="and ">
+                EmployeeCard = #employeeCardWhere#
+            </isNotNull>
+            <isNotNull property="sorTWhere" prepend="and ">
+                SorT = #sorTWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                updateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                updateTime = #updateTimeWhere#
+            </isNotNull>
+        </dynamic>
+    </delete>
+    <select id="searchByCarName" parameterClass="entityWarning" resultMap="Warning-map">
+		SELECT
+		*
+		FROM  warning
+		where
+		EmployeeCard = #employeeCard# AND CustomerID = #customerID#
+	</select>
+    <select id="searchListByUse" resultMap="Warning-map">
+    SELECT
+    wa.WarningID AS WarningID,
+    wa.WarningFunction AS WarningFunction,
+    u.UserName AS CustomerID,
+    wa.EmployeeCard AS EmployeeCard,
+    wa.SorT AS SorT,
+    wa.DelFlag AS DelFlag,
+    u.UserLandline AS CreateUser,
+    u.CreateTime AS CreateTime,
+    u.updateUser AS updateUser,
+    u.updateTime AS updateTime
+    FROM warning wa
+    LEFT JOIN userdetail u ON wa.CustomerID = u.CustomerID
+    WHERE wa.SorT = '0'
+    AND wa.DelFlag = '0'
+	</select>
+</sqlMap>
+

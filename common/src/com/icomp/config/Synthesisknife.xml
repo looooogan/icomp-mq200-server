@@ -1,0 +1,1596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Synthesisknife.xml
+    Created on : 2014/10/21 10:18:26
+    Author : 工具自动生成
+    Description: 工具自动生成包含合成刀库的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByList_F ： 任意条件查询-SynthesisParametersCode模糊查询
+    searchByCount ：任意条件条数查询
+    searchByCount_F ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Synthesisknife">
+    <typeAlias alias="entitySynthesisknife" type="com.icomp.entity.base.Synthesisknife"/>
+    <resultMap id="Synthesisknife-map" class="entitySynthesisknife">
+        <!-- 合成刀具编码(系统唯一) -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+        <!-- 位置号 -->
+        <result property="synthesisCutterNumber" column="SynthesisCutterNumber"/>
+        <!-- 合成刀具编号(例如：001、002、003) -->
+        <result property="synthesisParametersNumber" column="SynthesisParametersNumber"/>
+        <!-- 业务-流程中间表ID -->
+        <result property="businessFlowLnkID" column="BusinessFlowLnkID"/>
+        <!-- 设备ID -->
+        <result property="equipmentID" column="EquipmentID"/>
+        <!-- 刀具入库编码 -->
+        <result property="knifeInventoryCode" column="KnifeInventoryCode"/>
+        <!-- 使用状态(0设备装入1设备卸下2回收旧刀3组装新刀4不合格送回)(该状态绑定到带标签的数据上) -->
+        <result property="loadState" column="LoadState"/>
+        <!-- 卸下方式(0装盒1装盘3保留) -->
+        <result property="offloadType" column="OffloadType"/>
+        <!-- 是否安装(0安装1卸下9其他) -->
+        <result property="installFlag" column="InstallFlag"/>
+        <!-- RFID(辅具或配套上打孔安装的RFID) -->
+        <result property="rFID" column="RFID"/>
+        <!-- X坐标 -->
+        <result property="xPoint" column="XPoint"/>
+        <!-- Y坐标 -->
+        <result property="yPoint" column="YPoint"/>
+        <!-- 对刀人 -->
+        <result property="knifeMan" column="KnifeMan"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="delFlag" column="DelFlag"/>
+        <!-- 更新时间 -->
+        <result property="updateTime" column="UpdateTime"/>
+        <!-- 更新者 -->
+        <result property="updateUser" column="UpdateUser"/>
+        <!-- 创建时间 -->
+        <result property="createTime" column="CreateTime"/>
+        <!-- 创建者 -->
+        <result property="createUser" column="CreateUser"/>
+        <!-- 版本号 -->
+        <result property="version" column="Version"/>
+
+        <!--  2017/08/30 宋健 追加↓↓↓　dazhong@YMSC -->
+        <result property="bdSum" column="bdSum"/>
+
+        <result property="asSum" column="asSum"/>
+
+        <result property="dzzSum" column="dzzSum"/>
+
+        <result property="totalSum" column="totalSum"/>
+        <!--  2017/08/30 宋健 追加↑↑↑　dazhong@YMSC -->
+    </resultMap>
+
+    <resultMap id="Synthesisknife-map-F" class="entitySynthesisknife">
+        <!-- 合成刀具编码(系统唯一) -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+        <!-- 位置号 -->
+        <result property="synthesisCutterNumber" column="SynthesisCutterNumber"/>
+        <!-- 合成刀具编号(例如：001、002、003) -->
+        <result property="synthesisParametersNumber" column="SynthesisParametersNumber"/>
+        <!-- 业务-流程中间表ID -->
+        <result property="businessFlowLnkID" column="BusinessFlowLnkID"/>
+        <!-- 设备ID -->
+        <result property="equipmentID" column="EquipmentID"/>
+        <!-- 刀具入库编码 -->
+        <result property="knifeInventoryCode" column="KnifeInventoryCode"/>
+        <!-- 使用状态(0设备装入1设备卸下2回收旧刀3组装新刀4不合格送回)(该状态绑定到带标签的数据上) -->
+        <result property="loadState" column="LoadState"/>
+        <!-- 卸下方式(0装盒1装盘3保留) -->
+        <result property="offloadType" column="OffloadType"/>
+        <!-- 是否安装(0安装1卸下9其他) -->
+        <result property="installFlag" column="InstallFlag"/>
+        <!-- RFID(辅具或配套上打孔安装的RFID) -->
+        <result property="rFID" column="RFID"/>
+        <!-- X坐标 -->
+        <result property="xPoint" column="XPoint"/>
+        <!-- Y坐标 -->
+        <result property="yPoint" column="YPoint"/>
+        <!-- 对刀人 -->
+        <result property="knifeMan" column="KnifeMan"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="delFlag" column="DelFlag"/>
+        <!-- 更新时间 -->
+        <result property="updateTime" column="UpdateTime"/>
+        <!-- 更新者 -->
+        <result property="updateUser" column="UpdateUser"/>
+        <!-- 创建时间 -->
+        <result property="createTime" column="CreateTime"/>
+        <!-- 创建者 -->
+        <result property="createUser" column="CreateUser"/>
+        <!-- 版本号 -->
+        <result property="version" column="Version"/>
+        <!-- 版本号 -->
+        <result property="states" column="states"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entitySynthesisknife" resultMap="Synthesisknife-map">
+        SELECT
+        SynthesisParametersCode
+        ,SynthesisCutterNumber
+        ,SynthesisParametersNumber
+        ,BusinessFlowLnkID
+        ,EquipmentID
+        ,KnifeInventoryCode
+        ,LoadState
+        ,OffloadType
+        ,InstallFlag
+        ,RFID
+        ,XPoint
+        ,YPoint
+        ,KnifeMan
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        from synthesisknife
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCode#
+            </isNotNull>
+            <isNotNull property="synthesisCutterNumber" prepend="and ">
+                SynthesisCutterNumber = #synthesisCutterNumber#
+            </isNotNull>
+            <isNotNull property="synthesisParametersNumber" prepend="and ">
+                SynthesisParametersNumber = #synthesisParametersNumber#
+            </isNotNull>
+        </dynamic>
+        group by SynthesisParametersCode
+        ,SynthesisCutterNumber
+        ,SynthesisParametersNumber
+        ,BusinessFlowLnkID
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            SynthesisParametersCode
+            ,SynthesisCutterNumber
+            ,SynthesisParametersNumber
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entitySynthesisknife" resultMap="Synthesisknife-map">
+        SELECT
+        SynthesisParametersCode
+        ,SynthesisCutterNumber
+        ,SynthesisParametersNumber
+        ,BusinessFlowLnkID
+        ,EquipmentID
+        ,KnifeInventoryCode
+        ,LoadState
+        ,OffloadType
+        ,InstallFlag
+        ,RFID
+        ,XPoint
+        ,YPoint
+        ,KnifeMan
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        <!--  2017/08/30 王冉 追加↓↓↓　dazhong@YMSC -->
+        ,Version bdSum
+        ,Version asSum
+        ,Version dzzSum
+        ,Version totalSum
+        <!--  2017/08/30 王冉 追加↑↑↑　dazhong@YMSC -->
+        from synthesisknife
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCode#
+            </isNotNull>
+            <isNotNull property="synthesisCutterNumber" prepend="and ">
+                SynthesisCutterNumber = #synthesisCutterNumber#
+            </isNotNull>
+            <isNotNull property="synthesisParametersNumber" prepend="and ">
+                SynthesisParametersNumber = #synthesisParametersNumber#
+            </isNotNull>
+            <isNotNull property="businessFlowLnkID" prepend="and ">
+                BusinessFlowLnkID = #businessFlowLnkID#
+            </isNotNull>
+            <isNotNull property="equipmentID" prepend="and ">
+                EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCode" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+            <isNotNull property="loadState" prepend="and ">
+                LoadState = #loadState#
+            </isNotNull>
+            <isNotNull property="offloadType" prepend="and ">
+                OffloadType = #offloadType#
+            </isNotNull>
+            <isNotNull property="installFlag" prepend="and ">
+                InstallFlag = #installFlag#
+            </isNotNull>
+            <isNotNull property="rFID" prepend="and ">
+                RFID = #rFID#
+            </isNotNull>
+            <isNotNull property="xPoint" prepend="and ">
+                XPoint = #xPoint#
+            </isNotNull>
+            <isNotNull property="yPoint" prepend="and ">
+                YPoint = #yPoint#
+            </isNotNull>
+            <isNotNull property="knifeMan" prepend="and ">
+                KnifeMan = #knifeMan#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            SynthesisParametersCode
+            ,SynthesisCutterNumber
+            ,SynthesisParametersNumber
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList_F" parameterClass="entitySynthesisknife" resultMap="Synthesisknife-map-F">
+        SELECT
+        SynthesisParametersCode,
+        vbusiness.BusinessName as states,
+        SynthesisCutterNumber,
+        SynthesisParametersNumber,
+        synthesisknife.BusinessFlowLnkID as BusinessFlowLnkID,
+        EquipmentID,
+        KnifeInventoryCode,
+        vbusiness.BusinessName as LoadState,
+        OffloadType,
+        InstallFlag,
+        RFID,
+        XPoint,
+        YPoint,
+        KnifeMan,
+        synthesisknife.DelFlag as DelFlag,
+        synthesisknife.UpdateTime as UpdateTime,
+        synthesisknife.UpdateUser as UpdateUser,
+        synthesisknife.CreateTime as CreateTime,
+        synthesisknife.CreateUser as CreateUser,
+        synthesisknife.Version as Version
+        FROM
+        synthesisknife
+        INNER JOIN vbusiness ON synthesisknife.BusinessFlowLnkID = vbusiness.BusinessFlowLnkID
+        where SynthesisCutterNumber='0'
+        <isNotNull property="synthesisParametersCode" prepend="and ">
+            SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+        </isNotNull>
+        <isNotNull property="synthesisCutterNumber" prepend="and ">
+            SynthesisCutterNumber = #synthesisCutterNumber#
+        </isNotNull>
+        <isNotNull property="synthesisParametersNumber" prepend="and ">
+            SynthesisParametersNumber = #synthesisParametersNumber#
+        </isNotNull>
+        <isNotNull property="businessFlowLnkID" prepend="and ">
+            BusinessFlowLnkID = #businessFlowLnkID#
+        </isNotNull>
+        <isNotNull property="equipmentID" prepend="and ">
+            EquipmentID = #equipmentID#
+        </isNotNull>
+        <isNotNull property="knifeInventoryCode" prepend="and ">
+            KnifeInventoryCode = #knifeInventoryCode#
+        </isNotNull>
+        <isNotNull property="loadState" prepend="and ">
+            LoadState = #loadState#
+        </isNotNull>
+        <isNotNull property="offloadType" prepend="and ">
+            OffloadType = #offloadType#
+        </isNotNull>
+        <isNotNull property="installFlag" prepend="and ">
+            InstallFlag = #installFlag#
+        </isNotNull>
+        <isNotNull property="rFID" prepend="and ">
+            RFID = #rFID#
+        </isNotNull>
+        <isNotNull property="xPoint" prepend="and ">
+            XPoint = #xPoint#
+        </isNotNull>
+        <isNotNull property="yPoint" prepend="and ">
+            YPoint = #yPoint#
+        </isNotNull>
+        <isNotNull property="knifeMan" prepend="and ">
+            KnifeMan = #knifeMan#
+        </isNotNull>
+        <isNotNull property="delFlag" prepend="and ">
+            DelFlag = #delFlag#
+        </isNotNull>
+        <isNotNull property="updateTime" prepend="and ">
+            UpdateTime = #updateTime#
+        </isNotNull>
+        <isNotNull property="updateUser" prepend="and ">
+            UpdateUser = #updateUser#
+        </isNotNull>
+        <isNotNull property="createTime" prepend="and ">
+            CreateTime = #createTime#
+        </isNotNull>
+        <isNotNull property="createUser" prepend="and ">
+            CreateUser = #createUser#
+        </isNotNull>
+        <isNotNull property="version" prepend="and ">
+            Version = #version#
+        </isNotNull>
+        <isNotNull property="orderString">
+            order by $orderString$ asc
+        </isNotNull>
+        <isNull property="orderString">
+            order by SynthesisParametersNumber*1
+            ,SynthesisParametersCode
+            ,SynthesisCutterNumber*1
+
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entitySynthesisknife" resultClass="int">
+        SELECT count(1)
+        from synthesisknife
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCode#
+            </isNotNull>
+            <isNotNull property="synthesisCutterNumber" prepend="and ">
+                SynthesisCutterNumber = #synthesisCutterNumber#
+            </isNotNull>
+            <isNotNull property="synthesisParametersNumber" prepend="and ">
+                SynthesisParametersNumber = #synthesisParametersNumber#
+            </isNotNull>
+            <isNotNull property="businessFlowLnkID" prepend="and ">
+                BusinessFlowLnkID = #businessFlowLnkID#
+            </isNotNull>
+            <isNotNull property="equipmentID" prepend="and ">
+                EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCode" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+            <isNotNull property="loadState" prepend="and ">
+                LoadState = #loadState#
+            </isNotNull>
+            <isNotNull property="offloadType" prepend="and ">
+                OffloadType = #offloadType#
+            </isNotNull>
+            <isNotNull property="installFlag" prepend="and ">
+                InstallFlag = #installFlag#
+            </isNotNull>
+            <isNotNull property="rFID" prepend="and ">
+                RFID = #rFID#
+            </isNotNull>
+            <isNotNull property="xPoint" prepend="and ">
+                XPoint = #xPoint#
+            </isNotNull>
+            <isNotNull property="yPoint" prepend="and ">
+                YPoint = #yPoint#
+            </isNotNull>
+            <isNotNull property="knifeMan" prepend="and ">
+                KnifeMan = #knifeMan#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount_F" parameterClass="entitySynthesisknife" resultClass="int">
+        SELECT count(1)
+        from synthesisknife
+        INNER JOIN vbusiness ON synthesisknife.BusinessFlowLnkID = vbusiness.BusinessFlowLnkID
+        where SynthesisCutterNumber='0'
+        <isNotNull property="synthesisParametersCode" prepend="and ">
+            SynthesisParametersCode = #synthesisParametersCode#
+        </isNotNull>
+        <isNotNull property="synthesisCutterNumber" prepend="and ">
+            SynthesisCutterNumber = #synthesisCutterNumber#
+        </isNotNull>
+        <isNotNull property="synthesisParametersNumber" prepend="and ">
+            SynthesisParametersNumber = #synthesisParametersNumber#
+        </isNotNull>
+        <isNotNull property="businessFlowLnkID" prepend="and ">
+            BusinessFlowLnkID = #businessFlowLnkID#
+        </isNotNull>
+        <isNotNull property="equipmentID" prepend="and ">
+            EquipmentID = #equipmentID#
+        </isNotNull>
+        <isNotNull property="knifeInventoryCode" prepend="and ">
+            KnifeInventoryCode = #knifeInventoryCode#
+        </isNotNull>
+        <isNotNull property="loadState" prepend="and ">
+            LoadState = #loadState#
+        </isNotNull>
+        <isNotNull property="offloadType" prepend="and ">
+            OffloadType = #offloadType#
+        </isNotNull>
+        <isNotNull property="installFlag" prepend="and ">
+            InstallFlag = #installFlag#
+        </isNotNull>
+        <isNotNull property="rFID" prepend="and ">
+            RFID = #rFID#
+        </isNotNull>
+        <isNotNull property="xPoint" prepend="and ">
+            XPoint = #xPoint#
+        </isNotNull>
+        <isNotNull property="yPoint" prepend="and ">
+            YPoint = #yPoint#
+        </isNotNull>
+        <isNotNull property="knifeMan" prepend="and ">
+            KnifeMan = #knifeMan#
+        </isNotNull>
+        <isNotNull property="delFlag" prepend="and ">
+            DelFlag = #delFlag#
+        </isNotNull>
+        <isNotNull property="updateTime" prepend="and ">
+            UpdateTime = #updateTime#
+        </isNotNull>
+        <isNotNull property="updateUser" prepend="and ">
+            UpdateUser = #updateUser#
+        </isNotNull>
+        <isNotNull property="createTime" prepend="and ">
+            CreateTime = #createTime#
+        </isNotNull>
+        <isNotNull property="createUser" prepend="and ">
+            CreateUser = #createUser#
+        </isNotNull>
+        <isNotNull property="version" prepend="and ">
+            Version = #version#
+        </isNotNull>
+    </select>
+
+    <!-- 任意条件更新处理(未指定字段更新为：null) -->
+    <update id="update" parameterClass="entitySynthesisknife">
+        update synthesisknife
+        <dynamic prepend="set">
+            <isNotNull property="synthesisParametersCode">
+                SynthesisParametersCode = #synthesisParametersCode#
+            </isNotNull>
+            <isNull property="synthesisParametersCode">
+                SynthesisParametersCode = null
+            </isNull>
+            <isNotNull property="synthesisCutterNumber">
+                ,SynthesisCutterNumber = #synthesisCutterNumber#
+            </isNotNull>
+            <isNull property="synthesisCutterNumber">
+                ,SynthesisCutterNumber = null
+            </isNull>
+            <isNotNull property="synthesisParametersNumber">
+                ,SynthesisParametersNumber = #synthesisParametersNumber#
+            </isNotNull>
+            <isNull property="synthesisParametersNumber">
+                ,SynthesisParametersNumber = null
+            </isNull>
+            <isNotNull property="businessFlowLnkID">
+                ,BusinessFlowLnkID = #businessFlowLnkID#
+            </isNotNull>
+            <isNull property="businessFlowLnkID">
+                ,BusinessFlowLnkID = null
+            </isNull>
+            <isNotNull property="equipmentID">
+                ,EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNull property="equipmentID">
+                ,EquipmentID = null
+            </isNull>
+            <isNotNull property="knifeInventoryCode">
+                ,KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+            <isNull property="knifeInventoryCode">
+                ,KnifeInventoryCode = null
+            </isNull>
+            <isNotNull property="loadState">
+                ,LoadState = #loadState#
+            </isNotNull>
+            <isNull property="loadState">
+                ,LoadState = null
+            </isNull>
+            <isNotNull property="offloadType">
+                ,OffloadType = #offloadType#
+            </isNotNull>
+            <isNull property="offloadType">
+                ,OffloadType = null
+            </isNull>
+            <isNotNull property="installFlag">
+                ,InstallFlag = #installFlag#
+            </isNotNull>
+            <isNull property="installFlag">
+                ,InstallFlag = null
+            </isNull>
+            <isNotNull property="rFID">
+                ,RFID = #rFID#
+            </isNotNull>
+            <isNull property="rFID">
+                ,RFID = null
+            </isNull>
+            <isNotNull property="xPoint">
+                ,XPoint = #xPoint#
+            </isNotNull>
+            <isNull property="xPoint">
+                ,XPoint = null
+            </isNull>
+            <isNotNull property="yPoint">
+                ,YPoint = #yPoint#
+            </isNotNull>
+            <isNull property="yPoint">
+                ,YPoint = null
+            </isNull>
+            <isNotNull property="knifeMan">
+                ,KnifeMan = #knifeMan#
+            </isNotNull>
+            <isNull property="knifeMan">
+                ,KnifeMan = null
+            </isNull>
+            <isNotNull property="delFlag">
+                ,DelFlag = #delFlag#
+            </isNotNull>
+            <isNull property="delFlag">
+                ,DelFlag = null
+            </isNull>
+            <isNotNull property="updateTime">
+                ,UpdateTime = #updateTime#
+            </isNotNull>
+            <isNull property="updateTime">
+                ,UpdateTime = null
+            </isNull>
+            <isNotNull property="updateUser">
+                ,UpdateUser = #updateUser#
+            </isNotNull>
+            <isNull property="updateUser">
+                ,UpdateUser = null
+            </isNull>
+            <isNotNull property="createTime">
+                ,CreateTime = #createTime#
+            </isNotNull>
+            <isNull property="createTime">
+                ,CreateTime = null
+            </isNull>
+            <isNotNull property="createUser">
+                ,CreateUser = #createUser#
+            </isNotNull>
+            <isNull property="createUser">
+                ,CreateUser = null
+            </isNull>
+            <isNotNull property="version">
+                ,Version = #version#
+            </isNotNull>
+            <isNull property="version">
+                ,Version = null
+            </isNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersCodeWhere" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCodeWhere#
+            </isNotNull>
+            <isNotNull property="synthesisCutterNumberWhere" prepend="and ">
+                SynthesisCutterNumber = #synthesisCutterNumberWhere#
+            </isNotNull>
+            <isNotNull property="synthesisParametersNumberWhere" prepend="and ">
+                SynthesisParametersNumber = #synthesisParametersNumberWhere#
+            </isNotNull>
+            <isNotNull property="businessFlowLnkIDWhere" prepend="and ">
+                BusinessFlowLnkID = #businessFlowLnkIDWhere#
+            </isNotNull>
+            <isNotNull property="equipmentIDWhere" prepend="and ">
+                EquipmentID = #equipmentIDWhere#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCodeWhere#
+            </isNotNull>
+            <isNotNull property="loadStateWhere" prepend="and ">
+                LoadState = #loadStateWhere#
+            </isNotNull>
+            <isNotNull property="offloadTypeWhere" prepend="and ">
+                OffloadType = #offloadTypeWhere#
+            </isNotNull>
+            <isNotNull property="installFlagWhere" prepend="and ">
+                InstallFlag = #installFlagWhere#
+            </isNotNull>
+            <isNotNull property="rFIDWhere" prepend="and ">
+                RFID = #rFIDWhere#
+            </isNotNull>
+            <isNotNull property="xPointWhere" prepend="and ">
+                XPoint = #xPointWhere#
+            </isNotNull>
+            <isNotNull property="yPointWhere" prepend="and ">
+                YPoint = #yPointWhere#
+            </isNotNull>
+            <isNotNull property="knifeManWhere" prepend="and ">
+                KnifeMan = #knifeManWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 任意条件更新处理(未指定字段不更新) -->
+    <update id="updateNonQuery" parameterClass="entitySynthesisknife">
+        update synthesisknife
+        <dynamic prepend="set">
+            <isNotNull property="synthesisParametersCode" prepend=",">
+                SynthesisParametersCode = #synthesisParametersCode#
+            </isNotNull>
+            <isNotNull property="synthesisCutterNumber" prepend=",">
+                SynthesisCutterNumber = #synthesisCutterNumber#
+            </isNotNull>
+            <isNotNull property="synthesisParametersNumber" prepend=",">
+                SynthesisParametersNumber = #synthesisParametersNumber#
+            </isNotNull>
+            <isNotNull property="businessFlowLnkID" prepend=",">
+                BusinessFlowLnkID = #businessFlowLnkID#
+            </isNotNull>
+            <isNotNull property="equipmentID" prepend=",">
+                EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCode" prepend=",">
+                KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+            <isNotNull property="loadState" prepend=",">
+                LoadState = #loadState#
+            </isNotNull>
+            <isNotNull property="offloadType" prepend=",">
+                OffloadType = #offloadType#
+            </isNotNull>
+            <isNotNull property="installFlag" prepend=",">
+                InstallFlag = #installFlag#
+            </isNotNull>
+            <isNotNull property="rFID" prepend=",">
+                RFID = #rFID#
+            </isNotNull>
+            <isNotNull property="xPoint" prepend=",">
+                XPoint = #xPoint#
+            </isNotNull>
+            <isNotNull property="yPoint" prepend=",">
+                YPoint = #yPoint#
+            </isNotNull>
+            <isNotNull property="knifeMan" prepend=",">
+                KnifeMan = #knifeMan#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend=",">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend=",">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend=",">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend=",">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend=",">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="version" prepend=",">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersCodeWhere" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCodeWhere#
+            </isNotNull>
+            <isNotNull property="synthesisCutterNumberWhere" prepend="and ">
+                SynthesisCutterNumber = #synthesisCutterNumberWhere#
+            </isNotNull>
+            <isNotNull property="synthesisParametersNumberWhere" prepend="and ">
+                SynthesisParametersNumber = #synthesisParametersNumberWhere#
+            </isNotNull>
+            <isNotNull property="businessFlowLnkIDWhere" prepend="and ">
+                BusinessFlowLnkID = #businessFlowLnkIDWhere#
+            </isNotNull>
+            <isNotNull property="equipmentIDWhere" prepend="and ">
+                EquipmentID = #equipmentIDWhere#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCodeWhere#
+            </isNotNull>
+            <isNotNull property="loadStateWhere" prepend="and ">
+                LoadState = #loadStateWhere#
+            </isNotNull>
+            <isNotNull property="offloadTypeWhere" prepend="and ">
+                OffloadType = #offloadTypeWhere#
+            </isNotNull>
+            <isNotNull property="installFlagWhere" prepend="and ">
+                InstallFlag = #installFlagWhere#
+            </isNotNull>
+            <isNotNull property="rFIDWhere" prepend="and ">
+                RFID = #rFIDWhere#
+            </isNotNull>
+            <isNotNull property="xPointWhere" prepend="and ">
+                XPoint = #xPointWhere#
+            </isNotNull>
+            <isNotNull property="yPointWhere" prepend="and ">
+                YPoint = #yPointWhere#
+            </isNotNull>
+            <isNotNull property="knifeManWhere" prepend="and ">
+                KnifeMan = #knifeManWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+    <!-- 批量更新 -->
+    <update id="updateBatchs" parameterClass="java.util.List">
+        <iterate conjunction="">
+            update synthesisknife sk SET
+            sk.LoadState = #[].loadState#
+            ,sk.UpdateTime = #[].updateTime#
+            ,sk.UpdateUser = #[].updateUser#
+            ,sk.Version = sk.Version+1
+            WHERE sk.RFID = #[].rFID#
+            AND sk.DelFlag='0'
+        </iterate>
+
+    </update>
+
+    <!-- 插入处理 -->
+    <insert id="insert" parameterClass="entitySynthesisknife">
+        insert into synthesisknife(
+        SynthesisParametersCode
+        ,SynthesisCutterNumber
+        ,SynthesisParametersNumber
+        ,BusinessFlowLnkID
+        ,EquipmentID
+        ,KnifeInventoryCode
+        ,LoadState
+        ,OffloadType
+        ,InstallFlag
+        ,RFID
+        ,XPoint
+        ,YPoint
+        ,KnifeMan
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        )
+        Values (
+        <isNotNull property="synthesisParametersCode">
+            #synthesisParametersCode#
+        </isNotNull>
+        <isNull property="synthesisParametersCode">
+            null
+        </isNull>
+        <isNotNull property="synthesisCutterNumber">
+            ,#synthesisCutterNumber#
+        </isNotNull>
+        <isNull property="synthesisCutterNumber">
+            ,null
+        </isNull>
+        <isNotNull property="synthesisParametersNumber">
+            ,#synthesisParametersNumber#
+        </isNotNull>
+        <isNull property="synthesisParametersNumber">
+            ,null
+        </isNull>
+        <isNotNull property="businessFlowLnkID">
+            ,#businessFlowLnkID#
+        </isNotNull>
+        <isNull property="businessFlowLnkID">
+            ,null
+        </isNull>
+        <isNotNull property="equipmentID">
+            ,#equipmentID#
+        </isNotNull>
+        <isNull property="equipmentID">
+            ,null
+        </isNull>
+        <isNotNull property="knifeInventoryCode">
+            ,#knifeInventoryCode#
+        </isNotNull>
+        <isNull property="knifeInventoryCode">
+            ,null
+        </isNull>
+        <isNotNull property="loadState">
+            ,#loadState#
+        </isNotNull>
+        <isNull property="loadState">
+            ,null
+        </isNull>
+        <isNotNull property="offloadType">
+            ,#offloadType#
+        </isNotNull>
+        <isNull property="offloadType">
+            ,null
+        </isNull>
+        <isNotNull property="installFlag">
+            ,#installFlag#
+        </isNotNull>
+        <isNull property="installFlag">
+            ,null
+        </isNull>
+        <isNotNull property="rFID">
+            ,#rFID#
+        </isNotNull>
+        <isNull property="rFID">
+            ,null
+        </isNull>
+        <isNotNull property="xPoint">
+            ,#xPoint#
+        </isNotNull>
+        <isNull property="xPoint">
+            ,null
+        </isNull>
+        <isNotNull property="yPoint">
+            ,#yPoint#
+        </isNotNull>
+        <isNull property="yPoint">
+            ,null
+        </isNull>
+        <isNotNull property="knifeMan">
+            ,#knifeMan#
+        </isNotNull>
+        <isNull property="knifeMan">
+            ,null
+        </isNull>
+        <isNotNull property="delFlag">
+            ,#delFlag#
+        </isNotNull>
+        <isNull property="delFlag">
+            ,null
+        </isNull>
+        <isNotNull property="updateTime">
+            ,#updateTime#
+        </isNotNull>
+        <isNull property="updateTime">
+            ,null
+        </isNull>
+        <isNotNull property="updateUser">
+            ,#updateUser#
+        </isNotNull>
+        <isNull property="updateUser">
+            ,null
+        </isNull>
+        <isNotNull property="createTime">
+            ,#createTime#
+        </isNotNull>
+        <isNull property="createTime">
+            ,null
+        </isNull>
+        <isNotNull property="createUser">
+            ,#createUser#
+        </isNotNull>
+        <isNull property="createUser">
+            ,null
+        </isNull>
+        <isNotNull property="version">
+            ,#version#
+        </isNotNull>
+        <isNull property="version">
+            ,null
+        </isNull>
+        )
+    </insert>
+
+    <!-- 任意条件删除处理 -->
+    <delete id="delete" parameterClass="entitySynthesisknife">
+        delete from synthesisknife
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersCodeWhere" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCodeWhere#
+            </isNotNull>
+            <isNotNull property="synthesisCutterNumberWhere" prepend="and ">
+                SynthesisCutterNumber = #synthesisCutterNumberWhere#
+            </isNotNull>
+            <isNotNull property="synthesisParametersNumberWhere" prepend="and ">
+                SynthesisParametersNumber = #synthesisParametersNumberWhere#
+            </isNotNull>
+            <isNotNull property="businessFlowLnkIDWhere" prepend="and ">
+                BusinessFlowLnkID = #businessFlowLnkIDWhere#
+            </isNotNull>
+            <isNotNull property="equipmentIDWhere" prepend="and ">
+                EquipmentID = #equipmentIDWhere#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCodeWhere#
+            </isNotNull>
+            <isNotNull property="loadStateWhere" prepend="and ">
+                LoadState = #loadStateWhere#
+            </isNotNull>
+            <isNotNull property="offloadTypeWhere" prepend="and ">
+                OffloadType = #offloadTypeWhere#
+            </isNotNull>
+            <isNotNull property="installFlagWhere" prepend="and ">
+                InstallFlag = #installFlagWhere#
+            </isNotNull>
+            <isNotNull property="rFIDWhere" prepend="and ">
+                RFID = #rFIDWhere#
+            </isNotNull>
+            <isNotNull property="xPointWhere" prepend="and ">
+                XPoint = #xPointWhere#
+            </isNotNull>
+            <isNotNull property="yPointWhere" prepend="and ">
+                YPoint = #yPointWhere#
+            </isNotNull>
+            <isNotNull property="knifeManWhere" prepend="and ">
+                KnifeMan = #knifeManWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+        </dynamic>
+    </delete>
+
+    <!--批量更新刀具流转根据RFID	-->
+    <update id="updateBatchByRfid" parameterClass="java.util.Map">
+        update synthesisknife SET
+        BusinessFlowLnkID = #businessFlowLnkID#
+        ,LoadState = #loadState#
+        ,UpdateTime = now()
+        ,UpdateUser =#userId#
+        ,Version = Version+1
+        WHERE RFID IN
+        (SELECT r.RfidContainerID
+        FROM rfidcontainer r
+        WHERE r.RfidCode IN
+        <iterate property="list" open="(" close=")" conjunction=",">
+            #list[]#
+        </iterate>
+        ) AND DelFlag = '0'
+    </update>
+    <!-- 根据刀具入库编码修改下一流程和刀具安上状态 -->
+    <update id="updateListbyCode" parameterClass="java.util.Map">
+        update synthesisknife SET
+        BusinessFlowLnkID = #businessFlowLnkID#
+        ,InstallFlag = #installFlag#
+        ,UpdateTime = #updateTime#
+        ,UpdateUser =#userId#
+        ,Version = Version+1
+        WHERE KnifeInventoryCode IN
+        <iterate property="list" open="(" close=")" conjunction=",">
+            #list[]#
+        </iterate>
+        AND DelFlag = '0'
+        AND SynthesisParametersCode = #synthesisCode#
+        AND SynthesisParametersNumber = #synthesisNumber#
+    </update>
+
+    <select id="searchListByRfid" parameterClass="entitySynthesisknife" resultMap="Synthesisknife-map">
+        SELECT * FROM synthesisknife sk
+        WHERE sk.RFID =(
+        SELECT rf.RfidContainerID
+        FROM rfidcontainer rf
+        WHERE rf.RfidCode = #rFID#
+        ) AND sk.SynthesisCutterNumber = '0'
+        AND sk.DelFlag ='0'
+    </select>
+
+    <!-- 按RFID打到合成刀库中的对应的数据	-->
+    <select id="findskListByRfid" parameterClass="String" resultMap="Synthesisknife-map">
+        SELECT * FROM synthesisknife sk
+        WHERE sk.SynthesisParametersCode = (SELECT sk1.SynthesisParametersCode FROM synthesisknife sk1 WHERE sk1.DelFlag='0' AND sk1.SynthesisCutterNumber='0'  AND  sk1.RFID=(SELECT rf.RfidContainerID FROM rfidcontainer rf  WHERE rf.RfidCode = #rifdString#)ORDER BY sk1.UpdateTime DESC LIMIT 1)
+        AND sk.SynthesisParametersNumber =(SELECT sk2.SynthesisParametersNumber FROM synthesisknife sk2 WHERE sk2.DelFlag='0' AND sk2.SynthesisCutterNumber='0'  AND sk2.RFID=(SELECT rf.RfidContainerID FROM rfidcontainer rf  WHERE rf.RfidCode = #rifdString#)ORDER BY sk2.UpdateTime DESC LIMIT 1)
+        AND sk.SynthesisCutterNumber != '0'
+        AND sk.DelFlag ='0'
+    </select>
+
+
+    <resultMap id="Synthesisknife-map4" class="entitySynthesisknife">
+        <!-- 合成刀具编码(系统唯一) -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+        <!-- 位置号 -->
+        <result property="synthesisCutterNumber" column="SynthesisCutterNumber"/>
+        <!-- 合成刀具编号(例如：001、002、003) -->
+        <result property="synthesisParametersNumber" column="SynthesisParametersNumber"/>
+        <!-- 业务-流程中间表ID -->
+        <result property="businessFlowLnkID" column="BusinessFlowLnkID"/>
+        <!-- 设备ID -->
+        <result property="equipmentID" column="EquipmentID"/>
+        <!-- 刀具入库编码 -->
+        <result property="knifeInventoryCode" column="KnifeInventoryCode"/>
+        <!-- 使用状态(0设备装入1设备卸下2回收旧刀3组装新刀4不合格送回)(该状态绑定到带标签的数据上) -->
+        <result property="loadState" column="LoadState"/>
+        <!-- 卸下方式(0装盒1装盘3保留) -->
+        <result property="offloadType" column="OffloadType"/>
+        <!-- 是否安装(0安装1卸下9其他) -->
+        <result property="installFlag" column="InstallFlag"/>
+        <!-- RFID(辅具或配套上打孔安装的RFID) -->
+        <result property="rFID" column="RFID"/>
+        <!-- X坐标 -->
+        <result property="xPoint" column="XPoint"/>
+        <!-- Y坐标 -->
+        <result property="yPoint" column="YPoint"/>
+        <!-- 对刀人 -->
+        <result property="knifeMan" column="KnifeMan"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="delFlag" column="DelFlag"/>
+        <!-- 更新时间 -->
+        <result property="updateTime" column="UpdateTime"/>
+        <!-- 更新者 -->
+        <result property="updateUser" column="UpdateUser"/>
+        <!-- 创建时间 -->
+        <result property="createTime" column="CreateTime"/>
+        <!-- 创建者 -->
+        <result property="createUser" column="CreateUser"/>
+        <!-- 版本号 -->
+        <result property="version" column="Version"/>
+
+    </resultMap>
+    <!-- 	-->
+    <select id="findskListByRfidList" parameterClass="java.util.List" resultMap="Synthesisknife-map4">
+        SELECT * FROM synthesisknife sk
+        WHERE sk.RFID IN
+        (SELECT r.RfidContainerID
+        FROM rfidcontainer r
+        WHERE r.DelFlag = '0' AND r.RfidCode IN
+        <iterate open="(" close=")" conjunction=",">
+            #list[]#
+        </iterate>
+        ) AND sk.DelFlag = '0'
+        AND sk.SynthesisCutterNumber = '0'
+    </select>
+
+
+    <resultMap id="Synthesisknife-map3" class="entitySynthesisknife">
+        <!-- 合成刀具编码(系统唯一) -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+        <!-- 合成刀具编号(例如：001、002、003) -->
+        <!--<result property="rFID" column="Rfid" />-->
+        <!-- 合成刀具类型（0热套，1复合刀具） -->
+        <!-- 2017/09/12 王冉 变更↓↓↓　dazhong@YMSC -->
+        <result property="createType" column="CreateType"/>
+        <!-- 2017/09/12 王冉 变更↑↑↑　dazhong@YMSC -->
+        <!-- 2017/09/12 王冉 追加↓↓↓　dazhong@YMSC -->
+        <result property="loadState" column="LoadState"/>
+        <!-- 2017/09/12 王冉 追加↑↑↑　dazhong@YMSC -->
+</resultMap>
+<!-- 根据载体id查询合成刀具编码-->
+    <select id="getSynthesisknife" parameterClass="entitySynthesisknife" resultMap="Synthesisknife-map3">
+        SELECT
+        sk.SynthesisParametersCode AS SynthesisParametersCode,
+        sp.CreateType AS CreateType
+        <!-- 2017/09/12 王冉 追加↓↓↓　dazhong@YMSC -->
+        ,sk.LoadState AS LoadState
+        <!-- 2017/09/12 王冉 追加↑↑↑　dazhong@YMSC -->
+        FROM synthesisknife sk
+        LEFT JOIN synthesisparameters sp ON sk.SynthesisParametersCode =sp.SynthesisParametersCode
+        WHERE sp.DelFlag ='0' AND sk.DelFlag = '0' AND sk.Rfid = #rFID#
+        Limit 1
+
+    </select>
+    <!--批量更新刀具流转刀具状态-->
+    <update id="updateBatch" parameterClass="java.util.Map">
+        update synthesisknife SET
+        BusinessFlowLnkID = #businessFlowLnkID#
+        ,LoadState = #loadState#
+        ,UpdateTime = now()
+        ,UpdateUser =#userId#
+        ,CreateTime = now()
+        ,CreateUser =#userId#
+        ,Version = Version+1
+        WHERE RFID IN
+        (SELECT stm.SynthesisParametersCode
+        stm.SynthesisParametersNumber
+        FROM synthesistoolsmachining stm
+        WHERE stm.SynthesisParametersCode IN
+        <iterate property="list" open="(" close=")" conjunction=",">
+            #list[]#
+        </iterate>
+        ) AND DelFlag = '0'
+    </update>
+    <resultMap id="Synthesisknife-map2" class="entitySynthesisknife">
+        <!-- 合成刀具编码(系统唯一) -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+        <!-- 合成刀具编号(例如：001、002、003) -->
+        <result property="synthesisParametersNumber" column="SynthesisParametersNumber"/>
+        <!-- 合成刀具类型（0热套，1复合刀具） -->
+        <result property="rFID" column="Rfid"/>
+    </resultMap>
+    <!-- 根据载体id查询合成刀具编码-->
+    <select id="getSynthesisknifebyRfidc" parameterClass="entitySynthesisknife" resultMap="Synthesisknife-map2">
+        SELECT
+        sk.SynthesisParametersCode AS SynthesisParametersCode,
+        sk.SynthesisParametersNumber AS SynthesisParametersNumber,
+        sk.Rfid AS Rfid
+        FROM synthesisknife sk
+        WHERE
+
+        sk.DelFlag ='0' and sk.Rfid =#rFID#
+    </select>
+    <!-- 合成刀库批量插入  -->
+    <insert id="insertBatchs" parameterClass="java.util.List">
+        insert into synthesisknife(
+        SynthesisCutterNumber
+        ,SynthesisParametersNumber
+        ,SynthesisParametersCode
+        ,BusinessFlowLnkID
+        ,EquipmentID
+        ,KnifeInventoryCode
+        ,LoadState
+        ,OffloadType
+        ,InstallFlag
+        ,RFID
+        ,XPoint
+        ,YPoint
+        ,KnifeMan
+        ,DelFlag
+        ,UpdateUser
+        ,UpdateTime
+        ,CreateTime
+        ,CreateUser
+        )
+        Values
+        <iterate conjunction=",">
+            (
+            #list[].synthesisCutterNumber#
+            ,#list[].synthesisParametersNumber#
+            ,#list[].synthesisParametersCode#
+            ,#list[].businessFlowLnkID#
+            ,#list[].equipmentID#
+            ,#list[].knifeInventoryCode#
+            ,#list[].loadState#
+            ,#list[].offloadType#
+            ,#list[].installFlag#
+            ,#list[].rFID#
+            ,#list[].xPoint#
+            ,#list[].yPoint#
+            ,#list[].knifeMan#
+            ,#list[].delFlag#
+            ,#list[].updateUser#
+            ,#list[].updateTime#
+            ,#list[].createTime#
+            ,#list[].createUser#
+            )
+        </iterate>
+    </insert>
+    <!-- 查询最大合成刀具编号 -->
+    <select id="getSynthesisParametersNumberMAX" parameterClass="entitySynthesisknife" resultMap="Synthesisknife-map">
+        SELECT
+        *
+        FROM
+        synthesisknife  sk
+        WHERE
+        sk.DelFlag = '0' AND
+        sk.SynthesisParametersCode = #synthesisParametersCode#
+        GROUP BY sk.SynthesisParametersNumber
+        ORDER BY sk.SynthesisParametersNumber DESC
+        LIMIT 1
+
+
+
+    </select>
+    <!-- 主键查询执行 -->
+    <select id="getSynCodeByRfidConner" parameterClass="entitySynthesisknife" resultMap="Synthesisknife-map">
+        SELECT
+        SynthesisParametersCode
+        ,SynthesisCutterNumber
+        ,SynthesisParametersNumber
+        ,BusinessFlowLnkID
+        ,EquipmentID
+        ,KnifeInventoryCode
+        ,LoadState
+        ,OffloadType
+        ,InstallFlag
+        ,RFID
+        ,XPoint
+        ,YPoint
+        ,KnifeMan
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        from synthesisknife
+        <dynamic prepend=" where ">
+            <isNotNull property="rFID" prepend="and ">
+                RFID = #rFID#
+            </isNotNull>
+
+        </dynamic>
+        group by SynthesisParametersCode
+        ,SynthesisCutterNumber
+        ,SynthesisParametersNumber
+        ,BusinessFlowLnkID
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            RFID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchBySynthesisknife" parameterClass="entitySynthesisknife" resultMap="Synthesisknife-map">
+        SELECT
+        SynthesisParametersCode
+        ,SynthesisCutterNumber
+        ,SynthesisParametersNumber
+        ,BusinessFlowLnkID
+        ,EquipmentID
+        ,KnifeInventoryCode
+        ,LoadState
+        ,OffloadType
+        ,InstallFlag
+        ,RFID
+        ,XPoint
+        ,YPoint
+        ,KnifeMan
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        from synthesisknife
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCode#
+            </isNotNull>
+            <isNotNull property="synthesisCutterNumber" prepend="and ">
+                SynthesisCutterNumber = #synthesisCutterNumber#
+            </isNotNull>
+            <isNotNull property="synthesisParametersNumber" prepend="and ">
+                SynthesisParametersNumber = #synthesisParametersNumber#
+            </isNotNull>
+            <isNotNull property="businessFlowLnkID" prepend="and ">
+                BusinessFlowLnkID = #businessFlowLnkID#
+            </isNotNull>
+            <isNotNull property="equipmentID" prepend="and ">
+                EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCode" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+            <isNotNull property="loadState" prepend="and ">
+                LoadState = #loadState#
+            </isNotNull>
+            <isNotNull property="offloadType" prepend="and ">
+                OffloadType = #offloadType#
+            </isNotNull>
+            <isNotNull property="installFlag" prepend="and ">
+                InstallFlag = #installFlag#
+            </isNotNull>
+            <isNotNull property="rFID" prepend="and ">
+                RFID = #rFID#
+            </isNotNull>
+            <isNotNull property="xPoint" prepend="and ">
+                XPoint = #xPoint#
+            </isNotNull>
+            <isNotNull property="yPoint" prepend="and ">
+                YPoint = #yPoint#
+            </isNotNull>
+            <isNotNull property="knifeMan" prepend="and ">
+                KnifeMan = #knifeMan#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        LIMIT $rowCount$
+    </select>
+
+    <!-- 按RFIDList删除 -->
+    <delete id="deleteByRfidCodeList" parameterClass="java.util.List">
+        DELETE
+        FROM
+        synthesisknife
+        WHERE rFID in (
+        SELECT
+        rf.RfidContainerID
+        FROM rfidcontainer rf
+        WHERE rf.RfidCode IN
+        <iterate conjunction="," open="(" close=")">
+            #[]#
+        </iterate>
+        )
+    </delete>
+
+    <!-- 2017/08/30 宋健 变更↓↓↓　dazhong@YMSC -->
+    <!-- 任意条件查询集合 -->
+    <select id="searchSynthesisknifeList" parameterClass="entitySynthesisknife" resultMap="Synthesisknife-map">
+        SELECT
+        A.SynthesisParametersCode,
+        A.SynthesisCutterNumber,
+        A.SynthesisParametersNumber,
+        A.BusinessFlowLnkID,
+        A.EquipmentID,
+        A.KnifeInventoryCode,
+        A.LoadState,
+        A.OffloadType,
+        A.InstallFlag,
+        A.RFID,
+        A.XPoint,
+        A.YPoint,
+        A.KnifeMan,
+        A.DelFlag,
+        A.UpdateTime,
+        A.UpdateUser,
+        A.CreateTime,
+        A.CreateUser,
+        A.Version,
+        SUM(A.bdSum) bdSum,
+        SUM(A.asSum) asSum,
+        SUM(A.dzzSum) dzzSum,
+        SUM(A.totalSum) totalSum
+        from
+        (
+        SELECT
+        CASE WHEN LoadState IN ('4','5','8','9') THEN '1' ELSE 0 END bdSum,
+        CASE WHEN LoadState = '0' THEN '1' ELSE 0 END asSum,
+        CASE WHEN LoadState IN ('1','6','7','10') THEN '1' ELSE 0 END dzzSum,
+        CASE WHEN LoadState IN ('1','6','7','0','4','5','8','9','3','12','10') THEN '1' ELSE 0 END totalSum,
+        SynthesisParametersCode
+        ,SynthesisCutterNumber
+        ,SynthesisParametersNumber
+        ,BusinessFlowLnkID
+        ,EquipmentID
+        ,KnifeInventoryCode
+        ,LoadState
+        ,OffloadType
+        ,InstallFlag
+        ,RFID
+        ,XPoint
+        ,YPoint
+        ,KnifeMan
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        FROM
+        synthesisknife
+        WHERE DelFlag = '0'
+        GROUP BY
+        SynthesisParametersCode,
+        rFID
+        ) A
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersCode">
+                A.SynthesisParametersCode like concat('%', #synthesisParametersCode#,'%')
+            </isNotNull>
+        </dynamic>
+        GROUP BY A.SynthesisParametersCode
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            SynthesisParametersCode
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchSynthesisknifeListByCount" parameterClass="entitySynthesisknife" resultClass="int">
+        SELECT COUNT(1) FROM (
+        SELECT
+        A.SynthesisParametersCode,
+        SUM(A.bdSum) bdSum,
+        SUM(A.asSum) asSum,
+        SUM(A.dzzSum) dzzSum,
+        SUM(A.totalSum) totalSum
+        from
+        (
+        SELECT
+        CASE WHEN LoadState IN ('4','5','8','9') THEN '1' ELSE 0 END bdSum,
+        CASE WHEN LoadState = '0' THEN '1' ELSE 0 END asSum,
+        CASE WHEN LoadState IN ('1','6','7') THEN '1' ELSE 0 END dzzSum,
+        CASE WHEN LoadState IN ('1','6','7','0','4','5','8','9','3') THEN '1' ELSE 0 END totalSum,
+        SynthesisParametersCode
+        FROM
+        synthesisknife
+        WHERE DelFlag = '0'
+        GROUP BY
+        SynthesisParametersCode,
+        rFID
+        ) A
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersCode">
+                A.SynthesisParametersCode like concat('%', #synthesisParametersCode#,'%')
+            </isNotNull>
+        </dynamic>
+        GROUP BY A.SynthesisParametersCode
+        ) B
+    </select>
+    <!-- 2017/08/30 宋健 变更↑↑↑　dazhong@YMSC -->
+
+    <!--  2017/09/12 宋健 追加↓↓↓　dazhong@YMSC -->
+    <resultMap id="Synthesisknifess-map" class="entitySynthesisknife">
+        <!-- 合成刀具编码(系统唯一) -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+        <!-- 位置号 -->
+        <result property="synthesisCutterNumber" column="SynthesisCutterNumber"/>
+        <!-- 合成刀具编号(例如：001、002、003) -->
+        <result property="synthesisParametersNumber" column="SynthesisParametersNumber"/>
+        <!-- 业务-流程中间表ID -->
+        <result property="businessFlowLnkID" column="BusinessFlowLnkID"/>
+        <!-- 设备ID -->
+        <result property="equipmentID" column="EquipmentID"/>
+        <!-- 刀具入库编码 -->
+        <result property="knifeInventoryCode" column="KnifeInventoryCode"/>
+        <!-- 使用状态(0设备装入1设备卸下2回收旧刀3组装新刀4不合格送回)(该状态绑定到带标签的数据上) -->
+        <result property="loadState" column="LoadState"/>
+        <!-- 卸下方式(0装盒1装盘3保留) -->
+        <result property="offloadType" column="OffloadType"/>
+        <!-- 是否安装(0安装1卸下9其他) -->
+        <result property="installFlag" column="InstallFlag"/>
+        <!-- RFID(辅具或配套上打孔安装的RFID) -->
+        <result property="rFID" column="RFID"/>
+        <!-- X坐标 -->
+        <result property="xPoint" column="XPoint"/>
+        <!-- Y坐标 -->
+        <result property="yPoint" column="YPoint"/>
+        <!-- 对刀人 -->
+        <result property="knifeMan" column="KnifeMan"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="delFlag" column="DelFlag"/>
+        <!-- 更新时间 -->
+        <result property="updateTime" column="UpdateTime"/>
+        <!-- 更新者 -->
+        <result property="updateUser" column="UpdateUser"/>
+        <!-- 创建时间 -->
+        <result property="createTime" column="CreateTime"/>
+        <!-- 创建者 -->
+        <result property="createUser" column="CreateUser"/>
+        <!-- 版本号 -->
+        <result property="version" column="Version"/>
+
+        <result property="createType" column="CreateType"/>
+    </resultMap>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchSyn" parameterClass="entitySynthesisknife" resultMap="Synthesisknifess-map">
+        SELECT
+        s.SynthesisParametersCode AS SynthesisParametersCode
+        ,s.SynthesisCutterNumber AS SynthesisCutterNumber
+        ,s.SynthesisParametersNumber AS SynthesisParametersNumber
+        ,s.BusinessFlowLnkID AS BusinessFlowLnkID
+        ,s.EquipmentID AS EquipmentID
+        ,s.KnifeInventoryCode AS KnifeInventoryCode
+        ,s.LoadState AS LoadState
+        ,s.OffloadType AS OffloadType
+        ,s.InstallFlag AS InstallFlag
+        ,s.RFID AS RFID
+        ,s.XPoint AS XPoint
+        ,s.YPoint AS YPoint
+        ,s.KnifeMan AS KnifeMan
+        ,s.DelFlag AS DelFlag
+        ,s.UpdateTime AS UpdateTime
+        ,s.UpdateUser AS UpdateUser
+        ,s.CreateTime AS CreateTime
+        ,s.CreateUser AS CreateUser
+        ,s.Version AS Version
+        ,sp.CreateType AS CreateType
+        FROM synthesisknife s
+        inner join synthesisparameters sp on s.SynthesisParametersCode = sp.SynthesisParametersCode
+        WHERE
+        s.DelFlag = '0' and sp.DelFlag = '0'
+        AND
+        s.RFID = #rFID#
+    </select>
+    <!--  2017/08/30 宋健 追加↑↑↑　dazhong@YMSC -->
+
+</sqlMap>
+

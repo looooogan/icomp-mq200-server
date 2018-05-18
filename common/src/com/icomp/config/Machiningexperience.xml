@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Machiningexperience.xml
+		Created on : 2014/11/12 18:19:03
+		Author : 工具自动生成
+		Description: 工具自动生成包含加工履历（在刀具安上设备上需要记录当前合成刀与刀具的绑定关系）的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Machiningexperience">
+	<typeAlias alias="entityMachiningexperience" type="com.icomp.entity.base.Machiningexperience" />
+	<resultMap id="Machiningexperience-map" class="entityMachiningexperience">
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!-- 合成刀具编号(例如：001、002、003) -->
+		<result property="synthesisParametersNumber" column="SynthesisParametersNumber" />
+		<!-- 加工编号(年月日时分秒 14位字符串) -->
+		<result property="synthesisNumber" column="SynthesisNumber" />
+		<!-- 位置号 -->
+		<result property="synthesisCutterNumber" column="SynthesisCutterNumber" />
+		<!-- 刀具入库编码 -->
+		<result property="knifeInventoryCode" column="KnifeInventoryCode" />
+		<!-- 刀具损耗 -->
+		<result property="toolWastage" column="ToolWastage" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityMachiningexperience" resultMap="Machiningexperience-map">
+		SELECT
+		SynthesisParametersCode
+		,SynthesisParametersNumber
+		,SynthesisNumber
+		,SynthesisCutterNumber
+		,KnifeInventoryCode
+		,ToolWastage
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from machiningexperience
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityMachiningexperience" resultMap="Machiningexperience-map">
+		SELECT
+		SynthesisParametersCode
+		,SynthesisParametersNumber
+		,SynthesisNumber
+		,SynthesisCutterNumber
+		,KnifeInventoryCode
+		,ToolWastage
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from machiningexperience
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="synthesisNumber" prepend="and ">
+				SynthesisNumber = #synthesisNumber#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumber" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolWastage" prepend="and ">
+				ToolWastage = #toolWastage#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityMachiningexperience" resultClass="int">
+		SELECT count(1)
+		from machiningexperience
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="synthesisNumber" prepend="and ">
+				SynthesisNumber = #synthesisNumber#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumber" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolWastage" prepend="and ">
+				ToolWastage = #toolWastage#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityMachiningexperience">
+		update machiningexperience
+		<dynamic prepend="set">
+			<isNotNull property="synthesisParametersCode">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNull property="synthesisParametersCode">
+				SynthesisParametersCode = null
+         </isNull>
+			<isNotNull property="synthesisParametersNumber">
+				,SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNull property="synthesisParametersNumber">
+				,SynthesisParametersNumber = null
+         </isNull>
+			<isNotNull property="synthesisNumber">
+				,SynthesisNumber = #synthesisNumber#
+         </isNotNull>
+			<isNull property="synthesisNumber">
+				,SynthesisNumber = null
+         </isNull>
+			<isNotNull property="synthesisCutterNumber">
+				,SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+			<isNull property="synthesisCutterNumber">
+				,SynthesisCutterNumber = null
+         </isNull>
+			<isNotNull property="knifeInventoryCode">
+				,KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNull property="knifeInventoryCode">
+				,KnifeInventoryCode = null
+         </isNull>
+			<isNotNull property="toolWastage">
+				,ToolWastage = #toolWastage#
+         </isNotNull>
+			<isNull property="toolWastage">
+				,ToolWastage = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCodeWhere" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCodeWhere#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumberWhere" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumberWhere#
+         </isNotNull>
+			<isNotNull property="synthesisNumberWhere" prepend="and ">
+				SynthesisNumber = #synthesisNumberWhere#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumberWhere" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumberWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="toolWastageWhere" prepend="and ">
+				ToolWastage = #toolWastageWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityMachiningexperience">
+		update machiningexperience
+		<dynamic prepend="set">
+			<isNotNull property="synthesisParametersCode"  prepend=",">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber"  prepend=",">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="synthesisNumber"  prepend=",">
+				SynthesisNumber = #synthesisNumber#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumber"  prepend=",">
+				SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode"  prepend=",">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolWastage"  prepend=",">
+				ToolWastage = #toolWastage#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCodeWhere" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCodeWhere#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumberWhere" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumberWhere#
+         </isNotNull>
+			<isNotNull property="synthesisNumberWhere" prepend="and ">
+				SynthesisNumber = #synthesisNumberWhere#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumberWhere" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumberWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="toolWastageWhere" prepend="and ">
+				ToolWastage = #toolWastageWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityMachiningexperience">
+		insert into machiningexperience(
+		SynthesisParametersCode
+		,SynthesisParametersNumber
+		,SynthesisNumber
+		,SynthesisCutterNumber
+		,KnifeInventoryCode
+		,ToolWastage
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		)
+		Values (
+			<isNotNull property="synthesisParametersCode">
+				#synthesisParametersCode#
+         </isNotNull>
+			<isNull property="synthesisParametersCode">
+				null
+         </isNull>
+			<isNotNull property="synthesisParametersNumber">
+				,#synthesisParametersNumber#
+         </isNotNull>
+			<isNull property="synthesisParametersNumber">
+				,null
+         </isNull>
+			<isNotNull property="synthesisNumber">
+				,#synthesisNumber#
+         </isNotNull>
+			<isNull property="synthesisNumber">
+				,null
+         </isNull>
+			<isNotNull property="synthesisCutterNumber">
+				,#synthesisCutterNumber#
+         </isNotNull>
+			<isNull property="synthesisCutterNumber">
+				,null
+         </isNull>
+			<isNotNull property="knifeInventoryCode">
+				,#knifeInventoryCode#
+         </isNotNull>
+			<isNull property="knifeInventoryCode">
+				,null
+         </isNull>
+			<isNotNull property="toolWastage">
+				,#toolWastage#
+         </isNotNull>
+			<isNull property="toolWastage">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+		)
+	</insert>
+	<!-- 批量插入处理 -->
+	<insert id="insertBatchs" parameterClass="java.util.List">
+		insert into machiningexperience(
+		SynthesisParametersCode
+		,SynthesisParametersNumber
+		,SynthesisNumber
+		,SynthesisCutterNumber
+		,KnifeInventoryCode
+		,ToolWastage
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		)
+		Values 
+		<iterate  conjunction ="," >
+            (
+               #list[].synthesisParametersCode#
+               ,#list[].synthesisParametersNumber#
+               ,#list[].synthesisNumber#
+               ,#list[].synthesisCutterNumber#
+               ,#list[].knifeInventoryCode#
+               ,#list[].toolWastage#
+               ,#list[].delFlag#
+               ,#list[].updateTime#
+               ,#list[].updateUser#
+               ,#list[].createTime#
+               ,#list[].createUser#
+               ,#list[].version#
+           )
+           </iterate >
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityMachiningexperience">
+		delete  from machiningexperience
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCodeWhere" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCodeWhere#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumberWhere" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumberWhere#
+         </isNotNull>
+			<isNotNull property="synthesisNumberWhere" prepend="and ">
+				SynthesisNumber = #synthesisNumberWhere#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumberWhere" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumberWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="toolWastageWhere" prepend="and ">
+				ToolWastage = #toolWastageWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 参数设置  -->
+	<package name="V01B09" extends="icomp-default">
+		<!-- 初始化页面 -->
+		<action name="B09S*" class="b09S{1}Action" method="initb09S{1}">
+			<result>/WEB-INF/jsp/v01b09/b09s{1}.jsp</result>
+		</action>
+		<!-- 统计	-->
+		<action name="statistics_*" class="{1}Action"  method="statistics_{1}">
+		</action>
+		<!-- 添加刀具参数 -->
+		<action name="toolAdd" class="b09S001Action" method="toolAdd">
+			<param name="savePath">/upload</param>
+			<result name="success">/WEB-INF/jsp/v01b09/b09s001.jsp</result>
+		</action>
+
+		<!-- 刀具参数信息 -->
+		<action name="toolInfo" class="b09S001Action" method="toolInfo">
+			<result name="success">/WEB-INF/jsp/v01b09/b09s001.jsp</result>
+		</action>
+
+		<!-- 刀具参数编辑-->
+		<action name="toolEdit" class="b09S001Action" method="toolEdit">
+			<param name="savePath">/upload</param>
+			<result name="success">/WEB-INF/jsp/v01b09/b09s001.jsp</result>
+		</action>
+
+		<!-- 刀具参数删除 -->
+		<action name="toolDelete" class="b09S001Action" method="toolDelete">
+			<result name="success">/WEB-INF/jsp/v01b09/b09s001.jsp</result>
+		</action>
+
+		<!-- 添加“合成刀具”参数 -->
+		<action name="synthesisAdd" class="b09S002Action" method="synthesisAdd">
+			<param name="savePath">/upload</param>
+			<result name="success">/WEB-INF/jsp/v01b09/b09s002.jsp</result>
+		</action>
+
+		<!-- “合成刀具”参数信息 -->
+		<action name="synthesisInfo" class="b09S002Action" method="synthesisInfo">
+			<result name="success">/WEB-INF/jsp/v01b09/b09s002.jsp</result>
+		</action>
+
+		<!-- “合成刀具”参数编辑-->
+		<action name="synthesisEdit" class="b09S002Action" method="synthesisEdit">
+			<param name="savePath">/upload</param>
+			<result name="success">/WEB-INF/jsp/v01b09/b09s002.jsp</result>
+		</action>
+
+		<!-- “合成刀具”参数删除 -->
+		<action name="synthesisDelete" class="b09S002Action" method="synthesisDelete">
+			<result name="success">/WEB-INF/jsp/v01b09/b09s002.jsp</result>
+		</action>
+		<!-- 文件上传 -->
+		<action name="upload" class="UploadAction" method="upload">
+			<param name="savePath">/upload</param>
+			<interceptor-ref name="defaultStack" />
+			<result name="success">/WEB-INF/jsp/v01b09/b09s002.jsp</result>
+		</action>
+		<!-- 添加列表显示项目参数 -->
+		<action name="displayItemAdd" class="b09S003Action" method="displayItemAdd">
+			<result name="success">/WEB-INF/jsp/v01b09/b09s003.jsp</result>
+		</action>
+		<!-- 删除列表显示项目参数 -->
+		<action name="displayItemDelete" class="b09S003Action" method="displayItemDelete">
+			<result name="success">/WEB-INF/jsp/v01b09/b09s003.jsp</result>
+		</action>
+		<!-- 修列表显示项目参数 -->
+		<action name="displayItemEdit" class="b09S003Action" method="displayItemEdit">
+			<result name="success">/WEB-INF/jsp/v01b09/b09s003.jsp</result>
+		</action>
+		<!-- 取得列表显示项目信息 -->
+		<action name="displayItemInfo" class="b09S003Action" method="displayItemInfo">
+			<result name="success">/WEB-INF/jsp/v01b09/b09s003.jsp</result>
+		</action>
+
+		<!-- 添加打印项目参数 -->
+		<action name="printItemAdd" class="b09S004Action" method="printItemAdd">
+			<result name="success">/WEB-INF/jsp/v01b09/b09s004.jsp</result>
+		</action>
+		<!-- 删除打印项目参数 -->
+		<action name="printItemDelete" class="b09S004Action" method="printItemDelete">
+			<result name="success">/WEB-INF/jsp/v01b09/b09s004.jsp</result>
+		</action>
+		<!-- 修改打印项目参数 -->
+		<action name="printItemEdit" class="b09S004Action" method="printItemEdit">
+			<!--<result name="success">/WEB-INF/jsp/v01b09/b09s004.jsp</result>-->
+		</action>
+		<!-- 取得项目打印信息 -->
+		<action name="printItemInfo" class="b09S004Action" method="printItemInfo">
+			<result name="success">/WEB-INF/jsp/v01b09/b09s004.jsp</result>
+		</action>
+		<action name="sferAdd" class="b09S005Action" method="sferAdd">
+			<result name="success">/WEB-INF/jsp/v01b09/b09s005.jsp</result>
+		</action>
+		<!--取得优化表信息-->
+		<action name="optimizationInfo" class="b09S006Action" method="optimizationInfo">
+			<result name="success">/WEB-INF/jsp/v01b09/b09s006.jsp</result>
+		</action>
+		<action name="optimizationAdd" class="b09S006Action" method="optimizationAdd">
+			<result name="success">/WEB-INF/jsp/v01b09/b09s006.jsp</result>
+		</action>
+		<action name="potimizationDel" class="b09S006Action" method="potimizationDel">
+			<result name="success">/WEB-INF/jsp/v01b09/b09s006.jsp</result>
+		</action><action name="optimizationEdit" class="b09S006Action" method="optimizationEdit">
+		<result name="success">/WEB-INF/jsp/v01b09/b09s006.jsp</result>
+	</action>
+
+		<action name="uploadFile" class="b09S006Action" method="uploadFile">
+			<result>/WEB-INF/jsp/v01b09/b09s006.jsp</result>
+			<!-- 配置拦截器限制上传文件类型及大小 -->
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">10701096</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<!-- 2017/09/12 宋健 变更↓↓↓　dazhong@YMSC -->
+		<action name="outFactory*" class="b09S007Action" method="outFactory{1}"></action>
+		<action name="outInfo" class="b09S007Action" method="outInfo"></action>
+		<action name="outFactoryEdit" class="b09S007Action" method="outFactoryEdit"></action>
+		<action name="outFactoryDel" class="b09S007Action" method="outFactoryDel"></action>
+		<action name="outFactoryAdd" class="b09S007Action" method="outFactoryAdd"></action>
+		<!-- 2017/09/12 宋健 变更↑↑↑　dazhong@YMSC -->
+		<action name="merchants*" class="b09S007Action" method="merchants{1}"></action>
+
+		<!-- execl文件下载 -->
+		<action name="exportExcel" class="b09S007Action" method="exportExcel">
+			<result  type="stream" name="exportExcels">
+				<param name="ContentType">application/vnd.ms-excel</param><!--  指定其类型 -->
+				<param name="inputName">excelStream</param> <!--返回流excelStream为action中的流变名称-->
+				<param name="contentDisposition">attachment;filename=${excelFileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="outFactory*" class="b09S008Action" method="outFactory{1}"></action>
+		<action name="outInfo" class="b09S008Action" method="outInfo"></action>
+		<action name="merchants*" class="b09S008Action" method="merchants{1}"></action>
+		<!-- 2017/09/12 宋健 变更↑↑↑　dazhong@YMSC -->
+	</package>
+</struts>  

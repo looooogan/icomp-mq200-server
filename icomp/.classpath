@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/aspectjrt.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/aspectjweaver.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/cglib-nodep-2.1_3.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/common-annotations.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/commons-beanutils-1.8.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/commons-dbcp.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/commons-digester-2.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/commons-fileupload-1.2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/commons-io-2.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/commons-lang3-3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/commons-logging.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/commons-pool.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/freemarker-2.3.19.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/ibatis-2.3.0.677.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/javassist-3.11.0.GA.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/jsf-api.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/jsf-impl.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/json-lib-2.2.1-jdk15.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/jstl-1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/jxl.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/log4j-1.2.11.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/mysql-connector-java-5.1.18-bin.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/ognl-3.0.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/ojdbc14.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/spring.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/struts2-core-2.3.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/struts2-json-plugin-2.1.8.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/struts2-spring-plugin-2.3.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/xwork-core-2.3.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/IcompProNo/DevelopLib/Source/Java/lib/javaee.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/common"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icomp_v01b01"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icomp_v01b02"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icomp_v01b03"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icomp_v01b04"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icomp_v01b05"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icomp_v01b06"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icomp_v01b07"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icomp_v01b08"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icomp_v01b09"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icomp_v01b10"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icomp_v01b11"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icomp_v01b12"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+</classpath>

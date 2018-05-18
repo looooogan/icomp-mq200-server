@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vgettoolcodeandnumberbyid.xml
+		Created on : 2014/10/30 13:33:17
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgettoolcodeandnumberbyid">
+	<typeAlias alias="entityVgettoolcodeandnumberbyid" type="com.icomp.entity.base.Vgettoolcodeandnumberbyid" />
+	<resultMap id="Vgettoolcodeandnumberbyid-map" class="entityVgettoolcodeandnumberbyid">
+		<!-- 修复通知流水号 -->
+		<result property="toolRepairNoticeID" column="ToolRepairNoticeID" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!--  -->
+		<result property="totalNumber" column="TotalNumber" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVgettoolcodeandnumberbyid" resultMap="Vgettoolcodeandnumberbyid-map">
+		SELECT
+		ToolRepairNoticeID
+		,ToolCode
+		,TotalNumber
+		from vgettoolcodeandnumberbyid
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="0">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVgettoolcodeandnumberbyid" resultMap="Vgettoolcodeandnumberbyid-map">
+		SELECT
+		ToolRepairNoticeID
+		,ToolCode
+		,TotalNumber
+		from vgettoolcodeandnumberbyid
+		<dynamic prepend=" where ">
+			<isNotNull property="toolRepairNoticeID" prepend="and ">
+				ToolRepairNoticeID = #toolRepairNoticeID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="totalNumber" prepend="and ">
+				TotalNumber = #totalNumber#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="0">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVgettoolcodeandnumberbyid" resultClass="int">
+		SELECT count(1)
+		from vgettoolcodeandnumberbyid
+		<dynamic prepend=" where ">
+			<isNotNull property="toolRepairNoticeID" prepend="and ">
+				ToolRepairNoticeID = #toolRepairNoticeID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="totalNumber" prepend="and ">
+				TotalNumber = #totalNumber#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

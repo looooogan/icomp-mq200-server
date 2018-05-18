@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Toolchangehistory.xml
+    Created on : 2014/09/24 14:05:43
+    Author : 工具自动生成
+    Description: 工具自动生成包含刀具告警参数的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="ToolChangehistory">
+    <typeAlias alias="entityToolChangehistory" type="com.icomp.entity.base.ToolChangehistory" />
+    <resultMap id="ToolChangehistory-map" class="entityToolChangehistory">
+        <!--  -->
+        <result property="changeID" column="changeID" />
+        <!-- 合成刀具编号 -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+        <!-- 流水线ID -->
+        <result property="assemblyLineID" column="AssemblyLineID"/>
+        <!-- 设备ID -->
+        <result property="equipmentID" column="EquipmentID"/>
+        <!-- 轴ID -->
+        <result property="processID" column="ProcessID"/>
+        <!--  -->
+        <result property="partsID" column="PartsID"/>
+        <!-- 轴ID -->
+        <result property="axleID" column="AxleID"/>
+        <!-- 调刀时间 -->
+        <result property="changeDate" column="changeDate"/>
+        <!-- 操作人 -->
+        <result property="changeUser" column="changeUser"/>
+        <!-- 材料号 -->
+        <result property="toolCode" column="toolCode"/>
+        <!-- 数量 -->
+        <result property="changeNum" column="changeNum"/>
+        <!-- 流水线名称 -->
+        <result property="assemblyLineName" column="AssemblyLineName"/>
+        <!-- 工序名称 -->
+        <result property="processName" column="ProcessName"/>
+        <!-- 设备名称 -->
+        <result property="equipmentName" column="EquipmentName"/>
+        <!-- 轴名称 -->
+        <result property="axleName" column="axleName"/>
+        <!-- 零部件名称 -->
+        <result property="partsName" column="PartsName"/>
+    </resultMap>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityToolChangehistory" resultMap="ToolChangehistory-map">
+        SELECT
+        tch.changeID
+        ,tch.SynthesisParametersCode
+        ,tch.AssemblyLineID
+        ,tch.ProcessID
+        ,tch.EquipmentID
+        ,tch.PartsID
+        ,tch.AxleID
+        ,date_format(tch.changeDate,'%Y-%m-%d %H:%i:%S') changeDate
+        ,u.UserName changeUser
+        ,tch.toolCode
+        ,tch.changeNum
+        ,al.AssemblyLineName
+        ,p.ProcessName
+        ,e.EquipmentName
+        ,ax.axleName
+        ,pa.PartsName
+        from toolchangehistory tch
+        LEFT JOIN equipment e ON tch.EquipmentID = e.EquipmentID
+        LEFT JOIN axle ax ON tch.AxleID = ax.axleID
+        LEFT JOIN assemblyline al ON tch.AssemblyLineID = al.AssemblyLineID
+        LEFT JOIN process p ON tch.ProcessID = p.ProcessID
+        LEFT JOIN parts pa ON tch.PartsID = pa.PartsID
+        LEFT JOIN userdetail u ON tch.changeUser = u.CustomerID
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                tch.SynthesisParametersCode = #synthesisParametersCode#
+            </isNotNull>
+            <isNotNull property="assemblyLineID" prepend="and ">
+                tch.AssemblyLineID = #assemblyLineID#
+            </isNotNull>
+            <isNotNull property="processID" prepend="and ">
+                tch.ProcessID = #processID#
+            </isNotNull>
+            <isNotNull property="equipmentID" prepend="and ">
+                tch.EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="partsID" prepend="and ">
+                tch.PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="axleID" prepend="and ">
+                tch.AxleID = #axleID#
+            </isNotNull>
+            <isNotNull property="dateStar" prepend="and ">
+                tch.changeDate >= #dateStar#
+            </isNotNull>
+            <isNotNull property="dateEnd" prepend="and ">
+                tch.changeDate &lt;= #dateEnd#
+            </isNotNull>
+        </dynamic>
+        GROUP  by tch.SynthesisParametersCode,tch.changeDate
+            order by
+          tch.changeDate desc
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityToolChangehistory" resultClass="int">
+        SELECT count(1)
+        from toolchangehistory
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCode#
+            </isNotNull>
+            <isNotNull property="assemblyLineID" prepend="and ">
+                AssemblyLineID = #assemblyLineID#
+            </isNotNull>
+            <isNotNull property="processID" prepend="and ">
+                ProcessID = #processID#
+            </isNotNull>
+            <isNotNull property="equipmentID" prepend="and ">
+                EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="partsID" prepend="and ">
+                PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="axleID" prepend="and ">
+                AxleID = #axleID#
+            </isNotNull>
+            <isNotNull property="dateStar" prepend="and ">
+                changeDate >= #dateStar#
+            </isNotNull>
+            <isNotNull property="dateEnd" prepend="and ">
+                changeDate &lt;= #dateEnd#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+</sqlMap>
+

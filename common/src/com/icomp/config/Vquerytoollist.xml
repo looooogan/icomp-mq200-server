@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vquerytoollist.xml Created on : 2014/10/15 16:55:29 Author
+		: 工具自动生成 Description: 工具自动生成包含VIEW的单表增删改查SQL语句. searchByPrimaryKey ：
+		主键查询 searchByList ： 任意条件查询 searchByCount ：任意条件条数查询 insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null） updateNonQuery ：更新处理（未指定项目不更新） delete ：
+		删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vquerytoollist">
+	<typeAlias alias="entityVquerytoollist" type="com.icomp.entity.base.Vquerytoollist" />
+	<resultMap id="Vquerytoollist-map" class="entityVquerytoollist">
+		<!-- 查询方式(0库存1流转) -->
+		<result property="queryType" column="QueryType" />
+		<!-- RFID标签ID -->
+		<result property="rfidCode" column="RfidCode" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!--  -->
+		<result property="lblCode" column="lblCode" />
+		<!-- 货架 -->
+		<result property="shelf" column="Shelf" />
+		<!-- 货位 -->
+		<result property="stack" column="Stack" />
+		<!-- 层 -->
+		<result property="layer" column="Layer" />
+		<!--  -->
+		<result property="toolCount" column="toolCount" />
+	</resultMap>
+	<resultMap id="VquerytoolQuerylist-map" class="entityVquerytoollist">
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 库位码 -->
+		<result property="lblCode" column="lblCode" />
+		<!-- 货架 -->
+		<result property="shelf" column="Shelf" />
+		<!-- 货位 -->
+		<result property="stack" column="Stack" />
+		<!-- 层 -->
+		<result property="layer" column="Layer" />
+		<!-- 刀具数量 -->
+		<result property="toolCount" column="toolCount" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVquerytoollist"
+		resultMap="Vquerytoollist-map">
+		SELECT
+		QueryType
+		,RfidCode
+		,ToolCode
+		,lblCode
+		,Shelf
+		,Stack
+		,Layer
+		,toolCount
+		from vquerytoollist
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVquerytoollist"
+		resultMap="Vquerytoollist-map">
+		SELECT
+		QueryType
+		,RfidCode
+		,ToolCode
+		,lblCode
+		,Shelf
+		,Stack
+		,Layer
+		,toolCount
+		from vquerytoollist
+		<dynamic prepend=" where ">
+			<isNotNull property="queryType" prepend="and ">
+				QueryType =
+				#queryType#
+         </isNotNull>
+			<isNotNull property="rfidCode" prepend="and ">
+				RfidCode =
+				#rfidCode#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode =
+				#toolCode#
+         </isNotNull>
+			<isNotNull property="lblCode" prepend="and ">
+				lblCode = #lblCode#
+			</isNotNull>
+			<isNotNull property="shelf" prepend="and ">
+				Shelf = #shelf#
+			</isNotNull>
+			<isNotNull property="stack" prepend="and ">
+				Stack = #stack#
+			</isNotNull>
+			<isNotNull property="layer" prepend="and ">
+				Layer = #layer#
+			</isNotNull>
+			<isNotNull property="toolCount" prepend="and ">
+				toolCount =
+				#toolCount#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isGreaterThan property="staIndex" compareValue="0">
+			LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByQueryList" parameterClass="entityVquerytoollist"
+		resultMap="VquerytoolQuerylist-map">
+		SELECT
+		ToolCode
+		,lblCode
+		,Shelf
+		,Stack
+		,Layer
+		,sum(toolCount) toolCount
+		from
+		vquerytoollist
+		<dynamic prepend=" where ">
+			<isNotNull property="queryType" prepend="and ">
+				QueryType =
+				#queryType#
+         </isNotNull>
+			<isNotNull property="rfidCode" prepend="and ">
+				ToolCode in(SELECT
+				ToolCode from vquerytoollist where RfidCode = #rfidCode#)
+			</isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode =
+				#toolCode#
+         </isNotNull>
+			<isNotNull property="lblCode" prepend="and ">
+				lblCode = #lblCode#
+			</isNotNull>
+			<isNotNull property="shelf" prepend="and ">
+				Shelf = #shelf#
+			</isNotNull>
+			<isNotNull property="stack" prepend="and ">
+				Stack = #stack#
+			</isNotNull>
+			<isNotNull property="layer" prepend="and ">
+				Layer = #layer#
+			</isNotNull>
+			<isNotNull property="toolCount" prepend="and ">
+				toolCount =
+				#toolCount#
+         </isNotNull>
+		</dynamic>
+		 group by Shelf ,Stack ,Layer,ToolCode,lblCode
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVquerytoollist"
+		resultClass="int">
+		SELECT count(1)
+		from vquerytoollist
+		<dynamic prepend=" where ">
+			<isNotNull property="queryType" prepend="and ">
+				QueryType =
+				#queryType#
+         </isNotNull>
+			<isNotNull property="rfidCode" prepend="and ">
+				RfidCode =
+				#rfidCode#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode =
+				#toolCode#
+         </isNotNull>
+			<isNotNull property="lblCode" prepend="and ">
+				lblCode = #lblCode#
+			</isNotNull>
+			<isNotNull property="shelf" prepend="and ">
+				Shelf = #shelf#
+			</isNotNull>
+			<isNotNull property="stack" prepend="and ">
+				Stack = #stack#
+			</isNotNull>
+			<isNotNull property="layer" prepend="and ">
+				Layer = #layer#
+			</isNotNull>
+			<isNotNull property="toolCount" prepend="and ">
+				toolCount =
+				#toolCount#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

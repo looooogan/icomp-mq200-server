@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Authorization.xml
+		Created on : 2016/05/17 18:19:15
+		Author : 工具自动生成
+		Description: 工具自动生成包含授权表的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Authorization">
+	<typeAlias alias="entityAuthorization" type="com.icomp.entity.base.Authorization" />
+	<resultMap id="Authorization-map" class="entityAuthorization">
+		<!-- 授权ID -->
+		<result property="authorizationID" column="authorizationID" />
+		<!-- 授权人ID -->
+		<result property="authorizationUserID" column="authorizationUserID" />
+		<!-- 授权原因（0.断刀1.丢刀2.补领） -->
+		<result property="authorizedReason" column="authorizedReason" />
+		<!-- 授权时间 -->
+		<result property="authorizedTime" column="authorizedTime" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="toolID" />
+		<!-- 刀具类型（0单品，1合成刀具） -->
+		<result property="tooltype" column="tooltype" />
+		<!-- 材料号或合成刀具编码 -->
+		<result property="toolCode" column="toolCode" />
+		<!-- 业务流程编码 -->
+		<result property="businessCode" column="BusinessCode" />
+		<!-- 创建人 -->
+		<result property="createUserID" column="CreateUserID" />
+		<!-- 修改人 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 修改时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 备注（情况简述） -->
+		<result property="note" column="note" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityAuthorization" resultMap="Authorization-map">
+		SELECT
+		authorizationID
+		,authorizationUserID
+		,authorizedReason
+		,authorizedTime
+		,toolID
+		,tooltype
+		,toolCode
+		,BusinessCode
+		,CreateUserID
+		,UpdateUser
+		,UpdateTime
+		,CreateTime
+		,note
+		from authorization
+		<dynamic prepend=" where ">
+			<isNotNull property="authorizationID" prepend="and ">
+				authorizationID = #authorizationID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					authorizationID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityAuthorization" resultMap="Authorization-map">
+		SELECT
+		authorizationID
+		,authorizationUserID
+		,authorizedReason
+		,authorizedTime
+		,toolID
+		,tooltype
+		,toolCode
+		,BusinessCode
+		,CreateUserID
+		,UpdateUser
+		,UpdateTime
+		,CreateTime
+		,note
+		from authorization
+		<dynamic prepend=" where ">
+			<isNotNull property="authorizationID" prepend="and ">
+				authorizationID = #authorizationID#
+         </isNotNull>
+			<isNotNull property="authorizationUserID" prepend="and ">
+				authorizationUserID = #authorizationUserID#
+         </isNotNull>
+			<isNotNull property="authorizedReason" prepend="and ">
+				authorizedReason = #authorizedReason#
+         </isNotNull>
+			<isNotNull property="authorizedTime" prepend="and ">
+				authorizedTime = #authorizedTime#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				toolID = #toolID#
+         </isNotNull>
+			<isNotNull property="tooltype" prepend="and ">
+				tooltype = #tooltype#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				toolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="businessCode" prepend="and ">
+				BusinessCode = #businessCode#
+         </isNotNull>
+			<isNotNull property="createUserID" prepend="and ">
+				CreateUserID = #createUserID#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="note" prepend="and ">
+				note = #note#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					authorizationID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityAuthorization" resultClass="int">
+		SELECT count(1)
+		from authorization
+		<dynamic prepend=" where ">
+			<isNotNull property="authorizationID" prepend="and ">
+				authorizationID = #authorizationID#
+         </isNotNull>
+			<isNotNull property="authorizationUserID" prepend="and ">
+				authorizationUserID = #authorizationUserID#
+         </isNotNull>
+			<isNotNull property="authorizedReason" prepend="and ">
+				authorizedReason = #authorizedReason#
+         </isNotNull>
+			<isNotNull property="authorizedTime" prepend="and ">
+				authorizedTime = #authorizedTime#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				toolID = #toolID#
+         </isNotNull>
+			<isNotNull property="tooltype" prepend="and ">
+				tooltype = #tooltype#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				toolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="businessCode" prepend="and ">
+				BusinessCode = #businessCode#
+         </isNotNull>
+			<isNotNull property="createUserID" prepend="and ">
+				CreateUserID = #createUserID#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="note" prepend="and ">
+				note = #note#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityAuthorization">
+		update authorization
+		<dynamic prepend="set">
+			<isNotNull property="authorizationID">
+				authorizationID = #authorizationID#
+         </isNotNull>
+			<isNull property="authorizationID">
+				authorizationID = null
+         </isNull>
+			<isNotNull property="authorizationUserID">
+				,authorizationUserID = #authorizationUserID#
+         </isNotNull>
+			<isNull property="authorizationUserID">
+				,authorizationUserID = null
+         </isNull>
+			<isNotNull property="authorizedReason">
+				,authorizedReason = #authorizedReason#
+         </isNotNull>
+			<isNull property="authorizedReason">
+				,authorizedReason = null
+         </isNull>
+			<isNotNull property="authorizedTime">
+				,authorizedTime = #authorizedTime#
+         </isNotNull>
+			<isNull property="authorizedTime">
+				,authorizedTime = null
+         </isNull>
+			<isNotNull property="toolID">
+				,toolID = #toolID#
+         </isNotNull>
+			<isNull property="toolID">
+				,toolID = null
+         </isNull>
+			<isNotNull property="tooltype">
+				,tooltype = #tooltype#
+         </isNotNull>
+			<isNull property="tooltype">
+				,tooltype = null
+         </isNull>
+			<isNotNull property="toolCode">
+				,toolCode = #toolCode#
+         </isNotNull>
+			<isNull property="toolCode">
+				,toolCode = null
+         </isNull>
+			<isNotNull property="businessCode">
+				,BusinessCode = #businessCode#
+         </isNotNull>
+			<isNull property="businessCode">
+				,BusinessCode = null
+         </isNull>
+			<isNotNull property="createUserID">
+				,CreateUserID = #createUserID#
+         </isNotNull>
+			<isNull property="createUserID">
+				,CreateUserID = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="note">
+				,note = #note#
+         </isNotNull>
+			<isNull property="note">
+				,note = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="authorizationIDWhere" prepend="and ">
+				authorizationID = #authorizationIDWhere#
+         </isNotNull>
+			<isNotNull property="authorizationUserIDWhere" prepend="and ">
+				authorizationUserID = #authorizationUserIDWhere#
+         </isNotNull>
+			<isNotNull property="authorizedReasonWhere" prepend="and ">
+				authorizedReason = #authorizedReasonWhere#
+         </isNotNull>
+			<isNotNull property="authorizedTimeWhere" prepend="and ">
+				authorizedTime = #authorizedTimeWhere#
+         </isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				toolID = #toolIDWhere#
+         </isNotNull>
+			<isNotNull property="tooltypeWhere" prepend="and ">
+				tooltype = #tooltypeWhere#
+         </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				toolCode = #toolCodeWhere#
+         </isNotNull>
+			<isNotNull property="businessCodeWhere" prepend="and ">
+				BusinessCode = #businessCodeWhere#
+         </isNotNull>
+			<isNotNull property="createUserIDWhere" prepend="and ">
+				CreateUserID = #createUserIDWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="noteWhere" prepend="and ">
+				note = #noteWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityAuthorization">
+		update authorization
+		<dynamic prepend="set">
+			<isNotNull property="authorizationID"  prepend=",">
+				authorizationID = #authorizationID#
+         </isNotNull>
+			<isNotNull property="authorizationUserID"  prepend=",">
+				authorizationUserID = #authorizationUserID#
+         </isNotNull>
+			<isNotNull property="authorizedReason"  prepend=",">
+				authorizedReason = #authorizedReason#
+         </isNotNull>
+			<isNotNull property="authorizedTime"  prepend=",">
+				authorizedTime = #authorizedTime#
+         </isNotNull>
+			<isNotNull property="toolID"  prepend=",">
+				toolID = #toolID#
+         </isNotNull>
+			<isNotNull property="tooltype"  prepend=",">
+				tooltype = #tooltype#
+         </isNotNull>
+			<isNotNull property="toolCode"  prepend=",">
+				toolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="businessCode"  prepend=",">
+				BusinessCode = #businessCode#
+         </isNotNull>
+			<isNotNull property="createUserID"  prepend=",">
+				CreateUserID = #createUserID#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="note"  prepend=",">
+				note = #note#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="authorizationIDWhere" prepend="and ">
+				authorizationID = #authorizationIDWhere#
+         </isNotNull>
+			<isNotNull property="authorizationUserIDWhere" prepend="and ">
+				authorizationUserID = #authorizationUserIDWhere#
+         </isNotNull>
+			<isNotNull property="authorizedReasonWhere" prepend="and ">
+				authorizedReason = #authorizedReasonWhere#
+         </isNotNull>
+			<isNotNull property="authorizedTimeWhere" prepend="and ">
+				authorizedTime = #authorizedTimeWhere#
+         </isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				toolID = #toolIDWhere#
+         </isNotNull>
+			<isNotNull property="tooltypeWhere" prepend="and ">
+				tooltype = #tooltypeWhere#
+         </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				toolCode = #toolCodeWhere#
+         </isNotNull>
+			<isNotNull property="businessCodeWhere" prepend="and ">
+				BusinessCode = #businessCodeWhere#
+         </isNotNull>
+			<isNotNull property="createUserIDWhere" prepend="and ">
+				CreateUserID = #createUserIDWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="noteWhere" prepend="and ">
+				note = #noteWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityAuthorization">
+		<selectKey resultClass="java.lang.String" keyProperty="authorizationID">
+			SELECT #authorizationID# as authorizationID FROM DUAL
+     </selectKey>
+		insert into authorization(
+		authorizationID
+		,authorizationUserID
+		,authorizedReason
+		,authorizedTime
+		,toolID
+		,tooltype
+		,toolCode
+		,BusinessCode
+		,CreateUserID
+		,UpdateUser
+		,UpdateTime
+		,CreateTime
+		,note
+		)
+		Values (
+			<isNotNull property="authorizationID">
+				#authorizationID#
+         </isNotNull>
+			<isNull property="authorizationID">
+				null
+         </isNull>
+			<isNotNull property="authorizationUserID">
+				,#authorizationUserID#
+         </isNotNull>
+			<isNull property="authorizationUserID">
+				,null
+         </isNull>
+			<isNotNull property="authorizedReason">
+				,#authorizedReason#
+         </isNotNull>
+			<isNull property="authorizedReason">
+				,null
+         </isNull>
+			<isNotNull property="authorizedTime">
+				,#authorizedTime#
+         </isNotNull>
+			<isNull property="authorizedTime">
+				,null
+         </isNull>
+			<isNotNull property="toolID">
+				,#toolID#
+         </isNotNull>
+			<isNull property="toolID">
+				,null
+         </isNull>
+			<isNotNull property="tooltype">
+				,#tooltype#
+         </isNotNull>
+			<isNull property="tooltype">
+				,null
+         </isNull>
+			<isNotNull property="toolCode">
+				,#toolCode#
+         </isNotNull>
+			<isNull property="toolCode">
+				,null
+         </isNull>
+			<isNotNull property="businessCode">
+				,#businessCode#
+         </isNotNull>
+			<isNull property="businessCode">
+				,null
+         </isNull>
+			<isNotNull property="createUserID">
+				,#createUserID#
+         </isNotNull>
+			<isNull property="createUserID">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="note">
+				,#note#
+         </isNotNull>
+			<isNull property="note">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityAuthorization">
+		delete  from authorization
+		<dynamic prepend=" where ">
+			<isNotNull property="authorizationIDWhere" prepend="and ">
+				authorizationID = #authorizationIDWhere#
+         </isNotNull>
+			<isNotNull property="authorizationUserIDWhere" prepend="and ">
+				authorizationUserID = #authorizationUserIDWhere#
+         </isNotNull>
+			<isNotNull property="authorizedReasonWhere" prepend="and ">
+				authorizedReason = #authorizedReasonWhere#
+         </isNotNull>
+			<isNotNull property="authorizedTimeWhere" prepend="and ">
+				authorizedTime = #authorizedTimeWhere#
+         </isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				toolID = #toolIDWhere#
+         </isNotNull>
+			<isNotNull property="tooltypeWhere" prepend="and ">
+				tooltype = #tooltypeWhere#
+         </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				toolCode = #toolCodeWhere#
+         </isNotNull>
+			<isNotNull property="businessCodeWhere" prepend="and ">
+				BusinessCode = #businessCodeWhere#
+         </isNotNull>
+			<isNotNull property="createUserIDWhere" prepend="and ">
+				CreateUserID = #createUserIDWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="noteWhere" prepend="and ">
+				note = #noteWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

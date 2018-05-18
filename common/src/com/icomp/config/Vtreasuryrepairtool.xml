@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vtreasuryrepairtool.xml
+		Created on : 2014/08/20 14:52:19
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByList_F ： 任意条件查询-ToolCode模糊查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vtreasuryrepairtool">
+	<typeAlias alias="entityVtreasuryrepairtool" type="com.icomp.entity.base.Vtreasuryrepairtool" />
+	<resultMap id="Vtreasuryrepairtool-map" class="entityVtreasuryrepairtool">
+		<!--  -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 修复方式(0厂内复磨1厂内维修2厂内图层3出厂图层4出厂维修) -->
+		<result property="repairWay" column="RepairWay" />
+		<!--  -->
+		<result property="repairCount" column="repairCount" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVtreasuryrepairtool" resultMap="Vtreasuryrepairtool-map">
+		SELECT
+		ToolCode
+		,RepairWay
+		,repairCount
+		from vtreasuryrepairtool
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVtreasuryrepairtool" resultMap="Vtreasuryrepairtool-map">
+		SELECT
+		ToolCode
+		,RepairWay
+		,repairCount
+		from vtreasuryrepairtool
+		where 1=1
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="repairWay" prepend="and ">
+				RepairWay = #repairWay#
+         </isNotNull>
+			<isNotNull property="repairCount" prepend="and ">
+				repairCount = #repairCount#
+         </isNotNull>
+         and ToolCode is not null
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	
+	<!-- 任意条件查询执行-ToolCode模糊查询 -->
+	<select id="searchByList_F" parameterClass="entityVtreasuryrepairtool" resultMap="Vtreasuryrepairtool-map">
+		SELECT
+		ToolCode
+		,RepairWay
+		,repairCount
+		from vtreasuryrepairtool
+		where 1=1
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="repairWay" prepend="and ">
+				RepairWay = #repairWay#
+         </isNotNull>
+			<isNotNull property="repairCount" prepend="and ">
+				repairCount = #repairCount#
+         </isNotNull>
+         and ToolCode !=''
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVtreasuryrepairtool" resultClass="int">
+		SELECT count(1)
+		from vtreasuryrepairtool
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="repairWay" prepend="and ">
+				RepairWay = #repairWay#
+         </isNotNull>
+			<isNotNull property="repairCount" prepend="and ">
+				repairCount = #repairCount#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

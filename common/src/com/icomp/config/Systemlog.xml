@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Systemlog.xml
+		Created on : 2014/08/19 15:48:46
+		Author : 工具自动生成
+		Description: 工具自动生成包含日志的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Systemlog">
+	<typeAlias alias="entitySystemlog" type="com.icomp.entity.base.Systemlog" />
+	<resultMap id="Systemlog-map" class="entitySystemlog">
+		<!-- system_Log_ID -->
+		<result property="systemLogID" column="SystemLogID" />
+		<!-- 语言编码 -->
+		<result property="languageCode" column="LanguageCode" />
+		<!-- 日志内容 -->
+		<result property="systemLogMsg" column="SystemLogMsg" />
+		<!-- 日志分类(0手持机1智能管理平台2系统日志) -->
+		<result property="systemLogFlag" column="SystemLogFlag" />
+		<!-- 日志级别(0正常1警告2错误9其他) -->
+		<result property="systemLogLevel" column="SystemLogLevel" />
+		<!-- 产生时间 -->
+		<result property="systemLogDate" column="SystemLogDate" />
+		<!-- 操作人 -->
+		<result property="systemLogUser" column="SystemLogUser" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	
+	<resultMap id="Systemlog-map-N" class="entitySystemlog">
+		<!-- system_Log_ID -->
+		<result property="systemLogID" column="SystemLogID" />
+		<!-- 语言编码 -->
+		<result property="languageCode" column="LanguageCode" />
+		<!-- 日志内容 -->
+		<result property="systemLogMsg" column="SystemLogMsg" />
+		<!-- 日志分类(0手持机1智能管理平台2系统日志) -->
+		<result property="systemLogFlag" column="SystemLogFlag" />
+		<!-- 日志级别(0正常1警告2错误9其他) -->
+		<result property="systemLogLevel" column="SystemLogLevel" />
+		<!-- 产生时间 -->
+		<result property="systemLogDate" column="SystemLogDate" />
+		<!-- 操作人 -->
+		<result property="systemLogUserWhere" column="SystemLogUser" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	
+	<!-- 任意条件查询执行 -->
+	<select id="searchByListWithSystemLogUser" parameterClass="entitySystemlog" resultMap="Systemlog-map-N">
+		SELECT
+		SystemLogID
+		,LanguageCode
+		,SystemLogMsg
+		,SystemLogFlag
+		,SystemLogLevel
+		,SystemLogDate
+		,(SELECT u.UserName FROM userdetail  u WHERE u.CustomerID = systemlog.SystemLogUser ) AS SystemLogUser
+		,DelFlag
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from systemlog
+		<dynamic prepend=" where ">
+			<isNotNull property="systemLogID" prepend="and ">
+				SystemLogID = #systemLogID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="systemLogMsg" prepend="and ">
+				SystemLogMsg = #systemLogMsg#
+         </isNotNull>
+			<isNotNull property="systemLogFlag" prepend="and ">
+				SystemLogFlag = #systemLogFlag#
+         </isNotNull>
+			<isNotNull property="systemLogLevel" prepend="and ">
+				SystemLogLevel = #systemLogLevel#
+         </isNotNull>
+			<isNotNull property="systemLogDate" prepend="and ">
+				SystemLogDate = #systemLogDate#
+         </isNotNull>
+        	<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				SystemLogDate >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				SystemLogDate <= #dateEnd#
+				]]>
+         </isNotNull>         
+			<isNotNull property="systemLogUser" prepend="and ">
+				SystemLogUser = #systemLogUser#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					SystemLogID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	
+	
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entitySystemlog" resultMap="Systemlog-map">
+		SELECT
+		SystemLogID
+		,LanguageCode
+		,SystemLogMsg
+		,SystemLogFlag
+		,SystemLogLevel
+		,SystemLogDate
+		,SystemLogUser
+		,DelFlag
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from systemlog
+		<dynamic prepend=" where ">
+			<isNotNull property="systemLogID" prepend="and ">
+				SystemLogID = #systemLogID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					SystemLogID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entitySystemlog" resultMap="Systemlog-map">
+		SELECT
+		SystemLogID
+		,LanguageCode
+		,SystemLogMsg
+		,SystemLogFlag
+		,SystemLogLevel
+		,SystemLogDate
+		,SystemLogUser
+		,DelFlag
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from systemlog
+		<dynamic prepend=" where ">
+			<isNotNull property="systemLogID" prepend="and ">
+				SystemLogID = #systemLogID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="systemLogMsg" prepend="and ">
+				SystemLogMsg = #systemLogMsg#
+         </isNotNull>
+			<isNotNull property="systemLogFlag" prepend="and ">
+				SystemLogFlag = #systemLogFlag#
+         </isNotNull>
+			<isNotNull property="systemLogLevel" prepend="and ">
+				SystemLogLevel = #systemLogLevel#
+         </isNotNull>
+			<isNotNull property="systemLogDate" prepend="and ">
+				SystemLogDate = #systemLogDate#
+         </isNotNull>
+        	<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				SystemLogDate >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				SystemLogDate <= #dateEnd#
+				]]>
+         </isNotNull>         
+			<isNotNull property="systemLogUser" prepend="and ">
+				SystemLogUser = #systemLogUser#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					SystemLogID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entitySystemlog" resultClass="int">
+		SELECT count(1)
+		from systemlog
+		<dynamic prepend=" where ">
+			<isNotNull property="systemLogID" prepend="and ">
+				SystemLogID = #systemLogID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="systemLogMsg" prepend="and ">
+				SystemLogMsg = #systemLogMsg#
+         </isNotNull>
+			<isNotNull property="systemLogFlag" prepend="and ">
+				SystemLogFlag = #systemLogFlag#
+         </isNotNull>
+			<isNotNull property="systemLogLevel" prepend="and ">
+				SystemLogLevel = #systemLogLevel#
+         </isNotNull>
+			<isNotNull property="systemLogDate" prepend="and ">
+				SystemLogDate = #systemLogDate#
+         </isNotNull>
+        	<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				SystemLogDate >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				SystemLogDate <= #dateEnd#
+				]]>
+         </isNotNull>              
+			<isNotNull property="systemLogUser" prepend="and ">
+				SystemLogUser = #systemLogUser#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entitySystemlog">
+		update systemlog
+		<dynamic prepend="set">
+			<isNotNull property="systemLogID">
+				SystemLogID = #systemLogID#
+         </isNotNull>
+			<isNull property="systemLogID">
+				SystemLogID = null
+         </isNull>
+			<isNotNull property="languageCode">
+				,LanguageCode = #languageCode#
+         </isNotNull>
+			<isNull property="languageCode">
+				,LanguageCode = null
+         </isNull>
+			<isNotNull property="systemLogMsg">
+				,SystemLogMsg = #systemLogMsg#
+         </isNotNull>
+			<isNull property="systemLogMsg">
+				,SystemLogMsg = null
+         </isNull>
+			<isNotNull property="systemLogFlag">
+				,SystemLogFlag = #systemLogFlag#
+         </isNotNull>
+			<isNull property="systemLogFlag">
+				,SystemLogFlag = null
+         </isNull>
+			<isNotNull property="systemLogLevel">
+				,SystemLogLevel = #systemLogLevel#
+         </isNotNull>
+			<isNull property="systemLogLevel">
+				,SystemLogLevel = null
+         </isNull>
+			<isNotNull property="systemLogDate">
+				,SystemLogDate = #systemLogDate#
+         </isNotNull>
+			<isNull property="systemLogDate">
+				,SystemLogDate = null
+         </isNull>
+			<isNotNull property="systemLogUser">
+				,SystemLogUser = #systemLogUser#
+         </isNotNull>
+			<isNull property="systemLogUser">
+				,SystemLogUser = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="systemLogIDWhere" prepend="and ">
+				SystemLogID = #systemLogIDWhere#
+         </isNotNull>
+			<isNotNull property="languageCodeWhere" prepend="and ">
+				LanguageCode = #languageCodeWhere#
+         </isNotNull>
+			<isNotNull property="systemLogMsgWhere" prepend="and ">
+				SystemLogMsg = #systemLogMsgWhere#
+         </isNotNull>
+			<isNotNull property="systemLogFlagWhere" prepend="and ">
+				SystemLogFlag = #systemLogFlagWhere#
+         </isNotNull>
+			<isNotNull property="systemLogLevelWhere" prepend="and ">
+				SystemLogLevel = #systemLogLevelWhere#
+         </isNotNull>
+			<isNotNull property="systemLogDateWhere" prepend="and ">
+				SystemLogDate = #systemLogDateWhere#
+         </isNotNull>
+			<isNotNull property="systemLogUserWhere" prepend="and ">
+				SystemLogUser = #systemLogUserWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entitySystemlog">
+		update systemlog
+		<dynamic prepend="set">
+			<isNotNull property="systemLogID"  prepend=",">
+				SystemLogID = #systemLogID#
+         </isNotNull>
+			<isNotNull property="languageCode"  prepend=",">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="systemLogMsg"  prepend=",">
+				SystemLogMsg = #systemLogMsg#
+         </isNotNull>
+			<isNotNull property="systemLogFlag"  prepend=",">
+				SystemLogFlag = #systemLogFlag#
+         </isNotNull>
+			<isNotNull property="systemLogLevel"  prepend=",">
+				SystemLogLevel = #systemLogLevel#
+         </isNotNull>
+			<isNotNull property="systemLogDate"  prepend=",">
+				SystemLogDate = #systemLogDate#
+         </isNotNull>
+			<isNotNull property="systemLogUser"  prepend=",">
+				SystemLogUser = #systemLogUser#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="systemLogIDWhere" prepend="and ">
+				SystemLogID = #systemLogIDWhere#
+         </isNotNull>
+			<isNotNull property="languageCodeWhere" prepend="and ">
+				LanguageCode = #languageCodeWhere#
+         </isNotNull>
+			<isNotNull property="systemLogMsgWhere" prepend="and ">
+				SystemLogMsg = #systemLogMsgWhere#
+         </isNotNull>
+			<isNotNull property="systemLogFlagWhere" prepend="and ">
+				SystemLogFlag = #systemLogFlagWhere#
+         </isNotNull>
+			<isNotNull property="systemLogLevelWhere" prepend="and ">
+				SystemLogLevel = #systemLogLevelWhere#
+         </isNotNull>
+			<isNotNull property="systemLogDateWhere" prepend="and ">
+				SystemLogDate = #systemLogDateWhere#
+         </isNotNull>
+			<isNotNull property="systemLogUserWhere" prepend="and ">
+				SystemLogUser = #systemLogUserWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entitySystemlog">
+		<selectKey resultClass="java.lang.String" keyProperty="systemLogID">
+			SELECT #systemLogID# as systemLogID FROM DUAL
+     </selectKey>
+		insert into systemlog(
+		SystemLogID
+		,LanguageCode
+		,SystemLogMsg
+		,SystemLogFlag
+		,SystemLogLevel
+		,SystemLogDate
+		,SystemLogUser
+		,DelFlag
+		,UpdateUser
+		,UpdateTime
+		,Version
+		)
+		Values (
+			<isNotNull property="systemLogID">
+				#systemLogID#
+         </isNotNull>
+			<isNull property="systemLogID">
+				null
+         </isNull>
+			<isNotNull property="languageCode">
+				,#languageCode#
+         </isNotNull>
+			<isNull property="languageCode">
+				,null
+         </isNull>
+			<isNotNull property="systemLogMsg">
+				,#systemLogMsg#
+         </isNotNull>
+			<isNull property="systemLogMsg">
+				,null
+         </isNull>
+			<isNotNull property="systemLogFlag">
+				,#systemLogFlag#
+         </isNotNull>
+			<isNull property="systemLogFlag">
+				,null
+         </isNull>
+			<isNotNull property="systemLogLevel">
+				,#systemLogLevel#
+         </isNotNull>
+			<isNull property="systemLogLevel">
+				,null
+         </isNull>
+			<isNotNull property="systemLogDate">
+				,#systemLogDate#
+         </isNotNull>
+			<isNull property="systemLogDate">
+				,null
+         </isNull>
+			<isNotNull property="systemLogUser">
+				,#systemLogUser#
+         </isNotNull>
+			<isNull property="systemLogUser">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entitySystemlog">
+		delete  from systemlog
+		<dynamic prepend=" where ">
+			<isNotNull property="systemLogIDWhere" prepend="and ">
+				SystemLogID = #systemLogIDWhere#
+         </isNotNull>
+			<isNotNull property="languageCodeWhere" prepend="and ">
+				LanguageCode = #languageCodeWhere#
+         </isNotNull>
+			<isNotNull property="systemLogMsgWhere" prepend="and ">
+				SystemLogMsg = #systemLogMsgWhere#
+         </isNotNull>
+			<isNotNull property="systemLogFlagWhere" prepend="and ">
+				SystemLogFlag = #systemLogFlagWhere#
+         </isNotNull>
+			<isNotNull property="systemLogLevelWhere" prepend="and ">
+				SystemLogLevel = #systemLogLevelWhere#
+         </isNotNull>
+			<isNotNull property="systemLogDateWhere" prepend="and ">
+				SystemLogDate = #systemLogDateWhere#
+         </isNotNull>
+			<isNotNull property="systemLogUserWhere" prepend="and ">
+				SystemLogUser = #systemLogUserWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

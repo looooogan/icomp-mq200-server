@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Vgetsynthsisinfo.xml
+    Created on : 2016/04/25 15:09:30
+    Author : 工具自动生成
+    Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgetsynthsisinfo">
+    <typeAlias alias="entityVgetsynthsisinfo" type="com.icomp.entity.base.Vgetsynthsisinfo"/>
+    <resultMap id="Vgetsynthsisinfo-map" class="entityVgetsynthsisinfo">
+        <!-- 合成刀具编号 -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+        <!-- 合成刀具参数ID -->
+        <result property="synthesisParametersID" column="SynthesisParametersID"/>
+        <!-- 加工数量 -->
+        <result property="processAmount" column="ProcessAmount"/>
+        <!-- 更新时间 -->
+        <result property="updateTime" column="UpdateTime"/>
+        <!-- 更新者 -->
+        <result property="updateUser" column="UpdateUser"/>
+        <!-- 业务-流程中间表ID -->
+        <result property="businessFlowLnkID" column="BusinessFlowLnkID"/>
+        <!-- 使用状态(0设备装入1设备卸下2回收旧刀3组装新刀4不合格送回5车间待安上)(该状态绑定到带标签的数据上) -->
+        <result property="loadState" column="LoadState"/>
+        <!-- RFID(辅具或配套上打孔安装的RFID) -->
+        <result property="rfid" column="Rfid"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityVgetsynthsisinfo" resultMap="Vgetsynthsisinfo-map">
+        SELECT
+        SynthesisParametersCode
+        ,SynthesisParametersID
+        ,ProcessAmount
+        ,UpdateTime
+        ,UpdateUser
+        ,BusinessFlowLnkID
+        ,LoadState
+        ,Rfid
+        from vgetsynthsisinfo
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityVgetsynthsisinfo" resultMap="Vgetsynthsisinfo-map">
+        SELECT
+        sk.SynthesisParametersCode AS SynthesisParametersCode,
+        sk.SynthesisParametersNumber AS SynthesisParametersID,
+        s.ProcessAmount AS ProcessAmount,
+        sk.UpdateTime AS UpdateTime,
+        u.UserName AS UpdateUser,
+        sk.BusinessFlowLnkID AS BusinessFlowLnkID,
+        sk.LoadState AS LoadState,
+        sk.rFID AS Rfid
+        FROM synthesisknife sk
+        JOIN synthesisparameters sp ON sp.SynthesisParametersCode = sp.SynthesisParametersCode
+        JOIN (SELECT * FROM synthesistoolsmachining sy ORDER BY sy.OuterTime DESC) s ON
+        (sk.SynthesisParametersCode = s.SynthesisParametersCode AND sk.SynthesisParametersNumber = s.SynthesisParametersNumber)
+        JOIN userdetail u ON u.CustomerID = sk.UpdateUser
+        WHERE
+        sk.SynthesisCutterNumber = '0'
+        AND s.DelFlag = '0'
+        AND sk.DelFlag = '0'
+        AND sp.DelFlag = '0'
+        AND sk.SynthesisCutterNumber = '0'
+        <isNotNull property="synthesisParametersCode" prepend="and ">
+            SynthesisParametersCode = #synthesisParametersCode#
+        </isNotNull>
+        <isNotNull property="synthesisParametersID" prepend="and ">
+            SynthesisParametersID = #synthesisParametersID#
+        </isNotNull>
+        <isNotNull property="processAmount" prepend="and ">
+            ProcessAmount = #processAmount#
+        </isNotNull>
+        <isNotNull property="updateTime" prepend="and ">
+            UpdateTime = #updateTime#
+        </isNotNull>
+        <isNotNull property="updateUser" prepend="and ">
+            UpdateUser = #updateUser#
+        </isNotNull>
+        <isNotNull property="businessFlowLnkID" prepend="and ">
+            BusinessFlowLnkID = #businessFlowLnkID#
+        </isNotNull>
+        <isNotNull property="loadState" prepend="and ">
+            LoadState = #loadState#
+        </isNotNull>
+        <isNotNull property="rfid" prepend="and ">
+            Rfid = #rfid#
+        </isNotNull>
+        GROUP BY sk.rFID
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityVgetsynthsisinfo" resultClass="int">
+        SELECT
+        COUNT(1)
+        FROM(
+        SELECT
+        sk.SynthesisParametersCode AS SynthesisParametersCode,
+        sk.SynthesisParametersNumber AS SynthesisParametersID,
+        s.ProcessAmount AS ProcessAmount,
+        sk.UpdateTime AS UpdateTime,
+        u.UserName AS UpdateUser,
+        sk.BusinessFlowLnkID AS BusinessFlowLnkID,
+        sk.LoadState AS LoadState,
+        sk.rFID AS Rfid
+        FROM synthesisknife sk
+        JOIN synthesisparameters sp ON sp.SynthesisParametersCode = sp.SynthesisParametersCode
+        JOIN (SELECT * FROM synthesistoolsmachining sy ORDER BY sy.OuterTime DESC) s ON
+        (sk.SynthesisParametersCode = s.SynthesisParametersCode AND sk.SynthesisParametersNumber = s.SynthesisParametersNumber)
+        JOIN userdetail u ON u.CustomerID = sk.UpdateUser
+        WHERE
+        sk.SynthesisCutterNumber = '0'
+        AND s.DelFlag = '0'
+        AND sk.DelFlag = '0'
+        AND sp.DelFlag = '0'
+        AND sk.SynthesisCutterNumber = '0'
+        <isNotNull property="synthesisParametersCode" prepend="and ">
+            SynthesisParametersCode = #synthesisParametersCode#
+        </isNotNull>
+        <isNotNull property="synthesisParametersID" prepend="and ">
+            SynthesisParametersID = #synthesisParametersID#
+        </isNotNull>
+        <isNotNull property="processAmount" prepend="and ">
+            ProcessAmount = #processAmount#
+        </isNotNull>
+        <isNotNull property="updateTime" prepend="and ">
+            UpdateTime = #updateTime#
+        </isNotNull>
+        <isNotNull property="updateUser" prepend="and ">
+            UpdateUser = #updateUser#
+        </isNotNull>
+        <isNotNull property="businessFlowLnkID" prepend="and ">
+            BusinessFlowLnkID = #businessFlowLnkID#
+        </isNotNull>
+        <isNotNull property="loadState" prepend="and ">
+            LoadState = #loadState#
+        </isNotNull>
+        <isNotNull property="rfid" prepend="and ">
+            Rfid = #rfid#
+        </isNotNull>
+        GROUP BY sk.rFID
+        )aa
+
+    </select>
+
+</sqlMap>
+

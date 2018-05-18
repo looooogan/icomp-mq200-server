@@ -1,0 +1,913 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Borrowinglending.xml
+		Created on : 2014/08/19 15:48:44
+		Author : 工具自动生成
+		Description: 工具自动生成包含刀具借入-借出的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Borrowinglending">
+	<typeAlias alias="entityBorrowinglending" type="com.icomp.entity.base.Borrowinglending" />
+	<resultMap id="Borrowinglending-map" class="entityBorrowinglending">
+		<!-- 刀具借入借出ID -->
+		<result property="borrowingLendingID" column="BorrowingLendingID" />
+		<!-- RFID载体ID -->
+		<result property="rfidContainerID" column="RfidContainerID" />
+		<!-- 刀具入库编码 -->
+		<result property="knifeInventoryCode" column="KnifeInventoryCode" />
+		<!-- 可刃磨长度 -->
+		<result property="toolSharpenLength" column="ToolSharpenLength" />
+		<!-- 刀具长度 -->
+		<result property="toolLength" column="ToolLength" />
+		<!-- 复磨标准 -->
+		<result property="toolSharpenCriterion" column="ToolSharpenCriterion" />
+		<!-- 复磨次数 -->
+		<result property="toolSharpennum" column="ToolSharpennum" />
+		<!-- 耐用度 -->
+		<result property="toolDurable" column="ToolDurable" />
+		<!-- 借入/借出人 -->
+		<result property="borrowingLendingUser" column="BorrowingLendingUser" />
+		<!-- 借入/借出时间 -->
+		<result property="borrowingLendingTime" column="BorrowingLendingTime" />
+		<!-- 归还人 -->
+		<result property="returnUser" column="ReturnUser" />
+		<!-- 归还时间 -->
+		<result property="returnTime" column="ReturnTime" />
+		<!-- 借入/借出理由 -->
+		<result property="borrowingLendingReason" column="BorrowingLendingReason" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+		<!-- 已使用(刃磨)次数[当使用次数等于可复用次数时刀具报废] -->
+		<result property="usageCounter" column="UsageCounter" />
+		<!-- 库存状态(0正常1报废9其他)(这里刀具状态没有2、3) -->
+		<result property="stockState" column="StockState" />
+		<!-- 刀具状态(0断刀1丢失2不合格9其他)(这里刀具状态没有3) -->
+		<result property="toolState" column="ToolState" />
+		<!-- 刀具已刃磨长度 -->
+		<result property="toolGrindingLength" column="ToolGrindingLength" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityBorrowinglending" resultMap="Borrowinglending-map">
+		SELECT
+		BorrowingLendingID
+		,RfidContainerID
+		,KnifeInventoryCode
+		,ToolSharpenLength
+		,ToolLength
+		,ToolSharpenCriterion
+		,ToolSharpennum
+		,ToolDurable
+		,BorrowingLendingUser
+		,BorrowingLendingTime
+		,ReturnUser
+		,ReturnTime
+		,BorrowingLendingReason
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,CreateUser
+		,DelFlag
+		,Version
+		,UsageCounter
+		,StockState
+		,ToolState
+		,ToolGrindingLength
+		from borrowinglending
+		<dynamic prepend=" where ">
+			<isNotNull property="borrowingLendingID" prepend="and ">
+				BorrowingLendingID = #borrowingLendingID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					BorrowingLendingID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityBorrowinglending" resultMap="Borrowinglending-map">
+		SELECT
+		BorrowingLendingID
+		,RfidContainerID
+		,KnifeInventoryCode
+		,ToolSharpenLength
+		,ToolLength
+		,ToolSharpenCriterion
+		,ToolSharpennum
+		,ToolDurable
+		,BorrowingLendingUser
+		,BorrowingLendingTime
+		,ReturnUser
+		,ReturnTime
+		,BorrowingLendingReason
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,CreateUser
+		,DelFlag
+		,Version
+		,UsageCounter
+		,StockState
+		,ToolState
+		,ToolGrindingLength
+		from borrowinglending
+		<dynamic prepend=" where ">
+			<isNotNull property="borrowingLendingID" prepend="and ">
+				BorrowingLendingID = #borrowingLendingID#
+         </isNotNull>
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="toolLength" prepend="and ">
+				ToolLength = #toolLength#
+         </isNotNull>
+			<isNotNull property="toolSharpenCriterion" prepend="and ">
+				ToolSharpenCriterion = #toolSharpenCriterion#
+         </isNotNull>
+			<isNotNull property="toolSharpennum" prepend="and ">
+				ToolSharpennum = #toolSharpennum#
+         </isNotNull>
+			<isNotNull property="toolDurable" prepend="and ">
+				ToolDurable = #toolDurable#
+         </isNotNull>
+			<isNotNull property="borrowingLendingUser" prepend="and ">
+				BorrowingLendingUser = #borrowingLendingUser#
+         </isNotNull>
+			<isNotNull property="borrowingLendingTime" prepend="and ">
+				BorrowingLendingTime = #borrowingLendingTime#
+         </isNotNull>
+			<isNotNull property="returnUser" prepend="and ">
+				ReturnUser = #returnUser#
+         </isNotNull>
+			<isNotNull property="returnTime" prepend="and ">
+				ReturnTime = #returnTime#
+         </isNotNull>
+			<isNotNull property="borrowingLendingReason" prepend="and ">
+				BorrowingLendingReason = #borrowingLendingReason#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="usageCounter" prepend="and ">
+				UsageCounter = #usageCounter#
+         </isNotNull>
+			<isNotNull property="stockState" prepend="and ">
+				StockState = #stockState#
+         </isNotNull>
+			<isNotNull property="toolState" prepend="and ">
+				ToolState = #toolState#
+         </isNotNull>
+			<isNotNull property="toolGrindingLength" prepend="and ">
+				ToolGrindingLength = #toolGrindingLength#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					BorrowingLendingID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityBorrowinglending" resultClass="int">
+		SELECT count(1)
+		from borrowinglending
+		<dynamic prepend=" where ">
+			<isNotNull property="borrowingLendingID" prepend="and ">
+				BorrowingLendingID = #borrowingLendingID#
+         </isNotNull>
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="toolLength" prepend="and ">
+				ToolLength = #toolLength#
+         </isNotNull>
+			<isNotNull property="toolSharpenCriterion" prepend="and ">
+				ToolSharpenCriterion = #toolSharpenCriterion#
+         </isNotNull>
+			<isNotNull property="toolSharpennum" prepend="and ">
+				ToolSharpennum = #toolSharpennum#
+         </isNotNull>
+			<isNotNull property="toolDurable" prepend="and ">
+				ToolDurable = #toolDurable#
+         </isNotNull>
+			<isNotNull property="borrowingLendingUser" prepend="and ">
+				BorrowingLendingUser = #borrowingLendingUser#
+         </isNotNull>
+			<isNotNull property="borrowingLendingTime" prepend="and ">
+				BorrowingLendingTime = #borrowingLendingTime#
+         </isNotNull>
+			<isNotNull property="returnUser" prepend="and ">
+				ReturnUser = #returnUser#
+         </isNotNull>
+			<isNotNull property="returnTime" prepend="and ">
+				ReturnTime = #returnTime#
+         </isNotNull>
+			<isNotNull property="borrowingLendingReason" prepend="and ">
+				BorrowingLendingReason = #borrowingLendingReason#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="usageCounter" prepend="and ">
+				UsageCounter = #usageCounter#
+         </isNotNull>
+			<isNotNull property="stockState" prepend="and ">
+				StockState = #stockState#
+         </isNotNull>
+			<isNotNull property="toolState" prepend="and ">
+				ToolState = #toolState#
+         </isNotNull>
+			<isNotNull property="toolGrindingLength" prepend="and ">
+				ToolGrindingLength = #toolGrindingLength#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityBorrowinglending">
+		update borrowinglending
+		<dynamic prepend="set">
+			<isNotNull property="borrowingLendingID">
+				BorrowingLendingID = #borrowingLendingID#
+         </isNotNull>
+			<isNull property="borrowingLendingID">
+				BorrowingLendingID = null
+         </isNull>
+			<isNotNull property="rfidContainerID">
+				,RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNull property="rfidContainerID">
+				,RfidContainerID = null
+         </isNull>
+			<isNotNull property="knifeInventoryCode">
+				,KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNull property="knifeInventoryCode">
+				,KnifeInventoryCode = null
+         </isNull>
+			<isNotNull property="toolSharpenLength">
+				,ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNull property="toolSharpenLength">
+				,ToolSharpenLength = null
+         </isNull>
+			<isNotNull property="toolLength">
+				,ToolLength = #toolLength#
+         </isNotNull>
+			<isNull property="toolLength">
+				,ToolLength = null
+         </isNull>
+			<isNotNull property="toolSharpenCriterion">
+				,ToolSharpenCriterion = #toolSharpenCriterion#
+         </isNotNull>
+			<isNull property="toolSharpenCriterion">
+				,ToolSharpenCriterion = null
+         </isNull>
+			<isNotNull property="toolSharpennum">
+				,ToolSharpennum = #toolSharpennum#
+         </isNotNull>
+			<isNull property="toolSharpennum">
+				,ToolSharpennum = null
+         </isNull>
+			<isNotNull property="toolDurable">
+				,ToolDurable = #toolDurable#
+         </isNotNull>
+			<isNull property="toolDurable">
+				,ToolDurable = null
+         </isNull>
+			<isNotNull property="borrowingLendingUser">
+				,BorrowingLendingUser = #borrowingLendingUser#
+         </isNotNull>
+			<isNull property="borrowingLendingUser">
+				,BorrowingLendingUser = null
+         </isNull>
+			<isNotNull property="borrowingLendingTime">
+				,BorrowingLendingTime = #borrowingLendingTime#
+         </isNotNull>
+			<isNull property="borrowingLendingTime">
+				,BorrowingLendingTime = null
+         </isNull>
+			<isNotNull property="returnUser">
+				,ReturnUser = #returnUser#
+         </isNotNull>
+			<isNull property="returnUser">
+				,ReturnUser = null
+         </isNull>
+			<isNotNull property="returnTime">
+				,ReturnTime = #returnTime#
+         </isNotNull>
+			<isNull property="returnTime">
+				,ReturnTime = null
+         </isNull>
+			<isNotNull property="borrowingLendingReason">
+				,BorrowingLendingReason = #borrowingLendingReason#
+         </isNotNull>
+			<isNull property="borrowingLendingReason">
+				,BorrowingLendingReason = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+			<isNotNull property="usageCounter">
+				,UsageCounter = #usageCounter#
+         </isNotNull>
+			<isNull property="usageCounter">
+				,UsageCounter = null
+         </isNull>
+			<isNotNull property="stockState">
+				,StockState = #stockState#
+         </isNotNull>
+			<isNull property="stockState">
+				,StockState = null
+         </isNull>
+			<isNotNull property="toolState">
+				,ToolState = #toolState#
+         </isNotNull>
+			<isNull property="toolState">
+				,ToolState = null
+         </isNull>
+			<isNotNull property="toolGrindingLength">
+				,ToolGrindingLength = #toolGrindingLength#
+         </isNotNull>
+			<isNull property="toolGrindingLength">
+				,ToolGrindingLength = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="borrowingLendingIDWhere" prepend="and ">
+				BorrowingLendingID = #borrowingLendingIDWhere#
+         </isNotNull>
+			<isNotNull property="rfidContainerIDWhere" prepend="and ">
+				RfidContainerID = #rfidContainerIDWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="toolSharpenLengthWhere" prepend="and ">
+				ToolSharpenLength = #toolSharpenLengthWhere#
+         </isNotNull>
+			<isNotNull property="toolLengthWhere" prepend="and ">
+				ToolLength = #toolLengthWhere#
+         </isNotNull>
+			<isNotNull property="toolSharpenCriterionWhere" prepend="and ">
+				ToolSharpenCriterion = #toolSharpenCriterionWhere#
+         </isNotNull>
+			<isNotNull property="toolSharpennumWhere" prepend="and ">
+				ToolSharpennum = #toolSharpennumWhere#
+         </isNotNull>
+			<isNotNull property="toolDurableWhere" prepend="and ">
+				ToolDurable = #toolDurableWhere#
+         </isNotNull>
+			<isNotNull property="borrowingLendingUserWhere" prepend="and ">
+				BorrowingLendingUser = #borrowingLendingUserWhere#
+         </isNotNull>
+			<isNotNull property="borrowingLendingTimeWhere" prepend="and ">
+				BorrowingLendingTime = #borrowingLendingTimeWhere#
+         </isNotNull>
+			<isNotNull property="returnUserWhere" prepend="and ">
+				ReturnUser = #returnUserWhere#
+         </isNotNull>
+			<isNotNull property="returnTimeWhere" prepend="and ">
+				ReturnTime = #returnTimeWhere#
+         </isNotNull>
+			<isNotNull property="borrowingLendingReasonWhere" prepend="and ">
+				BorrowingLendingReason = #borrowingLendingReasonWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+			<isNotNull property="usageCounterWhere" prepend="and ">
+				UsageCounter = #usageCounterWhere#
+         </isNotNull>
+			<isNotNull property="stockStateWhere" prepend="and ">
+				StockState = #stockStateWhere#
+         </isNotNull>
+			<isNotNull property="toolStateWhere" prepend="and ">
+				ToolState = #toolStateWhere#
+         </isNotNull>
+			<isNotNull property="toolGrindingLengthWhere" prepend="and ">
+				ToolGrindingLength = #toolGrindingLengthWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityBorrowinglending">
+		update borrowinglending
+		<dynamic prepend="set">
+			<isNotNull property="borrowingLendingID"  prepend=",">
+				BorrowingLendingID = #borrowingLendingID#
+         </isNotNull>
+			<isNotNull property="rfidContainerID"  prepend=",">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode"  prepend=",">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength"  prepend=",">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="toolLength"  prepend=",">
+				ToolLength = #toolLength#
+         </isNotNull>
+			<isNotNull property="toolSharpenCriterion"  prepend=",">
+				ToolSharpenCriterion = #toolSharpenCriterion#
+         </isNotNull>
+			<isNotNull property="toolSharpennum"  prepend=",">
+				ToolSharpennum = #toolSharpennum#
+         </isNotNull>
+			<isNotNull property="toolDurable"  prepend=",">
+				ToolDurable = #toolDurable#
+         </isNotNull>
+			<isNotNull property="borrowingLendingUser"  prepend=",">
+				BorrowingLendingUser = #borrowingLendingUser#
+         </isNotNull>
+			<isNotNull property="borrowingLendingTime"  prepend=",">
+				BorrowingLendingTime = #borrowingLendingTime#
+         </isNotNull>
+			<isNotNull property="returnUser"  prepend=",">
+				ReturnUser = #returnUser#
+         </isNotNull>
+			<isNotNull property="returnTime"  prepend=",">
+				ReturnTime = #returnTime#
+         </isNotNull>
+			<isNotNull property="borrowingLendingReason"  prepend=",">
+				BorrowingLendingReason = #borrowingLendingReason#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="usageCounter"  prepend=",">
+				UsageCounter = #usageCounter#
+         </isNotNull>
+			<isNotNull property="stockState"  prepend=",">
+				StockState = #stockState#
+         </isNotNull>
+			<isNotNull property="toolState"  prepend=",">
+				ToolState = #toolState#
+         </isNotNull>
+			<isNotNull property="toolGrindingLength"  prepend=",">
+				ToolGrindingLength = #toolGrindingLength#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="borrowingLendingIDWhere" prepend="and ">
+				BorrowingLendingID = #borrowingLendingIDWhere#
+         </isNotNull>
+			<isNotNull property="rfidContainerIDWhere" prepend="and ">
+				RfidContainerID = #rfidContainerIDWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="toolSharpenLengthWhere" prepend="and ">
+				ToolSharpenLength = #toolSharpenLengthWhere#
+         </isNotNull>
+			<isNotNull property="toolLengthWhere" prepend="and ">
+				ToolLength = #toolLengthWhere#
+         </isNotNull>
+			<isNotNull property="toolSharpenCriterionWhere" prepend="and ">
+				ToolSharpenCriterion = #toolSharpenCriterionWhere#
+         </isNotNull>
+			<isNotNull property="toolSharpennumWhere" prepend="and ">
+				ToolSharpennum = #toolSharpennumWhere#
+         </isNotNull>
+			<isNotNull property="toolDurableWhere" prepend="and ">
+				ToolDurable = #toolDurableWhere#
+         </isNotNull>
+			<isNotNull property="borrowingLendingUserWhere" prepend="and ">
+				BorrowingLendingUser = #borrowingLendingUserWhere#
+         </isNotNull>
+			<isNotNull property="borrowingLendingTimeWhere" prepend="and ">
+				BorrowingLendingTime = #borrowingLendingTimeWhere#
+         </isNotNull>
+			<isNotNull property="returnUserWhere" prepend="and ">
+				ReturnUser = #returnUserWhere#
+         </isNotNull>
+			<isNotNull property="returnTimeWhere" prepend="and ">
+				ReturnTime = #returnTimeWhere#
+         </isNotNull>
+			<isNotNull property="borrowingLendingReasonWhere" prepend="and ">
+				BorrowingLendingReason = #borrowingLendingReasonWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+			<isNotNull property="usageCounterWhere" prepend="and ">
+				UsageCounter = #usageCounterWhere#
+         </isNotNull>
+			<isNotNull property="stockStateWhere" prepend="and ">
+				StockState = #stockStateWhere#
+         </isNotNull>
+			<isNotNull property="toolStateWhere" prepend="and ">
+				ToolState = #toolStateWhere#
+         </isNotNull>
+			<isNotNull property="toolGrindingLengthWhere" prepend="and ">
+				ToolGrindingLength = #toolGrindingLengthWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityBorrowinglending">
+		<selectKey resultClass="java.lang.String" keyProperty="borrowingLendingID">
+			SELECT #borrowingLendingID# as borrowingLendingID FROM DUAL
+     </selectKey>
+		insert into borrowinglending(
+		BorrowingLendingID
+		,RfidContainerID
+		,KnifeInventoryCode
+		,ToolSharpenLength
+		,ToolLength
+		,ToolSharpenCriterion
+		,ToolSharpennum
+		,ToolDurable
+		,BorrowingLendingUser
+		,BorrowingLendingTime
+		,ReturnUser
+		,ReturnTime
+		,BorrowingLendingReason
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,CreateUser
+		,DelFlag
+		,Version
+		,UsageCounter
+		,StockState
+		,ToolState
+		,ToolGrindingLength
+		)
+		Values (
+			<isNotNull property="borrowingLendingID">
+				#borrowingLendingID#
+         </isNotNull>
+			<isNull property="borrowingLendingID">
+				null
+         </isNull>
+			<isNotNull property="rfidContainerID">
+				,#rfidContainerID#
+         </isNotNull>
+			<isNull property="rfidContainerID">
+				,null
+         </isNull>
+			<isNotNull property="knifeInventoryCode">
+				,#knifeInventoryCode#
+         </isNotNull>
+			<isNull property="knifeInventoryCode">
+				,null
+         </isNull>
+			<isNotNull property="toolSharpenLength">
+				,#toolSharpenLength#
+         </isNotNull>
+			<isNull property="toolSharpenLength">
+				,null
+         </isNull>
+			<isNotNull property="toolLength">
+				,#toolLength#
+         </isNotNull>
+			<isNull property="toolLength">
+				,null
+         </isNull>
+			<isNotNull property="toolSharpenCriterion">
+				,#toolSharpenCriterion#
+         </isNotNull>
+			<isNull property="toolSharpenCriterion">
+				,null
+         </isNull>
+			<isNotNull property="toolSharpennum">
+				,#toolSharpennum#
+         </isNotNull>
+			<isNull property="toolSharpennum">
+				,null
+         </isNull>
+			<isNotNull property="toolDurable">
+				,#toolDurable#
+         </isNotNull>
+			<isNull property="toolDurable">
+				,null
+         </isNull>
+			<isNotNull property="borrowingLendingUser">
+				,#borrowingLendingUser#
+         </isNotNull>
+			<isNull property="borrowingLendingUser">
+				,null
+         </isNull>
+			<isNotNull property="borrowingLendingTime">
+				,#borrowingLendingTime#
+         </isNotNull>
+			<isNull property="borrowingLendingTime">
+				,null
+         </isNull>
+			<isNotNull property="returnUser">
+				,#returnUser#
+         </isNotNull>
+			<isNull property="returnUser">
+				,null
+         </isNull>
+			<isNotNull property="returnTime">
+				,#returnTime#
+         </isNotNull>
+			<isNull property="returnTime">
+				,null
+         </isNull>
+			<isNotNull property="borrowingLendingReason">
+				,#borrowingLendingReason#
+         </isNotNull>
+			<isNull property="borrowingLendingReason">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+			<isNotNull property="usageCounter">
+				,#usageCounter#
+         </isNotNull>
+			<isNull property="usageCounter">
+				,null
+         </isNull>
+			<isNotNull property="stockState">
+				,#stockState#
+         </isNotNull>
+			<isNull property="stockState">
+				,null
+         </isNull>
+			<isNotNull property="toolState">
+				,#toolState#
+         </isNotNull>
+			<isNull property="toolState">
+				,null
+         </isNull>
+			<isNotNull property="toolGrindingLength">
+				,#toolGrindingLength#
+         </isNotNull>
+			<isNull property="toolGrindingLength">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityBorrowinglending">
+		delete  from borrowinglending
+		<dynamic prepend=" where ">
+			<isNotNull property="borrowingLendingIDWhere" prepend="and ">
+				BorrowingLendingID = #borrowingLendingIDWhere#
+         </isNotNull>
+			<isNotNull property="rfidContainerIDWhere" prepend="and ">
+				RfidContainerID = #rfidContainerIDWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="toolSharpenLengthWhere" prepend="and ">
+				ToolSharpenLength = #toolSharpenLengthWhere#
+         </isNotNull>
+			<isNotNull property="toolLengthWhere" prepend="and ">
+				ToolLength = #toolLengthWhere#
+         </isNotNull>
+			<isNotNull property="toolSharpenCriterionWhere" prepend="and ">
+				ToolSharpenCriterion = #toolSharpenCriterionWhere#
+         </isNotNull>
+			<isNotNull property="toolSharpennumWhere" prepend="and ">
+				ToolSharpennum = #toolSharpennumWhere#
+         </isNotNull>
+			<isNotNull property="toolDurableWhere" prepend="and ">
+				ToolDurable = #toolDurableWhere#
+         </isNotNull>
+			<isNotNull property="borrowingLendingUserWhere" prepend="and ">
+				BorrowingLendingUser = #borrowingLendingUserWhere#
+         </isNotNull>
+			<isNotNull property="borrowingLendingTimeWhere" prepend="and ">
+				BorrowingLendingTime = #borrowingLendingTimeWhere#
+         </isNotNull>
+			<isNotNull property="returnUserWhere" prepend="and ">
+				ReturnUser = #returnUserWhere#
+         </isNotNull>
+			<isNotNull property="returnTimeWhere" prepend="and ">
+				ReturnTime = #returnTimeWhere#
+         </isNotNull>
+			<isNotNull property="borrowingLendingReasonWhere" prepend="and ">
+				BorrowingLendingReason = #borrowingLendingReasonWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+			<isNotNull property="usageCounterWhere" prepend="and ">
+				UsageCounter = #usageCounterWhere#
+         </isNotNull>
+			<isNotNull property="stockStateWhere" prepend="and ">
+				StockState = #stockStateWhere#
+         </isNotNull>
+			<isNotNull property="toolStateWhere" prepend="and ">
+				ToolState = #toolStateWhere#
+         </isNotNull>
+			<isNotNull property="toolGrindingLengthWhere" prepend="and ">
+				ToolGrindingLength = #toolGrindingLengthWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

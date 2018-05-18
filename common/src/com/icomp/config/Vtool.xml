@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Vtool.xml
+    Created on : 2016/03/10 11:37:37
+    Author : 工具自动生成
+    Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vtool">
+    <typeAlias alias="entityVtool" type="com.icomp.entity.base.Vtool"/>
+    <resultMap id="Vtool-map" class="entityVtool">
+        <!-- 刀具ID -->
+        <result property="toolID" column="ToolID"/>
+        <!--  -->
+        <result property="toolCode" column="ToolCode"/>
+        <!-- 刀具名称 -->
+        <result property="toolName" column="ToolName"/>
+        <!-- 刀具分类(0刀具1辅具2配套9其他） -->
+        <result property="toolType" column="ToolType"/>
+        <!-- 刀具图纸 -->
+        <result property="toolPic" column="ToolPic"/>
+        <!-- 刀具每盒数量 -->
+        <result property="toolUnitnumber" column="ToolUnitnumber"/>
+        <!-- 规格型号 -->
+        <result property="toolSpecifications" column="ToolSpecifications"/>
+        <!-- 供应商 -->
+        <result property="toolSupplier" column="ToolSupplier"/>
+        <!-- 品牌 -->
+        <result property="toolBrand" column="ToolBrand"/>
+        <!-- 消耗类别(0:可刃磨钻头1可刃磨刀片2一次性刀片9其他 -->
+        <result property="toolConsumetype" column="ToolConsumetype"/>
+        <!-- 刃口数 -->
+        <result property="toolCutNumber" column="ToolCutNumber"/>
+        <!-- 可使用次数 -->
+        <result property="toolSharpennum" column="ToolSharpennum"/>
+        <!-- 复磨标准 -->
+        <result property="toolSharpenCriterion" column="ToolSharpenCriterion"/>
+        <!-- 刀具长度 -->
+        <result property="toolLength" column="ToolLength"/>
+        <!-- 可刃磨长度 -->
+        <result property="toolSharpenLength" column="ToolSharpenLength"/>
+        <!-- 最大库存量 -->
+        <result property="toolMax" column="ToolMax"/>
+        <!-- 最小库存量 -->
+        <result property="toolMin" column="ToolMin"/>
+        <!-- 可刃磨次数 -->
+        <result property="toolNumber" column="ToolNumber"/>
+        <!-- 修磨类别(0:厂内，1厂外） -->
+        <result property="toolGrinding" column="ToolGrinding"/>
+        <!-- 刀具库存周转量 -->
+        <result property="toolTurnover" column="ToolTurnover"/>
+        <!-- 万台耗刀量 -->
+        <result property="per10k" column="Per10k"/>
+        <!-- 采购周期(自然日) -->
+        <result property="purchasingCycle" column="PurchasingCycle"/>
+        <!-- 唯一标识(可以是SAP物料号也可以是其他系统标识) -->
+        <result property="uniquelyIdentify" column="UniquelyIdentify"/>
+        <!-- 定额加工量 -->
+        <result property="quotaProcessingVolume" column="QuotaProcessingVolume"/>
+        <!-- 创建时间 -->
+        <result property="createTime" column="CreateTime"/>
+        <!-- 创建者 -->
+        <result property="createUser" column="CreateUser"/>
+        <!-- 更新时间 -->
+        <result property="updateTime" column="UpdateTime"/>
+        <!-- 更新者 -->
+        <result property="updateUser" column="UpdateUser"/>
+        <!-- 版本号 -->
+        <result property="version" column="Version"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="delFlag" column="DelFlag"/>
+        <!-- 库位码 -->
+        <result property="libraryCodeID" column="LibraryCodeID"/>
+        <!-- 库位码 -->
+        <result property="libraryCode" column="LibraryCode"/>
+        <!-- 区分文本 -->
+        <result property="toolTypeName" column="ToolTypeName"/>
+        <!-- 区分文本 -->
+        <result property="toolConsumetypeName" column="ToolConsumetypeName"/>
+        <result property="beiMin" column="BeiMin"/>
+        <result property="beiMax" column="BeiMax"/>
+        <!-- 2017/11/15 王冉 追加↓↓↓　dazhong@YMSC -->
+        <result property="toolPrice" column="ToolPrice"/>
+        <result property="toolAveragePrice" column="ToolAveragePrice"/>
+        <result property="toolParametersType" column="ToolParametersType"/>
+        <!--2017/11/15 王冉 追加↓↓↓　dazhong@YMSC -->
+</resultMap>
+<!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityVtool" resultMap="Vtool-map">
+        SELECT
+        ToolID
+        ,ToolCode
+        ,ToolName
+        ,ToolType
+        ,ToolPic
+        ,ToolUnitnumber
+        ,ToolSpecifications
+        ,ToolSupplier
+        ,ToolBrand
+        ,ToolConsumetype
+        ,ToolCutNumber
+        ,ToolSharpennum
+        ,ToolSharpenCriterion
+        ,ToolLength
+        ,ToolSharpenLength
+        ,ToolMax
+        ,ToolMin
+        ,ToolNumber
+        ,ToolGrinding
+        ,ToolTurnover
+        ,Per10k
+        ,PurchasingCycle
+        ,UniquelyIdentify
+        ,QuotaProcessingVolume
+        ,CreateTime
+        ,CreateUser
+        ,UpdateTime
+        ,UpdateUser
+        ,Version
+        ,DelFlag
+        ,LibraryCodeID
+        ,LibraryCode
+        ,ToolTypeName
+        ,ToolConsumetypeName
+        ,BeiMin
+        ,BeiMax
+        <!-- 2017/11/15 王冉 追加↓↓↓　dazhong@YMSC -->
+        ,ToolPrice
+        ,ToolAveragePrice
+        ,ToolParametersType
+        <!--2017/11/15 王冉 追加↓↓↓　dazhong@YMSC -->
+        from vtool
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityVtool" resultMap="Vtool-map">
+        SELECT
+        ToolID
+        ,ToolCode
+        ,ToolName
+        ,ToolType
+        ,ToolPic
+        ,ToolUnitnumber
+        ,ToolSpecifications
+        ,ToolSupplier
+        ,ToolBrand
+        ,ToolConsumetype
+        ,ToolCutNumber
+        ,ToolSharpennum
+        ,ToolSharpenCriterion
+        ,ToolLength
+        ,ToolSharpenLength
+        ,ToolMax
+        ,ToolMin
+        ,ToolNumber
+        ,ToolGrinding
+        ,ToolTurnover
+        ,Per10k
+        ,PurchasingCycle
+        ,UniquelyIdentify
+        ,QuotaProcessingVolume
+        ,CreateTime
+        ,CreateUser
+        ,UpdateTime
+        ,UpdateUser
+        ,Version
+        ,DelFlag
+        ,LibraryCodeID
+        ,LibraryCode
+        ,ToolTypeName
+        ,ToolConsumetypeName
+        ,BeiMin
+        ,BeiMax
+        <!-- 2017/11/15 王冉 追加↓↓↓　dazhong@YMSC -->
+        ,ToolPrice
+        ,ToolAveragePrice
+        ,ToolParametersType
+        <!--2017/11/15 王冉 追加↓↓↓　dazhong@YMSC -->
+        from vtool
+        <dynamic prepend=" where ">
+            <isNotNull property="toolID" prepend="and ">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+            </isNotNull>
+            <isNotNull property="toolName" prepend="and ">
+                ToolName like concat('%',#toolName#,'%')
+            </isNotNull>
+            <isNotNull property="toolType" prepend="and ">
+                ToolType = #toolType#
+            </isNotNull>
+            <isNotNull property="toolPic" prepend="and ">
+                ToolPic = #toolPic#
+            </isNotNull>
+            <isNotNull property="toolUnitnumber" prepend="and ">
+                ToolUnitnumber = #toolUnitnumber#
+            </isNotNull>
+            <isNotNull property="toolSpecifications" prepend="and ">
+                ToolSpecifications = #toolSpecifications#
+            </isNotNull>
+            <isNotNull property="toolSupplier" prepend="and ">
+                ToolSupplier = #toolSupplier#
+            </isNotNull>
+            <isNotNull property="toolBrand" prepend="and ">
+                ToolBrand = #toolBrand#
+            </isNotNull>
+            <isNotNull property="toolConsumetype" prepend="and ">
+                ToolConsumetype = #toolConsumetype#
+            </isNotNull>
+            <isNotNull property="toolCutNumber" prepend="and ">
+                ToolCutNumber = #toolCutNumber#
+            </isNotNull>
+            <isNotNull property="toolSharpennum" prepend="and ">
+                ToolSharpennum = #toolSharpennum#
+            </isNotNull>
+            <isNotNull property="toolSharpenCriterion" prepend="and ">
+                ToolSharpenCriterion = #toolSharpenCriterion#
+            </isNotNull>
+            <isNotNull property="toolLength" prepend="and ">
+                ToolLength = #toolLength#
+            </isNotNull>
+            <isNotNull property="toolSharpenLength" prepend="and ">
+                ToolSharpenLength = #toolSharpenLength#
+            </isNotNull>
+            <isNotNull property="toolMax" prepend="and ">
+                ToolMax = #toolMax#
+            </isNotNull>
+            <isNotNull property="toolMin" prepend="and ">
+                ToolMin = #toolMin#
+            </isNotNull>
+            <isNotNull property="toolNumber" prepend="and ">
+                ToolNumber = #toolNumber#
+            </isNotNull>
+            <isNotNull property="toolGrinding" prepend="and ">
+                ToolGrinding = #toolGrinding#
+            </isNotNull>
+            <isNotNull property="toolTurnover" prepend="and ">
+                ToolTurnover = #toolTurnover#
+            </isNotNull>
+            <isNotNull property="per10k" prepend="and ">
+                Per10k = #per10k#
+            </isNotNull>
+            <isNotNull property="purchasingCycle" prepend="and ">
+                PurchasingCycle = #purchasingCycle#
+            </isNotNull>
+            <isNotNull property="uniquelyIdentify" prepend="and ">
+                UniquelyIdentify = #uniquelyIdentify#
+            </isNotNull>
+            <isNotNull property="quotaProcessingVolume" prepend="and ">
+                QuotaProcessingVolume = #quotaProcessingVolume#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="libraryCodeID" prepend="and ">
+                LibraryCodeID = #libraryCodeID#
+            </isNotNull>
+            <isNotNull property="libraryCode" prepend="and ">
+                LibraryCode = #libraryCode#
+            </isNotNull>
+            <isNotNull property="toolTypeName" prepend="and ">
+                ToolTypeName = #toolTypeName#
+            </isNotNull>
+            <isNotNull property="toolConsumetypeName" prepend="and ">
+                ToolConsumetypeName = #toolConsumetypeName#
+            </isNotNull>
+            <isNotNull property="beiMin" prepend="and ">
+                BeiMin = #beiMin#
+            </isNotNull>
+            <isNotNull property="beiMax" prepend="and ">
+                BeiMax = #beiMax#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityVtool" resultClass="int">
+        SELECT count(1)
+        from vtool
+        <dynamic prepend=" where ">
+            <isNotNull property="toolID" prepend="and ">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+            </isNotNull>
+            <isNotNull property="toolName" prepend="and ">
+                ToolName like concat('%',#toolName#,'%')
+            </isNotNull>
+            <isNotNull property="toolType" prepend="and ">
+                ToolType = #toolType#
+            </isNotNull>
+            <isNotNull property="toolPic" prepend="and ">
+                ToolPic = #toolPic#
+            </isNotNull>
+            <isNotNull property="toolUnitnumber" prepend="and ">
+                ToolUnitnumber = #toolUnitnumber#
+            </isNotNull>
+            <isNotNull property="toolSpecifications" prepend="and ">
+                ToolSpecifications = #toolSpecifications#
+            </isNotNull>
+            <isNotNull property="toolSupplier" prepend="and ">
+                ToolSupplier = #toolSupplier#
+            </isNotNull>
+            <isNotNull property="toolBrand" prepend="and ">
+                ToolBrand = #toolBrand#
+            </isNotNull>
+            <isNotNull property="toolConsumetype" prepend="and ">
+                ToolConsumetype = #toolConsumetype#
+            </isNotNull>
+            <isNotNull property="toolCutNumber" prepend="and ">
+                ToolCutNumber = #toolCutNumber#
+            </isNotNull>
+            <isNotNull property="toolSharpennum" prepend="and ">
+                ToolSharpennum = #toolSharpennum#
+            </isNotNull>
+            <isNotNull property="toolSharpenCriterion" prepend="and ">
+                ToolSharpenCriterion = #toolSharpenCriterion#
+            </isNotNull>
+            <isNotNull property="toolLength" prepend="and ">
+                ToolLength = #toolLength#
+            </isNotNull>
+            <isNotNull property="toolSharpenLength" prepend="and ">
+                ToolSharpenLength = #toolSharpenLength#
+            </isNotNull>
+            <isNotNull property="toolMax" prepend="and ">
+                ToolMax = #toolMax#
+            </isNotNull>
+            <isNotNull property="toolMin" prepend="and ">
+                ToolMin = #toolMin#
+            </isNotNull>
+            <isNotNull property="toolNumber" prepend="and ">
+                ToolNumber = #toolNumber#
+            </isNotNull>
+            <isNotNull property="toolGrinding" prepend="and ">
+                ToolGrinding = #toolGrinding#
+            </isNotNull>
+            <isNotNull property="toolTurnover" prepend="and ">
+                ToolTurnover = #toolTurnover#
+            </isNotNull>
+            <isNotNull property="per10k" prepend="and ">
+                Per10k = #per10k#
+            </isNotNull>
+            <isNotNull property="purchasingCycle" prepend="and ">
+                PurchasingCycle = #purchasingCycle#
+            </isNotNull>
+            <isNotNull property="uniquelyIdentify" prepend="and ">
+                UniquelyIdentify = #uniquelyIdentify#
+            </isNotNull>
+            <isNotNull property="quotaProcessingVolume" prepend="and ">
+                QuotaProcessingVolume = #quotaProcessingVolume#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="libraryCodeID" prepend="and ">
+                LibraryCodeID = #libraryCodeID#
+            </isNotNull>
+            <isNotNull property="libraryCode" prepend="and ">
+                LibraryCode = #libraryCode#
+            </isNotNull>
+            <isNotNull property="toolTypeName" prepend="and ">
+                ToolTypeName = #toolTypeName#
+            </isNotNull>
+            <isNotNull property="toolConsumetypeName" prepend="and ">
+                ToolConsumetypeName = #toolConsumetypeName#
+            </isNotNull>
+            <isNotNull property="beiMin" prepend="and ">
+                BeiMin = #beiMin#
+            </isNotNull>
+            <isNotNull property="beiMax" prepend="and ">
+                BeiMax = #beiMax#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+</sqlMap>
+

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Agency.xml Created on : 2014/08/19 15:48:44 Author : 工具自动生成
+		Description: 工具自动生成包含机构的单表增删改查SQL语句. searchByPrimaryKey ： 主键查询
+		searchByList ： 任意条件查询 searchByCount ：任意条件条数查询 insert ： 插入处理 update ：
+		更新处理（未指定项目更新为null） updateNonQuery ：更新处理（未指定项目不更新） delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="SubAvgProcessAmount">
+	<typeAlias alias="entitySubAvgProcessAmount" type="com.icomp.entity.base.SubAvgProcessAmount" />
+	<resultMap id="SubAvgProcessAmount-map" class="entitySubAvgProcessAmount">
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 零部件ID -->
+		<result property="assemblyLineID" column="AssemblyLineID" />
+		<!-- 生产年月 -->
+		<result property="outerTime" column="OuterTime" />
+		<!-- 最高产量 -->
+		<result property="maxProcessAmount" column="maxProcessAmount" />
+		<!-- 平均产量 -->
+		<result property="avgProcessAmount" column="avgProcessAmount" />
+	</resultMap>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entitySubAvgProcessAmount"
+		resultMap="SubAvgProcessAmount-map">
+		<![CDATA[ 
+        SELECT sc.AssemblyLineID,sc.OuterTime,max(sc.ProcessAmount) maxProcessAmount,AVG(sc.ProcessAmount) avgProcessAmount,
+			sc.ToolCode from 
+			(SELECT AssemblyLine.AssemblyLineID
+			,date_format(SynthesisToolsMachining.OuterTime,'%Y%m%d') OuterTime
+			,sum(SynthesisToolsMachining.ProcessAmount)
+			ProcessAmount,SynthesisCutterLocation.ToolCode from SynthesisToolsMachining
+		INNER JOIN SynthesisParameters on
+		SynthesisParameters.SynthesisParametersCode =
+		SynthesisToolsMachining.SynthesisParametersCode
+		INNER JOIN oplink on oplink.SynthesisParametersID = SynthesisParameters.SynthesisParametersID
+		INNER JOIN AssemblyLine on AssemblyLine.AssemblyLineID =
+		oplink.AssemblyLineID
+		INNER JOIN SynthesisCutterLocation on
+		SynthesisCutterLocation.SynthesisParametersID =
+		SynthesisParameters.SynthesisParametersID
+			group by SynthesisToolsMachining.AssemblyLineID,OuterTime,SynthesisCutterLocation.ToolCode) as sc
+			 where ToolCode =#toolCode#
+			GROUP BY sc.AssemblyLineID,sc.ToolCode
+			
+           ]]>
+	</select>
+
+</sqlMap>
+

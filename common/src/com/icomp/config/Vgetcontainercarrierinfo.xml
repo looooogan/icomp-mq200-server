@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Vgetcontainercarrierinfo.xml
+    Created on : 2016/04/25 11:04:49
+    Author : 工具自动生成
+    Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgetcontainercarrierinfo">
+    <typeAlias alias="entityVgetcontainercarrierinfo" type="com.icomp.entity.base.Vgetcontainercarrierinfo"/>
+    <resultMap id="Vgetcontainercarrierinfo-map" class="entityVgetcontainercarrierinfo">
+        <!-- RFID载体ID -->
+        <result property="rfidContainerID" column="RfidContainerID"/>
+        <!-- 刀具ID -->
+        <result property="toolID" column="ToolID"/>
+        <!-- 当前数量 -->
+        <result property="toolDurable" column="ToolDurable"/>
+        <!-- 刀具编码 -->
+        <result property="toolCode" column="ToolCode"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityVgetcontainercarrierinfo" resultMap="Vgetcontainercarrierinfo-map">
+        SELECT
+        RfidContainerID
+        ,ToolID
+        ,ToolDurable
+        ,ToolCode
+        from vgetcontainercarrierinfo
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityVgetcontainercarrierinfo" resultMap="Vgetcontainercarrierinfo-map">
+        SELECT
+        RfidContainerID
+        ,ToolID
+        ,ToolDurable
+        ,ToolCode
+        from vgetcontainercarrierinfo
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerID" prepend="and ">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="toolDurable" prepend="and ">
+                ToolDurable = #toolDurable#
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">                 ToolCode like concat('%',#toolCode#,'%')             </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityVgetcontainercarrierinfo" resultClass="int">
+        SELECT count(1)
+        from vgetcontainercarrierinfo
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerID" prepend="and ">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="toolDurable" prepend="and ">
+                ToolDurable = #toolDurable#
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">                 ToolCode like concat('%',#toolCode#,'%')             </isNotNull>
+        </dynamic>
+    </select>
+
+    <resultMap id="Vgetcontainercarrierinfo-map_1" class="entityVgetcontainercarrierinfo">
+        <!-- RFID载体ID -->
+        <result property="rfidContainerID" column="RfidContainerID"/>
+        <!-- 刀具ID -->
+        <result property="toolID" column="ToolID"/>
+        <!-- 当前数量 -->
+        <result property="toolDurable" column="ToolDurable"/>
+        <result property="expandSpace1" column="ToolState"/>
+        <!-- 刀具编码 -->
+        <result property="toolCode" column="ToolCode"/>
+    </resultMap>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByListGroud" parameterClass="entityVgetcontainercarrierinfo" resultMap="Vgetcontainercarrierinfo-map_1">
+    SELECT
+    tt.RfidContainerID AS RfidContainerID,
+    tt.ToolID AS ToolID,
+    sum(tt.ToolDurable) AS ToolDurable,
+    tt.ToolState AS ToolState,
+    t.ToolCode AS ToolCode
+    FROM tooltransfer tt
+    LEFT JOIN tool t ON t.ToolID = tt.ToolID
+    WHERE t.DelFlag = '0' AND tt.DelFlag = '0' and tt.RfidContainerID = #rfidContainerID#
+    GROUP BY ToolCode,RfidContainerID,tt.ToolState
+    </select>
+</sqlMap>
+

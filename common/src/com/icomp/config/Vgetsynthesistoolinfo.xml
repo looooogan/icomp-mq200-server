@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vgetsynthesistoolinfo.xml
+		Created on : 2014/09/30 09:12:24
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgetsynthesistoolinfo">
+	<typeAlias alias="entityVgetsynthesistoolinfo" type="com.icomp.entity.base.Vgetsynthesistoolinfo" />
+	<resultMap id="Vgetsynthesistoolinfo-map" class="entityVgetsynthesistoolinfo">
+		<!-- RFID(辅具或配套上打孔安装的RFID) -->
+		<result property="rfid" column="Rfid" />
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!-- 刀具入库编码 -->
+		<result property="knifeInventoryCode" column="KnifeInventoryCode" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 采购ID -->
+		<result property="toolProcuredID" column="ToolProcuredID" />
+		<!-- 位置号 -->
+		<result property="synthesisCutterNumber" column="SynthesisCutterNumber" />
+		<!-- 是否安装(0安装1卸下9其他) -->
+		<result property="installFlag" column="InstallFlag" />
+		<!-- 卸下方式(0装盒1装盘3保留) -->
+		<result property="offloadType" column="OffloadType" />
+		<!-- 卸下原因(0正常卸下1打刀2不合格9其他)(可维护) -->
+        <result column="RemoveReason" property="removeReason"/>
+		<!-- 消耗类别(0:可刃磨钻头1可刃磨刀片2一次性刀片9其他 -->
+		<result property="toolConsumetype" column="ToolConsumetype" />
+		<!-- 加工数量 -->
+		<result property="processAmount" column="ProcessAmount" />
+		<!-- 定额加工量 -->
+		<result property="quotaProcessingVolume" column="QuotaProcessingVolume" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVgetsynthesistoolinfo" resultMap="Vgetsynthesistoolinfo-map">
+		SELECT
+		Rfid
+		,SynthesisParametersCode
+		,KnifeInventoryCode
+		,ToolID
+		,ToolCode
+		,ToolProcuredID
+		,SynthesisCutterNumber
+		,InstallFlag
+		,OffloadType
+		,RemoveReason
+		,ToolConsumetype
+		,ProcessAmount
+		,QuotaProcessingVolume
+		from vgetsynthesistoolinfo
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="0">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVgetsynthesistoolinfo" resultMap="Vgetsynthesistoolinfo-map">
+		SELECT
+		Rfid
+		,SynthesisParametersCode
+		,KnifeInventoryCode
+		,ToolID
+		,ToolCode
+		,ToolProcuredID
+		,SynthesisCutterNumber
+		,InstallFlag
+		,OffloadType
+		,RemoveReason
+		,ToolConsumetype
+		,ProcessAmount
+		,QuotaProcessingVolume
+		from vgetsynthesistoolinfo
+		<dynamic prepend=" where ">
+			<isNotNull property="rfid" prepend="and ">
+				Rfid = #rfid#
+         </isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolProcuredID" prepend="and ">
+				ToolProcuredID = #toolProcuredID#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumber" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+			<isNotNull property="installFlag" prepend="and ">
+				InstallFlag = #installFlag#
+         </isNotNull>
+			<isNotNull property="offloadType" prepend="and ">
+				OffloadType = #offloadType#
+         </isNotNull>
+            <isNotNull property="removeReason" prepend="and"> 
+         RemoveReason=#removeReason# 
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="0">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVgetsynthesistoolinfo" resultClass="int">
+		SELECT count(1)
+		from vgetsynthesistoolinfo
+		<dynamic prepend=" where ">
+			<isNotNull property="rfid" prepend="and ">
+				Rfid = #rfid#
+         </isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolProcuredID" prepend="and ">
+				ToolProcuredID = #toolProcuredID#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumber" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+			<isNotNull property="installFlag" prepend="and ">
+				InstallFlag = #installFlag#
+         </isNotNull>
+			<isNotNull property="offloadType" prepend="and ">
+				OffloadType = #offloadType#
+         </isNotNull>
+            <isNotNull property="removeReason" prepend="and"> 
+         RemoveReason=#removeReason# 
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+		</dynamic>
+	</select>
+<!-- 刀具装盒 -->
+<update id="saveToolBox" parameterClass="list">
+	begin
+      <iterate conjunction="">
+        UPDATE RfidContainer  rf 
+        SET rf.RfidCode = #[].rfid#,
+        rf.DelFlag= '0'
+       WHERE rf.RfidContainerID=(SELECT tt.RfidContainerID FROM tooltransfer tt WHERE tt.KnifeInventoryCode=#[].knifeInventoryCode#)   
+      </iterate>
+      end;    
+</update>
+<!-- 刀具装盘  -->
+<update id="saveToolPlate" parameterClass="list">
+	begin
+      <iterate conjunction="">
+        UPDATE RfidContainer  rf 
+        SET rf.RfidCode = #[].rfid#,
+        rf.DelFlag= '0'
+        WHERE rf.ToolShelfID = (SELECT tsf.ToolShelfID FROM toolshelflnk tsf WHERE tsf.KnifeInventoryCode = #[].knifeInventoryCode#)   
+      </iterate>
+      end;    
+</update>
+</sqlMap>
+

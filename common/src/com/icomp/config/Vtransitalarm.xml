@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vtransitalarm.xml
+		Created on : 2014/10/14 09:21:43
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vtransitalarm">
+	<typeAlias alias="entityVtransitalarm" type="com.icomp.entity.base.Vtransitalarm" />
+	<resultMap id="Vtransitalarm-map" class="entityVtransitalarm">
+		<!-- 采购批次 -->
+		<result property="procuredBatch" column="ProcuredBatch" />
+		<!-- 预计到货时间 -->
+		<result property="theyTime" column="TheyTime" />
+		<!--  -->
+		<result property="theyCount" column="TheyCount" />
+		<!-- 货品状态(0未到货1已到货2质检通过3质检未通过) -->
+		<result property="theyStatus" column="TheyStatus" />
+		<!-- 实际到货时间 -->
+		<result property="realityTheyTime" column="RealityTheyTime" />
+		<!-- 实际到货数量 -->
+		<result property="realityTheyCount" column="RealityTheyCount" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVtransitalarm" resultMap="Vtransitalarm-map">
+		SELECT
+		ProcuredBatch
+		,TheyTime
+		,TheyCount
+		,TheyStatus
+		,RealityTheyTime
+		,RealityTheyCount
+		from vtransitalarm
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVtransitalarm" resultMap="Vtransitalarm-map">
+		SELECT
+		ProcuredBatch
+		,TheyTime
+		,TheyCount
+		,TheyStatus
+		,RealityTheyTime
+		,RealityTheyCount
+		from vtransitalarm
+		<dynamic prepend=" where ">
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="theyTime" prepend="and ">
+				TheyTime = #theyTime#
+         </isNotNull>
+			<isNotNull property="theyCount" prepend="and ">
+				TheyCount = #theyCount#
+         </isNotNull>
+			<isNotNull property="theyStatus" prepend="and ">
+				TheyStatus = #theyStatus#
+         </isNotNull>
+			<isNotNull property="realityTheyTime" prepend="and ">
+				RealityTheyTime = #realityTheyTime#
+         </isNotNull>
+			<isNotNull property="realityTheyCount" prepend="and ">
+				RealityTheyCount = #realityTheyCount#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVtransitalarm" resultClass="int">
+		SELECT count(1)
+		from vtransitalarm
+		<dynamic prepend=" where ">
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="theyTime" prepend="and ">
+				TheyTime = #theyTime#
+         </isNotNull>
+			<isNotNull property="theyCount" prepend="and ">
+				TheyCount = #theyCount#
+         </isNotNull>
+			<isNotNull property="theyStatus" prepend="and ">
+				TheyStatus = #theyStatus#
+         </isNotNull>
+			<isNotNull property="realityTheyTime" prepend="and ">
+				RealityTheyTime = #realityTheyTime#
+         </isNotNull>
+			<isNotNull property="realityTheyCount" prepend="and ">
+				RealityTheyCount = #realityTheyCount#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Synthesisexperience.xml Created on : 2014/10/21 10:18:26
+		Author : 工具自动生成 Description: 工具自动生成包含合成刀流转履历的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 searchByList ： 任意条件查询 searchByCount
+		：任意条件条数查询 insert ： 插入处理 update ： 更新处理（未指定项目更新为null） updateNonQuery
+		：更新处理（未指定项目不更新） delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Synthesisexperience">
+	<typeAlias alias="entitySynthesisexperience" type="com.icomp.entity.base.Synthesisexperience" />
+	<resultMap id="Synthesisexperience-map" class="entitySynthesisexperience">
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!-- 位置号 -->
+		<result property="synthesisCutterNumber" column="SynthesisCutterNumber" />
+		<!-- 合成刀具编号(例如：001、002、003) -->
+		<result property="synthesisParametersNumber" column="SynthesisParametersNumber" />
+		<!-- 最后执行业务流程 -->
+		<result property="businessFlowLnkID" column="BusinessFlowLnkID" />
+		<!-- 操作时间 -->
+		<result property="operationTime" column="OperationTime" />
+		<!-- 转出人 -->
+		<result property="arrivalUser" column="ArrivalUser" />
+		<!-- 接收人 -->
+		<result property="recipientUser" column="RecipientUser" />
+		<!-- 交接原因(0送入车间1旧刀回收2不合格送回3对刀) -->
+		<result property="transitionBecause" column="TransitionBecause" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entitySynthesisexperience"
+		resultMap="Synthesisexperience-map">
+		SELECT
+		SynthesisParametersCode
+		,SynthesisCutterNumber
+		,SynthesisParametersNumber
+		,BusinessFlowLnkID
+		,OperationTime
+		,ArrivalUser
+		,RecipientUser
+		,TransitionBecause
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from synthesisexperience
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entitySynthesisexperience"
+		resultMap="Synthesisexperience-map">
+		SELECT
+		SynthesisParametersCode
+		,SynthesisCutterNumber
+		,SynthesisParametersNumber
+		,BusinessFlowLnkID
+		,OperationTime
+		,ArrivalUser
+		,RecipientUser
+		,TransitionBecause
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from synthesisexperience
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumber" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="operationTime" prepend="and ">
+				OperationTime =
+				#operationTime#
+         </isNotNull>
+			<isNotNull property="arrivalUser" prepend="and ">
+				ArrivalUser =
+				#arrivalUser#
+         </isNotNull>
+			<isNotNull property="recipientUser" prepend="and ">
+				RecipientUser =
+				#recipientUser#
+         </isNotNull>
+			<isNotNull property="transitionBecause" prepend="and ">
+				TransitionBecause = #transitionBecause#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime =
+				#updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser =
+				#updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime =
+				#createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser =
+				#createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+			</isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entitySynthesisexperience"
+		resultClass="int">
+		SELECT count(1)
+		from synthesisexperience
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumber" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="operationTime" prepend="and ">
+				OperationTime =
+				#operationTime#
+         </isNotNull>
+			<isNotNull property="arrivalUser" prepend="and ">
+				ArrivalUser =
+				#arrivalUser#
+         </isNotNull>
+			<isNotNull property="recipientUser" prepend="and ">
+				RecipientUser =
+				#recipientUser#
+         </isNotNull>
+			<isNotNull property="transitionBecause" prepend="and ">
+				TransitionBecause = #transitionBecause#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime =
+				#updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser =
+				#updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime =
+				#createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser =
+				#createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+			</isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entitySynthesisexperience">
+		update synthesisexperience
+		<dynamic prepend="set">
+			<isNotNull property="synthesisParametersCode">
+				SynthesisParametersCode =
+				#synthesisParametersCode#
+         </isNotNull>
+			<isNull property="synthesisParametersCode">
+				SynthesisParametersCode = null
+         </isNull>
+			<isNotNull property="synthesisCutterNumber">
+				,SynthesisCutterNumber =
+				#synthesisCutterNumber#
+         </isNotNull>
+			<isNull property="synthesisCutterNumber">
+				,SynthesisCutterNumber = null
+         </isNull>
+			<isNotNull property="synthesisParametersNumber">
+				,SynthesisParametersNumber =
+				#synthesisParametersNumber#
+         </isNotNull>
+			<isNull property="synthesisParametersNumber">
+				,SynthesisParametersNumber = null
+         </isNull>
+			<isNotNull property="businessFlowLnkID">
+				,BusinessFlowLnkID =
+				#businessFlowLnkID#
+         </isNotNull>
+			<isNull property="businessFlowLnkID">
+				,BusinessFlowLnkID = null
+         </isNull>
+			<isNotNull property="operationTime">
+				,OperationTime = #operationTime#
+			</isNotNull>
+			<isNull property="operationTime">
+				,OperationTime = null
+         </isNull>
+			<isNotNull property="arrivalUser">
+				,ArrivalUser = #arrivalUser#
+			</isNotNull>
+			<isNull property="arrivalUser">
+				,ArrivalUser = null
+         </isNull>
+			<isNotNull property="recipientUser">
+				,RecipientUser = #recipientUser#
+			</isNotNull>
+			<isNull property="recipientUser">
+				,RecipientUser = null
+         </isNull>
+			<isNotNull property="transitionBecause">
+				,TransitionBecause =
+				#transitionBecause#
+         </isNotNull>
+			<isNull property="transitionBecause">
+				,TransitionBecause = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCodeWhere" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCodeWhere#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumberWhere" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumberWhere#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumberWhere"
+				prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumberWhere#
+			</isNotNull>
+			<isNotNull property="businessFlowLnkIDWhere" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkIDWhere#
+         </isNotNull>
+			<isNotNull property="operationTimeWhere" prepend="and ">
+				OperationTime = #operationTimeWhere#
+         </isNotNull>
+			<isNotNull property="arrivalUserWhere" prepend="and ">
+				ArrivalUser
+				= #arrivalUserWhere#
+         </isNotNull>
+			<isNotNull property="recipientUserWhere" prepend="and ">
+				RecipientUser = #recipientUserWhere#
+         </isNotNull>
+			<isNotNull property="transitionBecauseWhere" prepend="and ">
+				TransitionBecause = #transitionBecauseWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag =
+				#delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime =
+				#updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser =
+				#updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime =
+				#createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser =
+				#createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version =
+				#versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entitySynthesisexperience">
+		update synthesisexperience
+		<dynamic prepend="set">
+			<isNotNull property="synthesisParametersCode" prepend=",">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumber" prepend=",">
+				SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend=",">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend=",">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="operationTime" prepend=",">
+				OperationTime =
+				#operationTime#
+         </isNotNull>
+			<isNotNull property="arrivalUser" prepend=",">
+				ArrivalUser =
+				#arrivalUser#
+         </isNotNull>
+			<isNotNull property="recipientUser" prepend=",">
+				RecipientUser =
+				#recipientUser#
+         </isNotNull>
+			<isNotNull property="transitionBecause" prepend=",">
+				TransitionBecause = #transitionBecause#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend=",">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="updateTime" prepend=",">
+				UpdateTime =
+				#updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend=",">
+				UpdateUser =
+				#updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend=",">
+				CreateTime =
+				#createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend=",">
+				CreateUser =
+				#createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend=",">
+				Version = #version#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCodeWhere" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCodeWhere#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumberWhere" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumberWhere#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumberWhere"
+				prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumberWhere#
+			</isNotNull>
+			<isNotNull property="businessFlowLnkIDWhere" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkIDWhere#
+         </isNotNull>
+			<isNotNull property="operationTimeWhere" prepend="and ">
+				OperationTime = #operationTimeWhere#
+         </isNotNull>
+			<isNotNull property="arrivalUserWhere" prepend="and ">
+				ArrivalUser
+				= #arrivalUserWhere#
+         </isNotNull>
+			<isNotNull property="recipientUserWhere" prepend="and ">
+				RecipientUser = #recipientUserWhere#
+         </isNotNull>
+			<isNotNull property="transitionBecauseWhere" prepend="and ">
+				TransitionBecause = #transitionBecauseWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag =
+				#delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime =
+				#updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser =
+				#updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime =
+				#createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser =
+				#createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version =
+				#versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entitySynthesisexperience">
+		insert into synthesisexperience(
+		SynthesisParametersCode
+		,SynthesisCutterNumber
+		,SynthesisParametersNumber
+		,BusinessFlowLnkID
+		,OperationTime
+		,ArrivalUser
+		,RecipientUser
+		,TransitionBecause
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		)
+		Values (
+			<isNotNull property="synthesisParametersCode">
+				#synthesisParametersCode#
+         </isNotNull>
+			<isNull property="synthesisParametersCode">
+				null
+         </isNull>
+			<isNotNull property="synthesisCutterNumber">
+				,#synthesisCutterNumber#
+         </isNotNull>
+			<isNull property="synthesisCutterNumber">
+				,null
+         </isNull>
+			<isNotNull property="synthesisParametersNumber">
+				,#synthesisParametersNumber#
+         </isNotNull>
+			<isNull property="synthesisParametersNumber">
+				,null
+         </isNull>
+			<isNotNull property="businessFlowLnkID">
+				,#businessFlowLnkID#
+         </isNotNull>
+			<isNull property="businessFlowLnkID">
+				,null
+         </isNull>
+			<isNotNull property="operationTime">
+				,#operationTime#
+         </isNotNull>
+			<isNull property="operationTime">
+				,null
+         </isNull>
+			<isNotNull property="arrivalUser">
+				,#arrivalUser#
+         </isNotNull>
+			<isNull property="arrivalUser">
+				,null
+         </isNull>
+			<isNotNull property="recipientUser">
+				,#recipientUser#
+         </isNotNull>
+			<isNull property="recipientUser">
+				,null
+         </isNull>
+			<isNotNull property="transitionBecause">
+				,#transitionBecause#
+         </isNotNull>
+			<isNull property="transitionBecause">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 批量插入处理 -->
+	<insert id="batchInsert" parameterClass="list">
+		insert into synthesisexperience(
+		SynthesisParametersCode
+		,SynthesisCutterNumber
+		,SynthesisParametersNumber
+		,BusinessFlowLnkID
+		,OperationTime
+		,ArrivalUser
+		,RecipientUser
+		,TransitionBecause
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		)
+		Values
+		<iterate conjunction=",">
+			(
+			#list[].synthesisParametersCode#
+			,#list[].synthesisCutterNumber#
+			,#list[].synthesisParametersNumber#
+			,#list[].businessFlowLnkID#
+			,#list[].operationTime#
+			,#list[].arrivalUser#
+			,#list[].recipientUser#
+			,#list[].transitionBecause#
+			,#list[].delFlag#
+			,#list[].updateTime#
+			,#list[].updateUser#
+			,#list[].createTime#
+			,#list[].createUser#
+			,#list[].version#
+			)
+           </iterate>
+
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entitySynthesisexperience">
+		delete from synthesisexperience
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCodeWhere" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCodeWhere#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumberWhere" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumberWhere#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumberWhere"
+				prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumberWhere#
+			</isNotNull>
+			<isNotNull property="businessFlowLnkIDWhere" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkIDWhere#
+         </isNotNull>
+			<isNotNull property="operationTimeWhere" prepend="and ">
+				OperationTime = #operationTimeWhere#
+         </isNotNull>
+			<isNotNull property="arrivalUserWhere" prepend="and ">
+				ArrivalUser
+				= #arrivalUserWhere#
+         </isNotNull>
+			<isNotNull property="recipientUserWhere" prepend="and ">
+				RecipientUser = #recipientUserWhere#
+         </isNotNull>
+			<isNotNull property="transitionBecauseWhere" prepend="and ">
+				TransitionBecause = #transitionBecauseWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag =
+				#delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime =
+				#updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser =
+				#updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime =
+				#createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser =
+				#createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version =
+				#versionWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

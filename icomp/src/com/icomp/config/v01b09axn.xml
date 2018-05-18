@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- 参数设置  -->
+	<!-- 刀具参数ACTION注入	-->
+	<bean id="b09S001Action" class="com.icomp.v01b09.b09s001.action.B09S001Action" scope="prototype">
+		<property name="b09s001Business" ref="b09s001Business"/>
+	</bean>
+
+	<!-- 合成刀具参数ACTION注入	-->
+	<bean id="b09S002Action" class="com.icomp.v01b09.b09s002.action.B09S002Action" scope="prototype">
+		<property name="b09s002Business" ref="b09s002Business"/>
+	</bean>
+
+	<!-- 列表显示项目参数ACTION注入	-->
+	<bean id="b09S003Action" class="com.icomp.v01b09.b09s003.action.B09S003Action" scope="prototype">
+		<property name="b09s003Business" ref="b09s003Business"/>
+	</bean>
+
+	<!-- 打印项目参数ACTION注入	-->
+	<bean id="b09S004Action" class="com.icomp.v01b09.b09s004.action.B09S004Action" scope="prototype">
+		<property name="b09s004Business" ref="b09s004Business"/>
+	</bean>
+	<!--初始化注入-->
+	<bean id="b09S005Action" class="com.icomp.v01b09.b09s005.action.B09S005Action" scope="prototype">
+		<property name="b09s005Business" ref="b09s005Business"/>
+	</bean>
+	<!--刀具优化注入-->
+	<bean id="b09S006Action" class="com.icomp.v01b09.b09s006.action.B09S006Action" scope="prototype">
+		<property name="b09s006Business" ref="b09s006Business"/>
+	</bean>
+	<!--出厂修磨-->
+	<bean id="b09S007Action" class="com.icomp.v01b09.b09s007.action.B09S007Action" scope="prototype">
+		<property name="b09s007Business" ref="b09s007Business"/>
+	</bean>
+	<!--回厂入库-->
+	<bean id="b09S008Action" class="com.icomp.v01b09.b09s008.action.B09S008Action" scope="prototype">
+		<property name="b09s008Business" ref="b09s008Business"/>
+	</bean>
+
+</beans>

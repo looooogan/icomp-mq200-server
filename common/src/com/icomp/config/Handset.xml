@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Handset.xml
+		Created on : 2014/11/12 18:19:03
+		Author : 工具自动生成
+		Description: 工具自动生成包含手持机的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Handset">
+	<typeAlias alias="entityHandset" type="com.icomp.entity.base.Handset" />
+	<resultMap id="Handset-map" class="entityHandset">
+		<!-- 手持机ID -->
+		<result property="handSetID" column="HandSetID" />
+		<!-- 注册部门 -->
+		<result property="departmentID" column="DepartmentID" />
+		<!-- 手持机编码 -->
+		<result property="handSetCode" column="HandSetCode" />
+		<!-- 手持机名称 -->
+		<result property="handSetName" column="HandSetName" />
+		<!-- 手持机状态(0停用1启用) -->
+		<result property="handSetStauts" column="HandSetStauts" />
+		<!-- 是否注册(0注册1未注册) -->
+		<result property="isRegistration" column="IsRegistration" />
+		<!-- 登录状态(0登录1未登录) -->
+		<result property="loginStauts" column="LoginStauts" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityHandset" resultMap="Handset-map">
+		SELECT
+		HandSetID
+		,DepartmentID
+		,HandSetCode
+		,HandSetName
+		,HandSetStauts
+		,IsRegistration
+		,LoginStauts
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from handset
+		<dynamic prepend=" where ">
+			<isNotNull property="handSetID" prepend="and ">
+				HandSetID = #handSetID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					HandSetID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityHandset" resultMap="Handset-map">
+		SELECT
+		HandSetID
+		,DepartmentID
+		,HandSetCode
+		,HandSetName
+		,HandSetStauts
+		,IsRegistration
+		,LoginStauts
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from handset
+		<dynamic prepend=" where ">
+			<isNotNull property="handSetID" prepend="and ">
+				HandSetID = #handSetID#
+         </isNotNull>
+			<isNotNull property="departmentID" prepend="and ">
+				DepartmentID = #departmentID#
+         </isNotNull>
+			<isNotNull property="handSetCode" prepend="and ">
+				HandSetCode = #handSetCode#
+         </isNotNull>
+			<isNotNull property="handSetName" prepend="and ">
+				HandSetName = #handSetName#
+         </isNotNull>
+			<isNotNull property="handSetStauts" prepend="and ">
+				HandSetStauts = #handSetStauts#
+         </isNotNull>
+			<isNotNull property="isRegistration" prepend="and ">
+				IsRegistration = #isRegistration#
+         </isNotNull>
+			<isNotNull property="loginStauts" prepend="and ">
+				LoginStauts = #loginStauts#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					HandSetID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityHandset" resultClass="int">
+		SELECT count(1)
+		from handset
+		<dynamic prepend=" where ">
+			<isNotNull property="handSetID" prepend="and ">
+				HandSetID = #handSetID#
+         </isNotNull>
+			<isNotNull property="departmentID" prepend="and ">
+				DepartmentID = #departmentID#
+         </isNotNull>
+			<isNotNull property="handSetCode" prepend="and ">
+				HandSetCode = #handSetCode#
+         </isNotNull>
+			<isNotNull property="handSetName" prepend="and ">
+				HandSetName = #handSetName#
+         </isNotNull>
+			<isNotNull property="handSetStauts" prepend="and ">
+				HandSetStauts = #handSetStauts#
+         </isNotNull>
+			<isNotNull property="isRegistration" prepend="and ">
+				IsRegistration = #isRegistration#
+         </isNotNull>
+			<isNotNull property="loginStauts" prepend="and ">
+				LoginStauts = #loginStauts#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityHandset">
+		update handset
+		<dynamic prepend="set">
+			<isNotNull property="handSetID">
+				HandSetID = #handSetID#
+         </isNotNull>
+			<isNull property="handSetID">
+				HandSetID = null
+         </isNull>
+			<isNotNull property="departmentID">
+				,DepartmentID = #departmentID#
+         </isNotNull>
+			<isNull property="departmentID">
+				,DepartmentID = null
+         </isNull>
+			<isNotNull property="handSetCode">
+				,HandSetCode = #handSetCode#
+         </isNotNull>
+			<isNull property="handSetCode">
+				,HandSetCode = null
+         </isNull>
+			<isNotNull property="handSetName">
+				,HandSetName = #handSetName#
+         </isNotNull>
+			<isNull property="handSetName">
+				,HandSetName = null
+         </isNull>
+			<isNotNull property="handSetStauts">
+				,HandSetStauts = #handSetStauts#
+         </isNotNull>
+			<isNull property="handSetStauts">
+				,HandSetStauts = null
+         </isNull>
+			<isNotNull property="isRegistration">
+				,IsRegistration = #isRegistration#
+         </isNotNull>
+			<isNull property="isRegistration">
+				,IsRegistration = null
+         </isNull>
+			<isNotNull property="loginStauts">
+				,LoginStauts = #loginStauts#
+         </isNotNull>
+			<isNull property="loginStauts">
+				,LoginStauts = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="handSetIDWhere" prepend="and ">
+				HandSetID = #handSetIDWhere#
+         </isNotNull>
+			<isNotNull property="departmentIDWhere" prepend="and ">
+				DepartmentID = #departmentIDWhere#
+         </isNotNull>
+			<isNotNull property="handSetCodeWhere" prepend="and ">
+				HandSetCode = #handSetCodeWhere#
+         </isNotNull>
+			<isNotNull property="handSetNameWhere" prepend="and ">
+				HandSetName = #handSetNameWhere#
+         </isNotNull>
+			<isNotNull property="handSetStautsWhere" prepend="and ">
+				HandSetStauts = #handSetStautsWhere#
+         </isNotNull>
+			<isNotNull property="isRegistrationWhere" prepend="and ">
+				IsRegistration = #isRegistrationWhere#
+         </isNotNull>
+			<isNotNull property="loginStautsWhere" prepend="and ">
+				LoginStauts = #loginStautsWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityHandset">
+		update handset
+		<dynamic prepend="set">
+			<isNotNull property="handSetID"  prepend=",">
+				HandSetID = #handSetID#
+         </isNotNull>
+			<isNotNull property="departmentID"  prepend=",">
+				DepartmentID = #departmentID#
+         </isNotNull>
+			<isNotNull property="handSetCode"  prepend=",">
+				HandSetCode = #handSetCode#
+         </isNotNull>
+			<isNotNull property="handSetName"  prepend=",">
+				HandSetName = #handSetName#
+         </isNotNull>
+			<isNotNull property="handSetStauts"  prepend=",">
+				HandSetStauts = #handSetStauts#
+         </isNotNull>
+			<isNotNull property="isRegistration"  prepend=",">
+				IsRegistration = #isRegistration#
+         </isNotNull>
+			<isNotNull property="loginStauts"  prepend=",">
+				LoginStauts = #loginStauts#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="handSetIDWhere" prepend="and ">
+				HandSetID = #handSetIDWhere#
+         </isNotNull>
+			<isNotNull property="departmentIDWhere" prepend="and ">
+				DepartmentID = #departmentIDWhere#
+         </isNotNull>
+			<isNotNull property="handSetCodeWhere" prepend="and ">
+				HandSetCode = #handSetCodeWhere#
+         </isNotNull>
+			<isNotNull property="handSetNameWhere" prepend="and ">
+				HandSetName = #handSetNameWhere#
+         </isNotNull>
+			<isNotNull property="handSetStautsWhere" prepend="and ">
+				HandSetStauts = #handSetStautsWhere#
+         </isNotNull>
+			<isNotNull property="isRegistrationWhere" prepend="and ">
+				IsRegistration = #isRegistrationWhere#
+         </isNotNull>
+			<isNotNull property="loginStautsWhere" prepend="and ">
+				LoginStauts = #loginStautsWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityHandset">
+		<selectKey resultClass="java.lang.String" keyProperty="handSetID">
+			SELECT #handSetID# as handSetID FROM DUAL
+     </selectKey>
+		insert into handset(
+		HandSetID
+		,DepartmentID
+		,HandSetCode
+		,HandSetName
+		,HandSetStauts
+		,IsRegistration
+		,LoginStauts
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		)
+		Values (
+			<isNotNull property="handSetID">
+				#handSetID#
+         </isNotNull>
+			<isNull property="handSetID">
+				null
+         </isNull>
+			<isNotNull property="departmentID">
+				,#departmentID#
+         </isNotNull>
+			<isNull property="departmentID">
+				,null
+         </isNull>
+			<isNotNull property="handSetCode">
+				,#handSetCode#
+         </isNotNull>
+			<isNull property="handSetCode">
+				,null
+         </isNull>
+			<isNotNull property="handSetName">
+				,#handSetName#
+         </isNotNull>
+			<isNull property="handSetName">
+				,null
+         </isNull>
+			<isNotNull property="handSetStauts">
+				,#handSetStauts#
+         </isNotNull>
+			<isNull property="handSetStauts">
+				,null
+         </isNull>
+			<isNotNull property="isRegistration">
+				,#isRegistration#
+         </isNotNull>
+			<isNull property="isRegistration">
+				,null
+         </isNull>
+			<isNotNull property="loginStauts">
+				,#loginStauts#
+         </isNotNull>
+			<isNull property="loginStauts">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityHandset">
+		delete  from handset
+		<dynamic prepend=" where ">
+			<isNotNull property="handSetIDWhere" prepend="and ">
+				HandSetID = #handSetIDWhere#
+         </isNotNull>
+			<isNotNull property="departmentIDWhere" prepend="and ">
+				DepartmentID = #departmentIDWhere#
+         </isNotNull>
+			<isNotNull property="handSetCodeWhere" prepend="and ">
+				HandSetCode = #handSetCodeWhere#
+         </isNotNull>
+			<isNotNull property="handSetNameWhere" prepend="and ">
+				HandSetName = #handSetNameWhere#
+         </isNotNull>
+			<isNotNull property="handSetStautsWhere" prepend="and ">
+				HandSetStauts = #handSetStautsWhere#
+         </isNotNull>
+			<isNotNull property="isRegistrationWhere" prepend="and ">
+				IsRegistration = #isRegistrationWhere#
+         </isNotNull>
+			<isNotNull property="loginStautsWhere" prepend="and ">
+				LoginStauts = #loginStautsWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

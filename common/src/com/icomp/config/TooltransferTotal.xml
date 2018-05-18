@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : TooltransferTotal.xml
+    Created on : 2016/03/11 13:10:45
+    Author : 工具自动生成
+    Description: 工具自动生成包含的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByList2 ： 查询待报废刀具列表信息
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="TooltransferTotal">
+    <typeAlias alias="entityTooltransferTotal" type="com.icomp.entity.base.TooltransferTotal"/>
+    <resultMap id="TooltransferTotal-map" class="entityTooltransferTotal">
+        <!-- 刀具材料号 -->
+        <result property="toolCode" column="ToolCode"/>
+        <!-- 备刀数量 -->
+        <result property="spareKnifeSum" column="SpareKnifeSum"/>
+        <!-- 厂内修磨数量 -->
+        <result property="grindingFactorySnum" column="GrindingFactorySnum"/>
+        <!-- 厂外修磨数量 -->
+        <result property="externalGrindingSum" column="ExternalGrindingSum"/>
+        <!-- 生成中刀具数量 -->
+        <result property="productionLineSum" column="ProductionLineSum"/>
+        <!-- 合计 -->
+        <result property="expandSpace1" column="expandSpace1"/>
+        <!-- 厂外待修磨数 -->
+        <result property="stayExternalGrindingSum" column="StayExternalGrindingSum"/>
+        <!-- 2017/08/30 宋健 追加↓↓↓　dazhong@YMSC -->
+        <!-- 创建人 -->
+        <result property="createUser" column="CreateUser"/>
+        <!-- 2017/08/30 宋健 追加↑↑↑　dazhong@YMSC -->
+        <!-- 2017/09/12 宋健 追加↓↓↓　dazhong@YMSC -->
+        <result property="updateUser" column="UpdateUser"/>
+        <!-- 2017/09/12 宋健 追加↑↑↑　dazhong@YMSC -->
+    </resultMap>
+
+    <resultMap id="TooltransferTotal-map2" class="entityTooltransferTotal">
+        <!-- 刀具材料号 -->
+        <result property="toolCode" column="ToolCode"/>
+        <!-- 备刀数量 -->
+        <result property="spareKnifeSum" column="SpareKnifeSum"/>
+        <!-- 厂内修磨数量 -->
+        <result property="grindingFactorySnum" column="GrindingFactorySnum"/>
+        <!-- 厂外修磨数量 -->
+        <result property="externalGrindingSum" column="ExternalGrindingSum"/>
+        <!-- 生成中刀具数量 -->
+        <result property="productionLineSum" column="ProductionLineSum"/>
+        <!-- 合计 -->
+        <result property="expandSpace1" column="expandSpace1"/>
+        <!-- 厂外待修磨数 -->
+        <result property="stayExternalGrindingSum" column="StayExternalGrindingSum"/>
+        <!-- 2017/08/30 宋健 追加↓↓↓　dazhong@YMSC -->
+        <!-- 创建人 -->
+        <result property="createUser" column="CreateUser"/>
+        <!-- 2017/08/30 宋健 追加↑↑↑　dazhong@YMSC -->
+        <!-- 2017/09/12 宋健 追加↓↓↓　dazhong@YMSC -->
+        <result property="updateUser" column="UpdateUser"/>
+        <!-- 2017/09/12 宋健 追加↑↑↑　dazhong@YMSC -->
+        <result property="scrapSum" column="ScrapSum"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityTooltransferTotal" resultMap="TooltransferTotal-map">
+        SELECT
+        RfidContainerID
+        ,KnifeInventoryCode
+        ,ToolID
+        ,ProcuredBatch
+        ,BusinessFlowLnkID
+        ,ProcessAmount
+        ,ToolDurable
+        ,ToolSharpennum
+        ,ToolSharpenCriterion
+        ,ToolLength
+        ,ToolSharpenLength
+        ,UsageCounter
+        ,ToolGrindingLength
+        ,InstallationState
+        ,ToolState
+        ,ReplacementFlag
+        ,ConfirmedUser
+        ,ToolThisState
+        ,StockState
+        ,discardeFlag
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        from tooltransfer
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerID" prepend="and ">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCode" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            RfidContainerID
+            ,KnifeInventoryCode
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <!-- 2017/07/03 宋健 变更↓↓↓　dazhong@YMSC -->
+    <select id="searchByList" parameterClass="entityTooltransferTotal" resultMap="TooltransferTotal-map">
+        SELECT
+        t.ToolCode
+        ,t.SpareKnifeSum
+        ,t.GrindingFactorySnum
+        ,t.ExternalGrindingSum
+        ,t.ProductionLineSum
+        ,t.StayExternalGrindingSum
+        ,(t.SpareKnifeSum+t.GrindingFactorySnum+t.ExternalGrindingSum+t.ProductionLineSum) as expandSpace1
+        from tooltransferTotal t
+        INNER JOIN synthesisknife sf on t.ToolCode = sf.SynthesisParametersCode
+        WHERE sf.DelFlag = '0'
+        GROUP BY t.ToolCode
+        <isNotNull property="toolCode" prepend="and ">
+            t.ToolCode = #toolCode#
+        </isNotNull>
+
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            ToolCode
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+    <!-- 2017/07/03 宋健 变更↑↑↑　dazhong@YMSC -->
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityTooltransferTotal" resultClass="int">
+        SELECT count(1)
+        from tooltransferTotal
+        WHERE
+        ToolCode LIKE 'T%'
+        <isNotNull property="toolCode" prepend="and ">
+            ToolCode = #toolCode#
+        </isNotNull>
+    </select>
+
+    <select id="searchByList2" parameterClass="entityTooltransferTotal" resultMap="TooltransferTotal-map2">
+        SELECT
+        ToolCode
+        ,SpareKnifeSum
+        ,GrindingFactorySnum
+        ,ExternalGrindingSum
+        ,ProductionLineSum
+        ,StayExternalGrindingSum
+        <!-- 2017/09/14 王冉 追加↓↓↓　dazhong@YMSC -->
+        ,ProductionLineSum as expandSpace1
+        ,ScrapSum
+        ,CreateUser
+        ,UpdateUser
+        <!-- 2017/09/14 王冉 追加↑↑↑　dazhong@YMSC -->
+        from tooltransferTotal
+        WHERE ToolCode = #toolCodeWhere#
+    </select>
+
+
+    <update id="updateTooltransferTotal" parameterClass="entityTooltransferTotal">
+        update tooltransferTotal
+        <dynamic prepend="set">
+            UpdateTime = NOW()
+            <isNotNull property="spareKnifeSum">
+                ,SpareKnifeSum = #spareKnifeSum#
+            </isNotNull>
+            <isNotNull property="grindingFactorySnum">
+                ,GrindingFactorySnum = #grindingFactorySnum#
+            </isNotNull>
+            <isNotNull property="stayExternalGrindingSum">
+                ,StayExternalGrindingSum = #stayExternalGrindingSum#
+            </isNotNull>
+            <isNotNull property="externalGrindingSum">
+                ,ExternalGrindingSum = #externalGrindingSum#
+            </isNotNull>
+            <isNotNull property="productionLineSum">
+                ,ProductionLineSum = #productionLineSum#
+            </isNotNull>
+            <isNotNull property="scrapSum">
+                ,ScrapSum = #scrapSum#
+            </isNotNull>
+        </dynamic>
+        WHERE
+        <!-- 2017/08/30 王冉 变更↓↓↓　dazhong@YMSC -->
+        ToolCode = #toolCode#
+        <!-- 2017/08/30 王冉 变更↑↑↑　dazhong@YMSC -->
+    </update>
+
+    <!-- 2017/08/30 宋健 追加↓↓↓　dazhong@YMSC -->
+    <insert id="insert" parameterClass="entityTooltransferTotal">
+        insert into tooltransferTotal(
+        ToolCode,
+        SpareKnifeSum,
+        CreateTime,
+        CreateUser
+        )
+        VALUES(
+        #toolCode#,
+        #spareKnifeSum#,
+        now(),
+        #createUser#
+        )
+    </insert>
+
+    <update id="update" parameterClass="entityTooltransferTotal">
+        update tooltransferTotal
+        <dynamic prepend="set">
+            UpdateTime = NOW()
+            <isNotNull property="spareKnifeSum">
+                ,SpareKnifeSum = #spareKnifeSum#
+            </isNotNull>
+        </dynamic>
+        WHERE
+        ToolCode = #toolCode#
+    </update>
+
+    <select id="getTooltransferTotalByKey" parameterClass="entityTooltransferTotal" resultMap="TooltransferTotal-map">
+        SELECT
+        t.ToolCode
+        ,t.SpareKnifeSum
+        ,t.GrindingFactorySnum
+        ,t.ExternalGrindingSum
+        ,t.ProductionLineSum
+        ,t.ProductionLineSum as expandSpace1
+        ,t.StayExternalGrindingSum
+        ,t.CreateUser
+        <!-- 2017/09/13 王冉 变更↓↓↓　dazhong@YMSC -->
+        ,t.UpdateUser
+        <!-- 2017/09/13 王冉 变更↑↑↑　dazhong@YMSC -->
+        from tooltransferTotal t
+        WHERE
+        t.ToolCode = #toolCode#
+    </select>
+
+    <!-- 2017/09/13 宋健 变更↓↓↓　dazhong@YMSC -->
+    <select id="searchList" parameterClass="entityTooltransferTotal" resultMap="TooltransferTotal-map">
+        SELECT
+        t.ToolCode
+        ,t.SpareKnifeSum
+        ,t.GrindingFactorySnum
+        ,t.ExternalGrindingSum
+        ,t.ProductionLineSum
+        ,t.ProductionLineSum as expandSpace1
+        ,t.StayExternalGrindingSum
+        ,t.CreateUser
+        ,t.updateUser
+        from tooltransferTotal t
+        LEFT JOIN tool tl on t.ToolCode = tl.ToolCode and tl.DelFlag = '0'
+        <dynamic prepend=" where ">
+            <isNotNull property="toolCode">
+                t.ToolCode = #toolCode#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+    <select id="searchList2" parameterClass="entityTooltransferTotal" resultMap="TooltransferTotal-map">
+        SELECT
+        t.ToolCode
+        ,t.SpareKnifeSum
+        ,t.GrindingFactorySnum
+        ,t.ExternalGrindingSum
+        ,t.ProductionLineSum
+        ,t.ProductionLineSum as expandSpace1
+        ,t.StayExternalGrindingSum
+        ,t.CreateUser
+        ,t.updateUser
+        from tooltransferTotal t
+        LEFT JOIN tool tl on t.ToolCode = tl.ToolCode and tl.DelFlag = '0'
+        where SpareKnifeSum != 0
+        <dynamic prepend=" and ">
+            <isNotNull property="toolCode">
+                t.ToolCode like concat('%', #toolCode#,'%')
+            </isNotNull>
+        </dynamic>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+    <!-- 2017/09/13 宋健 变更↑↑↑　dazhong@YMSC -->
+
+    <select id="searchCount" parameterClass="entityTooltransferTotal" resultClass="int">
+        SELECT count(1)
+        from tooltransferTotal t
+        LEFT JOIN tool tl on t.ToolCode = tl.ToolCode and tl.DelFlag = '0'
+        <dynamic prepend=" where ">
+            <isNotNull property="toolCode">
+                t.ToolCode = #toolCode#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+    <select id="searchCount2" parameterClass="entityTooltransferTotal" resultClass="int">
+        SELECT count(1)
+        from tooltransferTotal t
+        LEFT JOIN tool tl on t.ToolCode = tl.ToolCode and tl.DelFlag = '0'
+        where SpareKnifeSum != 0
+        <dynamic prepend=" and ">
+            <isNotNull property="toolCode">
+                t.ToolCode like concat('%', #toolCode#,'%')
+            </isNotNull>
+        </dynamic>
+    </select>
+    <!-- 2017/08/30 宋健 追加↑↑↑　dazhong@YMSC -->
+
+    <!-- 2017/09/12 宋健 追加↓↓↓　dazhong@YMSC -->
+    <update id="updateTooltransferTotalInfo" parameterClass="entityTooltransferTotal">
+        update tooltransferTotal
+        <dynamic prepend="set">
+            UpdateTime = NOW()
+            <isNotNull property="externalGrindingSum">
+                ,ExternalGrindingSum = #externalGrindingSum#
+            </isNotNull>
+            <isNotNull property="stayExternalGrindingSum">
+                ,StayExternalGrindingSum = #stayExternalGrindingSum#
+            </isNotNull>
+            <isNotNull property="spareKnifeSum">
+                ,SpareKnifeSum = #spareKnifeSum#
+            </isNotNull>
+            <isNotNull property="updateUser">
+                ,UpdateUser = #updateUser#
+            </isNotNull>
+        </dynamic>
+        WHERE
+        ToolCode = #toolCode#
+    </update>
+
+    <update id="updateNum" parameterClass="entityTooltransferTotal">
+        update tooltransferTotal
+        set SpareKnifeSum = 0
+        WHERE
+        ToolCode = #toolCode#
+    </update>
+
+
+    <!-- 2017/09/12 宋健 追加↑↑↑　dazhong@YMSC -->
+
+</sqlMap>

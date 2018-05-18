@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vsystemlog.xml
+		Created on : 2014/11/27 09:58:23
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vsystemlog">
+	<typeAlias alias="entityVsystemlog" type="com.icomp.entity.base.Vsystemlog" />
+	<resultMap id="Vsystemlog-map" class="entityVsystemlog">
+		<!-- system_Log_ID -->
+		<result property="systemLogID" column="SystemLogID" />
+		<!-- 语言名称 -->
+		<result property="languageName" column="LanguageName" />
+		<!-- 日志内容 -->
+		<result property="systemLogMsg" column="SystemLogMsg" />
+		<!-- 日志分类(0手持机1智能管理平台2系统日志) -->
+		<result property="systemLogFlag" column="SystemLogFlag" />
+		<!-- 日志级别(0正常1警告2错误9其他) -->
+		<result property="systemLogLevel" column="SystemLogLevel" />
+		<!-- 产生时间 -->
+		<result property="systemLogDate" column="SystemLogDate" />
+		<!--  -->
+		<result property="systemLogUser" column="SystemLogUser" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVsystemlog" resultMap="Vsystemlog-map">
+		SELECT
+		SystemLogID
+		,LanguageName
+		,SystemLogMsg
+		,SystemLogFlag
+		,SystemLogLevel
+		,SystemLogDate
+		,SystemLogUser
+		,DelFlag
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from vsystemlog
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVsystemlog" resultMap="Vsystemlog-map">
+		SELECT
+		SystemLogID
+		,LanguageName
+		,SystemLogMsg
+		,SystemLogFlag
+		,SystemLogLevel
+		,SystemLogDate
+		,SystemLogUser
+		,DelFlag
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from vsystemlog
+		<dynamic prepend=" where ">
+			<isNotNull property="systemLogID" prepend="and ">
+				SystemLogID = #systemLogID#
+         </isNotNull>
+			<isNotNull property="languageName" prepend="and ">
+				LanguageName = #languageName#
+         </isNotNull>
+			<isNotNull property="systemLogMsg" prepend="and ">
+				SystemLogMsg = #systemLogMsg#
+         </isNotNull>
+			<isNotNull property="systemLogFlag" prepend="and ">
+				SystemLogFlag = #systemLogFlag#
+         </isNotNull>
+			<isNotNull property="systemLogLevel" prepend="and ">
+				SystemLogLevel = #systemLogLevel#
+         </isNotNull>
+			<isNotNull property="systemLogDate" prepend="and ">
+				SystemLogDate = #systemLogDate#
+         </isNotNull>
+        	<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				SystemLogDate >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				SystemLogDate <= #dateEnd#
+				]]>
+         </isNotNull>         
+			<isNotNull property="systemLogUser" prepend="and ">
+				SystemLogUser = #systemLogUser#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVsystemlog" resultClass="int">
+		SELECT count(1)
+		from vsystemlog
+		<dynamic prepend=" where ">
+			<isNotNull property="systemLogID" prepend="and ">
+				SystemLogID = #systemLogID#
+         </isNotNull>
+			<isNotNull property="languageName" prepend="and ">
+				LanguageName = #languageName#
+         </isNotNull>
+			<isNotNull property="systemLogMsg" prepend="and ">
+				SystemLogMsg = #systemLogMsg#
+         </isNotNull>
+			<isNotNull property="systemLogFlag" prepend="and ">
+				SystemLogFlag = #systemLogFlag#
+         </isNotNull>
+			<isNotNull property="systemLogLevel" prepend="and ">
+				SystemLogLevel = #systemLogLevel#
+         </isNotNull>
+			<isNotNull property="systemLogDate" prepend="and ">
+				SystemLogDate = #systemLogDate#
+         </isNotNull>
+        	<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				SystemLogDate >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				SystemLogDate <= #dateEnd#
+				]]>
+         </isNotNull>         
+			<isNotNull property="systemLogUser" prepend="and ">
+				SystemLogUser = #systemLogUser#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

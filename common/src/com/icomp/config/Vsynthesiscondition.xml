@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vsynthesiscondition.xml
+		Created on : 2016/05/12 17:56:44
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vsynthesiscondition">
+	<typeAlias alias="entityVsynthesiscondition" type="com.icomp.entity.base.Vsynthesiscondition" />
+	<resultMap id="Vsynthesiscondition-map" class="entityVsynthesiscondition">
+		<!-- 流水线名称 -->
+		<result property="assemblyLineName" column="AssemblyLineName" />
+		<!-- 流水线ID -->
+		<result property="assemblyLineID" column="AssemblyLineID" />
+		<!-- 工序名称 -->
+		<result property="processName" column="ProcessName" />
+		<!-- 工序ID -->
+		<result property="processID" column="ProcessID" />
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!-- 使用状态(0设备装入1设备卸下2回收旧刀3组装新刀4不合格送回5车间待安上)(该状态绑定到带标签的数据上) -->
+		<result property="loadState" column="LoadState" />
+		<!--  -->
+		<result property="numberDevices" column="numberDevices" />
+		<!--  -->
+		<result property="numberToolStorage" column="numberToolStorage" />
+		<!--  -->
+		<result property="regulatinRoom" column="regulatinRoom" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVsynthesiscondition" resultMap="Vsynthesiscondition-map">
+		SELECT
+		AssemblyLineName
+		,AssemblyLineID
+		,ProcessName
+		,ProcessID
+		,SynthesisParametersCode
+		,LoadState
+		,numberDevices
+		,numberToolStorage
+		,regulatinRoom
+		from vsynthesiscondition
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVsynthesiscondition" resultMap="Vsynthesiscondition-map">
+		SELECT
+		AssemblyLineName
+		,AssemblyLineID
+		,ProcessName
+		,ProcessID
+		,SynthesisParametersCode
+		,LoadState
+		,numberDevices
+		,numberToolStorage
+		,regulatinRoom
+		from vsynthesiscondition
+		<dynamic prepend=" where ">
+			<isNotNull property="assemblyLineName" prepend="and ">
+				AssemblyLineName = #assemblyLineName#
+         </isNotNull>
+			<isNotNull property="assemblyLineID" prepend="and ">
+				AssemblyLineID = #assemblyLineID#
+         </isNotNull>
+			<isNotNull property="processName" prepend="and ">
+				ProcessName = #processName#
+         </isNotNull>
+			<isNotNull property="processID" prepend="and ">
+				ProcessID = #processID#
+         </isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+
+         </isNotNull>
+			<isNotNull property="loadState" prepend="and ">
+				LoadState = #loadState#
+         </isNotNull>
+			<isNotNull property="numberDevices" prepend="and ">
+				numberDevices = #numberDevices#
+         </isNotNull>
+			<isNotNull property="numberToolStorage" prepend="and ">
+				numberToolStorage = #numberToolStorage#
+         </isNotNull>
+			<isNotNull property="regulatinRoom" prepend="and ">
+				regulatinRoom = #regulatinRoom#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVsynthesiscondition" resultClass="int">
+		SELECT
+		count(1)
+		FROM
+
+		(
+		SELECT
+		aa.AssemblyLineName AS AssemblyLineName,
+		aa.AssemblyLineID AS AssemblyLineID,
+		aa.ProcessName AS ProcessName,
+		aa.ProcessID AS ProcessID,
+		aa.SynthesisParametersCode AS SynthesisParametersCode,
+		(
+		SELECT
+		count(1)
+		FROM
+		synthesisknife sk1
+		WHERE
+		sk1.LoadState = '0'
+		AND aa.SynthesisParametersCode = sk1.SynthesisParametersCode
+		AND sk1.SynthesisCutterNumber = '0'
+		) AS numberDevices,
+		(
+		SELECT
+		count(1)
+		FROM
+		synthesisknife sk2
+		WHERE
+		sk2.LoadState = '5'
+		AND aa.SynthesisParametersCode = sk2.SynthesisParametersCode
+		AND sk2.SynthesisCutterNumber = '0'
+		) AS numberToolStorage,
+		(
+		SELECT
+		count(1)
+		FROM
+		synthesisknife sk3
+		WHERE
+		sk3.LoadState = '1'
+		AND aa.SynthesisParametersCode = sk3.SynthesisParametersCode
+		AND sk3.SynthesisCutterNumber = '0'
+		) AS regulatinRoom,
+		(
+		SELECT
+		count(1)
+		FROM
+		synthesisknife sk4
+		WHERE
+		sk4.LoadState = '3'
+		AND aa.SynthesisParametersCode = sk4.SynthesisParametersCode
+		AND sk4.SynthesisCutterNumber = '0'
+		) AS LoadState
+		FROM
+		(
+		SELECT
+		ab.AssemblyLineName AS AssemblyLineName,
+		ab.AssemblyLineID AS AssemblyLineID,
+		pr.ProcessName AS ProcessName,
+		pr.ProcessID AS ProcessID,
+		sk.SynthesisParametersCode AS SynthesisParametersCode,
+		sk.LoadState AS LoadState
+		FROM
+		synthesisknife sk
+		LEFT JOIN synthesisparameters sp ON sk.SynthesisParametersCode = sp.SynthesisParametersCode
+		LEFT JOIN oplink o ON sp.SynthesisParametersID = o.SynthesisParametersID
+		LEFT JOIN assemblyline ab ON ab.AssemblyLineID = o.AssemblyLineID
+		LEFT JOIN process pr ON pr.ProcessID = o.ProcessID
+		WHERE
+		sk.DelFlag = '0'
+		AND ab.DelFlag = '0'
+		AND pr.DelFlag = '0'
+		AND sp.DelFlag = '0'
+		AND sk.SynthesisCutterNumber = '0'
+		GROUP BY
+		sk.SynthesisParametersCode,
+		o.ProcessID,
+		o.AssemblyLineID
+		) aa
+		) bb
+		<dynamic prepend=" where ">
+			<isNotNull property="assemblyLineName" prepend="and ">
+				bb.AssemblyLineName = #assemblyLineName#
+			</isNotNull>
+			<isNotNull property="assemblyLineID" prepend="and ">
+				bb.AssemblyLineID = #assemblyLineID#
+			</isNotNull>
+			<isNotNull property="processName" prepend="and ">
+				bb.ProcessName = #processName#
+			</isNotNull>
+			<isNotNull property="processID" prepend="and ">
+				bb.ProcessID = #processID#
+			</isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				bb.SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+			</isNotNull>
+			<isNotNull property="loadState" prepend="and ">
+				bb.LoadState = #loadState#
+			</isNotNull>
+			<isNotNull property="numberDevices" prepend="and ">
+				bb.numberDevices = #numberDevices#
+			</isNotNull>
+			<isNotNull property="numberToolStorage" prepend="and ">
+				bb.numberToolStorage = #numberToolStorage#
+			</isNotNull>
+			<isNotNull property="regulatinRoom" prepend="and ">
+				bb.regulatinRoom = #regulatinRoom#
+			</isNotNull>
+		</dynamic>
+	</select>
+	<select id="searchByList1" parameterClass="entityVsynthesiscondition" resultMap="Vsynthesiscondition-map">
+		SELECT
+		aa.AssemblyLineName AS AssemblyLineName,
+		aa.AssemblyLineID AS AssemblyLineID,
+		aa.ProcessName AS ProcessName,
+		aa.ProcessID AS ProcessID,
+		aa.SynthesisParametersCode AS SynthesisParametersCode,
+		(SELECT count(1) FROM synthesisknife sk1 WHERE sk1.LoadState = '0' AND  aa.SynthesisParametersCode = sk1.SynthesisParametersCode AND sk1.SynthesisCutterNumber='0' ) AS numberDevices,
+		(SELECT count(1) FROM	synthesisknife sk2 WHERE sk2.LoadState = '5' AND aa.SynthesisParametersCode = sk2.SynthesisParametersCode AND sk2.SynthesisCutterNumber='0') AS numberToolStorage,
+		(SELECT count(1) FROM	synthesisknife sk3	WHERE	sk3.LoadState = '1' AND aa.SynthesisParametersCode = sk3.SynthesisParametersCode AND sk3.SynthesisCutterNumber='0') AS regulatinRoom,
+		(SELECT count(1) FROM	synthesisknife sk4	WHERE	sk4.LoadState = '3' AND aa.SynthesisParametersCode = sk4.SynthesisParametersCode AND sk4.SynthesisCutterNumber='0') AS LoadState
+
+		FROM
+		(
+		SELECT
+		ab.AssemblyLineName AS AssemblyLineName,
+		ab.AssemblyLineID AS AssemblyLineID,
+		pr.ProcessName AS ProcessName,
+		pr.ProcessID AS ProcessID,
+		sk.SynthesisParametersCode AS SynthesisParametersCode,
+		sk.LoadState AS LoadState
+		FROM
+		synthesisknife sk
+		LEFT  JOIN synthesisparameters sp ON 	sk.SynthesisParametersCode = sp.SynthesisParametersCode
+		LEFT JOIN oplink o ON 	sp.SynthesisParametersID = o.SynthesisParametersID
+		LEFT JOIN assemblyline ab ON 	ab.AssemblyLineID = o.AssemblyLineID
+		LEFT JOIN process pr ON pr.ProcessID = o.ProcessID
+		WHERE
+		sk.DelFlag = '0'
+		AND ab.DelFlag = '0'
+		AND pr.DelFlag = '0'
+		AND sp.DelFlag = '0'
+		AND sk.SynthesisCutterNumber = '0'
+
+		 GROUP BY
+		 sk.SynthesisParametersCode,
+		 o.ProcessID,
+		 o.AssemblyLineID
+		) aa
+		<dynamic prepend=" where ">
+			<isNotNull property="assemblyLineName" prepend="and ">
+				AssemblyLineName = #assemblyLineName#
+			</isNotNull>
+			<isNotNull property="assemblyLineID" prepend="and ">
+				AssemblyLineID = #assemblyLineID#
+			</isNotNull>
+			<isNotNull property="processName" prepend="and ">
+				ProcessName = #processName#
+			</isNotNull>
+			<isNotNull property="processID" prepend="and ">
+				ProcessID = #processID#
+			</isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+
+			</isNotNull>
+			<isNotNull property="loadState" prepend="and ">
+				LoadState = #loadState#
+			</isNotNull>
+			<isNotNull property="numberDevices" prepend="and ">
+				numberDevices = #numberDevices#
+			</isNotNull>
+			<isNotNull property="numberToolStorage" prepend="and ">
+				numberToolStorage = #numberToolStorage#
+			</isNotNull>
+			<isNotNull property="regulatinRoom" prepend="and ">
+				regulatinRoom = #regulatinRoom#
+			</isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+		</isNotNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT $rowCount$ offset $staIndex$
+		</isGreaterThan>
+	</select>
+</sqlMap>
+

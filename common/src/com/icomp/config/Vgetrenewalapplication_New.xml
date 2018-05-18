@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vgetrenewalapplication_New.xml
+		Created on : 2014/12/08 11:43:43
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgetrenewalapplication_New">
+	<typeAlias alias="entityVgetrenewalapplication_New" type="com.icomp.entity.base.Vgetrenewalapplication_New" />
+	<resultMap id="Vgetrenewalapplication_New-map" class="entityVgetrenewalapplication_New">
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!-- 合成刀具编号(例如：001、002、003) -->
+		<result property="synthesisParametersNumber" column="SynthesisParametersNumber" />
+		<!-- RFID(辅具或配套上打孔安装的RFID) -->
+		<result property="rfid" column="Rfid" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 刀具名称 -->
+		<result property="toolName" column="ToolName" />
+		<!-- 卸下方式(0装盒1装盘3保留) -->
+		<result property="offloadType" column="OffloadType" />
+		<!-- 是否安装(0安装1卸下9其他) -->
+		<result property="installFlag" column="InstallFlag" />
+		<!-- 组成类型(0刀片1钻头2复合刀具3热套类) -->
+		<result property="createType" column="CreateType" />
+		<result property="appleCount" column="AppleCount" />
+		<result property="inventoryCount_A" column="InventoryCount_A" />
+		<result property="inventoryCount_B" column="InventoryCount_B" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVgetrenewalapplication_New"  resultMap="Vgetrenewalapplication_New-map">
+		SELECT
+		sk.SynthesisParametersCode AS SynthesisParametersCode,
+		sk.SynthesisParametersNumber AS SynthesisParametersNumber,
+		sk.RFID AS Rfid,
+		 t.ToolID AS ToolID,
+		 t.ToolCode AS ToolCode,
+		 t.ToolName AS ToolName,
+		 sk.OffloadType AS OffloadType,
+		 sk.InstallFlag AS InstallFlag,
+		 sp.CreateType AS CreateType,
+		COUNT(sk.InstallFlag) AS AppleCount,
+		 (SELECT COUNT(ki.KnifeInventoryCode) FROM knifeinventory ki WHERE ki.ToolID = tt.ToolID AND ki.DelFlag='0') AS InventoryCount_A,
+		 (SELECT COUNT(tt1.KnifeInventoryCode) FROM tooltransfer tt1 WHERE tt1.ToolID = tt.ToolID AND tt1.InstallationState = '0' AND tt1.StockState='0' AND tt1.DelFlag = '0') AS InventoryCount_B
+		FROM  synthesisknife sk
+		LEFT JOIN  tooltransfer tt ON sk.KnifeInventoryCode = tt.KnifeInventoryCode
+		LEFT JOIN tool t ON t.ToolID = tt.ToolID
+		inner JOIN synthesisparameters sp ON sp.SynthesisParametersCode = sk.SynthesisParametersCode
+		WHERE sk.SynthesisCutterNumber != '0'  AND sk.InstallFlag='1' AND sk.DelFlag='0' AND tt.DelFlag='0' AND t.DelFlag='0'
+				AND sp.DelFlag ='0'
+		AND sk.SynthesisParametersCode=#synthesisParametersCode# 
+		AND sk.SynthesisParametersNumber=#synthesisParametersNumber#
+		GROUP BY sk.SynthesisParametersCode,sk.SynthesisParametersNumber,tt.ToolID
+	</select>
+	<!-- 查询换领数据 -->
+	<select id="findListByEntity" parameterClass="entityVgetrenewalapplication_New"  resultMap="Vgetrenewalapplication_New-map">
+		SELECT
+		sk.SynthesisParametersCode AS SynthesisParametersCode,
+
+		sk.SynthesisParametersNumber AS SynthesisParametersNumber,
+		sk.RFID AS Rfid,
+
+		 t.ToolID AS ToolID,
+		 t.ToolCode AS ToolCode,
+		 t.ToolName AS ToolName,
+		 sk.OffloadType AS OffloadType,
+
+		 sk.InstallFlag AS InstallFlag,
+
+		 sp.CreateType AS CreateType,
+
+		COUNT(sk.InstallFlag) AS AppleCount,
+
+		 (SELECT COUNT(ki.KnifeInventoryCode) FROM knifeinventory ki WHERE ki.ToolID = tt.ToolID AND ki.DelFlag='0') AS InventoryCount_A,
+
+		 (SELECT COUNT(tt1.KnifeInventoryCode) FROM tooltransfer tt1 WHERE tt1.ToolID = tt.ToolID AND tt1.InstallationState = '0' AND tt1.StockState='0' AND tt1.DelFlag = '0') AS InventoryCount_B
+		FROM  synthesisknife sk
+		LEFT JOIN  tooltransfer tt ON sk.KnifeInventoryCode = tt.KnifeInventoryCode
+		LEFT JOIN tool t ON t.ToolID = tt.ToolID
+		inner JOIN synthesisparameters sp ON sp.SynthesisParametersCode = sk.SynthesisParametersCode
+		WHERE sk.SynthesisCutterNumber != '0'  AND sk.InstallFlag='1' AND sk.DelFlag='0' AND tt.DelFlag='0' AND t.DelFlag='0'
+				AND sp.DelFlag ='0'
+		AND sk.SynthesisParametersCode=#synthesisParametersCode# 
+		AND sk.SynthesisParametersNumber=#synthesisParametersNumber#
+		GROUP BY sk.SynthesisParametersCode,sk.SynthesisParametersNumber,tt.ToolID
+	</select>
+		
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVgetrenewalapplication_New" resultMap="Vgetrenewalapplication_New-map">
+		SELECT
+		SynthesisParametersCode
+		,SynthesisParametersNumber
+		,Rfid
+		,ToolID
+		,ToolCode
+		,ToolName
+		,OffloadType
+		,InstallFlag
+		,CreateType
+		,AppleCount
+		,InventoryCount_A
+		,InventoryCount_B
+		from vgetrenewalapplication_new
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="rfid" prepend="and ">
+				Rfid = #rfid#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="offloadType" prepend="and ">
+				OffloadType = #offloadType#
+         </isNotNull>
+			<isNotNull property="installFlag" prepend="and ">
+				InstallFlag = #installFlag#
+         </isNotNull>
+			<isNotNull property="createType" prepend="and ">
+				CreateType = #createType#
+         </isNotNull>
+			<isNotNull property="appleCount" prepend="and ">
+				AppleCount = #appleCount#
+         </isNotNull>
+			<isNotNull property="inventoryCount_A" prepend="and ">
+				InventoryCount_A = #inventoryCount_A#
+         </isNotNull>
+			<isNotNull property="inventoryCount_B" prepend="and ">
+				InventoryCount_B = #inventoryCount_B#
+         </isNotNull>
+		</dynamic>
+		
+	</select>
+	<!-- 任意条件查询执行 -->
+	<select id="searchHotByList" parameterClass="entityVgetrenewalapplication_New" resultMap="Vgetrenewalapplication_New-map">
+		SELECT
+		SynthesisParametersCode
+		,SynthesisParametersNumber
+		,Rfid
+		,ToolID
+		,ToolCode
+		,ToolName
+		,OffloadType
+		,InstallFlag
+		,CreateType
+		,AppleCount
+		,InventoryCount_A
+		,InventoryCount_B
+		from vgetrenewalapplication_newhot
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="rfid" prepend="and ">
+				Rfid = #rfid#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="offloadType" prepend="and ">
+				OffloadType = #offloadType#
+         </isNotNull>
+			<isNotNull property="installFlag" prepend="and ">
+				InstallFlag = #installFlag#
+         </isNotNull>
+			<isNotNull property="createType" prepend="and ">
+				CreateType = #createType#
+         </isNotNull>
+			<isNotNull property="appleCount" prepend="and ">
+				AppleCount = #appleCount#
+         </isNotNull>
+			<isNotNull property="inventoryCount_A" prepend="and ">
+				InventoryCount_A = #inventoryCount_A#
+         </isNotNull>
+			<isNotNull property="inventoryCount_B" prepend="and ">
+				InventoryCount_B = #inventoryCount_B#
+         </isNotNull>
+		</dynamic>
+		
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVgetrenewalapplication_New" resultClass="int">
+		SELECT count(1)
+		from vgetrenewalapplication_new
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="rfid" prepend="and ">
+				Rfid = #rfid#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="offloadType" prepend="and ">
+				OffloadType = #offloadType#
+         </isNotNull>
+			<isNotNull property="installFlag" prepend="and ">
+				InstallFlag = #installFlag#
+         </isNotNull>
+			<isNotNull property="createType" prepend="and ">
+				CreateType = #createType#
+         </isNotNull>
+			<isNotNull property="appleCount" prepend="and ">
+				AppleCount = #appleCount#
+         </isNotNull>
+			<isNotNull property="inventoryCount_A" prepend="and ">
+				InventoryCount_A = #inventoryCount_A#
+         </isNotNull>
+			<isNotNull property="inventoryCount_B" prepend="and ">
+				InventoryCount_B = #inventoryCount_B#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

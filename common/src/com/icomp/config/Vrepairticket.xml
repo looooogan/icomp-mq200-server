@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vrepairticket.xml
+		Created on : 2014/10/11 14:14:14
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vrepairticket">
+	<typeAlias alias="entityVrepairticket" type="com.icomp.entity.base.Vrepairticket" />
+	<resultMap id="Vrepairticket-map" class="entityVrepairticket">
+		<!--  -->
+		<result property="toolRepairNoticeID" column="ToolRepairNoticeID" />
+		<!-- 通知时间 -->
+		<result property="noticeTime" column="NoticeTime" />
+		<!--  -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 修复方式(0厂内复磨1厂内维修2厂内图层3出厂图层4出厂维修) -->
+		<result property="repairWay" column="RepairWay" />
+		<!-- 姓名 -->
+		<result property="receiveUser" column="ReceiveUser" />
+		<!-- 领取时间 -->
+		<result property="receiveTime" column="ReceiveTime" />
+		<!--  -->
+		<result property="receiveCount" column="ReceiveCount" />
+		<!--  -->
+		<result property="returnUser" column="ReturnUser" />
+		<!-- 送回时间 -->
+		<result property="returnTimes" column="ReturnTimes" />
+		<!-- 应送回数量 -->
+		<result property="sentBackNumber" column="SentBackNumber" />
+		<!-- 实际送回数量 -->
+		<result property="realSentBackNumber" column="RealSentBackNumber" />
+		<!-- 修复丢失 -->
+		<result property="recoverLostNumber" column="RecoverLostNumber" />
+		<!--  -->
+		<result property="scrapCount" column="ScrapCount" />
+		<!--  -->
+		<result property="processingStatus" column="ProcessingStatus" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVrepairticket" resultMap="Vrepairticket-map">
+		SELECT
+		ToolRepairNoticeID
+		,NoticeTime
+		,ToolCode
+		,RepairWay
+		,ReceiveUser
+		,ReceiveTime
+		,ReceiveCount
+		,ReturnUser
+		,ReturnTimes
+		,SentBackNumber
+		,RealSentBackNumber
+		,RecoverLostNumber
+		,ScrapCount
+		,ProcessingStatus
+		from vrepairticket
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVrepairticket" resultMap="Vrepairticket-map">
+		SELECT
+		ToolRepairNoticeID
+		,NoticeTime
+		,ToolCode
+		,RepairWay
+		,ReceiveUser
+		,ReceiveTime
+		,ReceiveCount
+		,ReturnUser
+		,ReturnTimes
+		,SentBackNumber
+		,RealSentBackNumber
+		,RecoverLostNumber
+		,ScrapCount
+		,ProcessingStatus
+		from vrepairticket
+		<dynamic prepend=" where ">
+			<isNotNull property="toolRepairNoticeID" prepend="and ">
+				ToolRepairNoticeID = #toolRepairNoticeID#
+         </isNotNull>
+			<isNotNull property="noticeTime" prepend="and ">
+				NoticeTime = #noticeTime#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="repairWay" prepend="and ">
+				RepairWay = #repairWay#
+         </isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="receiveTime" prepend="and ">
+				ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNotNull property="receiveCount" prepend="and ">
+				ReceiveCount = #receiveCount#
+         </isNotNull>
+			<isNotNull property="returnUser" prepend="and ">
+				ReturnUser = #returnUser#
+         </isNotNull>
+			<isNotNull property="returnTimes" prepend="and ">
+				ReturnTimes = #returnTimes#
+         </isNotNull>
+			<isNotNull property="sentBackNumber" prepend="and ">
+				SentBackNumber = #sentBackNumber#
+         </isNotNull>
+			<isNotNull property="realSentBackNumber" prepend="and ">
+				RealSentBackNumber = #realSentBackNumber#
+         </isNotNull>
+			<isNotNull property="recoverLostNumber" prepend="and ">
+				RecoverLostNumber = #recoverLostNumber#
+         </isNotNull>
+			<isNotNull property="scrapCount" prepend="and ">
+				ScrapCount = #scrapCount#
+         </isNotNull>
+			<isNotNull property="processingStatus" prepend="and ">
+				ProcessingStatus = #processingStatus#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="0">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList_new" parameterClass="entityVrepairticket" resultMap="Vrepairticket-map">
+		SELECT
+		ToolRepairNoticeID
+		,NoticeTime
+		,ToolCode
+		,RepairWay
+		,ReceiveUser
+		,ReceiveTime
+		,ReceiveCount
+		,ReturnUser
+		,ReturnTimes
+		,SentBackNumber
+		,RealSentBackNumber
+		,RecoverLostNumber
+		,ScrapCount
+		,ProcessingStatus
+		from vrepairticket
+		where 1=1
+			<isNotNull property="toolRepairNoticeID" prepend="and ">
+				ToolRepairNoticeID = #toolRepairNoticeID#
+         </isNotNull>
+			<isNotNull property="noticeTime" prepend="and ">
+				NoticeTime = #noticeTime#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="repairWay" prepend="and ">
+				RepairWay = #repairWay#
+         </isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="receiveTime" prepend="and ">
+				ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNotNull property="receiveCount" prepend="and ">
+				ReceiveCount = #receiveCount#
+         </isNotNull>
+			<isNotNull property="returnUser" prepend="and ">
+				ReturnUser = #returnUser#
+         </isNotNull>
+			<isNotNull property="returnTimes" prepend="and ">
+				ReturnTimes = #returnTimes#
+         </isNotNull>
+			<isNotNull property="sentBackNumber" prepend="and ">
+				SentBackNumber = #sentBackNumber#
+         </isNotNull>
+			<isNotNull property="realSentBackNumber" prepend="and ">
+				RealSentBackNumber = #realSentBackNumber#
+         </isNotNull>
+			<isNotNull property="recoverLostNumber" prepend="and ">
+				RecoverLostNumber = #recoverLostNumber#
+         </isNotNull>
+			<isNotNull property="scrapCount" prepend="and ">
+				ScrapCount = #scrapCount#
+         </isNotNull>
+			<isNotNull property="processingStatus" prepend="and ">
+				ProcessingStatus = #processingStatus#
+         </isNotNull>
+		and !(ReceiveCount =0 and ToolRepairNoticeID ='' and ScrapCount=0 and ProcessingStatus=0)
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVrepairticket" resultClass="int">
+		SELECT count(1)
+		from vrepairticket
+		<dynamic prepend=" where ">
+		1=1 and !(ReceiveCount =0 and ToolRepairNoticeID ='' and ScrapCount=0 and ProcessingStatus=0)
+			<isNotNull property="toolRepairNoticeID" prepend="and ">
+				ToolRepairNoticeID = #toolRepairNoticeID#
+         </isNotNull>
+			<isNotNull property="noticeTime" prepend="and ">
+				NoticeTime = #noticeTime#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="repairWay" prepend="and ">
+				RepairWay = #repairWay#
+         </isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="receiveTime" prepend="and ">
+				ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNotNull property="receiveCount" prepend="and ">
+				ReceiveCount = #receiveCount#
+         </isNotNull>
+			<isNotNull property="returnUser" prepend="and ">
+				ReturnUser = #returnUser#
+         </isNotNull>
+			<isNotNull property="returnTimes" prepend="and ">
+				ReturnTimes = #returnTimes#
+         </isNotNull>
+			<isNotNull property="sentBackNumber" prepend="and ">
+				SentBackNumber = #sentBackNumber#
+         </isNotNull>
+			<isNotNull property="realSentBackNumber" prepend="and ">
+				RealSentBackNumber = #realSentBackNumber#
+         </isNotNull>
+			<isNotNull property="recoverLostNumber" prepend="and ">
+				RecoverLostNumber = #recoverLostNumber#
+         </isNotNull>
+			<isNotNull property="scrapCount" prepend="and ">
+				ScrapCount = #scrapCount#
+         </isNotNull>
+			<isNotNull property="processingStatus" prepend="and ">
+				ProcessingStatus = #processingStatus#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

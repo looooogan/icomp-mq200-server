@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="icomp-default" extends="struts-default">
+		<!--
+			<interceptors> 
+			<interceptor name="exceptionInterceptor" class="com.icomp.core.Interceptor"/> 
+			<interceptor-stack name="icompStack" > 
+			<interceptor-ref name="exceptionInterceptor" />
+			<interceptor-ref name="defaultStack"/> 
+			</interceptor-stack>
+			</interceptors> 
+			<default-interceptor-ref name="icompStack"/>
+		-->
+		<global-results>
+			<result name="error">/WEB-INF/jsp/error.jsp</result>
+			<result name="login">/WEB-INF/jsp/login.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="com.icomp.common.exception.ApplicationException" />
+			<exception-mapping result="login" exception="com.icomp.common.exception.LoginException" />
+			<exception-mapping result="error" exception="CannotCreateTransactionException" />
+			<exception-mapping result="error" exception="SQLNestedException" />
+			<exception-mapping result="error" exception="CommunicationsException" />
+			<exception-mapping result="error" exception="ConnectException" />
+		</global-exception-mappings>
+
+	</package>
+</struts>

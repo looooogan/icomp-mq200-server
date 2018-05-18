@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Capitaltakes.xml
+    Created on : 2014/08/19 15:48:44
+
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="CapitalTakes">
+    <typeAlias alias="entityCapitalTakes" type="com.icomp.entity.base.CapitalTakes"/>
+    <resultMap id="capitalTakes-map" class="entityCapitalTakes">
+        <!-- 刀具ID -->
+        <result property="toolType" column="ToolType"/>
+        <result property="toolCode" column="ToolCode"/>
+        <result property="numberDevices" column="NumberDevices"/>
+        <result property="numberDevices1" column="NumberDevices1"/>
+        <!--<result property="numberDevices2" column="NumberDevices2"/>-->
+        <result property="numberDevices3" column="NumberDevices3"/>
+        <result property="numberDevices4" column="NumberDevices4"/>
+        <result property="numberDevices5" column="NumberDevices5"/>
+        <!--<result property="numberDevices6" column="NumberDevices6"/>-->
+        <result property="sprice" column="Sprice"/>
+        <result property="expandSpace1" column="ExpandSpace1"/>
+        <!--<result property="expandSpace2" column="Daibaofei"/>-->
+
+
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByList" parameterClass="entityCapitalTakes" resultMap="capitalTakes-map">
+        select
+        ROUND(case WHEN b.toolType = '1' THEN SUM(b.kf) ELSE SUM(b.kf + b.bd + b.cndxm + b.cwdxm + b.cwxm + b.scx) end,2) sprice,
+        b.kf NumberDevices4,
+        b.bd NumberDevices5,
+        b.cndxm NumberDevices,
+        b.cwdxm NumberDevices1,
+        b.cwxm NumberDevices3,
+        b.scx ExpandSpace1,
+        b.ToolCode as ToolType,
+        b.ToolCode
+        from
+        (
+        select
+        a.kf,
+        CASE WHEN a.ToolType = '1' THEN '-' ELSE ROUND(a.bd,2) END bd ,
+        CASE WHEN a.ToolType = '1' THEN '-'
+        WHEN a.cndxm &lt; 0 THEN 0.00
+        ELSE ROUND(a.cndxm,2) END cndxm,
+        CASE WHEN a.ToolType = '1' THEN '-'
+        WHEN a.cwdxm &lt; 0 THEN 0.00
+        ELSE ROUND(a.cwdxm,2) END cwdxm,
+        CASE WHEN a.ToolType = '1' THEN '-'
+        WHEN a.cwxm &lt; 0 THEN 0.00
+        ELSE ROUND(a.cwxm,2) END cwxm,
+        CASE WHEN a.ToolType = '1' THEN '-'
+        WHEN a.scx &lt; 0 THEN 0.00
+        ELSE ROUND(a.scx,2) END scx,
+        a.ToolCode,
+        a.toolType
+        from (
+
+        SELECT
+        IF(kn.KnifelnventoryNumber*t.ToolPrice,kn.KnifelnventoryNumber*t.ToolPrice,0) kf ,
+        IF(
+        case WHEN t.ToolParametersType = '1' THEN (total.SpareKnifeSum-SUM(tsf.UsageCounter)/(t.ToolNumber*COUNT(tsf.toolID)))*t.ToolPrice
+        WHEN t.ToolParametersType != '1' AND ToolConsumetype = '1' THEN total.SpareKnifeSum*t.ToolPrice
+        ELSE  total.SpareKnifeSum/2*t.ToolPrice END,
+        case
+        WHEN t.ToolParametersType = '1' THEN (total.SpareKnifeSum-SUM(tsf.UsageCounter)/(t.ToolNumber*COUNT(tsf.toolID)))*t.ToolPrice
+        WHEN t.ToolParametersType != '1' AND ToolConsumetype = '1' THEN total.SpareKnifeSum*t.ToolPrice
+        ELSE  total.SpareKnifeSum/2*t.ToolPrice END,0) bd,
+
+        IF(
+        case
+        WHEN total.GrindingFactorySnum = '0' THEN 0
+        WHEN t.ToolParametersType = '1' THEN (total.GrindingFactorySnum-SUM(tsf.UsageCounter)/(t.ToolNumber*COUNT(tsf.toolID)))*t.ToolPrice
+        WHEN t.ToolParametersType = '0' AND ToolConsumetype = '2' THEN total.GrindingFactorySnum*t.ToolPrice
+        ELSE total.GrindingFactorySnum/2*t.ToolPrice END,
+        case
+        WHEN total.GrindingFactorySnum = '0' THEN 0
+        WHEN t.ToolParametersType = '1' THEN (total.GrindingFactorySnum-SUM(tsf.UsageCounter)/(t.ToolNumber*COUNT(tsf.toolID)))*t.ToolPrice
+        WHEN t.ToolParametersType = '0' AND ToolConsumetype = '2' THEN total.GrindingFactorySnum*t.ToolPrice
+        ELSE total.GrindingFactorySnum/2*t.ToolPrice END,0) cndxm,
+
+        IF(
+        case
+        WHEN total.StayExternalGrindingSum = '0' THEN 0
+        WHEN t.ToolParametersType = '1' THEN (total.StayExternalGrindingSum-SUM(tsf.UsageCounter)/(t.ToolNumber*COUNT(tsf.toolID)))*t.ToolPrice
+        WHEN t.ToolParametersType = '0' AND ToolConsumetype = '2' THEN total.StayExternalGrindingSum*t.ToolPrice
+        ELSE total.StayExternalGrindingSum/2*t.ToolPrice END,
+        case
+        WHEN total.StayExternalGrindingSum = '0' THEN 0
+        WHEN t.ToolParametersType = '1' THEN (total.StayExternalGrindingSum-SUM(tsf.UsageCounter)/(t.ToolNumber*COUNT(tsf.toolID)))*t.ToolPrice
+        WHEN t.ToolParametersType = '0' AND ToolConsumetype = '2' THEN total.StayExternalGrindingSum*t.ToolPrice
+        ELSE total.StayExternalGrindingSum/2*t.ToolPrice END,0) cwdxm,
+        IF(
+        case WHEN total.ExternalGrindingSum = '0' THEN 0
+        WHEN t.ToolParametersType = '1' THEN (total.ExternalGrindingSum-SUM(tsf.UsageCounter)/(t.ToolNumber*COUNT(tsf.toolID)))*t.ToolPrice
+        WHEN t.ToolParametersType = '0' AND ToolConsumetype = '2' THEN total.ExternalGrindingSum*t.ToolPrice
+        ELSE total.ExternalGrindingSum/2*t.ToolPrice END,
+        case WHEN total.ExternalGrindingSum = '0' THEN 0
+        WHEN t.ToolParametersType = '1' THEN (total.ExternalGrindingSum-SUM(tsf.UsageCounter)/(t.ToolNumber*COUNT(tsf.toolID)))*t.ToolPrice
+        WHEN t.ToolParametersType = '0' AND ToolConsumetype = '2' THEN total.ExternalGrindingSum*t.ToolPrice
+        ELSE total.ExternalGrindingSum/2*t.ToolPrice END,0) cwxm,
+        IF(
+        case
+        WHEN total.ProductionLineSum = '0' THEN 0
+        WHEN t.ToolParametersType = '1' THEN (total.ProductionLineSum-SUM(tsf.UsageCounter)/(t.ToolNumber*COUNT(tsf.toolID)))*t.ToolPrice
+        WHEN t.ToolParametersType = '0' AND ToolConsumetype = '2' THEN total.ProductionLineSum*t.ToolPrice
+        ELSE total.ProductionLineSum/2*t.ToolPrice END,
+        case
+        WHEN total.ProductionLineSum = '0' THEN 0
+        WHEN t.ToolParametersType = '1' THEN (total.ProductionLineSum-SUM(tsf.UsageCounter)/(t.ToolNumber*COUNT(tsf.toolID)))*t.ToolPrice
+        WHEN t.ToolParametersType = '0' AND ToolConsumetype = '2' THEN total.ProductionLineSum*t.ToolPrice
+        ELSE total.ProductionLineSum/2*t.ToolPrice END,0) scx,
+        total.SpareKnifeSum,
+        total.ToolCode,
+        t.toolType
+        FROM
+        tooltransferTotal total
+        LEFT JOIN tool t on total.ToolCode = t.ToolCode AND t.DelFlag = '0'
+        LEFT JOIN knifeinventory kn on t.toolID =  kn.toolID AND kn.DelFlag = '0'
+        LEFT JOIN tooltransfer tsf ON t.toolID = tsf.toolID and tsf.DelFlag = '0'
+        WHERE t.ToolType = '0'
+        GROUP BY total.ToolCode
+
+        ) a
+        ) b
+
+        <dynamic prepend="where">
+            <isNotNull property="toolType" prepend="and ">
+                ToolCode like concat('%',#toolType#,'%')
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+            </isNotNull>
+
+        </dynamic>
+        GROUP BY ToolCode
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+
+    </select>
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityCapitalTakes" resultClass="int">
+        SELECT count(1) FROM (
+        select
+        ROUND(case WHEN b.toolType = '1' THEN SUM(b.kf) ELSE SUM(b.kf + b.bd + b.cndxm + b.cwdxm + b.cwxm + b.scx) end,2) sprice,
+        b.kf numberDevices4,
+        b.bd numberDevices5,
+        b.cndxm numberDevices,
+        b.cwdxm numberDevices1,
+        b.cwxm numberDevices3,
+        b.scx expandSpace1,
+        b.ToolCode as ToolType,
+        b.ToolCode
+        from
+        (
+        select
+        a.kf,
+        CASE WHEN a.ToolType = '1' THEN '-' ELSE ROUND(a.bd,2) END bd ,
+        CASE WHEN a.ToolType = '1' THEN '-'
+        WHEN a.cndxm &lt; 0 THEN 0.00
+        ELSE ROUND(a.cndxm,2) END cndxm,
+        CASE WHEN a.ToolType = '1' THEN '-'
+        WHEN a.cwdxm &lt; 0 THEN 0.00
+        ELSE ROUND(a.cwdxm,2) END cwdxm,
+        CASE WHEN a.ToolType = '1' THEN '-'
+        WHEN a.cwxm &lt; 0 THEN 0.00
+        ELSE ROUND(a.cwxm,2) END cwxm,
+        CASE WHEN a.ToolType = '1' THEN '-'
+        WHEN a.scx &lt; 0 THEN 0.00
+        ELSE ROUND(a.scx,2) END scx,
+        a.ToolCode,
+        a.toolType
+        from (
+
+        SELECT
+        IF(kn.KnifelnventoryNumber*t.ToolPrice,kn.KnifelnventoryNumber*t.ToolPrice,0) kf ,
+        IF(
+        case
+        WHEN t.ToolParametersType = '1' THEN total.SpareKnifeSum*t.ToolPrice
+        WHEN t.ToolParametersType != '1' AND ToolConsumetype = '1' THEN total.SpareKnifeSum*t.ToolPrice
+        ELSE  total.SpareKnifeSum/2*t.ToolPrice END,
+        case
+        WHEN t.ToolParametersType = '1' THEN total.SpareKnifeSum*t.ToolPrice
+        WHEN t.ToolParametersType != '1' AND ToolConsumetype = '1' THEN total.SpareKnifeSum*t.ToolPrice
+        ELSE  total.SpareKnifeSum/2*t.ToolPrice END,0) bd,
+
+        IF(case WHEN total.GrindingFactorySnum = '0' THEN 0
+        WHEN t.ToolParametersType = '1' THEN (total.GrindingFactorySnum-SUM(tsf.UsageCounter)/(t.ToolNumber*COUNT(tsf.toolID)))*t.ToolPrice
+        ELSE total.GrindingFactorySnum/2*t.ToolPrice END,case WHEN total.GrindingFactorySnum = '0' THEN 0
+        WHEN t.ToolParametersType = '1' THEN (total.GrindingFactorySnum-SUM(tsf.UsageCounter)/(t.ToolNumber*COUNT(tsf.toolID)))*t.ToolPrice
+        ELSE total.GrindingFactorySnum/2*t.ToolPrice END,0) cndxm,
+
+        IF(case WHEN total.StayExternalGrindingSum = '0' THEN 0
+        WHEN t.ToolParametersType = '1' THEN (total.StayExternalGrindingSum-SUM(tsf.UsageCounter)/(t.ToolNumber*COUNT(tsf.toolID)))*t.ToolPrice
+        ELSE total.StayExternalGrindingSum/2*t.ToolPrice END,case WHEN total.StayExternalGrindingSum = '0' THEN 0
+        WHEN t.ToolParametersType = '1' THEN (total.StayExternalGrindingSum-SUM(tsf.UsageCounter)/(t.ToolNumber*COUNT(tsf.toolID)))*t.ToolPrice
+        ELSE total.StayExternalGrindingSum/2*t.ToolPrice END,0) cwdxm,
+        IF(case WHEN total.ExternalGrindingSum = '0' THEN 0
+        WHEN t.ToolParametersType = '1' THEN (total.ExternalGrindingSum-SUM(tsf.UsageCounter)/(t.ToolNumber*COUNT(tsf.toolID)))*t.ToolPrice
+        ELSE total.ExternalGrindingSum/2*t.ToolPrice END,case WHEN total.ExternalGrindingSum = '0' THEN 0
+        WHEN t.ToolParametersType = '1' THEN (total.ExternalGrindingSum-SUM(tsf.UsageCounter)/(t.ToolNumber*COUNT(tsf.toolID)))*t.ToolPrice
+        ELSE total.ExternalGrindingSum/2*t.ToolPrice END,0) cwxm,
+        IF(case WHEN total.ProductionLineSum = '0' THEN 0
+        WHEN t.ToolParametersType = '1' THEN (total.ProductionLineSum-SUM(tsf.UsageCounter)/(t.ToolNumber*COUNT(tsf.toolID)))*t.ToolPrice
+        ELSE total.ProductionLineSum/2*t.ToolPrice END,case WHEN total.ProductionLineSum = '0' THEN 0
+        WHEN t.ToolParametersType = '1' THEN (total.ProductionLineSum-SUM(tsf.UsageCounter)/(t.ToolNumber*COUNT(tsf.toolID)))*t.ToolPrice
+        ELSE total.ProductionLineSum/2*t.ToolPrice END,0) scx,
+        total.SpareKnifeSum,
+        total.ToolCode,
+        t.toolType
+        FROM
+        tooltransferTotal total
+        LEFT JOIN tool t on total.ToolCode = t.ToolCode AND t.DelFlag = '0'
+        LEFT JOIN knifeinventory kn on t.toolID =  kn.toolID AND kn.DelFlag = '0'
+        LEFT JOIN tooltransfer tsf ON t.toolID = tsf.toolID and tsf.DelFlag = '0'
+        WHERE t.ToolType = '0'
+        GROUP BY total.ToolCode
+
+        ) a
+        ) b
+        GROUP BY ToolCode
+        ) c
+        <dynamic prepend=" where ">
+            <isNotNull property="toolType" prepend="and ">
+                ToolCode like concat('%',#toolType#,'%')
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+            </isNotNull>
+            <isNotNull property="numberDevices" prepend="and ">
+                NumberDevices = #numberDevices#
+            </isNotNull>
+            <isNotNull property="numberDevices1" prepend="and ">
+                NumberDevices1 = #numberDevices1#
+            </isNotNull>
+            <isNotNull property="numberDevices2" prepend="and ">
+                NumberDevices2 = #numberDevices2#
+            </isNotNull>
+            <isNotNull property="numberDevices3" prepend="and ">
+                NumberDevices3 = #numberDevices3#
+            </isNotNull>
+            <isNotNull property="numberDevices4" prepend="and ">
+                NumberDevices4 = #numberDevices4#
+            </isNotNull>
+            <isNotNull property="numberDevices5" prepend="and ">
+                NumberDevices5 = #numberDevices5#
+            </isNotNull>
+            <isNotNull property="numberDevices6" prepend="and ">
+                NumberDevices6 = #numberDevices6#
+            </isNotNull>
+
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+
+    </select>
+
+</sqlMap>
+

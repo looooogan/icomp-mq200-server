@@ -1,0 +1,1062 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Replacement.xml
+		Created on : 2016/05/24 19:40:49
+		Author : 工具自动生成
+		Description: 工具自动生成包含申领申请的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Replacement">
+	<typeAlias alias="entityReplacement" type="com.icomp.entity.base.Replacement" />
+	<resultMap id="Replacement-map" class="entityReplacement">
+		<!-- 申领申请流水号 -->
+		<result property="replacementID" column="ReplacementID" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 剩余申请数量 -->
+		<result property="appliedNumber" column="AppliedNumber" />
+		<!-- 申请人 -->
+		<result property="applyUser" column="ApplyUser" />
+		<!-- 申请时间 -->
+		<result property="applyTime" column="ApplyTime" />
+		<!-- 申领原因 -->
+		<result property="replacementReason" column="ReplacementReason" />
+		<!-- 领取人（借用人） -->
+		<result property="receiveUser" column="ReceiveUser" />
+		<!-- 领取时间（借用时间） -->
+		<result property="receiveTime" column="ReceiveTime" />
+		<!-- 处理状态(0申请中1已补领2未到期3.已归还) -->
+		<result property="processingStatus" column="ProcessingStatus" />
+		<!-- 部门ID -->
+		<result property="departmentID" column="DepartmentID" />
+		<!-- 申领区分(0补领周转1借用2特殊领用) -->
+		<result property="replacementFlag" column="ReplacementFlag" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+		<!-- 申请人id -->
+		<result property="applyID" column="ApplyID" />
+		<!-- 申请总数量 -->
+		<result property="appliedTotalNumber" column="AppliedTotalNumber" />
+	</resultMap>
+
+	<resultMap id="Replacement-map-N" class="entityReplacement">
+		<!-- 申领申请流水号 -->
+		<result property="replacementID" column="ReplacementID" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 剩余申请数量 -->
+		<result property="appliedNumber" column="AppliedNumber" />
+		<!-- 申请人 -->
+		<result property="applyUserWhere" column="ApplyUser" />
+		<!-- 申请时间 -->
+		<result property="applyTime" column="ApplyTime" />
+		<!-- 申领原因 -->
+		<result property="replacementReason" column="ReplacementReason" />
+		<!-- 领取人 -->
+		<result property="receiveUserWhere" column="ReceiveUser" />
+		<!-- 领取时间 -->
+		<result property="receiveTime" column="ReceiveTime" />
+		<!-- 处理状态(0申请中1已换领) -->
+		<result property="processingStatus" column="ProcessingStatus" />
+		<!-- 申领区分(0扩能1外借2工艺试验) -->
+		<result property="replacementFlag" column="ReplacementFlag" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+		<!-- 申请总数量 -->
+		<result property="appliedTotalNumber" column="AppliedTotalNumber" />
+	</resultMap>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByListWithUSername" parameterClass="entityReplacement"
+		resultMap="Replacement-map-N">
+		SELECT
+		ReplacementID
+		,ToolCode
+		,AppliedNumber
+		, (SELECT u.UserName FROM
+		userdetail u WHERE u.CustomerID = replacement.ApplyUser ) AS ApplyUser
+		,ApplyTime
+		,ReplacementReason
+		,(SELECT u2.UserName FROM userdetail u2
+		WHERE u2.CustomerID = replacement.ReceiveUser ) AS ReceiveUser
+		,ReceiveTime
+		,ProcessingStatus
+		,ReplacementFlag
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		,AppliedTotalNumber
+		from replacement
+		<dynamic prepend=" where ">
+			<isNotNull property="replacementID" prepend="and ">
+				ReplacementID =
+				#replacementID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode =
+				#toolCode#
+         </isNotNull>
+			<isNotNull property="appliedNumber" prepend="and ">
+				AppliedNumber =
+				#appliedNumber#
+         </isNotNull>
+			<isNotNull property="applyUser" prepend="and ">
+				ApplyUser in
+				(SELECT u2.CustomerID FROM userdetail u2 WHERE u2.UserName
+				=#applyUser#)
+         </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				ApplyTime >= #dateStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				ApplyTime <= #dateEnd#
+				]]>
+			</isNotNull>
+			<isNotNull property="replacementReason" prepend="and ">
+				ReplacementReason = #replacementReason#
+         </isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser like concat('%',#receiveUser#,'%')
+         </isNotNull>
+			<isNotNull property="receiveTime" prepend="and ">
+				ReceiveTime =
+				#receiveTime#
+			</isNotNull>
+			<isNotNull property="processingStatus" prepend="and ">
+				ProcessingStatus = #processingStatus#
+         </isNotNull>
+			<isNotNull property="replacementFlag" prepend="and ">
+				ReplacementFlag = #replacementFlag#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime =
+				#updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser =
+				#updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime =
+				#createTime#
+			</isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser =
+				#createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+			</isNotNull>
+			<isNotNull property="appliedTotalNumber" prepend="and ">
+				AppliedTotalNumber = #appliedTotalNumber#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+			ReplacementID
+			,ToolCode
+     </isNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT
+			$rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityReplacement" resultMap="Replacement-map">
+		SELECT
+		ReplacementID
+		,ToolCode
+		,AppliedNumber
+		,ApplyUser
+		,ApplyTime
+		,ReplacementReason
+		,ReceiveUser
+		,ReceiveTime
+		,ProcessingStatus
+		,DepartmentID
+		,ReplacementFlag
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		,ApplyID
+		,AppliedTotalNumber
+		from replacement
+		<dynamic prepend=" where ">
+			<isNotNull property="replacementID" prepend="and ">
+				ReplacementID = #replacementID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					ReplacementID
+					,ToolCode
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityReplacement" resultMap="Replacement-map">
+		SELECT
+		ReplacementID
+		,ToolCode
+		,AppliedNumber
+		,ApplyUser
+		,ApplyTime
+		,ReplacementReason
+		,ReceiveUser
+		,ReceiveTime
+		,ProcessingStatus
+		,DepartmentID
+		,ReplacementFlag
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		,ApplyID
+		,AppliedTotalNumber
+		from replacement
+		<dynamic prepend=" where ">
+			<isNotNull property="replacementID" prepend="and ">
+				ReplacementID = #replacementID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="appliedNumber" prepend="and ">
+				AppliedNumber = #appliedNumber#
+         </isNotNull>
+			<isNotNull property="applyUser" prepend="and ">
+				ApplyUser = #applyUser#
+         </isNotNull>
+			<isNotNull property="applyTime" prepend="and ">
+				ApplyTime = #applyTime#
+         </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				ApplyTime >= #dateStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				ApplyTime <= #dateEnd#
+				]]>
+			</isNotNull>
+			<isNotNull property="replacementReason" prepend="and ">
+				ReplacementReason = #replacementReason#
+         </isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="receiveTime" prepend="and ">
+				ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNotNull property="processingStatus" prepend="and ">
+				ProcessingStatus = #processingStatus#
+         </isNotNull>
+			<isNotNull property="departmentID" prepend="and ">
+				DepartmentID = #departmentID#
+         </isNotNull>
+			<isNotNull property="replacementFlag" prepend="and ">
+				ReplacementFlag = #replacementFlag#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="applyID" prepend="and ">
+				ApplyID = #applyID#
+         </isNotNull>
+         	<isNotNull property="appliedTotalNumber" prepend="and ">
+				AppliedTotalNumber = #appliedTotalNumber#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					ReplacementID
+					,ToolCode
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityReplacement" resultClass="int">
+		SELECT count(1)
+		from replacement
+		<dynamic prepend=" where ">
+			<isNotNull property="replacementID" prepend="and ">
+				ReplacementID = #replacementID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="appliedNumber" prepend="and ">
+				AppliedNumber = #appliedNumber#
+         </isNotNull>
+			<isNotNull property="applyUser" prepend="and ">
+				ApplyUser = #applyUser#
+         </isNotNull>
+			<isNotNull property="applyTime" prepend="and ">
+				ApplyTime = #applyTime#
+         </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				ApplyTime >= #dateStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				ApplyTime <= #dateEnd#
+				]]>
+			</isNotNull>
+			<isNotNull property="replacementReason" prepend="and ">
+				ReplacementReason = #replacementReason#
+         </isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="receiveTime" prepend="and ">
+				ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNotNull property="processingStatus" prepend="and ">
+				ProcessingStatus = #processingStatus#
+         </isNotNull>
+			<isNotNull property="departmentID" prepend="and ">
+				DepartmentID = #departmentID#
+         </isNotNull>
+			<isNotNull property="replacementFlag" prepend="and ">
+				ReplacementFlag = #replacementFlag#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="applyID" prepend="and ">
+				ApplyID = #applyID#
+         </isNotNull>
+         	<isNotNull property="appliedTotalNumber" prepend="and ">
+				AppliedTotalNumber = #appliedTotalNumber#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityReplacement">
+		update replacement
+		<dynamic prepend="set">
+			<isNotNull property="replacementID">
+				ReplacementID = #replacementID#
+         </isNotNull>
+			<isNull property="replacementID">
+				ReplacementID = null
+         </isNull>
+			<isNotNull property="toolCode">
+				,ToolCode = #toolCode#
+         </isNotNull>
+			<isNull property="toolCode">
+				,ToolCode = null
+         </isNull>
+			<isNotNull property="appliedNumber">
+				,AppliedNumber = #appliedNumber#
+         </isNotNull>
+			<isNull property="appliedNumber">
+				,AppliedNumber = null
+         </isNull>
+			<isNotNull property="applyUser">
+				,ApplyUser = #applyUser#
+         </isNotNull>
+			<isNull property="applyUser">
+				,ApplyUser = null
+         </isNull>
+			<isNotNull property="applyTime">
+				,ApplyTime = #applyTime#
+         </isNotNull>
+			<isNull property="applyTime">
+				,ApplyTime = null
+         </isNull>
+			<isNotNull property="replacementReason">
+				,ReplacementReason = #replacementReason#
+         </isNotNull>
+			<isNull property="replacementReason">
+				,ReplacementReason = null
+         </isNull>
+			<isNotNull property="receiveUser">
+				,ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNull property="receiveUser">
+				,ReceiveUser = null
+         </isNull>
+			<isNotNull property="receiveTime">
+				,ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNull property="receiveTime">
+				,ReceiveTime = null
+         </isNull>
+			<isNotNull property="processingStatus">
+				,ProcessingStatus = #processingStatus#
+         </isNotNull>
+			<isNull property="processingStatus">
+				,ProcessingStatus = null
+         </isNull>
+			<isNotNull property="departmentID">
+				,DepartmentID = #departmentID#
+         </isNotNull>
+			<isNull property="departmentID">
+				,DepartmentID = null
+         </isNull>
+			<isNotNull property="replacementFlag">
+				,ReplacementFlag = #replacementFlag#
+         </isNotNull>
+			<isNull property="replacementFlag">
+				,ReplacementFlag = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+			<isNotNull property="applyID">
+				,ApplyID = #applyID#
+         </isNotNull>
+			<isNull property="applyID">
+				,ApplyID = null
+         </isNull>
+         	<isNotNull property="appliedTotalNumber">
+				,AppliedTotalNumber = #appliedTotalNumber#
+         </isNotNull>
+			<isNull property="appliedTotalNumber">
+				,AppliedTotalNumber = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="replacementIDWhere" prepend="and ">
+				ReplacementID = #replacementIDWhere#
+         </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode = #toolCodeWhere#
+         </isNotNull>
+			<isNotNull property="appliedNumberWhere" prepend="and ">
+				AppliedNumber = #appliedNumberWhere#
+         </isNotNull>
+			<isNotNull property="applyUserWhere" prepend="and ">
+				ApplyUser = #applyUserWhere#
+         </isNotNull>
+			<isNotNull property="applyTimeWhere" prepend="and ">
+				ApplyTime = #applyTimeWhere#
+         </isNotNull>
+			<isNotNull property="replacementReasonWhere" prepend="and ">
+				ReplacementReason = #replacementReasonWhere#
+         </isNotNull>
+			<isNotNull property="receiveUserWhere" prepend="and ">
+				ReceiveUser = #receiveUserWhere#
+         </isNotNull>
+			<isNotNull property="receiveTimeWhere" prepend="and ">
+				ReceiveTime = #receiveTimeWhere#
+         </isNotNull>
+			<isNotNull property="processingStatusWhere" prepend="and ">
+				ProcessingStatus = #processingStatusWhere#
+         </isNotNull>
+			<isNotNull property="departmentIDWhere" prepend="and ">
+				DepartmentID = #departmentIDWhere#
+         </isNotNull>
+			<isNotNull property="replacementFlagWhere" prepend="and ">
+				ReplacementFlag = #replacementFlagWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+			<isNotNull property="applyIDWhere" prepend="and ">
+				ApplyID = #applyIDWhere#
+         </isNotNull>
+         	<isNotNull property="appliedTotalNumberWhere" prepend="and ">
+				AppliedTotalNumber = #appliedTotalNumberWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityReplacement">
+		update replacement
+		<dynamic prepend="set">
+			<isNotNull property="replacementID"  prepend=",">
+				ReplacementID = #replacementID#
+         </isNotNull>
+			<isNotNull property="toolCode"  prepend=",">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="appliedNumber"  prepend=",">
+				AppliedNumber = #appliedNumber#
+         </isNotNull>
+			<isNotNull property="applyUser"  prepend=",">
+				ApplyUser = #applyUser#
+         </isNotNull>
+			<isNotNull property="applyTime"  prepend=",">
+				ApplyTime = #applyTime#
+         </isNotNull>
+			<isNotNull property="replacementReason"  prepend=",">
+				ReplacementReason = #replacementReason#
+         </isNotNull>
+			<isNotNull property="receiveUser"  prepend=",">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="receiveTime"  prepend=",">
+				ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNotNull property="processingStatus"  prepend=",">
+				ProcessingStatus = #processingStatus#
+         </isNotNull>
+			<isNotNull property="departmentID"  prepend=",">
+				DepartmentID = #departmentID#
+         </isNotNull>
+			<isNotNull property="replacementFlag"  prepend=",">
+				ReplacementFlag = #replacementFlag#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="applyID"  prepend=",">
+				ApplyID = #applyID#
+         </isNotNull>
+         	<isNotNull property="appliedTotalNumber"  prepend=",">
+				AppliedTotalNumber = #appliedTotalNumber#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="replacementIDWhere" prepend="and ">
+				ReplacementID = #replacementIDWhere#
+         </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode = #toolCodeWhere#
+         </isNotNull>
+			<isNotNull property="appliedNumberWhere" prepend="and ">
+				AppliedNumber = #appliedNumberWhere#
+         </isNotNull>
+			<isNotNull property="applyUserWhere" prepend="and ">
+				ApplyUser = #applyUserWhere#
+         </isNotNull>
+			<isNotNull property="applyTimeWhere" prepend="and ">
+				ApplyTime = #applyTimeWhere#
+         </isNotNull>
+			<isNotNull property="replacementReasonWhere" prepend="and ">
+				ReplacementReason = #replacementReasonWhere#
+         </isNotNull>
+			<isNotNull property="receiveUserWhere" prepend="and ">
+				ReceiveUser = #receiveUserWhere#
+         </isNotNull>
+			<isNotNull property="receiveTimeWhere" prepend="and ">
+				ReceiveTime = #receiveTimeWhere#
+         </isNotNull>
+			<isNotNull property="processingStatusWhere" prepend="and ">
+				ProcessingStatus = #processingStatusWhere#
+         </isNotNull>
+			<isNotNull property="departmentIDWhere" prepend="and ">
+				DepartmentID = #departmentIDWhere#
+         </isNotNull>
+			<isNotNull property="replacementFlagWhere" prepend="and ">
+				ReplacementFlag = #replacementFlagWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+			<isNotNull property="applyIDWhere" prepend="and ">
+				ApplyID = #applyIDWhere#
+         </isNotNull>
+         	<isNotNull property="appliedTotalNumberWhere" prepend="and ">
+				AppliedTotalNumber = #appliedTotalNumberWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityReplacement">
+		<selectKey resultClass="java.lang.String" keyProperty="replacementID">
+			SELECT #replacementID# as replacementID FROM DUAL
+     </selectKey>
+		insert into replacement(
+		ReplacementID
+		,ToolCode
+		,AppliedNumber
+		,ApplyUser
+		,ApplyTime
+		,ReplacementReason
+		,ReceiveUser
+		,ReceiveTime
+		,ProcessingStatus
+		,DepartmentID
+		,ReplacementFlag
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		,ApplyID
+		,AppliedTotalNumber
+		)
+		Values (
+			<isNotNull property="replacementID">
+				#replacementID#
+         </isNotNull>
+			<isNull property="replacementID">
+				null
+         </isNull>
+			<isNotNull property="toolCode">
+				,#toolCode#
+         </isNotNull>
+			<isNull property="toolCode">
+				,null
+         </isNull>
+			<isNotNull property="appliedNumber">
+				,#appliedNumber#
+         </isNotNull>
+			<isNull property="appliedNumber">
+				,null
+         </isNull>
+			<isNotNull property="applyUser">
+				,#applyUser#
+         </isNotNull>
+			<isNull property="applyUser">
+				,null
+         </isNull>
+			<isNotNull property="applyTime">
+				,#applyTime#
+         </isNotNull>
+			<isNull property="applyTime">
+				,null
+         </isNull>
+			<isNotNull property="replacementReason">
+				,#replacementReason#
+         </isNotNull>
+			<isNull property="replacementReason">
+				,null
+         </isNull>
+			<isNotNull property="receiveUser">
+				,#receiveUser#
+         </isNotNull>
+			<isNull property="receiveUser">
+				,null
+         </isNull>
+			<isNotNull property="receiveTime">
+				,#receiveTime#
+         </isNotNull>
+			<isNull property="receiveTime">
+				,null
+         </isNull>
+			<isNotNull property="processingStatus">
+				,#processingStatus#
+         </isNotNull>
+			<isNull property="processingStatus">
+				,null
+         </isNull>
+			<isNotNull property="departmentID">
+				,#departmentID#
+         </isNotNull>
+			<isNull property="departmentID">
+				,null
+         </isNull>
+			<isNotNull property="replacementFlag">
+				,#replacementFlag#
+         </isNotNull>
+			<isNull property="replacementFlag">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+			<isNotNull property="applyID">
+				,#applyID#
+         </isNotNull>
+			<isNull property="applyID">
+				,null
+         </isNull>
+         	<isNotNull property="appliedTotalNumber">
+				,#appliedTotalNumber#
+         </isNotNull>
+			<isNull property="appliedTotalNumber">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityReplacement">
+		delete  from replacement
+		<dynamic prepend=" where ">
+			<isNotNull property="replacementIDWhere" prepend="and ">
+				ReplacementID = #replacementIDWhere#
+         </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode = #toolCodeWhere#
+         </isNotNull>
+			<isNotNull property="appliedNumberWhere" prepend="and ">
+				AppliedNumber = #appliedNumberWhere#
+         </isNotNull>
+			<isNotNull property="applyUserWhere" prepend="and ">
+				ApplyUser = #applyUserWhere#
+         </isNotNull>
+			<isNotNull property="applyTimeWhere" prepend="and ">
+				ApplyTime = #applyTimeWhere#
+         </isNotNull>
+			<isNotNull property="replacementReasonWhere" prepend="and ">
+				ReplacementReason = #replacementReasonWhere#
+         </isNotNull>
+			<isNotNull property="receiveUserWhere" prepend="and ">
+				ReceiveUser = #receiveUserWhere#
+         </isNotNull>
+			<isNotNull property="receiveTimeWhere" prepend="and ">
+				ReceiveTime = #receiveTimeWhere#
+         </isNotNull>
+			<isNotNull property="processingStatusWhere" prepend="and ">
+				ProcessingStatus = #processingStatusWhere#
+         </isNotNull>
+			<isNotNull property="departmentIDWhere" prepend="and ">
+				DepartmentID = #departmentIDWhere#
+         </isNotNull>
+			<isNotNull property="replacementFlagWhere" prepend="and ">
+				ReplacementFlag = #replacementFlagWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+         	<isNotNull property="appliedTotalNumberWhere" prepend="and ">
+				AppliedTotalNumber = #appliedTotalNumberWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+
+	<!-- 取得补领出库申请列表 -->
+	<resultMap id="Replacement-map-rlist" class="entityReplacement">
+		<!-- 申请时间 -->
+		<result property="applyTime" column="ApplyTime" />
+		<!-- 申请人 -->
+		<result property="applyUser" column="ApplyUser" />
+	</resultMap>
+	<select id="getReplacementList" resultMap="Replacement-map-rlist">
+		SELECT DISTINCT
+		DATE_FORMAT(re.ApplyTime, '%Y-%m-%d') AS ApplyTime,
+		re.ApplyUser AS ApplyUser
+		FROM
+		replacement re
+		INNER JOIN userdetail u ON u.UserName = re.ApplyUser
+		WHERE
+		re.DelFlag = '0'
+		AND u.DelFlag = '0'
+		GROUP BY
+		re.ApplyTime,
+		re.ApplyUser
+		UNION
+		SELECT DISTINCT
+		DATE_FORMAT(r.ApplyTime, '%Y-%m-%d') AS ApplyTime,
+		r.ApplyID AS ApplyUser
+		FROM
+		replacement r
+		WHERE
+		r.DelFlag = '0'
+		AND r.ReplacementReason = '0'
+		GROUP BY
+		r.ApplyTime,
+		r.ApplyID
+		</select>
+
+	<resultMap id="Replacement-map-apply" class="entityReplacement">
+		<!-- 申领申请流水号 -->
+		<result property="replacementID" column="ReplacementID" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 申请数量 -->
+		<result property="appliedNumber" column="AppliedNumber" />
+		<!-- 刀具ID -->
+		<result property="expandSpace1" column="ToolID" />
+		<!-- 库位码 -->
+		<result property="expandSpace2" column="LibraryCodeID" />
+		<!--刀具消耗类别 -->
+		<result property="expandSpace4" column="ToolType" />
+	</resultMap>
+	<select id="getReplacementApply" resultMap="Replacement-map-apply">
+		select
+		r.AppliedNumber as AppliedNumber,
+		r.ToolCode as ToolCode,
+		t.ToolID as ToolID,
+		t.LibraryCodeID as LibraryCodeID,
+		t.ToolConsumetype AS ToolType,
+		r.ReplacementID AS ReplacementID,
+		r.AppliedTotalNumber AS AppliedTotalNumber
+		from
+		replacement r
+		LEFT JOIN tool t on t.ToolCode = r.ToolCode
+		where t.DelFlag='0' and r.DelFlag='0'
+		AND ApplyUser =#applyUser#
+		AND DATE_FORMAT(ApplyTime,'%Y-%m-%d')=SUBSTRING(#applyTime# FROM 1 FOR 10)
+		</select>
+		
+	<resultMap id="Replacement-map-apply-B" class="entityReplacement">
+		<!-- 申领申请流水号 -->
+		<result property="replacementID" column="ReplacementID" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 申请数量 -->
+		<result property="appliedNumber" column="AppliedNumber" />
+		<!-- 刀具ID -->
+		<result property="expandSpace1" column="ToolID" />
+		<!-- 库位码 -->
+		<result property="expandSpace2" column="LibraryCodeID" />
+		<!--刀具消耗类别 -->
+		<result property="expandSpace4" column="ToolType" />
+	</resultMap>
+	<select id="getReplacementApplyElse" resultMap="Replacement-map-apply-B">
+		select
+		r.AppliedNumber as AppliedNumber,
+		r.ToolCode as ToolCode,
+		t.ToolID as ToolID,
+		t.LibraryCodeID as LibraryCodeID,
+		t.ToolConsumetype AS ToolType,
+		r.ReplacementID AS ReplacementID,
+		r.AppliedTotalNumber AS AppliedTotalNumber
+		from
+		replacement r
+		LEFT JOIN tool t on t.ToolCode = r.ToolCode
+		where t.DelFlag='0' and r.DelFlag='0'
+		AND ApplyID =#applyID#
+		AND DATE_FORMAT(ApplyTime,'%Y-%m-%d')=SUBSTRING(#applyTime# FROM 1 FOR 10)
+		</select>
+
+	<resultMap id="Replacement-map-C" class="entityReplacement">
+	<!-- 申领申请流水号 -->
+	<result property="replacementID" column="ReplacementID" />
+	<!-- 刀具编码 -->
+	<result property="toolCode" column="ToolCode" />
+
+	</resultMap>
+	<select id="searchByPrimaryKey_Code" parameterClass="entityReplacement" resultMap="Replacement-map-C">
+		SELECT
+			rep.ToolCode,
+			rep.ReplacementID
+			from replacement rep
+		<dynamic prepend=" where">
+
+		<isNotNull property="toolCode" prepend="and ">
+			ToolCode = #toolCode#
+		</isNotNull>
+			<isNotNull property="replacementID" prepend="and ">
+				ReplacementID = #replacementID#
+			</isNotNull>
+
+		</dynamic>
+
+			</select>
+</sqlMap>
+

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Dplink.xml
+		Created on : 2014/08/19 15:48:45
+		Author : 工具自动生成
+		Description: 工具自动生成包含部门-职务中间表的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Dplink">
+	<typeAlias alias="entityDplink" type="com.icomp.entity.base.Dplink" />
+	<resultMap id="Dplink-map" class="entityDplink">
+		<!-- dpLinkID -->
+		<result property="dpLinkID" column="dpLinkID" />
+		<!-- 部门ID -->
+		<result property="departmentID" column="DepartmentID" />
+		<!-- 职务ID -->
+		<result property="positionID" column="PositionID" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityDplink" resultMap="Dplink-map">
+		SELECT
+		dpLinkID
+		,DepartmentID
+		,PositionID
+		from dplink
+		<dynamic prepend=" where ">
+			<isNotNull property="dpLinkID" prepend="and ">
+				dpLinkID = #dpLinkID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					dpLinkID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityDplink" resultMap="Dplink-map">
+		SELECT
+		dpLinkID
+		,DepartmentID
+		,PositionID
+		from dplink
+		<dynamic prepend=" where ">
+			<isNotNull property="dpLinkID" prepend="and ">
+				dpLinkID = #dpLinkID#
+         </isNotNull>
+			<isNotNull property="departmentID" prepend="and ">
+				DepartmentID = #departmentID#
+         </isNotNull>
+			<isNotNull property="positionID" prepend="and ">
+				PositionID = #positionID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					dpLinkID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityDplink" resultClass="int">
+		SELECT count(1)
+		from dplink
+		<dynamic prepend=" where ">
+			<isNotNull property="dpLinkID" prepend="and ">
+				dpLinkID = #dpLinkID#
+         </isNotNull>
+			<isNotNull property="departmentID" prepend="and ">
+				DepartmentID = #departmentID#
+         </isNotNull>
+			<isNotNull property="positionID" prepend="and ">
+				PositionID = #positionID#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityDplink">
+		update dplink
+		<dynamic prepend="set">
+			<isNotNull property="dpLinkID">
+				dpLinkID = #dpLinkID#
+         </isNotNull>
+			<isNull property="dpLinkID">
+				dpLinkID = null
+         </isNull>
+			<isNotNull property="departmentID">
+				,DepartmentID = #departmentID#
+         </isNotNull>
+			<isNull property="departmentID">
+				,DepartmentID = null
+         </isNull>
+			<isNotNull property="positionID">
+				,PositionID = #positionID#
+         </isNotNull>
+			<isNull property="positionID">
+				,PositionID = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="dpLinkIDWhere" prepend="and ">
+				dpLinkID = #dpLinkIDWhere#
+         </isNotNull>
+			<isNotNull property="departmentIDWhere" prepend="and ">
+				DepartmentID = #departmentIDWhere#
+         </isNotNull>
+			<isNotNull property="positionIDWhere" prepend="and ">
+				PositionID = #positionIDWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityDplink">
+		update dplink
+		<dynamic prepend="set">
+			<isNotNull property="dpLinkID"  prepend=",">
+				dpLinkID = #dpLinkID#
+         </isNotNull>
+			<isNotNull property="departmentID"  prepend=",">
+				DepartmentID = #departmentID#
+         </isNotNull>
+			<isNotNull property="positionID"  prepend=",">
+				PositionID = #positionID#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="dpLinkIDWhere" prepend="and ">
+				dpLinkID = #dpLinkIDWhere#
+         </isNotNull>
+			<isNotNull property="departmentIDWhere" prepend="and ">
+				DepartmentID = #departmentIDWhere#
+         </isNotNull>
+			<isNotNull property="positionIDWhere" prepend="and ">
+				PositionID = #positionIDWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityDplink">
+		<selectKey resultClass="java.lang.String" keyProperty="dpLinkID">
+			SELECT #dpLinkID# as dpLinkID FROM DUAL
+     </selectKey>
+		insert into dplink(
+		dpLinkID
+		,DepartmentID
+		,PositionID
+		)
+		Values (
+			<isNotNull property="dpLinkID">
+				#dpLinkID#
+         </isNotNull>
+			<isNull property="dpLinkID">
+				null
+         </isNull>
+			<isNotNull property="departmentID">
+				,#departmentID#
+         </isNotNull>
+			<isNull property="departmentID">
+				,null
+         </isNull>
+			<isNotNull property="positionID">
+				,#positionID#
+         </isNotNull>
+			<isNull property="positionID">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityDplink">
+		delete  from dplink
+		<dynamic prepend=" where ">
+			<isNotNull property="dpLinkIDWhere" prepend="and ">
+				dpLinkID = #dpLinkIDWhere#
+         </isNotNull>
+			<isNotNull property="departmentIDWhere" prepend="and ">
+				DepartmentID = #departmentIDWhere#
+         </isNotNull>
+			<isNotNull property="positionIDWhere" prepend="and ">
+				PositionID = #positionIDWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

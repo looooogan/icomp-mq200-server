@@ -1,0 +1,911 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Userdetail.xml
+    Created on : 2014/08/19 15:48:46
+    Author : 工具自动生成
+    Description: 工具自动生成包含用户明细的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Userdetail">
+    <typeAlias alias="entityUserdetail" type="com.icomp.entity.base.Userdetail"/>
+    <resultMap id="Userdetail-map" class="entityUserdetail">
+        <!-- 用户明细ID -->
+        <result property="userDetailID" column="UserDetailID"/>
+        <!-- 用户ID[自动生成20位字符串] -->
+        <result property="customerID" column="CustomerID"/>
+        <!-- 姓名 -->
+        <result property="userName" column="UserName"/>
+        <!-- 性别(F:女M:男H:不详) -->
+        <result property="userSex" column="UserSex"/>
+        <!-- 年龄 -->
+        <result property="userAge" column="UserAge"/>
+        <!-- 生年月日 -->
+        <result property="userBirthday" column="UserBirthday"/>
+        <!-- 身份证号 -->
+        <result property="userCardID" column="UserCardID"/>
+        <!-- 移动电话 -->
+        <result property="userMobile" column="UserMobile"/>
+        <!-- 座机(XXXX-XXXXXXXX) -->
+        <result property="userLandline" column="UserLandline"/>
+        <!-- 婚否(0已婚1未婚9不详) -->
+        <result property="userPrivacies" column="UserPrivacies"/>
+        <!-- 毕业院校 -->
+        <result property="userUniversity" column="UserUniversity"/>
+        <!-- 专业 -->
+        <result property="userProfessional" column="UserProfessional"/>
+        <!-- 学历 -->
+        <result property="userEducation" column="UserEducation"/>
+        <!-- 血型(0:A1:B2:AB3:O9:不详) -->
+        <result property="userBloodGroup" column="UserBloodGroup"/>
+        <!-- 身高(cm) -->
+        <result property="userHeight" column="UserHeight"/>
+        <!-- 体重(kg) -->
+        <result property="userWeight" column="UserWeight"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="delFlag" column="DelFlag"/>
+        <!-- 创建者 -->
+        <result property="createUser" column="CreateUser"/>
+        <!-- 创建时间 -->
+        <result property="createTime" column="CreateTime"/>
+        <!-- 更新者 -->
+        <result property="updateUser" column="UpdateUser"/>
+        <!-- 更新时间 -->
+        <result property="updateTime" column="UpdateTime"/>
+        <!-- 版本号 -->
+        <result property="version" column="Version"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityUserdetail" resultMap="Userdetail-map">
+        SELECT
+        UserDetailID
+        ,CustomerID
+        ,UserName
+        ,UserSex
+        ,UserAge
+        ,UserBirthday
+        ,UserCardID
+        ,UserMobile
+        ,UserLandline
+        ,UserPrivacies
+        ,UserUniversity
+        ,UserProfessional
+        ,UserEducation
+        ,UserBloodGroup
+        ,UserHeight
+        ,UserWeight
+        ,DelFlag
+        ,CreateUser
+        ,CreateTime
+        ,UpdateUser
+        ,UpdateTime
+        ,Version
+        from userdetail
+        <dynamic prepend=" where ">
+            <isNotNull property="userDetailID" prepend="and ">
+                UserDetailID = #userDetailID#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            UserDetailID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityUserdetail" resultMap="Userdetail-map">
+        SELECT
+        UserDetailID
+        ,CustomerID
+        ,UserName
+        ,UserSex
+        ,UserAge
+        ,UserBirthday
+        ,UserCardID
+        ,UserMobile
+        ,UserLandline
+        ,UserPrivacies
+        ,UserUniversity
+        ,UserProfessional
+        ,UserEducation
+        ,UserBloodGroup
+        ,UserHeight
+        ,UserWeight
+        ,DelFlag
+        ,CreateUser
+        ,CreateTime
+        ,UpdateUser
+        ,UpdateTime
+        ,Version
+        from userdetail
+        <dynamic prepend=" where ">
+            <isNotNull property="userDetailID" prepend="and ">
+                UserDetailID = #userDetailID#
+            </isNotNull>
+            <isNotNull property="customerID" prepend="and ">
+                CustomerID = #customerID#
+            </isNotNull>
+            <isNotNull property="userName" prepend="and ">
+                UserName like concat('%',#userName#,'%')
+            </isNotNull>
+            <isNotNull property="userSex" prepend="and ">
+                UserSex = #userSex#
+            </isNotNull>
+            <isNotNull property="userAge" prepend="and ">
+                UserAge = #userAge#
+            </isNotNull>
+            <isNotNull property="userBirthday" prepend="and ">
+                UserBirthday = #userBirthday#
+            </isNotNull>
+            <isNotNull property="userCardID" prepend="and ">
+                UserCardID = #userCardID#
+            </isNotNull>
+            <isNotNull property="userMobile" prepend="and ">
+                UserMobile = #userMobile#
+            </isNotNull>
+            <isNotNull property="userLandline" prepend="and ">
+                UserLandline = #userLandline#
+            </isNotNull>
+            <isNotNull property="userPrivacies" prepend="and ">
+                UserPrivacies = #userPrivacies#
+            </isNotNull>
+            <isNotNull property="userUniversity" prepend="and ">
+                UserUniversity = #userUniversity#
+            </isNotNull>
+            <isNotNull property="userProfessional" prepend="and ">
+                UserProfessional = #userProfessional#
+            </isNotNull>
+            <isNotNull property="userEducation" prepend="and ">
+                UserEducation = #userEducation#
+            </isNotNull>
+            <isNotNull property="userBloodGroup" prepend="and ">
+                UserBloodGroup = #userBloodGroup#
+            </isNotNull>
+            <isNotNull property="userHeight" prepend="and ">
+                UserHeight = #userHeight#
+            </isNotNull>
+            <isNotNull property="userWeight" prepend="and ">
+                UserWeight = #userWeight#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            UserDetailID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityUserdetail" resultClass="int">
+        SELECT count(1)
+        from userdetail
+        <dynamic prepend=" where ">
+            <isNotNull property="userDetailID" prepend="and ">
+                UserDetailID = #userDetailID#
+            </isNotNull>
+            <isNotNull property="customerID" prepend="and ">
+                CustomerID = #customerID#
+            </isNotNull>
+            <isNotNull property="userName" prepend="and ">
+                UserName = #userName#
+            </isNotNull>
+            <isNotNull property="userSex" prepend="and ">
+                UserSex = #userSex#
+            </isNotNull>
+            <isNotNull property="userAge" prepend="and ">
+                UserAge = #userAge#
+            </isNotNull>
+            <isNotNull property="userBirthday" prepend="and ">
+                UserBirthday = #userBirthday#
+            </isNotNull>
+            <isNotNull property="userCardID" prepend="and ">
+                UserCardID = #userCardID#
+            </isNotNull>
+            <isNotNull property="userMobile" prepend="and ">
+                UserMobile = #userMobile#
+            </isNotNull>
+            <isNotNull property="userLandline" prepend="and ">
+                UserLandline = #userLandline#
+            </isNotNull>
+            <isNotNull property="userPrivacies" prepend="and ">
+                UserPrivacies = #userPrivacies#
+            </isNotNull>
+            <isNotNull property="userUniversity" prepend="and ">
+                UserUniversity = #userUniversity#
+            </isNotNull>
+            <isNotNull property="userProfessional" prepend="and ">
+                UserProfessional = #userProfessional#
+            </isNotNull>
+            <isNotNull property="userEducation" prepend="and ">
+                UserEducation = #userEducation#
+            </isNotNull>
+            <isNotNull property="userBloodGroup" prepend="and ">
+                UserBloodGroup = #userBloodGroup#
+            </isNotNull>
+            <isNotNull property="userHeight" prepend="and ">
+                UserHeight = #userHeight#
+            </isNotNull>
+            <isNotNull property="userWeight" prepend="and ">
+                UserWeight = #userWeight#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+    <!-- 任意条件更新处理(未指定字段更新为：null) -->
+    <update id="update" parameterClass="entityUserdetail">
+        update userdetail
+        <dynamic prepend="set">
+            <isNotNull property="userDetailID">
+                UserDetailID = #userDetailID#
+            </isNotNull>
+            <isNull property="userDetailID">
+                UserDetailID = null
+            </isNull>
+            <isNotNull property="customerID">
+                ,CustomerID = #customerID#
+            </isNotNull>
+            <isNull property="customerID">
+                ,CustomerID = null
+            </isNull>
+            <isNotNull property="userName">
+                ,UserName = #userName#
+            </isNotNull>
+            <isNull property="userName">
+                ,UserName = null
+            </isNull>
+            <isNotNull property="userSex">
+                ,UserSex = #userSex#
+            </isNotNull>
+            <isNull property="userSex">
+                ,UserSex = null
+            </isNull>
+            <isNotNull property="userAge">
+                ,UserAge = #userAge#
+            </isNotNull>
+            <isNull property="userAge">
+                ,UserAge = null
+            </isNull>
+            <isNotNull property="userBirthday">
+                ,UserBirthday = #userBirthday#
+            </isNotNull>
+            <isNull property="userBirthday">
+                ,UserBirthday = null
+            </isNull>
+            <isNotNull property="userCardID">
+                ,UserCardID = #userCardID#
+            </isNotNull>
+            <isNull property="userCardID">
+                ,UserCardID = null
+            </isNull>
+            <isNotNull property="userMobile">
+                ,UserMobile = #userMobile#
+            </isNotNull>
+            <isNull property="userMobile">
+                ,UserMobile = null
+            </isNull>
+            <isNotNull property="userLandline">
+                ,UserLandline = #userLandline#
+            </isNotNull>
+            <isNull property="userLandline">
+                ,UserLandline = null
+            </isNull>
+            <isNotNull property="userPrivacies">
+                ,UserPrivacies = #userPrivacies#
+            </isNotNull>
+            <isNull property="userPrivacies">
+                ,UserPrivacies = null
+            </isNull>
+            <isNotNull property="userUniversity">
+                ,UserUniversity = #userUniversity#
+            </isNotNull>
+            <isNull property="userUniversity">
+                ,UserUniversity = null
+            </isNull>
+            <isNotNull property="userProfessional">
+                ,UserProfessional = #userProfessional#
+            </isNotNull>
+            <isNull property="userProfessional">
+                ,UserProfessional = null
+            </isNull>
+            <isNotNull property="userEducation">
+                ,UserEducation = #userEducation#
+            </isNotNull>
+            <isNull property="userEducation">
+                ,UserEducation = null
+            </isNull>
+            <isNotNull property="userBloodGroup">
+                ,UserBloodGroup = #userBloodGroup#
+            </isNotNull>
+            <isNull property="userBloodGroup">
+                ,UserBloodGroup = null
+            </isNull>
+            <isNotNull property="userHeight">
+                ,UserHeight = #userHeight#
+            </isNotNull>
+            <isNull property="userHeight">
+                ,UserHeight = null
+            </isNull>
+            <isNotNull property="userWeight">
+                ,UserWeight = #userWeight#
+            </isNotNull>
+            <isNull property="userWeight">
+                ,UserWeight = null
+            </isNull>
+            <isNotNull property="delFlag">
+                ,DelFlag = #delFlag#
+            </isNotNull>
+            <isNull property="delFlag">
+                ,DelFlag = null
+            </isNull>
+            <isNotNull property="createUser">
+                ,CreateUser = #createUser#
+            </isNotNull>
+            <isNull property="createUser">
+                ,CreateUser = null
+            </isNull>
+            <isNotNull property="createTime">
+                ,CreateTime = #createTime#
+            </isNotNull>
+            <isNull property="createTime">
+                ,CreateTime = null
+            </isNull>
+            <isNotNull property="updateUser">
+                ,UpdateUser = #updateUser#
+            </isNotNull>
+            <isNull property="updateUser">
+                ,UpdateUser = null
+            </isNull>
+            <isNotNull property="updateTime">
+                ,UpdateTime = #updateTime#
+            </isNotNull>
+            <isNull property="updateTime">
+                ,UpdateTime = null
+            </isNull>
+            <isNotNull property="version">
+                ,Version = #version#
+            </isNotNull>
+            <isNull property="version">
+                ,Version = null
+            </isNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="userDetailIDWhere" prepend="and ">
+                UserDetailID = #userDetailIDWhere#
+            </isNotNull>
+            <isNotNull property="customerIDWhere" prepend="and ">
+                CustomerID = #customerIDWhere#
+            </isNotNull>
+            <isNotNull property="userNameWhere" prepend="and ">
+                UserName = #userNameWhere#
+            </isNotNull>
+            <isNotNull property="userSexWhere" prepend="and ">
+                UserSex = #userSexWhere#
+            </isNotNull>
+            <isNotNull property="userAgeWhere" prepend="and ">
+                UserAge = #userAgeWhere#
+            </isNotNull>
+            <isNotNull property="userBirthdayWhere" prepend="and ">
+                UserBirthday = #userBirthdayWhere#
+            </isNotNull>
+            <isNotNull property="userCardIDWhere" prepend="and ">
+                UserCardID = #userCardIDWhere#
+            </isNotNull>
+            <isNotNull property="userMobileWhere" prepend="and ">
+                UserMobile = #userMobileWhere#
+            </isNotNull>
+            <isNotNull property="userLandlineWhere" prepend="and ">
+                UserLandline = #userLandlineWhere#
+            </isNotNull>
+            <isNotNull property="userPrivaciesWhere" prepend="and ">
+                UserPrivacies = #userPrivaciesWhere#
+            </isNotNull>
+            <isNotNull property="userUniversityWhere" prepend="and ">
+                UserUniversity = #userUniversityWhere#
+            </isNotNull>
+            <isNotNull property="userProfessionalWhere" prepend="and ">
+                UserProfessional = #userProfessionalWhere#
+            </isNotNull>
+            <isNotNull property="userEducationWhere" prepend="and ">
+                UserEducation = #userEducationWhere#
+            </isNotNull>
+            <isNotNull property="userBloodGroupWhere" prepend="and ">
+                UserBloodGroup = #userBloodGroupWhere#
+            </isNotNull>
+            <isNotNull property="userHeightWhere" prepend="and ">
+                UserHeight = #userHeightWhere#
+            </isNotNull>
+            <isNotNull property="userWeightWhere" prepend="and ">
+                UserWeight = #userWeightWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 任意条件更新处理(未指定字段不更新) -->
+    <update id="updateNonQuery" parameterClass="entityUserdetail">
+        update userdetail
+        <dynamic prepend="set">
+            <isNotNull property="userDetailID" prepend=",">
+                UserDetailID = #userDetailID#
+            </isNotNull>
+            <isNotNull property="customerID" prepend=",">
+                CustomerID = #customerID#
+            </isNotNull>
+            <isNotNull property="userName" prepend=",">
+                UserName = #userName#
+            </isNotNull>
+            <isNotNull property="userSex" prepend=",">
+                UserSex = #userSex#
+            </isNotNull>
+            <isNotNull property="userAge" prepend=",">
+                UserAge = #userAge#
+            </isNotNull>
+            <isNotNull property="userBirthday" prepend=",">
+                UserBirthday = #userBirthday#
+            </isNotNull>
+            <isNotNull property="userCardID" prepend=",">
+                UserCardID = #userCardID#
+            </isNotNull>
+            <isNotNull property="userMobile" prepend=",">
+                UserMobile = #userMobile#
+            </isNotNull>
+            <isNotNull property="userLandline" prepend=",">
+                UserLandline = #userLandline#
+            </isNotNull>
+            <isNotNull property="userPrivacies" prepend=",">
+                UserPrivacies = #userPrivacies#
+            </isNotNull>
+            <isNotNull property="userUniversity" prepend=",">
+                UserUniversity = #userUniversity#
+            </isNotNull>
+            <isNotNull property="userProfessional" prepend=",">
+                UserProfessional = #userProfessional#
+            </isNotNull>
+            <isNotNull property="userEducation" prepend=",">
+                UserEducation = #userEducation#
+            </isNotNull>
+            <isNotNull property="userBloodGroup" prepend=",">
+                UserBloodGroup = #userBloodGroup#
+            </isNotNull>
+            <isNotNull property="userHeight" prepend=",">
+                UserHeight = #userHeight#
+            </isNotNull>
+            <isNotNull property="userWeight" prepend=",">
+                UserWeight = #userWeight#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend=",">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="createUser" prepend=",">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend=",">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend=",">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend=",">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="version" prepend=",">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="userDetailIDWhere" prepend="and ">
+                UserDetailID = #userDetailIDWhere#
+            </isNotNull>
+            <isNotNull property="customerIDWhere" prepend="and ">
+                CustomerID = #customerIDWhere#
+            </isNotNull>
+            <isNotNull property="userNameWhere" prepend="and ">
+                UserName = #userNameWhere#
+            </isNotNull>
+            <isNotNull property="userSexWhere" prepend="and ">
+                UserSex = #userSexWhere#
+            </isNotNull>
+            <isNotNull property="userAgeWhere" prepend="and ">
+                UserAge = #userAgeWhere#
+            </isNotNull>
+            <isNotNull property="userBirthdayWhere" prepend="and ">
+                UserBirthday = #userBirthdayWhere#
+            </isNotNull>
+            <isNotNull property="userCardIDWhere" prepend="and ">
+                UserCardID = #userCardIDWhere#
+            </isNotNull>
+            <isNotNull property="userMobileWhere" prepend="and ">
+                UserMobile = #userMobileWhere#
+            </isNotNull>
+            <isNotNull property="userLandlineWhere" prepend="and ">
+                UserLandline = #userLandlineWhere#
+            </isNotNull>
+            <isNotNull property="userPrivaciesWhere" prepend="and ">
+                UserPrivacies = #userPrivaciesWhere#
+            </isNotNull>
+            <isNotNull property="userUniversityWhere" prepend="and ">
+                UserUniversity = #userUniversityWhere#
+            </isNotNull>
+            <isNotNull property="userProfessionalWhere" prepend="and ">
+                UserProfessional = #userProfessionalWhere#
+            </isNotNull>
+            <isNotNull property="userEducationWhere" prepend="and ">
+                UserEducation = #userEducationWhere#
+            </isNotNull>
+            <isNotNull property="userBloodGroupWhere" prepend="and ">
+                UserBloodGroup = #userBloodGroupWhere#
+            </isNotNull>
+            <isNotNull property="userHeightWhere" prepend="and ">
+                UserHeight = #userHeightWhere#
+            </isNotNull>
+            <isNotNull property="userWeightWhere" prepend="and ">
+                UserWeight = #userWeightWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 插入处理 -->
+    <insert id="insert" parameterClass="entityUserdetail">
+        <selectKey resultClass="java.lang.String" keyProperty="userDetailID">
+            SELECT #userDetailID# as userDetailID FROM DUAL
+        </selectKey>
+        insert into userdetail(
+        UserDetailID
+        ,CustomerID
+        ,UserName
+        ,UserSex
+        ,UserAge
+        ,UserBirthday
+        ,UserCardID
+        ,UserMobile
+        ,UserLandline
+        ,UserPrivacies
+        ,UserUniversity
+        ,UserProfessional
+        ,UserEducation
+        ,UserBloodGroup
+        ,UserHeight
+        ,UserWeight
+        ,DelFlag
+        ,CreateUser
+        ,CreateTime
+        ,UpdateUser
+        ,UpdateTime
+        ,Version
+        )
+        Values (
+        <isNotNull property="userDetailID">
+            #userDetailID#
+        </isNotNull>
+        <isNull property="userDetailID">
+            null
+        </isNull>
+        <isNotNull property="customerID">
+            ,#customerID#
+        </isNotNull>
+        <isNull property="customerID">
+            ,null
+        </isNull>
+        <isNotNull property="userName">
+            ,#userName#
+        </isNotNull>
+        <isNull property="userName">
+            ,null
+        </isNull>
+        <isNotNull property="userSex">
+            ,#userSex#
+        </isNotNull>
+        <isNull property="userSex">
+            ,null
+        </isNull>
+        <isNotNull property="userAge">
+            ,#userAge#
+        </isNotNull>
+        <isNull property="userAge">
+            ,null
+        </isNull>
+        <isNotNull property="userBirthday">
+            ,#userBirthday#
+        </isNotNull>
+        <isNull property="userBirthday">
+            ,null
+        </isNull>
+        <isNotNull property="userCardID">
+            ,#userCardID#
+        </isNotNull>
+        <isNull property="userCardID">
+            ,null
+        </isNull>
+        <isNotNull property="userMobile">
+            ,#userMobile#
+        </isNotNull>
+        <isNull property="userMobile">
+            ,null
+        </isNull>
+        <isNotNull property="userLandline">
+            ,#userLandline#
+        </isNotNull>
+        <isNull property="userLandline">
+            ,null
+        </isNull>
+        <isNotNull property="userPrivacies">
+            ,#userPrivacies#
+        </isNotNull>
+        <isNull property="userPrivacies">
+            ,null
+        </isNull>
+        <isNotNull property="userUniversity">
+            ,#userUniversity#
+        </isNotNull>
+        <isNull property="userUniversity">
+            ,null
+        </isNull>
+        <isNotNull property="userProfessional">
+            ,#userProfessional#
+        </isNotNull>
+        <isNull property="userProfessional">
+            ,null
+        </isNull>
+        <isNotNull property="userEducation">
+            ,#userEducation#
+        </isNotNull>
+        <isNull property="userEducation">
+            ,null
+        </isNull>
+        <isNotNull property="userBloodGroup">
+            ,#userBloodGroup#
+        </isNotNull>
+        <isNull property="userBloodGroup">
+            ,null
+        </isNull>
+        <isNotNull property="userHeight">
+            ,#userHeight#
+        </isNotNull>
+        <isNull property="userHeight">
+            ,null
+        </isNull>
+        <isNotNull property="userWeight">
+            ,#userWeight#
+        </isNotNull>
+        <isNull property="userWeight">
+            ,null
+        </isNull>
+        <isNotNull property="delFlag">
+            ,#delFlag#
+        </isNotNull>
+        <isNull property="delFlag">
+            ,null
+        </isNull>
+        <isNotNull property="createUser">
+            ,#createUser#
+        </isNotNull>
+        <isNull property="createUser">
+            ,null
+        </isNull>
+        <isNotNull property="createTime">
+            ,#createTime#
+        </isNotNull>
+        <isNull property="createTime">
+            ,null
+        </isNull>
+        <isNotNull property="updateUser">
+            ,#updateUser#
+        </isNotNull>
+        <isNull property="updateUser">
+            ,null
+        </isNull>
+        <isNotNull property="updateTime">
+            ,#updateTime#
+        </isNotNull>
+        <isNull property="updateTime">
+            ,null
+        </isNull>
+        <isNotNull property="version">
+            ,#version#
+        </isNotNull>
+        <isNull property="version">
+            ,null
+        </isNull>
+        )
+    </insert>
+
+    <!-- 任意条件删除处理 -->
+    <delete id="delete" parameterClass="entityUserdetail">
+        delete from userdetail
+        <dynamic prepend=" where ">
+            <isNotNull property="userDetailIDWhere" prepend="and ">
+                UserDetailID = #userDetailIDWhere#
+            </isNotNull>
+            <isNotNull property="customerIDWhere" prepend="and ">
+                CustomerID = #customerIDWhere#
+            </isNotNull>
+            <isNotNull property="userNameWhere" prepend="and ">
+                UserName = #userNameWhere#
+            </isNotNull>
+            <isNotNull property="userSexWhere" prepend="and ">
+                UserSex = #userSexWhere#
+            </isNotNull>
+            <isNotNull property="userAgeWhere" prepend="and ">
+                UserAge = #userAgeWhere#
+            </isNotNull>
+            <isNotNull property="userBirthdayWhere" prepend="and ">
+                UserBirthday = #userBirthdayWhere#
+            </isNotNull>
+            <isNotNull property="userCardIDWhere" prepend="and ">
+                UserCardID = #userCardIDWhere#
+            </isNotNull>
+            <isNotNull property="userMobileWhere" prepend="and ">
+                UserMobile = #userMobileWhere#
+            </isNotNull>
+            <isNotNull property="userLandlineWhere" prepend="and ">
+                UserLandline = #userLandlineWhere#
+            </isNotNull>
+            <isNotNull property="userPrivaciesWhere" prepend="and ">
+                UserPrivacies = #userPrivaciesWhere#
+            </isNotNull>
+            <isNotNull property="userUniversityWhere" prepend="and ">
+                UserUniversity = #userUniversityWhere#
+            </isNotNull>
+            <isNotNull property="userProfessionalWhere" prepend="and ">
+                UserProfessional = #userProfessionalWhere#
+            </isNotNull>
+            <isNotNull property="userEducationWhere" prepend="and ">
+                UserEducation = #userEducationWhere#
+            </isNotNull>
+            <isNotNull property="userBloodGroupWhere" prepend="and ">
+                UserBloodGroup = #userBloodGroupWhere#
+            </isNotNull>
+            <isNotNull property="userHeightWhere" prepend="and ">
+                UserHeight = #userHeightWhere#
+            </isNotNull>
+            <isNotNull property="userWeightWhere" prepend="and ">
+                UserWeight = #userWeightWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+        </dynamic>
+    </delete>
+
+
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryID" parameterClass="java.lang.String" resultMap="Userdetail-map">
+           SELECT
+            UserDetailID
+            ,c.CustomerID AS CustomerID
+            ,c.UserName AS UserName
+             ,u.UserName CreateUser
+            ,UserSex
+            ,UserAge
+            ,UserBirthday
+            ,UserCardID
+            ,UserMobile
+            ,UserLandline
+            ,UserPrivacies
+            ,UserUniversity
+            ,UserProfessional
+            ,UserEducation
+            ,UserBloodGroup
+            ,UserHeight
+            ,UserWeight
+            ,c.DelFlag  AS DelFlag
+            ,c.CreateTime CreateTime
+            ,c.UpdateUser  UpdateUser
+            ,c.UpdateTime UpdateTime
+            ,u.Version Version
+            from userdetail u
+                    JOIN customer c ON u.CustomerID = c.CustomerID
+                    AND c.DelFlag = '0'
+                    AND u.DelFlag = '0'
+                    AND u.CustomerID = #customerID#
+    </select>
+</sqlMap>
+

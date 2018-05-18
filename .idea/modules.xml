@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/icomp/icomp.iml" filepath="$PROJECT_DIR$/icomp/icomp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/icomp_v01b01/icomp_v01b01.iml" filepath="$PROJECT_DIR$/icomp_v01b01/icomp_v01b01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/icomp_v01b02/icomp_v01b02.iml" filepath="$PROJECT_DIR$/icomp_v01b02/icomp_v01b02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/icomp_v01b03/icomp_v01b03.iml" filepath="$PROJECT_DIR$/icomp_v01b03/icomp_v01b03.iml" />
+      <module fileurl="file://$PROJECT_DIR$/icomp_v01b04/icomp_v01b04.iml" filepath="$PROJECT_DIR$/icomp_v01b04/icomp_v01b04.iml" />
+      <module fileurl="file://$PROJECT_DIR$/icomp_v01b05/icomp_v01b05.iml" filepath="$PROJECT_DIR$/icomp_v01b05/icomp_v01b05.iml" />
+      <module fileurl="file://$PROJECT_DIR$/icomp_v01b06/icomp_v01b06.iml" filepath="$PROJECT_DIR$/icomp_v01b06/icomp_v01b06.iml" />
+      <module fileurl="file://$PROJECT_DIR$/icomp_v01b07/icomp_v01b07.iml" filepath="$PROJECT_DIR$/icomp_v01b07/icomp_v01b07.iml" />
+      <module fileurl="file://$PROJECT_DIR$/icomp_v01b08/icomp_v01b08.iml" filepath="$PROJECT_DIR$/icomp_v01b08/icomp_v01b08.iml" />
+      <module fileurl="file://$PROJECT_DIR$/icomp_v01b09/icomp_v01b09.iml" filepath="$PROJECT_DIR$/icomp_v01b09/icomp_v01b09.iml" />
+      <module fileurl="file://$PROJECT_DIR$/icomp_v01b10/icomp_v01b10.iml" filepath="$PROJECT_DIR$/icomp_v01b10/icomp_v01b10.iml" />
+      <module fileurl="file://$PROJECT_DIR$/icomp_v01b11/icomp_v01b11.iml" filepath="$PROJECT_DIR$/icomp_v01b11/icomp_v01b11.iml" />
+      <module fileurl="file://$PROJECT_DIR$/icomp_v01b12/icomp_v01b12.iml" filepath="$PROJECT_DIR$/icomp_v01b12/icomp_v01b12.iml" />
+      <module fileurl="file://$PROJECT_DIR$/icomp_wsdl/icomp_wsdl.iml" filepath="$PROJECT_DIR$/icomp_wsdl/icomp_wsdl.iml" />
+    </modules>
+  </component>
+</project>

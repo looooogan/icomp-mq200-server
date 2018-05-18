@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Scrap.xml
+    Created on : 2016/09/04 16:21:29
+    Author : 工具自动生成
+    Description: 工具自动生成包含的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Scrap">
+    <typeAlias alias="entityScrap" type="com.icomp.entity.base.Scrap"/>
+    <resultMap id="Scrap-map" class="entityScrap">
+        <!-- 报废ID -->
+        <result property="scrapID" column="scrapID"/>
+        <!-- 刀具类型（0:可刃磨钻头1可刃磨刀片2一次性刀片9其他） -->
+        <result property="toolType" column="toolType"/>
+        <!-- 流程ID -->
+        <result property="businessID" column="BusinessID"/>
+        <!-- 材料号 -->
+        <result property="material" column="Material"/>
+        <!-- 单品ID -->
+        <result property="knifeInventoryCode" column="KnifeInventoryCode"/>
+        <!-- 已刃磨次数 -->
+        <result property="usageCounter" column="UsageCounter"/>
+        <!-- 刀具ID -->
+        <result property="toolID" column="toolID"/>
+        <!-- 报废原因 -->
+        <result property="scrapCause" column="scrapCause"/>
+        <!-- 报废数量 -->
+        <result property="scrapNumber" column="scrapNumber"/>
+        <!-- 报废状态（0.断刀1.丢刀2.到寿3.出库报废4.其他） -->
+        <result property="scrapState" column="scrapState"/>
+        <!-- 报废时间 -->
+        <result property="scrapTime" column="scrapTime"/>
+        <!-- 授权人 -->
+        <result property="authorizationID" column="authorizationID"/>
+        <!-- 创建者 -->
+        <result property="createUser" column="CreateUser"/>
+        <!-- 创建时间 -->
+        <result property="createTime" column="CreateTime"/>
+        <!-- 更新者 -->
+        <result property="updateUser" column="UpdateUser"/>
+        <!-- 更新时间 -->
+        <result property="updateTime" column="UpdateTime"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="delFlag" column="DelFlag"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityScrap" resultMap="Scrap-map">
+        SELECT
+        scrapID
+        ,toolType
+        ,BusinessID
+        ,Material
+        ,KnifeInventoryCode
+        ,UsageCounter
+        ,toolID
+        ,scrapCause
+        ,scrapNumber
+        ,scrapState
+        ,scrapTime
+        ,authorizationID
+        ,CreateUser
+        ,CreateTime
+        ,UpdateUser
+        ,UpdateTime
+        ,DelFlag
+        from scrap
+        <dynamic prepend=" where ">
+            <isNotNull property="scrapID" prepend="and ">
+                scrapID = #scrapID#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            scrapID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityScrap" resultMap="Scrap-map">
+        SELECT
+        scrapID
+        ,toolType
+        ,BusinessID
+        ,Material
+        ,KnifeInventoryCode
+        ,UsageCounter
+        ,toolID
+        ,scrapCause
+        ,scrapNumber
+        ,scrapState
+        ,scrapTime
+        ,authorizationID
+        ,CreateUser
+        ,CreateTime
+        ,UpdateUser
+        ,UpdateTime
+        ,DelFlag
+        from scrap
+        <dynamic prepend=" where ">
+            <isNotNull property="scrapID" prepend="and ">
+                scrapID = #scrapID#
+            </isNotNull>
+            <isNotNull property="toolType" prepend="and ">
+                toolType = #toolType#
+            </isNotNull>
+            <isNotNull property="businessID" prepend="and ">
+                BusinessID = #businessID#
+            </isNotNull>
+            <isNotNull property="material" prepend="and ">
+                Material = #material#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCode" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+            <isNotNull property="usageCounter" prepend="and ">
+                UsageCounter = #usageCounter#
+            </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                toolID = #toolID#
+            </isNotNull>
+            <isNotNull property="scrapCause" prepend="and ">
+                scrapCause = #scrapCause#
+            </isNotNull>
+            <isNotNull property="scrapNumber" prepend="and ">
+                scrapNumber = #scrapNumber#
+            </isNotNull>
+            <isNotNull property="scrapState" prepend="and ">
+                scrapState = #scrapState#
+            </isNotNull>
+            <isNotNull property="scrapTime" prepend="and ">
+                scrapTime = #scrapTime#
+            </isNotNull>
+            <isNotNull property="authorizationID" prepend="and ">
+                authorizationID = #authorizationID#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            scrapID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityScrap" resultClass="int">
+        SELECT count(1)
+        from scrap
+        <dynamic prepend=" where ">
+            <isNotNull property="scrapID" prepend="and ">
+                scrapID = #scrapID#
+            </isNotNull>
+            <isNotNull property="toolType" prepend="and ">
+                toolType = #toolType#
+            </isNotNull>
+            <isNotNull property="businessID" prepend="and ">
+                BusinessID = #businessID#
+            </isNotNull>
+            <isNotNull property="material" prepend="and ">
+                Material = #material#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCode" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+            <isNotNull property="usageCounter" prepend="and ">
+                UsageCounter = #usageCounter#
+            </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                toolID = #toolID#
+            </isNotNull>
+            <isNotNull property="scrapCause" prepend="and ">
+                scrapCause = #scrapCause#
+            </isNotNull>
+            <isNotNull property="scrapNumber" prepend="and ">
+                scrapNumber = #scrapNumber#
+            </isNotNull>
+            <isNotNull property="scrapState" prepend="and ">
+                scrapState = #scrapState#
+            </isNotNull>
+            <isNotNull property="scrapTime" prepend="and ">
+                scrapTime = #scrapTime#
+            </isNotNull>
+            <isNotNull property="authorizationID" prepend="and ">
+                authorizationID = #authorizationID#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+    <!-- 任意条件更新处理(未指定字段更新为：null) -->
+    <update id="update" parameterClass="entityScrap">
+        update scrap
+        <dynamic prepend="set">
+            <isNotNull property="scrapID">
+                scrapID = #scrapID#
+            </isNotNull>
+            <isNull property="scrapID">
+                scrapID = null
+            </isNull>
+            <isNotNull property="toolType">
+                ,toolType = #toolType#
+            </isNotNull>
+            <isNull property="toolType">
+                ,toolType = null
+            </isNull>
+            <isNotNull property="businessID">
+                ,BusinessID = #businessID#
+            </isNotNull>
+            <isNull property="businessID">
+                ,BusinessID = null
+            </isNull>
+            <isNotNull property="material">
+                ,Material = #material#
+            </isNotNull>
+            <isNull property="material">
+                ,Material = null
+            </isNull>
+            <isNotNull property="knifeInventoryCode">
+                ,KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+            <isNull property="knifeInventoryCode">
+                ,KnifeInventoryCode = null
+            </isNull>
+            <isNotNull property="usageCounter">
+                ,UsageCounter = #usageCounter#
+            </isNotNull>
+            <isNull property="usageCounter">
+                ,UsageCounter = null
+            </isNull>
+            <isNotNull property="toolID">
+                ,toolID = #toolID#
+            </isNotNull>
+            <isNull property="toolID">
+                ,toolID = null
+            </isNull>
+            <isNotNull property="scrapCause">
+                ,scrapCause = #scrapCause#
+            </isNotNull>
+            <isNull property="scrapCause">
+                ,scrapCause = null
+            </isNull>
+            <isNotNull property="scrapNumber">
+                ,scrapNumber = #scrapNumber#
+            </isNotNull>
+            <isNull property="scrapNumber">
+                ,scrapNumber = null
+            </isNull>
+            <isNotNull property="scrapState">
+                ,scrapState = #scrapState#
+            </isNotNull>
+            <isNull property="scrapState">
+                ,scrapState = null
+            </isNull>
+            <isNotNull property="scrapTime">
+                ,scrapTime = #scrapTime#
+            </isNotNull>
+            <isNull property="scrapTime">
+                ,scrapTime = null
+            </isNull>
+            <isNotNull property="authorizationID">
+                ,authorizationID = #authorizationID#
+            </isNotNull>
+            <isNull property="authorizationID">
+                ,authorizationID = null
+            </isNull>
+            <isNotNull property="createUser">
+                ,CreateUser = #createUser#
+            </isNotNull>
+            <isNull property="createUser">
+                ,CreateUser = null
+            </isNull>
+            <isNotNull property="createTime">
+                ,CreateTime = #createTime#
+            </isNotNull>
+            <isNull property="createTime">
+                ,CreateTime = null
+            </isNull>
+            <isNotNull property="updateUser">
+                ,UpdateUser = #updateUser#
+            </isNotNull>
+            <isNull property="updateUser">
+                ,UpdateUser = null
+            </isNull>
+            <isNotNull property="updateTime">
+                ,UpdateTime = #updateTime#
+            </isNotNull>
+            <isNull property="updateTime">
+                ,UpdateTime = null
+            </isNull>
+            <isNotNull property="delFlag">
+                ,DelFlag = #delFlag#
+            </isNotNull>
+            <isNull property="delFlag">
+                ,DelFlag = null
+            </isNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="scrapIDWhere" prepend="and ">
+                scrapID = #scrapIDWhere#
+            </isNotNull>
+            <isNotNull property="toolTypeWhere" prepend="and ">
+                toolType = #toolTypeWhere#
+            </isNotNull>
+            <isNotNull property="businessIDWhere" prepend="and ">
+                BusinessID = #businessIDWhere#
+            </isNotNull>
+            <isNotNull property="materialWhere" prepend="and ">
+                Material = #materialWhere#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCodeWhere#
+            </isNotNull>
+            <isNotNull property="usageCounterWhere" prepend="and ">
+                UsageCounter = #usageCounterWhere#
+            </isNotNull>
+            <isNotNull property="toolIDWhere" prepend="and ">
+                toolID = #toolIDWhere#
+            </isNotNull>
+            <isNotNull property="scrapCauseWhere" prepend="and ">
+                scrapCause = #scrapCauseWhere#
+            </isNotNull>
+            <isNotNull property="scrapNumberWhere" prepend="and ">
+                scrapNumber = #scrapNumberWhere#
+            </isNotNull>
+            <isNotNull property="scrapStateWhere" prepend="and ">
+                scrapState = #scrapStateWhere#
+            </isNotNull>
+            <isNotNull property="scrapTimeWhere" prepend="and ">
+                scrapTime = #scrapTimeWhere#
+            </isNotNull>
+            <isNotNull property="authorizationIDWhere" prepend="and ">
+                authorizationID = #authorizationIDWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 任意条件更新处理(未指定字段不更新) -->
+    <update id="updateNonQuery" parameterClass="entityScrap">
+        update scrap
+        <dynamic prepend="set">
+            <isNotNull property="scrapID" prepend=",">
+                scrapID = #scrapID#
+            </isNotNull>
+            <isNotNull property="toolType" prepend=",">
+                toolType = #toolType#
+            </isNotNull>
+            <isNotNull property="businessID" prepend=",">
+                BusinessID = #businessID#
+            </isNotNull>
+            <isNotNull property="material" prepend=",">
+                Material = #material#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCode" prepend=",">
+                KnifeInventoryCode = #knifeInventoryCode#
+            </isNotNull>
+            <isNotNull property="usageCounter" prepend=",">
+                UsageCounter = #usageCounter#
+            </isNotNull>
+            <isNotNull property="toolID" prepend=",">
+                toolID = #toolID#
+            </isNotNull>
+            <isNotNull property="scrapCause" prepend=",">
+                scrapCause = #scrapCause#
+            </isNotNull>
+            <isNotNull property="scrapNumber" prepend=",">
+                scrapNumber = #scrapNumber#
+            </isNotNull>
+            <isNotNull property="scrapState" prepend=",">
+                scrapState = #scrapState#
+            </isNotNull>
+            <isNotNull property="scrapTime" prepend=",">
+                scrapTime = #scrapTime#
+            </isNotNull>
+            <isNotNull property="authorizationID" prepend=",">
+                authorizationID = #authorizationID#
+            </isNotNull>
+            <isNotNull property="createUser" prepend=",">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend=",">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend=",">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend=",">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend=",">
+                DelFlag = #delFlag#
+            </isNotNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="scrapIDWhere" prepend="and ">
+                scrapID = #scrapIDWhere#
+            </isNotNull>
+            <isNotNull property="toolTypeWhere" prepend="and ">
+                toolType = #toolTypeWhere#
+            </isNotNull>
+            <isNotNull property="businessIDWhere" prepend="and ">
+                BusinessID = #businessIDWhere#
+            </isNotNull>
+            <isNotNull property="materialWhere" prepend="and ">
+                Material = #materialWhere#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCodeWhere#
+            </isNotNull>
+            <isNotNull property="usageCounterWhere" prepend="and ">
+                UsageCounter = #usageCounterWhere#
+            </isNotNull>
+            <isNotNull property="toolIDWhere" prepend="and ">
+                toolID = #toolIDWhere#
+            </isNotNull>
+            <isNotNull property="scrapCauseWhere" prepend="and ">
+                scrapCause = #scrapCauseWhere#
+            </isNotNull>
+            <isNotNull property="scrapNumberWhere" prepend="and ">
+                scrapNumber = #scrapNumberWhere#
+            </isNotNull>
+            <isNotNull property="scrapStateWhere" prepend="and ">
+                scrapState = #scrapStateWhere#
+            </isNotNull>
+            <isNotNull property="scrapTimeWhere" prepend="and ">
+                scrapTime = #scrapTimeWhere#
+            </isNotNull>
+            <isNotNull property="authorizationIDWhere" prepend="and ">
+                authorizationID = #authorizationIDWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 插入处理 -->
+    <insert id="insert" parameterClass="entityScrap">
+        <selectKey resultClass="java.lang.String" keyProperty="scrapID">
+            SELECT #scrapID# as scrapID FROM DUAL
+        </selectKey>
+        insert into scrap(
+        scrapID
+        ,toolType
+        ,BusinessID
+        ,Material
+        ,KnifeInventoryCode
+        ,UsageCounter
+        ,toolID
+        ,scrapCause
+        ,scrapNumber
+        ,scrapState
+        ,scrapTime
+        ,authorizationID
+        ,CreateUser
+        ,CreateTime
+        ,UpdateUser
+        ,UpdateTime
+        ,DelFlag
+        )
+        Values (
+        <isNotNull property="scrapID">
+            #scrapID#
+        </isNotNull>
+        <isNull property="scrapID">
+            null
+        </isNull>
+        <isNotNull property="toolType">
+            ,#toolType#
+        </isNotNull>
+        <isNull property="toolType">
+            ,null
+        </isNull>
+        <isNotNull property="businessID">
+            ,#businessID#
+        </isNotNull>
+        <isNull property="businessID">
+            ,null
+        </isNull>
+        <isNotNull property="material">
+            ,#material#
+        </isNotNull>
+        <isNull property="material">
+            ,null
+        </isNull>
+        <isNotNull property="knifeInventoryCode">
+            ,#knifeInventoryCode#
+        </isNotNull>
+        <isNull property="knifeInventoryCode">
+            ,null
+        </isNull>
+        <isNotNull property="usageCounter">
+            ,#usageCounter#
+        </isNotNull>
+        <isNull property="usageCounter">
+            ,null
+        </isNull>
+        <isNotNull property="toolID">
+            ,#toolID#
+        </isNotNull>
+        <isNull property="toolID">
+            ,null
+        </isNull>
+        <isNotNull property="scrapCause">
+            ,#scrapCause#
+        </isNotNull>
+        <isNull property="scrapCause">
+            ,null
+        </isNull>
+        <isNotNull property="scrapNumber">
+            ,#scrapNumber#
+        </isNotNull>
+        <isNull property="scrapNumber">
+            ,null
+        </isNull>
+        <isNotNull property="scrapState">
+            ,#scrapState#
+        </isNotNull>
+        <isNull property="scrapState">
+            ,null
+        </isNull>
+        <isNotNull property="scrapTime">
+            ,#scrapTime#
+        </isNotNull>
+        <isNull property="scrapTime">
+            ,null
+        </isNull>
+        <isNotNull property="authorizationID">
+            ,#authorizationID#
+        </isNotNull>
+        <isNull property="authorizationID">
+            ,null
+        </isNull>
+        <isNotNull property="createUser">
+            ,#createUser#
+        </isNotNull>
+        <isNull property="createUser">
+            ,null
+        </isNull>
+        <isNotNull property="createTime">
+            ,#createTime#
+        </isNotNull>
+        <isNull property="createTime">
+            ,null
+        </isNull>
+        <isNotNull property="updateUser">
+            ,#updateUser#
+        </isNotNull>
+        <isNull property="updateUser">
+            ,null
+        </isNull>
+        <isNotNull property="updateTime">
+            ,#updateTime#
+        </isNotNull>
+        <isNull property="updateTime">
+            ,null
+        </isNull>
+        <isNotNull property="delFlag">
+            ,#delFlag#
+        </isNotNull>
+        <isNull property="delFlag">
+            ,null
+        </isNull>
+        )
+    </insert>
+
+    <!-- 任意条件删除处理 -->
+    <delete id="delete" parameterClass="entityScrap">
+        delete from scrap
+        <dynamic prepend=" where ">
+            <isNotNull property="scrapIDWhere" prepend="and ">
+                scrapID = #scrapIDWhere#
+            </isNotNull>
+            <isNotNull property="toolTypeWhere" prepend="and ">
+                toolType = #toolTypeWhere#
+            </isNotNull>
+            <isNotNull property="businessIDWhere" prepend="and ">
+                BusinessID = #businessIDWhere#
+            </isNotNull>
+            <isNotNull property="materialWhere" prepend="and ">
+                Material = #materialWhere#
+            </isNotNull>
+            <isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+                KnifeInventoryCode = #knifeInventoryCodeWhere#
+            </isNotNull>
+            <isNotNull property="usageCounterWhere" prepend="and ">
+                UsageCounter = #usageCounterWhere#
+            </isNotNull>
+            <isNotNull property="toolIDWhere" prepend="and ">
+                toolID = #toolIDWhere#
+            </isNotNull>
+            <isNotNull property="scrapCauseWhere" prepend="and ">
+                scrapCause = #scrapCauseWhere#
+            </isNotNull>
+            <isNotNull property="scrapNumberWhere" prepend="and ">
+                scrapNumber = #scrapNumberWhere#
+            </isNotNull>
+            <isNotNull property="scrapStateWhere" prepend="and ">
+                scrapState = #scrapStateWhere#
+            </isNotNull>
+            <isNotNull property="scrapTimeWhere" prepend="and ">
+                scrapTime = #scrapTimeWhere#
+            </isNotNull>
+            <isNotNull property="authorizationIDWhere" prepend="and ">
+                authorizationID = #authorizationIDWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+        </dynamic>
+    </delete>
+    <!-- 获取报废刀具的平均刃磨次数 -->
+    <select id="usageCounterGroupToolCode" resultMap="Scrap-map">
+                  SELECT
+                        scrapID
+                        ,toolType
+                        ,BusinessID
+                        ,Material
+                        ,(aa.UsageCounter/aa.scrapNumber) AS KnifeInventoryCode
+                        ,UsageCounter
+                        ,toolID
+                        ,scrapCause
+                        ,scrapNumber
+                        ,scrapState
+                        ,scrapTime
+                        ,authorizationID
+                        ,CreateUser
+                        ,CreateTime
+                        ,UpdateUser
+                        ,UpdateTime
+                        ,DelFlag
+
+                FROM
+                            (
+                            SELECT
+                                    scrapID
+                                    ,toolType
+                                    ,BusinessID
+                                    ,Material
+                                    ,KnifeInventoryCode
+                                    ,SUM(UsageCounter) AS UsageCounter
+                                    ,toolID
+                                    ,scrapCause
+                                    ,SUM(scrapNumber) AS scrapNumber
+                                    ,scrapState
+                                    ,scrapTime
+                                    ,authorizationID
+                                    ,CreateUser
+                                    ,CreateTime
+                                    ,UpdateUser
+                                    ,UpdateTime
+                                    ,DelFlag
+                                FROM scrap
+                                GROUP BY Material
+                            )aa
+                    </select>
+</sqlMap>
+

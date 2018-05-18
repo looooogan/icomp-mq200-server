@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vproductiondesign.xml
+		Created on : 2014/11/17 14:16:49
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		getYearList ： 查找年份
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vproductiondesign">
+	<typeAlias alias="entityVproductiondesign" type="com.icomp.entity.base.Vproductiondesign" />
+	<resultMap id="Vproductiondesign-map" class="entityVproductiondesign">
+		<!-- 生产计划ID -->
+		<result property="productionDesignID" column="ProductionDesignID" />
+		<!-- 计划年 -->
+		<result property="productionYear" column="ProductionYear" />
+		<!-- 所属季度 -->
+		<result property="productionQuarter" column="ProductionQuarter" />
+		<!-- 计划月 -->
+		<result property="productionMonth" column="ProductionMonth" />
+		<!-- 生产零部件 -->
+		<result property="assemblyLineID" column="AssemblyLineID" />
+		<!-- 流水线名称 -->
+		<result property="assemblyLineName" column="AssemblyLineName" />
+		<!-- 生产量 -->
+		<result property="production" column="Production" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<resultMap id="Vproductiondesign-map-1" class="entityVproductiondesign">
+		<!-- 计划年 -->
+		<result property="productionYear" column="ProductionYear" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVproductiondesign" resultMap="Vproductiondesign-map">
+		SELECT
+		ProductionDesignID
+		,ProductionYear
+		,ProductionQuarter
+		,ProductionMonth
+		,AssemblyLineID
+		,AssemblyLineName
+		,Production
+		,UpdateTime
+		,UpdateUser
+		,Version
+		from vproductiondesign
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVproductiondesign" resultMap="Vproductiondesign-map">
+		SELECT
+		ProductionDesignID
+		,ProductionYear
+		,ProductionQuarter
+		,ProductionMonth
+		,AssemblyLineID
+		,AssemblyLineName
+		,Production
+		,UpdateTime
+		,UpdateUser
+		,Version
+		from vproductiondesign
+		<dynamic prepend=" where ">
+			<isNotNull property="productionDesignID" prepend="and ">
+				ProductionDesignID = #productionDesignID#
+         </isNotNull>
+			<isNotNull property="productionYear" prepend="and ">
+				ProductionYear = #productionYear#
+         </isNotNull>
+			<isNotNull property="productionQuarter" prepend="and ">
+				ProductionQuarter = #productionQuarter#
+         </isNotNull>
+			<isNotNull property="productionMonth" prepend="and ">
+				ProductionMonth = #productionMonth#
+         </isNotNull>
+			<isNotNull property="assemblyLineID" prepend="and ">
+				AssemblyLineID = #assemblyLineID#
+         </isNotNull>
+			<isNotNull property="assemblyLineName" prepend="and ">
+				AssemblyLineName = #assemblyLineName#
+         </isNotNull>
+			<isNotNull property="production" prepend="and ">
+				Production = #production#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	<!-- 查找年份-->
+	<select id="getYearList" parameterClass="entityVproductiondesign" resultMap="Vproductiondesign-map-1">
+		SELECT
+		DISTINCT
+		ProductionYear
+		from vproductiondesign
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVproductiondesign" resultClass="int">
+		SELECT count(1)
+		from vproductiondesign
+		<dynamic prepend=" where ">
+			<isNotNull property="productionDesignID" prepend="and ">
+				ProductionDesignID = #productionDesignID#
+         </isNotNull>
+			<isNotNull property="productionYear" prepend="and ">
+				ProductionYear = #productionYear#
+         </isNotNull>
+			<isNotNull property="productionQuarter" prepend="and ">
+				ProductionQuarter = #productionQuarter#
+         </isNotNull>
+			<isNotNull property="productionMonth" prepend="and ">
+				ProductionMonth = #productionMonth#
+         </isNotNull>
+			<isNotNull property="assemblyLineID" prepend="and ">
+				AssemblyLineID = #assemblyLineID#
+         </isNotNull>
+			<isNotNull property="assemblyLineName" prepend="and ">
+				AssemblyLineName = #assemblyLineName#
+         </isNotNull>
+			<isNotNull property="production" prepend="and ">
+				Production = #production#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

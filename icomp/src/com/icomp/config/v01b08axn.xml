@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- 模块加载管理Action注入 -->
+	<bean id="b08S001Action"
+		class="com.icomp.v01b08.b08s001.action.B08S001Action" scope="prototype">
+		<property name="business" ref="v01b08s001Business"></property>
+	</bean>
+	
+	<!-- 内置编码配置Action注入 -->
+	<bean id="b08S002Action"
+		class="com.icomp.v01b08.b08s002.action.B08S002Action" scope="prototype">
+		<property name="business" ref="v01b08s002Business"></property>
+	</bean>
+	
+	<!-- 国际化需求配置Action注入  -->
+	<bean id="b08S003Action"
+		class="com.icomp.v01b08.b08s003.action.B08S003Action" scope="prototype">
+		<property name="business" ref="v01b08s003Business"></property>
+	</bean>
+	
+	<!-- 刀具告警配置Action注入  -->
+	<bean id="b08S004Action"
+		class="com.icomp.v01b08.b08s004.action.B08S004Action" scope="prototype">
+		<property name="business" ref="v01b08s004Business"></property>
+	</bean>
+	
+	<!-- 系统码表配置Action注入  -->
+	<bean id="b08S005Action"
+		class="com.icomp.v01b08.b08s005.action.B08S005Action" scope="prototype">
+		<property name="business" ref="v01b08s005Business"></property>
+	</bean>
+	
+	<!-- 手持机配置Action注入  -->
+	<bean id="b08S006Action"
+		class="com.icomp.v01b08.b08s006.action.B08S006Action" scope="prototype">
+		<property name="business" ref="v01b08s006Business"></property>
+	</bean>	
+		
+	<!-- 设备配置Action注入  -->
+	<bean id="b08S007Action"
+		class="com.icomp.v01b08.b08s007.action.B08S007Action" scope="prototype">
+		<property name="business" ref="v01b08s007Business"></property>
+	</bean>	
+	
+	<!-- 工序配置Action注入  -->
+	<bean id="b08S008Action"
+		class="com.icomp.v01b08.b08s008.action.B08S008Action" scope="prototype">
+		<property name="business" ref="v01b08s008Business"></property>
+	</bean>	
+	
+	<!-- 零部件配置Action注入  -->
+	<bean id="b08S009Action"
+		class="com.icomp.v01b08.b08s009.action.B08S009Action" scope="prototype">
+		<property name="business" ref="v01b08s009Business"></property>
+	</bean>		
+	
+	<!-- 生产计划Action注入  -->
+	<bean id="b08S010Action"
+		class="com.icomp.v01b08.b08s010.action.B08S010Action" scope="prototype">
+		<property name="business" ref="v01b08s010Business"></property>
+	</bean>	
+	
+    <!-- 库房货架配置Action注入  -->
+	<bean id="b08S011Action"
+		class="com.icomp.v01b08.b08s011.action.B08S011Action" scope="prototype">
+		<property name="business" ref="v01b08s011Business"></property>
+	</bean>	
+	
+	<!-- 库房货架配置Action注入  -->
+	<bean id="b08S012Action"
+		class="com.icomp.v01b08.b08s012.action.B08S012Action" scope="prototype">
+		<property name="business" ref="v01b08s012Business"></property>
+	</bean>	
+	
+	<!-- 库房货架配置Action注入  -->
+	<bean id="b08S013Action"
+		class="com.icomp.v01b08.b08s013.action.B08S013Action" scope="prototype">
+		<property name="business" ref="v01b08s013Business"></property>
+	</bean>		
+	
+	<!-- 刀具盘配置Action注入  -->
+	<bean id="b08S014Action"
+		class="com.icomp.v01b08.b08s014.action.B08S014Action" scope="prototype">
+		<property name="business" ref="v01b08s014Business"></property>
+	</bean>				
+</beans>

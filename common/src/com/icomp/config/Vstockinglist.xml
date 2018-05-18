@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vstockinglist.xml Created on : 2014/10/13 19:17:16 Author :
+		工具自动生成 Description: 工具自动生成包含VIEW的单表增删改查SQL语句. searchByPrimaryKey ：
+		主键查询 searchByList ： 任意条件查询 searchByCount ：任意条件条数查询 insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null） updateNonQuery ：更新处理（未指定项目不更新） delete ：
+		删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vstockinglist">
+	<typeAlias alias="entityVstockinglist" type="com.icomp.entity.base.Vstockinglist" />
+	<resultMap id="Vstockinglist-map" class="entityVstockinglist">
+		<!--  -->
+		<result property="toolCode" column="ToolCode" />
+		<!--  -->
+		<result property="libCode" column="libCode" />
+		<result property="toolCount" column="toolCount" />
+		<!--  -->
+		<result property="toolType" column="ToolType" />
+		<!--  -->
+		<result property="rfidCode" column="RfidCode" />
+		<!--  -->
+		<result property="queryType" column="QueryType" />
+	</resultMap>
+	<resultMap id="stockingToolList-map" class="entityVstockinglist">
+		<!--  -->
+		<result property="toolCode" column="ToolCode" />
+		<!--  -->
+		<result property="libCode" column="libCode" />
+		<result property="toolCount" column="toolCount" />
+		<!--  -->
+		<result property="toolType" column="ToolType" />
+		<!--  -->
+		<result property="queryType" column="QueryType" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVstockinglist"
+		resultMap="Vstockinglist-map">
+		SELECT
+		ToolCode
+		,libCode
+		,ToolType
+		,RfidCode
+		,QueryType
+		from vstockinglist
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT
+			$rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVstockinglist"
+		resultMap="Vstockinglist-map">
+		SELECT
+		ToolCode
+		,libCode
+		,ToolType
+		,RfidCode
+		,0 toolCount
+		,QueryType
+		from vstockinglist
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode =
+				#toolCode#
+         </isNotNull>
+			<isNotNull property="libCode" prepend="and ">
+				libCode = #libCode#
+			</isNotNull>
+			<isNotNull property="toolType" prepend="and ">
+				ToolType =
+				#toolType#
+         </isNotNull>
+			<isNotNull property="rfidCode" prepend="and ">
+				RfidCode =
+				#rfidCode#
+         </isNotNull>
+			<isNotNull property="queryType" prepend="and ">
+				QueryType =
+				#queryType#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isGreaterThan property="staIndex" compareValue="0">
+			LIMIT
+			$rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+
+	<!-- 取得相同刀具编码的库存刀具信息 -->
+	<select id="searchByStockingList" parameterClass="entityVstockinglist"
+		resultMap="Vstockinglist-map">
+		select ToolCode,libCode,tooltype,RfidCode,count(1) toolCount,QueryType
+		from VStockingList
+		<dynamic prepend=" where ">
+			<isNotNull property="rfidCode" prepend="and ">
+				TOOLCODE IN( select
+				ToolCode
+				from VStockingList WHERE RfidCode=#rfidCode#)
+         </isNotNull>
+		</dynamic>
+		group by libCode,ToolCode,tooltype,QueryType,RfidCode
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isGreaterThan property="staIndex" compareValue="0">
+			LIMIT
+			$rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 取得盘点刀具信息 -->
+	<select id="searchByStockingToolList" parameterClass="java.util.List"
+		resultMap="stockingToolList-map">
+		select ToolCode,libCode,tooltype,count(1)
+		toolCount,QueryType
+		from
+		VStockingList
+		WHERE ToolCode in (select ToolCode
+		from VStockingList WHERE RfidCode IN
+		<iterate open="(" close=")" conjunction=",">
+			#[]#
+		</iterate>
+		)
+		group by libCode,ToolCode,tooltype,QueryType
+	</select>
+	
+	<!-- 已扫描刀具信息 -->
+	<select id="searchByOldToolList" parameterClass="java.util.List"
+		resultMap="stockingToolList-map">
+		select ToolCode,libCode,tooltype,count(1)
+		toolCount,QueryType	from VStockingList WHERE RfidCode IN
+		<iterate open="(" close=")" conjunction=",">
+			#[]#
+		</iterate>
+		GROUP BY QueryType,libCode,tooltype,ToolCode
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVstockinglist"
+		resultClass="int">
+		SELECT count(1)
+		from vstockinglist
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode =
+				#toolCode#
+         </isNotNull>
+			<isNotNull property="libCode" prepend="and ">
+				libCode = #libCode#
+			</isNotNull>
+			<isNotNull property="toolType" prepend="and ">
+				ToolType =
+				#toolType#
+         </isNotNull>
+			<isNotNull property="rfidCode" prepend="and ">
+				RfidCode =
+				#rfidCode#
+         </isNotNull>
+			<isNotNull property="queryType" prepend="and ">
+				QueryType =
+				#queryType#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

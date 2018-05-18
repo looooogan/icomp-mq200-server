@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Stack.xml
+		Created on : 2014/08/19 15:48:45
+		Author : 工具自动生成
+		Description: 工具自动生成包含货架基础表的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Stack">
+	<typeAlias alias="entityStack" type="com.icomp.entity.base.Stack" />
+	<resultMap id="Stack-map" class="entityStack">
+		<!-- 货架ID -->
+		<result property="stackID" column="StackID" />
+		<!-- 库位码主键 -->
+		<result property="libraryCodeID" column="LibraryCodeID" />
+		<!-- 厂区 -->
+		<result property="complex" column="Complex" />
+		<!-- 库房号 -->
+		<result property="depot" column="Depot" />
+		<!-- 货架 -->
+		<result property="shelf" column="Shelf" />
+		<!-- 层 -->
+		<result property="layer" column="Layer" />
+		<!-- 货位 -->
+		<result property="stack" column="Stack" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 备注 -->
+		<result property="remark" column="Remark" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityStack" resultMap="Stack-map">
+		SELECT
+		StackID
+		,LibraryCodeID
+		,Remark
+		,Complex
+		,Depot
+		,Shelf
+		,Layer
+		,Stack
+		,Version
+		,CreateTime
+		,CreateUser
+		,UpdateTime
+		,UpdateUser
+		,DelFlag
+		from stack
+		<dynamic prepend=" where ">
+			<isNotNull property="stackID" prepend="and ">
+				StackID = #stackID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					StackID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityStack" resultMap="Stack-map">
+		SELECT
+		StackID
+		,Remark
+		,LibraryCodeID
+		,Complex
+		,Depot
+		,Shelf
+		,Layer
+		,Stack
+		,Version
+		,CreateTime
+		,CreateUser
+		,UpdateTime
+		,UpdateUser
+		,DelFlag
+		from stack
+		<dynamic prepend=" where ">
+			<isNotNull property="stackID" prepend="and ">
+				StackID = #stackID#
+         </isNotNull>
+			<isNotNull property="libraryCodeID" prepend="and ">
+				LibraryCodeID = #libraryCodeID#
+         </isNotNull>
+			<isNotNull property="complex" prepend="and ">
+				Complex = #complex#
+         </isNotNull>
+			<isNotNull property="depot" prepend="and ">
+				Depot = #depot#
+         </isNotNull>
+			<isNotNull property="shelf" prepend="and ">
+				Shelf = #shelf#
+         </isNotNull>
+			<isNotNull property="layer" prepend="and ">
+				Layer = #layer#
+         </isNotNull>
+			<isNotNull property="stack" prepend="and ">
+				Stack = #stack#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					StackID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityStack" resultClass="int">
+		SELECT count(1)
+		from stack
+		<dynamic prepend=" where ">
+			<isNotNull property="stackID" prepend="and ">
+				StackID = #stackID#
+         </isNotNull>
+			<isNotNull property="libraryCodeID" prepend="and ">
+				LibraryCodeID = #libraryCodeID#
+         </isNotNull>
+			<isNotNull property="complex" prepend="and ">
+				Complex = #complex#
+         </isNotNull>
+			<isNotNull property="depot" prepend="and ">
+				Depot = #depot#
+         </isNotNull>
+			<isNotNull property="shelf" prepend="and ">
+				Shelf = #shelf#
+         </isNotNull>
+			<isNotNull property="layer" prepend="and ">
+				Layer = #layer#
+         </isNotNull>
+			<isNotNull property="stack" prepend="and ">
+				Stack = #stack#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityStack">
+		update stack
+		<dynamic prepend="set">
+			<isNotNull property="stackID">
+				StackID = #stackID#
+         </isNotNull>
+			<isNull property="stackID">
+				StackID = null
+         </isNull>
+			<isNotNull property="libraryCodeID">
+				,LibraryCodeID = #libraryCodeID#
+         </isNotNull>
+			<isNull property="libraryCodeID">
+				,LibraryCodeID = null
+         </isNull>
+			<isNull property="remark">
+				,Remark = null
+         </isNull>
+			<isNotNull property="complex">
+				,Complex = #complex#
+         </isNotNull>
+			<isNull property="complex">
+				,Complex = null
+         </isNull>
+			<isNotNull property="depot">
+				,Depot = #depot#
+         </isNotNull>
+			<isNull property="depot">
+				,Depot = null
+         </isNull>
+			<isNotNull property="shelf">
+				,Shelf = #shelf#
+         </isNotNull>
+			<isNull property="shelf">
+				,Shelf = null
+         </isNull>
+			<isNotNull property="layer">
+				,Layer = #layer#
+         </isNotNull>
+			<isNull property="layer">
+				,Layer = null
+         </isNull>
+			<isNotNull property="stack">
+				,Stack = #stack#
+         </isNotNull>
+			<isNull property="stack">
+				,Stack = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="stackIDWhere" prepend="and ">
+				StackID = #stackIDWhere#
+         </isNotNull>
+			<isNotNull property="libraryCodeIDWhere" prepend="and ">
+				LibraryCodeID = #libraryCodeIDWhere#
+         </isNotNull>
+			<isNotNull property="complexWhere" prepend="and ">
+				Complex = #complexWhere#
+         </isNotNull>
+			<isNotNull property="depotWhere" prepend="and ">
+				Depot = #depotWhere#
+         </isNotNull>
+			<isNotNull property="shelfWhere" prepend="and ">
+				Shelf = #shelfWhere#
+         </isNotNull>
+			<isNotNull property="layerWhere" prepend="and ">
+				Layer = #layerWhere#
+         </isNotNull>
+			<isNotNull property="stackWhere" prepend="and ">
+				Stack = #stackWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityStack">
+		update stack
+		<dynamic prepend="set">
+			<isNotNull property="stackID"  prepend=",">
+				StackID = #stackID#
+         </isNotNull>
+			<isNotNull property="libraryCodeID"  prepend=",">
+				LibraryCodeID = #libraryCodeID#
+         </isNotNull>
+			<isNotNull property="complex"  prepend=",">
+				Complex = #complex#
+         </isNotNull>
+			<isNotNull property="depot"  prepend=",">
+				Depot = #depot#
+         </isNotNull>
+			<isNotNull property="remark"  prepend=",">
+				Remark = #remark#
+         </isNotNull>
+			<isNotNull property="shelf"  prepend=",">
+				Shelf = #shelf#
+         </isNotNull>
+			<isNotNull property="layer"  prepend=",">
+				Layer = #layer#
+         </isNotNull>
+			<isNotNull property="stack"  prepend=",">
+				Stack = #stack#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="stackIDWhere" prepend="and ">
+				StackID = #stackIDWhere#
+         </isNotNull>
+			<isNotNull property="libraryCodeIDWhere" prepend="and ">
+				LibraryCodeID = #libraryCodeIDWhere#
+         </isNotNull>
+			<isNotNull property="complexWhere" prepend="and ">
+				Complex = #complexWhere#
+         </isNotNull>
+			<isNotNull property="depotWhere" prepend="and ">
+				Depot = #depotWhere#
+         </isNotNull>
+			<isNotNull property="shelfWhere" prepend="and ">
+				Shelf = #shelfWhere#
+         </isNotNull>
+			<isNotNull property="layerWhere" prepend="and ">
+				Layer = #layerWhere#
+         </isNotNull>
+			<isNotNull property="stackWhere" prepend="and ">
+				Stack = #stackWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityStack">
+		<selectKey resultClass="java.lang.String" keyProperty="stackID">
+			SELECT #stackID# as stackID FROM DUAL
+     </selectKey>
+		insert into stack(
+		StackID
+		,Remark
+		,LibraryCodeID
+		,Complex
+		,Depot
+		,Shelf
+		,Layer
+		,Stack
+		,Version
+		,CreateTime
+		,CreateUser
+		,UpdateTime
+		,UpdateUser
+		,DelFlag
+		)
+		Values (
+
+		 <isNotNull property="stackID">
+				#stackID#
+         </isNotNull>
+			<isNull property="stackID">
+				null
+         </isNull>
+         		 <isNotNull property="remark">
+				,#remark#
+         </isNotNull>
+         <isNull property="remark">
+				,null
+         </isNull>
+		 <isNotNull property="libraryCodeID">
+				,#libraryCodeID#
+         </isNotNull>
+			<isNull property="libraryCodeID">
+				,null
+         </isNull>
+			<isNotNull property="complex">
+				,#complex#
+         </isNotNull>
+			<isNull property="complex">
+				,null
+         </isNull>
+			<isNotNull property="depot">
+				,#depot#
+         </isNotNull>
+			<isNull property="depot">
+				,null
+         </isNull>
+			<isNotNull property="shelf">
+				,#shelf#
+         </isNotNull>
+			<isNull property="shelf">
+				,null
+         </isNull>
+			<isNotNull property="layer">
+				,#layer#
+         </isNotNull>
+			<isNull property="layer">
+				,null
+         </isNull>
+			<isNotNull property="stack">
+				,#stack#
+         </isNotNull>
+			<isNull property="stack">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+	
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityStack">
+		delete  from stack
+		<dynamic prepend=" where ">
+			<isNotNull property="stackIDWhere" prepend="and ">
+				StackID = #stackIDWhere#
+         </isNotNull>
+			<isNotNull property="libraryCodeIDWhere" prepend="and ">
+				LibraryCodeID = #libraryCodeIDWhere#
+         </isNotNull>
+			<isNotNull property="complexWhere" prepend="and ">
+				Complex = #complexWhere#
+         </isNotNull>
+			<isNotNull property="depotWhere" prepend="and ">
+				Depot = #depotWhere#
+         </isNotNull>
+			<isNotNull property="shelfWhere" prepend="and ">
+				Shelf = #shelfWhere#
+         </isNotNull>
+			<isNotNull property="layerWhere" prepend="and ">
+				Layer = #layerWhere#
+         </isNotNull>
+			<isNotNull property="stackWhere" prepend="and ">
+				Stack = #stackWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

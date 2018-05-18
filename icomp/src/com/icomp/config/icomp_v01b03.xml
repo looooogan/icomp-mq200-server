@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!--刃磨信息 -->
+	<package name="V01B03" extends="icomp-default">
+        <!-- 初始化页面 -->
+		<action name="B03S*" class="b03S{1}Action" method="initb03S{1}">
+			<result >/WEB-INF/jsp/v01b03/b03s{1}.jsp</result>
+		</action>
+
+		<action name="outFactory*" class="b03S002Action" method="outFactory{1}"></action>
+		<action name="outInfo" class="b03S002Action" method="outInfo"></action>
+		<action name="outFactoryEdit" class="b03S002Action" method="outFactoryEdit"></action>
+		<action name="merchants*" class="b03S003Action" method="merchants{1}"></action>
+		<action name="merchantsEdit" class="b03S003Action" method="merchantsEdit"></action>
+		<!-- 取得用户(详细)信息 -->
+		<action name="tdDetail" class="b03S007Action" method="tdDetail">
+			<result name="success">/WEB-INF/jsp/v01b11/b03s007.jsp</result>
+		</action>
+
+	</package>
+</struts>  

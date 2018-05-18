@@ -1,0 +1,1139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Toolwholelifecycle.xml
+		Created on : 2014/08/19 15:48:46
+		Author : 工具自动生成
+		Description: 工具自动生成包含刀具全生命周期的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Toolwholelifecycle">
+	<typeAlias alias="entityToolwholelifecycle" type="com.icomp.entity.base.Toolwholelifecycle" />
+	<resultMap id="Toolwholelifecycle-map" class="entityToolwholelifecycle">
+		<!-- 刀具全生命周期ID -->
+		<result property="toolWholeLifecycleID" column="ToolWholeLifecycleID" />
+		<!-- 业务-流程中间表ID -->
+		<result property="businessFlowLnkID" column="BusinessFlowLnkID" />
+		<!-- 操作手持机 -->
+		<result property="handSetID" column="HandSetID" />
+		<!-- 刀具名称 -->
+		<result property="toolName" column="ToolName" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 刀具入库编码 -->
+		<result property="knifeInventoryCode" column="KnifeInventoryCode" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityToolwholelifecycle" resultMap="Toolwholelifecycle-map">
+		SELECT
+		ToolWholeLifecycleID
+		,BusinessFlowLnkID
+		,HandSetID
+		,ToolName
+		,ToolCode
+		,KnifeInventoryCode
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from toolwholelifecycle
+		<dynamic prepend=" where ">
+			<isNotNull property="toolWholeLifecycleID" prepend="and ">
+				ToolWholeLifecycleID = #toolWholeLifecycleID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					ToolWholeLifecycleID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityToolwholelifecycle" resultMap="Toolwholelifecycle-map">
+		SELECT
+		ToolWholeLifecycleID
+		,BusinessFlowLnkID
+		,HandSetID
+		,ToolName
+		,ToolCode
+		,KnifeInventoryCode
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from toolwholelifecycle
+		<dynamic prepend=" where ">
+			<isNotNull property="toolWholeLifecycleID" prepend="and ">
+				ToolWholeLifecycleID = #toolWholeLifecycleID#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="handSetID" prepend="and ">
+				HandSetID = #handSetID#
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode like concat('%',#knifeInventoryCode#,'%')
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					ToolWholeLifecycleID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityToolwholelifecycle" resultClass="int">
+		SELECT count(1)
+		from toolwholelifecycle
+		<dynamic prepend=" where ">
+			<isNotNull property="toolWholeLifecycleID" prepend="and ">
+				ToolWholeLifecycleID = #toolWholeLifecycleID#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="handSetID" prepend="and ">
+				HandSetID = #handSetID#
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityToolwholelifecycle">
+		update toolwholelifecycle
+		<dynamic prepend="set">
+			<isNotNull property="toolWholeLifecycleID">
+				ToolWholeLifecycleID = #toolWholeLifecycleID#
+         </isNotNull>
+			<isNull property="toolWholeLifecycleID">
+				ToolWholeLifecycleID = null
+         </isNull>
+			<isNotNull property="businessFlowLnkID">
+				,BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNull property="businessFlowLnkID">
+				,BusinessFlowLnkID = null
+         </isNull>
+			<isNotNull property="handSetID">
+				,HandSetID = #handSetID#
+         </isNotNull>
+			<isNull property="handSetID">
+				,HandSetID = null
+         </isNull>
+			<isNotNull property="toolName">
+				,ToolName = #toolName#
+         </isNotNull>
+			<isNull property="toolName">
+				,ToolName = null
+         </isNull>
+			<isNotNull property="toolCode">
+				,ToolCode = #toolCode#
+         </isNotNull>
+			<isNull property="toolCode">
+				,ToolCode = null
+         </isNull>
+			<isNotNull property="knifeInventoryCode">
+				,KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNull property="knifeInventoryCode">
+				,KnifeInventoryCode = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="toolWholeLifecycleIDWhere" prepend="and ">
+				ToolWholeLifecycleID = #toolWholeLifecycleIDWhere#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkIDWhere" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkIDWhere#
+         </isNotNull>
+			<isNotNull property="handSetIDWhere" prepend="and ">
+				HandSetID = #handSetIDWhere#
+         </isNotNull>
+			<isNotNull property="toolNameWhere" prepend="and ">
+				ToolName = #toolNameWhere#
+         </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode = #toolCodeWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityToolwholelifecycle">
+		update toolwholelifecycle
+		<dynamic prepend="set">
+			<isNotNull property="toolWholeLifecycleID"  prepend=",">
+				ToolWholeLifecycleID = #toolWholeLifecycleID#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkID"  prepend=",">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="handSetID"  prepend=",">
+				HandSetID = #handSetID#
+         </isNotNull>
+			<isNotNull property="toolName"  prepend=",">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="toolCode"  prepend=",">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode"  prepend=",">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="toolWholeLifecycleIDWhere" prepend="and ">
+				ToolWholeLifecycleID = #toolWholeLifecycleIDWhere#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkIDWhere" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkIDWhere#
+         </isNotNull>
+			<isNotNull property="handSetIDWhere" prepend="and ">
+				HandSetID = #handSetIDWhere#
+         </isNotNull>
+			<isNotNull property="toolNameWhere" prepend="and ">
+				ToolName = #toolNameWhere#
+         </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode = #toolCodeWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityToolwholelifecycle">
+		<selectKey resultClass="java.lang.String" keyProperty="toolWholeLifecycleID">
+			SELECT #toolWholeLifecycleID# as toolWholeLifecycleID FROM DUAL
+     </selectKey>
+		insert into toolwholelifecycle(
+		ToolWholeLifecycleID
+		,BusinessFlowLnkID
+		,HandSetID
+		,ToolName
+		,ToolCode
+		,KnifeInventoryCode
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		)
+		Values (
+			<isNotNull property="toolWholeLifecycleID">
+				#toolWholeLifecycleID#
+         </isNotNull>
+			<isNull property="toolWholeLifecycleID">
+				null
+         </isNull>
+			<isNotNull property="businessFlowLnkID">
+				,#businessFlowLnkID#
+         </isNotNull>
+			<isNull property="businessFlowLnkID">
+				,null
+         </isNull>
+			<isNotNull property="handSetID">
+				,#handSetID#
+         </isNotNull>
+			<isNull property="handSetID">
+				,null
+         </isNull>
+			<isNotNull property="toolName">
+				,#toolName#
+         </isNotNull>
+			<isNull property="toolName">
+				,null
+         </isNull>
+			<isNotNull property="toolCode">
+				,#toolCode#
+         </isNotNull>
+			<isNull property="toolCode">
+				,null
+         </isNull>
+			<isNotNull property="knifeInventoryCode">
+				,#knifeInventoryCode#
+         </isNotNull>
+			<isNull property="knifeInventoryCode">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+		)
+	</insert>
+	<!-- 批量插入处理 -->
+	<insert id="insertBatchs" parameterClass="java.util.List">
+		insert into toolwholelifecycle(
+		ToolWholeLifecycleID
+		,BusinessFlowLnkID
+		,HandSetID
+		,ProcessAmount
+		,ToolID
+		,KnifeInventoryCode
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		)
+		Values 
+		 <iterate  conjunction =","  >
+            (
+              	 #list[].toolWholeLifecycleID#
+				,#list[].businessFlowLnkID#
+				,#list[].handSetID#
+				,#list[].processAmount#
+				,#list[].toolID#
+				,#list[].knifeInventoryCode#
+				,#list[].delFlag#
+				,#list[].createUser#
+				,#list[].createTime#
+				,#list[].updateUser#
+				,#list[].updateTime#
+				,#list[].version#
+            )
+           </iterate >
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityToolwholelifecycle">
+		delete  from toolwholelifecycle
+		<dynamic prepend=" where ">
+			<isNotNull property="toolWholeLifecycleIDWhere" prepend="and ">
+				ToolWholeLifecycleID = #toolWholeLifecycleIDWhere#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkIDWhere" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkIDWhere#
+         </isNotNull>
+			<isNotNull property="handSetIDWhere" prepend="and ">
+				HandSetID = #handSetIDWhere#
+         </isNotNull>
+			<isNotNull property="toolNameWhere" prepend="and ">
+				ToolName = #toolNameWhere#
+         </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode = #toolCodeWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+	<typeAlias alias="entityToolwholelifecycle" type="com.icomp.entity.base.Toolwholelifecycle" />
+	<resultMap id="Toolwholelifecycle-map" class="entityToolwholelifecycle">
+		<!-- 刀具全生命周期ID -->
+		<result property="toolWholeLifecycleID" column="ToolWholeLifecycleID" />
+		<!-- 刀具入库编码 -->
+		<result property="knifeInventoryCode" column="KnifeInventoryCode" />
+		<!-- 业务-流程中间表ID -->
+		<result property="businessFlowLnkID" column="BusinessFlowLnkID" />
+		<!-- 操作手持机 -->
+		<result property="handSetID" column="HandSetID" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 零部件ID -->
+		<result property="partsID" column="PartsID" />
+		<!-- 加工数量 -->
+		<result property="processAmount" column="ProcessAmount" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey1" parameterClass="entityToolwholelifecycle" resultMap="Toolwholelifecycle-map">
+		SELECT
+		ToolWholeLifecycleID
+		,KnifeInventoryCode
+		,BusinessFlowLnkID
+		,HandSetID
+		,ToolID
+		,PartsID
+		,ProcessAmount
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from toolwholelifecycle
+		<dynamic prepend=" where ">
+			<isNotNull property="toolWholeLifecycleID" prepend="and ">
+				ToolWholeLifecycleID = #toolWholeLifecycleID#
+			</isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+		</isNotNull>
+		<isNull property="orderString">
+			order by
+			ToolWholeLifecycleID
+		</isNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT $rowCount$ offset $staIndex$
+		</isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList1" parameterClass="entityToolwholelifecycle" resultMap="Toolwholelifecycle-map">
+		SELECT
+		ToolWholeLifecycleID
+		,KnifeInventoryCode
+		,BusinessFlowLnkID
+		,HandSetID
+		,ToolID
+		,PartsID
+		,ProcessAmount
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from toolwholelifecycle
+		<dynamic prepend=" where ">
+			<isNotNull property="toolWholeLifecycleID" prepend="and ">
+				ToolWholeLifecycleID = #toolWholeLifecycleID#
+			</isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode like concat('%',#knifeInventoryCode#,'%')
+			</isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+			</isNotNull>
+			<isNotNull property="handSetID" prepend="and ">
+				HandSetID = #handSetID#
+			</isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+			</isNotNull>
+			<isNotNull property="partsID" prepend="and ">
+				PartsID = #partsID#
+			</isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+			</isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+			</isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+			</isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+			</isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+			</isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+			</isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+		</isNotNull>
+		<isNull property="orderString">
+			order by
+			ToolWholeLifecycleID
+		</isNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT $rowCount$ offset $staIndex$
+		</isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount1" parameterClass="entityToolwholelifecycle" resultClass="int">
+		SELECT count(1)
+		from toolwholelifecycle
+		<dynamic prepend=" where ">
+			<isNotNull property="toolWholeLifecycleID" prepend="and ">
+				ToolWholeLifecycleID = #toolWholeLifecycleID#
+			</isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode like concat('%',#knifeInventoryCode#,'%')
+			</isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+			</isNotNull>
+			<isNotNull property="handSetID" prepend="and ">
+				HandSetID = #handSetID#
+			</isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+			</isNotNull>
+			<isNotNull property="partsID" prepend="and ">
+				PartsID = #partsID#
+			</isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+			</isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+			</isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+			</isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+			</isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+			</isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+			</isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update1" parameterClass="entityToolwholelifecycle">
+		update toolwholelifecycle
+		<dynamic prepend="set">
+			<isNotNull property="toolWholeLifecycleID">
+				ToolWholeLifecycleID = #toolWholeLifecycleID#
+			</isNotNull>
+			<isNull property="toolWholeLifecycleID">
+				ToolWholeLifecycleID = null
+			</isNull>
+			<isNotNull property="knifeInventoryCode">
+				,KnifeInventoryCode = #knifeInventoryCode#
+			</isNotNull>
+			<isNull property="knifeInventoryCode">
+				,KnifeInventoryCode = null
+			</isNull>
+			<isNotNull property="businessFlowLnkID">
+				,BusinessFlowLnkID = #businessFlowLnkID#
+			</isNotNull>
+			<isNull property="businessFlowLnkID">
+				,BusinessFlowLnkID = null
+			</isNull>
+			<isNotNull property="handSetID">
+				,HandSetID = #handSetID#
+			</isNotNull>
+			<isNull property="handSetID">
+				,HandSetID = null
+			</isNull>
+			<isNotNull property="toolID">
+				,ToolID = #toolID#
+			</isNotNull>
+			<isNull property="toolID">
+				,ToolID = null
+			</isNull>
+			<isNotNull property="partsID">
+				,PartsID = #partsID#
+			</isNotNull>
+			<isNull property="partsID">
+				,PartsID = null
+			</isNull>
+			<isNotNull property="processAmount">
+				,ProcessAmount = #processAmount#
+			</isNotNull>
+			<isNull property="processAmount">
+				,ProcessAmount = null
+			</isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+			</isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+			</isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+			</isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+			</isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+			</isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+			</isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+			</isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+			</isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+			</isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+			</isNull>
+			<isNotNull property="version">
+				,Version = #version#
+			</isNotNull>
+			<isNull property="version">
+				,Version = null
+			</isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="toolWholeLifecycleIDWhere" prepend="and ">
+				ToolWholeLifecycleID = #toolWholeLifecycleIDWhere#
+			</isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+			</isNotNull>
+			<isNotNull property="businessFlowLnkIDWhere" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkIDWhere#
+			</isNotNull>
+			<isNotNull property="handSetIDWhere" prepend="and ">
+				HandSetID = #handSetIDWhere#
+			</isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				ToolID = #toolIDWhere#
+			</isNotNull>
+			<isNotNull property="partsIDWhere" prepend="and ">
+				PartsID = #partsIDWhere#
+			</isNotNull>
+			<isNotNull property="processAmountWhere" prepend="and ">
+				ProcessAmount = #processAmountWhere#
+			</isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+			</isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+			</isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+			</isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+			</isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+			</isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+			</isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery1" parameterClass="entityToolwholelifecycle">
+		update toolwholelifecycle
+		<dynamic prepend="set">
+			<isNotNull property="toolWholeLifecycleID"  prepend=",">
+				ToolWholeLifecycleID = #toolWholeLifecycleID#
+			</isNotNull>
+			<isNotNull property="knifeInventoryCode"  prepend=",">
+				KnifeInventoryCode = #knifeInventoryCode#
+			</isNotNull>
+			<isNotNull property="businessFlowLnkID"  prepend=",">
+				BusinessFlowLnkID = #businessFlowLnkID#
+			</isNotNull>
+			<isNotNull property="handSetID"  prepend=",">
+				HandSetID = #handSetID#
+			</isNotNull>
+			<isNotNull property="toolID"  prepend=",">
+				ToolID = #toolID#
+			</isNotNull>
+			<isNotNull property="partsID"  prepend=",">
+				PartsID = #partsID#
+			</isNotNull>
+			<isNotNull property="processAmount"  prepend=",">
+				ProcessAmount = #processAmount#
+			</isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+			</isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+			</isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+			</isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+			</isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="toolWholeLifecycleIDWhere" prepend="and ">
+				ToolWholeLifecycleID = #toolWholeLifecycleIDWhere#
+			</isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+			</isNotNull>
+			<isNotNull property="businessFlowLnkIDWhere" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkIDWhere#
+			</isNotNull>
+			<isNotNull property="handSetIDWhere" prepend="and ">
+				HandSetID = #handSetIDWhere#
+			</isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				ToolID = #toolIDWhere#
+			</isNotNull>
+			<isNotNull property="partsIDWhere" prepend="and ">
+				PartsID = #partsIDWhere#
+			</isNotNull>
+			<isNotNull property="processAmountWhere" prepend="and ">
+				ProcessAmount = #processAmountWhere#
+			</isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+			</isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+			</isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+			</isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+			</isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+			</isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+			</isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert1" parameterClass="entityToolwholelifecycle">
+		<selectKey resultClass="java.lang.String" keyProperty="toolWholeLifecycleID">
+			SELECT #toolWholeLifecycleID# as toolWholeLifecycleID FROM DUAL
+		</selectKey>
+		insert into toolwholelifecycle(
+		ToolWholeLifecycleID
+		,KnifeInventoryCode
+		,BusinessFlowLnkID
+		,HandSetID
+		,ToolID
+		,PartsID
+		,ProcessAmount
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		)
+		Values (
+		<isNotNull property="toolWholeLifecycleID">
+			#toolWholeLifecycleID#
+		</isNotNull>
+		<isNull property="toolWholeLifecycleID">
+			null
+		</isNull>
+		<isNotNull property="knifeInventoryCode">
+			,#knifeInventoryCode#
+		</isNotNull>
+		<isNull property="knifeInventoryCode">
+			,null
+		</isNull>
+		<isNotNull property="businessFlowLnkID">
+			,#businessFlowLnkID#
+		</isNotNull>
+		<isNull property="businessFlowLnkID">
+			,null
+		</isNull>
+		<isNotNull property="handSetID">
+			,#handSetID#
+		</isNotNull>
+		<isNull property="handSetID">
+			,null
+		</isNull>
+		<isNotNull property="toolID">
+			,#toolID#
+		</isNotNull>
+		<isNull property="toolID">
+			,null
+		</isNull>
+		<isNotNull property="partsID">
+			,#partsID#
+		</isNotNull>
+		<isNull property="partsID">
+			,null
+		</isNull>
+		<isNotNull property="processAmount">
+			,#processAmount#
+		</isNotNull>
+		<isNull property="processAmount">
+			,null
+		</isNull>
+		<isNotNull property="delFlag">
+			,#delFlag#
+		</isNotNull>
+		<isNull property="delFlag">
+			,null
+		</isNull>
+		<isNotNull property="createUser">
+			,#createUser#
+		</isNotNull>
+		<isNull property="createUser">
+			,null
+		</isNull>
+		<isNotNull property="createTime">
+			,#createTime#
+		</isNotNull>
+		<isNull property="createTime">
+			,null
+		</isNull>
+		<isNotNull property="updateUser">
+			,#updateUser#
+		</isNotNull>
+		<isNull property="updateUser">
+			,null
+		</isNull>
+		<isNotNull property="updateTime">
+			,#updateTime#
+		</isNotNull>
+		<isNull property="updateTime">
+			,null
+		</isNull>
+		<isNotNull property="version">
+			,#version#
+		</isNotNull>
+		<isNull property="version">
+			,null
+		</isNull>
+		)
+	</insert>
+	
+	<!-- 批量插入处理 -->
+	<insert id="insertBatch" parameterClass="java.util.List">
+		insert into toolwholelifecycle(
+		ToolWholeLifecycleID
+		,KnifeInventoryCode
+		,BusinessFlowLnkID
+		,HandSetID
+		,ToolID
+		,PartsID
+		,ProcessAmount
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		)
+		Values 
+		 <iterate  conjunction =","  >
+            (
+              	 #list[].toolWholeLifecycleID#
+				,#list[].knifeInventoryCode#
+				,#list[].businessFlowLnkID#
+				,#list[].handSetID#
+				,#list[].toolID#
+				,#list[].partsID#
+				,#list[].processAmount#
+				,#list[].delFlag#
+				,#list[].createUser#
+				,#list[].createTime#
+				,#list[].updateUser#
+				,#list[].updateTime#
+				,#list[].version#
+            )
+           </iterate >
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete1" parameterClass="entityToolwholelifecycle">
+		delete  from toolwholelifecycle
+		<dynamic prepend=" where ">
+			<isNotNull property="toolWholeLifecycleIDWhere" prepend="and ">
+				ToolWholeLifecycleID = #toolWholeLifecycleIDWhere#
+			</isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+			</isNotNull>
+			<isNotNull property="businessFlowLnkIDWhere" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkIDWhere#
+			</isNotNull>
+			<isNotNull property="handSetIDWhere" prepend="and ">
+				HandSetID = #handSetIDWhere#
+			</isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				ToolID = #toolIDWhere#
+			</isNotNull>
+			<isNotNull property="partsIDWhere" prepend="and ">
+				PartsID = #partsIDWhere#
+			</isNotNull>
+			<isNotNull property="processAmountWhere" prepend="and ">
+				ProcessAmount = #processAmountWhere#
+			</isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+			</isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+			</isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+			</isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+			</isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+			</isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+			</isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

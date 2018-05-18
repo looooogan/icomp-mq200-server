@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vcomlist.xml
+		Created on : 2014/09/18 15:20:45
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vcomlist">
+	<typeAlias alias="entityVcomlist" type="com.icomp.entity.base.Vcomlist" />
+	<resultMap id="Vcomlist-map" class="entityVcomlist">
+		<!-- 语言名称 -->
+		<result property="languageName" column="LanguageName" />
+		<!-- ComlistID -->
+		<result property="comlistID" column="ComlistID" />
+		<!-- 语言编码 -->
+		<result property="languageCode" column="LanguageCode" />
+		<!-- 区分类型 -->
+		<result property="comListType" column="ComListType" />
+		<!-- 区分值 -->
+		<result property="comListValue" column="ComListValue" />
+		<!-- 区分文本 -->
+		<result property="comListText" column="ComListText" />
+		<!-- 区分描述 -->
+		<result property="comListMs" column="ComListMs" />
+		<!-- 是否可以修改(0是1否) -->
+		<result property="editFlag" column="EditFlag" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVcomlist" resultMap="Vcomlist-map">
+		SELECT
+		LanguageName
+		,ComlistID
+		,LanguageCode
+		,ComListType
+		,ComListValue
+		,ComListText
+		,ComListMs
+		,EditFlag
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from vcomlist
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVcomlist" resultMap="Vcomlist-map">
+		SELECT
+		LanguageName
+		,ComlistID
+		,LanguageCode
+		,ComListType
+		,ComListValue
+		,ComListText
+		,ComListMs
+		,EditFlag
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from vcomlist
+		<dynamic prepend=" where ">
+			<isNotNull property="languageName" prepend="and ">
+				LanguageName = #languageName#
+         </isNotNull>
+			<isNotNull property="comlistID" prepend="and ">
+				ComlistID = #comlistID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="comListType" prepend="and ">
+				ComListType = #comListType#
+         </isNotNull>
+			<isNotNull property="comListValue" prepend="and ">
+				ComListValue = #comListValue#
+         </isNotNull>
+			<isNotNull property="comListText" prepend="and ">
+				ComListText = #comListText#
+         </isNotNull>
+			<isNotNull property="comListMs" prepend="and ">
+				ComListMs = #comListMs#
+         </isNotNull>
+			<isNotNull property="editFlag" prepend="and ">
+				EditFlag = #editFlag#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVcomlist" resultClass="int">
+		SELECT count(1)
+		from vcomlist
+		<dynamic prepend=" where ">
+			<isNotNull property="languageName" prepend="and ">
+				LanguageName = #languageName#
+         </isNotNull>
+			<isNotNull property="comlistID" prepend="and ">
+				ComlistID = #comlistID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="comListType" prepend="and ">
+				ComListType = #comListType#
+         </isNotNull>
+			<isNotNull property="comListValue" prepend="and ">
+				ComListValue = #comListValue#
+         </isNotNull>
+			<isNotNull property="comListText" prepend="and ">
+				ComListText = #comListText#
+         </isNotNull>
+			<isNotNull property="comListMs" prepend="and ">
+				ComListMs = #comListMs#
+         </isNotNull>
+			<isNotNull property="editFlag" prepend="and ">
+				EditFlag = #editFlag#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

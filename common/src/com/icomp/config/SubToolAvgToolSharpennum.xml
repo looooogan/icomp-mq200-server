@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Agency.xml Created on : 2014/08/19 15:48:44 Author : 工具自动生成
+		Description: 工具自动生成包含机构的单表增删改查SQL语句. searchByPrimaryKey ： 主键查询
+		searchByList ： 任意条件查询 searchByCount ：任意条件条数查询 insert ： 插入处理 update ：
+		更新处理（未指定项目更新为null） updateNonQuery ：更新处理（未指定项目不更新） delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="SubToolAvgToolSharpennum">
+	<typeAlias alias="entitySubToolAvgToolSharpennum" type="com.icomp.entity.base.SubToolAvgToolSharpennum" />
+	<resultMap id="SubToolAvgToolSharpennum-map" class="entitySubToolAvgToolSharpennum">
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 采购周期 -->
+		<result property="purchasingCycle" column="PurchasingCycle" />
+		<!-- 订单日期 -->
+		<result property="procuredTime" column="ProcuredTime" />
+		<!-- 到货日期 -->
+		<result property="realityTheyTime" column="RealityTheyTime" />
+		<!-- 使用次数 -->
+		<result property="sycs" column="sycs" />
+		<!-- 报废个数 -->
+		<result property="bfgs" column="bfgs" />
+		<!-- 平均使用次数 -->
+		<result property="avgcs" column="avgcs" />
+	</resultMap>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entitySubToolAvgToolSharpennum"
+		resultMap="SubToolAvgToolSharpennum-map">
+		<![CDATA[ SELECT sy.ToolCode,
+		sy.PurchasingCycle,sy.ProcuredTime,date_format(sy.RealityTheyTime,'%Y%m%d') AS RealityTheyTime,sy.sycs,sy.bfgs
+		,sy.sycs/sy.bfgs avgcs
+		from (
+		select tool.ToolCode,tool.PurchasingCycle
+		,dh.ProcuredTime,dh.RealityTheyTime
+		,case when tool.ToolConsumetype='2' THEN
+		tool.ToolSharpennum
+		else
+		CASE when sm.sycs is not null then
+		sm.sycs
+		ELSE
+		CASE when tool.ToolConsumetype='1' THEN
+		tool.ToolSharpennum
+		else
+		tool.ToolSharpenLength/tool.ToolSharpenCriterion
+		end
+		end
+		end sycs
+		,CASE when bf.bfgs is not null then
+		bf.bfgs
+		ELSE
+		1
+		end bfgs
+		from tool 
+		LEFT JOIN (
+		select tool.ToolCode,ProcuredTime,max(RealityTheyTime) RealityTheyTime from
+		tool left join ToolProcured
+		on tool.ToolID = ToolProcured.ToolID
+		INNER JOIN DeliveryPlan on DeliveryPlan.ToolProcuredID =
+		ToolProcured.ToolProcuredID
+		GROUP BY ToolCode,ProcuredTime) dh on tool.ToolCode = dh.ToolCode
+		left join (select
+		tool.ToolCode,count(ToolNoticeHistory.KnifeInventoryCode) as sycs from
+		tool
+		inner join ToolTransfer on tool.toolid = ToolTransfer.toolid and
+		ToolTransfer.StockState = '1'
+		left join ToolNoticeHistory
+		on ToolNoticeHistory.KnifeInventoryCode =
+		ToolTransfer.KnifeInventoryCode
+		group by tool.ToolCode,ToolTransfer.StockState) as sm on sm.ToolCode =
+		tool.ToolCode 
+		left join (
+		select tool.ToolCode,count(ToolTransfer.toolid) as bfgs from tool
+		inner join ToolTransfer on tool.toolid = ToolTransfer.toolid and
+		ToolTransfer.StockState = '1') as bf
+		on bf.ToolCode = tool.ToolCode 
+		where tool.ToolType = '0'
+		) as sy
+		where ToolCode = #toolCode# ]]>
+	</select>
+	
+</sqlMap>
+

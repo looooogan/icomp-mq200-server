@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="ToolReplace">
+	<typeAlias alias="entityToolReplace" type="com.icomp.entity.base.ToolReplace" />
+	<resultMap id="ToolReplace-map" class="entityToolReplace">
+		<!-- 机构ID -->
+		<result property="toolReplaceID" column="toolReplaceID" />
+		<!-- 机构ID -->
+		<result property="toolCode" column="toolCode" />
+		<!-- 语言编码 -->
+		<result property="repalceToolCode" column="repalceToolCode" />
+		<!-- 机构名称 -->
+		<result property="synthesisParametersID" column="synthesisParametersID" />
+
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityToolReplace" resultMap="ToolReplace-map">
+		SELECT
+		toolReplaceID
+		,toolCode
+		,repalceToolCode
+		,synthesisParametersID
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from tool_replace
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersIDWhere" prepend="and ">
+				synthesisParametersID = #synthesisParametersIDWhere#
+			</isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				toolCode = #toolIDWhere#
+			</isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+			</isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+			</isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+			</isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+			</isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+			</isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityToolReplace" resultMap="ToolReplace-map">
+		SELECT
+		toolReplaceID
+		,toolCode
+		,repalceToolCode
+		,synthesisParametersID
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from tool_replace
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersIDWhere" prepend="and ">
+				synthesisParametersID = #synthesisParametersIDWhere#
+			</isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				toolCode = #toolIDWhere#
+			</isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         	</isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+		 	</isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+		 	</isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+		 	</isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+		 	</isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+		 	</isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+		</isNotNull>
+		<isNull property="orderString">
+			order by
+				toolReplaceID
+     	</isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityToolReplace" resultClass="int">
+		SELECT count(1)
+		from tool_replace
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersIDWhere" prepend="and ">
+				synthesisParametersID = #synthesisParametersIDWhere#
+			</isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				toolCode = #toolIDWhere#
+			</isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+			</isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+			</isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+			</isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+			</isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+			</isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityToolReplace">
+		update tool_replace
+		<dynamic prepend="set">
+			<isNotNull property="toolCode">
+				toolCode = #toolCode#
+         </isNotNull>
+			<isNull property="toolCode">
+				toolCode = null
+         	</isNull>
+			<isNotNull property="repalceToolCode">
+				,repalceToolCode = #repalceToolCode#
+         	</isNotNull>
+			<isNull property="repalceToolCode">
+				,repalceToolCode = null
+         	</isNull>
+			<isNotNull property="synthesisParametersID">
+				,synthesisParametersID = #synthesisParametersID#
+         	</isNotNull>
+			<isNull property="synthesisParametersID">
+				,synthesisParametersID = null
+         	</isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="toolIDWhere" prepend="and ">
+				toolCode = #toolIDWhere#
+			</isNotNull>
+			<isNotNull property="synthesisParametersIDWhere" prepend="and ">
+				synthesisParametersID = #synthesisParametersIDWhere#
+			</isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+			</isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+			</isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+			</isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+			</isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+			</isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityToolReplace">
+		update tool_replace
+		<dynamic prepend="set">
+			<isNotNull property="toolCode"  prepend=",">
+				toolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="repalceToolCode"  prepend=",">
+				repalceToolCode = #repalceToolCode#
+         </isNotNull>
+			<isNotNull property="synthesisParametersID"  prepend=",">
+				synthesisParametersID = #synthesisParametersID#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="toolIDWhere" prepend="and ">
+				toolCode = #toolIDWhere#
+         </isNotNull>
+			<isNotNull property="synthesisParametersIDWhere" prepend="and ">
+				synthesisParametersID = #synthesisParametersIDWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityToolReplace">
+		<!--<selectKey resultClass="java.lang.Integer" keyProperty="toolReplaceID">-->
+			<!--SELECT #toolReplaceID# as toolReplaceID FROM DUAL-->
+     	<!--</selectKey>-->
+		insert into tool_replace(
+		toolReplaceID
+		 ,toolCode
+		,repalceToolCode
+		,synthesisParametersID
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		)
+		Values (
+		<isNotNull property="toolReplaceID">
+			#toolReplaceID#
+		</isNotNull>
+		<isNull property="toolReplaceID">
+			null
+		</isNull>
+		<isNotNull property="toolCode">
+			,#toolCode#
+		</isNotNull>
+			<isNull property="toolCode">
+				,null
+         </isNull>
+			<isNotNull property="repalceToolCode">
+				,#repalceToolCode#
+         </isNotNull>
+			<isNull property="repalceToolCode">
+				,null
+         </isNull>
+			<isNotNull property="synthesisParametersID">
+				,#synthesisParametersID#
+         </isNotNull>
+			<isNull property="synthesisParametersID">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityToolReplace">
+		delete  from tool_replace
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersIDWhere" prepend="and ">
+				synthesisParametersID = #synthesisParametersIDWhere#
+			</isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				toolCode = #toolIDWhere#
+			</isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+			</isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+			</isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+			</isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+			</isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+			</isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

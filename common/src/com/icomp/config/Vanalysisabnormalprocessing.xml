@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vanalysisabnormalprocessing.xml
+		Created on : 2014/09/01 13:38:17
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByList_F ： 任意条件查询-”合成刀具编码“模糊查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vanalysisabnormalprocessing">
+	<typeAlias alias="entityVanalysisabnormalprocessing" type="com.icomp.entity.base.Vanalysisabnormalprocessing" />
+	<resultMap id="Vanalysisabnormalprocessing-map" class="entityVanalysisabnormalprocessing">
+		<!-- 流水线ID -->
+		<result property="assemblyLineID" column="AssemblyLineID" />
+		<!-- 流水线编码 -->
+		<result property="assemblyLineCode" column="AssemblyLineCode" />
+		<!-- 流水线名称 -->
+		<result property="assemblyLineName" column="AssemblyLineName" />
+		<!-- 工序ID -->
+		<result property="processID" column="ProcessID" />
+		<!-- 工序编码 -->
+		<result property="processCode" column="ProcessCode" />
+		<!-- 工序名称 -->
+		<result property="processName" column="ProcessName" />
+		<!-- 设备ID -->
+		<result property="equipmentID" column="EquipmentID" />
+		<!-- 设备编码 -->
+		<result property="equipmentCode" column="EquipmentCode" />
+		<!-- 设备名称 -->
+		<result property="equipmentName" column="EquipmentName" />
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!-- 合成刀具编号(例如：001、002、003) -->
+		<result property="synthesisParametersNumber" column="SynthesisParametersNumber" />
+		<!-- 定额加工量 -->
+		<result property="quotaProcessingVolume" column="QuotaProcessingVolume" />
+		<!--  -->
+		<result property="actualProcessingVolume" column="ActualProcessingVolume" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVanalysisabnormalprocessing" resultMap="Vanalysisabnormalprocessing-map">
+		SELECT
+		AssemblyLineID
+		,AssemblyLineCode
+		,AssemblyLineName
+		,ProcessID
+		,ProcessCode
+		,ProcessName
+		,EquipmentID
+		,EquipmentCode
+		,EquipmentName
+		,SynthesisParametersCode
+		,SynthesisParametersNumber
+		,QuotaProcessingVolume
+		,ActualProcessingVolume
+		from vanalysisabnormalprocessing
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVanalysisabnormalprocessing" resultMap="Vanalysisabnormalprocessing-map">
+		SELECT
+		AssemblyLineID
+		,AssemblyLineCode
+		,AssemblyLineName
+		,ProcessID
+		,ProcessCode
+		,ProcessName
+		,EquipmentID
+		,EquipmentCode
+		,EquipmentName
+		,SynthesisParametersCode
+		,SynthesisParametersNumber
+		,QuotaProcessingVolume
+		,ActualProcessingVolume
+		from vanalysisabnormalprocessing
+		<dynamic prepend=" where ">
+			<isNotNull property="assemblyLineID" prepend="and ">
+				AssemblyLineID = #assemblyLineID#
+         </isNotNull>
+			<isNotNull property="assemblyLineCode" prepend="and ">
+				AssemblyLineCode = #assemblyLineCode#
+         </isNotNull>
+			<isNotNull property="assemblyLineName" prepend="and ">
+				AssemblyLineName = #assemblyLineName#
+         </isNotNull>
+			<isNotNull property="processID" prepend="and ">
+				ProcessID = #processID#
+         </isNotNull>
+			<isNotNull property="processCode" prepend="and ">
+				ProcessCode = #processCode#
+         </isNotNull>
+			<isNotNull property="processName" prepend="and ">
+				ProcessName = #processName#
+         </isNotNull>
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+			<isNotNull property="equipmentCode" prepend="and ">
+				EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				OuterTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				OuterTime <= #dateEnd#
+				]]>
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="actualProcessingVolume" prepend="and ">
+				ActualProcessingVolume = #actualProcessingVolume#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList_F" parameterClass="entityVanalysisabnormalprocessing" resultMap="Vanalysisabnormalprocessing-map">
+		SELECT
+		AssemblyLineID
+		,AssemblyLineCode
+		,AssemblyLineName
+		,ProcessID
+		,ProcessCode
+		,ProcessName
+		,EquipmentID
+		,EquipmentCode
+		,EquipmentName
+		,SynthesisParametersCode
+		,SynthesisParametersNumber
+		,QuotaProcessingVolume
+		,ActualProcessingVolume
+		from vanalysisabnormalprocessing
+		<dynamic prepend=" where ">
+			<isNotNull property="assemblyLineID" prepend="and ">
+				AssemblyLineID = #assemblyLineID#
+         </isNotNull>
+			<isNotNull property="assemblyLineCode" prepend="and ">
+				AssemblyLineCode = #assemblyLineCode#
+         </isNotNull>
+			<isNotNull property="assemblyLineName" prepend="and ">
+				AssemblyLineName = #assemblyLineName#
+         </isNotNull>
+			<isNotNull property="processID" prepend="and ">
+				ProcessID = #processID#
+         </isNotNull>
+			<isNotNull property="processCode" prepend="and ">
+				ProcessCode = #processCode#
+         </isNotNull>
+			<isNotNull property="processName" prepend="and ">
+				ProcessName = #processName#
+         </isNotNull>
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+			<isNotNull property="equipmentCode" prepend="and ">
+				EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				    SynthesisParametersCode  like concat('%',#synthesisParametersCode#,'%')
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				OuterTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				OuterTime <= #dateEnd#
+				]]>
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="actualProcessingVolume" prepend="and ">
+				ActualProcessingVolume = #actualProcessingVolume#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVanalysisabnormalprocessing" resultClass="int">
+		SELECT count(1)
+		from vanalysisabnormalprocessing
+		<dynamic prepend=" where ">
+			<isNotNull property="assemblyLineID" prepend="and ">
+				AssemblyLineID = #assemblyLineID#
+         </isNotNull>
+			<isNotNull property="assemblyLineCode" prepend="and ">
+				AssemblyLineCode = #assemblyLineCode#
+         </isNotNull>
+			<isNotNull property="assemblyLineName" prepend="and ">
+				AssemblyLineName = #assemblyLineName#
+         </isNotNull>
+			<isNotNull property="processID" prepend="and ">
+				ProcessID = #processID#
+         </isNotNull>
+			<isNotNull property="processCode" prepend="and ">
+				ProcessCode = #processCode#
+         </isNotNull>
+			<isNotNull property="processName" prepend="and ">
+				ProcessName = #processName#
+         </isNotNull>
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+			<isNotNull property="equipmentCode" prepend="and ">
+				EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+			 SynthesisParametersCode  like concat('%',#synthesisParametersCode#,'%')
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				OuterTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				OuterTime <= #dateEnd#
+				]]>
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="actualProcessingVolume" prepend="and ">
+				ActualProcessingVolume = #actualProcessingVolume#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+
+<!-- 加工异常分析统计数量-->
+	<select id="getStatisticalCount" parameterClass="entityVanalysisabnormalprocessing" resultMap="Vanalysisabnormalprocessing-map">
+		SELECT
+		AssemblyLineID
+		,AssemblyLineCode
+		,AssemblyLineName
+		,ProcessID
+		,ProcessCode
+		,ProcessName
+		,EquipmentID
+		,EquipmentCode
+		,EquipmentName
+		,SynthesisParametersCode
+		,SynthesisParametersNumber
+
+		,QuotaProcessingVolume
+		,ActualProcessingVolume
+		from vanalysisabnormalprocessing
+		<dynamic prepend=" where ">
+			<isNotNull property="assemblyLineID" prepend="and ">
+				AssemblyLineID = #assemblyLineID#
+         </isNotNull>
+			<isNotNull property="assemblyLineCode" prepend="and ">
+				AssemblyLineCode = #assemblyLineCode#
+         </isNotNull>
+			<isNotNull property="assemblyLineName" prepend="and ">
+				AssemblyLineName = #assemblyLineName#
+         </isNotNull>
+			<isNotNull property="processID" prepend="and ">
+				ProcessID = #processID#
+         </isNotNull>
+			<isNotNull property="processCode" prepend="and ">
+				ProcessCode = #processCode#
+         </isNotNull>
+			<isNotNull property="processName" prepend="and ">
+				ProcessName = #processName#
+         </isNotNull>
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+			<isNotNull property="equipmentCode" prepend="and ">
+				EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				OuterTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				OuterTime <= #dateEnd#
+				]]>
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="actualProcessingVolume" prepend="and ">
+				ActualProcessingVolume = #actualProcessingVolume#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+
+
+</sqlMap>
+

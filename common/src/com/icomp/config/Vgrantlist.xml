@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vgrantlist.xml
+		Created on : 2014/08/19 15:48:47
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgrantlist">
+	<typeAlias alias="entityVgrantlist" type="com.icomp.entity.base.Vgrantlist" />
+	<resultMap id="Vgrantlist-map" class="entityVgrantlist">
+		<!-- 用户类型(0系统用户1普通用户) -->
+		<result property="userType" column="UserType" />
+		<!-- 用户名[16位数字字母组合] -->
+		<result property="userName" column="UserName" />
+		<!-- 职务名称 -->
+		<result property="positionName" column="PositionName" />
+		<!-- 职务编码 -->
+		<result property="positionCode" column="PositionCode" />
+		<!-- 部门名称 -->
+		<result property="departmentName" column="DepartmentName" />
+		<!-- 部门编码 -->
+		<result property="departmentCode" column="DepartmentCode" />
+		<!-- 部门电话 -->
+		<result property="departmentTel" column="DepartmentTel" />
+		<!-- 部门负责人 -->
+		<result property="departmentHead" column="DepartmentHead" />
+		<!-- 负责人手机 -->
+		<result property="departmentHeadMobile" column="DepartmentHeadMobile" />
+		<!-- 负责人电话 -->
+		<result property="departmentHeadTel" column="DepartmentHeadTel" />
+		<!-- 部门成立时间 -->
+		<result property="departmentCdate" column="DepartmentCdate" />
+		<!-- 部门描述 -->
+		<result property="departmentDescription" column="DepartmentDescription" />
+		<!-- 机构编码 -->
+		<result property="agencyCode" column="AgencyCode" />
+		<!-- 机构名称 -->
+		<result property="agencyName" column="AgencyName" />
+		<!-- 机构电话 -->
+		<result property="agencyTel" column="AgencyTel" />
+		<!-- 机构创立时间 -->
+		<result property="agencyCdate" column="AgencyCdate" />
+		<!-- 机构法人 -->
+		<result property="agencyCorporate" column="AgencyCorporate" />
+		<!-- 权限开始时间 -->
+		<result property="gendDate" column="GendDate" />
+		<!-- 权限开始时间 -->
+		<result property="gstrDate" column="GstrDate" />
+		<!-- 功能编码 -->
+		<result property="capabilityCode" column="CapabilityCode" />
+		<!-- 功能名称 -->
+		<result property="capabilityName" column="CapabilityName" />
+		<!-- 功能级别 -->
+		<result property="capabilityLevel" column="CapabilityLevel" />
+		<!-- 功能顺序 -->
+		<result property="capabilityOrder" column="CapabilityOrder" />
+		<!-- 功能URL -->
+		<result property="capabilityUrl" column="CapabilityUrl" />
+		<!-- 功能图片 -->
+		<result property="capabilityImg" column="CapabilityImg" />
+		<!-- 归属区分(0:管理平台1:手持机9:手持机授权) -->
+		<result property="belongFlag" column="BelongFlag" />
+		<!-- 是否菜单(0是1否) -->
+		<result property="menuFlag" column="MenuFlag" />
+		<!-- 系统编码 -->
+		<result property="systemCode" column="SystemCode" />
+		<!-- 系统名称 -->
+		<result property="systemName" column="SystemName" />
+		<!-- 语言编码 -->
+		<result property="positionLanguageCode" column="PositionLanguageCode" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="positionDelFlag" column="PositionDelFlag" />
+		<!-- 语言编码 -->
+		<result property="systemLanguageCode" column="SystemLanguageCode" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="systemDelFlag" column="SystemDelFlag" />
+		<!-- 语言编码 -->
+		<result property="capabilityLanguageCode" column="CapabilityLanguageCode" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="capabilityDelFlag" column="CapabilityDelFlag" />
+		<!-- 语言编码 -->
+		<result property="agencyLanguageCode" column="AgencyLanguageCode" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="agencyDelFlag" column="AgencyDelFlag" />
+		<!-- 语言编码 -->
+		<result property="departmentLanguageCode" column="DepartmentLanguageCode" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="departmentDelFlag" column="DepartmentDelFlag" />
+		<!-- 上级功能ID -->
+		<result property="capCapabilityID" column="CapCapabilityID" />
+		<!-- 功能ID -->
+		<result property="capabilityID" column="CapabilityID" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVgrantlist" resultMap="Vgrantlist-map">
+		SELECT
+		UserType
+		,UserName
+		,PositionName
+		,PositionCode
+		,DepartmentName
+		,DepartmentCode
+		,DepartmentTel
+		,DepartmentHead
+		,DepartmentHeadMobile
+		,DepartmentHeadTel
+		,DepartmentCdate
+		,DepartmentDescription
+		,AgencyCode
+		,AgencyName
+		,AgencyTel
+		,AgencyCdate
+		,AgencyCorporate
+		,GendDate
+		,GstrDate
+		,CapabilityCode
+		,CapabilityName
+		,CapabilityLevel
+		,CapabilityOrder
+		,CapabilityUrl
+		,CapabilityImg
+		,BelongFlag
+		,MenuFlag
+		,SystemCode
+		,SystemName
+		,PositionLanguageCode
+		,PositionDelFlag
+		,SystemLanguageCode
+		,SystemDelFlag
+		,CapabilityLanguageCode
+		,CapabilityDelFlag
+		,AgencyLanguageCode
+		,AgencyDelFlag
+		,DepartmentLanguageCode
+		,DepartmentDelFlag
+		,CapCapabilityID
+		,CapabilityID
+		from vgrantlist
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVgrantlist" resultMap="Vgrantlist-map">
+		SELECT
+		UserType
+		,UserName
+		,PositionName
+		,PositionCode
+		,DepartmentName
+		,DepartmentCode
+		,DepartmentTel
+		,DepartmentHead
+		,DepartmentHeadMobile
+		,DepartmentHeadTel
+		,DepartmentCdate
+		,DepartmentDescription
+		,AgencyCode
+		,AgencyName
+		,AgencyTel
+		,AgencyCdate
+		,AgencyCorporate
+		,GendDate
+		,GstrDate
+		,CapabilityCode
+		,CapabilityName
+		,CapabilityLevel
+		,CapabilityOrder
+		,CapabilityUrl
+		,CapabilityImg
+		,BelongFlag
+		,MenuFlag
+		,SystemCode
+		,SystemName
+		,PositionLanguageCode
+		,PositionDelFlag
+		,SystemLanguageCode
+		,SystemDelFlag
+		,CapabilityLanguageCode
+		,CapabilityDelFlag
+		,AgencyLanguageCode
+		,AgencyDelFlag
+		,DepartmentLanguageCode
+		,DepartmentDelFlag
+		,CapCapabilityID
+		,CapabilityID
+		from vgrantlist
+		<dynamic prepend=" where ">
+			<isNotNull property="userType" prepend="and ">
+				UserType = #userType#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+			<isNotNull property="positionName" prepend="and ">
+				PositionName = #positionName#
+         </isNotNull>
+			<isNotNull property="positionCode" prepend="and ">
+				PositionCode = #positionCode#
+         </isNotNull>
+			<isNotNull property="departmentName" prepend="and ">
+				DepartmentName = #departmentName#
+         </isNotNull>
+			<isNotNull property="departmentCode" prepend="and ">
+				DepartmentCode = #departmentCode#
+         </isNotNull>
+			<isNotNull property="departmentTel" prepend="and ">
+				DepartmentTel = #departmentTel#
+         </isNotNull>
+			<isNotNull property="departmentHead" prepend="and ">
+				DepartmentHead = #departmentHead#
+         </isNotNull>
+			<isNotNull property="departmentHeadMobile" prepend="and ">
+				DepartmentHeadMobile = #departmentHeadMobile#
+         </isNotNull>
+			<isNotNull property="departmentHeadTel" prepend="and ">
+				DepartmentHeadTel = #departmentHeadTel#
+         </isNotNull>
+			<isNotNull property="departmentCdate" prepend="and ">
+				DepartmentCdate = #departmentCdate#
+         </isNotNull>
+			<isNotNull property="departmentDescription" prepend="and ">
+				DepartmentDescription = #departmentDescription#
+         </isNotNull>
+			<isNotNull property="agencyCode" prepend="and ">
+				AgencyCode = #agencyCode#
+         </isNotNull>
+			<isNotNull property="agencyName" prepend="and ">
+				AgencyName = #agencyName#
+         </isNotNull>
+			<isNotNull property="agencyTel" prepend="and ">
+				AgencyTel = #agencyTel#
+         </isNotNull>
+			<isNotNull property="agencyCdate" prepend="and ">
+				AgencyCdate = #agencyCdate#
+         </isNotNull>
+			<isNotNull property="agencyCorporate" prepend="and ">
+				AgencyCorporate = #agencyCorporate#
+         </isNotNull>
+			<isNotNull property="gendDate" prepend="and ">
+				GendDate = #gendDate#
+         </isNotNull>
+			<isNotNull property="gstrDate" prepend="and ">
+				GstrDate = #gstrDate#
+         </isNotNull>
+			<isNotNull property="capabilityCode" prepend="and ">
+				CapabilityCode = #capabilityCode#
+         </isNotNull>
+			<isNotNull property="capabilityName" prepend="and ">
+				CapabilityName = #capabilityName#
+         </isNotNull>
+			<isNotNull property="capabilityLevel" prepend="and ">
+				CapabilityLevel = #capabilityLevel#
+         </isNotNull>
+			<isNotNull property="capabilityOrder" prepend="and ">
+				CapabilityOrder = #capabilityOrder#
+         </isNotNull>
+			<isNotNull property="capabilityUrl" prepend="and ">
+				CapabilityUrl = #capabilityUrl#
+         </isNotNull>
+			<isNotNull property="capabilityImg" prepend="and ">
+				CapabilityImg = #capabilityImg#
+         </isNotNull>
+			<isNotNull property="belongFlag" prepend="and ">
+				BelongFlag = #belongFlag#
+         </isNotNull>
+			<isNotNull property="menuFlag" prepend="and ">
+				MenuFlag = #menuFlag#
+         </isNotNull>
+			<isNotNull property="systemCode" prepend="and ">
+				SystemCode = #systemCode#
+         </isNotNull>
+			<isNotNull property="systemName" prepend="and ">
+				SystemName = #systemName#
+         </isNotNull>
+			<isNotNull property="positionLanguageCode" prepend="and ">
+				PositionLanguageCode = #positionLanguageCode#
+         </isNotNull>
+			<isNotNull property="positionDelFlag" prepend="and ">
+				PositionDelFlag = #positionDelFlag#
+         </isNotNull>
+			<isNotNull property="systemLanguageCode" prepend="and ">
+				SystemLanguageCode = #systemLanguageCode#
+         </isNotNull>
+			<isNotNull property="systemDelFlag" prepend="and ">
+				SystemDelFlag = #systemDelFlag#
+         </isNotNull>
+			<isNotNull property="capabilityLanguageCode" prepend="and ">
+				CapabilityLanguageCode = #capabilityLanguageCode#
+         </isNotNull>
+			<isNotNull property="capabilityDelFlag" prepend="and ">
+				CapabilityDelFlag = #capabilityDelFlag#
+         </isNotNull>
+			<isNotNull property="agencyLanguageCode" prepend="and ">
+				AgencyLanguageCode = #agencyLanguageCode#
+         </isNotNull>
+			<isNotNull property="agencyDelFlag" prepend="and ">
+				AgencyDelFlag = #agencyDelFlag#
+         </isNotNull>
+			<isNotNull property="departmentLanguageCode" prepend="and ">
+				DepartmentLanguageCode = #departmentLanguageCode#
+         </isNotNull>
+			<isNotNull property="departmentDelFlag" prepend="and ">
+				DepartmentDelFlag = #departmentDelFlag#
+         </isNotNull>
+			<isNotNull property="capCapabilityID" prepend="and ">
+				CapCapabilityID = #capCapabilityID#
+         </isNotNull>
+			<isNotNull property="capabilityID" prepend="and ">
+				CapabilityID = #capabilityID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVgrantlist" resultClass="int">
+		SELECT count(1)
+		from vgrantlist
+		<dynamic prepend=" where ">
+			<isNotNull property="userType" prepend="and ">
+				UserType = #userType#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+			<isNotNull property="positionName" prepend="and ">
+				PositionName = #positionName#
+         </isNotNull>
+			<isNotNull property="positionCode" prepend="and ">
+				PositionCode = #positionCode#
+         </isNotNull>
+			<isNotNull property="departmentName" prepend="and ">
+				DepartmentName = #departmentName#
+         </isNotNull>
+			<isNotNull property="departmentCode" prepend="and ">
+				DepartmentCode = #departmentCode#
+         </isNotNull>
+			<isNotNull property="departmentTel" prepend="and ">
+				DepartmentTel = #departmentTel#
+         </isNotNull>
+			<isNotNull property="departmentHead" prepend="and ">
+				DepartmentHead = #departmentHead#
+         </isNotNull>
+			<isNotNull property="departmentHeadMobile" prepend="and ">
+				DepartmentHeadMobile = #departmentHeadMobile#
+         </isNotNull>
+			<isNotNull property="departmentHeadTel" prepend="and ">
+				DepartmentHeadTel = #departmentHeadTel#
+         </isNotNull>
+			<isNotNull property="departmentCdate" prepend="and ">
+				DepartmentCdate = #departmentCdate#
+         </isNotNull>
+			<isNotNull property="departmentDescription" prepend="and ">
+				DepartmentDescription = #departmentDescription#
+         </isNotNull>
+			<isNotNull property="agencyCode" prepend="and ">
+				AgencyCode = #agencyCode#
+         </isNotNull>
+			<isNotNull property="agencyName" prepend="and ">
+				AgencyName = #agencyName#
+         </isNotNull>
+			<isNotNull property="agencyTel" prepend="and ">
+				AgencyTel = #agencyTel#
+         </isNotNull>
+			<isNotNull property="agencyCdate" prepend="and ">
+				AgencyCdate = #agencyCdate#
+         </isNotNull>
+			<isNotNull property="agencyCorporate" prepend="and ">
+				AgencyCorporate = #agencyCorporate#
+         </isNotNull>
+			<isNotNull property="gendDate" prepend="and ">
+				GendDate = #gendDate#
+         </isNotNull>
+			<isNotNull property="gstrDate" prepend="and ">
+				GstrDate = #gstrDate#
+         </isNotNull>
+			<isNotNull property="capabilityCode" prepend="and ">
+				CapabilityCode = #capabilityCode#
+         </isNotNull>
+			<isNotNull property="capabilityName" prepend="and ">
+				CapabilityName = #capabilityName#
+         </isNotNull>
+			<isNotNull property="capabilityLevel" prepend="and ">
+				CapabilityLevel = #capabilityLevel#
+         </isNotNull>
+			<isNotNull property="capabilityOrder" prepend="and ">
+				CapabilityOrder = #capabilityOrder#
+         </isNotNull>
+			<isNotNull property="capabilityUrl" prepend="and ">
+				CapabilityUrl = #capabilityUrl#
+         </isNotNull>
+			<isNotNull property="capabilityImg" prepend="and ">
+				CapabilityImg = #capabilityImg#
+         </isNotNull>
+			<isNotNull property="belongFlag" prepend="and ">
+				BelongFlag = #belongFlag#
+         </isNotNull>
+			<isNotNull property="menuFlag" prepend="and ">
+				MenuFlag = #menuFlag#
+         </isNotNull>
+			<isNotNull property="systemCode" prepend="and ">
+				SystemCode = #systemCode#
+         </isNotNull>
+			<isNotNull property="systemName" prepend="and ">
+				SystemName = #systemName#
+         </isNotNull>
+			<isNotNull property="positionLanguageCode" prepend="and ">
+				PositionLanguageCode = #positionLanguageCode#
+         </isNotNull>
+			<isNotNull property="positionDelFlag" prepend="and ">
+				PositionDelFlag = #positionDelFlag#
+         </isNotNull>
+			<isNotNull property="systemLanguageCode" prepend="and ">
+				SystemLanguageCode = #systemLanguageCode#
+         </isNotNull>
+			<isNotNull property="systemDelFlag" prepend="and ">
+				SystemDelFlag = #systemDelFlag#
+         </isNotNull>
+			<isNotNull property="capabilityLanguageCode" prepend="and ">
+				CapabilityLanguageCode = #capabilityLanguageCode#
+         </isNotNull>
+			<isNotNull property="capabilityDelFlag" prepend="and ">
+				CapabilityDelFlag = #capabilityDelFlag#
+         </isNotNull>
+			<isNotNull property="agencyLanguageCode" prepend="and ">
+				AgencyLanguageCode = #agencyLanguageCode#
+         </isNotNull>
+			<isNotNull property="agencyDelFlag" prepend="and ">
+				AgencyDelFlag = #agencyDelFlag#
+         </isNotNull>
+			<isNotNull property="departmentLanguageCode" prepend="and ">
+				DepartmentLanguageCode = #departmentLanguageCode#
+         </isNotNull>
+			<isNotNull property="departmentDelFlag" prepend="and ">
+				DepartmentDelFlag = #departmentDelFlag#
+         </isNotNull>
+			<isNotNull property="capCapabilityID" prepend="and ">
+				CapCapabilityID = #capCapabilityID#
+         </isNotNull>
+			<isNotNull property="capabilityID" prepend="and ">
+				CapabilityID = #capabilityID#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

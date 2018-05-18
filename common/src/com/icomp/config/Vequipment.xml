@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vequipment.xml
+		Created on : 2016/03/07 10:01:37
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vequipment">
+	<typeAlias alias="entityVequipment" type="com.icomp.entity.base.Vequipment" />
+	<resultMap id="Vequipment-map" class="entityVequipment">
+		<!--  -->
+		<result property="equipmentID" column="EquipmentID" />
+		<!--  -->
+		<result property="equipmentCode" column="EquipmentCode" />
+		<!--  -->
+		<result property="equipmentName" column="EquipmentName" />
+		<!--  -->
+		<result property="rfidContainerID" column="RfidContainerID" />
+		<!--  -->
+		<result property="equipmentType" column="EquipmentType" />
+		<!--  -->
+		<result property="equipmentTypeName" column="EquipmentTypeName" />
+		<!--  -->
+		<result property="delFlag" column="DelFlag" />
+		<!--  -->
+		<result property="createUser" column="CreateUser" />
+		<!--  -->
+		<result property="createTime" column="CreateTime" />
+		<!--  -->
+		<result property="updateUser" column="UpdateUser" />
+		<!--  -->
+		<result property="updateTime" column="UpdateTime" />
+		<!--  -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVequipment" resultMap="Vequipment-map">
+		SELECT
+		EquipmentID
+		,EquipmentCode
+		,EquipmentName
+		,RfidContainerID
+		,EquipmentType
+		,EquipmentTypeName
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from vequipment
+		<dynamic prepend=" where ">
+		<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVequipment" resultMap="Vequipment-map">
+		SELECT
+		EquipmentID
+		,EquipmentCode
+		,EquipmentName
+		,RfidContainerID
+		,EquipmentType
+		,EquipmentTypeName
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from vequipment
+		<dynamic prepend=" where ">
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+			<isNotNull property="equipmentCode" prepend="and ">
+				EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+			  EquipmentName like concat('%',#equipmentName#,'%')
+         </isNotNull>
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="equipmentType" prepend="and ">
+				EquipmentType = #equipmentType#
+         </isNotNull>
+			<isNotNull property="equipmentTypeName" prepend="and ">
+				EquipmentTypeName = #equipmentTypeName#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVequipment" resultClass="int">
+		SELECT count(1)
+		from vequipment
+		<dynamic prepend=" where ">
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+			<isNotNull property="equipmentCode" prepend="and ">
+				EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="equipmentType" prepend="and ">
+				EquipmentType = #equipmentType#
+         </isNotNull>
+			<isNotNull property="equipmentTypeName" prepend="and ">
+				EquipmentTypeName = #equipmentTypeName#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

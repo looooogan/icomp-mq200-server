@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Containercarrier.xml
+		Created on : 2016/03/11 13:10:44
+		Author : 工具自动生成
+		Description: 工具自动生成包含容器表的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Containercarrier">
+	<typeAlias alias="entityContainercarrier" type="com.icomp.entity.base.Containercarrier" />
+	<resultMap id="Containercarrier-map" class="entityContainercarrier">
+		<!-- 容器ID -->
+		<result property="containerCarrierID" column="ContainerCarrierID" />
+		<!-- 容器编码 -->
+		<result property="containerCarrierCode" column="ContainerCarrierCode" />
+		<!-- 容器名称 -->
+		<result property="containerCarrierName" column="ContainerCarrierName" />
+		<!-- 容器类别（0.一次性报废 2.待分拣容器 3.厂内待刃磨 4.厂外待刃磨 5.刃磨完毕 6.刃磨报废 7.待涂层 8.库房报废 9.其他） -->
+		<result property="containerCarrierType" column="ContainerCarrierType" />
+		<!-- rfid载体ID -->
+		<result property="rfidContainerID" column="RfidContainerID" />
+		<!-- 负责人 -->
+		<result property="person" column="person" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 创建人 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 更新人 -->
+		<result property="updateUser" column="updateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="updateTime" />
+		<!-- 备注 -->
+		<result property="note" column="note" />
+		<!-- 版本号 -->
+		<result property="version" column="version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityContainercarrier" resultMap="Containercarrier-map">
+		SELECT
+		ContainerCarrierID
+		,ContainerCarrierCode
+		,ContainerCarrierName
+		,ContainerCarrierType
+		,RfidContainerID
+		,person
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,updateUser
+		,updateTime
+		,note
+		,version
+		from containercarrier
+		<dynamic prepend=" where ">
+			<isNotNull property="containerCarrierID" prepend="and ">
+				ContainerCarrierID = #containerCarrierID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					ContainerCarrierID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityContainercarrier" resultMap="Containercarrier-map">
+		SELECT
+		ContainerCarrierID
+		,ContainerCarrierCode
+		,ContainerCarrierName
+		,ContainerCarrierType
+		,RfidContainerID
+		,person
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,updateUser
+		,updateTime
+		,note
+		,version
+		from containercarrier
+		<dynamic prepend=" where ">
+			<isNotNull property="containerCarrierID" prepend="and ">
+				ContainerCarrierID = #containerCarrierID#
+         </isNotNull>
+			<isNotNull property="containerCarrierCode" prepend="and ">
+				ContainerCarrierCode = #containerCarrierCode#
+         </isNotNull>
+			<isNotNull property="containerCarrierName" prepend="and ">
+				UserName like concat('%',#userName#,'%')
+         </isNotNull>
+			<isNotNull property="containerCarrierType" prepend="and ">
+				ContainerCarrierType = #containerCarrierType#
+         </isNotNull>
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="person" prepend="and ">
+				person like concat('%',#person#,'%')
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				updateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				updateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="note" prepend="and ">
+				note = #note#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					ContainerCarrierID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityContainercarrier" resultClass="int">
+		SELECT count(1)
+		from containercarrier
+		<dynamic prepend=" where ">
+			<isNotNull property="containerCarrierID" prepend="and ">
+				ContainerCarrierID = #containerCarrierID#
+         </isNotNull>
+			<isNotNull property="containerCarrierCode" prepend="and ">
+				ContainerCarrierCode = #containerCarrierCode#
+         </isNotNull>
+			<isNotNull property="containerCarrierName" prepend="and ">
+				ContainerCarrierName = #containerCarrierName#
+         </isNotNull>
+			<isNotNull property="containerCarrierType" prepend="and ">
+				ContainerCarrierType = #containerCarrierType#
+         </isNotNull>
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="person" prepend="and ">
+				person = #person#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				updateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				updateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="note" prepend="and ">
+				note = #note#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityContainercarrier">
+		update containercarrier
+		<dynamic prepend="set">
+			<isNotNull property="containerCarrierID">
+				ContainerCarrierID = #containerCarrierID#
+         </isNotNull>
+			<isNull property="containerCarrierID">
+				ContainerCarrierID = null
+         </isNull>
+			<isNotNull property="containerCarrierCode">
+				,ContainerCarrierCode = #containerCarrierCode#
+         </isNotNull>
+			<isNull property="containerCarrierCode">
+				,ContainerCarrierCode = null
+         </isNull>
+			<isNotNull property="containerCarrierName">
+				,ContainerCarrierName = #containerCarrierName#
+         </isNotNull>
+			<isNull property="containerCarrierName">
+				,ContainerCarrierName = null
+         </isNull>
+			<isNotNull property="containerCarrierType">
+				,ContainerCarrierType = #containerCarrierType#
+         </isNotNull>
+			<isNull property="containerCarrierType">
+				,ContainerCarrierType = null
+         </isNull>
+			<isNotNull property="rfidContainerID">
+				,RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNull property="rfidContainerID">
+				,RfidContainerID = null
+         </isNull>
+			<isNotNull property="person">
+				,person = #person#
+         </isNotNull>
+			<isNull property="person">
+				,person = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,updateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,updateUser = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,updateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,updateTime = null
+         </isNull>
+			<isNotNull property="note">
+				,note = #note#
+         </isNotNull>
+			<isNull property="note">
+				,note = null
+         </isNull>
+			<isNotNull property="version">
+				,version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,version = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="containerCarrierIDWhere" prepend="and ">
+				ContainerCarrierID = #containerCarrierIDWhere#
+         </isNotNull>
+			<isNotNull property="containerCarrierCodeWhere" prepend="and ">
+				ContainerCarrierCode = #containerCarrierCodeWhere#
+         </isNotNull>
+			<isNotNull property="containerCarrierNameWhere" prepend="and ">
+				ContainerCarrierName = #containerCarrierNameWhere#
+         </isNotNull>
+			<isNotNull property="containerCarrierTypeWhere" prepend="and ">
+				ContainerCarrierType = #containerCarrierTypeWhere#
+         </isNotNull>
+			<isNotNull property="rfidContainerIDWhere" prepend="and ">
+				RfidContainerID = #rfidContainerIDWhere#
+         </isNotNull>
+			<isNotNull property="personWhere" prepend="and ">
+				person = #personWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				updateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				updateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="noteWhere" prepend="and ">
+				note = #noteWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityContainercarrier">
+		update containercarrier
+		<dynamic prepend="set">
+			<isNotNull property="containerCarrierID"  prepend=",">
+				ContainerCarrierID = #containerCarrierID#
+         </isNotNull>
+			<isNotNull property="containerCarrierCode"  prepend=",">
+				ContainerCarrierCode = #containerCarrierCode#
+         </isNotNull>
+			<isNotNull property="containerCarrierName"  prepend=",">
+				ContainerCarrierName = #containerCarrierName#
+         </isNotNull>
+			<isNotNull property="containerCarrierType"  prepend=",">
+				ContainerCarrierType = #containerCarrierType#
+         </isNotNull>
+			<isNotNull property="rfidContainerID"  prepend=",">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="person"  prepend=",">
+				person = #person#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				updateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				updateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="note"  prepend=",">
+				note = #note#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				version = #version#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="containerCarrierIDWhere" prepend="and ">
+				ContainerCarrierID = #containerCarrierIDWhere#
+         </isNotNull>
+			<isNotNull property="containerCarrierCodeWhere" prepend="and ">
+				ContainerCarrierCode = #containerCarrierCodeWhere#
+         </isNotNull>
+			<isNotNull property="containerCarrierNameWhere" prepend="and ">
+				ContainerCarrierName = #containerCarrierNameWhere#
+         </isNotNull>
+			<isNotNull property="containerCarrierTypeWhere" prepend="and ">
+				ContainerCarrierType = #containerCarrierTypeWhere#
+         </isNotNull>
+			<isNotNull property="rfidContainerIDWhere" prepend="and ">
+				RfidContainerID = #rfidContainerIDWhere#
+         </isNotNull>
+			<isNotNull property="personWhere" prepend="and ">
+				person = #personWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				updateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				updateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="noteWhere" prepend="and ">
+				note = #noteWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityContainercarrier">
+		<selectKey resultClass="java.lang.String" keyProperty="containerCarrierID">
+			SELECT #containerCarrierID# as containerCarrierID FROM DUAL
+     </selectKey>
+		insert into containercarrier(
+		ContainerCarrierID
+		,ContainerCarrierCode
+		,ContainerCarrierName
+		,ContainerCarrierType
+		,RfidContainerID
+		,person
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,updateUser
+		,updateTime
+		,note
+		,version
+		)
+		Values (
+			<isNotNull property="containerCarrierID">
+				#containerCarrierID#
+         </isNotNull>
+			<isNull property="containerCarrierID">
+				null
+         </isNull>
+			<isNotNull property="containerCarrierCode">
+				,#containerCarrierCode#
+         </isNotNull>
+			<isNull property="containerCarrierCode">
+				,null
+         </isNull>
+			<isNotNull property="containerCarrierName">
+				,#containerCarrierName#
+         </isNotNull>
+			<isNull property="containerCarrierName">
+				,null
+         </isNull>
+			<isNotNull property="containerCarrierType">
+				,#containerCarrierType#
+         </isNotNull>
+			<isNull property="containerCarrierType">
+				,null
+         </isNull>
+			<isNotNull property="rfidContainerID">
+				,#rfidContainerID#
+         </isNotNull>
+			<isNull property="rfidContainerID">
+				,null
+         </isNull>
+			<isNotNull property="person">
+				,#person#
+         </isNotNull>
+			<isNull property="person">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="note">
+				,#note#
+         </isNotNull>
+			<isNull property="note">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityContainercarrier">
+		delete  from containercarrier
+		<dynamic prepend=" where ">
+			<isNotNull property="containerCarrierIDWhere" prepend="and ">
+				ContainerCarrierID = #containerCarrierIDWhere#
+         </isNotNull>
+			<isNotNull property="containerCarrierCodeWhere" prepend="and ">
+				ContainerCarrierCode = #containerCarrierCodeWhere#
+         </isNotNull>
+			<isNotNull property="containerCarrierNameWhere" prepend="and ">
+				ContainerCarrierName = #containerCarrierNameWhere#
+         </isNotNull>
+			<isNotNull property="containerCarrierTypeWhere" prepend="and ">
+				ContainerCarrierType = #containerCarrierTypeWhere#
+         </isNotNull>
+			<isNotNull property="rfidContainerIDWhere" prepend="and ">
+				RfidContainerID = #rfidContainerIDWhere#
+         </isNotNull>
+			<isNotNull property="personWhere" prepend="and ">
+				person = #personWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				updateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				updateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="noteWhere" prepend="and ">
+				note = #noteWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+	<!-- 批量插入  -->
+	<insert id="insertBatchs" parameterClass="java.util.List">
+		insert into containercarrier(
+		ContainerCarrierID
+		,ContainerCarrierCode
+		,ContainerCarrierName
+		,ContainerCarrierType
+		,RfidContainerID
+		,person
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,updateUser
+		,updateTime
+		,note
+		,version
+		)
+		Values
+		<iterate conjunction=",">
+			(
+			#list[].ContainerCarrierID#
+			,#list[].ContainerCarrierCode#
+			,#list[].ContainerCarrierName#
+			,#list[].ContainerCarrierType#
+			,#list[].RfidContainerID#
+			,#list[].person#
+			,#list[].version#
+			,#list[].note#
+			,#list[].DelFlag#
+			,#list[].updateTime#
+			,#list[].updateUser#
+			,#list[].CreateTime#
+			,#list[].CreateUser#
+			)
+		</iterate>
+	</insert>
+</sqlMap>
+

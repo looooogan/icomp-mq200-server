@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Equipment.xml
+    Created on : 2014/11/26 17:38:56
+    Author : 工具自动生成
+    Description: 工具自动生成包含设备的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Equipment">
+    <typeAlias alias="entityEquipment" type="com.icomp.entity.base.Equipment"/>
+    <resultMap id="Equipment-map" class="entityEquipment">
+        <!-- 设备ID -->
+        <result property="equipmentID" column="EquipmentID"/>
+        <!-- RFID载体ID -->
+        <result property="rfidContainerID" column="RfidContainerID"/>
+        <!-- 工序ID -->
+        <result property="processID" column="ProcessID"/>
+        <!-- 语言编码 -->
+        <result property="languageCode" column="LanguageCode"/>
+        <!--当前是否使用(0是,1否)-->
+        <result property="statues" column="Statues"/>
+        <!-- 设备编码 -->
+        <result property="equipmentCode" column="EquipmentCode"/>
+        <!-- 设备名称 -->
+        <result property="equipmentName" column="EquipmentName"/>
+        <!-- 设备类型(0:加工设备1:对刀设备2:专机) -->
+        <result property="equipmentType" column="EquipmentType"/>
+        <!-- 版本号 -->
+        <result property="version" column="Version"/>
+        <!-- 更新时间 -->
+        <result property="updateTime" column="UpdateTime"/>
+        <!-- 更新者 -->
+        <result property="updateUser" column="UpdateUser"/>
+        <!-- 创建时间 -->
+        <result property="createTime" column="CreateTime"/>
+        <!-- 创建者 -->
+        <result property="createUser" column="CreateUser"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="delFlag" column="DelFlag"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityEquipment" resultMap="Equipment-map">
+        SELECT
+        EquipmentID
+        ,RfidContainerID
+        ,ProcessID
+        ,LanguageCode
+        ,Statues
+        ,EquipmentCode
+        ,EquipmentName
+        ,EquipmentType
+        ,Version
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,DelFlag
+        from equipment
+        <dynamic prepend=" where ">
+            <isNotNull property="equipmentID" prepend="and ">
+                EquipmentID = #equipmentID#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            EquipmentID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityEquipment" resultMap="Equipment-map">
+        SELECT
+        EquipmentID
+        ,RfidContainerID
+        ,ProcessID
+        ,LanguageCode
+        ,Statues
+        ,EquipmentCode
+        ,EquipmentName
+        ,EquipmentType
+        ,Version
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,DelFlag
+        from equipment
+        <dynamic prepend=" where ">
+            <isNotNull property="equipmentID" prepend="and ">
+                EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="rfidContainerID" prepend="and ">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="processID" prepend="and ">
+                ProcessID = #processID#
+            </isNotNull>
+            <isNotNull property="languageCode" prepend="and ">
+                LanguageCode = #languageCode#
+            </isNotNull>
+            <isNotNull property="equipmentCode" prepend="and ">
+                EquipmentCode = #equipmentCode#
+            </isNotNull>
+            <isNotNull property="statues" prepend="and ">
+                Statues = #statues#
+            </isNotNull>
+            <isNotNull property="equipmentName" prepend="and ">
+                EquipmentName = #equipmentName#
+            </isNotNull>
+            <isNotNull property="equipmentType" prepend="and ">
+                EquipmentType = #equipmentType#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by lpad($orderString$, 10, '0')
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            EquipmentID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityEquipment" resultClass="int">
+        SELECT count(1)
+        from equipment
+        <dynamic prepend=" where ">
+            <isNotNull property="equipmentID" prepend="and ">
+                EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="rfidContainerID" prepend="and ">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="processID" prepend="and ">
+                ProcessID = #processID#
+            </isNotNull>
+            <isNotNull property="languageCode" prepend="and ">
+                LanguageCode = #languageCode#
+            </isNotNull>
+            <isNotNull property="equipmentCode" prepend="and ">
+                EquipmentCode = #equipmentCode#
+            </isNotNull>
+            <isNotNull property="statues" prepend="and ">
+                Statues = #statues#
+            </isNotNull>
+            <isNotNull property="equipmentName" prepend="and ">
+                EquipmentName = #equipmentName#
+            </isNotNull>
+            <isNotNull property="equipmentType" prepend="and ">
+                EquipmentType = #equipmentType#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+    <!-- 任意条件更新处理(未指定字段更新为：null) -->
+    <update id="update" parameterClass="entityEquipment">
+        update equipment
+        <dynamic prepend="set">
+            <isNotNull property="equipmentID">
+                EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNull property="equipmentID">
+                EquipmentID = null
+            </isNull>
+            <isNotNull property="rfidContainerID">
+                ,RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNull property="rfidContainerID">
+                ,RfidContainerID = null
+            </isNull>
+            <isNotNull property="processID">
+                ,ProcessID = #processID#
+            </isNotNull>
+            <isNull property="processID">
+                ,ProcessID = null
+            </isNull>
+            <isNotNull property="languageCode">
+                ,LanguageCode = #languageCode#
+            </isNotNull>
+            <isNull property="languageCode">
+                ,LanguageCode = null
+            </isNull>
+            <isNotNull property="equipmentCode">
+                ,EquipmentCode = #equipmentCode#
+            </isNotNull>
+            <isNull property="equipmentCode">
+                ,EquipmentCode = null
+            </isNull>
+            <isNotNull property="statues">
+                ,Statues = #statues#
+            </isNotNull>
+            <isNull property="statues">
+                ,Statues = null
+            </isNull>
+            <isNotNull property="equipmentName">
+                ,EquipmentName = #equipmentName#
+            </isNotNull>
+            <isNull property="equipmentName">
+                ,EquipmentName = null
+            </isNull>
+            <isNotNull property="equipmentType">
+                ,EquipmentType = #equipmentType#
+            </isNotNull>
+            <isNull property="equipmentType">
+                ,EquipmentType = null
+            </isNull>
+            <isNotNull property="version">
+                ,Version = #version#
+            </isNotNull>
+            <isNull property="version">
+                ,Version = null
+            </isNull>
+            <isNotNull property="updateTime">
+                ,UpdateTime = #updateTime#
+            </isNotNull>
+            <isNull property="updateTime">
+                ,UpdateTime = null
+            </isNull>
+            <isNotNull property="updateUser">
+                ,UpdateUser = #updateUser#
+            </isNotNull>
+            <isNull property="updateUser">
+                ,UpdateUser = null
+            </isNull>
+            <isNotNull property="createTime">
+                ,CreateTime = #createTime#
+            </isNotNull>
+            <isNull property="createTime">
+                ,CreateTime = null
+            </isNull>
+            <isNotNull property="createUser">
+                ,CreateUser = #createUser#
+            </isNotNull>
+            <isNull property="createUser">
+                ,CreateUser = null
+            </isNull>
+            <isNotNull property="delFlag">
+                ,DelFlag = #delFlag#
+            </isNotNull>
+            <isNull property="delFlag">
+                ,DelFlag = null
+            </isNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="equipmentIDWhere" prepend="and ">
+                EquipmentID = #equipmentIDWhere#
+            </isNotNull>
+            <isNotNull property="rfidContainerIDWhere" prepend="and ">
+                RfidContainerID = #rfidContainerIDWhere#
+            </isNotNull>
+            <isNotNull property="processIDWhere" prepend="and ">
+                ProcessID = #processIDWhere#
+            </isNotNull>
+            <isNotNull property="languageCodeWhere" prepend="and ">
+                LanguageCode = #languageCodeWhere#
+            </isNotNull>
+            <isNotNull property="statuesWhere" prepend="and ">
+                Statues = #statuesWhere#
+            </isNotNull>
+            <isNotNull property="equipmentCodeWhere" prepend="and ">
+                EquipmentCode = #equipmentCodeWhere#
+            </isNotNull>
+            <isNotNull property="equipmentNameWhere" prepend="and ">
+                EquipmentName = #equipmentNameWhere#
+            </isNotNull>
+            <isNotNull property="equipmentTypeWhere" prepend="and ">
+                EquipmentType = #equipmentTypeWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 任意条件更新处理(未指定字段不更新) -->
+    <update id="updateNonQuery" parameterClass="entityEquipment">
+        update equipment
+        <dynamic prepend="set">
+            <isNotNull property="equipmentID" prepend=",">
+                EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="rfidContainerID" prepend=",">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="processID" prepend=",">
+                ProcessID = #processID#
+            </isNotNull>
+            <isNotNull property="languageCode" prepend=",">
+                LanguageCode = #languageCode#
+            </isNotNull>
+            <isNotNull property="equipmentCode" prepend=",">
+                EquipmentCode = #equipmentCode#
+            </isNotNull>
+            <isNotNull property="statues" prepend=",">
+                Statues = #statues#
+            </isNotNull>
+            <isNotNull property="equipmentName" prepend=",">
+                EquipmentName = #equipmentName#
+            </isNotNull>
+            <isNotNull property="equipmentType" prepend=",">
+                EquipmentType = #equipmentType#
+            </isNotNull>
+            <isNotNull property="version" prepend=",">
+                Version = #version#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend=",">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend=",">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend=",">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend=",">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend=",">
+                DelFlag = #delFlag#
+            </isNotNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="equipmentIDWhere" prepend="and ">
+                EquipmentID = #equipmentIDWhere#
+            </isNotNull>
+            <isNotNull property="rfidContainerIDWhere" prepend="and ">
+                RfidContainerID = #rfidContainerIDWhere#
+            </isNotNull>
+            <isNotNull property="processIDWhere" prepend="and ">
+                ProcessID = #processIDWhere#
+            </isNotNull>
+            <isNotNull property="languageCodeWhere" prepend="and ">
+                LanguageCode = #languageCodeWhere#
+            </isNotNull>
+            <isNotNull property="equipmentCodeWhere" prepend="and ">
+                EquipmentCode = #equipmentCodeWhere#
+            </isNotNull>
+            <isNotNull property="statuesWhere" prepend="and ">
+                Statues = #statuesWhere#
+            </isNotNull>
+            <isNotNull property="equipmentNameWhere" prepend="and ">
+                EquipmentName = #equipmentNameWhere#
+            </isNotNull>
+            <isNotNull property="equipmentTypeWhere" prepend="and ">
+                EquipmentType = #equipmentTypeWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+
+    <!-- 任意条件更新处理(未指定字段不更新) -->
+    <update id="updateNonQuery_empRifd" parameterClass="entityEquipment">
+        update equipment
+        <dynamic prepend="set">
+            <isNotNull property="equipmentID" prepend=",">
+                EquipmentID = #equipmentID#
+            </isNotNull>
+            <isEmpty property="rfidContainerID" prepend=",">
+                RfidContainerID = null
+            </isEmpty>
+            <isNotNull property="processID" prepend=",">
+                ProcessID = #processID#
+            </isNotNull>
+            <isNotNull property="languageCode" prepend=",">
+                LanguageCode = #languageCode#
+            </isNotNull>
+            <isNotNull property="equipmentCode" prepend=",">
+                EquipmentCode = #equipmentCode#
+            </isNotNull>
+            <isNotNull property="statues" prepend=",">
+                Statues = #statues#
+            </isNotNull>
+            <isNotNull property="equipmentName" prepend=",">
+                EquipmentName = #equipmentName#
+            </isNotNull>
+            <isNotNull property="equipmentType" prepend=",">
+                EquipmentType = #equipmentType#
+            </isNotNull>
+            <isNotNull property="version" prepend=",">
+                Version = #version#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend=",">
+                UpdateTime = #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend=",">
+                UpdateUser = #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend=",">
+                CreateTime = #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend=",">
+                CreateUser = #createUser#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend=",">
+                DelFlag = #delFlag#
+            </isNotNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="equipmentIDWhere" prepend="and ">
+                EquipmentID = #equipmentIDWhere#
+            </isNotNull>
+            <isNotNull property="rfidContainerIDWhere" prepend="and ">
+                RfidContainerID = #rfidContainerIDWhere#
+            </isNotNull>
+            <isNotNull property="processIDWhere" prepend="and ">
+                ProcessID = #processIDWhere#
+            </isNotNull>
+            <isNotNull property="languageCodeWhere" prepend="and ">
+                LanguageCode = #languageCodeWhere#
+            </isNotNull>
+            <isNotNull property="equipmentCodeWhere" prepend="and ">
+                EquipmentCode = #equipmentCodeWhere#
+            </isNotNull>
+            <isNotNull property="statuesWhere" prepend="and ">
+                Statues = #statuesWhere#
+            </isNotNull>
+            <isNotNull property="equipmentNameWhere" prepend="and ">
+                EquipmentName = #equipmentNameWhere#
+            </isNotNull>
+            <isNotNull property="equipmentTypeWhere" prepend="and ">
+                EquipmentType = #equipmentTypeWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 修改载体id相应的数据为无效 -->
+    <update id="updateNonQuery_empRifd_rfidContainer" parameterClass="entityEquipment">
+        update rfidcontainer SET
+				DelFlag = '1'
+				,UpdateTime= #updateTime#
+				,UpdateUser=#updateUser#
+				,Version = version +1
+				WHERE RfidContainerID = #rfidContainerID#
+    </update>
+
+    <!-- 插入处理 -->
+    <insert id="insert" parameterClass="entityEquipment">
+        <selectKey resultClass="java.lang.String" keyProperty="equipmentID">
+            SELECT #equipmentID# as equipmentID FROM DUAL
+        </selectKey>
+        insert into equipment(
+        EquipmentID
+        ,RfidContainerID
+        ,ProcessID
+        ,LanguageCode
+        ,Statues
+        ,EquipmentCode
+        ,EquipmentName
+        ,EquipmentType
+        ,Version
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,DelFlag
+        )
+        Values (
+        <isNotNull property="equipmentID">
+            #equipmentID#
+        </isNotNull>
+        <isNull property="equipmentID">
+            null
+        </isNull>
+        <isNotNull property="rfidContainerID">
+            ,#rfidContainerID#
+        </isNotNull>
+        <isNull property="rfidContainerID">
+            ,null
+        </isNull>
+        <isNotNull property="processID">
+            ,#processID#
+        </isNotNull>
+        <isNull property="processID">
+            ,null
+        </isNull>
+        <isNotNull property="languageCode">
+            ,#languageCode#
+        </isNotNull>
+        <isNull property="languageCode">
+            ,01
+        </isNull>
+        <isNotNull property="statues">
+            ,#statues#
+        </isNotNull>
+        <isNull property="statues">
+            ,'1'
+        </isNull>
+        <isNotNull property="equipmentCode">
+            ,#equipmentCode#
+        </isNotNull>
+        <isNull property="equipmentCode">
+            ,null
+        </isNull>
+        <isNotNull property="equipmentName">
+            ,#equipmentName#
+        </isNotNull>
+        <isNull property="equipmentName">
+            ,null
+        </isNull>
+        <isNotNull property="equipmentType">
+            ,#equipmentType#
+        </isNotNull>
+        <isNull property="equipmentType">
+            ,null
+        </isNull>
+        <isNotNull property="version">
+            ,#version#
+        </isNotNull>
+        <isNull property="version">
+            ,null
+        </isNull>
+        <isNotNull property="updateTime">
+            ,#updateTime#
+        </isNotNull>
+        <isNull property="updateTime">
+            ,null
+        </isNull>
+        <isNotNull property="updateUser">
+            ,#updateUser#
+        </isNotNull>
+        <isNull property="updateUser">
+            ,null
+        </isNull>
+        <isNotNull property="createTime">
+            ,#createTime#
+        </isNotNull>
+        <isNull property="createTime">
+            ,null
+        </isNull>
+        <isNotNull property="createUser">
+            ,#createUser#
+        </isNotNull>
+        <isNull property="createUser">
+            ,null
+        </isNull>
+        <isNotNull property="delFlag">
+            ,#delFlag#
+        </isNotNull>
+        <isNull property="delFlag">
+            ,0
+        </isNull>
+        )
+    </insert>
+
+    <!-- 任意条件删除处理 -->
+    <delete id="delete" parameterClass="entityEquipment">
+        delete from equipment
+        <dynamic prepend=" where ">
+            <isNotNull property="equipmentIDWhere" prepend="and ">
+                EquipmentID = #equipmentIDWhere#
+            </isNotNull>
+            <isNotNull property="rfidContainerIDWhere" prepend="and ">
+                RfidContainerID = #rfidContainerIDWhere#
+            </isNotNull>
+            <isNotNull property="processIDWhere" prepend="and ">
+                ProcessID = #processIDWhere#
+            </isNotNull>
+            <isNotNull property="languageCodeWhere" prepend="and ">
+                LanguageCode = #languageCodeWhere#
+            </isNotNull>
+            <isNotNull property="equipmentCodeWhere" prepend="and ">
+                EquipmentCode = #equipmentCodeWhere#
+            </isNotNull>
+            <isNotNull property="statuesWhere" prepend="and ">
+                Statues = #statuesWhere#
+            </isNotNull>
+            <isNotNull property="equipmentNameWhere" prepend="and ">
+                EquipmentName = #equipmentNameWhere#
+            </isNotNull>
+            <isNotNull property="equipmentTypeWhere" prepend="and ">
+                EquipmentType = #equipmentTypeWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version = #versionWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime = #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser = #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime = #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser = #createUserWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag = #delFlagWhere#
+            </isNotNull>
+        </dynamic>
+    </delete>
+    <delete id="deleteBatchByRfidCodeList" parameterClass="java.util.List">
+        DELETE
+        FROM
+        equipment
+        WHERE RfidContainerID in (
+        SELECT
+        rf.RfidContainerID
+        FROM rfidcontainer rf
+        WHERE rf.RfidCode IN
+        <iterate conjunction="," open="(" close=")">
+            #[]#
+        </iterate>
+        )
+    </delete>
+</sqlMap>
+

@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vgrindingrecord.xml
+		Created on : 2014/11/24 16:59:01
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByList_F ： 任意条件查询-ToolCode模糊查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgrindingrecord">
+	<typeAlias alias="entityVgrindingrecord" type="com.icomp.entity.base.Vgrindingrecord" />
+	<resultMap id="Vgrindingrecord-map" class="entityVgrindingrecord">
+		<!--  -->
+		<result property="toolState" column="ToolState" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 消耗类别(0:可刃磨钻头1可刃磨刀片2一次性刀片9其他 -->
+		<result property="toolConsumetype" column="toolConsumetype" />
+		<!-- 已使用(刃磨)次数[当使用次数等于可复用次数时刀具报废] -->
+		<result property="usageCounter" column="UsageCounter" />
+		<!-- 刀具已刃磨长度 -->
+		<result property="toolGrindingLength" column="ToolGrindingLength" />
+		<!-- 可使用(刃磨)次数 -->
+		<result property="toolSharpennum" column="ToolSharpennum" />
+		<!-- 可刃磨长度 -->
+		<result property="toolSharpenLength" column="ToolSharpenLength" />
+		<!-- 复磨标准 -->
+		<result property="toolSharpenCriterion" column="ToolSharpenCriterion" />
+		<!--  -->
+		<result property="usageTimes" column="usageTimes" />
+		<!--  -->
+		<result property="planGrindingTimes" column="planGrindingTimes" />
+		<!--  -->
+		<result property="standardTimes" column="standardTimes" />
+		<!--  -->
+		<result property="consumedCount" column="consumedCount" />
+		<!--  -->
+		<result property="processAmount" column="ProcessAmount" />
+		<!--  -->
+		<result property="avgNum" column="AvgNum" />
+		<!-- 姓名 -->
+		<result property="userName" column="UserName" />
+		<!-- 刀具长度 -->
+		<result property="toolLength" column="ToolLength" />
+		<!-- 修复前测量长度 -->
+		<result property="noticeLength" column="NoticeLength" />
+		<!-- 修复后测量长度 -->
+		<result property="noticeOldLength" column="NoticeOldLength" />
+		<!-- 通知时间 -->
+		<result property="noticeTime" column="NoticeTime" />
+		<!-- 采购批次 -->
+		<result property="procuredBatch" column="ProcuredBatch" />
+		<!-- 采购单价 -->
+		<result property="unitPrice" column="UnitPrice" />
+		<!-- 处理状态 -->
+		<result property="states" column="State" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVgrindingrecord" resultMap="Vgrindingrecord-map">
+		SELECT
+		ToolState
+		,ToolCode
+		,toolConsumetype
+		,UsageCounter
+		,ToolGrindingLength
+		,ToolSharpennum
+		,ToolSharpenLength
+		,ToolSharpenCriterion
+		,usageTimes
+		,planGrindingTimes
+		,standardTimes
+		,consumedCount
+		,ProcessAmount
+		,AvgNum
+		,UserName
+		,ToolLength
+		,NoticeLength
+		,NoticeOldLength
+		,NoticeTime
+		,ProcuredBatch
+		,UnitPrice
+		from vgrindingrecord
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVgrindingrecord" resultMap="Vgrindingrecord-map">
+		SELECT
+		ToolState
+		,ToolCode
+		,toolConsumetype
+		,UsageCounter
+		,ToolGrindingLength
+		,ToolSharpennum
+		,ToolSharpenLength
+		,ToolSharpenCriterion
+		,usageTimes
+		,planGrindingTimes
+		,standardTimes
+		,consumedCount
+		,ProcessAmount
+		,AvgNum
+		,UserName
+		,ToolLength
+		,NoticeLength
+		,NoticeOldLength
+		,NoticeTime
+		,ProcuredBatch
+		,UnitPrice
+		from vgrindingrecord
+		<dynamic prepend=" where ">
+			<isNotNull property="toolState" prepend="and ">
+				ToolState = #toolState#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				toolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="usageCounter" prepend="and ">
+				UsageCounter = #usageCounter#
+         </isNotNull>
+			<isNotNull property="toolGrindingLength" prepend="and ">
+				ToolGrindingLength = #toolGrindingLength#
+         </isNotNull>
+			<isNotNull property="toolSharpennum" prepend="and ">
+				ToolSharpennum = #toolSharpennum#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="toolSharpenCriterion" prepend="and ">
+				ToolSharpenCriterion = #toolSharpenCriterion#
+         </isNotNull>
+			<isNotNull property="usageTimes" prepend="and ">
+				usageTimes = #usageTimes#
+         </isNotNull>
+			<isNotNull property="planGrindingTimes" prepend="and ">
+				planGrindingTimes = #planGrindingTimes#
+         </isNotNull>
+			<isNotNull property="standardTimes" prepend="and ">
+				standardTimes = #standardTimes#
+         </isNotNull>
+			<isNotNull property="consumedCount" prepend="and ">
+				consumedCount = #consumedCount#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+			<isNotNull property="avgNum" prepend="and ">
+				AvgNum = #avgNum#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+			<isNotNull property="toolLength" prepend="and ">
+				ToolLength = #toolLength#
+         </isNotNull>
+			<isNotNull property="noticeLength" prepend="and ">
+				NoticeLength = #noticeLength#
+         </isNotNull>
+			<isNotNull property="noticeOldLength" prepend="and ">
+				NoticeOldLength = #noticeOldLength#
+         </isNotNull>
+			<isNotNull property="noticeTime" prepend="and ">
+				NoticeTime = #noticeTime#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行-ToolCode模糊查询 -->
+	<select id="searchByList_F" parameterClass="entityVgrindingrecord" resultMap="Vgrindingrecord-map">
+		SELECT
+		ToolState
+		,State
+		,ToolCode
+		,toolConsumetype
+		,UsageCounter
+		,ToolGrindingLength
+		,ToolSharpennum
+		,ToolSharpenLength
+		,ToolSharpenCriterion
+		,usageTimes
+		,planGrindingTimes
+		,standardTimes
+		,consumedCount
+		,ProcessAmount
+		,AvgNum
+		,UserName
+		,ToolLength
+		,NoticeLength
+		,NoticeOldLength
+		,NoticeTime
+		,ProcuredBatch
+		,UnitPrice
+		from vgrindingrecord
+		where ToolCode is not null
+			<isNotNull property="toolState" prepend="and ">
+				ToolState = #toolState#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				toolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="usageCounter" prepend="and ">
+				UsageCounter = #usageCounter#
+         </isNotNull>
+			<isNotNull property="toolGrindingLength" prepend="and ">
+				ToolGrindingLength = #toolGrindingLength#
+         </isNotNull>
+			<isNotNull property="toolSharpennum" prepend="and ">
+				ToolSharpennum = #toolSharpennum#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="toolSharpenCriterion" prepend="and ">
+				ToolSharpenCriterion = #toolSharpenCriterion#
+         </isNotNull>
+			<isNotNull property="usageTimes" prepend="and ">
+				usageTimes = #usageTimes#
+         </isNotNull>
+			<isNotNull property="planGrindingTimes" prepend="and ">
+				planGrindingTimes = #planGrindingTimes#
+         </isNotNull>
+			<isNotNull property="standardTimes" prepend="and ">
+				standardTimes = #standardTimes#
+         </isNotNull>
+			<isNotNull property="consumedCount" prepend="and ">
+				consumedCount = #consumedCount#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+			<isNotNull property="avgNum" prepend="and ">
+				AvgNum = #avgNum#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+			<isNotNull property="toolLength" prepend="and ">
+				ToolLength = #toolLength#
+         </isNotNull>
+			<isNotNull property="noticeLength" prepend="and ">
+				NoticeLength = #noticeLength#
+         </isNotNull>
+			<isNotNull property="noticeOldLength" prepend="and ">
+				NoticeOldLength = #noticeOldLength#
+         </isNotNull>
+			<isNotNull property="noticeTime" prepend="and ">
+				NoticeTime = #noticeTime#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+         
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行-ToolCode模糊查询 -->
+	<select id="searchByList_b04s006" parameterClass="entityVgrindingrecord" resultMap="Vgrindingrecord-map">
+		SELECT
+		ToolState
+		,State
+		,ToolCode
+		,toolConsumetype
+		,UsageCounter
+		,ToolGrindingLength
+		,ToolSharpennum
+		,ToolSharpenLength
+		,ToolSharpenCriterion
+		,usageTimes
+		,planGrindingTimes
+		,standardTimes
+		,consumedCount
+		,ProcessAmount
+		,AvgNum
+		,UserName
+		,ToolLength
+		,NoticeLength
+		,NoticeOldLength
+		,NoticeTime
+		,ProcuredBatch
+		,UnitPrice
+		from vgrindingrecord
+		where ToolCode is not null
+			<isNotNull property="toolState" prepend="and ">
+				ToolState = #toolState#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				toolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="usageCounter" prepend="and ">
+				UsageCounter = #usageCounter#
+         </isNotNull>
+			<isNotNull property="toolGrindingLength" prepend="and ">
+				ToolGrindingLength = #toolGrindingLength#
+         </isNotNull>
+			<isNotNull property="toolSharpennum" prepend="and ">
+				ToolSharpennum = #toolSharpennum#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="toolSharpenCriterion" prepend="and ">
+				ToolSharpenCriterion = #toolSharpenCriterion#
+         </isNotNull>
+			<isNotNull property="usageTimes" prepend="and ">
+				usageTimes = #usageTimes#
+         </isNotNull>
+			<isNotNull property="planGrindingTimes" prepend="and ">
+				planGrindingTimes = #planGrindingTimes#
+         </isNotNull>
+			<isNotNull property="standardTimes" prepend="and ">
+				standardTimes = #standardTimes#
+         </isNotNull>
+			<isNotNull property="consumedCount" prepend="and ">
+				consumedCount = #consumedCount#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+			<isNotNull property="avgNum" prepend="and ">
+				AvgNum = #avgNum#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+			<isNotNull property="toolLength" prepend="and ">
+				ToolLength = #toolLength#
+         </isNotNull>
+			<isNotNull property="noticeLength" prepend="and ">
+				NoticeLength = #noticeLength#
+         </isNotNull>
+			<isNotNull property="noticeOldLength" prepend="and ">
+				NoticeOldLength = #noticeOldLength#
+         </isNotNull>
+			<isNotNull property="noticeTime" prepend="and ">
+				NoticeTime = #noticeTime#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+         
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVgrindingrecord" resultClass="int">
+		SELECT count(1)
+		from vgrindingrecord
+		<dynamic prepend=" where ">
+			<isNotNull property="toolState" prepend="and ">
+				ToolState = #toolState#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				toolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="usageCounter" prepend="and ">
+				UsageCounter = #usageCounter#
+         </isNotNull>
+			<isNotNull property="toolGrindingLength" prepend="and ">
+				ToolGrindingLength = #toolGrindingLength#
+         </isNotNull>
+			<isNotNull property="toolSharpennum" prepend="and ">
+				ToolSharpennum = #toolSharpennum#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="toolSharpenCriterion" prepend="and ">
+				ToolSharpenCriterion = #toolSharpenCriterion#
+         </isNotNull>
+			<isNotNull property="usageTimes" prepend="and ">
+				usageTimes = #usageTimes#
+         </isNotNull>
+			<isNotNull property="planGrindingTimes" prepend="and ">
+				planGrindingTimes = #planGrindingTimes#
+         </isNotNull>
+			<isNotNull property="standardTimes" prepend="and ">
+				standardTimes = #standardTimes#
+         </isNotNull>
+			<isNotNull property="consumedCount" prepend="and ">
+				consumedCount = #consumedCount#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+			<isNotNull property="avgNum" prepend="and ">
+				AvgNum = #avgNum#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+			<isNotNull property="toolLength" prepend="and ">
+				ToolLength = #toolLength#
+         </isNotNull>
+			<isNotNull property="noticeLength" prepend="and ">
+				NoticeLength = #noticeLength#
+         </isNotNull>
+			<isNotNull property="noticeOldLength" prepend="and ">
+				NoticeOldLength = #noticeOldLength#
+         </isNotNull>
+			<isNotNull property="noticeTime" prepend="and ">
+				NoticeTime = #noticeTime#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

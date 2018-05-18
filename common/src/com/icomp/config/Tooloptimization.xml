@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Tooloptimization.xml
+		Created on : 2016/04/12 15:51:11
+		Author : 工具自动生成
+		Description: 工具自动生成包含刀具优化的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Tooloptimization">
+	<typeAlias alias="entityTooloptimization" type="com.icomp.entity.base.Tooloptimization" />
+	<resultMap id="Tooloptimization-map" class="entityTooloptimization">
+		<!-- 优化ID -->
+		<result property="optimizationID" column="OptimizationID" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 材料号 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 优化次数 -->
+		<result property="optimizationNum" column="OptimizationNum" />
+		<!-- 申请表文件名称 -->
+		<result property="applicationFileName" column="ApplicationFileName" />
+		<!-- 申请表文件路径 -->
+		<result property="applicationFileSrc" column="ApplicationFileSrc" />
+		<!-- 技术方案文件名称 -->
+		<result property="technicalFileName" column="TechnicalFileName" />
+		<!-- 技术方案文件路径 -->
+		<result property="technicalFileSrc" column="TechnicalFileSrc" />
+		<!-- 实验通知单文件名称 -->
+		<result property="experimentalFileName" column="ExperimentalFileName" />
+		<!-- 实验通知单文件路径 -->
+		<result property="experimentalFileSrc" column="ExperimentalFileSrc" />
+		<!-- 实验报告文件名称 -->
+		<result property="reportFileName" column="ReportFileName" />
+		<!-- 实验报告文件路径 -->
+		<result property="reportFileSrc" column="ReportFileSrc" />
+		<!-- 备注 -->
+		<result property="noteFile" column="NoteFile" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 创建人 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 更新人 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityTooloptimization" resultMap="Tooloptimization-map">
+		SELECT
+		OptimizationID
+		,ToolID
+		,ToolCode
+		,OptimizationNum
+		,ApplicationFileName
+		,ApplicationFileSrc
+		,TechnicalFileName
+		,TechnicalFileSrc
+		,ExperimentalFileName
+		,ExperimentalFileSrc
+		,ReportFileName
+		,ReportFileSrc
+		,NoteFile
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		from tooloptimization
+		<dynamic prepend=" where ">
+			<isNotNull property="optimizationID" prepend="and ">
+				OptimizationID = #optimizationID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					OptimizationID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityTooloptimization" resultMap="Tooloptimization-map">
+		SELECT
+		OptimizationID
+		,ToolID
+		,ToolCode
+		,OptimizationNum
+		,ApplicationFileName
+		,ApplicationFileSrc
+		,TechnicalFileName
+		,TechnicalFileSrc
+		,ExperimentalFileName
+		,ExperimentalFileSrc
+		,ReportFileName
+		,ReportFileSrc
+		,NoteFile
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		from tooloptimization
+		<dynamic prepend=" where ">
+			<isNotNull property="optimizationID" prepend="and ">
+				OptimizationID = #optimizationID#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="optimizationNum" prepend="and ">
+				OptimizationNum = #optimizationNum#
+         </isNotNull>
+			<isNotNull property="applicationFileName" prepend="and ">
+				ApplicationFileName = #applicationFileName#
+         </isNotNull>
+			<isNotNull property="applicationFileSrc" prepend="and ">
+				ApplicationFileSrc = #applicationFileSrc#
+         </isNotNull>
+			<isNotNull property="technicalFileName" prepend="and ">
+				TechnicalFileName = #technicalFileName#
+         </isNotNull>
+			<isNotNull property="technicalFileSrc" prepend="and ">
+				TechnicalFileSrc = #technicalFileSrc#
+         </isNotNull>
+			<isNotNull property="experimentalFileName" prepend="and ">
+				ExperimentalFileName = #experimentalFileName#
+         </isNotNull>
+			<isNotNull property="experimentalFileSrc" prepend="and ">
+				ExperimentalFileSrc = #experimentalFileSrc#
+         </isNotNull>
+			<isNotNull property="reportFileName" prepend="and ">
+				ReportFileName = #reportFileName#
+         </isNotNull>
+			<isNotNull property="reportFileSrc" prepend="and ">
+				ReportFileSrc = #reportFileSrc#
+         </isNotNull>
+			<isNotNull property="noteFile" prepend="and ">
+				NoteFile = #noteFile#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				CreateTime >= #dateStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				CreateTime <= #dateEnd#
+				]]>
+			</isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					OptimizationID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityTooloptimization" resultClass="int">
+		SELECT count(1)
+		from tooloptimization
+		<dynamic prepend=" where ">
+			<isNotNull property="optimizationID" prepend="and ">
+				OptimizationID = #optimizationID#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="optimizationNum" prepend="and ">
+				OptimizationNum = #optimizationNum#
+         </isNotNull>
+			<isNotNull property="applicationFileName" prepend="and ">
+				ApplicationFileName = #applicationFileName#
+         </isNotNull>
+			<isNotNull property="applicationFileSrc" prepend="and ">
+				ApplicationFileSrc = #applicationFileSrc#
+         </isNotNull>
+			<isNotNull property="technicalFileName" prepend="and ">
+				TechnicalFileName = #technicalFileName#
+         </isNotNull>
+			<isNotNull property="technicalFileSrc" prepend="and ">
+				TechnicalFileSrc = #technicalFileSrc#
+         </isNotNull>
+			<isNotNull property="experimentalFileName" prepend="and ">
+				ExperimentalFileName = #experimentalFileName#
+         </isNotNull>
+			<isNotNull property="experimentalFileSrc" prepend="and ">
+				ExperimentalFileSrc = #experimentalFileSrc#
+         </isNotNull>
+			<isNotNull property="reportFileName" prepend="and ">
+				ReportFileName = #reportFileName#
+         </isNotNull>
+			<isNotNull property="reportFileSrc" prepend="and ">
+				ReportFileSrc = #reportFileSrc#
+         </isNotNull>
+			<isNotNull property="noteFile" prepend="and ">
+				NoteFile = #noteFile#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityTooloptimization">
+		update tooloptimization
+		<dynamic prepend="set">
+			<isNotNull property="optimizationID">
+				OptimizationID = #optimizationID#
+         </isNotNull>
+			<isNull property="optimizationID">
+				OptimizationID = null
+         </isNull>
+			<isNotNull property="toolID">
+				,ToolID = #toolID#
+         </isNotNull>
+			<isNull property="toolID">
+				,ToolID = null
+         </isNull>
+			<isNotNull property="toolCode">
+				,ToolCode = #toolCode#
+         </isNotNull>
+			<isNull property="toolCode">
+				,ToolCode = null
+         </isNull>
+			<isNotNull property="optimizationNum">
+				,OptimizationNum = #optimizationNum#
+         </isNotNull>
+			<isNull property="optimizationNum">
+				,OptimizationNum = null
+         </isNull>
+			<isNotNull property="applicationFileName">
+				,ApplicationFileName = #applicationFileName#
+         </isNotNull>
+			<isNull property="applicationFileName">
+				,ApplicationFileName = null
+         </isNull>
+			<isNotNull property="applicationFileSrc">
+				,ApplicationFileSrc = #applicationFileSrc#
+         </isNotNull>
+			<isNull property="applicationFileSrc">
+				,ApplicationFileSrc = null
+         </isNull>
+			<isNotNull property="technicalFileName">
+				,TechnicalFileName = #technicalFileName#
+         </isNotNull>
+			<isNull property="technicalFileName">
+				,TechnicalFileName = null
+         </isNull>
+			<isNotNull property="technicalFileSrc">
+				,TechnicalFileSrc = #technicalFileSrc#
+         </isNotNull>
+			<isNull property="technicalFileSrc">
+				,TechnicalFileSrc = null
+         </isNull>
+			<isNotNull property="experimentalFileName">
+				,ExperimentalFileName = #experimentalFileName#
+         </isNotNull>
+			<isNull property="experimentalFileName">
+				,ExperimentalFileName = null
+         </isNull>
+			<isNotNull property="experimentalFileSrc">
+				,ExperimentalFileSrc = #experimentalFileSrc#
+         </isNotNull>
+			<isNull property="experimentalFileSrc">
+				,ExperimentalFileSrc = null
+         </isNull>
+			<isNotNull property="reportFileName">
+				,ReportFileName = #reportFileName#
+         </isNotNull>
+			<isNull property="reportFileName">
+				,ReportFileName = null
+         </isNull>
+			<isNotNull property="reportFileSrc">
+				,ReportFileSrc = #reportFileSrc#
+         </isNotNull>
+			<isNull property="reportFileSrc">
+				,ReportFileSrc = null
+         </isNull>
+			<isNotNull property="noteFile">
+				,NoteFile = #noteFile#
+         </isNotNull>
+			<isNull property="noteFile">
+				,NoteFile = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="optimizationIDWhere" prepend="and ">
+				OptimizationID = #optimizationIDWhere#
+         </isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				ToolID = #toolIDWhere#
+         </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode = #toolCodeWhere#
+         </isNotNull>
+			<isNotNull property="optimizationNumWhere" prepend="and ">
+				OptimizationNum = #optimizationNumWhere#
+         </isNotNull>
+			<isNotNull property="applicationFileNameWhere" prepend="and ">
+				ApplicationFileName = #applicationFileNameWhere#
+         </isNotNull>
+			<isNotNull property="applicationFileSrcWhere" prepend="and ">
+				ApplicationFileSrc = #applicationFileSrcWhere#
+         </isNotNull>
+			<isNotNull property="technicalFileNameWhere" prepend="and ">
+				TechnicalFileName = #technicalFileNameWhere#
+         </isNotNull>
+			<isNotNull property="technicalFileSrcWhere" prepend="and ">
+				TechnicalFileSrc = #technicalFileSrcWhere#
+         </isNotNull>
+			<isNotNull property="experimentalFileNameWhere" prepend="and ">
+				ExperimentalFileName = #experimentalFileNameWhere#
+         </isNotNull>
+			<isNotNull property="experimentalFileSrcWhere" prepend="and ">
+				ExperimentalFileSrc = #experimentalFileSrcWhere#
+         </isNotNull>
+			<isNotNull property="reportFileNameWhere" prepend="and ">
+				ReportFileName = #reportFileNameWhere#
+         </isNotNull>
+			<isNotNull property="reportFileSrcWhere" prepend="and ">
+				ReportFileSrc = #reportFileSrcWhere#
+         </isNotNull>
+			<isNotNull property="noteFileWhere" prepend="and ">
+				NoteFile = #noteFileWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityTooloptimization">
+		update tooloptimization
+		<dynamic prepend="set">
+			<isNotNull property="optimizationID"  prepend=",">
+				OptimizationID = #optimizationID#
+         </isNotNull>
+			<isNotNull property="toolID"  prepend=",">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode"  prepend=",">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="optimizationNum"  prepend=",">
+				OptimizationNum = #optimizationNum#
+         </isNotNull>
+			<isNotNull property="applicationFileName"  prepend=",">
+				ApplicationFileName = #applicationFileName#
+         </isNotNull>
+			<isNotNull property="applicationFileSrc"  prepend=",">
+				ApplicationFileSrc = #applicationFileSrc#
+         </isNotNull>
+			<isNotNull property="technicalFileName"  prepend=",">
+				TechnicalFileName = #technicalFileName#
+         </isNotNull>
+			<isNotNull property="technicalFileSrc"  prepend=",">
+				TechnicalFileSrc = #technicalFileSrc#
+         </isNotNull>
+			<isNotNull property="experimentalFileName"  prepend=",">
+				ExperimentalFileName = #experimentalFileName#
+         </isNotNull>
+			<isNotNull property="experimentalFileSrc"  prepend=",">
+				ExperimentalFileSrc = #experimentalFileSrc#
+         </isNotNull>
+			<isNotNull property="reportFileName"  prepend=",">
+				ReportFileName = #reportFileName#
+         </isNotNull>
+			<isNotNull property="reportFileSrc"  prepend=",">
+				ReportFileSrc = #reportFileSrc#
+         </isNotNull>
+			<isNotNull property="noteFile"  prepend=",">
+				NoteFile = #noteFile#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="optimizationIDWhere" prepend="and ">
+				OptimizationID = #optimizationIDWhere#
+         </isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				ToolID = #toolIDWhere#
+         </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode = #toolCodeWhere#
+         </isNotNull>
+			<isNotNull property="optimizationNumWhere" prepend="and ">
+				OptimizationNum = #optimizationNumWhere#
+         </isNotNull>
+			<isNotNull property="applicationFileNameWhere" prepend="and ">
+				ApplicationFileName = #applicationFileNameWhere#
+         </isNotNull>
+			<isNotNull property="applicationFileSrcWhere" prepend="and ">
+				ApplicationFileSrc = #applicationFileSrcWhere#
+         </isNotNull>
+			<isNotNull property="technicalFileNameWhere" prepend="and ">
+				TechnicalFileName = #technicalFileNameWhere#
+         </isNotNull>
+			<isNotNull property="technicalFileSrcWhere" prepend="and ">
+				TechnicalFileSrc = #technicalFileSrcWhere#
+         </isNotNull>
+			<isNotNull property="experimentalFileNameWhere" prepend="and ">
+				ExperimentalFileName = #experimentalFileNameWhere#
+         </isNotNull>
+			<isNotNull property="experimentalFileSrcWhere" prepend="and ">
+				ExperimentalFileSrc = #experimentalFileSrcWhere#
+         </isNotNull>
+			<isNotNull property="reportFileNameWhere" prepend="and ">
+				ReportFileName = #reportFileNameWhere#
+         </isNotNull>
+			<isNotNull property="reportFileSrcWhere" prepend="and ">
+				ReportFileSrc = #reportFileSrcWhere#
+         </isNotNull>
+			<isNotNull property="noteFileWhere" prepend="and ">
+				NoteFile = #noteFileWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityTooloptimization">
+		<selectKey resultClass="java.lang.String" keyProperty="optimizationID">
+			SELECT #optimizationID# as optimizationID FROM DUAL
+     </selectKey>
+		insert into tooloptimization(
+		OptimizationID
+		,ToolID
+		,ToolCode
+		,OptimizationNum
+		,ApplicationFileName
+		,ApplicationFileSrc
+		,TechnicalFileName
+		,TechnicalFileSrc
+		,ExperimentalFileName
+		,ExperimentalFileSrc
+		,ReportFileName
+		,ReportFileSrc
+		,NoteFile
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		)
+		Values (
+			<isNotNull property="optimizationID">
+				#optimizationID#
+         </isNotNull>
+			<isNull property="optimizationID">
+				null
+         </isNull>
+			<isNotNull property="toolID">
+				,#toolID#
+         </isNotNull>
+			<isNull property="toolID">
+				,null
+         </isNull>
+			<isNotNull property="toolCode">
+				,#toolCode#
+         </isNotNull>
+			<isNull property="toolCode">
+				,null
+         </isNull>
+			<isNotNull property="optimizationNum">
+				,#optimizationNum#
+         </isNotNull>
+			<isNull property="optimizationNum">
+				,null
+         </isNull>
+			<isNotNull property="applicationFileName">
+				,#applicationFileName#
+         </isNotNull>
+			<isNull property="applicationFileName">
+				,null
+         </isNull>
+			<isNotNull property="applicationFileSrc">
+				,#applicationFileSrc#
+         </isNotNull>
+			<isNull property="applicationFileSrc">
+				,null
+         </isNull>
+			<isNotNull property="technicalFileName">
+				,#technicalFileName#
+         </isNotNull>
+			<isNull property="technicalFileName">
+				,null
+         </isNull>
+			<isNotNull property="technicalFileSrc">
+				,#technicalFileSrc#
+         </isNotNull>
+			<isNull property="technicalFileSrc">
+				,null
+         </isNull>
+			<isNotNull property="experimentalFileName">
+				,#experimentalFileName#
+         </isNotNull>
+			<isNull property="experimentalFileName">
+				,null
+         </isNull>
+			<isNotNull property="experimentalFileSrc">
+				,#experimentalFileSrc#
+         </isNotNull>
+			<isNull property="experimentalFileSrc">
+				,null
+         </isNull>
+			<isNotNull property="reportFileName">
+				,#reportFileName#
+         </isNotNull>
+			<isNull property="reportFileName">
+				,null
+         </isNull>
+			<isNotNull property="reportFileSrc">
+				,#reportFileSrc#
+         </isNotNull>
+			<isNull property="reportFileSrc">
+				,null
+         </isNull>
+			<isNotNull property="noteFile">
+				,#noteFile#
+         </isNotNull>
+			<isNull property="noteFile">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityTooloptimization">
+		delete  from tooloptimization
+		<dynamic prepend=" where ">
+			<isNotNull property="optimizationIDWhere" prepend="and ">
+				OptimizationID = #optimizationIDWhere#
+         </isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				ToolID = #toolIDWhere#
+         </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode = #toolCodeWhere#
+         </isNotNull>
+			<isNotNull property="optimizationNumWhere" prepend="and ">
+				OptimizationNum = #optimizationNumWhere#
+         </isNotNull>
+			<isNotNull property="applicationFileNameWhere" prepend="and ">
+				ApplicationFileName = #applicationFileNameWhere#
+         </isNotNull>
+			<isNotNull property="applicationFileSrcWhere" prepend="and ">
+				ApplicationFileSrc = #applicationFileSrcWhere#
+         </isNotNull>
+			<isNotNull property="technicalFileNameWhere" prepend="and ">
+				TechnicalFileName = #technicalFileNameWhere#
+         </isNotNull>
+			<isNotNull property="technicalFileSrcWhere" prepend="and ">
+				TechnicalFileSrc = #technicalFileSrcWhere#
+         </isNotNull>
+			<isNotNull property="experimentalFileNameWhere" prepend="and ">
+				ExperimentalFileName = #experimentalFileNameWhere#
+         </isNotNull>
+			<isNotNull property="experimentalFileSrcWhere" prepend="and ">
+				ExperimentalFileSrc = #experimentalFileSrcWhere#
+         </isNotNull>
+			<isNotNull property="reportFileNameWhere" prepend="and ">
+				ReportFileName = #reportFileNameWhere#
+         </isNotNull>
+			<isNotNull property="reportFileSrcWhere" prepend="and ">
+				ReportFileSrc = #reportFileSrcWhere#
+         </isNotNull>
+			<isNotNull property="noteFileWhere" prepend="and ">
+				NoteFile = #noteFileWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

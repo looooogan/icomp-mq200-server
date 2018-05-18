@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Voutsidefactory.xml
+		Created on : 2016/05/09 18:12:23
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Voutsidefactory">
+	<typeAlias alias="entityVoutsidefactory" type="com.icomp.entity.base.Voutsidefactory" />
+	<resultMap id="Voutsidefactory-map" class="entityVoutsidefactory">
+		<!-- 厂外修复ID -->
+		<result property="outsideFactoryID" column="OutsideFactoryID" />
+		<!-- 通知单号 -->
+		<result property="orderNum" column="OrderNum" />
+		<!-- 材料号 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 商家ID -->
+		<result property="merchantsID" column="MerchantsID" />
+		<!-- 商家名称 -->
+		<result property="merchantsName" column="MerchantsName" />
+		<!-- 修磨数量 -->
+		<result property="numberGrinding" column="NumberGrinding" />
+		<!-- 修复类型（0.厂外图层1.厂外复磨） -->
+		<result property="grindingType" column="GrindingType" />
+		<!-- 修复状态(0.未修复1.已修复2.其他） -->
+		<result property="repairState" column="RepairState" />
+		<!-- 出厂日期 -->
+		<result property="manufactureDate" column="ManufactureDate" />
+		<!-- 审批人 -->
+		<result property="approverouser" column="Approverouser" />
+		<!-- 备注 -->
+		<result property="note" column="Note" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVoutsidefactory" resultMap="Voutsidefactory-map">
+		SELECT
+		OutsideFactoryID
+		,OrderNum
+		,ToolCode
+		,MerchantsID
+		,MerchantsName
+		,NumberGrinding
+		,GrindingType
+		,RepairState
+		,ManufactureDate
+		,Approverouser
+		,Note
+		from voutsidefactory
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVoutsidefactory" resultMap="Voutsidefactory-map">
+		SELECT
+		OutsideFactoryID
+		,OrderNum
+		,ToolCode
+		,MerchantsID
+		,MerchantsName
+		,NumberGrinding
+		,GrindingType
+		,RepairState
+		,ManufactureDate
+		,Approverouser
+		,Note
+		from voutsidefactory
+		<dynamic prepend=" where ">
+			<isNotNull property="outsideFactoryID" prepend="and ">
+				OutsideFactoryID = #outsideFactoryID#
+         </isNotNull>
+			<isNotNull property="orderNum" prepend="and ">
+				OrderNum = #orderNum#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="merchantsID" prepend="and ">
+				MerchantsID = #merchantsID#
+         </isNotNull>
+			<isNotNull property="merchantsName" prepend="and ">
+				MerchantsName = #merchantsName#
+         </isNotNull>
+			<isNotNull property="numberGrinding" prepend="and ">
+				NumberGrinding = #numberGrinding#
+         </isNotNull>
+			<isNotNull property="grindingType" prepend="and ">
+				GrindingType = #grindingType#
+         </isNotNull>
+			<isNotNull property="repairState" prepend="and ">
+				RepairState = #repairState#
+         </isNotNull>
+			<isNotNull property="manufactureDate" prepend="and ">
+				ManufactureDate = #manufactureDate#
+         </isNotNull>
+			<isNotNull property="approverouser" prepend="and ">
+				Approverouser = #approverouser#
+         </isNotNull>
+			<isNotNull property="note" prepend="and ">
+				Note = #note#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVoutsidefactory" resultClass="int">
+		SELECT count(1)
+		from voutsidefactory
+		<dynamic prepend=" where ">
+			<isNotNull property="outsideFactoryID" prepend="and ">
+				OutsideFactoryID = #outsideFactoryID#
+         </isNotNull>
+			<isNotNull property="orderNum" prepend="and ">
+				OrderNum = #orderNum#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="merchantsID" prepend="and ">
+				MerchantsID = #merchantsID#
+         </isNotNull>
+			<isNotNull property="merchantsName" prepend="and ">
+				MerchantsName = #merchantsName#
+         </isNotNull>
+			<isNotNull property="numberGrinding" prepend="and ">
+				NumberGrinding = #numberGrinding#
+         </isNotNull>
+			<isNotNull property="grindingType" prepend="and ">
+				GrindingType = #grindingType#
+         </isNotNull>
+			<isNotNull property="repairState" prepend="and ">
+				RepairState = #repairState#
+         </isNotNull>
+			<isNotNull property="manufactureDate" prepend="and ">
+				ManufactureDate = #manufactureDate#
+         </isNotNull>
+			<isNotNull property="approverouser" prepend="and ">
+				Approverouser = #approverouser#
+         </isNotNull>
+			<isNotNull property="note" prepend="and ">
+				Note = #note#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

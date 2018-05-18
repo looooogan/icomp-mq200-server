@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    <!-- 采购计划  -->
+    <package name="V01B07" extends="icomp-default, json-default">
+        <!-- 在途计划报警初始化页面 -->
+        <action name="B07S001" class="b07S001Action" method="initb07S001">
+            <result name="success">/WEB-INF/jsp/v01b07/b07s001.jsp</result>
+        </action>
+        <action name="excelDown" class="b07S001Action" method="excelDown">
+            <result name="success">/WEB-INF/jsp/v01b07/b07s001.jsp</result>
+        </action>
+        <!-- 库存异常报警初始化页面 -->
+        <action name="B07S002" class="b07S002Action" method="initb07S002">
+            <result name="success">/WEB-INF/jsp/v01b07/b07s002.jsp</result>
+        </action>
+        <!-- 采购计划处理初始化页面 -->
+        <action name="B07S003" class="b07S003Action" method="initb07S003">
+            <result name="success">/WEB-INF/jsp/v01b07/b07s003.jsp</result>
+        </action>
+        <!--编辑处理	-->
+        <action name="procurement*" class="b07S003Action" method="procurement{1}">
+        </action>
+        <!-- 删除处理 -->
+        <action name="procurementPlansDel" class="b07S003Action" method="procurementPlansDel">
+        </action>
+
+        <!-- 采购订单初始化页面 -->
+        <action name="B07S004" class="b07S004Action" method="initb07S004">
+            <result name="success">/WEB-INF/jsp/v01b07/b07s004.jsp</result>
+        </action>
+
+        <!-- 采购订单获取列表-->
+        <action name="get*List" class="b07S004Action" method="get{1}List">
+        </action>
+        <!-- 采购订单增加-->
+        <action name="deliveryPlan*" class="b07S004Action" method="deliveryPlan{1}">
+        </action>
+
+
+        <!-- 建议采购计划查询初始化页面 -->
+        <action name="B07S005" class="b07S005Action" method="initb07S005">
+            <result name="success">/WEB-INF/jsp/v01b07/b07s005.jsp</result>
+        </action>
+
+        <action name="partAdd" class="b07S005Action" method="partAdd">
+
+        </action>
+        <action name="partList" class="b07S005Action" method="partList">
+
+        </action>
+        <action name="partDel" class="b07S005Action" method="partDel">
+
+        </action>
+        <action name="werDelete" class="b07S001Action" method="werDelete">
+
+        </action>
+        <action name="partInfo" class="b07S005Action" method="partInfo">
+
+        </action>
+        <action name="partEdit" class="b07S005Action" method="partEdit">
+
+        </action>
+        <action name="partList1" class="b07S005Action" method="partList1">
+            <result type="json"></result>
+        </action>
+        <!-- 工作记录查询初始化页面 -->
+        <action name="B07S006" class="b07S006Action" method="initb07S006">
+            <result name="success">/WEB-INF/jsp/v01b07/b07s006.jsp</result>
+        </action>
+        <!-- 标签采购初始化页面 -->
+        <action name="B07S007" class="b07S007Action" method="initb07S007">
+            <result name="success">/WEB-INF/jsp/v01b07/b07s007.jsp</result>
+        </action>
+    </package>
+</struts>  

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="c01S020Business"
+		class="com.icomp.wsdl.v01c01.c01s020.business.impl.C01S020BusinessImpl" scope="prototype">
+		<property name="service" ref="commonService"></property>
+		<property name="iCOMPV01C01S020Service" ref="iCOMPV01C01S020Service"></property>
+	</bean>
+    <bean id="c01S020Wsdl"
+		class="com.icomp.wsdl.v01c01.c01s020.endpoint.impl.C01S020WsdlImpl">
+		<property name="c01S020Business" ref="c01S020Business"></property>
+	</bean>
+</beans>

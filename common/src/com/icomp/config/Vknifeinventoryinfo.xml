@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Vknifeinventoryinfo.xml
+    Created on : 2016/04/05 14:42:16
+    Author : 工具自动生成
+    Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vknifeinventoryinfo">
+    <typeAlias alias="entityVknifeinventoryinfo" type="com.icomp.entity.base.Vknifeinventoryinfo"/>
+    <resultMap id="Vknifeinventoryinfo-map" class="entityVknifeinventoryinfo">
+        <!-- RFID载体ID -->
+        <result property="rfidContainerID" column="RfidContainerID"/>
+        <!-- 刀具ID -->
+        <result property="toolID" column="ToolID"/>
+        <!-- 刀具编码 -->
+        <result property="toolCode" column="ToolCode"/>
+        <!-- 库位码 -->
+        <result property="libraryCodeID" column="LibraryCodeID"/>
+        <!-- 库存数量(钻头数量为1，刀片为当前数量) -->
+        <result property="knifelnventoryNumber" column="KnifelnventoryNumber"/>
+        <!-- 消耗类别(0:可刃磨钻头1可刃磨刀片2一次性刀片9其他 -->
+        <result property="toolConsumetype" column="ToolConsumetype"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityVknifeinventoryinfo" resultMap="Vknifeinventoryinfo-map">
+        SELECT
+        RfidContainerID
+        ,ToolID
+        ,ToolCode
+        ,LibraryCodeID
+        ,KnifelnventoryNumber
+        ,ToolConsumetype
+        from vknifeinventoryinfo
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityVknifeinventoryinfo" resultMap="Vknifeinventoryinfo-map">
+        SELECT
+        RfidContainerID
+        ,ToolID
+        ,ToolCode
+        ,LibraryCodeID
+        ,KnifelnventoryNumber
+        ,ToolConsumetype
+        from vknifeinventoryinfo
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerID" prepend="and ">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">                 ToolCode like concat('%',#toolCode#,'%')             </isNotNull>
+            <isNotNull property="libraryCodeID" prepend="and ">
+                LibraryCodeID = #libraryCodeID#
+            </isNotNull>
+            <isNotNull property="knifelnventoryNumber" prepend="and ">
+                KnifelnventoryNumber = #knifelnventoryNumber#
+            </isNotNull>
+            <isNotNull property="toolConsumetype" prepend="and ">
+                ToolConsumetype = #toolConsumetype#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 根据材料号查询库存信息 -->
+    <select id="searchListByToolCode" parameterClass="entityVknifeinventoryinfo" resultMap="Vknifeinventoryinfo-map">
+        SELECT
+        '' AS RfidContainerID,
+        t.ToolID AS ToolID,
+        t.ToolCode AS ToolCode,
+        t.LibraryCodeID AS LibraryCodeID,
+        (SELECT COUNT(1) FROM knifeinventory kn WHERE kn.ToolID = t.toolID AND kn.DelFlag='0') as KnifelnventoryNumber,
+        t.ToolConsumetype AS ToolConsumetype
+        FROM tool t
+        <isNotNull property="toolCode">
+            WHERE t.ToolCode = #toolCode#
+        </isNotNull>
+
+    </select>
+
+    <!-- 查询当前材料号是否初始化 -->
+    <select id="getIsHasToolInit" parameterClass="entityVknifeinventoryinfo" resultMap="Vknifeinventoryinfo-map">
+        SELECT
+        (
+        SELECT
+        rf.RfidContainerID
+        FROM
+        rfidcontainer rf
+        INNER JOIN knifeinventory kn1 ON rf.RfidContainerID = kn1.RfidContainerID
+        WHERE
+        kn1.DelFlag = 0
+        AND rf.DelFlag = 0
+        AND kn1.ToolID = t.ToolID
+        <isNotNull property="rfidContainerID">
+            and rf.RfidContainerID = #rfidContainerID#
+        </isNotNull>
+        LIMIT 1
+        ) AS RfidContainerID,
+        t.ToolID AS ToolID,
+        t.ToolCode AS ToolCode,
+        t.LibraryCodeID AS LibraryCodeID,
+        (
+        SELECT
+        SUM(kn.KnifelnventoryNumber)
+        FROM
+        knifeinventory kn
+        WHERE
+        kn.ToolID = t.ToolID
+        AND kn.DelFlag = '0'
+        ) AS KnifelnventoryNumber,
+        t.ToolConsumetype AS ToolConsumetype
+        FROM
+        tool t
+        WHERE
+        t.DelFlag = '0'
+        AND t.ToolCode = #toolCode#
+        LIMIT 1
+    </select>
+
+    <!-- 材料号查询库存信息 -->
+    <select id="getknifeinventoryByToolCode" parameterClass="entityVknifeinventoryinfo" resultMap="Vknifeinventoryinfo-map">
+			SELECT
+            r.RfidContainerID AS RfidContainerID,
+            t.ToolID AS ToolID,
+            t.ToolCode AS ToolCode,
+            t.LibraryCodeID AS LibraryCodeID,
+           SUM(kn.KnifelnventoryNumber) as KnifelnventoryNumber,
+            t.ToolConsumetype AS ToolConsumetype
+            FROM rfidcontainer r
+            LEFT JOIN knifeinventory kn ON kn.RfidContainerID = r.RfidContainerID
+            LEFT JOIN tool t ON t.ToolID = kn.ToolID
+            WHERE t.DelFlag = '0' AND kn.DelFlag = '0'  AND r.DelFlag = '0'
+            AND  	t.ToolCode = #toolCode#
+            GROUP BY kn.ToolID
+	</select>
+
+    <!-- 按照RFID查询库存信息 -->
+    <select id="getknifeinventoryBySamleTool" parameterClass="entityVknifeinventoryinfo" resultMap="Vknifeinventoryinfo-map">
+		SELECT
+            r.RfidContainerID AS RfidContainerID,
+            t.ToolID AS ToolID,
+            t.ToolCode AS ToolCode,
+            t.LibraryCodeID AS LibraryCodeID,
+            (SELECT SUM(k1.KnifelnventoryNumber) FROM knifeinventory k1 WHERE k1.DelFlag='0' AND k1.ToolID =t.ToolID)  as KnifelnventoryNumber,
+            t.ToolConsumetype AS ToolConsumetype
+            FROM rfidcontainer r
+            LEFT JOIN knifeinventory kn ON kn.RfidContainerID = r.RfidContainerID
+            LEFT JOIN tool t ON t.ToolID = kn.ToolID
+            WHERE t.DelFlag = '0' AND kn.DelFlag = '0' AND r.DelFlag = '0'
+						AND  	t.ToolCode = #toolCode#
+						AND r.RfidContainerID =  #rfidContainerID#
+						LIMIT 1
+	</select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityVknifeinventoryinfo" resultClass="int">
+        SELECT count(1)
+        from vknifeinventoryinfo
+        <dynamic prepend=" where ">
+            <isNotNull property="rfidContainerID" prepend="and ">
+                RfidContainerID = #rfidContainerID#
+            </isNotNull>
+            <isNotNull property="toolID" prepend="and ">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">                 ToolCode like concat('%',#toolCode#,'%')             </isNotNull>
+            <isNotNull property="libraryCodeID" prepend="and ">
+                LibraryCodeID = #libraryCodeID#
+            </isNotNull>
+            <isNotNull property="knifelnventoryNumber" prepend="and ">
+                KnifelnventoryNumber = #knifelnventoryNumber#
+            </isNotNull>
+            <isNotNull property="toolConsumetype" prepend="and ">
+                ToolConsumetype = #toolConsumetype#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+</sqlMap>
+

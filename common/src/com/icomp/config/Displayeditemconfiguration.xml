@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Displayeditemconfiguration.xml
+		Created on : 2014/08/19 15:48:45
+		Author : 工具自动生成
+		Description: 工具自动生成包含系统显示项目配置(兼顾打印项目)的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Displayeditemconfiguration">
+	<typeAlias alias="entityDisplayeditemconfiguration" type="com.icomp.entity.base.Displayeditemconfiguration" />
+	<resultMap id="Displayeditemconfiguration-map" class="entityDisplayeditemconfiguration">
+		<!--  -->
+		<result property="displayedItemConfigurationID" column="DisplayedItemConfigurationID" />
+		<!-- 项目类别(0手持机1平台2打印项目) -->
+		<result property="itemType" column="ItemType" />
+		<!-- 语言编码 -->
+		<result property="languageCode" column="LanguageCode" />
+		<!-- 页面名称 -->
+		<result property="pageName" column="PageName" />
+		<!-- 项目名称 -->
+		<result property="colName" column="ColName" />
+		<!-- 是否显示(0显示1不显示) -->
+		<result property="displayedFlag" column="DisplayedFlag" />
+		<!-- 项目文本 -->
+		<result property="itemText" column="ItemText" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityDisplayeditemconfiguration" resultMap="Displayeditemconfiguration-map">
+		SELECT
+		DisplayedItemConfigurationID
+		,ItemType
+		,LanguageCode
+		,PageName
+		,ColName
+		,DisplayedFlag
+		,ItemText
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from displayeditemconfiguration
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityDisplayeditemconfiguration" resultMap="Displayeditemconfiguration-map">
+		SELECT
+		DisplayedItemConfigurationID
+		,ItemType
+		,LanguageCode
+		,PageName
+		,ColName
+		,DisplayedFlag
+		,ItemText
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from displayeditemconfiguration
+		<dynamic prepend=" where ">
+			<isNotNull property="displayedItemConfigurationID" prepend="and ">
+				DisplayedItemConfigurationID = #displayedItemConfigurationID#
+         </isNotNull>
+			<isNotNull property="itemType" prepend="and ">
+				ItemType = #itemType#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="pageName" prepend="and ">
+				PageName = #pageName#
+         </isNotNull>
+			<isNotNull property="colName" prepend="and ">
+				ColName = #colName#
+         </isNotNull>
+			<isNotNull property="displayedFlag" prepend="and ">
+				DisplayedFlag = #displayedFlag#
+         </isNotNull>
+			<isNotNull property="itemText" prepend="and ">
+				ItemText = #itemText#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityDisplayeditemconfiguration" resultClass="int">
+		SELECT count(1)
+		from displayeditemconfiguration
+		<dynamic prepend=" where ">
+			<isNotNull property="displayedItemConfigurationID" prepend="and ">
+				DisplayedItemConfigurationID = #displayedItemConfigurationID#
+         </isNotNull>
+			<isNotNull property="itemType" prepend="and ">
+				ItemType = #itemType#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="pageName" prepend="and ">
+				PageName = #pageName#
+         </isNotNull>
+			<isNotNull property="colName" prepend="and ">
+				ColName = #colName#
+         </isNotNull>
+			<isNotNull property="displayedFlag" prepend="and ">
+				DisplayedFlag = #displayedFlag#
+         </isNotNull>
+			<isNotNull property="itemText" prepend="and ">
+				ItemText = #itemText#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityDisplayeditemconfiguration">
+		update displayeditemconfiguration
+		<dynamic prepend="set">
+			<isNotNull property="displayedItemConfigurationID">
+				DisplayedItemConfigurationID = #displayedItemConfigurationID#
+         </isNotNull>
+			<isNull property="displayedItemConfigurationID">
+				DisplayedItemConfigurationID = null
+         </isNull>
+			<isNotNull property="itemType">
+				,ItemType = #itemType#
+         </isNotNull>
+			<isNull property="itemType">
+				,ItemType = null
+         </isNull>
+			<isNotNull property="languageCode">
+				,LanguageCode = #languageCode#
+         </isNotNull>
+			<isNull property="languageCode">
+				,LanguageCode = null
+         </isNull>
+			<isNotNull property="pageName">
+				,PageName = #pageName#
+         </isNotNull>
+			<isNull property="pageName">
+				,PageName = null
+         </isNull>
+			<isNotNull property="colName">
+				,ColName = #colName#
+         </isNotNull>
+			<isNull property="colName">
+				,ColName = null
+         </isNull>
+			<isNotNull property="displayedFlag">
+				,DisplayedFlag = #displayedFlag#
+         </isNotNull>
+			<isNull property="displayedFlag">
+				,DisplayedFlag = null
+         </isNull>
+			<isNotNull property="itemText">
+				,ItemText = #itemText#
+         </isNotNull>
+			<isNull property="itemText">
+				,ItemText = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="displayedItemConfigurationIDWhere" prepend="and ">
+				DisplayedItemConfigurationID = #displayedItemConfigurationIDWhere#
+         </isNotNull>
+			<isNotNull property="itemTypeWhere" prepend="and ">
+				ItemType = #itemTypeWhere#
+         </isNotNull>
+			<isNotNull property="languageCodeWhere" prepend="and ">
+				LanguageCode = #languageCodeWhere#
+         </isNotNull>
+			<isNotNull property="pageNameWhere" prepend="and ">
+				PageName = #pageNameWhere#
+         </isNotNull>
+			<isNotNull property="colNameWhere" prepend="and ">
+				ColName = #colNameWhere#
+         </isNotNull>
+			<isNotNull property="displayedFlagWhere" prepend="and ">
+				DisplayedFlag = #displayedFlagWhere#
+         </isNotNull>
+			<isNotNull property="itemTextWhere" prepend="and ">
+				ItemText = #itemTextWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityDisplayeditemconfiguration">
+		update displayeditemconfiguration
+		<dynamic prepend="set">
+			<isNotNull property="displayedItemConfigurationID"  prepend=",">
+				DisplayedItemConfigurationID = #displayedItemConfigurationID#
+         </isNotNull>
+			<isNotNull property="itemType"  prepend=",">
+				ItemType = #itemType#
+         </isNotNull>
+			<isNotNull property="languageCode"  prepend=",">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="pageName"  prepend=",">
+				PageName = #pageName#
+         </isNotNull>
+			<isNotNull property="colName"  prepend=",">
+				ColName = #colName#
+         </isNotNull>
+			<isNotNull property="displayedFlag"  prepend=",">
+				DisplayedFlag = #displayedFlag#
+         </isNotNull>
+			<isNotNull property="itemText"  prepend=",">
+				ItemText = #itemText#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="displayedItemConfigurationIDWhere" prepend="and ">
+				DisplayedItemConfigurationID = #displayedItemConfigurationIDWhere#
+         </isNotNull>
+			<isNotNull property="itemTypeWhere" prepend="and ">
+				ItemType = #itemTypeWhere#
+         </isNotNull>
+			<isNotNull property="languageCodeWhere" prepend="and ">
+				LanguageCode = #languageCodeWhere#
+         </isNotNull>
+			<isNotNull property="pageNameWhere" prepend="and ">
+				PageName = #pageNameWhere#
+         </isNotNull>
+			<isNotNull property="colNameWhere" prepend="and ">
+				ColName = #colNameWhere#
+         </isNotNull>
+			<isNotNull property="displayedFlagWhere" prepend="and ">
+				DisplayedFlag = #displayedFlagWhere#
+         </isNotNull>
+			<isNotNull property="itemTextWhere" prepend="and ">
+				ItemText = #itemTextWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityDisplayeditemconfiguration">
+		<selectKey resultClass="java.lang.String" keyProperty="displayedItemConfigurationID">
+			SELECT #displayedItemConfigurationID# as DisplayedItemConfigurationID FROM DUAL
+     </selectKey>
+		insert into displayeditemconfiguration(
+		DisplayedItemConfigurationID
+		,ItemType
+		,LanguageCode
+		,PageName
+		,ColName
+		,DisplayedFlag
+		,ItemText
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		)
+		Values (
+			<isNotNull property="displayedItemConfigurationID">
+				#displayedItemConfigurationID#
+         </isNotNull>
+			<isNull property="displayedItemConfigurationID">
+				null
+         </isNull>
+			<isNotNull property="itemType">
+				,#itemType#
+         </isNotNull>
+			<isNull property="itemType">
+				,null
+         </isNull>
+			<isNotNull property="languageCode">
+				,#languageCode#
+         </isNotNull>
+			<isNull property="languageCode">
+				,null
+         </isNull>
+			<isNotNull property="pageName">
+				,#pageName#
+         </isNotNull>
+			<isNull property="pageName">
+				,null
+         </isNull>
+			<isNotNull property="colName">
+				,#colName#
+         </isNotNull>
+			<isNull property="colName">
+				,null
+         </isNull>
+			<isNotNull property="displayedFlag">
+				,#displayedFlag#
+         </isNotNull>
+			<isNull property="displayedFlag">
+				,null
+         </isNull>
+			<isNotNull property="itemText">
+				,#itemText#
+         </isNotNull>
+			<isNull property="itemText">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityDisplayeditemconfiguration">
+		delete  from displayeditemconfiguration
+		<dynamic prepend=" where ">
+			<isNotNull property="displayedItemConfigurationIDWhere" prepend="and ">
+				DisplayedItemConfigurationID = #displayedItemConfigurationIDWhere#
+         </isNotNull>
+			<isNotNull property="itemTypeWhere" prepend="and ">
+				ItemType = #itemTypeWhere#
+         </isNotNull>
+			<isNotNull property="languageCodeWhere" prepend="and ">
+				LanguageCode = #languageCodeWhere#
+         </isNotNull>
+			<isNotNull property="pageNameWhere" prepend="and ">
+				PageName = #pageNameWhere#
+         </isNotNull>
+			<isNotNull property="colNameWhere" prepend="and ">
+				ColName = #colNameWhere#
+         </isNotNull>
+			<isNotNull property="displayedFlagWhere" prepend="and ">
+				DisplayedFlag = #displayedFlagWhere#
+         </isNotNull>
+			<isNotNull property="itemTextWhere" prepend="and ">
+				ItemText = #itemTextWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

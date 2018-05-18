@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vsuggestionpurchaseplan.xml
+		Created on : 2015/02/12 10:37:41
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vsuggestionpurchaseplan">
+	<typeAlias alias="entityVsuggestionpurchaseplan" type="com.icomp.entity.base.Vsuggestionpurchaseplan" />
+	<resultMap id="Vsuggestionpurchaseplan-map" class="entityVsuggestionpurchaseplan">
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 刀具名称 -->
+		<result property="toolName" column="ToolName" />
+		<!-- 库存量 -->
+		<result property="inventory" column="Inventory" />
+		<!-- 采购计划编号 -->
+		<result property="procurementPlansCode" column="ProcurementPlansCode" />
+		<!-- 应采购数量 -->
+		<result property="procurementCount" column="ProcurementCount" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!--  创建者姓名-->
+		<result property="userName" column="UserName" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVsuggestionpurchaseplan" resultMap="Vsuggestionpurchaseplan-map">
+		SELECT
+		ToolID
+		,ToolCode
+		,ToolName
+		,Inventory
+		,ProcurementPlansCode
+		,ProcurementCount
+		,CreateUser
+		,UserName
+		,CreateTime
+		,Version
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		from vsuggestionpurchaseplan
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVsuggestionpurchaseplan" resultMap="Vsuggestionpurchaseplan-map">
+		SELECT
+		ToolID
+		,ToolCode
+		,ToolName
+		,Inventory
+		,ProcurementPlansCode
+		,ProcurementCount
+		,CreateUser
+		,UserName
+		,DelFlag
+		,CreateTime
+		,Version
+		,UpdateTime
+		,UpdateUser
+		from vsuggestionpurchaseplan
+		<dynamic prepend=" where ">
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="inventory" prepend="and ">
+				Inventory = #inventory#
+         </isNotNull>
+			<isNotNull property="procurementPlansCode" prepend="and ">
+				ProcurementPlansCode = #procurementPlansCode#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="procurementCount" prepend="and ">
+				ProcurementCount = #procurementCount#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+		 <isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				CreateTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				CreateTime <= #dateEnd#
+				]]>
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVsuggestionpurchaseplan" resultClass="int">
+		SELECT count(1)
+		from vsuggestionpurchaseplan
+		<dynamic prepend=" where ">
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="inventory" prepend="and ">
+				Inventory = #inventory#
+         </isNotNull>
+			<isNotNull property="procurementPlansCode" prepend="and ">
+				ProcurementPlansCode = #procurementPlansCode#
+         </isNotNull>
+			<isNotNull property="procurementCount" prepend="and ">
+				ProcurementCount = #procurementCount#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+		 <isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				CreateTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				CreateTime <= #dateEnd#
+				]]>
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

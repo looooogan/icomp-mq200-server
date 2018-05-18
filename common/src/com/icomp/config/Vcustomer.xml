@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Vcustomer.xml
+    Created on : 2014/08/19 15:48:46
+    Author : 工具自动生成
+    Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vcustomer">
+    <typeAlias alias="entityVcustomer" type="com.icomp.entity.base.Vcustomer"/>
+    <resultMap id="Vcustomer-map" class="entityVcustomer">
+        <!-- 用户明细ID -->
+        <result property="userDetailID" column="UserDetailID"/>
+        <!-- 用户ID[自动生成20位字符串] -->
+        <result property="userdetailCustomerID" column="UserdetailCustomerID"/>
+        <!-- 姓名 -->
+        <result property="userdetailUserName" column="UserdetailUserName"/>
+        <!-- 性别(F:女M:男H:不详) -->
+        <result property="userSex" column="UserSex"/>
+        <!-- 年龄 -->
+        <result property="userAge" column="UserAge"/>
+        <!-- 生年月日 -->
+        <result property="userBirthday" column="UserBirthday"/>
+        <!-- 身份证号 -->
+        <result property="userCardID" column="UserCardID"/>
+        <!-- 移动电话 -->
+        <result property="userMobile" column="UserMobile"/>
+        <!-- 座机(XXXX-XXXXXXXX) -->
+        <result property="userLandline" column="UserLandline"/>
+        <!-- 婚否(0已婚1未婚9不详) -->
+        <result property="userPrivacies" column="UserPrivacies"/>
+        <!-- 毕业院校 -->
+        <result property="userUniversity" column="UserUniversity"/>
+        <!-- 专业 -->
+        <result property="userProfessional" column="UserProfessional"/>
+        <!-- 学历 -->
+        <result property="userEducation" column="UserEducation"/>
+        <!-- 血型(0:A1:B2:AB3:O9:不详) -->
+        <result property="userBloodGroup" column="UserBloodGroup"/>
+        <!-- 身高(cm) -->
+        <result property="userHeight" column="UserHeight"/>
+        <!-- 体重(kg) -->
+        <result property="userWeight" column="UserWeight"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="userdetailDelFlag" column="UserdetailDelFlag"/>
+        <!-- 创建者 -->
+        <result property="userdetailCreateUser" column="UserdetailCreateUser"/>
+        <!-- 创建时间 -->
+        <result property="userdetailCreateTime" column="UserdetailCreateTime"/>
+        <!-- 更新者 -->
+        <result property="userdetailUpdateUser" column="UserdetailUpdateUser"/>
+        <!-- 更新时间 -->
+        <result property="userdetailUpdateTime" column="UserdetailUpdateTime"/>
+        <!-- 版本号 -->
+        <result property="userdetailVersion" column="UserdetailVersion"/>
+        <!-- 用户ID[自动生成20位字符串] -->
+        <result property="customerID" column="CustomerID"/>
+        <!-- 职务ID -->
+        <result property="customerPositionID" column="CustomerPositionID"/>
+        <!-- 用户名[16位数字字母组合] -->
+        <result property="userName" column="UserName"/>
+        <!-- 用户密码[16位数字字母组合] -->
+        <result property="userPass" column="UserPass"/>
+        <!-- 员工卡号[20位员工卡] -->
+        <result property="employeeCard" column="EmployeeCard"/>
+        <!-- 用户类型(0系统用户1普通用户) -->
+        <result property="userType" column="UserType"/>
+        <!-- 用户锁定区分(0正常1锁定) -->
+        <result property="userErrFlag" column="UserErrFlag"/>
+        <!-- 错误次数 -->
+        <result property="errCount" column="ErrCount"/>
+        <!-- 锁定开始时间 -->
+        <result property="errStaTime" column="ErrStaTime"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="customerDelFlag" column="CustomerDelFlag"/>
+        <!-- 更新时间 -->
+        <result property="customerUpdateTime" column="CustomerUpdateTime"/>
+        <!-- 更新者 -->
+        <result property="customerUpdateUser" column="CustomerUpdateUser"/>
+        <!-- 创建时间 -->
+        <result property="customerCreateTime" column="CustomerCreateTime"/>
+        <!-- 创建者 -->
+        <result property="customerCreateUser" column="CustomerCreateUser"/>
+        <!-- 版本号 -->
+        <result property="customerVersion" column="CustomerVersion"/>
+        <!-- 部门ID -->
+        <result property="departmentID" column="DepartmentID"/>
+        <!-- 机构ID -->
+        <result property="departmentAgencyID" column="DepartmentAgencyID"/>
+        <!-- 语言编码 -->
+        <result property="departmentLanguageCode" column="DepartmentLanguageCode"/>
+        <!-- 部门编码 -->
+        <result property="departmentCode" column="DepartmentCode"/>
+        <!-- 部门名称 -->
+        <result property="departmentName" column="DepartmentName"/>
+        <!-- 部门电话 -->
+        <result property="departmentTel" column="DepartmentTel"/>
+        <!-- 部门负责人 -->
+        <result property="departmentHead" column="DepartmentHead"/>
+        <!-- 负责人手机 -->
+        <result property="departmentHeadMobile" column="DepartmentHeadMobile"/>
+        <!-- 负责人电话 -->
+        <result property="departmentHeadTel" column="DepartmentHeadTel"/>
+        <!-- 部门成立时间 -->
+        <result property="departmentCdate" column="DepartmentCdate"/>
+        <!-- 部门描述 -->
+        <result property="departmentDescription" column="DepartmentDescription"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="departmentDelFlag" column="DepartmentDelFlag"/>
+        <!-- 创建者 -->
+        <result property="departmentCreateUser" column="DepartmentCreateUser"/>
+        <!-- 创建时间 -->
+        <result property="departmentCreateTime" column="DepartmentCreateTime"/>
+        <!-- 更新者 -->
+        <result property="departmentUpdateUser" column="DepartmentUpdateUser"/>
+        <!-- 更新时间 -->
+        <result property="departmentUpdateTime" column="DepartmentUpdateTime"/>
+        <!-- 版本号 -->
+        <result property="departmentVersion" column="DepartmentVersion"/>
+        <!-- 职务ID -->
+        <result property="positionID" column="PositionID"/>
+        <!-- 语言编码 -->
+        <result property="positionLanguageCode" column="PositionLanguageCode"/>
+        <!-- 职务编码 -->
+        <result property="positionCode" column="PositionCode"/>
+        <!-- 职务名称 -->
+        <result property="positionName" column="PositionName"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="positionDelFlag" column="PositionDelFlag"/>
+        <!-- 创建者 -->
+        <result property="positionCreateUser" column="PositionCreateUser"/>
+        <!-- 创建时间 -->
+        <result property="positionCreateTime" column="PositionCreateTime"/>
+        <!-- 更新者 -->
+        <result property="positionUpdateUser" column="PositionUpdateUser"/>
+        <!-- 更新时间 -->
+        <result property="positionUpdateTime" column="PositionUpdateTime"/>
+        <!-- 版本号 -->
+        <result property="positionVersion" column="PositionVersion"/>
+        <!-- 机构ID -->
+        <result property="agencyID" column="AgencyID"/>
+        <!-- 机构ID -->
+        <result property="age_AgencyID" column="Age_AgencyID"/>
+        <!-- 语言编码 -->
+        <result property="agencyLanguageCode" column="AgencyLanguageCode"/>
+        <!-- 机构编码 -->
+        <result property="agencyCode" column="AgencyCode"/>
+        <!-- 机构名称 -->
+        <result property="agencyName" column="AgencyName"/>
+        <!-- 机构电话 -->
+        <result property="agencyTel" column="AgencyTel"/>
+        <!-- 机构创立时间 -->
+        <result property="agencyCdate" column="AgencyCdate"/>
+        <!-- 机构法人 -->
+        <result property="agencyCorporate" column="AgencyCorporate"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="delFlag" column="DelFlag"/>
+        <!-- 创建者 -->
+        <result property="agencyCreateUser" column="AgencyCreateUser"/>
+        <!-- 创建时间 -->
+        <result property="agencyCreateTime" column="AgencyCreateTime"/>
+        <!-- 更新者 -->
+        <result property="agencyUpdateUser" column="AgencyUpdateUser"/>
+        <!-- 更新时间 -->
+        <result property="agencyUpdateTime" column="AgencyUpdateTime"/>
+        <!-- 版本号 -->
+        <result property="agencyVersion" column="AgencyVersion"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityVcustomer" resultMap="Vcustomer-map">
+        SELECT
+        UserDetailID
+        ,UserdetailCustomerID
+        ,UserdetailUserName
+        ,UserSex
+        ,UserAge
+        ,UserBirthday
+        ,UserCardID
+        ,UserMobile
+        ,UserLandline
+        ,UserPrivacies
+        ,UserUniversity
+        ,UserProfessional
+        ,UserEducation
+        ,UserBloodGroup
+        ,UserHeight
+        ,UserWeight
+        ,UserdetailDelFlag
+        ,UserdetailCreateUser
+        ,UserdetailCreateTime
+        ,UserdetailUpdateUser
+        ,UserdetailUpdateTime
+        ,UserdetailVersion
+        ,CustomerID
+        ,CustomerPositionID
+        ,UserName
+        ,UserPass
+        ,EmployeeCard
+        ,UserType
+        ,UserErrFlag
+        ,ErrCount
+        ,ErrStaTime
+        ,CustomerDelFlag
+        ,CustomerUpdateTime
+        ,CustomerUpdateUser
+        ,CustomerCreateTime
+        ,CustomerCreateUser
+        ,CustomerVersion
+        ,DepartmentID
+        ,DepartmentAgencyID
+        ,DepartmentLanguageCode
+        ,DepartmentCode
+        ,DepartmentName
+        ,DepartmentTel
+        ,DepartmentHead
+        ,DepartmentHeadMobile
+        ,DepartmentHeadTel
+        ,DepartmentCdate
+        ,DepartmentDescription
+        ,DepartmentDelFlag
+        ,DepartmentCreateUser
+        ,DepartmentCreateTime
+        ,DepartmentUpdateUser
+        ,DepartmentUpdateTime
+        ,DepartmentVersion
+        ,PositionID
+        ,PositionLanguageCode
+        ,PositionCode
+        ,PositionName
+        ,PositionDelFlag
+        ,PositionCreateUser
+        ,PositionCreateTime
+        ,PositionUpdateUser
+        ,PositionUpdateTime
+        ,PositionVersion
+        ,AgencyID
+        ,Age_AgencyID
+        ,AgencyLanguageCode
+        ,AgencyCode
+        ,AgencyName
+        ,AgencyTel
+        ,AgencyCdate
+        ,AgencyCorporate
+        ,DelFlag
+        ,AgencyCreateUser
+        ,AgencyCreateTime
+        ,AgencyUpdateUser
+        ,AgencyUpdateTime
+        ,AgencyVersion
+        from vcustomer
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityVcustomer" resultMap="Vcustomer-map">
+        SELECT
+        UserDetailID
+        ,UserdetailCustomerID
+        ,UserdetailUserName
+        ,UserSex
+        ,UserAge
+        ,UserBirthday
+        ,UserCardID
+        ,UserMobile
+        ,UserLandline
+        ,UserPrivacies
+        ,UserUniversity
+        ,UserProfessional
+        ,UserEducation
+        ,UserBloodGroup
+        ,UserHeight
+        ,UserWeight
+        ,UserdetailDelFlag
+        ,UserdetailCreateUser
+        ,UserdetailCreateTime
+        ,UserdetailUpdateUser
+        ,UserdetailUpdateTime
+        ,UserdetailVersion
+        ,CustomerID
+        ,CustomerPositionID
+        ,UserName
+        ,UserPass
+        ,EmployeeCard
+        ,UserType
+        ,UserErrFlag
+        ,ErrCount
+        ,ErrStaTime
+        ,CustomerDelFlag
+        ,CustomerUpdateTime
+        ,CustomerUpdateUser
+        ,CustomerCreateTime
+        ,CustomerCreateUser
+        ,CustomerVersion
+        ,DepartmentID
+        ,DepartmentAgencyID
+        ,DepartmentLanguageCode
+        ,DepartmentCode
+        ,DepartmentName
+        ,DepartmentTel
+        ,DepartmentHead
+        ,DepartmentHeadMobile
+        ,DepartmentHeadTel
+        ,DepartmentCdate
+        ,DepartmentDescription
+        ,DepartmentDelFlag
+        ,DepartmentCreateUser
+        ,DepartmentCreateTime
+        ,DepartmentUpdateUser
+        ,DepartmentUpdateTime
+        ,DepartmentVersion
+        ,PositionID
+        ,PositionLanguageCode
+        ,PositionCode
+        ,PositionName
+        ,PositionDelFlag
+        ,PositionCreateUser
+        ,PositionCreateTime
+        ,PositionUpdateUser
+        ,PositionUpdateTime
+        ,PositionVersion
+        ,AgencyID
+        ,Age_AgencyID
+        ,AgencyLanguageCode
+        ,AgencyCode
+        ,AgencyName
+        ,AgencyTel
+        ,AgencyCdate
+        ,AgencyCorporate
+        ,DelFlag
+        ,AgencyCreateUser
+        ,AgencyCreateTime
+        ,AgencyUpdateUser
+        ,AgencyUpdateTime
+        ,AgencyVersion
+        from vcustomer
+        <dynamic prepend=" where ">
+            <isNotNull property="userDetailID" prepend="and ">
+                UserDetailID = #userDetailID#
+            </isNotNull>
+            <isNotNull property="userdetailCustomerID" prepend="and ">
+                UserdetailCustomerID = #userdetailCustomerID#
+            </isNotNull>
+            <isNotNull property="userdetailUserName" prepend="and ">
+                UserdetailUserName like concat('%',#userdetailUserName#,'%')
+            </isNotNull>
+            <isNotNull property="userSex" prepend="and ">
+                UserSex = #userSex#
+            </isNotNull>
+            <isNotNull property="userAge" prepend="and ">
+                UserAge = #userAge#
+            </isNotNull>
+            <isNotNull property="userBirthday" prepend="and ">
+                UserBirthday = #userBirthday#
+            </isNotNull>
+            <isNotNull property="userCardID" prepend="and ">
+                UserCardID = #userCardID#
+            </isNotNull>
+            <isNotNull property="userMobile" prepend="and ">
+                UserMobile = #userMobile#
+            </isNotNull>
+            <isNotNull property="userLandline" prepend="and ">
+                UserLandline = #userLandline#
+            </isNotNull>
+            <isNotNull property="userPrivacies" prepend="and ">
+                UserPrivacies = #userPrivacies#
+            </isNotNull>
+            <isNotNull property="userUniversity" prepend="and ">
+                UserUniversity = #userUniversity#
+            </isNotNull>
+            <isNotNull property="userProfessional" prepend="and ">
+                UserProfessional = #userProfessional#
+            </isNotNull>
+            <isNotNull property="userEducation" prepend="and ">
+                UserEducation = #userEducation#
+            </isNotNull>
+            <isNotNull property="userBloodGroup" prepend="and ">
+                UserBloodGroup = #userBloodGroup#
+            </isNotNull>
+            <isNotNull property="userHeight" prepend="and ">
+                UserHeight = #userHeight#
+            </isNotNull>
+            <isNotNull property="userWeight" prepend="and ">
+                UserWeight = #userWeight#
+            </isNotNull>
+            <isNotNull property="userdetailDelFlag" prepend="and ">
+                UserdetailDelFlag = #userdetailDelFlag#
+            </isNotNull>
+            <isNotNull property="userdetailCreateUser" prepend="and ">
+                UserdetailCreateUser = #userdetailCreateUser#
+            </isNotNull>
+            <isNotNull property="userdetailCreateTime" prepend="and ">
+                UserdetailCreateTime = #userdetailCreateTime#
+            </isNotNull>
+            <isNotNull property="userdetailUpdateUser" prepend="and ">
+                UserdetailUpdateUser = #userdetailUpdateUser#
+            </isNotNull>
+            <isNotNull property="userdetailUpdateTime" prepend="and ">
+                UserdetailUpdateTime = #userdetailUpdateTime#
+            </isNotNull>
+            <isNotNull property="userdetailVersion" prepend="and ">
+                UserdetailVersion = #userdetailVersion#
+            </isNotNull>
+            <isNotNull property="customerID" prepend="and ">
+                CustomerID = #customerID#
+            </isNotNull>
+            <isNotNull property="customerPositionID" prepend="and ">
+                CustomerPositionID = #customerPositionID#
+            </isNotNull>
+            <isNotNull property="userName" prepend="and ">
+                UserName = #userName#
+            </isNotNull>
+            <isNotNull property="userPass" prepend="and ">
+                UserPass = #userPass#
+            </isNotNull>
+            <isNotNull property="employeeCard" prepend="and ">
+                EmployeeCard = #employeeCard#
+            </isNotNull>
+            <isNotNull property="userType" prepend="and ">
+                UserType = #userType#
+            </isNotNull>
+            <isNotNull property="userErrFlag" prepend="and ">
+                UserErrFlag = #userErrFlag#
+            </isNotNull>
+            <isNotNull property="errCount" prepend="and ">
+                ErrCount = #errCount#
+            </isNotNull>
+            <isNotNull property="errStaTime" prepend="and ">
+                ErrStaTime = #errStaTime#
+            </isNotNull>
+            <isNotNull property="customerDelFlag" prepend="and ">
+                CustomerDelFlag = #customerDelFlag#
+            </isNotNull>
+            <isNotNull property="customerUpdateTime" prepend="and ">
+                CustomerUpdateTime = #customerUpdateTime#
+            </isNotNull>
+            <isNotNull property="customerUpdateUser" prepend="and ">
+                CustomerUpdateUser = #customerUpdateUser#
+            </isNotNull>
+            <isNotNull property="customerCreateTime" prepend="and ">
+                CustomerCreateTime = #customerCreateTime#
+            </isNotNull>
+            <isNotNull property="customerCreateUser" prepend="and ">
+                CustomerCreateUser = #customerCreateUser#
+            </isNotNull>
+            <isNotNull property="customerVersion" prepend="and ">
+                CustomerVersion = #customerVersion#
+            </isNotNull>
+            <isNotNull property="departmentID" prepend="and ">
+                DepartmentID = #departmentID#
+            </isNotNull>
+            <isNotNull property="departmentAgencyID" prepend="and ">
+                DepartmentAgencyID = #departmentAgencyID#
+            </isNotNull>
+            <isNotNull property="departmentLanguageCode" prepend="and ">
+                DepartmentLanguageCode = #departmentLanguageCode#
+            </isNotNull>
+            <isNotNull property="departmentCode" prepend="and ">
+                DepartmentCode = #departmentCode#
+            </isNotNull>
+            <isNotNull property="departmentName" prepend="and ">
+                DepartmentName = #departmentName#
+            </isNotNull>
+            <isNotNull property="departmentTel" prepend="and ">
+                DepartmentTel = #departmentTel#
+            </isNotNull>
+            <isNotNull property="departmentHead" prepend="and ">
+                DepartmentHead = #departmentHead#
+            </isNotNull>
+            <isNotNull property="departmentHeadMobile" prepend="and ">
+                DepartmentHeadMobile = #departmentHeadMobile#
+            </isNotNull>
+            <isNotNull property="departmentHeadTel" prepend="and ">
+                DepartmentHeadTel = #departmentHeadTel#
+            </isNotNull>
+            <isNotNull property="departmentCdate" prepend="and ">
+                DepartmentCdate = #departmentCdate#
+            </isNotNull>
+            <isNotNull property="departmentDescription" prepend="and ">
+                DepartmentDescription = #departmentDescription#
+            </isNotNull>
+            <isNotNull property="departmentDelFlag" prepend="and ">
+                DepartmentDelFlag = #departmentDelFlag#
+            </isNotNull>
+            <isNotNull property="departmentCreateUser" prepend="and ">
+                DepartmentCreateUser = #departmentCreateUser#
+            </isNotNull>
+            <isNotNull property="departmentCreateTime" prepend="and ">
+                DepartmentCreateTime = #departmentCreateTime#
+            </isNotNull>
+            <isNotNull property="departmentUpdateUser" prepend="and ">
+                DepartmentUpdateUser = #departmentUpdateUser#
+            </isNotNull>
+            <isNotNull property="departmentUpdateTime" prepend="and ">
+                DepartmentUpdateTime = #departmentUpdateTime#
+            </isNotNull>
+            <isNotNull property="departmentVersion" prepend="and ">
+                DepartmentVersion = #departmentVersion#
+            </isNotNull>
+            <isNotNull property="positionID" prepend="and ">
+                PositionID = #positionID#
+            </isNotNull>
+            <isNotNull property="positionLanguageCode" prepend="and ">
+                PositionLanguageCode = #positionLanguageCode#
+            </isNotNull>
+            <isNotNull property="positionCode" prepend="and ">
+                PositionCode = #positionCode#
+            </isNotNull>
+            <isNotNull property="positionName" prepend="and ">
+                PositionName = #positionName#
+            </isNotNull>
+            <isNotNull property="positionDelFlag" prepend="and ">
+                PositionDelFlag = #positionDelFlag#
+            </isNotNull>
+            <isNotNull property="positionCreateUser" prepend="and ">
+                PositionCreateUser = #positionCreateUser#
+            </isNotNull>
+            <isNotNull property="positionCreateTime" prepend="and ">
+                PositionCreateTime = #positionCreateTime#
+            </isNotNull>
+            <isNotNull property="positionUpdateUser" prepend="and ">
+                PositionUpdateUser = #positionUpdateUser#
+            </isNotNull>
+            <isNotNull property="positionUpdateTime" prepend="and ">
+                PositionUpdateTime = #positionUpdateTime#
+            </isNotNull>
+            <isNotNull property="positionVersion" prepend="and ">
+                PositionVersion = #positionVersion#
+            </isNotNull>
+            <isNotNull property="agencyID" prepend="and ">
+                AgencyID = #agencyID#
+            </isNotNull>
+            <isNotNull property="age_AgencyID" prepend="and ">
+                Age_AgencyID = #age_AgencyID#
+            </isNotNull>
+            <isNotNull property="agencyLanguageCode" prepend="and ">
+                AgencyLanguageCode = #agencyLanguageCode#
+            </isNotNull>
+            <isNotNull property="agencyCode" prepend="and ">
+                AgencyCode = #agencyCode#
+            </isNotNull>
+            <isNotNull property="agencyName" prepend="and ">
+                AgencyName = #agencyName#
+            </isNotNull>
+            <isNotNull property="agencyTel" prepend="and ">
+                AgencyTel = #agencyTel#
+            </isNotNull>
+            <isNotNull property="agencyCdate" prepend="and ">
+                AgencyCdate = #agencyCdate#
+            </isNotNull>
+            <isNotNull property="agencyCorporate" prepend="and ">
+                AgencyCorporate = #agencyCorporate#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="agencyCreateUser" prepend="and ">
+                AgencyCreateUser = #agencyCreateUser#
+            </isNotNull>
+            <isNotNull property="agencyCreateTime" prepend="and ">
+                AgencyCreateTime = #agencyCreateTime#
+            </isNotNull>
+            <isNotNull property="agencyUpdateUser" prepend="and ">
+                AgencyUpdateUser = #agencyUpdateUser#
+            </isNotNull>
+            <isNotNull property="agencyUpdateTime" prepend="and ">
+                AgencyUpdateTime = #agencyUpdateTime#
+            </isNotNull>
+            <isNotNull property="agencyVersion" prepend="and ">
+                AgencyVersion = #agencyVersion#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityVcustomer" resultClass="int">
+        SELECT count(1)
+        from vcustomer
+        <dynamic prepend=" where ">
+            <isNotNull property="userDetailID" prepend="and ">
+                UserDetailID = #userDetailID#
+            </isNotNull>
+            <isNotNull property="userdetailCustomerID" prepend="and ">
+                UserdetailCustomerID = #userdetailCustomerID#
+            </isNotNull>
+            <isNotNull property="userdetailUserName" prepend="and ">
+             UserdetailUserName like concat('%',#userdetailUserName#,'%')
+            </isNotNull>
+            <isNotNull property="userSex" prepend="and ">
+                UserSex = #userSex#
+            </isNotNull>
+            <isNotNull property="userAge" prepend="and ">
+                UserAge = #userAge#
+            </isNotNull>
+            <isNotNull property="userBirthday" prepend="and ">
+                UserBirthday = #userBirthday#
+            </isNotNull>
+            <isNotNull property="userCardID" prepend="and ">
+                UserCardID = #userCardID#
+            </isNotNull>
+            <isNotNull property="userMobile" prepend="and ">
+                UserMobile = #userMobile#
+            </isNotNull>
+            <isNotNull property="userLandline" prepend="and ">
+                UserLandline = #userLandline#
+            </isNotNull>
+            <isNotNull property="userPrivacies" prepend="and ">
+                UserPrivacies = #userPrivacies#
+            </isNotNull>
+            <isNotNull property="userUniversity" prepend="and ">
+                UserUniversity = #userUniversity#
+            </isNotNull>
+            <isNotNull property="userProfessional" prepend="and ">
+                UserProfessional = #userProfessional#
+            </isNotNull>
+            <isNotNull property="userEducation" prepend="and ">
+                UserEducation = #userEducation#
+            </isNotNull>
+            <isNotNull property="userBloodGroup" prepend="and ">
+                UserBloodGroup = #userBloodGroup#
+            </isNotNull>
+            <isNotNull property="userHeight" prepend="and ">
+                UserHeight = #userHeight#
+            </isNotNull>
+            <isNotNull property="userWeight" prepend="and ">
+                UserWeight = #userWeight#
+            </isNotNull>
+            <isNotNull property="userdetailDelFlag" prepend="and ">
+                UserdetailDelFlag = #userdetailDelFlag#
+            </isNotNull>
+            <isNotNull property="userdetailCreateUser" prepend="and ">
+                UserdetailCreateUser = #userdetailCreateUser#
+            </isNotNull>
+            <isNotNull property="userdetailCreateTime" prepend="and ">
+                UserdetailCreateTime = #userdetailCreateTime#
+            </isNotNull>
+            <isNotNull property="userdetailUpdateUser" prepend="and ">
+                UserdetailUpdateUser = #userdetailUpdateUser#
+            </isNotNull>
+            <isNotNull property="userdetailUpdateTime" prepend="and ">
+                UserdetailUpdateTime = #userdetailUpdateTime#
+            </isNotNull>
+            <isNotNull property="userdetailVersion" prepend="and ">
+                UserdetailVersion = #userdetailVersion#
+            </isNotNull>
+            <isNotNull property="customerID" prepend="and ">
+                CustomerID = #customerID#
+            </isNotNull>
+            <isNotNull property="customerPositionID" prepend="and ">
+                CustomerPositionID = #customerPositionID#
+            </isNotNull>
+            <isNotNull property="userName" prepend="and ">
+                UserName = #userName#
+            </isNotNull>
+            <isNotNull property="userPass" prepend="and ">
+                UserPass = #userPass#
+            </isNotNull>
+            <isNotNull property="employeeCard" prepend="and ">
+                EmployeeCard = #employeeCard#
+            </isNotNull>
+            <isNotNull property="userType" prepend="and ">
+                UserType = #userType#
+            </isNotNull>
+            <isNotNull property="userErrFlag" prepend="and ">
+                UserErrFlag = #userErrFlag#
+            </isNotNull>
+            <isNotNull property="errCount" prepend="and ">
+                ErrCount = #errCount#
+            </isNotNull>
+            <isNotNull property="errStaTime" prepend="and ">
+                ErrStaTime = #errStaTime#
+            </isNotNull>
+            <isNotNull property="customerDelFlag" prepend="and ">
+                CustomerDelFlag = #customerDelFlag#
+            </isNotNull>
+            <isNotNull property="customerUpdateTime" prepend="and ">
+                CustomerUpdateTime = #customerUpdateTime#
+            </isNotNull>
+            <isNotNull property="customerUpdateUser" prepend="and ">
+                CustomerUpdateUser = #customerUpdateUser#
+            </isNotNull>
+            <isNotNull property="customerCreateTime" prepend="and ">
+                CustomerCreateTime = #customerCreateTime#
+            </isNotNull>
+            <isNotNull property="customerCreateUser" prepend="and ">
+                CustomerCreateUser = #customerCreateUser#
+            </isNotNull>
+            <isNotNull property="customerVersion" prepend="and ">
+                CustomerVersion = #customerVersion#
+            </isNotNull>
+            <isNotNull property="departmentID" prepend="and ">
+                DepartmentID = #departmentID#
+            </isNotNull>
+            <isNotNull property="departmentAgencyID" prepend="and ">
+                DepartmentAgencyID = #departmentAgencyID#
+            </isNotNull>
+            <isNotNull property="departmentLanguageCode" prepend="and ">
+                DepartmentLanguageCode = #departmentLanguageCode#
+            </isNotNull>
+            <isNotNull property="departmentCode" prepend="and ">
+                DepartmentCode = #departmentCode#
+            </isNotNull>
+            <isNotNull property="departmentName" prepend="and ">
+                DepartmentName = #departmentName#
+            </isNotNull>
+            <isNotNull property="departmentTel" prepend="and ">
+                DepartmentTel = #departmentTel#
+            </isNotNull>
+            <isNotNull property="departmentHead" prepend="and ">
+                DepartmentHead = #departmentHead#
+            </isNotNull>
+            <isNotNull property="departmentHeadMobile" prepend="and ">
+                DepartmentHeadMobile = #departmentHeadMobile#
+            </isNotNull>
+            <isNotNull property="departmentHeadTel" prepend="and ">
+                DepartmentHeadTel = #departmentHeadTel#
+            </isNotNull>
+            <isNotNull property="departmentCdate" prepend="and ">
+                DepartmentCdate = #departmentCdate#
+            </isNotNull>
+            <isNotNull property="departmentDescription" prepend="and ">
+                DepartmentDescription = #departmentDescription#
+            </isNotNull>
+            <isNotNull property="departmentDelFlag" prepend="and ">
+                DepartmentDelFlag = #departmentDelFlag#
+            </isNotNull>
+            <isNotNull property="departmentCreateUser" prepend="and ">
+                DepartmentCreateUser = #departmentCreateUser#
+            </isNotNull>
+            <isNotNull property="departmentCreateTime" prepend="and ">
+                DepartmentCreateTime = #departmentCreateTime#
+            </isNotNull>
+            <isNotNull property="departmentUpdateUser" prepend="and ">
+                DepartmentUpdateUser = #departmentUpdateUser#
+            </isNotNull>
+            <isNotNull property="departmentUpdateTime" prepend="and ">
+                DepartmentUpdateTime = #departmentUpdateTime#
+            </isNotNull>
+            <isNotNull property="departmentVersion" prepend="and ">
+                DepartmentVersion = #departmentVersion#
+            </isNotNull>
+            <isNotNull property="positionID" prepend="and ">
+                PositionID = #positionID#
+            </isNotNull>
+            <isNotNull property="positionLanguageCode" prepend="and ">
+                PositionLanguageCode = #positionLanguageCode#
+            </isNotNull>
+            <isNotNull property="positionCode" prepend="and ">
+                PositionCode = #positionCode#
+            </isNotNull>
+            <isNotNull property="positionName" prepend="and ">
+                PositionName = #positionName#
+            </isNotNull>
+            <isNotNull property="positionDelFlag" prepend="and ">
+                PositionDelFlag = #positionDelFlag#
+            </isNotNull>
+            <isNotNull property="positionCreateUser" prepend="and ">
+                PositionCreateUser = #positionCreateUser#
+            </isNotNull>
+            <isNotNull property="positionCreateTime" prepend="and ">
+                PositionCreateTime = #positionCreateTime#
+            </isNotNull>
+            <isNotNull property="positionUpdateUser" prepend="and ">
+                PositionUpdateUser = #positionUpdateUser#
+            </isNotNull>
+            <isNotNull property="positionUpdateTime" prepend="and ">
+                PositionUpdateTime = #positionUpdateTime#
+            </isNotNull>
+            <isNotNull property="positionVersion" prepend="and ">
+                PositionVersion = #positionVersion#
+            </isNotNull>
+            <isNotNull property="agencyID" prepend="and ">
+                AgencyID = #agencyID#
+            </isNotNull>
+            <isNotNull property="age_AgencyID" prepend="and ">
+                Age_AgencyID = #age_AgencyID#
+            </isNotNull>
+            <isNotNull property="agencyLanguageCode" prepend="and ">
+                AgencyLanguageCode = #agencyLanguageCode#
+            </isNotNull>
+            <isNotNull property="agencyCode" prepend="and ">
+                AgencyCode = #agencyCode#
+            </isNotNull>
+            <isNotNull property="agencyName" prepend="and ">
+                AgencyName = #agencyName#
+            </isNotNull>
+            <isNotNull property="agencyTel" prepend="and ">
+                AgencyTel = #agencyTel#
+            </isNotNull>
+            <isNotNull property="agencyCdate" prepend="and ">
+                AgencyCdate = #agencyCdate#
+            </isNotNull>
+            <isNotNull property="agencyCorporate" prepend="and ">
+                AgencyCorporate = #agencyCorporate#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="agencyCreateUser" prepend="and ">
+                AgencyCreateUser = #agencyCreateUser#
+            </isNotNull>
+            <isNotNull property="agencyCreateTime" prepend="and ">
+                AgencyCreateTime = #agencyCreateTime#
+            </isNotNull>
+            <isNotNull property="agencyUpdateUser" prepend="and ">
+                AgencyUpdateUser = #agencyUpdateUser#
+            </isNotNull>
+            <isNotNull property="agencyUpdateTime" prepend="and ">
+                AgencyUpdateTime = #agencyUpdateTime#
+            </isNotNull>
+            <isNotNull property="agencyVersion" prepend="and ">
+                AgencyVersion = #agencyVersion#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+</sqlMap>
+

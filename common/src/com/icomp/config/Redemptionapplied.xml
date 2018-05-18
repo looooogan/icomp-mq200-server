@@ -1,0 +1,1904 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		@Document : Redemptionapplied.xml Created on : 2014/08/19 15:48:45
+		@Author : 工具自动生成 Description: 工具自动生成包含换领申请的单表增删改查SQL语句.
+		@searchByPrimaryKey ： 主键查询 
+		@searchByList ： 任意条件查询 
+		@searchByList_Redemption ： 任意条件查询 
+		@searchByCount：任意条件条数查询 
+		@getApplyUser ：非单品-获取申请人
+		@getRedemptionappliedListCodeByUserid：非单品-获取换领出库申请单
+		@insert ： 插入处理
+		@update ： 更新处理（未指定项目更新为null）
+		@updateNonQuery ：更新处理（未指定项目不更新）
+		@delete ： 删除处理
+	-->
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Redemptionapplied">
+	<typeAlias alias="entityRedemptionapplied" type="com.icomp.entity.base.Redemptionapplied" />
+	<resultMap id="Redemptionapplied-map" class="entityRedemptionapplied">
+		<!-- 换领申请流水号 -->
+		<result property="redemptionAppliedID" column="RedemptionAppliedID" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 申请数量 -->
+		<result property="appliedNumber" column="AppliedNumber" />
+		<!-- 备货数量 -->
+		<result property="stockNumber" column="StockNumber" />
+		<!-- 送回数量 -->
+		<result property="returnNumber" column="ReturnNumber" />
+		<!-- 断刀数量 -->
+		<result property="brokenNumber" column="BrokenNumber" />
+		<!-- 丢失数量 -->
+		<result property="lostNumber" column="LostNumber" />
+		<!-- 领取数量 -->
+		<result property="receiveNumber" column="ReceiveNumber" />
+		<!-- 申请人 -->
+		<result property="applyUser" column="ApplyUser" />
+		<!-- 申请时间 -->
+		<result property="applyTime" column="ApplyTime" />
+		<!-- 领取人 -->
+		<result property="receiveUser" column="ReceiveUser" />
+		<!-- 领取时间 -->
+		<result property="receiveTime" column="ReceiveTime" />
+		<!-- 处理状态(0申请中1已换领) -->
+		<result property="processingStatus" column="ProcessingStatus" />
+		<!-- rfid -->
+		<result property="rfidList" column="RfidList" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityRedemptionapplied"
+		resultMap="Redemptionapplied-map">
+		SELECT
+		RedemptionAppliedID
+		,ToolCode
+		,AppliedNumber
+		,StockNumber
+		,ReturnNumber
+		,BrokenNumber
+		,LostNumber
+		,ReceiveNumber
+		,ApplyUser
+		,ApplyTime
+		,ReceiveUser
+		,ReceiveTime
+		,ProcessingStatus
+		,RfidList
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from
+		redemptionapplied
+		<dynamic prepend=" where ">
+			<isNotNull property="redemptionAppliedID" prepend="and ">
+				RedemptionAppliedID = #redemptionAppliedID#
+            </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode =
+				#toolCode#
+            </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+        </isNotNull>
+		<isNull property="orderString">
+			order by
+			RedemptionAppliedID
+			,ToolCode
+        </isNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT
+			$rowCount$ offset $staIndex$
+        </isGreaterThan>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityRedemptionapplied">
+		update redemptionapplied
+		<dynamic prepend="set">
+			<isNotNull property="redemptionAppliedID" prepend=",">
+				RedemptionAppliedID = #redemptionAppliedID#
+            </isNotNull>
+			<isNotNull property="toolCode" prepend=",">
+				ToolCode =
+				#toolCode#
+            </isNotNull>
+			<isNotNull property="appliedNumber" prepend=",">
+				AppliedNumber =
+				#appliedNumber#
+            </isNotNull>
+			<isNotNull property="stockNumber" prepend=",">
+				StockNumber =
+				#stockNumber#
+            </isNotNull>
+			<isNotNull property="returnNumber" prepend=",">
+				ReturnNumber =
+				#returnNumber#
+            </isNotNull>
+			<isNotNull property="brokenNumber" prepend=",">
+				BrokenNumber =
+				#brokenNumber#
+            </isNotNull>
+			<isNotNull property="lostNumber" prepend=",">
+				LostNumber =
+				#lostNumber#
+            </isNotNull>
+			<isNotNull property="receiveNumber" prepend=",">
+				ReceiveNumber =
+				#receiveNumber#
+            </isNotNull>
+			<isNotNull property="applyUser" prepend=",">
+				ApplyUser =
+				#applyUser#
+            </isNotNull>
+			<isNotNull property="applyTime" prepend=",">
+				ApplyTime =
+				#applyTime#
+            </isNotNull>
+			<isNotNull property="receiveUser" prepend=",">
+				ReceiveUser =
+				#receiveUser#
+            </isNotNull>
+			<isNotNull property="receiveTime" prepend=",">
+				ReceiveTime =
+				#receiveTime#
+            </isNotNull>
+			<isNotNull property="processingStatus" prepend=",">
+				ProcessingStatus = #processingStatus#
+            </isNotNull>
+			<isNotNull property="rfidList" prepend=",">
+				RfidList =
+				#rfidList#
+            </isNotNull>
+			<isNotNull property="delFlag" prepend=",">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="updateTime" prepend=",">
+				UpdateTime =
+				#updateTime#
+            </isNotNull>
+			<isNotNull property="updateUser" prepend=",">
+				UpdateUser =
+				#updateUser#
+            </isNotNull>
+			<isNotNull property="createTime" prepend=",">
+				CreateTime =
+				#createTime#
+            </isNotNull>
+			<isNotNull property="createUser" prepend=",">
+				CreateUser =
+				#createUser#
+            </isNotNull>
+			<isNotNull property="version" prepend=",">
+				Version = #version#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="redemptionAppliedIDWhere" prepend="and ">
+				RedemptionAppliedID = #redemptionAppliedIDWhere#
+            </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode =
+				#toolCodeWhere#
+            </isNotNull>
+			<isNotNull property="appliedNumberWhere" prepend="and ">
+				AppliedNumber = #appliedNumberWhere#
+            </isNotNull>
+			<isNotNull property="stockNumberWhere" prepend="and ">
+				StockNumber
+				= #stockNumberWhere#
+            </isNotNull>
+			<isNotNull property="returnNumberWhere" prepend="and ">
+				ReturnNumber = #returnNumberWhere#
+            </isNotNull>
+			<isNotNull property="brokenNumberWhere" prepend="and ">
+				BrokenNumber = #brokenNumberWhere#
+            </isNotNull>
+			<isNotNull property="lostNumberWhere" prepend="and ">
+				LostNumber =
+				#lostNumberWhere#
+            </isNotNull>
+			<isNotNull property="receiveNumberWhere" prepend="and ">
+				ReceiveNumber = #receiveNumberWhere#
+            </isNotNull>
+			<isNotNull property="applyUserWhere" prepend="and ">
+				ApplyUser =
+				#applyUserWhere#
+            </isNotNull>
+			<isNotNull property="applyTimeWhere" prepend="and ">
+				ApplyTime =
+				#applyTimeWhere#
+            </isNotNull>
+			<isNotNull property="receiveUserWhere" prepend="and ">
+				ReceiveUser
+				= #receiveUserWhere#
+            </isNotNull>
+			<isNotNull property="receiveTimeWhere" prepend="and ">
+				ReceiveTime
+				= #receiveTimeWhere#
+            </isNotNull>
+			<isNotNull property="processingStatusWhere" prepend="and ">
+				ProcessingStatus = #processingStatusWhere#
+            </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag =
+				#delFlagWhere#
+            </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime =
+				#updateTimeWhere#
+            </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser =
+				#updateUserWhere#
+            </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime =
+				#createTimeWhere#
+            </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser =
+				#createUserWhere#
+            </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version =
+				#versionWhere#
+            </isNotNull>
+		</dynamic>
+	</update>
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityRedemptionapplied"
+		resultMap="Redemptionapplied-map">
+		SELECT
+		RedemptionAppliedID
+		,ToolCode
+		,AppliedNumber
+		,StockNumber
+		,ReturnNumber
+		,BrokenNumber
+		,LostNumber
+		,ReceiveNumber
+		,ApplyUser
+		,ApplyTime
+		,ReceiveUser
+		,ReceiveTime
+		,ProcessingStatus
+		,RfidList
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from
+		redemptionapplied
+		<dynamic prepend=" where ">
+			<isNotNull property="redemptionAppliedID" prepend="and ">
+				RedemptionAppliedID = #redemptionAppliedID#
+            </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode =
+				#toolCode#
+            </isNotNull>
+			<isNotNull property="appliedNumber" prepend="and ">
+				AppliedNumber =
+				#appliedNumber#
+            </isNotNull>
+			<isNotNull property="stockNumber" prepend="and ">
+				StockNumber =
+				#stockNumber#
+            </isNotNull>
+			<isNotNull property="returnNumber" prepend="and ">
+				ReturnNumber =
+				#returnNumber#
+            </isNotNull>
+			<isNotNull property="brokenNumber" prepend="and ">
+				BrokenNumber =
+				#brokenNumber#
+            </isNotNull>
+			<isNotNull property="lostNumber" prepend="and ">
+				LostNumber =
+				#lostNumber#
+            </isNotNull>
+			<isNotNull property="receiveNumber" prepend="and ">
+				ReceiveNumber =
+				#receiveNumber#
+            </isNotNull>
+			<isNotNull property="applyUser" prepend="and ">
+				ApplyUser =
+				#applyUser#
+            </isNotNull>
+			<isNotNull property="applyTime" prepend="and ">
+				ApplyTime =
+				#applyTime#
+            </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+                <![CDATA[
+				ApplyTime >= #dateStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+                <![CDATA[
+				ApplyTime <= #dateEnd#
+				]]>
+			</isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser =
+				#receiveUser#
+            </isNotNull>
+			<isNotNull property="receiveTime" prepend="and ">
+				ReceiveTime =
+				#receiveTime#
+            </isNotNull>
+			<isNotNull property="processingStatus" prepend="and ">
+				ProcessingStatus = #processingStatus#
+            </isNotNull>
+			<isNotNull property="rfidList" prepend="and ">
+				ProcessingStatus =
+				#rfidList#
+            </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime =
+				#updateTime#
+            </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser =
+				#updateUser#
+            </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime =
+				#createTime#
+            </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser =
+				#createUser#
+            </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+			</isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+        </isNotNull>
+		<isNull property="orderString">
+			order by
+			RedemptionAppliedID
+			,ToolCode
+        </isNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT
+			$rowCount$ offset $staIndex$
+        </isGreaterThan>
+	</select>
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList_Redemption" parameterClass="entityRedemptionapplied"
+		resultMap="Redemptionapplied-map">
+		SELECT
+		RedemptionAppliedID
+		,ToolCode
+		,AppliedNumber
+		,StockNumber
+		,ReturnNumber
+		,BrokenNumber
+		,LostNumber
+		,ReceiveNumber
+		,ApplyUser
+		,ApplyTime
+		,ReceiveUser
+		,ReceiveTime
+		,ProcessingStatus
+		,RfidList
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from
+		redemptionapplied
+		<dynamic prepend=" where ">
+			<isNotNull property="redemptionAppliedID" prepend="and ">
+				RedemptionAppliedID = #redemptionAppliedID#
+            </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode =
+				#toolCode#
+            </isNotNull>
+			<isNotNull property="appliedNumber" prepend="and ">
+				AppliedNumber =
+				#appliedNumber#
+            </isNotNull>
+			<isNotNull property="stockNumber" prepend="and ">
+				StockNumber =
+				#stockNumber#
+            </isNotNull>
+			<isNotNull property="returnNumber" prepend="and ">
+				ReturnNumber =
+				#returnNumber#
+            </isNotNull>
+			<isNotNull property="brokenNumber" prepend="and ">
+				BrokenNumber =
+				#brokenNumber#
+            </isNotNull>
+			<isNotNull property="lostNumber" prepend="and ">
+				LostNumber =
+				#lostNumber#
+            </isNotNull>
+			<isNotNull property="receiveNumber" prepend="and ">
+				ReceiveNumber =
+				#receiveNumber#
+            </isNotNull>
+			<isNotNull property="applyUser" prepend="and ">
+				ApplyUser =
+				#applyUser#
+            </isNotNull>
+			<isNotNull property="applyTime" prepend="and ">
+				ApplyTime =
+				#applyTime#
+            </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+                <![CDATA[
+				ApplyTime >= #dateStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+                <![CDATA[
+				ApplyTime <= #dateEnd#
+				]]>
+			</isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser =
+				#receiveUser#
+            </isNotNull>
+			<isNotNull property="receiveTime" prepend="and ">
+				ReceiveTime =
+				#receiveTime#
+            </isNotNull>
+			<isNotNull property="processingStatus" prepend="and ">
+				ProcessingStatus = #processingStatus#
+            </isNotNull>
+			<isNotNull property="rfidList" prepend="and ">
+				ProcessingStatus =
+				#rfidList#
+            </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime =
+				#updateTime#
+            </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser =
+				#updateUser#
+            </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime =
+				#createTime#
+            </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser =
+				#createUser#
+            </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+			</isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+        </isNotNull>
+		<isNull property="orderString">
+			order by
+			RedemptionAppliedID
+			,ToolCode
+        </isNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT
+			$rowCount$ offset $staIndex$
+        </isGreaterThan>
+	</select>
+
+
+
+	<resultMap id="Redemptionapplied-map-1" class="entityRedemptionapplied">
+		<!-- 申请人 -->
+		<result property="applyUser" column="ApplyUser" />
+		<!-- 申请人姓名 -->
+		<result property="expandSpace1" column="expandSpace1" />
+	</resultMap>
+	
+	<!-- 任意条件查询执行 -->
+	<select id="getApplyUser" parameterClass="entityRedemptionapplied"
+		resultMap="Redemptionapplied-map-1">
+		SELECT
+		DISTINCT
+		ApplyUser
+		,(SELECT
+		u.UserName FROM userdetail u where u.CustomerID=ApplyUser ) as
+		expandSpace1
+		from redemptionapplied
+		where AppliedNumber>ReceiveNumber
+			<isNotNull property="redemptionAppliedID" prepend="and ">
+				RedemptionAppliedID = #redemptionAppliedID#
+            </isNotNull>
+			<isNotNull property="applyUser" prepend="and ">
+				ApplyUser =
+				#applyUser#
+            </isNotNull>
+			<isNotNull property="applyTime" prepend="and ">
+				ApplyTime =
+				#applyTime#
+            </isNotNull>
+		<isNotNull property="orderString">
+			order by $orderString$
+        </isNotNull>
+		<isNull property="orderString">
+			order by
+			RedemptionAppliedID
+			,ToolCode
+        </isNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT
+			$rowCount$ offset $staIndex$
+        </isGreaterThan>
+	</select>
+
+
+
+
+
+	<resultMap id="Redemptionapplied-map-2" class="entityRedemptionapplied">
+		<!-- 换领申请流水号 -->
+		<result property="redemptionAppliedID" column="RedemptionAppliedID" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 申请总数量 -->
+		<result property="appliedNumber" column="AppliedNumber" />
+		<!-- 备货数量 -->
+		<result property="stockNumber" column="StockNumber" />
+		<!-- 送回数量 -->
+		<result property="returnNumber" column="ReturnNumber" />
+		<!-- 断刀数量 -->
+		<result property="brokenNumber" column="BrokenNumber" />
+		<!-- 丢失数量 -->
+		<result property="lostNumber" column="LostNumber" />
+		<!-- 领取总数量 -->
+		<result property="receiveNumber" column="ReceiveNumber" />
+		<!-- 申请人 -->
+		<result property="applyUser" column="ApplyUser" />
+		<!-- 申请时间 -->
+		<result property="applyTime" column="ApplyTime" />
+		<!-- 领取人 -->
+		<result property="receiveUser" column="ReceiveUser" />
+		<!-- 领取时间 -->
+		<result property="receiveTime" column="ReceiveTime" />
+		<!-- 处理状态(0申请中1已换领) -->
+		<result property="processingStatus" column="ProcessingStatus" />
+		<!-- rfid -->
+		<result property="rfidList" column="RfidList" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+		<!-- 申请人姓名 -->
+		<result property="expandSpace1" column="expandSpace1" />
+		<!-- 待入库数量 -->
+		<result property="expandSpace2" column="expandSpace2" />
+		<!-- 库位码 -->
+		<result property="expandSpace3" column="expandSpace3" />
+		<!-- 库位码id -->
+		<result property="expandSpace4" column="expandSpace4" />
+	</resultMap>
+
+	<!-- 任意条件查询执行 -->
+	<select id="getRedemptionappliedListCodeByUserid"
+		parameterClass="entityRedemptionapplied" resultMap="Redemptionapplied-map-2">
+		SELECT
+		RedemptionAppliedID
+		,ToolCode
+		,SUM(AppliedNumber)as AppliedNumber
+		,StockNumber
+		,ReturnNumber
+		,BrokenNumber
+		,LostNumber
+		,SUM(ReceiveNumber)as ReceiveNumber
+		,ApplyUser
+		,(SELECT u.UserName FROM userdetail u where u.UserDetailID=ApplyUser ) as expandSpace1
+		,SUM(AppliedNumber) - SUM(ReceiveNumber) as expandSpace2
+		,ApplyTime
+		,ReceiveUser
+		,ReceiveTime
+		,ProcessingStatus
+		,RfidList
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		,(SELECT 
+		case 
+			WHEN lc.CustomerCode is not NULL and lc.CustomerCode!=''  
+			then lc.CustomerCode 
+			else lc.SysteCode 
+		end  
+		from tool t INNER JOIN librarycode lc on t.LibraryCodeID=lc.LibraryCodeID
+		 where t.toolcode=r.ToolCode) as expandSpace4
+		,(SELECT   t.LibraryCodeID from tool t where t.toolcode=r.ToolCode) as expandSpace3
+		from redemptionapplied r
+		where AppliedNumber>ReceiveNumber
+		<isNotNull property="redemptionAppliedID" prepend="and ">
+			RedemptionAppliedID = #redemptionAppliedID#
+            </isNotNull>
+		<isNotNull property="toolCode" prepend="and ">
+			ToolCode = #toolCode#
+		</isNotNull>
+		<isNotNull property="appliedNumber" prepend="and ">
+			AppliedNumber =
+			#appliedNumber#
+            </isNotNull>
+		<isNotNull property="stockNumber" prepend="and ">
+			StockNumber =
+			#stockNumber#
+            </isNotNull>
+		<isNotNull property="returnNumber" prepend="and ">
+			ReturnNumber =
+			#returnNumber#
+            </isNotNull>
+		<isNotNull property="brokenNumber" prepend="and ">
+			BrokenNumber =
+			#brokenNumber#
+            </isNotNull>
+		<isNotNull property="lostNumber" prepend="and ">
+			LostNumber =
+			#lostNumber#
+            </isNotNull>
+		<isNotNull property="receiveNumber" prepend="and ">
+			ReceiveNumber =
+			#receiveNumber#
+            </isNotNull>
+		<isNotNull property="applyUser" prepend="and ">
+			ApplyUser =
+			#applyUser#
+            </isNotNull>
+		<isNotNull property="applyTime" prepend="and ">
+			ApplyTime =
+			#applyTime#
+            </isNotNull>
+		<isNotNull property="dateStar" prepend="and ">
+                <![CDATA[
+				ApplyTime >= #dateStar#
+				]]>
+		</isNotNull>
+		<isNotNull property="dateEnd" prepend="and ">
+                <![CDATA[
+				ApplyTime <= #dateEnd#
+				]]>
+		</isNotNull>
+		<isNotNull property="receiveUser" prepend="and ">
+			ReceiveUser =
+			#receiveUser#
+            </isNotNull>
+		<isNotNull property="receiveTime" prepend="and ">
+			ReceiveTime =
+			#receiveTime#
+            </isNotNull>
+		<isNotNull property="processingStatus" prepend="and ">
+			ProcessingStatus = #processingStatus#
+            </isNotNull>
+		<isNotNull property="rfidList" prepend="and ">
+			ProcessingStatus =
+			#rfidList#
+            </isNotNull>
+		<isNotNull property="delFlag" prepend="and ">
+			DelFlag = #delFlag#
+		</isNotNull>
+		<isNotNull property="updateTime" prepend="and ">
+			UpdateTime =
+			#updateTime#
+            </isNotNull>
+		<isNotNull property="updateUser" prepend="and ">
+			UpdateUser =
+			#updateUser#
+            </isNotNull>
+		<isNotNull property="createTime" prepend="and ">
+			CreateTime =
+			#createTime#
+            </isNotNull>
+		<isNotNull property="createUser" prepend="and ">
+			CreateUser =
+			#createUser#
+            </isNotNull>
+		<isNotNull property="version" prepend="and ">
+			Version = #version#
+		</isNotNull>
+		GROUP BY r.ToolCode,ApplyUser
+		<isNotNull property="orderString">
+			order by $orderString$
+        </isNotNull>
+		<isNull property="orderString">
+			order by
+			RedemptionAppliedID
+			,ToolCode
+        </isNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT
+			$rowCount$ offset $staIndex$
+        </isGreaterThan>
+	</select>
+	<!-- 取得已备货的刀具信息 -->
+	<select id="getReadiedToolsMessage" resultMap="Redemptionapplied-map">
+		SELECT
+		*
+		FROM
+		redemptionapplied re
+		WHERE re.ProcessingStatus != '4'
+		AND re.RfidList !=
+		''
+		AND re.DelFlag = '0'
+		AND re.StockNumber > 0
+		AND re.ApplyUser != ''
+		AND
+		re.ApplyTime != ''
+    </select>
+
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityRedemptionapplied"
+		resultClass="int">
+		SELECT count(1)
+		from redemptionapplied
+		<dynamic prepend=" where ">
+			<isNotNull property="redemptionAppliedID" prepend="and ">
+				RedemptionAppliedID = #redemptionAppliedID#
+            </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode =
+				#toolCode#
+            </isNotNull>
+			<isNotNull property="appliedNumber" prepend="and ">
+				AppliedNumber =
+				#appliedNumber#
+            </isNotNull>
+			<isNotNull property="stockNumber" prepend="and ">
+				StockNumber =
+				#stockNumber#
+            </isNotNull>
+			<isNotNull property="returnNumber" prepend="and ">
+				ReturnNumber =
+				#returnNumber#
+            </isNotNull>
+			<isNotNull property="brokenNumber" prepend="and ">
+				BrokenNumber =
+				#brokenNumber#
+            </isNotNull>
+			<isNotNull property="lostNumber" prepend="and ">
+				LostNumber =
+				#lostNumber#
+            </isNotNull>
+			<isNotNull property="receiveNumber" prepend="and ">
+				ReceiveNumber =
+				#receiveNumber#
+            </isNotNull>
+			<isNotNull property="applyUser" prepend="and ">
+				ApplyUser =
+				#applyUser#
+            </isNotNull>
+			<isNotNull property="applyTime" prepend="and ">
+				ApplyTime =
+				#applyTime#
+            </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+                <![CDATA[
+				ApplyTime >= #dateStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+                <![CDATA[
+				ApplyTime <= #dateEnd#
+				]]>
+			</isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser =
+				#receiveUser#
+            </isNotNull>
+			<isNotNull property="receiveTime" prepend="and ">
+				ReceiveTime =
+				#receiveTime#
+            </isNotNull>
+			<isNotNull property="processingStatus" prepend="and ">
+				ProcessingStatus = #processingStatus#
+            </isNotNull>
+			<isNotNull property="rfidList" prepend="and ">
+				ProcessingStatus =
+				#rfidList#
+            </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime =
+				#updateTime#
+            </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser =
+				#updateUser#
+            </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime =
+				#createTime#
+            </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser =
+				#createUser#
+            </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+			</isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityRedemptionapplied">
+		update redemptionapplied
+		<dynamic prepend="set">
+			<isNotNull property="redemptionAppliedID">
+				RedemptionAppliedID =
+				#redemptionAppliedID#
+            </isNotNull>
+			<isNull property="redemptionAppliedID">
+				RedemptionAppliedID = null
+            </isNull>
+			<isNotNull property="toolCode">
+				,ToolCode = #toolCode#
+            </isNotNull>
+			<isNull property="toolCode">
+				,ToolCode = null
+            </isNull>
+			<isNotNull property="appliedNumber">
+				,AppliedNumber = #appliedNumber#
+			</isNotNull>
+			<isNull property="appliedNumber">
+				,AppliedNumber = null
+            </isNull>
+			<isNotNull property="stockNumber">
+				,StockNumber = #stockNumber#
+			</isNotNull>
+			<isNull property="stockNumber">
+				,StockNumber = null
+            </isNull>
+			<isNotNull property="returnNumber">
+				,ReturnNumber = #returnNumber#
+			</isNotNull>
+			<isNull property="returnNumber">
+				,ReturnNumber = null
+            </isNull>
+			<isNotNull property="brokenNumber">
+				,BrokenNumber = #brokenNumber#
+			</isNotNull>
+			<isNull property="brokenNumber">
+				,BrokenNumber = null
+            </isNull>
+			<isNotNull property="lostNumber">
+				,LostNumber = #lostNumber#
+            </isNotNull>
+			<isNull property="lostNumber">
+				,LostNumber = null
+            </isNull>
+			<isNotNull property="receiveNumber">
+				,ReceiveNumber = #receiveNumber#
+			</isNotNull>
+			<isNull property="receiveNumber">
+				,ReceiveNumber = null
+            </isNull>
+			<isNotNull property="applyUser">
+				,ApplyUser = #applyUser#
+            </isNotNull>
+			<isNull property="applyUser">
+				,ApplyUser = null
+            </isNull>
+			<isNotNull property="applyTime">
+				,ApplyTime = #applyTime#
+            </isNotNull>
+			<isNull property="applyTime">
+				,ApplyTime = null
+            </isNull>
+			<isNotNull property="receiveUser">
+				,ReceiveUser = #receiveUser#
+			</isNotNull>
+			<isNull property="receiveUser">
+				,ReceiveUser = null
+            </isNull>
+			<isNotNull property="receiveTime">
+				,ReceiveTime = #receiveTime#
+			</isNotNull>
+			<isNull property="receiveTime">
+				,ReceiveTime = null
+            </isNull>
+			<isNotNull property="processingStatus">
+				,ProcessingStatus = #processingStatus#
+			</isNotNull>
+			<isNull property="processingStatus">
+				,ProcessingStatus = null
+            </isNull>
+			<isNotNull property="rfidList">
+				,RfidList = #rfidList#
+            </isNotNull>
+			<isNull property="rfidList">
+				,RfidList = null
+            </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+            </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+            </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+            </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+            </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+            </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+            </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+            </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+            </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+            </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+            </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+            </isNotNull>
+			<isNull property="version">
+				,Version = null
+            </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="redemptionAppliedIDWhere" prepend="and ">
+				RedemptionAppliedID = #redemptionAppliedIDWhere#
+            </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode =
+				#toolCodeWhere#
+            </isNotNull>
+			<isNotNull property="appliedNumberWhere" prepend="and ">
+				AppliedNumber = #appliedNumberWhere#
+            </isNotNull>
+			<isNotNull property="stockNumberWhere" prepend="and ">
+				StockNumber
+				= #stockNumberWhere#
+            </isNotNull>
+			<isNotNull property="returnNumberWhere" prepend="and ">
+				ReturnNumber = #returnNumberWhere#
+            </isNotNull>
+			<isNotNull property="brokenNumberWhere" prepend="and ">
+				BrokenNumber = #brokenNumberWhere#
+            </isNotNull>
+			<isNotNull property="lostNumberWhere" prepend="and ">
+				LostNumber =
+				#lostNumberWhere#
+            </isNotNull>
+			<isNotNull property="receiveNumberWhere" prepend="and ">
+				ReceiveNumber = #receiveNumberWhere#
+            </isNotNull>
+			<isNotNull property="applyUserWhere" prepend="and ">
+				ApplyUser =
+				#applyUserWhere#
+            </isNotNull>
+			<isNotNull property="applyTimeWhere" prepend="and ">
+				ApplyTime =
+				#applyTimeWhere#
+            </isNotNull>
+			<isNotNull property="receiveUserWhere" prepend="and ">
+				ReceiveUser
+				= #receiveUserWhere#
+            </isNotNull>
+			<isNotNull property="receiveTimeWhere" prepend="and ">
+				ReceiveTime
+				= #receiveTimeWhere#
+            </isNotNull>
+			<isNotNull property="processingStatusWhere" prepend="and ">
+				ProcessingStatus = #processingStatusWhere#
+            </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag =
+				#delFlagWhere#
+            </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime =
+				#updateTimeWhere#
+            </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser =
+				#updateUserWhere#
+            </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime =
+				#createTimeWhere#
+            </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser =
+				#createUserWhere#
+            </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version =
+				#versionWhere#
+            </isNotNull>
+		</dynamic>
+	</update>
+
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityRedemptionapplied">
+		<selectKey resultClass="java.lang.String" keyProperty="redemptionAppliedID">
+			SELECT #redemptionAppliedID# as redemptionAppliedID FROM DUAL
+		</selectKey>
+		insert into redemptionapplied(
+		RedemptionAppliedID
+		,ToolCode
+		,AppliedNumber
+		,StockNumber
+		,ReturnNumber
+		,BrokenNumber
+		,LostNumber
+		,ReceiveNumber
+		,ApplyUser
+		,ApplyTime
+		,ReceiveUser
+		,ReceiveTime
+		,ProcessingStatus
+		,RfidList
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		)
+		Values (
+		<isNotNull property="redemptionAppliedID">
+			#redemptionAppliedID#
+        </isNotNull>
+		<isNull property="redemptionAppliedID">
+			null
+        </isNull>
+		<isNotNull property="toolCode">
+			,#toolCode#
+        </isNotNull>
+		<isNull property="toolCode">
+			,null
+        </isNull>
+		<isNotNull property="appliedNumber">
+			,#appliedNumber#
+        </isNotNull>
+		<isNull property="appliedNumber">
+			,null
+        </isNull>
+		<isNotNull property="stockNumber">
+			,#stockNumber#
+        </isNotNull>
+		<isNull property="stockNumber">
+			,null
+        </isNull>
+		<isNotNull property="returnNumber">
+			,#returnNumber#
+        </isNotNull>
+		<isNull property="returnNumber">
+			,null
+        </isNull>
+		<isNotNull property="brokenNumber">
+			,#brokenNumber#
+        </isNotNull>
+		<isNull property="brokenNumber">
+			,null
+        </isNull>
+		<isNotNull property="lostNumber">
+			,#lostNumber#
+        </isNotNull>
+		<isNull property="lostNumber">
+			,null
+        </isNull>
+		<isNotNull property="receiveNumber">
+			,#receiveNumber#
+        </isNotNull>
+		<isNull property="receiveNumber">
+			,0
+        </isNull>
+		<isNotNull property="applyUser">
+			,#applyUser#
+        </isNotNull>
+		<isNull property="applyUser">
+			,null
+        </isNull>
+		<isNotNull property="applyTime">
+			,#applyTime#
+        </isNotNull>
+		<isNull property="applyTime">
+			,null
+        </isNull>
+		<isNotNull property="receiveUser">
+			,#receiveUser#
+        </isNotNull>
+		<isNull property="receiveUser">
+			,null
+        </isNull>
+		<isNotNull property="receiveTime">
+			,#receiveTime#
+        </isNotNull>
+		<isNull property="receiveTime">
+			,null
+        </isNull>
+		<isNotNull property="processingStatus">
+			,#processingStatus#
+        </isNotNull>
+		<isNull property="processingStatus">
+			,null
+        </isNull>
+		<isNotNull property="rfidList">
+			,#rfidList#
+        </isNotNull>
+		<isNull property="rfidList">
+			,null
+        </isNull>
+		<isNotNull property="delFlag">
+			,#delFlag#
+        </isNotNull>
+		<isNull property="delFlag">
+			,null
+        </isNull>
+		<isNotNull property="updateTime">
+			,#updateTime#
+        </isNotNull>
+		<isNull property="updateTime">
+			,null
+        </isNull>
+		<isNotNull property="updateUser">
+			,#updateUser#
+        </isNotNull>
+		<isNull property="updateUser">
+			,null
+        </isNull>
+		<isNotNull property="createTime">
+			,#createTime#
+        </isNotNull>
+		<isNull property="createTime">
+			,null
+        </isNull>
+		<isNotNull property="createUser">
+			,#createUser#
+        </isNotNull>
+		<isNull property="createUser">
+			,null
+        </isNull>
+		<isNotNull property="version">
+			,#version#
+        </isNotNull>
+		<isNull property="version">
+			,null
+        </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityRedemptionapplied">
+		delete from redemptionapplied
+		<dynamic prepend=" where ">
+			<isNotNull property="redemptionAppliedIDWhere" prepend="and ">
+				RedemptionAppliedID = #redemptionAppliedIDWhere#
+            </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode =
+				#toolCodeWhere#
+            </isNotNull>
+			<isNotNull property="appliedNumberWhere" prepend="and ">
+				AppliedNumber = #appliedNumberWhere#
+            </isNotNull>
+			<isNotNull property="stockNumberWhere" prepend="and ">
+				StockNumber
+				= #stockNumberWhere#
+            </isNotNull>
+			<isNotNull property="returnNumberWhere" prepend="and ">
+				ReturnNumber = #returnNumberWhere#
+            </isNotNull>
+			<isNotNull property="brokenNumberWhere" prepend="and ">
+				BrokenNumber = #brokenNumberWhere#
+            </isNotNull>
+			<isNotNull property="lostNumberWhere" prepend="and ">
+				LostNumber =
+				#lostNumberWhere#
+            </isNotNull>
+			<isNotNull property="receiveNumberWhere" prepend="and ">
+				ReceiveNumber = #receiveNumberWhere#
+            </isNotNull>
+			<isNotNull property="applyUserWhere" prepend="and ">
+				ApplyUser =
+				#applyUserWhere#
+            </isNotNull>
+			<isNotNull property="applyTimeWhere" prepend="and ">
+				ApplyTime =
+				#applyTimeWhere#
+            </isNotNull>
+			<isNotNull property="receiveUserWhere" prepend="and ">
+				ReceiveUser
+				= #receiveUserWhere#
+            </isNotNull>
+			<isNotNull property="receiveTimeWhere" prepend="and ">
+				ReceiveTime
+				= #receiveTimeWhere#
+            </isNotNull>
+			<isNotNull property="processingStatusWhere" prepend="and ">
+				ProcessingStatus = #processingStatusWhere#
+            </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag =
+				#delFlagWhere#
+            </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime =
+				#updateTimeWhere#
+            </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser =
+				#updateUserWhere#
+            </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime =
+				#createTimeWhere#
+            </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser =
+				#createUserWhere#
+            </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version =
+				#versionWhere#
+            </isNotNull>
+		</dynamic>
+	</delete>
+
+	<!-- 批量插入处理 -->
+	<insert id="saveApplyInfoBatch" parameterClass="java.util.List">
+		insert into redemptionapplied(
+		RedemptionAppliedID
+		,ToolCode
+		,AppliedNumber
+		,StockNumber
+		,ReturnNumber
+		,BrokenNumber
+		,LostNumber
+		,ApplyUser
+		,ApplyTime
+		,ProcessingStatus
+		,RfidList
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		)
+		values
+		<iterate conjunction=",">
+			(
+			#list[].redemptionAppliedID#,
+			#list[].toolCode#,
+			#list[].appliedNumber#,
+			#list[].stockNumber#,
+			#list[].returnNumber#,
+			#list[].brokenNumber#,
+			#list[].lostNumber#,
+			#list[].applyUser#,
+			#list[].applyTime#,
+			#list[].processingStatus#,
+			#list[].rfidList#,
+			#list[].delFlag#,
+			#list[].updateTime#,
+			#list[].updateUser#,
+			#list[].createTime#,
+			#list[].createUser#,
+			#list[].version#
+			)
+        </iterate>
+	</insert>
+	<!-- 自定义查询	-->
+	<select id="getRedemptionInfo" parameterClass="java.util.List"
+		resultMap="Redemptionapplied-map">
+		SELECT
+		RedemptionAppliedID
+		,ToolCode
+		,AppliedNumber
+		,StockNumber
+		,ReturnNumber
+		,BrokenNumber
+		,LostNumber
+		,ReceiveNumber
+		,(SELECT u.UserName
+		FROM userdetail u WHERE u.CustomerID = ApplyUser) AS
+		ApplyUser
+		,ApplyTime
+		,ReceiveUser
+		,ReceiveTime
+		,ProcessingStatus
+		,RfidList
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from
+		redemptionapplied
+		WHERE ProcessingStatus in
+		<iterate conjunction="," open="(" close=")">
+			#[]#
+        </iterate>
+		AND DelFlag = '0'
+		GROUP BY RedemptionAppliedID
+		ORDER BY CreateTime DESC
+
+	</select>
+	<!-- 查询列表	-->
+	<select id="searchListById" parameterClass="entityRedemptionapplied"
+		resultMap="Redemptionapplied-map">
+		SELECT
+		RedemptionAppliedID
+		,ToolCode
+		,AppliedNumber
+		,StockNumber
+		,ReturnNumber
+		,BrokenNumber
+		,LostNumber
+		,ReceiveNumber
+		,(SELECT u.UserName FROM userdetail u WHERE u.CustomerID = ApplyUser)
+		AS
+		ApplyUser
+		,ApplyTime
+		,ReceiveUser
+		,ReceiveTime
+		,ProcessingStatus
+		,RfidList
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from redemptionapplied
+		WHERE DelFlag = '0'
+		AND ProcessingStatus != '4'
+		GROUP BY RedemptionAppliedID
+		ORDER BY CreateTime DESC
+			
+	</select>
+
+	<!-- 更新换领申请表为已换领 -->
+	<update id="updateBatchById" parameterClass="java.util.List">
+		<iterate conjunction="">
+			update redemptionapplied set
+			ReceiveNumber = #[].receiveNumber#
+			,ReceiveUser = #[].receiveUser#
+			,ReceiveTime = #[].receiveTime#
+			,ProcessingStatus =
+			#[].processingStatus#
+			,UpdateTime = #[].updateTime#
+			,UpdateUser =
+			#[].updateUser#
+			,Version = version+1
+			where DelFlag = '0'
+			AND
+			RedemptionAppliedID = #[].redemptionAppliedID#
+			AND ToolCode =
+			#[].toolCode#
+			AND ProcessingStatus = '1' or ProcessingStatus = '2';
+		</iterate>
+	</update>
+
+	<!--  更新换领申请表为实际送回数量 -->
+	<update id="updateUnBackById" parameterClass="java.util.List">
+		<iterate conjunction="">
+			update redemptionapplied set
+			ReceiveNumber = #[].receiveNumber#
+			,ReceiveUser = #[].receiveUser#
+			,ReceiveTime = #[].receiveTime#
+			,UpdateTime = #[].updateTime#
+			,UpdateUser = #[].updateUser#
+			,Version = version+1
+			where DelFlag = '0'
+			AND RedemptionAppliedID = #[].redemptionAppliedID#
+			AND ToolCode =
+			#[].toolCode#
+			AND ProcessingStatus = '3';
+        </iterate>
+	</update>
+
+	<!--  根据申请单号的刀具编码修改实际送回数量 -->
+	<update id="updateReceiveByIdAndToolCode" parameterClass="java.util.List">
+		<iterate conjunction=";">
+			update redemptionapplied set
+			ReceiveNumber = #[].receiveNumber#
+			,UpdateTime = #[].updateTime#
+			,UpdateUser = #[].updateUser#
+			,Version = version+1
+			where DelFlag = '0'
+			AND RedemptionAppliedID = #[].redemptionAppliedID#
+			AND ToolCode =
+			#[].toolCode#
+        </iterate>
+	</update>
+
+	<!-- 更新换领申请状态按刀具编码 -->
+	<update id="updateBatchStateByRfid" parameterClass="java.util.Map">
+
+		update redemptionapplied set
+		ProcessingStatus = #processingStatus#
+		,UpdateTime = #updateTime#
+		,UpdateUser = #updateUser#
+		,Version =
+		version+1
+		where DelFlag = '0'
+		AND RedemptionAppliedID =
+		#redemptionAppliedID#
+		AND ToolCode in
+		<iterate property="list" open="(" close=")" conjunction=",">
+			#list[]#
+        </iterate>
+		AND ProcessingStatus = #status#;
+
+	</update>
+	<!--更新换领申请状态按不包含刀具编码-->
+	<update id="updateBatchNotStateByRfid" parameterClass="java.util.Map">
+
+		update redemptionapplied set
+		ProcessingStatus = #processingStatus#
+		,UpdateTime = #updateTime#
+		,UpdateUser = #updateUser#
+		,Version =
+		version+1
+		where DelFlag = '0'
+		AND RedemptionAppliedID =
+		#redemptionAppliedID#
+		AND ToolCode not in
+		<iterate property="list" open="(" close=")" conjunction=",">
+			#list[]#
+        </iterate>
+		AND ProcessingStatus = #status#;
+
+	</update>
+	<!--更新换领申请状态未送回-->
+	<update id="updateBatchNotStateByState" parameterClass="java.util.Map">
+
+		update
+		redemptionapplied set
+		ProcessingStatus = #processingStatus#
+		,UpdateTime
+		= #updateTime#
+		,UpdateUser = #updateUser#
+		,Version =
+		version+1
+		where
+		DelFlag = '0'
+		AND RedemptionAppliedID = #redemptionAppliedID#
+		AND
+		ProcessingStatus = #status#;     
+      
+    </update>
+
+
+	<!-- 收回卸下的刀具-->
+	<update id="updateByAnythingFour" parameterClass="entityRedemptionapplied">
+		update
+		redemptionapplied set
+		ProcessingStatus = #processingStatus#
+		,ReceiveNumber = #receiveNumber#
+		,ReceiveUser = #receiveUser#
+		,ReceiveTime = #receiveTime#
+		,UpdateTime = #updateTime#
+		,UpdateUser =
+		#updateUser#
+		,Version = version+1
+		where DelFlag = '0'
+		AND
+		RedemptionAppliedID = #redemptionAppliedID#
+		AND ToolCode = #toolCode#
+		AND ProcessingStatus ='1' OR ProcessingStatus = '2';
+
+    </update>
+
+
+	<!-- 按任意条件修改任意属性 -->
+	<update id="updateByAnything" parameterClass="entityRedemptionapplied">
+		update redemptionapplied
+		<dynamic prepend="set">
+			<isNotNull property="redemptionAppliedID" prepend=",">
+				RedemptionAppliedID = #redemptionAppliedID#
+            </isNotNull>
+			<isNotNull property="toolCode" prepend=",">
+				ToolCode =
+				#toolCode#
+            </isNotNull>
+			<isNotNull property="appliedNumber" prepend=",">
+				AppliedNumber =
+				#appliedNumber#
+            </isNotNull>
+			<isNotNull property="stockNumber" prepend=",">
+				StockNumber =
+				#stockNumber#
+            </isNotNull>
+			<isNotNull property="returnNumber" prepend=",">
+				ReturnNumber =
+				#returnNumber#
+            </isNotNull>
+			<isNotNull property="brokenNumber" prepend=",">
+				BrokenNumber =
+				#brokenNumber#
+            </isNotNull>
+			<isNotNull property="lostNumber" prepend=",">
+				LostNumber =
+				#lostNumber#
+            </isNotNull>
+			<isNotNull property="receiveNumber" prepend=",">
+				ReceiveNumber =
+				#receiveNumber#
+            </isNotNull>
+			<isNotNull property="applyUser" prepend=",">
+				ApplyUser =
+				#applyUser#
+            </isNotNull>
+			<isNotNull property="applyTime" prepend=",">
+				ApplyTime =
+				#applyTime#
+            </isNotNull>
+			<isNotNull property="receiveUser" prepend=",">
+				ReceiveUser =
+				#receiveUser#
+            </isNotNull>
+			<isNotNull property="receiveTime" prepend=",">
+				ReceiveTime =
+				#receiveTime#
+            </isNotNull>
+			<isNotNull property="processingStatus" prepend=",">
+				ProcessingStatus = #processingStatus#
+            </isNotNull>
+			<isNotNull property="rfidList" prepend=",">
+				RfidList =
+				#rfidList#
+            </isNotNull>
+			<isNotNull property="delFlag" prepend=",">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="updateTime" prepend=",">
+				UpdateTime =
+				#updateTime#
+            </isNotNull>
+			<isNotNull property="updateUser" prepend=",">
+				UpdateUser =
+				#updateUser#
+            </isNotNull>
+			<isNotNull property="createTime" prepend=",">
+				CreateTime =
+				#createTime#
+            </isNotNull>
+			<isNotNull property="createUser" prepend=",">
+				CreateUser =
+				#createUser#
+            </isNotNull>
+			<isNotNull property="version" prepend=",">
+				Version = Version +1
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="redemptionAppliedIDWhere" prepend="and ">
+				RedemptionAppliedID = #redemptionAppliedIDWhere#
+            </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode =
+				#toolCodeWhere#
+            </isNotNull>
+			<isNotNull property="appliedNumberWhere" prepend="and ">
+				AppliedNumber = #appliedNumberWhere#
+            </isNotNull>
+			<isNotNull property="stockNumberWhere" prepend="and ">
+				AppliedNumber = #stockNumberWhere#
+            </isNotNull>
+			<isNotNull property="returnNumberWhere" prepend="and ">
+				ReturnNumber = #returnNumberWhere#
+            </isNotNull>
+			<isNotNull property="brokenNumberWhere" prepend="and ">
+				BrokenNumber = #brokenNumberWhere#
+            </isNotNull>
+			<isNotNull property="lostNumberWhere" prepend="and ">
+				LostNumber =
+				#lostNumberWhere#
+            </isNotNull>
+			<isNotNull property="receiveNumberWhere" prepend="and ">
+				ReceiveNumber = #receiveNumberWhere#
+            </isNotNull>
+			<isNotNull property="applyUserWhere" prepend="and ">
+				ApplyUser =
+				#applyUserWhere#
+            </isNotNull>
+			<isNotNull property="applyTimeWhere" prepend="and ">
+				ApplyTime =
+				#applyTimeWhere#
+            </isNotNull>
+			<isNotNull property="receiveUserWhere" prepend="and ">
+				ReceiveUser
+				= #receiveUserWhere#
+            </isNotNull>
+			<isNotNull property="receiveTimeWhere" prepend="and ">
+				ReceiveTime
+				= #receiveTimeWhere#
+            </isNotNull>
+			<isNotNull property="processingStatusWhere" prepend="and ">
+				ProcessingStatus = #processingStatusWhere#
+            </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag =
+				#delFlagWhere#
+            </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime =
+				#updateTimeWhere#
+            </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser =
+				#updateUserWhere#
+            </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime =
+				#createTimeWhere#
+            </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser =
+				#createUserWhere#
+            </isNotNull>
+		</dynamic>
+	</update>
+
+	<!--  取得换领申请单列表按照人名和日期进行排序并显示在list中 -->
+	<select id="getRequestList" resultMap="Redemptionapplied-map">
+		SELECT
+		RedemptionAppliedID
+		,ToolCode
+		,AppliedNumber
+		,StockNumber
+		,ReturnNumber
+		,BrokenNumber
+		,LostNumber
+		,ReceiveNumber
+		,ApplyUser
+		,ApplyTime
+		,ReceiveUser
+		,ReceiveTime
+		,ProcessingStatus
+		,RfidList
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		FROM redemptionapplied re
+		WHERE re.DelFlag = '0' AND
+		re.ProcessingStatus != '4'
+		GROUP BY re.ApplyTime,re.ApplyUser
+		ORDER BY
+		re.ApplyTime DESC;
+    </select>
+
+	<!-- 按任意条件修改任意属性 (用于领刀)-->
+	<update id="updateRfidNullByAnything" parameterClass="entityRedemptionapplied">
+		update redemptionapplied
+		<dynamic prepend="set">
+			<isNotNull property="redemptionAppliedID" prepend=",">
+				RedemptionAppliedID = #redemptionAppliedID#
+            </isNotNull>
+			<isNotNull property="toolCode" prepend=",">
+				ToolCode =
+				#toolCode#
+            </isNotNull>
+			<isNotNull property="appliedNumber" prepend=",">
+				AppliedNumber =
+				#appliedNumber#
+            </isNotNull>
+			<isNotNull property="stockNumber" prepend=",">
+				StockNumber =
+				#stockNumber#
+            </isNotNull>
+			<isNotNull property="returnNumber" prepend=",">
+				ReturnNumber =
+				#returnNumber#
+            </isNotNull>
+			<isNotNull property="brokenNumber" prepend=",">
+				BrokenNumber =
+				#brokenNumber#
+            </isNotNull>
+			<isNotNull property="lostNumber" prepend=",">
+				LostNumber =
+				#lostNumber#
+            </isNotNull>
+			<isNotNull property="receiveNumber" prepend=",">
+				ReceiveNumber =
+				#receiveNumber#
+            </isNotNull>
+			<isNotNull property="applyUser" prepend=",">
+				ApplyUser =
+				#applyUser#
+            </isNotNull>
+			<isNotNull property="applyTime" prepend=",">
+				ApplyTime =
+				#applyTime#
+            </isNotNull>
+			<isNotNull property="receiveUser" prepend=",">
+				ReceiveUser =
+				#receiveUser#
+            </isNotNull>
+			<isNotNull property="receiveTime" prepend=",">
+				ReceiveTime =
+				#receiveTime#
+            </isNotNull>
+			<isNotNull property="processingStatus" prepend=",">
+				ProcessingStatus = #processingStatus#
+            </isNotNull>
+			,RfidList = null
+			<isNotNull property="delFlag" prepend=",">
+				DelFlag = #delFlag#
+			</isNotNull>
+			<isNotNull property="updateTime" prepend=",">
+				UpdateTime =
+				#updateTime#
+            </isNotNull>
+			<isNotNull property="updateUser" prepend=",">
+				UpdateUser =
+				#updateUser#
+            </isNotNull>
+			<isNotNull property="createTime" prepend=",">
+				CreateTime =
+				#createTime#
+            </isNotNull>
+			<isNotNull property="createUser" prepend=",">
+				CreateUser =
+				#createUser#
+            </isNotNull>
+			<isNotNull property="version" prepend=",">
+				Version = Version +1
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="redemptionAppliedIDWhere" prepend="and ">
+				RedemptionAppliedID = #redemptionAppliedIDWhere#
+            </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode =
+				#toolCodeWhere#
+            </isNotNull>
+			<isNotNull property="appliedNumberWhere" prepend="and ">
+				AppliedNumber = #appliedNumberWhere#
+            </isNotNull>
+			<isNotNull property="stockNumberWhere" prepend="and ">
+				AppliedNumber = #stockNumberWhere#
+            </isNotNull>
+			<isNotNull property="returnNumberWhere" prepend="and ">
+				ReturnNumber = #returnNumberWhere#
+            </isNotNull>
+			<isNotNull property="brokenNumberWhere" prepend="and ">
+				BrokenNumber = #brokenNumberWhere#
+            </isNotNull>
+			<isNotNull property="lostNumberWhere" prepend="and ">
+				LostNumber =
+				#lostNumberWhere#
+            </isNotNull>
+			<isNotNull property="receiveNumberWhere" prepend="and ">
+				ReceiveNumber = #receiveNumberWhere#
+            </isNotNull>
+			<isNotNull property="applyUserWhere" prepend="and ">
+				ApplyUser =
+				#applyUserWhere#
+            </isNotNull>
+			<isNotNull property="applyTimeWhere" prepend="and ">
+				ApplyTime =
+				#applyTimeWhere#
+            </isNotNull>
+			<isNotNull property="receiveUserWhere" prepend="and ">
+				ReceiveUser
+				= #receiveUserWhere#
+            </isNotNull>
+			<isNotNull property="receiveTimeWhere" prepend="and ">
+				ReceiveTime
+				= #receiveTimeWhere#
+            </isNotNull>
+			<isNotNull property="processingStatusWhere" prepend="and ">
+				ProcessingStatus = #processingStatusWhere#
+            </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag =
+				#delFlagWhere#
+            </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime =
+				#updateTimeWhere#
+            </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser =
+				#updateUserWhere#
+            </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime =
+				#createTimeWhere#
+            </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser =
+				#createUserWhere#
+            </isNotNull>
+		</dynamic>
+	</update>
+	
+	<!--  取得换领申请人申请信息 -->
+	<resultMap id="Redemptionapplied-map-apply" class="entityRedemptionapplied">
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 申请总数量 -->
+		<result property="appliedNumber" column="AppliedNumber" />
+		<!-- 库位码 -->
+		<result property="expandSpace1" column="LibraryCodeID" />
+		<!-- 申请人 -->
+		<result property="applyUser" column="ApplyUser" />
+	</resultMap>
+	
+	<select id="getApplyInfo" resultMap="Redemptionapplied-map-apply">
+		SELECT
+		re.ToolCode AS ToolCode
+		,SUM(re.AppliedNumber)-SUM(re.ReceiveNumber) AS AppliedNumber
+		,tl.LibraryCodeID AS LibraryCodeID
+		,re.ApplyUser AS ApplyUser
+		FROM redemptionapplied re
+		inner join tool tl on tl.ToolCode = re.ToolCode
+		WHERE tl.DelFlag = '0'
+		AND re.DelFlag = '0'
+		AND re.ApplyUser = #applyUser#
+		GROUP BY re.ToolCode;
+    </select>
+
+</sqlMap>
+

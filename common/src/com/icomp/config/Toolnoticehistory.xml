@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Toolnoticehistory.xml
+		Created on : 2016/02/29 16:14:14
+		Author : 工具自动生成
+		Description: 工具自动生成包含的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Toolnoticehistory">
+	<typeAlias alias="entityToolnoticehistory" type="com.icomp.entity.base.Toolnoticehistory" />
+	<resultMap id="Toolnoticehistory-map" class="entityToolnoticehistory">
+		<!-- 刀具入库编码 -->
+		<result property="knifeInventoryCode" column="KnifeInventoryCode" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 修磨设备ID -->
+		<result property="noticeEquipmentID" column="NoticeEquipmentID" />
+		<!-- 修复数量 -->
+		<result property="noticeCount" column="NoticeCount" />
+		<!-- 修复时间 -->
+		<result property="noticeTime" column="NoticeTime" />
+		<!-- 操作人 -->
+		<result property="toolRepairNoticeUser" column="ToolRepairNoticeUser" />
+		<!-- 领取人 -->
+		<result property="receiveUser" column="ReceiveUser" />
+		<!-- 领取时间 -->
+		<result property="receiveTime" column="ReceiveTime" />
+		<!-- 修复后测量长度 -->
+		<result property="noticeOldLength" column="NoticeOldLength" />
+		<!-- 修复前测量长度 -->
+		<result property="noticeLength" column="NoticeLength" />
+		<!-- 修复方式(0厂内复磨1厂内维修2厂内图层3出厂图层4出厂维修) -->
+		<result property="repairWay" column="RepairWay" />
+		<!-- 修复原因(0断刀1正常刃磨) -->
+		<result property="repairedBecause" column="RepairedBecause" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityToolnoticehistory" resultMap="Toolnoticehistory-map">
+		SELECT
+		KnifeInventoryCode
+		,ToolCode
+		,NoticeEquipmentID
+		,NoticeCount
+		,NoticeTime
+		,ToolRepairNoticeUser
+		,ReceiveUser
+		,ReceiveTime
+		,NoticeOldLength
+		,NoticeLength
+		,RepairWay
+		,RepairedBecause
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from toolnoticehistory
+		<dynamic prepend=" where ">
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="noticeTime" prepend="and ">
+				NoticeTime = #noticeTime#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					KnifeInventoryCode
+					,NoticeTime
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityToolnoticehistory" resultMap="Toolnoticehistory-map">
+		SELECT
+		KnifeInventoryCode
+		,ToolCode
+		,NoticeEquipmentID
+		,NoticeCount
+		,NoticeTime
+		,ToolRepairNoticeUser
+		,ReceiveUser
+		,ReceiveTime
+		,NoticeOldLength
+		,NoticeLength
+		,RepairWay
+		,RepairedBecause
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from toolnoticehistory
+		<dynamic prepend=" where ">
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="noticeEquipmentID" prepend="and ">
+				NoticeEquipmentID = #noticeEquipmentID#
+         </isNotNull>
+			<isNotNull property="noticeCount" prepend="and ">
+				NoticeCount = #noticeCount#
+         </isNotNull>
+			<isNotNull property="noticeTime" prepend="and ">
+				NoticeTime = #noticeTime#
+         </isNotNull>
+			<isNotNull property="toolRepairNoticeUser" prepend="and ">
+				ToolRepairNoticeUser = #toolRepairNoticeUser#
+         </isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="receiveTime" prepend="and ">
+				ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNotNull property="noticeOldLength" prepend="and ">
+				NoticeOldLength = #noticeOldLength#
+         </isNotNull>
+			<isNotNull property="noticeLength" prepend="and ">
+				NoticeLength = #noticeLength#
+         </isNotNull>
+			<isNotNull property="repairWay" prepend="and ">
+				RepairWay = #repairWay#
+         </isNotNull>
+			<isNotNull property="repairedBecause" prepend="and ">
+				RepairedBecause = #repairedBecause#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					KnifeInventoryCode
+					,NoticeTime
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityToolnoticehistory" resultClass="int">
+		SELECT count(1)
+		from toolnoticehistory
+		<dynamic prepend=" where ">
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="noticeEquipmentID" prepend="and ">
+				NoticeEquipmentID = #noticeEquipmentID#
+         </isNotNull>
+			<isNotNull property="noticeCount" prepend="and ">
+				NoticeCount = #noticeCount#
+         </isNotNull>
+			<isNotNull property="noticeTime" prepend="and ">
+				NoticeTime = #noticeTime#
+         </isNotNull>
+			<isNotNull property="toolRepairNoticeUser" prepend="and ">
+				ToolRepairNoticeUser = #toolRepairNoticeUser#
+         </isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="receiveTime" prepend="and ">
+				ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNotNull property="noticeOldLength" prepend="and ">
+				NoticeOldLength = #noticeOldLength#
+         </isNotNull>
+			<isNotNull property="noticeLength" prepend="and ">
+				NoticeLength = #noticeLength#
+         </isNotNull>
+			<isNotNull property="repairWay" prepend="and ">
+				RepairWay = #repairWay#
+         </isNotNull>
+			<isNotNull property="repairedBecause" prepend="and ">
+				RepairedBecause = #repairedBecause#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityToolnoticehistory">
+		update toolnoticehistory
+		<dynamic prepend="set">
+			<isNotNull property="knifeInventoryCode">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNull property="knifeInventoryCode">
+				KnifeInventoryCode = null
+         </isNull>
+			<isNotNull property="toolCode">
+				,ToolCode = #toolCode#
+         </isNotNull>
+			<isNull property="toolCode">
+				,ToolCode = null
+         </isNull>
+			<isNotNull property="noticeEquipmentID">
+				,NoticeEquipmentID = #noticeEquipmentID#
+         </isNotNull>
+			<isNull property="noticeEquipmentID">
+				,NoticeEquipmentID = null
+         </isNull>
+			<isNotNull property="noticeCount">
+				,NoticeCount = #noticeCount#
+         </isNotNull>
+			<isNull property="noticeCount">
+				,NoticeCount = null
+         </isNull>
+			<isNotNull property="noticeTime">
+				,NoticeTime = #noticeTime#
+         </isNotNull>
+			<isNull property="noticeTime">
+				,NoticeTime = null
+         </isNull>
+			<isNotNull property="toolRepairNoticeUser">
+				,ToolRepairNoticeUser = #toolRepairNoticeUser#
+         </isNotNull>
+			<isNull property="toolRepairNoticeUser">
+				,ToolRepairNoticeUser = null
+         </isNull>
+			<isNotNull property="receiveUser">
+				,ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNull property="receiveUser">
+				,ReceiveUser = null
+         </isNull>
+			<isNotNull property="receiveTime">
+				,ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNull property="receiveTime">
+				,ReceiveTime = null
+         </isNull>
+			<isNotNull property="noticeOldLength">
+				,NoticeOldLength = #noticeOldLength#
+         </isNotNull>
+			<isNull property="noticeOldLength">
+				,NoticeOldLength = null
+         </isNull>
+			<isNotNull property="noticeLength">
+				,NoticeLength = #noticeLength#
+         </isNotNull>
+			<isNull property="noticeLength">
+				,NoticeLength = null
+         </isNull>
+			<isNotNull property="repairWay">
+				,RepairWay = #repairWay#
+         </isNotNull>
+			<isNull property="repairWay">
+				,RepairWay = null
+         </isNull>
+			<isNotNull property="repairedBecause">
+				,RepairedBecause = #repairedBecause#
+         </isNotNull>
+			<isNull property="repairedBecause">
+				,RepairedBecause = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode = #toolCodeWhere#
+         </isNotNull>
+			<isNotNull property="noticeEquipmentIDWhere" prepend="and ">
+				NoticeEquipmentID = #noticeEquipmentIDWhere#
+         </isNotNull>
+			<isNotNull property="noticeCountWhere" prepend="and ">
+				NoticeCount = #noticeCountWhere#
+         </isNotNull>
+			<isNotNull property="noticeTimeWhere" prepend="and ">
+				NoticeTime = #noticeTimeWhere#
+         </isNotNull>
+			<isNotNull property="toolRepairNoticeUserWhere" prepend="and ">
+				ToolRepairNoticeUser = #toolRepairNoticeUserWhere#
+         </isNotNull>
+			<isNotNull property="receiveUserWhere" prepend="and ">
+				ReceiveUser = #receiveUserWhere#
+         </isNotNull>
+			<isNotNull property="receiveTimeWhere" prepend="and ">
+				ReceiveTime = #receiveTimeWhere#
+         </isNotNull>
+			<isNotNull property="noticeOldLengthWhere" prepend="and ">
+				NoticeOldLength = #noticeOldLengthWhere#
+         </isNotNull>
+			<isNotNull property="noticeLengthWhere" prepend="and ">
+				NoticeLength = #noticeLengthWhere#
+         </isNotNull>
+			<isNotNull property="repairWayWhere" prepend="and ">
+				RepairWay = #repairWayWhere#
+         </isNotNull>
+			<isNotNull property="repairedBecauseWhere" prepend="and ">
+				RepairedBecause = #repairedBecauseWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityToolnoticehistory">
+		update toolnoticehistory
+		<dynamic prepend="set">
+			<isNotNull property="knifeInventoryCode"  prepend=",">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolCode"  prepend=",">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="noticeEquipmentID"  prepend=",">
+				NoticeEquipmentID = #noticeEquipmentID#
+         </isNotNull>
+			<isNotNull property="noticeCount"  prepend=",">
+				NoticeCount = #noticeCount#
+         </isNotNull>
+			<isNotNull property="noticeTime"  prepend=",">
+				NoticeTime = #noticeTime#
+         </isNotNull>
+			<isNotNull property="toolRepairNoticeUser"  prepend=",">
+				ToolRepairNoticeUser = #toolRepairNoticeUser#
+         </isNotNull>
+			<isNotNull property="receiveUser"  prepend=",">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="receiveTime"  prepend=",">
+				ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNotNull property="noticeOldLength"  prepend=",">
+				NoticeOldLength = #noticeOldLength#
+         </isNotNull>
+			<isNotNull property="noticeLength"  prepend=",">
+				NoticeLength = #noticeLength#
+         </isNotNull>
+			<isNotNull property="repairWay"  prepend=",">
+				RepairWay = #repairWay#
+         </isNotNull>
+			<isNotNull property="repairedBecause"  prepend=",">
+				RepairedBecause = #repairedBecause#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode = #toolCodeWhere#
+         </isNotNull>
+			<isNotNull property="noticeEquipmentIDWhere" prepend="and ">
+				NoticeEquipmentID = #noticeEquipmentIDWhere#
+         </isNotNull>
+			<isNotNull property="noticeCountWhere" prepend="and ">
+				NoticeCount = #noticeCountWhere#
+         </isNotNull>
+			<isNotNull property="noticeTimeWhere" prepend="and ">
+				NoticeTime = #noticeTimeWhere#
+         </isNotNull>
+			<isNotNull property="toolRepairNoticeUserWhere" prepend="and ">
+				ToolRepairNoticeUser = #toolRepairNoticeUserWhere#
+         </isNotNull>
+			<isNotNull property="receiveUserWhere" prepend="and ">
+				ReceiveUser = #receiveUserWhere#
+         </isNotNull>
+			<isNotNull property="receiveTimeWhere" prepend="and ">
+				ReceiveTime = #receiveTimeWhere#
+         </isNotNull>
+			<isNotNull property="noticeOldLengthWhere" prepend="and ">
+				NoticeOldLength = #noticeOldLengthWhere#
+         </isNotNull>
+			<isNotNull property="noticeLengthWhere" prepend="and ">
+				NoticeLength = #noticeLengthWhere#
+         </isNotNull>
+			<isNotNull property="repairWayWhere" prepend="and ">
+				RepairWay = #repairWayWhere#
+         </isNotNull>
+			<isNotNull property="repairedBecauseWhere" prepend="and ">
+				RepairedBecause = #repairedBecauseWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityToolnoticehistory">
+		<selectKey resultClass="java.lang.String" keyProperty="knifeInventoryCode">
+			SELECT #knifeInventoryCode# as knifeInventoryCode FROM DUAL
+     </selectKey>
+		insert into toolnoticehistory(
+		KnifeInventoryCode
+		,ToolCode
+		,NoticeEquipmentID
+		,NoticeCount
+		,NoticeTime
+		,ToolRepairNoticeUser
+		,ReceiveUser
+		,ReceiveTime
+		,NoticeOldLength
+		,NoticeLength
+		,RepairWay
+		,RepairedBecause
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		)
+		Values (
+			<isNotNull property="knifeInventoryCode">
+				#knifeInventoryCode#
+         </isNotNull>
+			<isNull property="knifeInventoryCode">
+				null
+         </isNull>
+			<isNotNull property="toolCode">
+				,#toolCode#
+         </isNotNull>
+			<isNull property="toolCode">
+				,null
+         </isNull>
+			<isNotNull property="noticeEquipmentID">
+				,#noticeEquipmentID#
+         </isNotNull>
+			<isNull property="noticeEquipmentID">
+				,null
+         </isNull>
+			<isNotNull property="noticeCount">
+				,#noticeCount#
+         </isNotNull>
+			<isNull property="noticeCount">
+				,null
+         </isNull>
+			<isNotNull property="noticeTime">
+				,#noticeTime#
+         </isNotNull>
+			<isNull property="noticeTime">
+				,null
+         </isNull>
+			<isNotNull property="toolRepairNoticeUser">
+				,#toolRepairNoticeUser#
+         </isNotNull>
+			<isNull property="toolRepairNoticeUser">
+				,null
+         </isNull>
+			<isNotNull property="receiveUser">
+				,#receiveUser#
+         </isNotNull>
+			<isNull property="receiveUser">
+				,null
+         </isNull>
+			<isNotNull property="receiveTime">
+				,#receiveTime#
+         </isNotNull>
+			<isNull property="receiveTime">
+				,null
+         </isNull>
+			<isNotNull property="noticeOldLength">
+				,#noticeOldLength#
+         </isNotNull>
+			<isNull property="noticeOldLength">
+				,null
+         </isNull>
+			<isNotNull property="noticeLength">
+				,#noticeLength#
+         </isNotNull>
+			<isNull property="noticeLength">
+				,null
+         </isNull>
+			<isNotNull property="repairWay">
+				,#repairWay#
+         </isNotNull>
+			<isNull property="repairWay">
+				,null
+         </isNull>
+			<isNotNull property="repairedBecause">
+				,#repairedBecause#
+         </isNotNull>
+			<isNull property="repairedBecause">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityToolnoticehistory">
+		delete  from toolnoticehistory
+		<dynamic prepend=" where ">
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode = #toolCodeWhere#
+         </isNotNull>
+			<isNotNull property="noticeEquipmentIDWhere" prepend="and ">
+				NoticeEquipmentID = #noticeEquipmentIDWhere#
+         </isNotNull>
+			<isNotNull property="noticeCountWhere" prepend="and ">
+				NoticeCount = #noticeCountWhere#
+         </isNotNull>
+			<isNotNull property="noticeTimeWhere" prepend="and ">
+				NoticeTime = #noticeTimeWhere#
+         </isNotNull>
+			<isNotNull property="toolRepairNoticeUserWhere" prepend="and ">
+				ToolRepairNoticeUser = #toolRepairNoticeUserWhere#
+         </isNotNull>
+			<isNotNull property="receiveUserWhere" prepend="and ">
+				ReceiveUser = #receiveUserWhere#
+         </isNotNull>
+			<isNotNull property="receiveTimeWhere" prepend="and ">
+				ReceiveTime = #receiveTimeWhere#
+         </isNotNull>
+			<isNotNull property="noticeOldLengthWhere" prepend="and ">
+				NoticeOldLength = #noticeOldLengthWhere#
+         </isNotNull>
+			<isNotNull property="noticeLengthWhere" prepend="and ">
+				NoticeLength = #noticeLengthWhere#
+         </isNotNull>
+			<isNotNull property="repairWayWhere" prepend="and ">
+				RepairWay = #repairWayWhere#
+         </isNotNull>
+			<isNotNull property="repairedBecauseWhere" prepend="and ">
+				RepairedBecause = #repairedBecauseWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+			<isNotNull property="rfidContainerIDWhere" prepend="and ">
+				RfidContainerID = #rfidContainerIDWhere#
+			</isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

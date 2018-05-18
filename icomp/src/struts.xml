@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<constant name="struts.devMode" value="false" />
+	<!-- 默认的视图主题 -->
+	<constant name="struts.ui.theme" value="simple" />
+	<!--解决乱码    -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- 指定允许上传的文件最大字节数。默认值是2097152(2M) -->
+	<constant name="struts.custom.i18n.resources" value="messageResources"></constant>
+	<constant name="struts.multipart.maxSize" value="10701096" />
+	<!--允许访问静态方法    -->
+
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+
+	<include file="icomp-default.xml" />
+	<include file="com/icomp/config/struts-common.xml" />
+	<include file="com/icomp/config/icomp_v01b01.xml" />
+	<include file="com/icomp/config/icomp_v01b02.xml" />
+	<include file="com/icomp/config/icomp_v01b03.xml" />
+	<include file="com/icomp/config/icomp_v01b04.xml" />
+	<include file="com/icomp/config/icomp_v01b05.xml" />
+	<include file="com/icomp/config/icomp_v01b06.xml" />
+	<include file="com/icomp/config/icomp_v01b07.xml" />
+	<include file="com/icomp/config/icomp_v01b08.xml" />
+	<include file="com/icomp/config/icomp_v01b09.xml" />
+	<include file="com/icomp/config/icomp_v01b10.xml" />
+	<include file="com/icomp/config/icomp_v01b11.xml" />
+	<include file="com/icomp/config/icomp_v01b12.xml" />
+	<package name="default" namespace="/" extends="struts-default">
+		<action name="downloads" class="com.icomp.common.action.FileDownloadAction">
+			<param name="inputPath">/images</param>
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream;charset=UTF-8</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">8192</param>
+			</result>
+		</action>
+	</package>
+
+
+</struts>  

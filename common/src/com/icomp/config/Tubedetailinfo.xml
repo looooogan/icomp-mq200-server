@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : .xml
+    Created on : 2016/02/25 15:44:05
+    Author : 工具自动生成
+    Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Tubedetailinfo">
+    <typeAlias alias="entityTubedetailinfo" type="com.icomp.entity.base.Tubedetailinfo"/>
+    <resultMap id="Tubedetailinfo-map" class="entityTubedetailinfo">
+        <!-- 合成刀具编码(系统唯一) -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+        <!-- 位置号 -->
+        <result property="synthesisCutterNumber" column="SynthesisCutterNumber"/>
+        <!-- 刀具编号 -->
+        <result property="toolCode" column="ToolCode"/>
+        <!-- 使用状态(0装入1卸下2修磨3修磨完成4报废) -->
+        <result property="loadState" column="LoadState"/>
+        <!-- 刀具数量 -->
+        <result property="toolCount" column="ToolCount"/>
+        <!-- 修磨次数 -->
+        <result property="grindingSum" column="grindingsum"/>
+        <!-- rFID -->
+        <result property="rfId" column="rFID"/>
+        <!-- state -->
+        <result property="state" column="state"/>
+    </resultMap>
+
+    <!-- 2017/09/16 宋健 追加↓↓↓　dazhong@YMSC -->
+    <resultMap id="Tubedetailinfos-map" class="entityTubedetailinfo">
+        <!-- 合成刀具编码(系统唯一) -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+        <!-- rFID -->
+        <result property="rfId" column="rFID"/>
+        <!-- 筒刀材料号 -->
+        <result property="toolCode" column="ToolCode"/>
+        <!-- 筒刀编号 -->
+        <result property="laserIdentificationCode" column="laserIdentificationCode"/>
+        <!-- 拆解人 -->
+        <result property="splitUser" column="splitUser"/>
+        <!-- 装配人 -->
+        <result property="installUser" column="installUser"/>
+        <!-- 拆解日期 -->
+        <result property="splitTime" column="splitTime"/>
+        <!-- 装配日期 -->
+        <result property="installTime" column="installTime"/>
+    </resultMap>
+
+    <resultMap id="TubedetailinfoDetail-map" class="entityTubedetailinfo">
+        <!-- 筒刀材料号 -->
+        <result property="toolCode" column="ToolCode"/>
+        <!-- 刀具数量 -->
+        <result property="toolCount" column="ToolCount"/>
+        <!-- 修磨次数 -->
+        <result property="grindingSum" column="grindingSum"/>
+        <!-- 厚度 -->
+        <result property="thickness" column="thickness"/>
+        <!-- 角度 -->
+        <result property="angle" column="angle"/>
+    </resultMap>
+
+    <resultMap id="TubedetailinfoTotal-map" class="entityTubedetailinfo">
+        <!-- 筒刀材料号 -->
+        <result property="toolCode" column="ToolCode"/>
+        <!-- 换新数量 -->
+        <result property="hxSum" column="hxSum"/>
+        <!-- 换新次数 -->
+        <result property="hxCount" column="hxCount"/>
+        <!-- 换新次数 -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+        <!-- 拆解人 -->
+        <result property="splitUser" column="splitUser"/>
+        <!-- 装配人 -->
+        <result property="installUser" column="installUser"/>
+        <!-- 拆解日期 -->
+        <result property="splitTime" column="splitTime"/>
+        <!-- 装配日期 -->
+        <result property="installTime" column="installTime"/>
+
+    </resultMap>
+    <!-- 2017/09/16 宋健 追加↑↑↑　dazhong@YMSC -->
+
+    <!-- 2017/09/16 宋健 变更↓↓↓　dazhong@YMSC -->
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityTubedetailinfo" resultMap="Tubedetailinfos-map">
+        SELECT
+            tube.SynthesisParametersCode AS SynthesisParametersCode,
+        tube.rFID AS rFID,
+        tube.ToolCode AS ToolCode,
+        r.LaserIdentificationCode AS laserIdentificationCode,
+        u.UserName AS splitUser,
+        u2.UserName AS installUser,
+        <!-- 2017/09/16 王冉 变更↓↓↓　dazhong@YMSC -->
+        DATE_FORMAT(tube.SplitTime,'%Y-%m-%d %H:%i:%s') AS splitTime,
+        DATE_FORMAT(tube.InstallTime,'%Y-%m-%d %H:%i:%s') AS installTime
+        <!-- 2017/09/16 王冉 变更↑↑↑　dazhong@YMSC -->
+        FROM
+        tubedetailinfo tube
+        LEFT JOIN rfidcontainer r ON tube.rFID = r.RfidContainerID
+        LEFT JOIN userdetail u on tube.SplitUser = u.CustomerID
+        LEFT JOIN userdetail u2 on tube.InstallUser = u2.CustomerID
+        <dynamic prepend=" where ">
+            <!-- 2017/09/16 王冉 变更↓↓↓　dazhong@YMSC -->
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode like concat('%', #synthesisParametersCode#,'%')
+            </isNotNull>
+            <!-- 2017/09/16 王冉 变更↑↑↑　dazhong@YMSC -->
+            <isNotNull property="laserIdentificationCode" prepend="and ">
+                LaserIdentificationCode  like concat('%', #laserIdentificationCode#,'%')
+            </isNotNull>
+            <isNotNull property="splitUser" prepend="and ">
+                u.UserName like concat('%',#splitUser#,'%')
+            </isNotNull>
+            <isNotNull property="splitTimeStar" prepend="and ">
+                <![CDATA[
+                DATE_FORMAT(splitTime, '%Y-%m-%d') >= DATE_FORMAT(#splitTimeStar#, '%Y-%m-%d')
+				]]>
+            </isNotNull>
+            <isNotNull property="splitTimeEnd" prepend="and ">
+                <![CDATA[
+                DATE_FORMAT(splitTime, '%Y-%m-%d') <= DATE_FORMAT(#splitTimeEnd#, '%Y-%m-%d')
+				]]>
+            </isNotNull>
+            <isNotNull property="installUser" prepend="and ">
+                u2.UserName like concat('%',#installUser#,'%')
+            </isNotNull>
+            <isNotNull property="installTimeStar" prepend="and ">
+                <![CDATA[
+                DATE_FORMAT(installTime, '%Y-%m-%d') >= DATE_FORMAT(#installTimeStar#, '%Y-%m-%d')
+				]]>
+            </isNotNull>
+            <isNotNull property="installTimeEnd" prepend="and ">
+                <![CDATA[
+                DATE_FORMAT(installTime, '%Y-%m-%d') <= DATE_FORMAT(#installTimeEnd#, '%Y-%m-%d')
+				]]>
+            </isNotNull>
+        </dynamic>
+        GROUP BY
+        tube.SynthesisParametersCode,
+        tube.rFID,
+        tube.SplitTime
+        ORDER BY
+        tube.SplitTime DESC
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+    <!-- 2017/09/16 宋健 变更↑↑↑　dazhong@YMSC -->
+
+    <!-- 任意条件查询条数 -->
+    <!-- 2017/09/16 王冉 变更↓↓↓　dazhong@YMSC -->
+    <select id="searchByCount" parameterClass="entityTubedetailinfo" resultClass="int">
+        SELECT count(1) FROM (
+        SELECT
+        COUNT(1)
+        FROM
+        tubedetailinfo tube
+        LEFT JOIN rfidcontainer r ON tube.rFID = r.RfidContainerID
+        LEFT JOIN userdetail u on tube.SplitUser = u.CustomerID
+        LEFT JOIN userdetail u2 on tube.InstallUser = u2.CustomerID
+        <dynamic prepend=" where ">
+            <!-- 2017/09/16 王冉 变更↓↓↓　dazhong@YMSC -->
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode like concat('%', #synthesisParametersCode#,'%')
+            </isNotNull>
+            <!-- 2017/09/16 王冉 变更↑↑↑　dazhong@YMSC -->
+            <isNotNull property="laserIdentificationCode" prepend="and ">
+                LaserIdentificationCode like concat('%', #laserIdentificationCode#,'%')
+            </isNotNull>
+            <isNotNull property="splitUser" prepend="and ">
+                u.UserName like concat('%',#splitUser#,'%')
+            </isNotNull>
+            <isNotNull property="splitTimeStar" prepend="and ">
+                <![CDATA[
+                DATE_FORMAT(splitTime, '%Y-%m-%d') >= DATE_FORMAT(#splitTimeStar#, '%Y-%m-%d')
+				]]>
+            </isNotNull>
+            <isNotNull property="splitTimeEnd" prepend="and ">
+                <![CDATA[
+                DATE_FORMAT(splitTime, '%Y-%m-%d') <= DATE_FORMAT(#splitTimeEnd#, '%Y-%m-%d')
+				]]>
+            </isNotNull>
+            <isNotNull property="installUser" prepend="and ">
+                u2.UserName like concat('%',#installUser#,'%')
+            </isNotNull>
+            <isNotNull property="installTimeStar" prepend="and ">
+                <![CDATA[
+                DATE_FORMAT(installTime, '%Y-%m-%d') >= DATE_FORMAT(#installTimeStar#, '%Y-%m-%d')
+				]]>
+            </isNotNull>
+            <isNotNull property="installTimeEnd" prepend="and ">
+                <![CDATA[
+                DATE_FORMAT(installTime, '%Y-%m-%d') <= DATE_FORMAT(#installTimeEnd#, '%Y-%m-%d')
+				]]>
+            </isNotNull>
+        </dynamic>
+        GROUP BY
+        tube.SynthesisParametersCode,
+        tube.rFID,
+        tube.SplitTime
+        ) a
+    </select>
+    <!-- 2017/09/16 王冉 变更↑↑↑　dazhong@YMSC -->
+
+    <!-- 2017/09/16 宋健 追加↓↓↓　dazhong@YMSC -->
+    <!-- 任意条件查询执行 -->
+    <select id="searchDetailList" parameterClass="entityTubedetailinfo" resultMap="TubedetailinfoDetail-map">
+        SELECT
+        ToolCode,
+        ToolCount,
+        grindingsum,
+        <!-- 2017/09/16 王冉 变更↓↓↓　dazhong@YMSC -->
+        IFNULL(thickness,'') thickness,
+        IFNULL(angle,'') angle
+        <!-- 2017/09/16 王冉 变更↑↑↑　dazhong@YMSC -->
+        FROM
+        tubedetailinfo
+        WHERE
+        SynthesisParametersCode = #synthesisParametersCode#
+        AND
+        rFID = #rfId#
+        AND
+        <!-- 2017/09/16 王冉 变更↓↓↓　dazhong@YMSC -->
+        DATE_FORMAT(SplitTime,'%Y-%m-%d %H:%i:%s') = DATE_FORMAT(#splitTime#, '%Y-%m-%d %H:%i:%s')
+        <!-- 2017/09/16 王冉 变更↑↑↑　dazhong@YMSC -->
+    </select>
+
+    <select id="searchTotalList" parameterClass="entityTubedetailinfo" resultMap="TubedetailinfoTotal-map">
+        select
+        t.ToolCode,
+        t.SynthesisParametersCode,
+        t.rFID AS rFID,
+        u.UserName AS splitUser,
+        u2.UserName AS installUser,
+        DATE_FORMAT(t.SplitTime,'%Y-%m-%d %H:%i:%s') AS splitTime,
+        DATE_FORMAT(t.InstallTime,'%Y-%m-%d %H:%i:%s') AS installTime,
+        r.LaserIdentificationCode AS laserIdentificationCode,
+        (SUM(CASE WHEN t.grindingsum = 0 THEN 1 ELSE 0 END)*t.ToolCount) hxSum ,
+        SUM(CASE WHEN t.grindingsum = 0 THEN 1 ELSE 0 END) hxCount
+        from
+        tubedetailinfo t
+        LEFT JOIN rfidcontainer r ON t.rFID = r.RfidContainerID
+        LEFT JOIN userdetail u on t.SplitUser = u.CustomerID
+        LEFT JOIN userdetail u2 on t.InstallUser = u2.CustomerID
+        <dynamic prepend=" where ">
+            <!-- 2017/09/16 王冉 变更↓↓↓　dazhong@YMSC -->
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCode#
+            </isNotNull>
+            <!-- 2017/09/16 王冉 变更↑↑↑　dazhong@YMSC -->
+            <isNotNull property="laserIdentificationCode" prepend="and ">
+                LaserIdentificationCode = #laserIdentificationCode#
+            </isNotNull>
+            <isNotNull property="splitUser" prepend="and ">
+                u.UserName like concat('%',#splitUser#,'%')
+            </isNotNull>
+            <isNotNull property="splitTimeStar" prepend="and ">
+                <![CDATA[
+                DATE_FORMAT(splitTime, '%Y-%m-%d') >= DATE_FORMAT(#splitTimeStar#, '%Y-%m-%d')
+				]]>
+            </isNotNull>
+            <isNotNull property="splitTimeEnd" prepend="and ">
+                <![CDATA[
+                DATE_FORMAT(splitTime, '%Y-%m-%d') <= DATE_FORMAT(#splitTimeEnd#, '%Y-%m-%d')
+				]]>
+            </isNotNull>
+            <isNotNull property="installUser" prepend="and ">
+                u2.UserName like concat('%',#installUser#,'%')
+            </isNotNull>
+            <isNotNull property="installTimeStar" prepend="and ">
+                <![CDATA[
+                DATE_FORMAT(installTime, '%Y-%m-%d') >= DATE_FORMAT(#installTimeStar#, '%Y-%m-%d')
+				]]>
+            </isNotNull>
+            <isNotNull property="installTimeEnd" prepend="and ">
+                <![CDATA[
+                DATE_FORMAT(installTime, '%Y-%m-%d') <= DATE_FORMAT(#installTimeEnd#, '%Y-%m-%d')
+				]]>
+            </isNotNull>
+        </dynamic>
+        GROUP BY
+        ToolCode
+
+    </select>
+    <!-- 2017/09/16 宋健 追加↑↑↑　dazhong@YMSC -->
+
+</sqlMap>
+

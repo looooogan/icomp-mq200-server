@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- v01b08s001Business注入 -->
+	<bean id="v01b08s001Business"
+		class="com.icomp.v01b08.b08s001.business.impl.B08S001BusinessImpl"
+		scope="prototype">
+		<property name="service" ref="commonService"></property>
+		<property name="iCOMPV01B08S001Service" ref="iCOMPV01B08S001Service"></property>
+	</bean>
+
+	<!-- v01b08s002Business注入 -->
+	<bean id="v01b08s002Business"
+		class="com.icomp.v01b08.b08s002.business.impl.B08S002BusinessImpl"
+		scope="prototype">
+		<property name="service" ref="commonService"></property>
+		<property name="iCOMPV01B08S002Service" ref="iCOMPV01B08S002Service"></property>
+	</bean>
+
+	<!-- v01b08s003Business注入 -->
+	<bean id="v01b08s003Business"
+		class="com.icomp.v01b08.b08s003.business.impl.B08S003BusinessImpl"
+		scope="prototype">
+		<property name="service" ref="commonService"></property>
+		<property name="iCOMPV01B08S003Service" ref="iCOMPV01B08S003Service"></property>
+	</bean>
+
+	<!-- v01b08s004Business注入 -->
+	<bean id="v01b08s004Business"
+		class="com.icomp.v01b08.b08s004.business.impl.B08S004BusinessImpl"
+		scope="prototype">
+		<property name="service" ref="commonService"></property>
+		<property name="iCOMPV01B08S004Service" ref="iCOMPV01B08S004Service"></property>
+	</bean>
+
+	<!-- v01b08s005Business注入 -->
+	<bean id="v01b08s005Business"
+		class="com.icomp.v01b08.b08s005.business.impl.B08S005BusinessImpl"
+		scope="prototype">
+		<property name="service" ref="commonService"></property>
+		<property name="iCOMPV01B08S005Service" ref="iCOMPV01B08S005Service"></property>
+	</bean>
+
+	<!-- v01b08s006Business注入 -->
+	<bean id="v01b08s006Business"
+		class="com.icomp.v01b08.b08s006.business.impl.B08S006BusinessImpl"
+		scope="prototype">
+		<property name="service" ref="commonService"></property>
+		<property name="iCOMPV01B08S006Service" ref="iCOMPV01B08S006Service"></property>
+	</bean>
+	
+    <!-- v01b08s007Business注入 -->
+	<bean id="v01b08s007Business"
+		class="com.icomp.v01b08.b08s007.business.impl.B08S007BusinessImpl"
+		scope="prototype">
+		<property name="service" ref="commonService"></property>
+		<property name="iCOMPV01B08S007Service" ref="iCOMPV01B08S007Service"></property>
+	</bean>
+	
+	<!-- v01b08s008Business注入 -->
+	<bean id="v01b08s008Business"
+		class="com.icomp.v01b08.b08s008.business.impl.B08S008BusinessImpl"
+		scope="prototype">
+		<property name="service" ref="commonService"></property>
+		<property name="iCOMPV01B08S008Service" ref="iCOMPV01B08S008Service"></property>
+	</bean>
+
+	<!-- v01b08s009Business注入 -->
+	<bean id="v01b08s009Business"
+		class="com.icomp.v01b08.b08s009.business.impl.B08S009BusinessImpl"
+		scope="prototype">
+		<property name="service" ref="commonService"></property>
+		<property name="iCOMPV01B08S009Service" ref="iCOMPV01B08S009Service"></property>
+	</bean>
+	
+	<!-- v01b08s010Business注入 -->
+	<bean id="v01b08s010Business"
+		class="com.icomp.v01b08.b08s010.business.impl.B08S010BusinessImpl"
+		scope="prototype">
+		<property name="service" ref="commonService"></property>
+		<property name="icompv01b08s010Service" ref="iCOMPV01B08S010Service"></property>
+	</bean>
+	
+	<!-- v01b08s011Business注入 -->
+	<bean id="v01b08s011Business"
+		class="com.icomp.v01b08.b08s011.business.impl.B08S011BusinessImpl"
+		scope="prototype">
+		<property name="service" ref="commonService"></property>
+		<property name="iCOMPV01B08S011Service" ref="iCOMPV01B08S011Service"></property>
+	</bean>
+	
+	<!-- v01b08s012Business注入 -->
+	<bean id="v01b08s012Business"
+		class="com.icomp.v01b08.b08s012.business.impl.B08S012BusinessImpl"
+		scope="prototype">
+		<property name="service" ref="commonService"></property>
+		<property name="iCOMPV01B08S012Service" ref="iCOMPV01B08S012Service"></property>
+	</bean>
+
+	<!-- v01b08s013Business注入 -->
+	<bean id="v01b08s013Business"
+		class="com.icomp.v01b08.b08s013.business.impl.B08S013BusinessImpl"
+		scope="prototype">
+		<property name="service" ref="commonService"></property>
+		<property name="iCOMPV01B08S013Service" ref="iCOMPV01B08S013Service"></property>
+	</bean>
+	
+	<!-- Service注入	-->
+	<!-- icompv01b08s002Service注入 -->
+	<bean id="iCOMPV01B08S002Service"
+		class="com.icomp.common.service.impl.icomp.v01b08.s002.ICOMPV01B08S002ServiceImpl"
+		scope="prototype">
+		<property name="librarycodeDao" ref="librarycodeDao"></property>
+		<property name="onoffDao" ref="onoffDao"></property>
+	</bean>
+
+	<!-- icompv01b08s003Service注入 -->
+	<bean id="iCOMPV01B08S003Service"
+		class="com.icomp.common.service.impl.icomp.v01b08.s003.ICOMPV01B08S003ServiceImpl"
+		scope="prototype">
+		<property name="languagetableDao" ref="languagetableDao"></property>
+	</bean>
+
+	<!-- icompv01b08s004Service注入 -->
+	<bean id="iCOMPV01B08S004Service"
+		class="com.icomp.common.service.impl.icomp.v01b08.s004.ICOMPV01B08S004ServiceImpl"
+		scope="prototype">
+		<property name="toolalarmparamDao" ref="toolalarmparamDao"></property>
+	</bean>
+
+	<!-- icompv01b08s005Service注入 -->
+	<bean id="iCOMPV01B08S005Service"
+		class="com.icomp.common.service.impl.icomp.v01b08.s005.ICOMPV01B08S005ServiceImpl"
+		scope="prototype">
+		<property name="vcomlistDao" ref="vcomlistDao"></property>
+		<property name="comlistDao" ref="comlistDao"></property>
+	</bean>
+
+	<!-- icompv01b08s006Service注入 -->
+	<bean id="iCOMPV01B08S006Service"
+		class="com.icomp.common.service.impl.icomp.v01b08.s006.ICOMPV01B08S006ServiceImpl"
+		scope="prototype">
+		<property name="handsetDao" ref="handsetDao"></property>
+		<property name="vhandsetDao" ref="vhandsetDao"></property>
+	</bean>
+
+	<!-- icompv01b08s007Service注入 -->
+	<bean id="iCOMPV01B08S007Service"
+		class="com.icomp.common.service.impl.icomp.v01b08.s007.ICOMPV01B08S007ServiceImpl"
+		scope="prototype">
+		<property name="equipmentDao" ref="equipmentDao"></property>
+		<property name="vequipmentDao" ref="vequipmentDao"></property>
+		<property name="rfidcontainerDao" ref="rfidcontainerDao"></property>
+		<property name="noticeequipmentDao" ref="noticeequipmentDao"></property>
+	</bean>
+	
+	<!-- icompv01b08s008Service注入 -->
+	<bean id="iCOMPV01B08S008Service"
+		class="com.icomp.common.service.impl.icomp.v01b08.s008.ICOMPV01B08S008ServiceImpl"
+		scope="prototype">
+		<property name="processDao" ref="processDao"></property>
+		<property name="vprocessDao" ref="vprocessDao"></property>
+	</bean>
+
+	<!-- icompv01b08s009Service注入 -->
+	<bean id="iCOMPV01B08S009Service"
+		class="com.icomp.common.service.impl.icomp.v01b08.s009.ICOMPV01B08S009ServiceImpl"
+		scope="prototype">
+		<property name="partsDao" ref="partsDao"></property>
+		<property name="vpartsDao" ref="vpartsDao"></property>
+	</bean>
+	
+	<!-- icompv01b08s010Service注入 -->
+	<bean id="iCOMPV01B08S010Service"
+		class="com.icomp.common.service.impl.icomp.v01b08.s010.ICOMPV01B08S010ServiceImpl"
+		scope="prototype">
+		<property name="vproductiondesignDao" ref="vproductiondesignDao"></property>
+		<property name="assemblylineDao" ref="assemblylineDao"></property>
+		<property name="productiondesignDao" ref="productiondesignDao"></property>
+	</bean>	
+	
+    <!-- icompv01b08s011Service注入 -->
+	<bean id="iCOMPV01B08S011Service"
+		class="com.icomp.common.service.impl.icomp.v01b08.s011.ICOMPV01B08S011ServiceImpl"
+		scope="prototype">
+		<property name="vstackDao" ref="vstackDao"></property>
+	    <property name="stackDao" ref="stackDao"></property>
+		<property name="vlibrarycodeDao" ref="vlibrarycodeDao"></property>
+	</bean>
+	
+	<!-- icompv01b08s011Service注入 -->
+	<bean id="iCOMPV01B08S012Service"
+		class="com.icomp.common.service.impl.icomp.v01b08.s012.ICOMPV01B08S012ServiceImpl"
+		scope="prototype">
+		<property name="assemblylineDao" ref="assemblylineDao"></property>
+		<property name="vassemblylineDao" ref="vassemblylineDao"></property>
+		<property name="vpartsDao" ref="vpartsDao"></property>
+		<property name="partsDao" ref="partsDao"></property>
+
+
+	</bean>
+	
+	<!-- icompv01b08s011Service注入 -->
+	<bean id="iCOMPV01B08S013Service"
+		class="com.icomp.common.service.impl.icomp.v01b08.s013.ICOMPV01B08S013ServiceImpl"
+		scope="prototype">
+		<property name="assemblylineDao" ref="assemblylineDao"></property>
+		<property name="partsDao" ref="partsDao"></property>
+		<property name="processDao" ref="processDao"></property>
+		<property name="equipmentDao" ref="equipmentDao"></property>
+		<property name="synthesisparametersDao" ref="synthesisparametersDao"></property>
+		<property name="voplinkDao" ref="voplinkDao"></property>
+		<property name="oplinkDao" ref="oplinkDao"></property>
+		<property name="axleDao" ref="axleDao"></property>
+		<property name="voplinkdownDao" ref="voplinkdownDao"></property>
+
+	</bean>
+	
+	<!-- icompv01b08s014Service注入 -->
+	<bean id="iCOMPV01B08S014Service"
+		class="com.icomp.common.service.impl.icomp.v01b08.s014.ICOMPV01B08S014ServiceImpl"
+		scope="prototype">
+		<property name="toolshelfDao" ref="toolshelfDao"></property>
+		<property name="toolshelflnkDao" ref="toolshelflnkDao"></property>
+		<property name="toolshelfplaceDao" ref="toolshelfplaceDao"></property>
+		<property name="vtoolshelfDao" ref="vtoolshelfDao"></property>
+		<property name="rfidcontainerDao" ref="rfidcontainerDao"></property>
+	</bean>
+	<!-- v01b08s014Business注入 -->
+	<bean id="v01b08s014Business"
+		class="com.icomp.v01b08.b08s014.business.impl.B08S014BusinessImpl"
+		scope="prototype">
+		<property name="service" ref="commonService"></property>
+		<property name="iCOMPV01B08S014Service" ref="iCOMPV01B08S014Service"></property>
+	</bean>
+</beans>

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vtoolsupplier.xml
+		Created on : 2014/11/22 10:56:03
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList_F ： 任意条件查询-toolCode模糊查询
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vtoolsupplier">
+	<typeAlias alias="entityVtoolsupplier" type="com.icomp.entity.base.Vtoolsupplier" />
+	<resultMap id="Vtoolsupplier-map" class="entityVtoolsupplier">
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 供应商 -->
+		<result property="toolSupplier" column="ToolSupplier" />
+		<!-- 采购批次 -->
+		<result property="procuredBatch" column="ProcuredBatch" />
+		<!-- 采购单价 -->
+		<result property="unitPrice" column="UnitPrice" />
+		<!-- 采购数量 -->
+		<result property="procuredCount" column="ProcuredCount" />
+		<!-- 定额加工量 -->
+		<result property="quotaProcessingVolume" column="QuotaProcessingVolume" />
+		<!-- 实际到货数量 -->
+		<result property="realityTheyCount" column="RealityTheyCount" />
+		<!-- 预计到货时间 -->
+		<result property="theyTime" column="TheyTime" />
+		<!-- 实际到货时间 -->
+		<result property="realityTheyTime" column="RealityTheyTime" />
+		<!--  -->
+		<result property="discardeCount" column="discardeCount" />
+		<!--  -->
+		<result property="avgCount" column="avgCount" />
+		<!--  -->
+		<result property="unitCount" column="unitCount" />
+		<!--  -->
+		<result property="excDiscarde" column="excDiscarde" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVtoolsupplier" resultMap="Vtoolsupplier-map">
+		SELECT
+		ToolCode
+		,ToolSupplier
+		,ProcuredBatch
+		,UnitPrice
+		,ProcuredCount
+		,QuotaProcessingVolume
+		,RealityTheyCount
+		,TheyTime
+		,RealityTheyTime
+		,discardeCount
+		,avgCount
+		,unitCount
+		,excDiscarde
+		from vtoolsupplier
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVtoolsupplier" resultMap="Vtoolsupplier-map">
+		SELECT
+		ToolCode
+		,ToolSupplier
+		,ProcuredBatch
+		,UnitPrice
+		,ProcuredCount
+		,QuotaProcessingVolume
+		,RealityTheyCount
+		,TheyTime
+		,RealityTheyTime
+		,discardeCount
+		,avgCount
+		,unitCount
+		,excDiscarde
+		from vtoolsupplier
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolSupplier" prepend="and ">
+				ToolSupplier = #toolSupplier#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+			<isNotNull property="procuredCount" prepend="and ">
+				ProcuredCount = #procuredCount#
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="realityTheyCount" prepend="and ">
+				RealityTheyCount = #realityTheyCount#
+         </isNotNull>
+			<isNotNull property="theyTime" prepend="and ">
+				TheyTime = #theyTime#
+         </isNotNull>
+			<isNotNull property="realityTheyTime" prepend="and ">
+				RealityTheyTime = #realityTheyTime#
+         </isNotNull>
+			<isNotNull property="discardeCount" prepend="and ">
+				discardeCount = #discardeCount#
+         </isNotNull>
+			<isNotNull property="avgCount" prepend="and ">
+				avgCount = #avgCount#
+         </isNotNull>
+			<isNotNull property="unitCount" prepend="and ">
+				unitCount = #unitCount#
+         </isNotNull>
+			<isNotNull property="excDiscarde" prepend="and ">
+				excDiscarde = #excDiscarde#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList_F" parameterClass="entityVtoolsupplier" resultMap="Vtoolsupplier-map">
+		SELECT
+		ToolCode
+		,ToolSupplier
+		,ProcuredBatch
+		,UnitPrice
+		,ProcuredCount
+		,QuotaProcessingVolume
+		,RealityTheyCount
+		,TheyTime
+		,RealityTheyTime
+		,discardeCount
+		,avgCount
+		,unitCount
+		,excDiscarde
+		from vtoolsupplier
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolSupplier" prepend="and ">
+				ToolSupplier = #toolSupplier#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+			<isNotNull property="procuredCount" prepend="and ">
+				ProcuredCount = #procuredCount#
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="realityTheyCount" prepend="and ">
+				RealityTheyCount = #realityTheyCount#
+         </isNotNull>
+			<isNotNull property="theyTime" prepend="and ">
+				TheyTime = #theyTime#
+         </isNotNull>
+			<isNotNull property="realityTheyTime" prepend="and ">
+				RealityTheyTime = #realityTheyTime#
+         </isNotNull>
+			<isNotNull property="discardeCount" prepend="and ">
+				discardeCount = #discardeCount#
+         </isNotNull>
+			<isNotNull property="avgCount" prepend="and ">
+				avgCount = #avgCount#
+         </isNotNull>
+			<isNotNull property="unitCount" prepend="and ">
+				unitCount = #unitCount#
+         </isNotNull>
+			<isNotNull property="excDiscarde" prepend="and ">
+				excDiscarde = #excDiscarde#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVtoolsupplier" resultClass="int">
+		SELECT count(1)
+		from vtoolsupplier
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+		ToolCode like concat('%',#toolCode #,'%')
+         </isNotNull>
+			<isNotNull property="toolSupplier" prepend="and ">
+				ToolSupplier = #toolSupplier#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+			<isNotNull property="procuredCount" prepend="and ">
+				ProcuredCount = #procuredCount#
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="realityTheyCount" prepend="and ">
+				RealityTheyCount = #realityTheyCount#
+         </isNotNull>
+			<isNotNull property="theyTime" prepend="and ">
+				TheyTime = #theyTime#
+         </isNotNull>
+			<isNotNull property="realityTheyTime" prepend="and ">
+				RealityTheyTime = #realityTheyTime#
+         </isNotNull>
+			<isNotNull property="discardeCount" prepend="and ">
+				discardeCount = #discardeCount#
+         </isNotNull>
+			<isNotNull property="avgCount" prepend="and ">
+				avgCount = #avgCount#
+         </isNotNull>
+			<isNotNull property="unitCount" prepend="and ">
+				unitCount = #unitCount#
+         </isNotNull>
+			<isNotNull property="excDiscarde" prepend="and ">
+				excDiscarde = #excDiscarde#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

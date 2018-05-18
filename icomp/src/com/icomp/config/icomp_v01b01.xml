@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<!--库存信息 -->
+	<package name="V01B01" extends="icomp-default">
+        <!-- 初始化页面 -->
+		<action name="B01S*" class="b01S{1}Action" method="initb01S{1}">
+			<result >/WEB-INF/jsp/v01b01/b01s{1}.jsp</result>
+		</action>
+
+        <!--在途计划查询：确认到货	-->
+		<action name="vtransitPlanEdit" class="b01S007Action" method="vtransitPlanEdit">
+			<result name="success">/WEB-INF/jsp/v01b01/b01s007.jsp</result>
+		</action>
+
+		<action name="show" class="b01S001Action" method="show">
+			<result name="success">/WEB-INF/jsp/v01b01/b01s001.jsp</result>
+		</action>
+		
+		<!--在途计划查询：添加实际到货时间、数量	-->
+		<action name="vtransitPlanAdd" class="b01S007Action" method="vtransitPlanAdd">
+			<result name="success">/WEB-INF/jsp/v01b01/b01s007.jsp</result>
+		</action>
+		
+		<!--在途计划查询：取得在途计划信息	-->
+		<action name="vtransitInfo" class="b01S007Action" method="vtransitInfo">
+			<result name="success">/WEB-INF/jsp/v01b01/b01s007.jsp</result>
+		</action>
+		<!--新建补领	-->
+		<action name="replacement*" class="b01S005Action" method="replacement{1}">
+			<result name="success">/WEB-INF/jsp/v01b01/b01s005.jsp</result>
+		</action>
+		<action name="redemptionappliedInfo" class="b01S004Action" method="redemptionappliedInfo">
+
+		</action>
+		<action name="replacementLink" class="b01S005Action" method="replacementLink">
+
+		</action>
+		<!-- execl文件下载 -->
+		<action name="exportExcel*" class="b{1}Action" method="exportExcel">
+			<result  type="stream" name="exportExcels">
+				<param name="ContentType">application/vnd.ms-excel</param><!--  指定其类型 -->
+				<param name="inputName">excelStream</param> <!--返回流excelStream为action中的流变名称-->
+				<param name="contentDisposition">attachment;filename=${excelFileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<!-- execl文件打印版下载 -->
+		<action name="exportExcelPrint03S002" class="b03S002Action" method="exportExcelPrint">
+			<result  type="stream" name="exportExcels">
+				<param name="ContentType">application/vnd.ms-excel</param><!--  指定其类型 -->
+				<param name="inputName">excelStream</param> <!--返回流excelStream为action中的流变名称-->
+				<param name="contentDisposition">attachment;filename=${excelFileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<!-- 修改sap信息 -->
+		<action name="sapEdit" class="b01S013Action" method="sapEdit">
+			<result name="success">/WEB-INF/jsp/v01b01/b01s013.jsp</result>
+		</action>
+	</package>
+</struts>  

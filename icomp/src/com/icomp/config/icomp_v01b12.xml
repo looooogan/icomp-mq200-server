@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 系统维护  -->
+	<package name="V01B12" extends="icomp-default">
+		<!-- 操作流程管理初始化Action -->
+		<action name="B12S001" class="b12S001Action" method="initb12S001">
+			<result name="success">/WEB-INF/jsp/v01b12/b12s001.jsp</result>
+		</action>
+		<!-- 删除功能Action -->
+		<action name="businessDelete" class="b12S001Action" method="businessDelete">
+			<result name="success">/WEB-INF/jsp/v01b12/b12s001.jsp</result>
+		</action>
+		<!-- 添加功能Action -->
+		<action name="businessAdd" class="b12S001Action" method="businessAdd">
+			<result name="success">/WEB-INF/jsp/v01b12/b12s001.jsp</result>
+		</action>
+		<!-- 根据id获取流程-业务-中间表信息功能Action -->
+		<action name="businessInfo" class="b12S001Action" method="businessInfo">
+			<result name="success">/WEB-INF/jsp/v01b12/b12s001.jsp</result>
+		</action>
+		<!-- 编辑功能Action -->
+		<action name="businessEdit" class="b12S001Action" method="businessEdit">
+			<result name="success">/WEB-INF/jsp/v01b12/b12s001.jsp</result>
+		</action>
+	</package>
+</struts>  

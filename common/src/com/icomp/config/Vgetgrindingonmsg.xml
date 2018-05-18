@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vgetgrindingonmsg.xml
+		Created on : 2014/10/15 14:22:13
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgetgrindingonmsg">
+	<typeAlias alias="entityVgetgrindingonmsg" type="com.icomp.entity.base.Vgetgrindingonmsg" />
+	<resultMap id="Vgetgrindingonmsg-map" class="entityVgetgrindingonmsg">
+		<!-- RFID标签ID -->
+		<result property="rfidCode" column="RfidCode" />
+		<!-- RFID载体ID -->
+		<result property="rfidContainerID" column="RfidContainerID" />
+		<!-- 刀具入库编码 -->
+		<result property="knifeInventoryCode" column="KnifeInventoryCode" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 刀具名称 -->
+		<result property="toolName" column="ToolName" />
+		<!-- 消耗类别(0:可刃磨钻头1可刃磨刀片2一次性刀片9其他 -->
+		<result property="toolConsumetype" column="ToolConsumetype" />
+		<!-- 库存状态(0正常1报废2返厂3封存4流转9其他) -->
+		<result property="stockState" column="StockState" />
+		<!-- 业务流程ID -->
+		<result property="businessID" column="BusinessID" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVgetgrindingonmsg" resultMap="Vgetgrindingonmsg-map">
+		SELECT
+		RfidCode
+		,RfidContainerID
+		,KnifeInventoryCode
+		,ToolID
+		,ToolCode
+		,ToolName
+		,ToolConsumetype
+		,StockState
+		,BusinessID
+		from vgetgrindingonmsg
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVgetgrindingonmsg" resultMap="Vgetgrindingonmsg-map">
+		SELECT
+		RfidCode
+		,RfidContainerID
+		,KnifeInventoryCode
+		,ToolID
+		,ToolCode
+		,ToolName
+		,ToolConsumetype
+		,StockState
+		,BusinessID
+		from vgetgrindingonmsg
+		<dynamic prepend=" where ">
+			<isNotNull property="rfidCode" prepend="and ">
+				RfidCode = #rfidCode#
+         </isNotNull>
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+         <isNotNull property="stockState" prepend="and ">
+				StockState = #stockState#
+         </isNotNull>
+			<isNotNull property="businessID" prepend="and ">
+				BusinessID = #businessID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVgetgrindingonmsg" resultClass="int">
+		SELECT count(1)
+		from vgetgrindingonmsg
+		<dynamic prepend=" where ">
+			<isNotNull property="rfidCode" prepend="and ">
+				RfidCode = #rfidCode#
+         </isNotNull>
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+         <isNotNull property="stockState" prepend="and ">
+				StockState = #stockState#
+         </isNotNull>
+			<isNotNull property="businessID" prepend="and ">
+				BusinessID = #businessID#
+         </isNotNull>
+		</dynamic>
+	</select>
+	<!-- 任意条件查询执行 -->
+	<select id="searchByToolList" resultMap="Vgetgrindingonmsg-map" parameterClass="java.util.Map">
+		SELECT
+     	rfidcontainer.RfidCode
+		,rfidcontainer.RfidContainerID
+		,KnifeInventoryCode
+		,tool.ToolID
+		,ToolCode
+		,ToolName
+		,ToolConsumetype
+		,StockState
+		,business.BusinessID
+		FROM tooltransfer
+		INNER JOIN tool on tool.ToolID = tooltransfer.ToolID
+		INNER JOIN rfidcontainer on rfidcontainer.RfidContainerID = tooltransfer.RfidContainerID
+		INNER JOIN businessflowlnk on businessflowlnk.BusinessFlowLnkID = tooltransfer.BusinessFlowLnkID
+		INNER JOIN business on business.BusinessID = businessflowlnk.BusinessID
+		where 
+		       business.BusinessCode ='C01S021'
+		 and rfidcontainer.RfidCode = #rfidString#
+	</select>
+</sqlMap>
+

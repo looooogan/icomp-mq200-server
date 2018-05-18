@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 决策分析  -->
+	<package name="V01B06" extends="icomp-default" >
+		<!-- 初始化页面 -->
+		<action name="B06S*" class="b06S{1}Action" method="initb06S{1}">
+			<result >/WEB-INF/jsp/v01b06/b06s{1}.jsp</result>
+		</action>
+		<!-- 统计	-->
+		<action name="statistics_*" class="{1}Action"  method="statistics_{1}">
+		</action>
+		<!-- 2017/09/19 宋健 变更↓↓↓　dazhong@YMSC -->
+		<!-- 零部件下拉列表	-->
+		<action name="getPartsById" class="com.icomp.v01b06.b06s002.action.B06S002Action"  method="getPartsById">
+		</action>
+		<!-- 2017/09/19 宋健 变更↑↑↑　dazhong@YMSC -->
+		<!-- 保存	-->
+		<action name="*Save" class="{1}Action"  method="{1}Save">
+			<result >/WEB-INF/jsp/v01b06/b06s{1}.jsp</result>
+		</action>
+
+	</package>
+</struts>  

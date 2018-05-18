@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vredemptionappdetailedmsgnew.xml
+		Created on : 2015/03/09 14:47:05
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vredemptionappdetailedmsgnew">
+	<typeAlias alias="entityVredemptionappdetailedmsgnew" type="com.icomp.entity.base.Vredemptionappdetailedmsgnew" />
+	<resultMap id="Vredemptionappdetailedmsgnew-map" class="entityVredemptionappdetailedmsgnew">
+		<!-- 申请人 -->
+		<result property="applyUser" column="ApplyUser" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!--  -->
+		<result property="lblCode" column="lblCode" />
+		<!-- 申请数量 -->
+		<result property="appliedNumber" column="AppliedNumber" />
+		<!-- 备货数量 -->
+		<result property="stockNumber" column="StockNumber" />
+		<!-- 申请时间 -->
+		<result property="applyTime" column="ApplyTime" />
+		<!--  -->
+		<result property="inventoryCount_A" column="InventoryCount_A" />
+		<!--  -->
+		<result property="inventoryCount_B" column="InventoryCount_B" />
+		<!-- 送回数量 -->
+		<result property="returnNumber" column="ReturnNumber" />
+		<!-- 断刀数量 -->
+		<result property="brokenNumber" column="BrokenNumber" />
+		<!-- 丢失数量 -->
+		<result property="lostNumber" column="LostNumber" />
+		<!-- 到寿数量 -->
+		<result property="lifeOverNumber" column="LifeOverNumber" />
+        <!-- 换领状态-->
+		<result property="processingStatus" column="ProcessingStatus" />
+        <!-- 刀具类型-->
+		<result property="toolConsumetype" column="ToolConsumetype" />
+        <!--申请单号-暂时无用）-->
+		<result property="redemptionAppliedID" column="RedemptionAppliedID" />
+        <!-- 已领取数量-->
+		<result property="receiveNumber" column="ReceiveNumber" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVredemptionappdetailedmsgnew" resultMap="Vredemptionappdetailedmsgnew-map">
+		SELECT
+		ApplyUser
+		,ToolCode
+		,lblCode
+		,AppliedNumber
+		,StockNumber
+		,ApplyTime
+		,InventoryCount_A
+		,InventoryCount_B
+		,ReturnNumber
+		,BrokenNumber
+		,LostNumber
+		,LifeOverNumber
+        ,ProcessingStatus
+        ,ToolConsumetype
+        ,RedemptionAppliedID
+        ,ReceiveNumber
+		from vredemptionappdetailedmsgnew
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVredemptionappdetailedmsgnew" resultMap="Vredemptionappdetailedmsgnew-map">
+		SELECT
+		ApplyUser
+		,ToolCode
+		,lblCode
+		,AppliedNumber
+		,StockNumber
+		,ApplyTime
+		,InventoryCount_A
+		,InventoryCount_B
+		,ReturnNumber
+		,BrokenNumber
+		,LostNumber
+		,LifeOverNumber
+        ,ProcessingStatus
+        ,ToolConsumetype
+        ,RedemptionAppliedID
+        ,ReceiveNumber
+		from vredemptionappdetailedmsgnew
+		<dynamic prepend=" where ">
+			<isNotNull property="applyUser" prepend="and ">
+				ApplyUser = #applyUser#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="lblCode" prepend="and ">
+				lblCode = #lblCode#
+         </isNotNull>
+			<isNotNull property="appliedNumber" prepend="and ">
+				AppliedNumber = #appliedNumber#
+         </isNotNull>
+			<isNotNull property="stockNumber" prepend="and ">
+				StockNumber = #stockNumber#
+         </isNotNull>
+			<isNotNull property="applyTime" prepend="and ">
+				ApplyTime = #applyTime#
+         </isNotNull>
+			<isNotNull property="inventoryCount_A" prepend="and ">
+				InventoryCount_A = #inventoryCount_A#
+         </isNotNull>
+			<isNotNull property="inventoryCount_B" prepend="and ">
+				InventoryCount_B = #inventoryCount_B#
+         </isNotNull>
+			<isNotNull property="returnNumber" prepend="and ">
+				ReturnNumber = #returnNumber#
+         </isNotNull>
+			<isNotNull property="brokenNumber" prepend="and ">
+				BrokenNumber = #brokenNumber#
+         </isNotNull>
+			<isNotNull property="lostNumber" prepend="and ">
+				LostNumber = #lostNumber#
+         </isNotNull>
+			<isNotNull property="lifeOverNumber" prepend="and ">
+				LifeOverNumber = #lifeOverNumber#
+         </isNotNull>
+            <isNotNull property="processingStatus" prepend="and ">
+				ProcessingStatus = #processingStatus#
+         </isNotNull>  <isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+            <isNotNull property="redemptionAppliedID" prepend="and ">
+				RedemptionAppliedID = #redemptionAppliedID#
+         </isNotNull>
+            <isNotNull property="receiveNumber" prepend="and ">
+				ReceiveNumber = #receiveNumber#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVredemptionappdetailedmsgnew" resultClass="int">
+		SELECT count(1)
+		from vredemptionappdetailedmsgnew
+		<dynamic prepend=" where ">
+			<isNotNull property="applyUser" prepend="and ">
+				ApplyUser = #applyUser#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="lblCode" prepend="and ">
+				lblCode = #lblCode#
+         </isNotNull>
+			<isNotNull property="appliedNumber" prepend="and ">
+				AppliedNumber = #appliedNumber#
+         </isNotNull>
+			<isNotNull property="stockNumber" prepend="and ">
+				StockNumber = #stockNumber#
+         </isNotNull>
+			<isNotNull property="applyTime" prepend="and ">
+				ApplyTime = #applyTime#
+         </isNotNull>
+			<isNotNull property="inventoryCount_A" prepend="and ">
+				InventoryCount_A = #inventoryCount_A#
+         </isNotNull>
+			<isNotNull property="inventoryCount_B" prepend="and ">
+				InventoryCount_B = #inventoryCount_B#
+         </isNotNull>
+			<isNotNull property="returnNumber" prepend="and ">
+				ReturnNumber = #returnNumber#
+         </isNotNull>
+			<isNotNull property="brokenNumber" prepend="and ">
+				BrokenNumber = #brokenNumber#
+         </isNotNull>
+			<isNotNull property="lostNumber" prepend="and ">
+				LostNumber = #lostNumber#
+         </isNotNull>
+			<isNotNull property="lifeOverNumber" prepend="and ">
+				LifeOverNumber = #lifeOverNumber#
+         </isNotNull>
+            <isNotNull property="processingStatus" prepend="and ">
+				ProcessingStatus = #processingStatus#
+         </isNotNull>
+            <isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+            <isNotNull property="redemptionAppliedID" prepend="and ">
+				RedemptionAppliedID = #redemptionAppliedID#
+         </isNotNull>  <isNotNull property="receiveNumber" prepend="and ">
+				ReceiveNumber = #receiveNumber#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

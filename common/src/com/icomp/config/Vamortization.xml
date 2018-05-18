@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vamortization.xml
+		Created on : 2016/03/10 16:44:00
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vamortization">
+	<typeAlias alias="entityVamortization" type="com.icomp.entity.base.Vamortization" />
+	<resultMap id="Vamortization-map" class="entityVamortization">
+		<!-- 流水线名称 -->
+		<result property="assemblyLineName" column="AssemblyLineName" />
+		<!-- 流水线ID -->
+		<result property="assemblyLineID" column="AssemblyLineID" />
+		<!-- 工序名称 -->
+		<result property="processName" column="ProcessName" />
+		<!-- 工序ID -->
+		<result property="processID" column="ProcessID" />
+		<!-- 创建时间 -->
+		<result property="outerTime" column="OuterTime" />
+		<!-- 刀具分类(0刀具1辅具2配套9其他） -->
+		<result property="toolType" column="ToolType" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 设备名称 -->
+		<result property="equipmentName" column="EquipmentName" />
+		<!-- 设备ID -->
+		<result property="equipmentID" column="EquipmentID" />
+		<!-- 零部件ID -->
+		<result property="partsID" column="PartsID" />
+		<!-- 零部件名称 -->
+		<result property="partsName" column="PartsName" />
+		<!-- 轴编码 -->
+		<result property="axleCode" column="axleCode" />
+		<!-- 轴ID -->
+		<result property="axleID" column="axleID" />
+		<!--  -->
+		<result property="procesNumber" column="ProcesNumber" />
+		<!-- 加工数量 -->
+		<result property="processAmount" column="ProcessAmount" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVamortization" resultMap="Vamortization-map">
+		SELECT
+		AssemblyLineName
+		,AssemblyLineID
+		,ProcessName
+		,ProcessID
+		,OuterTime
+		,ToolType
+		,ToolCode
+		,ToolID
+		,EquipmentName
+		,EquipmentID
+		,PartsID
+		,PartsName
+		,axleCode
+		,axleID
+		,ProcesNumber
+		,ProcessAmount
+		from vamortization
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVamortization" resultMap="Vamortization-map">
+		SELECT
+		aa.AssemblyLineName AS AssemblyLineName,
+		aa.AssemblyLineID AS AssemblyLineID,
+		aa.PartsName AS PartsName,
+		aa.PartsID AS PartsID,
+		aa.ProcessName AS ProcessName,
+		aa.ProcessID AS ProcessID,
+		aa.PartsType AS PartsType,
+		aa.EquipmentName AS EquipmentName,
+		aa.EquipmentID AS EquipmentID,
+		aa.OuterTime AS OuterTime,
+		aa.ToolCode AS ToolCode,
+		aa.ToolType as ToolType,
+		aa.axleCode AS axleCode,
+		aa.axleID AS axleID,
+		aa.ToolID AS ToolID,
+		COUNT(1) AS ProcesNumber,
+		<!--2017/11/14 王冉 变更↓↓↓　dazhong@YMSC-->
+		CASE WHEN aa.CreateType = '4' THEN aa.ProcessAmount*COUNT(1)
+		ELSE aa.ProcessAmount END ProcessAmount
+		<!-- 2017/11/14 王冉 变更↑↑↑　dazhong@YMSC -->
+		FROM
+		(
+		SELECT
+		ab.AssemblyLineName AS AssemblyLineName,
+		ab.AssemblyLineID AS AssemblyLineID,
+		pa.PartsName AS PartsName,
+		pa.PartsID AS PartsID,
+		pa.PartsCode as PartsCode,
+		pc.ProcessName AS ProcessName,
+		pc.ProcessID AS ProcessID,
+		pa.PartsType AS PartsType,
+		eq.EquipmentName AS EquipmentName,
+		eq.EquipmentID AS EquipmentID,
+		ssc.OuterTime AS OuterTime,
+		t.ToolCode AS ToolCode,
+		t.ToolType as ToolType,
+		t.ToolID as ToolID,
+		ax.axleCode AS axleCode,
+		ax.axleID AS axleID,
+		ssc.ProcessAmount AS ProcessAmount,
+		(SELECT sp.CreateType FROM synthesisparameters sp WHERE t.ToolCode = sp.SynthesisParametersCode LIMIT 1) CreateType
+		FROM
+		toolsmachining ssc
+		INNER JOIN tool    t  on t.ToolID = ssc.ToolID
+		inner JOIN assemblyline ab ON ab.AssemblyLineID = ssc.AssemblyLineID
+		inner JOIN parts pa ON pa.PartsID = ssc.PartsID
+		inner JOIN process pc ON 	pc.ProcessID = ssc.ProcessID
+		inner JOIN equipment eq ON eq.EquipmentID = ssc.EquipmentID
+		inner JOIN axle ax ON 	ax.axleID = ssc.AxleID
+		WHERE
+		ssc.DelFlag = '0'and
+		ab.DelFlag = '0'and
+		pa.DelFlag = '0'and
+		pc.DelFlag = '0'and
+		eq.DelFlag = '0'and
+		ax.DelFlag = '0'
+		<!--2017/08/14 王冉 追加↓↓↓　dazhong@YMSC-->
+		and t.ToolType = '0'
+		<!-- 2017/08/14 王冉 追加↑↑↑　dazhong@YMSC -->
+		AND (
+			NOT ((`t`.`ToolCode` LIKE 'C%'))
+		)
+
+		GROUP BY
+		ab.AssemblyLineID,
+		pc.ProcessID,
+		eq.EquipmentID,
+		ax.axleCode,
+		pa.PartsCode,
+		t.ToolCode,
+		ssc.SynthesisNumber
+		ORDER BY ssc.OuterTime desc
+		)	aa
+		<dynamic prepend=" where ">
+			<isNotNull property="assemblyLineName" prepend="and ">
+				AssemblyLineName = #assemblyLineName#
+         </isNotNull>
+			<isNotNull property="assemblyLineID" prepend="and ">
+				AssemblyLineID = #assemblyLineID#
+         </isNotNull>
+			<isNotNull property="processName" prepend="and ">
+				ProcessName = #processName#
+         </isNotNull>
+			<isNotNull property="processID" prepend="and ">
+				ProcessID = #processID#
+         </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				OuterTime >= #dateStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				OuterTime <= #dateEnd#
+				]]>
+			</isNotNull>
+			<isNotNull property="toolType" prepend="and ">
+				ToolType = #toolType#
+			</isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+			<isNotNull property="partsID" prepend="and ">
+				PartsID = #partsID#
+         </isNotNull>
+			<isNotNull property="partsName" prepend="and ">
+				PartsName = #partsName#
+         </isNotNull>
+			<isNotNull property="axleCode" prepend="and ">
+				axleCode = #axleCode#
+         </isNotNull>
+			<isNotNull property="axleID" prepend="and ">
+				axleID = #axleID#
+         </isNotNull>
+			<isNotNull property="procesNumber" prepend="and ">
+				ProcesNumber = #procesNumber#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+		</dynamic>
+		GROUP BY
+		aa.AssemblyLineID,
+		aa.ProcessID,
+		aa.EquipmentID,
+		aa.axleCode,
+		aa.PartsCode,
+		aa.ToolCode,aa.OuterTime
+		ORDER BY aa.OuterTime desc
+		<isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVamortization" resultClass="int">
+		SELECT
+		COUNT(1)
+		FROM (
+		SELECT
+		aa.AssemblyLineName AS AssemblyLineName,
+		aa.AssemblyLineID AS AssemblyLineID,
+		aa.PartsName AS PartsName,
+		aa.PartsID AS PartsID,
+		aa.ProcessName AS ProcessName,
+		aa.ProcessID AS ProcessID,
+		aa.PartsType AS PartsType,
+		aa.EquipmentName AS EquipmentName,
+		aa.EquipmentID AS EquipmentID,
+		aa.OuterTime AS OuterTime,
+		aa.ToolCode AS ToolCode,
+		aa.ToolType as ToolType,
+		aa.axleCode AS axleCode,
+		aa.axleID AS axleID,
+		aa.ToolID AS ToolID,
+		COUNT(1) AS ProcesNumber,
+		sum(aa.ProcessAmount) AS ProcessAmount
+		FROM
+		(
+		SELECT
+		ab.AssemblyLineName AS AssemblyLineName,
+		ab.AssemblyLineID AS AssemblyLineID,
+		pa.PartsName AS PartsName,
+		pa.PartsID AS PartsID,
+		pa.PartsCode as PartsCode,
+		pc.ProcessName AS ProcessName,
+		pc.ProcessID AS ProcessID,
+		pa.PartsType AS PartsType,
+		eq.EquipmentName AS EquipmentName,
+		eq.EquipmentID AS EquipmentID,
+		ssc.OuterTime AS OuterTime,
+		t.ToolCode AS ToolCode,
+		t.ToolType as ToolType,
+		t.ToolID as ToolID,
+		ax.axleCode AS axleCode,
+		ax.axleID AS axleID,
+		ssc.ProcessAmount AS ProcessAmount
+
+		FROM
+		toolsmachining ssc
+		INNER JOIN tool    t  on t.ToolID = ssc.ToolID
+		inner JOIN assemblyline ab ON ab.AssemblyLineID = ssc.AssemblyLineID
+		inner JOIN parts pa ON pa.PartsID = ssc.PartsID
+		inner JOIN process pc ON 	pc.ProcessID = ssc.ProcessID
+		inner JOIN equipment eq ON eq.EquipmentID = ssc.EquipmentID
+		inner JOIN axle ax ON 	ax.axleID = ssc.AxleID
+		WHERE
+		ssc.DelFlag = '0'and
+		ab.DelFlag = '0'and
+		pa.DelFlag = '0'and
+		pc.DelFlag = '0'and
+		eq.DelFlag = '0'and
+		ax.DelFlag = '0'
+		<!--2017/08/14 王冉 追加↓↓↓　dazhong@YMSC-->
+		and t.ToolType = '0'
+		<!-- 2017/08/14 王冉 追加↑↑↑　dazhong@YMSC -->
+		AND (
+			NOT ((`t`.`ToolCode` LIKE 'C%'))
+		)
+
+		GROUP BY
+		ab.AssemblyLineID,
+		pc.ProcessID,
+		eq.EquipmentID,
+		ax.axleCode,
+		pa.PartsCode,
+		t.ToolCode,
+		ssc.SynthesisNumber
+		ORDER BY ssc.OuterTime desc
+		)	aa
+		<dynamic prepend=" where ">
+			<isNotNull property="assemblyLineName" prepend="and ">
+				AssemblyLineName = #assemblyLineName#
+			</isNotNull>
+			<isNotNull property="assemblyLineID" prepend="and ">
+				AssemblyLineID = #assemblyLineID#
+			</isNotNull>
+			<isNotNull property="processName" prepend="and ">
+				ProcessName = #processName#
+			</isNotNull>
+			<isNotNull property="processID" prepend="and ">
+				ProcessID = #processID#
+			</isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				OuterTime >= #dateStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				OuterTime <= #dateEnd#
+				]]>
+			</isNotNull>
+			<isNotNull property="toolType" prepend="and ">
+				ToolType = #toolType#
+			</isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode like concat('%',#toolCode#,'%')
+			</isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+			</isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+			</isNotNull>
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+			</isNotNull>
+			<isNotNull property="partsID" prepend="and ">
+				PartsID = #partsID#
+			</isNotNull>
+			<isNotNull property="partsName" prepend="and ">
+				PartsName = #partsName#
+			</isNotNull>
+			<isNotNull property="axleCode" prepend="and ">
+				axleCode = #axleCode#
+			</isNotNull>
+			<isNotNull property="axleID" prepend="and ">
+				axleID = #axleID#
+			</isNotNull>
+			<isNotNull property="procesNumber" prepend="and ">
+				ProcesNumber = #procesNumber#
+			</isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+			</isNotNull>
+		</dynamic>
+		GROUP BY
+		aa.AssemblyLineID,
+		aa.ProcessID,
+		aa.EquipmentID,
+		aa.axleCode,
+		aa.PartsCode,
+		aa.ToolCode,aa.OuterTime
+		ORDER BY aa.OuterTime desc
+		)bb
+	</select>
+
+</sqlMap>
+

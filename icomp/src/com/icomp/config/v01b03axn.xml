@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+    <!-- 刃磨信息	 -->
+    <!-- 刃磨记录查询ACTION注入	-->
+    <bean id="b03S001Action" class="com.icomp.v01b03.b03s001.action.B03S001Action" scope="prototype">
+        <property name="b03s001Business" ref="b03s001Business"/>
+    </bean>
+
+    <!-- 修复通知单查询ACTION注入	-->
+    <bean id="b03S002Action" class="com.icomp.v01b03.b03s002.action.B03S002Action" scope="prototype">
+        <property name="b03s002Business" ref="b03s002Business"/>
+    </bean>
+    <bean id="b03S006Action" class="com.icomp.v01b03.b03s002.action.B03S006Action" scope="prototype">
+        <property name="b03s002Business" ref="b03s002Business"/>
+    </bean>
+
+    <!-- 库房待修复刀具查询ACTION注入	-->
+    <bean id="b03S003Action" class="com.icomp.v01b03.b03s003.action.B03S003Action" scope="prototype">
+        <property name="b03s003Business" ref="b03s003Business"/>
+        <property name="b03s002Business" ref="b03s002Business"/>
+    </bean>
+
+    <!-- 刃磨工作量汇总ACTION注入	-->
+    <bean id="b03S004Action" class="com.icomp.v01b03.b03s004.action.B03S004Action" scope="prototype">
+        <property name="b03s004Business" ref="b03s004Business"/>
+    </bean>
+
+    <!-- 刃磨信息快速查询ACTION注入	-->
+    <bean id="b03S005Action" class="com.icomp.v01b03.b03s005.action.B03S005Action" scope="prototype">
+        <property name="b03s005Business" ref="b03s005Business"/>
+    </bean>
+
+    <!-- 筒刀拆装记录查询ACTION注入	-->
+    <bean id="b03S007Action" class="com.icomp.v01b03.b03s007.action.B03S007Action" scope="prototype">
+        <property name="b03s007Business" ref="b03s007Business"/>
+    </bean>
+</beans>

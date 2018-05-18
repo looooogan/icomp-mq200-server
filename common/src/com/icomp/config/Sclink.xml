@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Sclink.xml
+		Created on : 2014/08/19 15:48:45
+		Author : 工具自动生成
+		Description: 工具自动生成包含系统-功能的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Sclink">
+	<typeAlias alias="entitySclink" type="com.icomp.entity.base.Sclink" />
+	<resultMap id="Sclink-map" class="entitySclink">
+		<!-- scLinkID -->
+		<result property="scLinkID" column="scLinkID" />
+		<!-- SystemID -->
+		<result property="systemID" column="SystemID" />
+		<!-- capability_ID -->
+		<result property="capabilityID" column="CapabilityID" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entitySclink" resultMap="Sclink-map">
+		SELECT
+		scLinkID
+		,SystemID
+		,CapabilityID
+		from sclink
+		<dynamic prepend=" where ">
+			<isNotNull property="scLinkID" prepend="and ">
+				scLinkID = #scLinkID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					scLinkID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entitySclink" resultMap="Sclink-map">
+		SELECT
+		scLinkID
+		,SystemID
+		,CapabilityID
+		from sclink
+		<dynamic prepend=" where ">
+			<isNotNull property="scLinkID" prepend="and ">
+				scLinkID = #scLinkID#
+         </isNotNull>
+			<isNotNull property="systemID" prepend="and ">
+				SystemID = #systemID#
+         </isNotNull>
+			<isNotNull property="capabilityID" prepend="and ">
+				CapabilityID = #capabilityID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					scLinkID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entitySclink" resultClass="int">
+		SELECT count(1)
+		from sclink
+		<dynamic prepend=" where ">
+			<isNotNull property="scLinkID" prepend="and ">
+				scLinkID = #scLinkID#
+         </isNotNull>
+			<isNotNull property="systemID" prepend="and ">
+				SystemID = #systemID#
+         </isNotNull>
+			<isNotNull property="capabilityID" prepend="and ">
+				CapabilityID = #capabilityID#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entitySclink">
+		update sclink
+		<dynamic prepend="set">
+			<isNotNull property="scLinkID">
+				scLinkID = #scLinkID#
+         </isNotNull>
+			<isNull property="scLinkID">
+				scLinkID = null
+         </isNull>
+			<isNotNull property="systemID">
+				,SystemID = #systemID#
+         </isNotNull>
+			<isNull property="systemID">
+				,SystemID = null
+         </isNull>
+			<isNotNull property="capabilityID">
+				,CapabilityID = #capabilityID#
+         </isNotNull>
+			<isNull property="capabilityID">
+				,CapabilityID = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="scLinkIDWhere" prepend="and ">
+				scLinkID = #scLinkIDWhere#
+         </isNotNull>
+			<isNotNull property="systemIDWhere" prepend="and ">
+				SystemID = #systemIDWhere#
+         </isNotNull>
+			<isNotNull property="capabilityIDWhere" prepend="and ">
+				CapabilityID = #capabilityIDWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entitySclink">
+		update sclink
+		<dynamic prepend="set">
+			<isNotNull property="scLinkID"  prepend=",">
+				scLinkID = #scLinkID#
+         </isNotNull>
+			<isNotNull property="systemID"  prepend=",">
+				SystemID = #systemID#
+         </isNotNull>
+			<isNotNull property="capabilityID"  prepend=",">
+				CapabilityID = #capabilityID#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="scLinkIDWhere" prepend="and ">
+				scLinkID = #scLinkIDWhere#
+         </isNotNull>
+			<isNotNull property="systemIDWhere" prepend="and ">
+				SystemID = #systemIDWhere#
+         </isNotNull>
+			<isNotNull property="capabilityIDWhere" prepend="and ">
+				CapabilityID = #capabilityIDWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entitySclink">
+		<selectKey resultClass="java.lang.String" keyProperty="scLinkID">
+			SELECT #scLinkID# as scLinkID FROM DUAL
+     </selectKey>
+		insert into sclink(
+		scLinkID
+		,SystemID
+		,CapabilityID
+		)
+		Values (
+			<isNotNull property="scLinkID">
+				#scLinkID#
+         </isNotNull>
+			<isNull property="scLinkID">
+				null
+         </isNull>
+			<isNotNull property="systemID">
+				,#systemID#
+         </isNotNull>
+			<isNull property="systemID">
+				,null
+         </isNull>
+			<isNotNull property="capabilityID">
+				,#capabilityID#
+         </isNotNull>
+			<isNull property="capabilityID">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entitySclink">
+		delete  from sclink
+		<dynamic prepend=" where ">
+			<isNotNull property="scLinkIDWhere" prepend="and ">
+				scLinkID = #scLinkIDWhere#
+         </isNotNull>
+			<isNotNull property="systemIDWhere" prepend="and ">
+				SystemID = #systemIDWhere#
+         </isNotNull>
+			<isNotNull property="capabilityIDWhere" prepend="and ">
+				CapabilityID = #capabilityIDWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

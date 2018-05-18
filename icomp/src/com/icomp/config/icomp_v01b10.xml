@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<!-- 日志管理  -->
+	<package name="V01B10" extends="icomp-default">
+		<!-- 手持机日志初始化Action -->
+		<action name="B10S002" class="b10S002Action" method="initb10S002">
+			<result name="success">/WEB-INF/jsp/v01b10/b10s002.jsp</result>
+		</action>
+		<!-- 管理平台日志初始化Action -->
+		<action name="B10S003" class="b10S003Action" method="initb10S003">
+			<result name="success">/WEB-INF/jsp/v01b10/b10s003.jsp</result>
+		</action>	
+	</package>
+</struts>  

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vgetequipmentnamebyrfid.xml
+		Created on : 2014/10/29 13:11:33
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgetequipmentnamebyrfid">
+	<typeAlias alias="entityVgetequipmentnamebyrfid" type="com.icomp.entity.base.Vgetequipmentnamebyrfid" />
+	<resultMap id="Vgetequipmentnamebyrfid-map" class="entityVgetequipmentnamebyrfid">
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		
+		<result property="synthesisParametersNumber" column="SynthesisParametersNumber" />
+		<!-- 业务-流程中间表ID -->
+		<result property="businessFlowLnkID" column="BusinessFlowLnkID" />
+		<!-- 设备ID -->
+		<result property="equipmentID" column="EquipmentID" />
+		<!-- 设备编码 -->
+		<result property="equipmentCode" column="EquipmentCode" />
+		<!-- 设备名称 -->
+		<result property="equipmentName" column="EquipmentName" />
+		<!-- RFID(辅具或配套上打孔安装的RFID) -->
+		<result property="rfid" column="Rfid" />
+		<!-- X坐标 -->
+		<result property="xpoint" column="Xpoint" />
+		<!-- Y坐标 -->
+		<result property="ypoint" column="Ypoint" />
+		<!--  -->
+		<result property="knifeMan" column="KnifeMan" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+		<!-- 语言编码 -->
+		<result property="languageCode" column="LanguageCode" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVgetequipmentnamebyrfid" resultMap="Vgetequipmentnamebyrfid-map">
+		SELECT
+		SynthesisParametersCode
+		,SynthesisParametersNumber
+		,BusinessFlowLnkID
+		,EquipmentID
+		,EquipmentCode
+		,EquipmentName
+		,Rfid
+		,Xpoint
+		,Ypoint
+		,KnifeMan
+		,Version
+		,LanguageCode
+		from vgetequipmentnamebyrfid
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+         <isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVgetequipmentnamebyrfid" resultMap="Vgetequipmentnamebyrfid-map">
+		SELECT
+		SynthesisParametersCode
+		,SynthesisParametersNumber
+		,BusinessFlowLnkID
+		,EquipmentID
+		,EquipmentCode
+		,EquipmentName
+		,Rfid
+		,Xpoint
+		,Ypoint
+		,KnifeMan
+		,Version
+		,LanguageCode
+		from vgetequipmentnamebyrfid
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+         <isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+			<isNotNull property="equipmentCode" prepend="and ">
+				EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="rfid" prepend="and ">
+				Rfid = #rfid#
+         </isNotNull>
+			<isNotNull property="xpoint" prepend="and ">
+				Xpoint = #xpoint#
+         </isNotNull>
+			<isNotNull property="ypoint" prepend="and ">
+				Ypoint = #ypoint#
+         </isNotNull>
+			<isNotNull property="knifeMan" prepend="and ">
+				KnifeMan = #knifeMan#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="0">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVgetequipmentnamebyrfid" resultClass="int">
+		SELECT count(1)
+		from vgetequipmentnamebyrfid
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+         <isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+			<isNotNull property="equipmentCode" prepend="and ">
+				EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="rfid" prepend="and ">
+				Rfid = #rfid#
+         </isNotNull>
+			<isNotNull property="xpoint" prepend="and ">
+				Xpoint = #xpoint#
+         </isNotNull>
+			<isNotNull property="ypoint" prepend="and ">
+				Ypoint = #ypoint#
+         </isNotNull>
+			<isNotNull property="knifeMan" prepend="and ">
+				KnifeMan = #knifeMan#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

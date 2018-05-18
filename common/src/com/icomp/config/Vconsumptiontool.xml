@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vconsumptiontool.xml
+		Created on : 2014/11/25 14:14:43
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByList_F ： 任意条件查询-toolCode模糊查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vconsumptiontool">
+	<typeAlias alias="entityVconsumptiontool" type="com.icomp.entity.base.Vconsumptiontool" />
+	<resultMap id="Vconsumptiontool-map" class="entityVconsumptiontool">
+		<!-- 零部件名称 -->
+		<result property="partsName" column="PartsName" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 刀具名称 -->
+		<result property="toolName" column="ToolName" />
+		<!--  -->
+		<result property="consumedCount" column="consumedCount" />
+		<!-- 定额加工量 -->
+		<result property="quotaProcessingVolume" column="QuotaProcessingVolume" />
+		<!-- 加工数量 -->
+		<result property="processAmount" column="ProcessAmount" />
+		<!--  -->
+		<result property="processAmountSum" column="ProcessAmountSum" />
+		<!--  -->
+		<result property="avgNum" column="AvgNum" />
+		<!--  -->
+		<result property="planGrindingTimes" column="planGrindingTimes" />
+		<!--  -->
+		<result property="actualGrindingTimes" column="actualGrindingTimes" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVconsumptiontool" resultMap="Vconsumptiontool-map">
+		SELECT
+		PartsName
+		,ToolCode
+		,ToolName
+		,consumedCount
+		,QuotaProcessingVolume
+		,ProcessAmount
+		,ProcessAmountSum
+		,AvgNum
+		,planGrindingTimes
+		,actualGrindingTimes
+		from vconsumptiontool
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVconsumptiontool" resultMap="Vconsumptiontool-map">
+		SELECT
+		PartsName
+		,ToolCode
+		,ToolName
+		,consumedCount
+		,QuotaProcessingVolume
+		,ProcessAmount
+		,ProcessAmountSum
+		,AvgNum
+		,planGrindingTimes
+		,actualGrindingTimes
+		from vconsumptiontool
+		<dynamic prepend=" where ">
+			<isNotNull property="partsName" prepend="and ">
+				PartsName = #partsName#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="consumedCount" prepend="and ">
+				consumedCount = #consumedCount#
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+			<isNotNull property="processAmountSum" prepend="and ">
+				ProcessAmountSum = #processAmountSum#
+         </isNotNull>
+			<isNotNull property="avgNum" prepend="and ">
+				AvgNum = #avgNum#
+         </isNotNull>
+			<isNotNull property="planGrindingTimes" prepend="and ">
+				planGrindingTimes = #planGrindingTimes#
+         </isNotNull>
+			<isNotNull property="actualGrindingTimes" prepend="and ">
+				actualGrindingTimes = #actualGrindingTimes#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -toolCode模糊查询 -->
+	<select id="searchByList_F" parameterClass="entityVconsumptiontool" resultMap="Vconsumptiontool-map">
+		SELECT
+		PartsName
+		,ToolCode
+		,ToolName
+		,consumedCount
+		,QuotaProcessingVolume
+		,ProcessAmount
+		,ProcessAmountSum
+		,AvgNum
+		,planGrindingTimes
+		,actualGrindingTimes
+		from vconsumptiontool
+		<dynamic prepend=" where ">
+			<isNotNull property="partsName" prepend="and ">
+				PartsName = #partsName#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="consumedCount" prepend="and ">
+				consumedCount = #consumedCount#
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+			<isNotNull property="processAmountSum" prepend="and ">
+				ProcessAmountSum = #processAmountSum#
+         </isNotNull>
+			<isNotNull property="avgNum" prepend="and ">
+				AvgNum = #avgNum#
+         </isNotNull>
+			<isNotNull property="planGrindingTimes" prepend="and ">
+				planGrindingTimes = #planGrindingTimes#
+         </isNotNull>
+			<isNotNull property="actualGrindingTimes" prepend="and ">
+				actualGrindingTimes = #actualGrindingTimes#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVconsumptiontool" resultClass="int">
+		SELECT count(1)
+		from vconsumptiontool
+		<dynamic prepend=" where ">
+			<isNotNull property="partsName" prepend="and ">
+				PartsName = #partsName#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="consumedCount" prepend="and ">
+				consumedCount = #consumedCount#
+         </isNotNull>
+			<isNotNull property="quotaProcessingVolume" prepend="and ">
+				QuotaProcessingVolume = #quotaProcessingVolume#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+			<isNotNull property="processAmountSum" prepend="and ">
+				ProcessAmountSum = #processAmountSum#
+         </isNotNull>
+			<isNotNull property="avgNum" prepend="and ">
+				AvgNum = #avgNum#
+         </isNotNull>
+			<isNotNull property="planGrindingTimes" prepend="and ">
+				planGrindingTimes = #planGrindingTimes#
+         </isNotNull>
+			<isNotNull property="actualGrindingTimes" prepend="and ">
+				actualGrindingTimes = #actualGrindingTimes#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

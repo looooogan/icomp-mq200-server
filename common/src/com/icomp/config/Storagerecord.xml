@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Storagerecord.xml
+		Created on : 2016/06/13 17:12:07
+		Author : 工具自动生成
+		Description: 工具自动生成包含的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Storagerecord">
+	<typeAlias alias="entityStoragerecord" type="com.icomp.entity.base.Storagerecord" />
+	<resultMap id="Storagerecord-map" class="entityStoragerecord">
+		<!-- 入库履历 -->
+		<result property="storageID" column="StorageID" />
+		<!-- 刀具id -->
+		<result property="toolID" column="ToolID" />
+		<!-- 材料号 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 订单号 -->
+		<result property="toolsOrdeNO" column="ToolsOrdeNO" />
+		<!-- 库存状态（0.新刀） -->
+		<result property="storageState" column="StorageState" />
+		<!-- 刀具入库编码 -->
+		<result property="knifeInventoryCode" column="KnifeInventoryCode" />
+		<!-- 入库数量 -->
+		<result property="storageNum" column="StorageNum" />
+		<!-- 刀具类型 -->
+		<result property="storageType" column="StorageType" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 上传状态 -->
+		<result property="state" column="State" />
+		<result property="employeeCard" column="EmployeeCard" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityStoragerecord" resultMap="Storagerecord-map">
+		SELECT
+		StorageID
+		,ToolID
+		,ToolCode
+		,ToolsOrdeNO
+		,StorageState
+		,KnifeInventoryCode
+		,StorageNum
+		,StorageType
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,State
+		,EmployeeCard
+		from storagerecord
+		<dynamic prepend=" where ">
+			<isNotNull property="storageID" prepend="and ">
+				StorageID = #storageID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					StorageID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityStoragerecord" resultMap="Storagerecord-map">
+		SELECT
+		StorageID
+		,ToolID
+		,ToolCode
+		,ToolsOrdeNO
+		,StorageState
+		,KnifeInventoryCode
+		,StorageNum
+		,StorageType
+		,s.DelFlag
+		,s.UpdateTime
+		,s.UpdateUser
+		,s.CreateTime AS CreateTime
+		,u.UserName AS  CreateUser
+		,State
+		,cu.EmployeeCard
+		from storagerecord s
+		INNER  JOIN  userdetail u  ON s.CreateUser = u.CustomerID
+		INNER  JOIN   customer cu on cu.CustomerID = s.CreateUser
+		<dynamic prepend=" where ">
+			<isNotNull property="storageID" prepend="and ">
+				StorageID = #storageID#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolsOrdeNO" prepend="and ">
+				ToolsOrdeNO = #toolsOrdeNO#
+         </isNotNull>
+			<isNotNull property="storageState" prepend="and ">
+				StorageState = #storageState#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="storageNum" prepend="and ">
+				StorageNum = #storageNum#
+         </isNotNull>
+			<isNotNull property="storageType" prepend="and ">
+				StorageType like concat('%',#storageType#,'%')
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				s.CreateTime >= #dateStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				s.CreateTime <= #dateEnd#
+				]]>
+			</isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				s.UserName like concat('%',#createUser#,'%')
+         </isNotNull>
+			<isNotNull property="employeeCard" prepend="or ">
+				cu.employeeCard like concat('%',#employeeCard#,'%')
+         </isNotNull>
+			<isNotNull property="state" prepend="and ">
+				State = #state#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					StorageID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityStoragerecord" resultClass="int">
+		SELECT count(1)
+		from storagerecord
+		<dynamic prepend=" where ">
+			<isNotNull property="storageID" prepend="and ">
+				StorageID = #storageID#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolsOrdeNO" prepend="and ">
+				ToolsOrdeNO = #toolsOrdeNO#
+         </isNotNull>
+			<isNotNull property="storageState" prepend="and ">
+				StorageState = #storageState#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="storageNum" prepend="and ">
+				StorageNum = #storageNum#
+         </isNotNull>
+			<isNotNull property="storageType" prepend="and ">
+				StorageType = #storageType#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				CreateTime >= #dateStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				CreateTime <= #dateEnd#
+				]]>
+			</isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="state" prepend="and ">
+				State = #state#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityStoragerecord">
+		update storagerecord
+		<dynamic prepend="set">
+			<isNotNull property="storageID">
+				StorageID = #storageID#
+         </isNotNull>
+			<isNull property="storageID">
+				StorageID = null
+         </isNull>
+			<isNotNull property="toolID">
+				,ToolID = #toolID#
+         </isNotNull>
+			<isNull property="toolID">
+				,ToolID = null
+         </isNull>
+			<isNotNull property="toolCode">
+				,ToolCode = #toolCode#
+         </isNotNull>
+			<isNull property="toolCode">
+				,ToolCode = null
+         </isNull>
+			<isNotNull property="toolsOrdeNO">
+				,ToolsOrdeNO = #toolsOrdeNO#
+         </isNotNull>
+			<isNull property="toolsOrdeNO">
+				,ToolsOrdeNO = null
+         </isNull>
+			<isNotNull property="storageState">
+				,StorageState = #storageState#
+         </isNotNull>
+			<isNull property="storageState">
+				,StorageState = null
+         </isNull>
+			<isNotNull property="knifeInventoryCode">
+				,KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNull property="knifeInventoryCode">
+				,KnifeInventoryCode = null
+         </isNull>
+			<isNotNull property="storageNum">
+				,StorageNum = #storageNum#
+         </isNotNull>
+			<isNull property="storageNum">
+				,StorageNum = null
+         </isNull>
+			<isNotNull property="storageType">
+				,StorageType = #storageType#
+         </isNotNull>
+			<isNull property="storageType">
+				,StorageType = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="state">
+				,State = #state#
+         </isNotNull>
+			<isNull property="state">
+				,State = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="storageIDWhere" prepend="and ">
+				StorageID = #storageIDWhere#
+         </isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				ToolID = #toolIDWhere#
+         </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode = #toolCodeWhere#
+         </isNotNull>
+			<isNotNull property="toolsOrdeNOWhere" prepend="and ">
+				ToolsOrdeNO = #toolsOrdeNOWhere#
+         </isNotNull>
+			<isNotNull property="storageStateWhere" prepend="and ">
+				StorageState = #storageStateWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="storageNumWhere" prepend="and ">
+				StorageNum = #storageNumWhere#
+         </isNotNull>
+			<isNotNull property="storageTypeWhere" prepend="and ">
+				StorageType = #storageTypeWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="stateWhere" prepend="and ">
+				State = #stateWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityStoragerecord">
+		update storagerecord
+		<dynamic prepend="set">
+			<isNotNull property="storageID"  prepend=",">
+				StorageID = #storageID#
+         </isNotNull>
+			<isNotNull property="toolID"  prepend=",">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolCode"  prepend=",">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolsOrdeNO"  prepend=",">
+				ToolsOrdeNO = #toolsOrdeNO#
+         </isNotNull>
+			<isNotNull property="storageState"  prepend=",">
+				StorageState = #storageState#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode"  prepend=",">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="storageNum"  prepend=",">
+				StorageNum = #storageNum#
+         </isNotNull>
+			<isNotNull property="storageType"  prepend=",">
+				StorageType = #storageType#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="state"  prepend=",">
+				State = #state#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="storageIDWhere" prepend="and ">
+				StorageID = #storageIDWhere#
+         </isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				ToolID = #toolIDWhere#
+         </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode = #toolCodeWhere#
+         </isNotNull>
+			<isNotNull property="toolsOrdeNOWhere" prepend="and ">
+				ToolsOrdeNO = #toolsOrdeNOWhere#
+         </isNotNull>
+			<isNotNull property="storageStateWhere" prepend="and ">
+				StorageState = #storageStateWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="storageNumWhere" prepend="and ">
+				StorageNum = #storageNumWhere#
+         </isNotNull>
+			<isNotNull property="storageTypeWhere" prepend="and ">
+				StorageType = #storageTypeWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="stateWhere" prepend="and ">
+				State = #stateWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityStoragerecord">
+		<selectKey resultClass="java.lang.String" keyProperty="storageID">
+			SELECT #storageID# as storageID FROM DUAL
+     </selectKey>
+		insert into storagerecord(
+		StorageID
+		,ToolID
+		,ToolCode
+		,ToolsOrdeNO
+		,StorageState
+		,KnifeInventoryCode
+		,StorageNum
+		,StorageType
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,State
+		)
+		Values (
+			<isNotNull property="storageID">
+				#storageID#
+         </isNotNull>
+			<isNull property="storageID">
+				null
+         </isNull>
+			<isNotNull property="toolID">
+				,#toolID#
+         </isNotNull>
+			<isNull property="toolID">
+				,null
+         </isNull>
+			<isNotNull property="toolCode">
+				,#toolCode#
+         </isNotNull>
+			<isNull property="toolCode">
+				,null
+         </isNull>
+			<isNotNull property="toolsOrdeNO">
+				,#toolsOrdeNO#
+         </isNotNull>
+			<isNull property="toolsOrdeNO">
+				,null
+         </isNull>
+			<isNotNull property="storageState">
+				,#storageState#
+         </isNotNull>
+			<isNull property="storageState">
+				,null
+         </isNull>
+			<isNotNull property="knifeInventoryCode">
+				,#knifeInventoryCode#
+         </isNotNull>
+			<isNull property="knifeInventoryCode">
+				,null
+         </isNull>
+			<isNotNull property="storageNum">
+				,#storageNum#
+         </isNotNull>
+			<isNull property="storageNum">
+				,null
+         </isNull>
+			<isNotNull property="storageType">
+				,#storageType#
+         </isNotNull>
+			<isNull property="storageType">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="state">
+				,#state#
+         </isNotNull>
+			<isNull property="state">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityStoragerecord">
+		delete  from storagerecord
+		<dynamic prepend=" where ">
+			<isNotNull property="storageIDWhere" prepend="and ">
+				StorageID = #storageIDWhere#
+         </isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				ToolID = #toolIDWhere#
+         </isNotNull>
+			<isNotNull property="toolCodeWhere" prepend="and ">
+				ToolCode = #toolCodeWhere#
+         </isNotNull>
+			<isNotNull property="toolsOrdeNOWhere" prepend="and ">
+				ToolsOrdeNO = #toolsOrdeNOWhere#
+         </isNotNull>
+			<isNotNull property="storageStateWhere" prepend="and ">
+				StorageState = #storageStateWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+			<isNotNull property="storageNumWhere" prepend="and ">
+				StorageNum = #storageNumWhere#
+         </isNotNull>
+			<isNotNull property="storageTypeWhere" prepend="and ">
+				StorageType = #storageTypeWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="stateWhere" prepend="and ">
+				State = #stateWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

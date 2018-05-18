@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Ledplane.xml
+		Created on : 2014/11/27 16:35:09
+		Author : 工具自动生成
+		Description: 工具自动生成包含专机领用申请的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Ledplane">
+	<typeAlias alias="entityLedplane" type="com.icomp.entity.base.Ledplane" />
+	<resultMap id="Ledplane-map" class="entityLedplane">
+		<!-- 专机领用申请ID -->
+		<result property="ledPlaneID" column="LedPlaneID" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 领用数量 -->
+		<result property="ledPlaneCount" column="LedPlaneCount" />
+		<!-- 领用时间 -->
+		<result property="ledPlaneTime" column="LedPlaneTime" />
+		<!-- 领用人 -->
+		<result property="ledPlaneUser" column="LedPlaneUser" />
+		<!-- 送回数量 -->
+		<result property="returnCount" column="ReturnCount" />
+		<!-- 送回时间 -->
+		<result property="returnTime" column="ReturnTime" />
+		<!-- 确认人 -->
+		<result property="confirmUser" column="ConfirmUser" />
+		<!-- 处理状态(0:新建1备货2领取3送回确认) -->
+		<result property="ledPlaneStauts" column="LedPlaneStauts" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityLedplane" resultMap="Ledplane-map">
+		SELECT
+		LedPlaneID
+		,ToolID
+		,LedPlaneCount
+		,LedPlaneTime
+		,LedPlaneUser
+		,ReturnCount
+		,ReturnTime
+		,ConfirmUser
+		,LedPlaneStauts
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from ledplane
+		<dynamic prepend=" where ">
+			<isNotNull property="ledPlaneID" prepend="and ">
+				LedPlaneID = #ledPlaneID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					LedPlaneID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityLedplane" resultMap="Ledplane-map">
+		SELECT
+		LedPlaneID
+		,ToolID
+		,LedPlaneCount
+		,LedPlaneTime
+		,LedPlaneUser
+		,ReturnCount
+		,ReturnTime
+		,ConfirmUser
+		,LedPlaneStauts
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		from ledplane
+		<dynamic prepend=" where ">
+			<isNotNull property="ledPlaneID" prepend="and ">
+				LedPlaneID = #ledPlaneID#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="ledPlaneCount" prepend="and ">
+				LedPlaneCount = #ledPlaneCount#
+         </isNotNull>
+			<isNotNull property="ledPlaneTime" prepend="and ">
+				LedPlaneTime = #ledPlaneTime#
+         </isNotNull>
+			<isNotNull property="ledPlaneUser" prepend="and ">
+				LedPlaneUser = #ledPlaneUser#
+         </isNotNull>
+			<isNotNull property="returnCount" prepend="and ">
+				ReturnCount = #returnCount#
+         </isNotNull>
+			<isNotNull property="returnTime" prepend="and ">
+				ReturnTime = #returnTime#
+         </isNotNull>
+			<isNotNull property="confirmUser" prepend="and ">
+				ConfirmUser = #confirmUser#
+         </isNotNull>
+			<isNotNull property="ledPlaneStauts" prepend="and ">
+				LedPlaneStauts = #ledPlaneStauts#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					LedPlaneID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityLedplane" resultClass="int">
+		SELECT count(1)
+		from ledplane
+		<dynamic prepend=" where ">
+			<isNotNull property="ledPlaneID" prepend="and ">
+				LedPlaneID = #ledPlaneID#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="ledPlaneCount" prepend="and ">
+				LedPlaneCount = #ledPlaneCount#
+         </isNotNull>
+			<isNotNull property="ledPlaneTime" prepend="and ">
+				LedPlaneTime = #ledPlaneTime#
+         </isNotNull>
+			<isNotNull property="ledPlaneUser" prepend="and ">
+				LedPlaneUser = #ledPlaneUser#
+         </isNotNull>
+			<isNotNull property="returnCount" prepend="and ">
+				ReturnCount = #returnCount#
+         </isNotNull>
+			<isNotNull property="returnTime" prepend="and ">
+				ReturnTime = #returnTime#
+         </isNotNull>
+			<isNotNull property="confirmUser" prepend="and ">
+				ConfirmUser = #confirmUser#
+         </isNotNull>
+			<isNotNull property="ledPlaneStauts" prepend="and ">
+				LedPlaneStauts = #ledPlaneStauts#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityLedplane">
+		update ledplane
+		<dynamic prepend="set">
+			<isNotNull property="ledPlaneID">
+				LedPlaneID = #ledPlaneID#
+         </isNotNull>
+			<isNull property="ledPlaneID">
+				LedPlaneID = null
+         </isNull>
+			<isNotNull property="toolID">
+				,ToolID = #toolID#
+         </isNotNull>
+			<isNull property="toolID">
+				,ToolID = null
+         </isNull>
+			<isNotNull property="ledPlaneCount">
+				,LedPlaneCount = #ledPlaneCount#
+         </isNotNull>
+			<isNull property="ledPlaneCount">
+				,LedPlaneCount = null
+         </isNull>
+			<isNotNull property="ledPlaneTime">
+				,LedPlaneTime = #ledPlaneTime#
+         </isNotNull>
+			<isNull property="ledPlaneTime">
+				,LedPlaneTime = null
+         </isNull>
+			<isNotNull property="ledPlaneUser">
+				,LedPlaneUser = #ledPlaneUser#
+         </isNotNull>
+			<isNull property="ledPlaneUser">
+				,LedPlaneUser = null
+         </isNull>
+			<isNotNull property="returnCount">
+				,ReturnCount = #returnCount#
+         </isNotNull>
+			<isNull property="returnCount">
+				,ReturnCount = null
+         </isNull>
+			<isNotNull property="returnTime">
+				,ReturnTime = #returnTime#
+         </isNotNull>
+			<isNull property="returnTime">
+				,ReturnTime = null
+         </isNull>
+			<isNotNull property="confirmUser">
+				,ConfirmUser = #confirmUser#
+         </isNotNull>
+			<isNull property="confirmUser">
+				,ConfirmUser = null
+         </isNull>
+			<isNotNull property="ledPlaneStauts">
+				,LedPlaneStauts = #ledPlaneStauts#
+         </isNotNull>
+			<isNull property="ledPlaneStauts">
+				,LedPlaneStauts = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="ledPlaneIDWhere" prepend="and ">
+				LedPlaneID = #ledPlaneIDWhere#
+         </isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				ToolID = #toolIDWhere#
+         </isNotNull>
+			<isNotNull property="ledPlaneCountWhere" prepend="and ">
+				LedPlaneCount = #ledPlaneCountWhere#
+         </isNotNull>
+			<isNotNull property="ledPlaneTimeWhere" prepend="and ">
+				LedPlaneTime = #ledPlaneTimeWhere#
+         </isNotNull>
+			<isNotNull property="ledPlaneUserWhere" prepend="and ">
+				LedPlaneUser = #ledPlaneUserWhere#
+         </isNotNull>
+			<isNotNull property="returnCountWhere" prepend="and ">
+				ReturnCount = #returnCountWhere#
+         </isNotNull>
+			<isNotNull property="returnTimeWhere" prepend="and ">
+				ReturnTime = #returnTimeWhere#
+         </isNotNull>
+			<isNotNull property="confirmUserWhere" prepend="and ">
+				ConfirmUser = #confirmUserWhere#
+         </isNotNull>
+			<isNotNull property="ledPlaneStautsWhere" prepend="and ">
+				LedPlaneStauts = #ledPlaneStautsWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityLedplane">
+		update ledplane
+		<dynamic prepend="set">
+			<isNotNull property="ledPlaneID"  prepend=",">
+				LedPlaneID = #ledPlaneID#
+         </isNotNull>
+			<isNotNull property="toolID"  prepend=",">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="ledPlaneCount"  prepend=",">
+				LedPlaneCount = #ledPlaneCount#
+         </isNotNull>
+			<isNotNull property="ledPlaneTime"  prepend=",">
+				LedPlaneTime = #ledPlaneTime#
+         </isNotNull>
+			<isNotNull property="ledPlaneUser"  prepend=",">
+				LedPlaneUser = #ledPlaneUser#
+         </isNotNull>
+			<isNotNull property="returnCount"  prepend=",">
+				ReturnCount = #returnCount#
+         </isNotNull>
+			<isNotNull property="returnTime"  prepend=",">
+				ReturnTime = #returnTime#
+         </isNotNull>
+			<isNotNull property="confirmUser"  prepend=",">
+				ConfirmUser = #confirmUser#
+         </isNotNull>
+			<isNotNull property="ledPlaneStauts"  prepend=",">
+				LedPlaneStauts = #ledPlaneStauts#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="ledPlaneIDWhere" prepend="and ">
+				LedPlaneID = #ledPlaneIDWhere#
+         </isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				ToolID = #toolIDWhere#
+         </isNotNull>
+			<isNotNull property="ledPlaneCountWhere" prepend="and ">
+				LedPlaneCount = #ledPlaneCountWhere#
+         </isNotNull>
+			<isNotNull property="ledPlaneTimeWhere" prepend="and ">
+				LedPlaneTime = #ledPlaneTimeWhere#
+         </isNotNull>
+			<isNotNull property="ledPlaneUserWhere" prepend="and ">
+				LedPlaneUser = #ledPlaneUserWhere#
+         </isNotNull>
+			<isNotNull property="returnCountWhere" prepend="and ">
+				ReturnCount = #returnCountWhere#
+         </isNotNull>
+			<isNotNull property="returnTimeWhere" prepend="and ">
+				ReturnTime = #returnTimeWhere#
+         </isNotNull>
+			<isNotNull property="confirmUserWhere" prepend="and ">
+				ConfirmUser = #confirmUserWhere#
+         </isNotNull>
+			<isNotNull property="ledPlaneStautsWhere" prepend="and ">
+				LedPlaneStauts = #ledPlaneStautsWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityLedplane">
+		<selectKey resultClass="java.lang.String" keyProperty="ledPlaneID">
+			SELECT #ledPlaneID# as ledPlaneID FROM DUAL
+     </selectKey>
+		insert into ledplane(
+		LedPlaneID
+		,ToolID
+		,LedPlaneCount
+		,LedPlaneTime
+		,LedPlaneUser
+		,ReturnCount
+		,ReturnTime
+		,ConfirmUser
+		,LedPlaneStauts
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		,Version
+		)
+		Values (
+			<isNotNull property="ledPlaneID">
+				#ledPlaneID#
+         </isNotNull>
+			<isNull property="ledPlaneID">
+				null
+         </isNull>
+			<isNotNull property="toolID">
+				,#toolID#
+         </isNotNull>
+			<isNull property="toolID">
+				,null
+         </isNull>
+			<isNotNull property="ledPlaneCount">
+				,#ledPlaneCount#
+         </isNotNull>
+			<isNull property="ledPlaneCount">
+				,null
+         </isNull>
+			<isNotNull property="ledPlaneTime">
+				,#ledPlaneTime#
+         </isNotNull>
+			<isNull property="ledPlaneTime">
+				,null
+         </isNull>
+			<isNotNull property="ledPlaneUser">
+				,#ledPlaneUser#
+         </isNotNull>
+			<isNull property="ledPlaneUser">
+				,null
+         </isNull>
+			<isNotNull property="returnCount">
+				,#returnCount#
+         </isNotNull>
+			<isNull property="returnCount">
+				,null
+         </isNull>
+			<isNotNull property="returnTime">
+				,#returnTime#
+         </isNotNull>
+			<isNull property="returnTime">
+				,null
+         </isNull>
+			<isNotNull property="confirmUser">
+				,#confirmUser#
+         </isNotNull>
+			<isNull property="confirmUser">
+				,null
+         </isNull>
+			<isNotNull property="ledPlaneStauts">
+				,#ledPlaneStauts#
+         </isNotNull>
+			<isNull property="ledPlaneStauts">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityLedplane">
+		delete  from ledplane
+		<dynamic prepend=" where ">
+			<isNotNull property="ledPlaneIDWhere" prepend="and ">
+				LedPlaneID = #ledPlaneIDWhere#
+         </isNotNull>
+			<isNotNull property="toolIDWhere" prepend="and ">
+				ToolID = #toolIDWhere#
+         </isNotNull>
+			<isNotNull property="ledPlaneCountWhere" prepend="and ">
+				LedPlaneCount = #ledPlaneCountWhere#
+         </isNotNull>
+			<isNotNull property="ledPlaneTimeWhere" prepend="and ">
+				LedPlaneTime = #ledPlaneTimeWhere#
+         </isNotNull>
+			<isNotNull property="ledPlaneUserWhere" prepend="and ">
+				LedPlaneUser = #ledPlaneUserWhere#
+         </isNotNull>
+			<isNotNull property="returnCountWhere" prepend="and ">
+				ReturnCount = #returnCountWhere#
+         </isNotNull>
+			<isNotNull property="returnTimeWhere" prepend="and ">
+				ReturnTime = #returnTimeWhere#
+         </isNotNull>
+			<isNotNull property="confirmUserWhere" prepend="and ">
+				ConfirmUser = #confirmUserWhere#
+         </isNotNull>
+			<isNotNull property="ledPlaneStautsWhere" prepend="and ">
+				LedPlaneStauts = #ledPlaneStautsWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

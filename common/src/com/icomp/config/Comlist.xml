@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Comlist.xml
+		Created on : 2014/08/19 15:48:45
+		Author : 工具自动生成
+		Description: 工具自动生成包含区分定义的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Comlist">
+	<typeAlias alias="entityComlist" type="com.icomp.entity.base.Comlist" />
+	<resultMap id="Comlist-map" class="entityComlist">
+		<!-- ComlistID -->
+		<result property="comlistID" column="ComlistID" />
+		<!-- 语言编码 -->
+		<result property="languageCode" column="LanguageCode" />
+		<!-- 区分类型 -->
+		<result property="comListType" column="ComListType" />
+		<!-- 区分值 -->
+		<result property="comListValue" column="ComListValue" />
+		<!-- 区分文本 -->
+		<result property="comListText" column="ComListText" />
+		<!-- 区分描述 -->
+		<result property="comListMs" column="ComListMs" />
+		<!-- 是否可以修改(0是1否) -->
+		<result property="editFlag" column="EditFlag" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityComlist" resultMap="Comlist-map">
+		SELECT
+		ComlistID
+		,LanguageCode
+		,ComListType
+		,ComListValue
+		,ComListText
+		,ComListMs
+		,EditFlag
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from comlist
+		<dynamic prepend=" where ">
+			<isNotNull property="comlistID" prepend="and ">
+				ComlistID = #comlistID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					ComlistID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityComlist" resultMap="Comlist-map">
+		SELECT
+		ComlistID
+		,LanguageCode
+		,ComListType
+		,ComListValue
+		,ComListText
+		,ComListMs
+		,EditFlag
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from comlist
+		<dynamic prepend=" where ">
+			<isNotNull property="comlistID" prepend="and ">
+				ComlistID = #comlistID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="comListType" prepend="and ">
+				ComListType = #comListType#
+         </isNotNull>
+			<isNotNull property="comListValue" prepend="and ">
+				ComListValue = #comListValue#
+         </isNotNull>
+			<isNotNull property="comListText" prepend="and ">
+				ComListText = #comListText#
+         </isNotNull>
+			<isNotNull property="comListMs" prepend="and ">
+				ComListMs = #comListMs#
+         </isNotNull>
+			<isNotNull property="editFlag" prepend="and ">
+				EditFlag = #editFlag#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					ComlistID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityComlist" resultClass="int">
+		SELECT count(1)
+		from comlist
+		<dynamic prepend=" where ">
+			<isNotNull property="comlistID" prepend="and ">
+				ComlistID = #comlistID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="comListType" prepend="and ">
+				ComListType = #comListType#
+         </isNotNull>
+			<isNotNull property="comListValue" prepend="and ">
+				ComListValue = #comListValue#
+         </isNotNull>
+			<isNotNull property="comListText" prepend="and ">
+				ComListText = #comListText#
+         </isNotNull>
+			<isNotNull property="comListMs" prepend="and ">
+				ComListMs = #comListMs#
+         </isNotNull>
+			<isNotNull property="editFlag" prepend="and ">
+				EditFlag = #editFlag#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+    <!-- 取得区分值 -->
+	<select id="getComListText" parameterClass="entityComlist" resultClass="String">
+		SELECT
+          ComListText
+		from comlist
+		<dynamic prepend=" where ">
+			<isNotNull property="comlistID" prepend="and ">
+				ComlistID = #comlistID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="comListType" prepend="and ">
+				ComListType = #comListType#
+         </isNotNull>
+			<isNotNull property="comListValue" prepend="and ">
+				ComListValue = #comListValue#
+         </isNotNull>
+			<isNotNull property="comListText" prepend="and ">
+				ComListText = #comListText#
+         </isNotNull>
+			<isNotNull property="comListMs" prepend="and ">
+				ComListMs = #comListMs#
+         </isNotNull>
+			<isNotNull property="editFlag" prepend="and ">
+				EditFlag = #editFlag#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityComlist">
+		update comlist
+		<dynamic prepend="set">
+			<isNotNull property="comlistID">
+				ComlistID = #comlistID#
+         </isNotNull>
+			<isNull property="comlistID">
+				ComlistID = null
+         </isNull>
+			<isNotNull property="languageCode">
+				,LanguageCode = #languageCode#
+         </isNotNull>
+			<isNull property="languageCode">
+				,LanguageCode = null
+         </isNull>
+			<isNotNull property="comListType">
+				,ComListType = #comListType#
+         </isNotNull>
+			<isNull property="comListType">
+				,ComListType = null
+         </isNull>
+			<isNotNull property="comListValue">
+				,ComListValue = #comListValue#
+         </isNotNull>
+			<isNull property="comListValue">
+				,ComListValue = null
+         </isNull>
+			<isNotNull property="comListText">
+				,ComListText = #comListText#
+         </isNotNull>
+			<isNull property="comListText">
+				,ComListText = null
+         </isNull>
+			<isNotNull property="comListMs">
+				,ComListMs = #comListMs#
+         </isNotNull>
+			<isNull property="comListMs">
+				,ComListMs = null
+         </isNull>
+			<isNotNull property="editFlag">
+				,EditFlag = #editFlag#
+         </isNotNull>
+			<isNull property="editFlag">
+				,EditFlag = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="comlistIDWhere" prepend="and ">
+				ComlistID = #comlistIDWhere#
+         </isNotNull>
+			<isNotNull property="languageCodeWhere" prepend="and ">
+				LanguageCode = #languageCodeWhere#
+         </isNotNull>
+			<isNotNull property="comListTypeWhere" prepend="and ">
+				ComListType = #comListTypeWhere#
+         </isNotNull>
+			<isNotNull property="comListValueWhere" prepend="and ">
+				ComListValue = #comListValueWhere#
+         </isNotNull>
+			<isNotNull property="comListTextWhere" prepend="and ">
+				ComListText = #comListTextWhere#
+         </isNotNull>
+			<isNotNull property="comListMsWhere" prepend="and ">
+				ComListMs = #comListMsWhere#
+         </isNotNull>
+			<isNotNull property="editFlagWhere" prepend="and ">
+				EditFlag = #editFlagWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityComlist">
+		update comlist
+		<dynamic prepend="set">
+			<isNotNull property="comlistID"  prepend=",">
+				ComlistID = #comlistID#
+         </isNotNull>
+			<isNotNull property="languageCode"  prepend=",">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="comListType"  prepend=",">
+				ComListType = #comListType#
+         </isNotNull>
+			<isNotNull property="comListValue"  prepend=",">
+				ComListValue = #comListValue#
+         </isNotNull>
+			<isNotNull property="comListText"  prepend=",">
+				ComListText = #comListText#
+         </isNotNull>
+			<isNotNull property="comListMs"  prepend=",">
+				ComListMs = #comListMs#
+         </isNotNull>
+			<isNotNull property="editFlag"  prepend=",">
+				EditFlag = #editFlag#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="comlistIDWhere" prepend="and ">
+				ComlistID = #comlistIDWhere#
+         </isNotNull>
+			<isNotNull property="languageCodeWhere" prepend="and ">
+				LanguageCode = #languageCodeWhere#
+         </isNotNull>
+			<isNotNull property="comListTypeWhere" prepend="and ">
+				ComListType = #comListTypeWhere#
+         </isNotNull>
+			<isNotNull property="comListValueWhere" prepend="and ">
+				ComListValue = #comListValueWhere#
+         </isNotNull>
+			<isNotNull property="comListTextWhere" prepend="and ">
+				ComListText = #comListTextWhere#
+         </isNotNull>
+			<isNotNull property="comListMsWhere" prepend="and ">
+				ComListMs = #comListMsWhere#
+         </isNotNull>
+			<isNotNull property="editFlagWhere" prepend="and ">
+				EditFlag = #editFlagWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityComlist">
+		<selectKey resultClass="java.lang.String" keyProperty="comlistID">
+			SELECT #comlistID# as comlistID FROM DUAL
+     </selectKey>
+		insert into comlist(
+		ComlistID
+		,LanguageCode
+		,ComListType
+		,ComListValue
+		,ComListText
+		,ComListMs
+		,EditFlag
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		)
+		Values (
+			<isNotNull property="comlistID">
+				#comlistID#
+         </isNotNull>
+			<isNull property="comlistID">
+				null
+         </isNull>
+			<isNotNull property="languageCode">
+				,#languageCode#
+         </isNotNull>
+			<isNull property="languageCode">
+				,null
+         </isNull>
+			<isNotNull property="comListType">
+				,#comListType#
+         </isNotNull>
+			<isNull property="comListType">
+				,null
+         </isNull>
+			<isNotNull property="comListValue">
+				,#comListValue#
+         </isNotNull>
+			<isNull property="comListValue">
+				,null
+         </isNull>
+			<isNotNull property="comListText">
+				,#comListText#
+         </isNotNull>
+			<isNull property="comListText">
+				,null
+         </isNull>
+			<isNotNull property="comListMs">
+				,#comListMs#
+         </isNotNull>
+			<isNull property="comListMs">
+				,null
+         </isNull>
+			<isNotNull property="editFlag">
+				,#editFlag#
+         </isNotNull>
+			<isNull property="editFlag">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityComlist">
+		delete  from comlist
+		<dynamic prepend=" where ">
+			<isNotNull property="comlistIDWhere" prepend="and ">
+				ComlistID = #comlistIDWhere#
+         </isNotNull>
+			<isNotNull property="languageCodeWhere" prepend="and ">
+				LanguageCode = #languageCodeWhere#
+         </isNotNull>
+			<isNotNull property="comListTypeWhere" prepend="and ">
+				ComListType = #comListTypeWhere#
+         </isNotNull>
+			<isNotNull property="comListValueWhere" prepend="and ">
+				ComListValue = #comListValueWhere#
+         </isNotNull>
+			<isNotNull property="comListTextWhere" prepend="and ">
+				ComListText = #comListTextWhere#
+         </isNotNull>
+			<isNotNull property="comListMsWhere" prepend="and ">
+				ComListMs = #comListMsWhere#
+         </isNotNull>
+			<isNotNull property="editFlagWhere" prepend="and ">
+				EditFlag = #editFlagWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

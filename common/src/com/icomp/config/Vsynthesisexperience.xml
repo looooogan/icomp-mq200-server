@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vsynthesisexperience.xml
+		Created on : 2014/11/21 10:16:00
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByList_F ： 任意条件查询-SynthesisParametersCode模糊查询
+		searchByCount ：任意条件条数查询
+		searchByCount_F ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vsynthesisexperience">
+	<typeAlias alias="entityVsynthesisexperience" type="com.icomp.entity.base.Vsynthesisexperience" />
+	<resultMap id="Vsynthesisexperience-map" class="entityVsynthesisexperience">
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 业务-流程中间表ID -->
+		<result property="businessFlowLnkID" column="BusinessFlowLnkID" />
+		<!--  -->
+		<result property="busStates" column="busStates" />
+		<!-- 业务流程名 -->
+		<result property="businessName" column="BusinessName" />
+		<!--  -->
+		<result property="upBusinessName" column="UpBusinessName" />
+		<!--  -->
+		<result property="downBusinessName" column="DownBusinessName" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVsynthesisexperience" resultMap="Vsynthesisexperience-map">
+		SELECT
+		SynthesisParametersCode
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,BusinessFlowLnkID
+		,busStates
+		,BusinessName
+		,UpBusinessName
+		,DownBusinessName
+		from vsynthesisexperience
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVsynthesisexperience" resultMap="Vsynthesisexperience-map">
+		SELECT
+		SynthesisParametersCode
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,BusinessFlowLnkID
+		,busStates
+		,BusinessName
+		,UpBusinessName
+		,DownBusinessName
+		from vsynthesisexperience
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+         <isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				UpdateTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				UpdateTime <= #dateEnd#
+				]]>
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="busStates" prepend="and ">
+				busStates = #busStates#
+         </isNotNull>
+			<isNotNull property="businessName" prepend="and ">
+				BusinessName = #businessName#
+         </isNotNull>
+         
+			<isNotNull property="upBusinessName" prepend="and ">
+				UpBusinessName = #upBusinessName#
+         </isNotNull>
+			<isNotNull property="downBusinessName" prepend="and ">
+				DownBusinessName = #downBusinessName#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList_F" parameterClass="entityVsynthesisexperience" resultMap="Vsynthesisexperience-map">
+		SELECT
+		SynthesisParametersCode
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,BusinessFlowLnkID
+		,busStates
+		,BusinessName
+		,UpBusinessName
+		,DownBusinessName
+		from vsynthesisexperience
+		where busStates is not null
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+         <isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				UpdateTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				UpdateTime <= #dateEnd#
+				]]>
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="busStates" prepend="and ">
+				busStates = #busStates#
+         </isNotNull>
+			<isNotNull property="businessName" prepend="and ">
+				BusinessName = #businessName#
+         </isNotNull>
+         
+			<isNotNull property="upBusinessName" prepend="and ">
+				UpBusinessName = #upBusinessName#
+         </isNotNull>
+			<isNotNull property="downBusinessName" prepend="and ">
+				DownBusinessName = #downBusinessName#
+         </isNotNull>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVsynthesisexperience" resultClass="int">
+		SELECT count(1)
+		from vsynthesisexperience
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="busStates" prepend="and ">
+				busStates = #busStates#
+         </isNotNull>
+			<isNotNull property="businessName" prepend="and ">
+				BusinessName = #businessName#
+         </isNotNull>
+			<isNotNull property="upBusinessName" prepend="and ">
+				UpBusinessName = #upBusinessName#
+         </isNotNull>
+			<isNotNull property="downBusinessName" prepend="and ">
+				DownBusinessName = #downBusinessName#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount_F" parameterClass="entityVsynthesisexperience" resultClass="int">
+		SELECT count(1)
+		from vsynthesisexperience
+		where busStates is not null
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="busStates" prepend="and ">
+				busStates = #busStates#
+         </isNotNull>
+			<isNotNull property="businessName" prepend="and ">
+				BusinessName = #businessName#
+         </isNotNull>
+			<isNotNull property="upBusinessName" prepend="and ">
+				UpBusinessName = #upBusinessName#
+         </isNotNull>
+			<isNotNull property="downBusinessName" prepend="and ">
+				DownBusinessName = #downBusinessName#
+         </isNotNull>
+	</select>
+
+</sqlMap>
+

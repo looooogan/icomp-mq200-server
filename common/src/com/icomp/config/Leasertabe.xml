@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Leasertabe.xml
+		Created on : 2016/05/19 09:26:16
+		Author : 工具自动生成
+		Description: 工具自动生成包含的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Leasertabe">
+	<typeAlias alias="entityLeasertabe" type="com.icomp.entity.base.Leasertabe" />
+	<resultMap id="Leasertabe-map" class="entityLeasertabe">
+		<!-- 激光码id -->
+		<result property="leaserID" column="LeaserID" />
+		<!-- 激光码编码 -->
+		<result property="laserCode" column="LaserCode" />
+		<!-- 激光码状态（0 激活 1未激活） -->
+		<result property="laserState" column="LaserState" />
+		<!--  -->
+		<result property="rfid" column="Rfid" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityLeasertabe" resultMap="Leasertabe-map">
+		SELECT
+		LeaserID
+		,LaserCode
+		,LaserState
+		,Rfid
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		from leasertabe
+		<dynamic prepend=" where ">
+			<isNotNull property="leaserID" prepend="and ">
+				LeaserID = #leaserID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					LeaserID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityLeasertabe" resultMap="Leasertabe-map">
+		SELECT
+		LeaserID
+		,LaserCode
+		,LaserState
+		,Rfid
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		from leasertabe
+		<dynamic prepend=" where ">
+			<isNotNull property="leaserID" prepend="and ">
+				LeaserID = #leaserID#
+         </isNotNull>
+			<isNotNull property="laserCode" prepend="and ">
+				LaserCode = #laserCode#
+         </isNotNull>
+			<isNotNull property="laserState" prepend="and ">
+				LaserState = #laserState#
+         </isNotNull>
+			<isNotNull property="rfid" prepend="and ">
+				Rfid = #rfid#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					LeaserID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityLeasertabe" resultClass="int">
+		SELECT count(1)
+		from leasertabe
+		<dynamic prepend=" where ">
+			<isNotNull property="leaserID" prepend="and ">
+				LeaserID = #leaserID#
+         </isNotNull>
+			<isNotNull property="laserCode" prepend="and ">
+				LaserCode = #laserCode#
+         </isNotNull>
+			<isNotNull property="laserState" prepend="and ">
+				LaserState = #laserState#
+         </isNotNull>
+			<isNotNull property="rfid" prepend="and ">
+				Rfid = #rfid#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityLeasertabe">
+		update leasertabe
+		<dynamic prepend="set">
+			<isNotNull property="leaserID">
+				LeaserID = #leaserID#
+         </isNotNull>
+			<isNull property="leaserID">
+				LeaserID = null
+         </isNull>
+			<isNotNull property="laserCode">
+				,LaserCode = #laserCode#
+         </isNotNull>
+			<isNull property="laserCode">
+				,LaserCode = null
+         </isNull>
+			<isNotNull property="laserState">
+				,LaserState = #laserState#
+         </isNotNull>
+			<isNull property="laserState">
+				,LaserState = null
+         </isNull>
+			<isNotNull property="rfid">
+				,Rfid = #rfid#
+         </isNotNull>
+			<isNull property="rfid">
+				,Rfid = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="leaserIDWhere" prepend="and ">
+				LeaserID = #leaserIDWhere#
+         </isNotNull>
+			<isNotNull property="laserCodeWhere" prepend="and ">
+				LaserCode = #laserCodeWhere#
+         </isNotNull>
+			<isNotNull property="laserStateWhere" prepend="and ">
+				LaserState = #laserStateWhere#
+         </isNotNull>
+			<isNotNull property="rfidWhere" prepend="and ">
+				Rfid = #rfidWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityLeasertabe">
+		update leasertabe
+		<dynamic prepend="set">
+			<isNotNull property="leaserID"  prepend=",">
+				LeaserID = #leaserID#
+         </isNotNull>
+			<isNotNull property="laserCode"  prepend=",">
+				LaserCode = #laserCode#
+         </isNotNull>
+			<isNotNull property="laserState"  prepend=",">
+				LaserState = #laserState#
+         </isNotNull>
+			<isNotNull property="rfid"  prepend=",">
+				Rfid = #rfid#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="leaserIDWhere" prepend="and ">
+				LeaserID = #leaserIDWhere#
+         </isNotNull>
+			<isNotNull property="laserCodeWhere" prepend="and ">
+				LaserCode = #laserCodeWhere#
+         </isNotNull>
+			<isNotNull property="laserStateWhere" prepend="and ">
+				LaserState = #laserStateWhere#
+         </isNotNull>
+			<isNotNull property="rfidWhere" prepend="and ">
+				Rfid = #rfidWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityLeasertabe">
+		<selectKey resultClass="java.lang.String" keyProperty="leaserID">
+			SELECT #leaserID# as leaserID FROM DUAL
+     </selectKey>
+		insert into leasertabe(
+		LeaserID
+		,LaserCode
+		,LaserState
+		,Rfid
+		,DelFlag
+		,UpdateTime
+		,UpdateUser
+		,CreateTime
+		,CreateUser
+		)
+		Values (
+			<isNotNull property="leaserID">
+				#leaserID#
+         </isNotNull>
+			<isNull property="leaserID">
+				null
+         </isNull>
+			<isNotNull property="laserCode">
+				,#laserCode#
+         </isNotNull>
+			<isNull property="laserCode">
+				,null
+         </isNull>
+			<isNotNull property="laserState">
+				,#laserState#
+         </isNotNull>
+			<isNull property="laserState">
+				,null
+         </isNull>
+			<isNotNull property="rfid">
+				,#rfid#
+         </isNotNull>
+			<isNull property="rfid">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityLeasertabe">
+		delete  from leasertabe
+		<dynamic prepend=" where ">
+			<isNotNull property="leaserIDWhere" prepend="and ">
+				LeaserID = #leaserIDWhere#
+         </isNotNull>
+			<isNotNull property="laserCodeWhere" prepend="and ">
+				LaserCode = #laserCodeWhere#
+         </isNotNull>
+			<isNotNull property="laserStateWhere" prepend="and ">
+				LaserState = #laserStateWhere#
+         </isNotNull>
+			<isNotNull property="rfidWhere" prepend="and ">
+				Rfid = #rfidWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

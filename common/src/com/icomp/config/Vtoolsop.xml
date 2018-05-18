@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Vtoolsop.xml
+    Created on : 2016/06/13 18:51:57
+    Author : 工具自动生成
+    Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+		PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+		"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vtoolsop">
+	<typeAlias alias="entityVtoolsop" type="com.icomp.entity.base.Vtoolsop" />
+	<resultMap id="Vtoolsop-map" class="entityVtoolsop">
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 材料号 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 入库数量 -->
+		<result property="storageNum" column="StorageNum" />
+		<!--  -->
+		<result property="receiveCount" column="ReceiveCount" />
+		<!--  -->
+		<result property="inLiber" column="InLiber" />
+		<!--  -->
+		<result property="outLiber" column="OutLiber" />
+		<!-- 创建者 -->
+		<result property="libraryUser" column="LibraryUser" />
+		<!-- 上传状态 -->
+		<result property="stateTs" column="StateTs" />
+		<!-- 上传状态 -->
+		<result property="stateSt" column="StateSt" />
+		<!-- 移动类型（库存管理）101入库 201出库 -->
+		<result property="moveType" column="MoveType" />
+		<!-- 评估类型 -->
+		<result property="valType" column="valType" />
+		<!-- 订单序号 -->
+		<result property="poItem" column="poItem" />
+		<!-- sapID -->
+		<result property="sapID" column="sapID" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVtoolsop" resultMap="Vtoolsop-map">
+		SELECT
+		ToolID
+		,ToolCode
+		,CreateTime
+		,StorageNum
+		,ReceiveCount
+		,InLiber
+		,OutLiber
+		,LibraryUser
+		,StateTs
+		,StateSt
+		,MoveType
+		,valType
+		,poItem
+		from vtoolsop
+		<isNotNull property="orderString">
+			order by $orderString$
+		</isNotNull>
+		<isNull property="orderString">
+			order by
+		</isNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT $rowCount$ offset $staIndex$
+		</isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVtoolsop" resultMap="Vtoolsop-map">
+		SELECT
+		ToolID
+		,ToolCode
+		,CreateTime
+		,StorageNum
+		,ReceiveCount
+		,InLiber
+		,OutLiber
+		,LibraryUser
+		,StateTs
+		,StateSt
+		,MoveType
+		,valType
+		,poItem
+		,sapID
+		from vtoolsop
+		<dynamic prepend=" where ">
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+			</isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode like CONCAT('%', #toolCode#  ,'%')
+			</isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+			</isNotNull>
+			<isNotNull property="storageNum" prepend="and ">
+				StorageNum = #storageNum#
+			</isNotNull>
+			<isNotNull property="receiveCount" prepend="and ">
+				ReceiveCount = #receiveCount#
+			</isNotNull>
+			<isNotNull property="inLiber" prepend="and ">
+				InLiber = #inLiber#
+			</isNotNull>
+			<isNotNull property="outLiber" prepend="and ">
+				OutLiber = #outLiber#
+			</isNotNull>
+			<isNotNull property="libraryUser" prepend="and ">
+				LibraryUser = #libraryUser#
+			</isNotNull>
+			<isNotNull property="stateTs" prepend="and ">
+				StateTs = #stateTs#
+			</isNotNull>
+			<isNotNull property="stateSt" prepend="and ">
+				StateSt = #stateSt#
+			</isNotNull>
+			<isNotNull property="toolType" prepend="and ">
+				ToolCode like CONCAT('%', #toolType#  ,'%')
+			</isNotNull>
+			<isNotNull property="dstar" prepend="and ">
+				CreateTime >= #dstar#
+			</isNotNull>
+			<isNotNull property="dend" prepend="and ">
+				CreateTime &lt;= #dend#
+			</isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				LibraryUser like CONCAT('%', #userName#  ,'%')
+			</isNotNull>
+			<isNotNull property="moveType" prepend="and ">
+				MoveType = #moveType#
+			</isNotNull>
+			<isNotNull property="sapID" prepend="and ">
+				sapID = #sapID#
+			</isNotNull>
+
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+		</isNotNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT $rowCount$ offset $staIndex$
+		</isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVtoolsop" resultClass="int">
+		SELECT count(1)
+		from vtoolsop
+		<dynamic prepend=" where ">
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+			</isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode like CONCAT('%', #toolCode#  ,'%')
+			</isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+			</isNotNull>
+			<isNotNull property="storageNum" prepend="and ">
+				StorageNum = #storageNum#
+			</isNotNull>
+			<isNotNull property="receiveCount" prepend="and ">
+				ReceiveCount = #receiveCount#
+			</isNotNull>
+			<isNotNull property="inLiber" prepend="and ">
+				InLiber = #inLiber#
+			</isNotNull>
+			<isNotNull property="outLiber" prepend="and ">
+				OutLiber = #outLiber#
+			</isNotNull>
+			<isNotNull property="libraryUser" prepend="and ">
+				LibraryUser = #libraryUser#
+			</isNotNull>
+			<isNotNull property="stateTs" prepend="and ">
+				StateTs = #stateTs#
+			</isNotNull>
+			<isNotNull property="stateSt" prepend="and ">
+				StateSt = #stateSt#
+			</isNotNull>
+			<isNotNull property="toolType" prepend="and ">
+				ToolCode like CONCAT('%', #toolType#  ,'%')
+			</isNotNull>
+			<isNotNull property="dstar" prepend="and ">
+				CreateTime >= #dstar#
+			</isNotNull>
+			<isNotNull property="dend" prepend="and ">
+				CreateTime &lt;= #dend#
+			</isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				LibraryUser like CONCAT('%', #userName#  ,'%')
+			</isNotNull>
+			<isNotNull property="moveType" prepend="and ">
+				MoveType = #moveType#
+			</isNotNull>
+			<isNotNull property="sapID" prepend="and ">
+				sapID = #sapID#
+			</isNotNull>
+		</dynamic>
+	</select>
+
+
+	<update id="updateNonQuery" parameterClass="entityVtoolsop">
+		update sapuploadhistory
+		<dynamic prepend="set">
+			<isNotNull property="stateSt"  prepend=",">
+				state = #stateSt#
+			</isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="sapID" prepend="and ">
+				sapID = #sapID#
+			</isNotNull>
+		</dynamic>
+	</update>
+
+</sqlMap>
+

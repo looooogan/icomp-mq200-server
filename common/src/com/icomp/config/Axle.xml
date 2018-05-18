@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Axle.xml
+		Created on : 2016/03/03 10:24:38
+		Author : 工具自动生成
+		Description: 工具自动生成包含的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Axle">
+	<typeAlias alias="entityAxle" type="com.icomp.entity.base.Axle" />
+	<resultMap id="Axle-map" class="entityAxle">
+		<!-- 轴ID -->
+		<result property="axleID" column="axleID" />
+		<!-- 轴编码 -->
+		<result property="axleCode" column="axleCode" />
+		<!-- 轴名称 -->
+		<result property="axleName" column="axleName" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 创建人 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 更新人 -->
+		<result property="updateUser" column="updateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityAxle" resultMap="Axle-map">
+		SELECT
+		axleID
+		,axleCode
+		,axleName
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,updateUser
+		,updateTime
+		from axle
+		<dynamic prepend=" where ">
+			<isNotNull property="axleID" prepend="and ">
+				axleID = #axleID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					axleID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityAxle" resultMap="Axle-map">
+		SELECT
+		axleID
+		,axleCode
+		,axleName
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,updateUser
+		,updateTime
+		from axle
+		<dynamic prepend=" where ">
+			<isNotNull property="axleID" prepend="and ">
+				axleID = #axleID#
+         </isNotNull>
+			<isNotNull property="axleCode" prepend="and ">
+				axleCode = #axleCode#
+         </isNotNull>
+			<isNotNull property="axleName" prepend="and ">
+				axleName = #axleName#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				updateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				updateTime = #updateTime#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					axleID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityAxle" resultClass="int">
+		SELECT count(1)
+		from axle
+		<dynamic prepend=" where ">
+			<isNotNull property="axleID" prepend="and ">
+				axleID = #axleID#
+         </isNotNull>
+			<isNotNull property="axleCode" prepend="and ">
+				axleCode = #axleCode#
+         </isNotNull>
+			<isNotNull property="axleName" prepend="and ">
+				axleName = #axleName#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				updateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				updateTime = #updateTime#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityAxle">
+		update axle
+		<dynamic prepend="set">
+			<isNotNull property="axleID">
+				axleID = #axleID#
+         </isNotNull>
+			<isNull property="axleID">
+				axleID = null
+         </isNull>
+			<isNotNull property="axleCode">
+				,axleCode = #axleCode#
+         </isNotNull>
+			<isNull property="axleCode">
+				,axleCode = null
+         </isNull>
+			<isNotNull property="axleName">
+				,axleName = #axleName#
+         </isNotNull>
+			<isNull property="axleName">
+				,axleName = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,updateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,updateUser = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,updateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,updateTime = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="axleIDWhere" prepend="and ">
+				axleID = #axleIDWhere#
+         </isNotNull>
+			<isNotNull property="axleCodeWhere" prepend="and ">
+				axleCode = #axleCodeWhere#
+         </isNotNull>
+			<isNotNull property="axleNameWhere" prepend="and ">
+				axleName = #axleNameWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				updateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				updateTime = #updateTimeWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityAxle">
+		update axle
+		<dynamic prepend="set">
+			<isNotNull property="axleID"  prepend=",">
+				axleID = #axleID#
+         </isNotNull>
+			<isNotNull property="axleCode"  prepend=",">
+				axleCode = #axleCode#
+         </isNotNull>
+			<isNotNull property="axleName"  prepend=",">
+				axleName = #axleName#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				updateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				updateTime = #updateTime#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="axleIDWhere" prepend="and ">
+				axleID = #axleIDWhere#
+         </isNotNull>
+			<isNotNull property="axleCodeWhere" prepend="and ">
+				axleCode = #axleCodeWhere#
+         </isNotNull>
+			<isNotNull property="axleNameWhere" prepend="and ">
+				axleName = #axleNameWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				updateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				updateTime = #updateTimeWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityAxle">
+		<selectKey resultClass="java.lang.String" keyProperty="axleID">
+			SELECT #axleID# as axleID FROM DUAL
+     </selectKey>
+		insert into axle(
+		axleID
+		,axleCode
+		,axleName
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,updateUser
+		,updateTime
+		)
+		Values (
+			<isNotNull property="axleID">
+				#axleID#
+         </isNotNull>
+			<isNull property="axleID">
+				null
+         </isNull>
+			<isNotNull property="axleCode">
+				,#axleCode#
+         </isNotNull>
+			<isNull property="axleCode">
+				,null
+         </isNull>
+			<isNotNull property="axleName">
+				,#axleName#
+         </isNotNull>
+			<isNull property="axleName">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityAxle">
+		delete  from axle
+		<dynamic prepend=" where ">
+			<isNotNull property="axleIDWhere" prepend="and ">
+				axleID = #axleIDWhere#
+         </isNotNull>
+			<isNotNull property="axleCodeWhere" prepend="and ">
+				axleCode = #axleCodeWhere#
+         </isNotNull>
+			<isNotNull property="axleNameWhere" prepend="and ">
+				axleName = #axleNameWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				updateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				updateTime = #updateTimeWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

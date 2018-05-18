@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Distribution.xml
+    Created on : 2014/08/19 15:48:44
+
+-->
+
+<!DOCTYPE sqlMap
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="Distribution">
+    <typeAlias alias="entityDistribution" type="com.icomp.entity.base.Distribution"/>
+    <resultMap id="entityDistribution-map" class="entityDistribution">
+        <!-- 刀具ID -->
+        <result property="toolType" column="ToolType"/>
+        <result property="toolCode" column="ToolCode"/>
+        <result property="numberDevices" column="NumberDevices"/>
+        <result property="numberDevices1" column="NumberDevices1"/>
+        <!-- 2017/08/31 宋健 变更↓↓↓　dazhong@YMSC -->
+        <!--<result property="numberDevices2" column="NumberDevices2"/>-->
+        <!-- 2017/08/31 宋健 变更↑↑↑　dazhong@YMSC -->
+        <result property="numberDevices3" column="NumberDevices3"/>
+        <result property="numberDevices4" column="NumberDevices4"/>
+        <result property="numberDevices5" column="NumberDevices5"/>
+        <result property="numberDevices6" column="NumberDevices6"/>
+        <!-- 2017/08/31 宋健 变更↓↓↓　dazhong@YMSC -->
+        <!--<result property="sprice" column="Sprice"/>-->
+        <!-- 2017/08/31 宋健 变更↑↑↑　dazhong@YMSC -->
+        <result property="expandSpace1" column="Assemblyline"/>
+        <!-- 2017/08/31 宋健 变更↓↓↓　dazhong@YMSC -->
+        <!--<result property="expandSpace2" column="Daibaofei"/>-->
+        <!-- 2017/08/31 宋健 变更↑↑↑　dazhong@YMSC -->
+
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <!-- 2017/08/31 宋健 变更↓↓↓　dazhong@YMSC -->
+    <select id="searchByList" parameterClass="entityDistribution" resultMap="entityDistribution-map">
+        SELECT
+        total.ToolCode AS ToolType,
+        total.ToolCode AS ToolCode,
+        IF(k.KnifelnventoryNumber,k.KnifelnventoryNumber,0) AS numberDevices4,
+        CASE WHEN t.ToolType = '1' THEN '-' ELSE total.SpareKnifeSum end numberDevices5,
+        CASE WHEN t.ToolType = '1' THEN '-' ELSE total.GrindingFactorySnum end numberDevices,
+        CASE WHEN t.ToolType = '1' THEN '-' ELSE total.StayExternalGrindingSum end numberDevices1,
+        CASE WHEN t.ToolType = '1' THEN '-' ELSE total.ExternalGrindingSum end numberDevices3,
+        CASE WHEN t.ToolType = '1' THEN '-' ELSE total.ProductionLineSum end Assemblyline,
+        CASE WHEN t.ToolType = '1' THEN '-' ELSE total.ScrapSum end numberDevices6
+        FROM
+        tooltransferTotal total
+        LEFT JOIN tool t ON total.ToolCode = t.ToolCode and t.DelFlag = '0'
+        LEFT JOIN knifeinventory k ON t.ToolID = k.ToolID and k.DelFlag = '0'
+        <isNotNull property="toolType">
+            WHERE
+            total.ToolCode like concat('%',#toolType#,'%')
+            <isNotNull property="toolCode" prepend="and ">
+                total.ToolCode like concat('%',#toolCode#,'%')
+            </isNotNull>
+        </isNotNull>
+        <isNull property="toolType">
+            <isNotNull property="toolCode">
+                WHERE
+                total.ToolCode like concat('%',#toolCode#,'%')
+            </isNotNull>
+        </isNull>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+
+
+    </select>
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityDistribution" resultClass="int">
+        SELECT
+        count(1)
+        FROM
+        tooltransferTotal total
+        LEFT JOIN tool t ON total.ToolCode = t.ToolCode and t.DelFlag = '0'
+        LEFT JOIN knifeinventory k ON t.ToolID = k.ToolID and k.DelFlag = '0'
+        <isNotNull property="toolType">
+            WHERE
+            total.ToolCode like concat('%',#toolType#,'%')
+            <isNotNull property="toolCode" prepend="and ">
+                total.ToolCode like concat('%',#toolCode#,'%')
+            </isNotNull>
+        </isNotNull>
+        <isNull property="toolType">
+            <isNotNull property="toolCode">
+                WHERE
+                total.ToolCode like concat('%',#toolCode#,'%')
+            </isNotNull>
+        </isNull>
+    </select>
+    <!-- 2017/08/31 宋健 变更↑↑↑　dazhong@YMSC -->
+
+
+</sqlMap>
+

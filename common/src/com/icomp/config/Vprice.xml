@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vprice.xml Created on : 2014/11/24 10:03:49 
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句. 
+		searchByPrimaryKey ： 主键查询
+		searchByList ： 任意条件查询 
+		searchByList_F ： 任意条件查询-toolCode模糊查询
+		searchByCount ：任意条件条数查询 
+		insert ： 插入处理 update ：
+		更新处理（未指定项目更新为null） updateNonQuery ：更新处理（未指定项目不更新） delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vprice">
+	<typeAlias alias="entityVprice" type="com.icomp.entity.base.Vprice" />
+	<resultMap id="Vprice-map" class="entityVprice">
+		<!--  -->
+		<result property="toolCode" column="ToolCode" />
+		<!--  -->
+		<result property="businessFlowLnkID" column="BusinessFlowLnkID" />
+		<!--  -->
+		<result property="businessCode" column="BusinessCode" />
+		<!--  -->
+		<result property="unitPrice" column="UnitPrice" />
+	</resultMap>
+
+	<!-- 任意条件查询执行 toolCode模糊查询 -->
+	<select id="searchByList_F" parameterClass="entityVprice"
+		resultMap="Vprice-map">
+		SELECT
+			tool.ToolCode,
+			tooltransfer.BusinessFlowLnkID as BusinessFlowLnkID,
+			business.BusinessCode as BusinessCode,
+			sum(
+				CASE
+				WHEN tool.ToolType = '0' THEN
+					CASE
+				WHEN tool.ToolConsumetype = '0' THEN
+					tooltransfer.ToolSharpenLength * ToolProcured.UnitPrice / tool.ToolSharpenLength
+				ELSE
+					tooltransfer.ToolSharpennum * ToolProcured.UnitPrice / tool.ToolSharpennum
+				END
+				ELSE
+					ToolProcured.UnitPrice
+				END
+			) UnitPrice
+		FROM tooltransfer
+		INNER JOIN businessflowlnk on tooltransfer.BusinessFlowLnkID= businessflowlnk.BusinessFlowLnkID
+		inner join business on business.BusinessID =businessflowlnk.BusinessID 
+		inner join  ToolProcured on tooltransfer.ToolProcuredID=ToolProcured.ToolProcuredID 
+			and tooltransfer.ToolID = ToolProcured.ToolID
+		inner join tool on tool.ToolID=tooltransfer.ToolID
+		where  tooltransfer.StockState IN ('0', '4')
+		<isNotNull property="toolCode" prepend="and ">
+            ToolCode like concat('%',#toolCode#,'%')
+        </isNotNull>
+		GROUP BY
+			tool.ToolCode,
+			tooltransfer.BusinessFlowLnkID
+		
+		UNION all
+		SELECT
+			tool.ToolCode,
+			'' AS BusinessFlowLnkID,
+			'C01S001' AS BusinessCode,
+			sum(ToolProcured.UnitPrice) UnitPrice
+		FROM KnifeInventory
+		INNER JOIN tool ON KnifeInventory.ToolID = tool.ToolID
+		INNER JOIN ToolProcured ON(ToolProcured.ToolProcuredID=KnifeInventory.ToolProcuredID 
+			and  KnifeInventory.ToolID = ToolProcured.ToolID)
+
+		
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+         </dynamic>
+         GROUP BY
+			tool.ToolCode,
+			BusinessFlowLnkID
+		AND ToolProcured.ToolProcuredID = KnifeInventory.ToolProcuredID
+	</select>
+</sqlMap>
+

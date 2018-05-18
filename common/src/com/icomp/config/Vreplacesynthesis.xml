@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vreplacesynthesis.xml
+		Created on : 2014/11/10 14:40:47
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByList_F ： 任意条件查询-ToolCode模糊查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vreplacesynthesis">
+	<typeAlias alias="entityVreplacesynthesis" type="com.icomp.entity.base.Vreplacesynthesis" />
+	<resultMap id="Vreplacesynthesis-map" class="entityVreplacesynthesis">
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!-- 刀具编码(应该装入合成刀的编码) -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 替换刀具编码（刀具编码以逗号分隔） -->
+		<result property="tempToolCode" column="TempToolCode" />
+		<!-- 位置类型(0刀具1辅具2配套9其他) -->
+		<result property="cutterType" column="CutterType" />
+		<!-- 位置号 -->
+		<result property="synthesisCutterNumber" column="SynthesisCutterNumber" />
+		<!--  -->
+		<result property="amount" column="amount" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVreplacesynthesis" resultMap="Vreplacesynthesis-map">
+		SELECT
+		SynthesisParametersCode
+		,ToolCode
+		,TempToolCode
+		,CutterType
+		,SynthesisCutterNumber
+		,amount
+		from vreplacesynthesis
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVreplacesynthesis" resultMap="Vreplacesynthesis-map">
+		SELECT
+		SynthesisParametersCode
+		,ToolCode
+		,TempToolCode
+		,CutterType
+		,SynthesisCutterNumber
+		,amount
+		from vreplacesynthesis
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="tempToolCode" prepend="and ">
+				TempToolCode = #tempToolCode#
+         </isNotNull>
+			<isNotNull property="cutterType" prepend="and ">
+				CutterType = #cutterType#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumber" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+			<isNotNull property="amount" prepend="and ">
+				amount = #amount#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	<!-- 任意条件查询执行-ToolCode模糊查询 -->
+	<select id="searchByList_F" parameterClass="entityVreplacesynthesis" resultMap="Vreplacesynthesis-map">
+		SELECT
+		SynthesisParametersCode
+		,ToolCode
+		,TempToolCode
+		,CutterType
+		,SynthesisCutterNumber
+		,amount
+		from vreplacesynthesis
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="tempToolCode" prepend="and ">
+				TempToolCode = #tempToolCode#
+         </isNotNull>
+			<isNotNull property="cutterType" prepend="and ">
+				CutterType = #cutterType#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumber" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+			<isNotNull property="amount" prepend="and ">
+				amount = #amount#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVreplacesynthesis" resultClass="int">
+		SELECT count(1)
+		from vreplacesynthesis
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="tempToolCode" prepend="and ">
+				TempToolCode = #tempToolCode#
+         </isNotNull>
+			<isNotNull property="cutterType" prepend="and ">
+				CutterType = #cutterType#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumber" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+			<isNotNull property="amount" prepend="and ">
+				amount = #amount#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

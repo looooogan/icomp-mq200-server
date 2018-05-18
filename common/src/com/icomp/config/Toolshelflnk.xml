@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Toolshelflnk.xml
+		Created on : 2014/08/19 15:48:46
+		Author : 工具自动生成
+		Description: 工具自动生成包含工具盘位置信息的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Toolshelflnk">
+	<typeAlias alias="entityToolshelflnk" type="com.icomp.entity.base.Toolshelflnk" />
+	<resultMap id="Toolshelflnk-map" class="entityToolshelflnk">
+		<!-- ToolShelfLnkID -->
+		<result property="toolShelfLnkID" column="ToolShelfLnkID" />
+		<!--  -->
+		<result property="toolShelfPlaceNumber" column="ToolShelfPlaceNumber" />
+		<!-- 工具盘ID -->
+		<result property="toolShelfID" column="ToolShelfID" />
+		<!-- 刀具入库编码 -->
+		<result property="knifeInventoryCode" column="KnifeInventoryCode" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityToolshelflnk" resultMap="Toolshelflnk-map">
+		SELECT
+		ToolShelfLnkID
+		,ToolShelfPlaceNumber
+		,ToolShelfID
+		,KnifeInventoryCode
+		from toolshelflnk
+		<dynamic prepend=" where ">
+			<isNotNull property="toolShelfLnkID" prepend="and ">
+				ToolShelfLnkID = #toolShelfLnkID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					ToolShelfLnkID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityToolshelflnk" resultMap="Toolshelflnk-map">
+		SELECT
+		ToolShelfLnkID
+		,ToolShelfPlaceNumber
+		,ToolShelfID
+		,KnifeInventoryCode
+		from toolshelflnk
+		<dynamic prepend=" where ">
+			<isNotNull property="toolShelfLnkID" prepend="and ">
+				ToolShelfLnkID = #toolShelfLnkID#
+         </isNotNull>
+			<isNotNull property="toolShelfPlaceNumber" prepend="and ">
+				ToolShelfPlaceNumber = #toolShelfPlaceNumber#
+         </isNotNull>
+			<isNotNull property="toolShelfID" prepend="and ">
+				ToolShelfID = #toolShelfID#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					ToolShelfLnkID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	<!-- 任意条件查询执行 -->
+	<select id="searchListByToolId" parameterClass="entityToolshelflnk" resultMap="Toolshelflnk-map">
+		SELECT
+		ToolShelfLnkID
+		,ToolShelfPlaceNumber
+		,ToolShelfID
+		,KnifeInventoryCode
+		FROM toolshelflnk 
+		LEFT JOIN toolshelfplace ON toolshelflnk.ToolShelfPlaceNumber = toolshelfplace.ToolShelfPlaceID
+		WHERE toolshelflnk.ToolShelfID = ## 
+		AND toolshelflnk.KnifeInventoryCode IS  NULL 
+		AND toolshelfplace.DelFlag = '0'
+		ORDER BY ToolShelfPlaceNumber 
+		
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityToolshelflnk" resultClass="int">
+		SELECT count(1)
+		from toolshelflnk
+		<dynamic prepend=" where ">
+			<isNotNull property="toolShelfLnkID" prepend="and ">
+				ToolShelfLnkID = #toolShelfLnkID#
+         </isNotNull>
+			<isNotNull property="toolShelfPlaceNumber" prepend="and ">
+				ToolShelfPlaceNumber = #toolShelfPlaceNumber#
+         </isNotNull>
+			<isNotNull property="toolShelfID" prepend="and ">
+				ToolShelfID = #toolShelfID#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityToolshelflnk">
+		update toolshelflnk
+		<dynamic prepend="set">
+			<isNotNull property="toolShelfLnkID">
+				ToolShelfLnkID = #toolShelfLnkID#
+         </isNotNull>
+			<isNull property="toolShelfLnkID">
+				ToolShelfLnkID = null
+         </isNull>
+			<isNotNull property="toolShelfPlaceNumber">
+				,ToolShelfPlaceNumber = #toolShelfPlaceNumber#
+         </isNotNull>
+			<isNull property="toolShelfPlaceNumber">
+				,ToolShelfPlaceNumber = null
+         </isNull>
+			<isNotNull property="toolShelfID">
+				,ToolShelfID = #toolShelfID#
+         </isNotNull>
+			<isNull property="toolShelfID">
+				,ToolShelfID = null
+         </isNull>
+			<isNotNull property="knifeInventoryCode">
+				,KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNull property="knifeInventoryCode">
+				,KnifeInventoryCode = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="toolShelfLnkIDWhere" prepend="and ">
+				ToolShelfLnkID = #toolShelfLnkIDWhere#
+         </isNotNull>
+			<isNotNull property="toolShelfPlaceNumberWhere" prepend="and ">
+				ToolShelfPlaceNumber = #toolShelfPlaceNumberWhere#
+         </isNotNull>
+			<isNotNull property="toolShelfIDWhere" prepend="and ">
+				ToolShelfID = #toolShelfIDWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityToolshelflnk">
+		update toolshelflnk
+		<dynamic prepend="set">
+			<isNotNull property="toolShelfLnkID"  prepend=",">
+				ToolShelfLnkID = #toolShelfLnkID#
+         </isNotNull>
+			<isNotNull property="toolShelfPlaceNumber"  prepend=",">
+				ToolShelfPlaceNumber = #toolShelfPlaceNumber#
+         </isNotNull>
+			<isNotNull property="toolShelfID"  prepend=",">
+				ToolShelfID = #toolShelfID#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode"  prepend=",">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+           <isNull property="knifeInventoryCode">
+				,KnifeInventoryCode = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="toolShelfLnkIDWhere" prepend="and ">
+				ToolShelfLnkID = #toolShelfLnkIDWhere#
+         </isNotNull>
+			<isNotNull property="toolShelfPlaceNumberWhere" prepend="and ">
+				ToolShelfPlaceNumber = #toolShelfPlaceNumberWhere#
+         </isNotNull>
+			<isNotNull property="toolShelfIDWhere" prepend="and ">
+				ToolShelfID = #toolShelfIDWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+       
+		</dynamic>
+	</update>
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateKiCodeISNull" parameterClass="java.util.Map">
+		UPDATE toolshelflnk tsf SET
+		tsf.KnifeInventoryCode = NULL
+		WHERE tsf.ToolShelfID=#toolPanId#
+		AND tsf.KnifeInventoryCode in
+		<iterate open="(" close=")" conjunction="," property="list">
+		#list[]#
+		</iterate>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityToolshelflnk">
+		<selectKey resultClass="java.lang.String" keyProperty="toolShelfLnkID">
+			SELECT #toolShelfLnkID# as toolShelfLnkID FROM DUAL
+     </selectKey>
+		insert into toolshelflnk(
+		ToolShelfLnkID
+		,ToolShelfPlaceNumber
+		,ToolShelfID
+		,KnifeInventoryCode
+		)
+		Values (
+			<isNotNull property="toolShelfLnkID">
+				#toolShelfLnkID#
+         </isNotNull>
+			<isNull property="toolShelfLnkID">
+				null
+         </isNull>
+			<isNotNull property="toolShelfPlaceNumber">
+				,#toolShelfPlaceNumber#
+         </isNotNull>
+			<isNull property="toolShelfPlaceNumber">
+				,null
+         </isNull>
+			<isNotNull property="toolShelfID">
+				,#toolShelfID#
+         </isNotNull>
+			<isNull property="toolShelfID">
+				,null
+         </isNull>
+			<isNotNull property="knifeInventoryCode">
+				,#knifeInventoryCode#
+         </isNotNull>
+			<isNull property="knifeInventoryCode">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityToolshelflnk">
+		delete  from toolshelflnk
+		<dynamic prepend=" where ">
+			<isNotNull property="toolShelfLnkIDWhere" prepend="and ">
+				ToolShelfLnkID = #toolShelfLnkIDWhere#
+         </isNotNull>
+			<isNotNull property="toolShelfPlaceNumberWhere" prepend="and ">
+				ToolShelfPlaceNumber = #toolShelfPlaceNumberWhere#
+         </isNotNull>
+			<isNotNull property="toolShelfIDWhere" prepend="and ">
+				ToolShelfID = #toolShelfIDWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+
+
+	
+		<!-- 任意条件更新处理 -->
+	<update id="updateNonQuerys" parameterClass="entityToolshelflnk">
+		update toolshelflnk
+		<dynamic prepend="set">
+			<isNotNull property="toolShelfLnkID"  prepend=",">
+				ToolShelfLnkID = #toolShelfLnkID#
+         </isNotNull>
+			<isNotNull property="toolShelfPlaceNumber"  prepend=",">
+				ToolShelfPlaceNumber = #toolShelfPlaceNumber#
+         </isNotNull>
+			<isNotNull property="toolShelfID"  prepend=",">
+				ToolShelfID = #toolShelfID#
+         </isNotNull>
+           <isNull property="knifeInventoryCode">
+				KnifeInventoryCode = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="toolShelfLnkIDWhere" prepend="and ">
+				ToolShelfLnkID = #toolShelfLnkIDWhere#
+         </isNotNull>
+			<isNotNull property="toolShelfPlaceNumberWhere" prepend="and ">
+				ToolShelfPlaceNumber = #toolShelfPlaceNumberWhere#
+         </isNotNull>
+			<isNotNull property="toolShelfIDWhere" prepend="and ">
+				ToolShelfID = #toolShelfIDWhere#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCodeWhere" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCodeWhere#
+         </isNotNull>
+       
+		</dynamic>
+	</update>
+</sqlMap>
+

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vgettoolplate.xml
+		Created on : 2014/09/25 17:52:02
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgettoolplate">
+	<typeAlias alias="entityVgettoolplate" type="com.icomp.entity.base.Vgettoolplate" />
+	<resultMap id="Vgettoolplate-map" class="entityVgettoolplate">
+		<!-- RFID载体ID -->
+		<result property="rfidContainerID" column="RfidContainerID" />
+		<!-- RFID标签ID -->
+		<result property="rfidCode" column="RfidCode" />
+		<!-- 工具盘ID -->
+		<result property="toolShelfID" column="ToolShelfID" />
+		<!-- 工具盘编号 -->
+		<result property="toolShelfCode" column="ToolShelfCode" />
+		<!--  -->
+		<result property="toolShelfPlaceNumber" column="ToolShelfPlaceNumber" />
+		<!-- 刀具入库编码 -->
+		<result property="knifeInventoryCode" column="KnifeInventoryCode" />
+		<!-- 工具盘位置ID -->
+		<result property="toolshelfplace" column="toolshelfplace" />
+		<!-- 工具盘位置号 -->
+		<result property="placeNumber" column="PlaceNumber" />
+		<!-- 工具盘位置编码 -->
+		<result property="placeCode" column="PlaceCode" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVgettoolplate" resultMap="Vgettoolplate-map">
+		SELECT
+		RfidContainerID
+		,RfidCode
+		,ToolShelfID
+		,ToolShelfCode
+		,ToolShelfPlaceNumber
+		,KnifeInventoryCode
+		,toolshelfplace
+		,PlaceNumber
+		,PlaceCode
+		from vgettoolplate
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="0">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVgettoolplate" resultMap="Vgettoolplate-map">
+		SELECT
+		RfidContainerID
+		,RfidCode
+		,ToolShelfID
+		,ToolShelfCode
+		,ToolShelfPlaceNumber
+		,KnifeInventoryCode
+		,toolshelfplace
+		,PlaceNumber
+		,PlaceCode
+		from vgettoolplate
+		<dynamic prepend=" where ">
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="rfidCode" prepend="and ">
+				RfidCode = #rfidCode#
+         </isNotNull>
+			<isNotNull property="toolShelfID" prepend="and ">
+				ToolShelfID = #toolShelfID#
+         </isNotNull>
+			<isNotNull property="toolShelfCode" prepend="and ">
+				ToolShelfCode = #toolShelfCode#
+         </isNotNull>
+			<isNotNull property="toolShelfPlaceNumber" prepend="and ">
+				ToolShelfPlaceNumber = #toolShelfPlaceNumber#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolshelfplace" prepend="and ">
+				toolshelfplace = #toolshelfplace#
+         </isNotNull>
+			<isNotNull property="placeNumber" prepend="and ">
+				PlaceNumber = #placeNumber#
+         </isNotNull>
+			<isNotNull property="placeCode" prepend="and ">
+				PlaceCode = #placeCode#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="0">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVgettoolplate" resultClass="int">
+		SELECT count(1)
+		from vgettoolplate
+		<dynamic prepend=" where ">
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="rfidCode" prepend="and ">
+				RfidCode = #rfidCode#
+         </isNotNull>
+			<isNotNull property="toolShelfID" prepend="and ">
+				ToolShelfID = #toolShelfID#
+         </isNotNull>
+			<isNotNull property="toolShelfCode" prepend="and ">
+				ToolShelfCode = #toolShelfCode#
+         </isNotNull>
+			<isNotNull property="toolShelfPlaceNumber" prepend="and ">
+				ToolShelfPlaceNumber = #toolShelfPlaceNumber#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolshelfplace" prepend="and ">
+				toolshelfplace = #toolshelfplace#
+         </isNotNull>
+			<isNotNull property="placeNumber" prepend="and ">
+				PlaceNumber = #placeNumber#
+         </isNotNull>
+			<isNotNull property="placeCode" prepend="and ">
+				PlaceCode = #placeCode#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

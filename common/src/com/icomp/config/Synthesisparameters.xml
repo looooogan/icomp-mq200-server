@@ -1,0 +1,888 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Synthesisparameters.xml Created on : 2014/11/12 18:19:03
+    Author : 工具自动生成 Description: 工具自动生成包含合成刀具参数的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询 searchByList ： 任意条件查询 searchByList_F:
+    任意条件查询执行-SynthesisParametersCode模糊查询 searchByCount ：任意条件条数查询
+    searchByLikeList ： insert ： 插入处理 update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新） delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Synthesisparameters">
+    <typeAlias alias="entitySynthesisparameters" type="com.icomp.entity.base.Synthesisparameters"/>
+    <resultMap id="Synthesisparameters-map" class="entitySynthesisparameters">
+        <!-- 合成刀具参数ID -->
+        <result property="synthesisParametersID" column="SynthesisParametersID"/>
+        <!-- 合成刀具编码(系统唯一) -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+        <!-- 位置数 -->
+        <result property="synthesisCount" column="SynthesisCount"/>
+        <!-- 是否工艺试验(0是1否) -->
+        <result property="technicalTest" column="TechnicalTest"/>
+        <!-- 组成类型(0刀片1钻头2复合刀具3热套类) -->
+        <result property="createType" column="CreateType"/>
+        <!-- 定额加工量 -->
+        <result property="quotaProcessingVolume" column="QuotaProcessingVolume"/>
+        <!-- 刀具图纸 -->
+        <result property="toolPic" column="ToolPic"/>
+        <!-- 删除区分(0有效1删除) -->
+        <result property="delFlag" column="DelFlag"/>
+        <!-- 更新时间 -->
+        <result property="updateTime" column="UpdateTime"/>
+        <!-- 更新者 -->
+        <result property="updateUser" column="UpdateUser"/>
+        <!-- 创建时间 -->
+        <result property="createTime" column="CreateTime"/>
+        <!-- 创建者 -->
+        <result property="createUser" column="CreateUser"/>
+        <!-- 版本号 -->
+        <result property="version" column="Version"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entitySynthesisparameters"
+            resultMap="Synthesisparameters-map">
+        SELECT
+        SynthesisParametersID
+        ,SynthesisParametersCode
+        ,SynthesisCount
+        ,TechnicalTest
+        ,CreateType
+        ,QuotaProcessingVolume
+        ,ToolPic
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        from
+        synthesisparameters
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersID" prepend="and ">
+                SynthesisParametersID = #synthesisParametersID#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            SynthesisParametersID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entitySynthesisparameters"
+            resultMap="Synthesisparameters-map">
+        SELECT
+        SynthesisParametersID
+        ,SynthesisParametersCode
+        ,SynthesisCount
+        ,TechnicalTest
+        ,CreateType
+        ,QuotaProcessingVolume
+        ,ToolPic
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        from
+        synthesisparameters
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersID" prepend="and ">
+                SynthesisParametersID = #synthesisParametersID#
+            </isNotNull>
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+            </isNotNull>
+            <isNotNull property="synthesisCount" prepend="and ">
+                SynthesisCount = #synthesisCount#
+            </isNotNull>
+            <isNotNull property="technicalTest" prepend="and ">
+                TechnicalTest =
+                #technicalTest#
+            </isNotNull>
+            <isNotNull property="createType" prepend="and ">
+                CreateType =
+                #createType#
+            </isNotNull>
+            <isNotNull property="quotaProcessingVolume" prepend="and ">
+                QuotaProcessingVolume = #quotaProcessingVolume#
+            </isNotNull>
+            <isNotNull property="toolPic" prepend="and ">
+                ToolPic = #toolPic#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime =
+                #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser =
+                #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime =
+                #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser =
+                #createUser#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            <!-- 2017/08/22 宋健 变更↓↓↓　dazhong@YMSC -->
+            SynthesisParametersCode
+            <!-- 2017/08/22 宋健 变更↑↑↑　dazhong@YMSC -->
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByListPoint" parameterClass="entitySynthesisparameters"
+            resultMap="Synthesisparameters-map">
+        SELECT
+        SynthesisParametersID
+        ,SynthesisParametersCode
+        ,SynthesisCount
+        ,TechnicalTest
+        ,CreateType
+        ,QuotaProcessingVolume
+        ,ToolPic
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        from
+        synthesisparameters
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersID" prepend="and ">
+                SynthesisParametersID = #synthesisParametersID#
+            </isNotNull>
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCode#
+            </isNotNull>
+            <isNotNull property="synthesisCount" prepend="and ">
+                SynthesisCount = #synthesisCount#
+            </isNotNull>
+            <isNotNull property="technicalTest" prepend="and ">
+                TechnicalTest =
+                #technicalTest#
+            </isNotNull>
+            <isNotNull property="createType" prepend="and ">
+                CreateType =
+                #createType#
+            </isNotNull>
+            <isNotNull property="quotaProcessingVolume" prepend="and ">
+                QuotaProcessingVolume = #quotaProcessingVolume#
+            </isNotNull>
+            <isNotNull property="toolPic" prepend="and ">
+                ToolPic = #toolPic#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime =
+                #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser =
+                #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime =
+                #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser =
+                #createUser#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            SynthesisParametersID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+    <!-- 任意条件查询执行-SynthesisParametersCode模糊查询 -->
+    <select id="searchByList_F" parameterClass="entitySynthesisparameters"
+            resultMap="Synthesisparameters-map">
+        SELECT
+        SynthesisParametersID
+        ,SynthesisParametersCode
+        ,SynthesisCount
+        ,TechnicalTest
+        ,CreateType
+        ,QuotaProcessingVolume
+        ,ToolPic
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        from
+        synthesisparameters
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersID" prepend="and ">
+                SynthesisParametersID = #synthesisParametersID#
+            </isNotNull>
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+            </isNotNull>
+            <isNotNull property="synthesisCount" prepend="and ">
+                SynthesisCount = #synthesisCount#
+            </isNotNull>
+            <isNotNull property="technicalTest" prepend="and ">
+                TechnicalTest =
+                #technicalTest#
+            </isNotNull>
+            <isNotNull property="createType" prepend="and ">
+                CreateType =
+                #createType#
+            </isNotNull>
+            <isNotNull property="quotaProcessingVolume" prepend="and ">
+                QuotaProcessingVolume = #quotaProcessingVolume#
+            </isNotNull>
+            <isNotNull property="toolPic" prepend="and ">
+                ToolPic = #toolPic#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime =
+                #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser =
+                #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime =
+                #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser =
+                #createUser#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            SynthesisParametersID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entitySynthesisparameters"
+            resultClass="int">
+        SELECT count(1)
+        from synthesisparameters
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersID" prepend="and ">
+                SynthesisParametersID = #synthesisParametersID#
+            </isNotNull>
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+            </isNotNull>
+            <isNotNull property="synthesisCount" prepend="and ">
+                SynthesisCount = #synthesisCount#
+            </isNotNull>
+            <isNotNull property="technicalTest" prepend="and ">
+                TechnicalTest =
+                #technicalTest#
+            </isNotNull>
+            <isNotNull property="createType" prepend="and ">
+                CreateType =
+                #createType#
+            </isNotNull>
+            <isNotNull property="quotaProcessingVolume" prepend="and ">
+                QuotaProcessingVolume = #quotaProcessingVolume#
+            </isNotNull>
+            <isNotNull property="toolPic" prepend="and ">
+                ToolPic = #toolPic#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend="and ">
+                UpdateTime =
+                #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend="and ">
+                UpdateUser =
+                #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend="and ">
+                CreateTime =
+                #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend="and ">
+                CreateUser =
+                #createUser#
+            </isNotNull>
+            <isNotNull property="version" prepend="and ">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+    <!-- 任意条件更新处理(未指定字段更新为：null) -->
+    <update id="update" parameterClass="entitySynthesisparameters">
+        update synthesisparameters
+        <dynamic prepend="set">
+            <isNotNull property="synthesisParametersID">
+                SynthesisParametersID =
+                #synthesisParametersID#
+            </isNotNull>
+            <isNull property="synthesisParametersID">
+                SynthesisParametersID = null
+            </isNull>
+            <isNotNull property="synthesisParametersCode">
+                ,SynthesisParametersCode =
+                #synthesisParametersCode#
+            </isNotNull>
+            <isNull property="synthesisParametersCode">
+                ,SynthesisParametersCode = null
+            </isNull>
+            <isNotNull property="synthesisCount">
+                ,SynthesisCount = #synthesisCount#
+            </isNotNull>
+            <isNull property="synthesisCount">
+                ,SynthesisCount = null
+            </isNull>
+            <isNotNull property="technicalTest">
+                ,TechnicalTest = #technicalTest#
+            </isNotNull>
+            <isNull property="technicalTest">
+                ,TechnicalTest = null
+            </isNull>
+            <isNotNull property="createType">
+                ,CreateType = #createType#
+            </isNotNull>
+            <isNull property="createType">
+                ,CreateType = null
+            </isNull>
+            <isNotNull property="quotaProcessingVolume">
+                ,QuotaProcessingVolume =
+                #quotaProcessingVolume#
+            </isNotNull>
+            <isNull property="quotaProcessingVolume">
+                ,QuotaProcessingVolume = null
+            </isNull>
+            <isNotNull property="toolPic">
+                ,ToolPic = #toolPic#
+            </isNotNull>
+            <isNull property="toolPic">
+                ,ToolPic = null
+            </isNull>
+            <isNotNull property="delFlag">
+                ,DelFlag = #delFlag#
+            </isNotNull>
+            <isNull property="delFlag">
+                ,DelFlag = null
+            </isNull>
+            <isNotNull property="updateTime">
+                ,UpdateTime = #updateTime#
+            </isNotNull>
+            <isNull property="updateTime">
+                ,UpdateTime = null
+            </isNull>
+            <isNotNull property="updateUser">
+                ,UpdateUser = #updateUser#
+            </isNotNull>
+            <isNull property="updateUser">
+                ,UpdateUser = null
+            </isNull>
+            <isNotNull property="createTime">
+                ,CreateTime = #createTime#
+            </isNotNull>
+            <isNull property="createTime">
+                ,CreateTime = null
+            </isNull>
+            <isNotNull property="createUser">
+                ,CreateUser = #createUser#
+            </isNotNull>
+            <isNull property="createUser">
+                ,CreateUser = null
+            </isNull>
+            <isNotNull property="version">
+                ,Version = #version#
+            </isNotNull>
+            <isNull property="version">
+                ,Version = null
+            </isNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersIDWhere" prepend="and ">
+                SynthesisParametersID = #synthesisParametersIDWhere#
+            </isNotNull>
+            <isNotNull property="synthesisParametersCodeWhere" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCodeWhere#
+            </isNotNull>
+            <isNotNull property="synthesisCountWhere" prepend="and ">
+                SynthesisCount = #synthesisCountWhere#
+            </isNotNull>
+            <isNotNull property="technicalTestWhere" prepend="and ">
+                TechnicalTest = #technicalTestWhere#
+            </isNotNull>
+            <isNotNull property="createTypeWhere" prepend="and ">
+                CreateType =
+                #createTypeWhere#
+            </isNotNull>
+            <isNotNull property="quotaProcessingVolumeWhere" prepend="and ">
+                QuotaProcessingVolume = #quotaProcessingVolumeWhere#
+            </isNotNull>
+            <isNotNull property="toolPicWhere" prepend="and ">
+                ToolPic =
+                #toolPicWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag =
+                #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime =
+                #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser =
+                #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime =
+                #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser =
+                #createUserWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version =
+                #versionWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 任意条件更新处理(未指定字段不更新) -->
+    <update id="updateNonQuery" parameterClass="entitySynthesisparameters">
+        update synthesisparameters
+        <dynamic prepend="set">
+            <isNotNull property="synthesisParametersID" prepend=",">
+                SynthesisParametersID = #synthesisParametersID#
+            </isNotNull>
+            <isNotNull property="synthesisParametersCode" prepend=",">
+                SynthesisParametersCode = #synthesisParametersCode#
+            </isNotNull>
+            <isNotNull property="synthesisCount" prepend=",">
+                SynthesisCount = #synthesisCount#
+            </isNotNull>
+            <isNotNull property="technicalTest" prepend=",">
+                TechnicalTest =
+                #technicalTest#
+            </isNotNull>
+            <isNotNull property="createType" prepend=",">
+                CreateType =
+                #createType#
+            </isNotNull>
+            <isNotNull property="quotaProcessingVolume" prepend=",">
+                QuotaProcessingVolume = #quotaProcessingVolume#
+            </isNotNull>
+            <isNotNull property="toolPic" prepend=",">
+                ToolPic = #toolPic#
+            </isNotNull>
+            <isNotNull property="delFlag" prepend=",">
+                DelFlag = #delFlag#
+            </isNotNull>
+            <isNotNull property="updateTime" prepend=",">
+                UpdateTime =
+                #updateTime#
+            </isNotNull>
+            <isNotNull property="updateUser" prepend=",">
+                UpdateUser =
+                #updateUser#
+            </isNotNull>
+            <isNotNull property="createTime" prepend=",">
+                CreateTime =
+                #createTime#
+            </isNotNull>
+            <isNotNull property="createUser" prepend=",">
+                CreateUser =
+                #createUser#
+            </isNotNull>
+            <isNotNull property="version" prepend=",">
+                Version = #version#
+            </isNotNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersIDWhere" prepend="and ">
+                SynthesisParametersID = #synthesisParametersIDWhere#
+            </isNotNull>
+            <isNotNull property="synthesisParametersCodeWhere" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCodeWhere#
+            </isNotNull>
+            <isNotNull property="synthesisCountWhere" prepend="and ">
+                SynthesisCount = #synthesisCountWhere#
+            </isNotNull>
+            <isNotNull property="technicalTestWhere" prepend="and ">
+                TechnicalTest = #technicalTestWhere#
+            </isNotNull>
+            <isNotNull property="createTypeWhere" prepend="and ">
+                CreateType =
+                #createTypeWhere#
+            </isNotNull>
+            <isNotNull property="quotaProcessingVolumeWhere" prepend="and ">
+                QuotaProcessingVolume = #quotaProcessingVolumeWhere#
+            </isNotNull>
+            <isNotNull property="toolPicWhere" prepend="and ">
+                ToolPic =
+                #toolPicWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag =
+                #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime =
+                #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser =
+                #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime =
+                #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser =
+                #createUserWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version =
+                #versionWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 插入处理 -->
+    <insert id="insert" parameterClass="entitySynthesisparameters">
+        <selectKey resultClass="java.lang.String" keyProperty="synthesisParametersID">
+            SELECT #synthesisParametersID# as synthesisParametersID FROM DUAL
+        </selectKey>
+        insert into synthesisparameters(
+        SynthesisParametersID
+        ,SynthesisParametersCode
+        ,SynthesisCount
+        ,TechnicalTest
+        ,CreateType
+        ,QuotaProcessingVolume
+        ,ToolPic
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        )
+        Values (
+        <isNotNull property="synthesisParametersID">
+            #synthesisParametersID#
+        </isNotNull>
+        <isNull property="synthesisParametersID">
+            null
+        </isNull>
+        <isNotNull property="synthesisParametersCode">
+            ,#synthesisParametersCode#
+        </isNotNull>
+        <isNull property="synthesisParametersCode">
+            ,null
+        </isNull>
+        <isNotNull property="synthesisCount">
+            ,#synthesisCount#
+        </isNotNull>
+        <isNull property="synthesisCount">
+            ,null
+        </isNull>
+        <isNotNull property="technicalTest">
+            ,#technicalTest#
+        </isNotNull>
+        <isNull property="technicalTest">
+            ,null
+        </isNull>
+        <isNotNull property="createType">
+            ,#createType#
+        </isNotNull>
+        <isNull property="createType">
+            ,null
+        </isNull>
+        <isNotNull property="quotaProcessingVolume">
+            ,#quotaProcessingVolume#
+        </isNotNull>
+        <isNull property="quotaProcessingVolume">
+            ,null
+        </isNull>
+        <isNotNull property="toolPic">
+            ,#toolPic#
+        </isNotNull>
+        <isNull property="toolPic">
+            ,null
+        </isNull>
+        <isNotNull property="delFlag">
+            ,#delFlag#
+        </isNotNull>
+        <isNull property="delFlag">
+            ,null
+        </isNull>
+        <isNotNull property="updateTime">
+            ,#updateTime#
+        </isNotNull>
+        <isNull property="updateTime">
+            ,null
+        </isNull>
+        <isNotNull property="updateUser">
+            ,#updateUser#
+        </isNotNull>
+        <isNull property="updateUser">
+            ,null
+        </isNull>
+        <isNotNull property="createTime">
+            ,#createTime#
+        </isNotNull>
+        <isNull property="createTime">
+            ,null
+        </isNull>
+        <isNotNull property="createUser">
+            ,#createUser#
+        </isNotNull>
+        <isNull property="createUser">
+            ,null
+        </isNull>
+        <isNotNull property="version">
+            ,#version#
+        </isNotNull>
+        <isNull property="version">
+            ,null
+        </isNull>
+        )
+    </insert>
+
+    <!-- 任意条件删除处理 -->
+    <delete id="delete" parameterClass="entitySynthesisparameters">
+        delete from synthesisparameters
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersIDWhere" prepend="and ">
+                SynthesisParametersID = #synthesisParametersIDWhere#
+            </isNotNull>
+            <isNotNull property="synthesisParametersCodeWhere" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCodeWhere#
+            </isNotNull>
+            <isNotNull property="synthesisCountWhere" prepend="and ">
+                SynthesisCount = #synthesisCountWhere#
+            </isNotNull>
+            <isNotNull property="technicalTestWhere" prepend="and ">
+                TechnicalTest = #technicalTestWhere#
+            </isNotNull>
+            <isNotNull property="createTypeWhere" prepend="and ">
+                CreateType =
+                #createTypeWhere#
+            </isNotNull>
+            <isNotNull property="quotaProcessingVolumeWhere" prepend="and ">
+                QuotaProcessingVolume = #quotaProcessingVolumeWhere#
+            </isNotNull>
+            <isNotNull property="toolPicWhere" prepend="and ">
+                ToolPic =
+                #toolPicWhere#
+            </isNotNull>
+            <isNotNull property="delFlagWhere" prepend="and ">
+                DelFlag =
+                #delFlagWhere#
+            </isNotNull>
+            <isNotNull property="updateTimeWhere" prepend="and ">
+                UpdateTime =
+                #updateTimeWhere#
+            </isNotNull>
+            <isNotNull property="updateUserWhere" prepend="and ">
+                UpdateUser =
+                #updateUserWhere#
+            </isNotNull>
+            <isNotNull property="createTimeWhere" prepend="and ">
+                CreateTime =
+                #createTimeWhere#
+            </isNotNull>
+            <isNotNull property="createUserWhere" prepend="and ">
+                CreateUser =
+                #createUserWhere#
+            </isNotNull>
+            <isNotNull property="versionWhere" prepend="and ">
+                Version =
+                #versionWhere#
+            </isNotNull>
+        </dynamic>
+    </delete>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByLikeList" parameterClass="entitySynthesisparameters"
+            resultMap="Synthesisparameters-map">
+        SELECT
+        SynthesisParametersID
+        ,SynthesisParametersCode
+        ,SynthesisCount
+        ,TechnicalTest
+        ,CreateType
+        ,QuotaProcessingVolume
+        ,ToolPic
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        from
+        synthesisparameters
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+            </isNotNull>
+            <isNotNull property="delFlag" prepend="and ">
+                DelFlag = #delFlag#
+            </isNotNull>
+        </dynamic>
+    </select>
+    <resultMap id="Synthesisparameters-map-2" class="entitySynthesisparameters">
+        <!-- 合成刀具参数ID -->
+        <result property="synthesisParametersID" column="SynthesisParametersID"/>
+        <!-- 合成刀具编码(系统唯一) -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+        <!-- 刀具图纸 -->
+        <result property="toolPic" column="ToolPic"/>
+        <!-- 2017/09/14 王冉 追加↓↓↓　dazhong@YMSC -->
+        <result property="createType" column="CreateType"/>
+        <!-- 2017/09/14 王冉 追加↑↑↑　dazhong@YMSC -->
+
+    </resultMap>
+    <!-- 根据载体id查询合成刀具编码-->
+    <select id="getSythesisCodeByRfidContainerID" parameterClass="entitySynthesisparameters"
+            resultMap="Synthesisparameters-map-2">
+		SELECT
+		sp.SynthesisParametersID AS SynthesisParametersID,
+		sk.SynthesisParametersCode AS SynthesisParametersCode, 
+		sk.RFID AS ToolPic
+        <!-- 2017/09/14 王冉 追加↓↓↓　dazhong@YMSC -->
+        ,sp.CreateType AS CreateType
+        <!-- 2017/09/14 王冉 追加↑↑↑　dazhong@YMSC -->
+		FROM synthesisknife sk
+		LEFT JOIN synthesisparameters sp ON sk.SynthesisParametersCode =
+		sp.SynthesisParametersCode
+		WHERE sp.DelFlag ='0' AND sk.DelFlag = '0' AND sk.SynthesisCutterNumber
+		='0' 
+		and ToolPic = #toolPic#
+	</select>
+    <!-- 根据载体id查询合成刀具编码-->
+    <select id="getSysthesCodeByToolCode" parameterClass="entitySynthesisparameters" resultMap="Synthesisparameters-map-2">
+             SELECT
+                sp.SynthesisParametersID  AS SynthesisParametersID,
+                sp.SynthesisParametersCode  AS SynthesisParametersCode,
+                scl.ToolCode   AS ToolPic
+                <!-- 2017/09/14 王冉 追加↓↓↓　dazhong@YMSC -->
+                ,sp.CreateType AS CreateType
+                <!-- 2017/09/14 王冉 追加↑↑↑　dazhong@YMSC -->
+            FROM
+                synthesiscutterlocation scl
+            LEFT JOIN synthesisparameters sp  ON scl.SynthesisParametersID = sp.SynthesisParametersID
+            WHERE sp.SynthesisParametersCode = #synthesisParametersCode#
+</select>
+<!-- 主键查询执行 -->
+    <select id="getSynIDByCode" parameterClass="entitySynthesisparameters"
+            resultMap="Synthesisparameters-map">
+        SELECT
+        SynthesisParametersID
+        ,SynthesisParametersCode
+        ,SynthesisCount
+        ,TechnicalTest
+        ,CreateType
+        ,QuotaProcessingVolume
+        ,ToolPic
+        ,DelFlag
+        ,UpdateTime
+        ,UpdateUser
+        ,CreateTime
+        ,CreateUser
+        ,Version
+        from
+        synthesisparameters
+        <dynamic prepend=" where ">
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCode#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            SynthesisParametersCode
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <resultMap id="Synthesisparameters-map-3" class="entitySynthesisparameters">
+        <!-- 合成刀具参数ID -->
+        <result property="synthesisParametersID" column="SynthesisParametersID"/>
+        <!-- 合成刀具编码(系统唯一) -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+    </resultMap>
+    <!-- 根据载体id查询合成刀具编码-->
+    <select id="getSythesisCodeAndID" parameterClass="entitySynthesisparameters" resultMap="Synthesisparameters-map-3">
+		SELECT
+		sp.SynthesisParametersCode as SynthesisParametersCode,
+		sp.SynthesisParametersID as SynthesisParametersID
+		FROM synthesisparameters sp
+		WHERE sp.DelFlag ='0'
+		AND sk.DelFlag = '0'
+		AND sp.SynthesisParametersCode = #synthesisParametersCode#
+	</select>
+</sqlMap>
+

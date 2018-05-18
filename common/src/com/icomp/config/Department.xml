@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Department.xml
+		Created on : 2014/08/19 15:48:45
+		Author : 工具自动生成
+		Description: 工具自动生成包含部门的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Department">
+	<typeAlias alias="entityDepartment" type="com.icomp.entity.base.Department" />
+	<resultMap id="Department-map" class="entityDepartment">
+		<!-- 部门ID -->
+		<result property="departmentID" column="DepartmentID" />
+		<!-- 机构ID -->
+		<result property="agencyID" column="AgencyID" />
+		<!-- 语言编码 -->
+		<result property="languageCode" column="LanguageCode" />
+		<!-- 部门编码 -->
+		<result property="departmentCode" column="DepartmentCode" />
+		<!-- 部门名称 -->
+		<result property="departmentName" column="DepartmentName" />
+		<!-- 部门电话 -->
+		<result property="departmentTel" column="DepartmentTel" />
+		<!-- 部门负责人 -->
+		<result property="departmentHead" column="DepartmentHead" />
+		<!-- 负责人手机 -->
+		<result property="departmentHeadMobile" column="DepartmentHeadMobile" />
+		<!-- 负责人电话 -->
+		<result property="departmentHeadTel" column="DepartmentHeadTel" />
+		<!-- 部门成立时间 -->
+		<result property="departmentCdate" column="DepartmentCdate" />
+		<!-- 部门描述 -->
+		<result property="departmentDescription" column="DepartmentDescription" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityDepartment" resultMap="Department-map">
+		SELECT
+		DepartmentID
+		,AgencyID
+		,LanguageCode
+		,DepartmentCode
+		,DepartmentName
+		,DepartmentTel
+		,DepartmentHead
+		,DepartmentHeadMobile
+		,DepartmentHeadTel
+		,DepartmentCdate
+		,DepartmentDescription
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from department
+		<dynamic prepend=" where ">
+			<isNotNull property="departmentID" prepend="and ">
+				DepartmentID = #departmentID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					DepartmentID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityDepartment" resultMap="Department-map">
+		SELECT
+		DepartmentID
+		,AgencyID
+		,LanguageCode
+		,DepartmentCode
+		,DepartmentName
+		,DepartmentTel
+		,DepartmentHead
+		,DepartmentHeadMobile
+		,DepartmentHeadTel
+		,DepartmentCdate
+		,DepartmentDescription
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		from department
+		<dynamic prepend=" where ">
+			<isNotNull property="departmentID" prepend="and ">
+				DepartmentID = #departmentID#
+         </isNotNull>
+			<isNotNull property="agencyID" prepend="and ">
+				AgencyID = #agencyID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="departmentCode" prepend="and ">
+				DepartmentCode = #departmentCode#
+         </isNotNull>
+			<isNotNull property="departmentName" prepend="and ">
+				DepartmentName = #departmentName#
+         </isNotNull>
+			<isNotNull property="departmentTel" prepend="and ">
+				DepartmentTel = #departmentTel#
+         </isNotNull>
+			<isNotNull property="departmentHead" prepend="and ">
+				DepartmentHead = #departmentHead#
+         </isNotNull>
+			<isNotNull property="departmentHeadMobile" prepend="and ">
+				DepartmentHeadMobile = #departmentHeadMobile#
+         </isNotNull>
+			<isNotNull property="departmentHeadTel" prepend="and ">
+				DepartmentHeadTel = #departmentHeadTel#
+         </isNotNull>
+			<isNotNull property="departmentCdate" prepend="and ">
+				DepartmentCdate = #departmentCdate#
+         </isNotNull>
+			<isNotNull property="departmentDescription" prepend="and ">
+				DepartmentDescription = #departmentDescription#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					DepartmentID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityDepartment" resultClass="int">
+		SELECT count(1)
+		from department
+		<dynamic prepend=" where ">
+			<isNotNull property="departmentID" prepend="and ">
+				DepartmentID = #departmentID#
+         </isNotNull>
+			<isNotNull property="agencyID" prepend="and ">
+				AgencyID = #agencyID#
+         </isNotNull>
+			<isNotNull property="languageCode" prepend="and ">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="departmentCode" prepend="and ">
+				DepartmentCode = #departmentCode#
+         </isNotNull>
+			<isNotNull property="departmentName" prepend="and ">
+				DepartmentName = #departmentName#
+         </isNotNull>
+			<isNotNull property="departmentTel" prepend="and ">
+				DepartmentTel = #departmentTel#
+         </isNotNull>
+			<isNotNull property="departmentHead" prepend="and ">
+				DepartmentHead = #departmentHead#
+         </isNotNull>
+			<isNotNull property="departmentHeadMobile" prepend="and ">
+				DepartmentHeadMobile = #departmentHeadMobile#
+         </isNotNull>
+			<isNotNull property="departmentHeadTel" prepend="and ">
+				DepartmentHeadTel = #departmentHeadTel#
+         </isNotNull>
+			<isNotNull property="departmentCdate" prepend="and ">
+				DepartmentCdate = #departmentCdate#
+         </isNotNull>
+			<isNotNull property="departmentDescription" prepend="and ">
+				DepartmentDescription = #departmentDescription#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityDepartment">
+		update department
+		<dynamic prepend="set">
+			<isNotNull property="departmentID">
+				DepartmentID = #departmentID#
+         </isNotNull>
+			<isNull property="departmentID">
+				DepartmentID = null
+         </isNull>
+			<isNotNull property="agencyID">
+				,AgencyID = #agencyID#
+         </isNotNull>
+			<isNull property="agencyID">
+				,AgencyID = null
+         </isNull>
+			<isNotNull property="languageCode">
+				,LanguageCode = #languageCode#
+         </isNotNull>
+			<isNull property="languageCode">
+				,LanguageCode = null
+         </isNull>
+			<isNotNull property="departmentCode">
+				,DepartmentCode = #departmentCode#
+         </isNotNull>
+			<isNull property="departmentCode">
+				,DepartmentCode = null
+         </isNull>
+			<isNotNull property="departmentName">
+				,DepartmentName = #departmentName#
+         </isNotNull>
+			<isNull property="departmentName">
+				,DepartmentName = null
+         </isNull>
+			<isNotNull property="departmentTel">
+				,DepartmentTel = #departmentTel#
+         </isNotNull>
+			<isNull property="departmentTel">
+				,DepartmentTel = null
+         </isNull>
+			<isNotNull property="departmentHead">
+				,DepartmentHead = #departmentHead#
+         </isNotNull>
+			<isNull property="departmentHead">
+				,DepartmentHead = null
+         </isNull>
+			<isNotNull property="departmentHeadMobile">
+				,DepartmentHeadMobile = #departmentHeadMobile#
+         </isNotNull>
+			<isNull property="departmentHeadMobile">
+				,DepartmentHeadMobile = null
+         </isNull>
+			<isNotNull property="departmentHeadTel">
+				,DepartmentHeadTel = #departmentHeadTel#
+         </isNotNull>
+			<isNull property="departmentHeadTel">
+				,DepartmentHeadTel = null
+         </isNull>
+			<isNotNull property="departmentCdate">
+				,DepartmentCdate = #departmentCdate#
+         </isNotNull>
+			<isNull property="departmentCdate">
+				,DepartmentCdate = null
+         </isNull>
+			<isNotNull property="departmentDescription">
+				,DepartmentDescription = #departmentDescription#
+         </isNotNull>
+			<isNull property="departmentDescription">
+				,DepartmentDescription = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="departmentIDWhere" prepend="and ">
+				DepartmentID = #departmentIDWhere#
+         </isNotNull>
+			<isNotNull property="agencyIDWhere" prepend="and ">
+				AgencyID = #agencyIDWhere#
+         </isNotNull>
+			<isNotNull property="languageCodeWhere" prepend="and ">
+				LanguageCode = #languageCodeWhere#
+         </isNotNull>
+			<isNotNull property="departmentCodeWhere" prepend="and ">
+				DepartmentCode = #departmentCodeWhere#
+         </isNotNull>
+			<isNotNull property="departmentNameWhere" prepend="and ">
+				DepartmentName = #departmentNameWhere#
+         </isNotNull>
+			<isNotNull property="departmentTelWhere" prepend="and ">
+				DepartmentTel = #departmentTelWhere#
+         </isNotNull>
+			<isNotNull property="departmentHeadWhere" prepend="and ">
+				DepartmentHead = #departmentHeadWhere#
+         </isNotNull>
+			<isNotNull property="departmentHeadMobileWhere" prepend="and ">
+				DepartmentHeadMobile = #departmentHeadMobileWhere#
+         </isNotNull>
+			<isNotNull property="departmentHeadTelWhere" prepend="and ">
+				DepartmentHeadTel = #departmentHeadTelWhere#
+         </isNotNull>
+			<isNotNull property="departmentCdateWhere" prepend="and ">
+				DepartmentCdate = #departmentCdateWhere#
+         </isNotNull>
+			<isNotNull property="departmentDescriptionWhere" prepend="and ">
+				DepartmentDescription = #departmentDescriptionWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityDepartment">
+		update department
+		<dynamic prepend="set">
+			<isNotNull property="departmentID"  prepend=",">
+				DepartmentID = #departmentID#
+         </isNotNull>
+			<isNotNull property="agencyID"  prepend=",">
+				AgencyID = #agencyID#
+         </isNotNull>
+			<isNotNull property="languageCode"  prepend=",">
+				LanguageCode = #languageCode#
+         </isNotNull>
+			<isNotNull property="departmentCode"  prepend=",">
+				DepartmentCode = #departmentCode#
+         </isNotNull>
+			<isNotNull property="departmentName"  prepend=",">
+				DepartmentName = #departmentName#
+         </isNotNull>
+			<isNotNull property="departmentTel"  prepend=",">
+				DepartmentTel = #departmentTel#
+         </isNotNull>
+			<isNotNull property="departmentHead"  prepend=",">
+				DepartmentHead = #departmentHead#
+         </isNotNull>
+			<isNotNull property="departmentHeadMobile"  prepend=",">
+				DepartmentHeadMobile = #departmentHeadMobile#
+         </isNotNull>
+			<isNotNull property="departmentHeadTel"  prepend=",">
+				DepartmentHeadTel = #departmentHeadTel#
+         </isNotNull>
+			<isNotNull property="departmentCdate"  prepend=",">
+				DepartmentCdate = #departmentCdate#
+         </isNotNull>
+			<isNotNull property="departmentDescription"  prepend=",">
+				DepartmentDescription = #departmentDescription#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="departmentIDWhere" prepend="and ">
+				DepartmentID = #departmentIDWhere#
+         </isNotNull>
+			<isNotNull property="agencyIDWhere" prepend="and ">
+				AgencyID = #agencyIDWhere#
+         </isNotNull>
+			<isNotNull property="languageCodeWhere" prepend="and ">
+				LanguageCode = #languageCodeWhere#
+         </isNotNull>
+			<isNotNull property="departmentCodeWhere" prepend="and ">
+				DepartmentCode = #departmentCodeWhere#
+         </isNotNull>
+			<isNotNull property="departmentNameWhere" prepend="and ">
+				DepartmentName = #departmentNameWhere#
+         </isNotNull>
+			<isNotNull property="departmentTelWhere" prepend="and ">
+				DepartmentTel = #departmentTelWhere#
+         </isNotNull>
+			<isNotNull property="departmentHeadWhere" prepend="and ">
+				DepartmentHead = #departmentHeadWhere#
+         </isNotNull>
+			<isNotNull property="departmentHeadMobileWhere" prepend="and ">
+				DepartmentHeadMobile = #departmentHeadMobileWhere#
+         </isNotNull>
+			<isNotNull property="departmentHeadTelWhere" prepend="and ">
+				DepartmentHeadTel = #departmentHeadTelWhere#
+         </isNotNull>
+			<isNotNull property="departmentCdateWhere" prepend="and ">
+				DepartmentCdate = #departmentCdateWhere#
+         </isNotNull>
+			<isNotNull property="departmentDescriptionWhere" prepend="and ">
+				DepartmentDescription = #departmentDescriptionWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityDepartment">
+		<selectKey resultClass="java.lang.String" keyProperty="departmentID">
+			SELECT #departmentID# as departmentID FROM DUAL
+     </selectKey>
+		insert into department(
+		DepartmentID
+		,AgencyID
+		,LanguageCode
+		,DepartmentCode
+		,DepartmentName
+		,DepartmentTel
+		,DepartmentHead
+		,DepartmentHeadMobile
+		,DepartmentHeadTel
+		,DepartmentCdate
+		,DepartmentDescription
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		)
+		Values (
+			<isNotNull property="departmentID">
+				#departmentID#
+         </isNotNull>
+			<isNull property="departmentID">
+				null
+         </isNull>
+			<isNotNull property="agencyID">
+				,#agencyID#
+         </isNotNull>
+			<isNull property="agencyID">
+				,null
+         </isNull>
+			<isNotNull property="languageCode">
+				,#languageCode#
+         </isNotNull>
+			<isNull property="languageCode">
+				,null
+         </isNull>
+			<isNotNull property="departmentCode">
+				,#departmentCode#
+         </isNotNull>
+			<isNull property="departmentCode">
+				,null
+         </isNull>
+			<isNotNull property="departmentName">
+				,#departmentName#
+         </isNotNull>
+			<isNull property="departmentName">
+				,null
+         </isNull>
+			<isNotNull property="departmentTel">
+				,#departmentTel#
+         </isNotNull>
+			<isNull property="departmentTel">
+				,null
+         </isNull>
+			<isNotNull property="departmentHead">
+				,#departmentHead#
+         </isNotNull>
+			<isNull property="departmentHead">
+				,null
+         </isNull>
+			<isNotNull property="departmentHeadMobile">
+				,#departmentHeadMobile#
+         </isNotNull>
+			<isNull property="departmentHeadMobile">
+				,null
+         </isNull>
+			<isNotNull property="departmentHeadTel">
+				,#departmentHeadTel#
+         </isNotNull>
+			<isNull property="departmentHeadTel">
+				,null
+         </isNull>
+			<isNotNull property="departmentCdate">
+				,#departmentCdate#
+         </isNotNull>
+			<isNull property="departmentCdate">
+				,null
+         </isNull>
+			<isNotNull property="departmentDescription">
+				,#departmentDescription#
+         </isNotNull>
+			<isNull property="departmentDescription">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityDepartment">
+		delete  from department
+		<dynamic prepend=" where ">
+			<isNotNull property="departmentIDWhere" prepend="and ">
+				DepartmentID = #departmentIDWhere#
+         </isNotNull>
+			<isNotNull property="agencyIDWhere" prepend="and ">
+				AgencyID = #agencyIDWhere#
+         </isNotNull>
+			<isNotNull property="languageCodeWhere" prepend="and ">
+				LanguageCode = #languageCodeWhere#
+         </isNotNull>
+			<isNotNull property="departmentCodeWhere" prepend="and ">
+				DepartmentCode = #departmentCodeWhere#
+         </isNotNull>
+			<isNotNull property="departmentNameWhere" prepend="and ">
+				DepartmentName = #departmentNameWhere#
+         </isNotNull>
+			<isNotNull property="departmentTelWhere" prepend="and ">
+				DepartmentTel = #departmentTelWhere#
+         </isNotNull>
+			<isNotNull property="departmentHeadWhere" prepend="and ">
+				DepartmentHead = #departmentHeadWhere#
+         </isNotNull>
+			<isNotNull property="departmentHeadMobileWhere" prepend="and ">
+				DepartmentHeadMobile = #departmentHeadMobileWhere#
+         </isNotNull>
+			<isNotNull property="departmentHeadTelWhere" prepend="and ">
+				DepartmentHeadTel = #departmentHeadTelWhere#
+         </isNotNull>
+			<isNotNull property="departmentCdateWhere" prepend="and ">
+				DepartmentCdate = #departmentCdateWhere#
+         </isNotNull>
+			<isNotNull property="departmentDescriptionWhere" prepend="and ">
+				DepartmentDescription = #departmentDescriptionWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

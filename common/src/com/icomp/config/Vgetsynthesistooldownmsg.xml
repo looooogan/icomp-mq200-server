@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vgetsynthesistooldownmsg.xml
+		Created on : 2014/12/03 17:20:43
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgetsynthesistooldownmsg">
+	<typeAlias alias="entityVgetsynthesistooldownmsg" type="com.icomp.entity.base.Vgetsynthesistooldownmsg" />
+	<resultMap id="Vgetsynthesistooldownmsg-map" class="entityVgetsynthesistooldownmsg">
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 刀具名称 -->
+		<result property="toolName" column="ToolName" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 刀具分类(0刀具1辅具2配套9其他） -->
+		<result property="toolType" column="ToolType" />
+		<!-- 消耗类别(0:可刃磨钻头1可刃磨刀片2一次性刀片9其他 -->
+		<result property="toolConsumetype" column="ToolConsumetype" />
+		<!-- 位置号 -->
+		<result property="synthesisCutterNumber" column="SynthesisCutterNumber" />
+		<!-- 合成刀具编号(例如：001、002、003) -->
+		<result property="synthesisParametersNumber" column="SynthesisParametersNumber" />
+		<!-- 是否安装(0安装1卸下9其他) -->
+		<result property="installFlag" column="InstallFlag" />
+		<!-- 卸下方式(0装盒1装盘3保留) -->
+		<result property="offloadType" column="OffloadType" />
+		<!-- 刀具入库编码 -->
+		<result property="knifeInventoryCode" column="KnifeInventoryCode" />
+		<!-- 可使用(刃磨)次数 -->
+		<result property="toolSharpennum" column="ToolSharpennum" />
+		<!-- 组成类型(0刀片1钻头2复合刀具3热套类) -->
+		<result property="createType" column="CreateType" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVgetsynthesistooldownmsg" resultMap="Vgetsynthesistooldownmsg-map">
+		SELECT
+		SynthesisParametersCode
+		,ToolID
+		,ToolName
+		,ToolCode
+		,ToolType
+		,ToolConsumetype
+		,SynthesisCutterNumber
+		,SynthesisParametersNumber
+		,InstallFlag
+		,OffloadType
+		,KnifeInventoryCode
+		,ToolSharpennum
+		,CreateType
+		,Version
+		from vgetsynthesistooldownmsg
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="0">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVgetsynthesistooldownmsg" resultMap="Vgetsynthesistooldownmsg-map">
+		SELECT
+		SynthesisParametersCode
+		,ToolID
+		,ToolName
+		,ToolCode
+		,ToolType
+		,ToolConsumetype
+		,SynthesisCutterNumber
+		,SynthesisParametersNumber
+		,InstallFlag
+		,OffloadType
+		,KnifeInventoryCode
+		,ToolSharpennum
+		,CreateType
+		,Version
+		from vgetsynthesistooldownmsg
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolType" prepend="and ">
+				ToolType = #toolType#
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumber" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="installFlag" prepend="and ">
+				InstallFlag = #installFlag#
+         </isNotNull>
+			<isNotNull property="offloadType" prepend="and ">
+				OffloadType = #offloadType#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolSharpennum" prepend="and ">
+				ToolSharpennum = #toolSharpennum#
+         </isNotNull>
+			<isNotNull property="createType" prepend="and ">
+				CreateType = #createType#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="0">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVgetsynthesistooldownmsg" resultClass="int">
+		SELECT count(1)
+		from vgetsynthesistooldownmsg
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolType" prepend="and ">
+				ToolType = #toolType#
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumber" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="installFlag" prepend="and ">
+				InstallFlag = #installFlag#
+         </isNotNull>
+			<isNotNull property="offloadType" prepend="and ">
+				OffloadType = #offloadType#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="toolSharpennum" prepend="and ">
+				ToolSharpennum = #toolSharpennum#
+         </isNotNull>
+			<isNotNull property="createType" prepend="and ">
+				CreateType = #createType#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

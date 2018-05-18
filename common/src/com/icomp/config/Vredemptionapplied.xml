@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vredemptionapplied.xml
+		Created on : 2016/08/04 10:42:50
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vredemptionapplied">
+	<typeAlias alias="entityVredemptionapplied" type="com.icomp.entity.base.Vredemptionapplied" />
+	<resultMap id="Vredemptionapplied-map" class="entityVredemptionapplied">
+		<!-- 刀具编码 -->
+		<result property="toolType" column="ToolType" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 换领申请流水号 -->
+		<result property="redemptionAppliedID" column="RedemptionAppliedID" />
+		<!-- 申请时间 -->
+		<result property="applyTime" column="ApplyTime" />
+		<!-- 领取数量 -->
+		<result property="receiveNumber" column="ReceiveNumber" />
+		<!--  -->
+		<result property="receiveUser" column="ReceiveUser" />
+		<!--  -->
+		<result property="receiveCad" column="ReceiveCad" />
+		<!-- 创建者 -->
+		<result property="libraryUser" column="LibraryUser" />
+		<!-- 处理状态((0申请中1已备货 2换领已送回 3换领未送回 4.换领完毕 ) -->
+		<result property="processingStatus" column="ProcessingStatus" />
+		<!-- 申请数量 -->
+		<result property="appliedNumber" column="AppliedNumber" />
+		<!-- 送回数量 -->
+		<result property="returnNumber" column="ReturnNumber" />
+		<!-- 丢失数量 -->
+		<result property="lostNumber" column="LostNumber" />
+		<!--  -->
+		<result property="applyUser" column="ApplyUser" />
+		<!--  -->
+		<result property="applyCad" column="ApplyCad" />
+		<!-- 申请人 -->
+		<result property="applyID" column="ApplyID" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVredemptionapplied" resultMap="Vredemptionapplied-map">
+		SELECT
+		ToolType
+		,ToolCode
+		,RedemptionAppliedID
+		,ApplyTime
+		,ReceiveNumber
+		,ReceiveUser
+		,ReceiveCad
+		,LibraryUser
+		,ProcessingStatus
+		,AppliedNumber
+		,ReturnNumber
+		,LostNumber
+		,ApplyUser
+		,ApplyCad
+		,ApplyID
+		,UpdateTime
+		from vredemptionapplied
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVredemptionapplied" resultMap="Vredemptionapplied-map">
+		SELECT
+		ToolType
+		,ToolCode
+		,RedemptionAppliedID
+		,ApplyTime
+		,ReceiveNumber
+		,ReceiveUser
+		,ReceiveCad
+		,LibraryUser
+ 	/*	//2017/08/14 王冉 变更↓↓↓　dazhong@YMSC*/
+		/*,ProcessingStatus*/
+		,CASE WHEN AppliedNumber = ReceiveNumber THEN 1 ELSE 0 END ProcessingStatus
+		/*	//2017/08/14 王冉 变更↑↑↑　dazhong@YMSC*/
+		,AppliedNumber
+		,ReturnNumber
+		,LostNumber
+		,ApplyUser
+		,ApplyCad
+		,ApplyID
+		,UpdateTime
+		from vredemptionapplied
+		<dynamic prepend=" where ">
+			<isNotNull property="toolType" prepend="and ">
+				ToolType like concat('%',#toolType#,'%')
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="redemptionAppliedID" prepend="and ">
+				RedemptionAppliedID = #redemptionAppliedID#
+         </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				ApplyTime >= #dateStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				ApplyTime <= #dateEnd#
+				]]>
+         </isNotNull>
+			<isNotNull property="receiveNumber" prepend="and ">
+				ReceiveNumber = #receiveNumber#
+         </isNotNull>
+			<isNotNull property="receiveUser" prepend="and " open="(" >
+				ReceiveUser like concat('%',#receiveUser#,'%')
+         </isNotNull>
+
+			<isNotNull property="receiveCad" prepend="or" close=")">
+				ReceiveCad like concat('%',#receiveCad#,'%')
+			</isNotNull>
+			<isNotNull property="libraryUser" prepend="and ">
+				LibraryUser like concat('%',#libraryUser#,'%')
+         </isNotNull>
+			<isNotNull property="processingStatus" prepend="and ">
+				ProcessingStatus = #processingStatus#
+         </isNotNull>
+			<isNotNull property="appliedNumber" prepend="and ">
+				AppliedNumber = #appliedNumber#
+         </isNotNull>
+			<isNotNull property="returnNumber" prepend="and ">
+				ReturnNumber = #returnNumber#
+         </isNotNull>
+			<isNotNull property="lostNumber" prepend="and ">
+				LostNumber = #lostNumber#
+         </isNotNull>
+			<isNotNull property="applyUser" prepend="and " open="(" >
+				ApplyUser like concat('%',#applyUser#,'%')
+
+         </isNotNull>
+			<isNotNull property="applyCad" prepend="or "  close=")">
+				ApplyCad like concat('%',#applyCad#,'%')
+			</isNotNull>
+			<isNotNull property="applyID" prepend="and ">
+				ApplyID = #applyID#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVredemptionapplied" resultClass="int">
+		SELECT count(1)
+		from vredemptionapplied
+		<dynamic prepend=" where ">
+			<isNotNull property="toolType" prepend="and ">
+				ToolType = #toolType#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="redemptionAppliedID" prepend="and ">
+				RedemptionAppliedID = #redemptionAppliedID#
+         </isNotNull>
+			<isNotNull property="applyTime" prepend="and ">
+				ApplyTime = #applyTime#
+         </isNotNull>
+			<isNotNull property="receiveNumber" prepend="and ">
+				ReceiveNumber = #receiveNumber#
+         </isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="receiveCad" prepend="and ">
+				ReceiveCad = #receiveCad#
+         </isNotNull>
+			<isNotNull property="libraryUser" prepend="and ">
+				LibraryUser = #libraryUser#
+         </isNotNull>
+			<isNotNull property="processingStatus" prepend="and ">
+				ProcessingStatus = #processingStatus#
+         </isNotNull>
+			<isNotNull property="appliedNumber" prepend="and ">
+				AppliedNumber = #appliedNumber#
+         </isNotNull>
+			<isNotNull property="returnNumber" prepend="and ">
+				ReturnNumber = #returnNumber#
+         </isNotNull>
+			<isNotNull property="lostNumber" prepend="and ">
+				LostNumber = #lostNumber#
+         </isNotNull>
+			<isNotNull property="applyUser" prepend="and ">
+				ApplyUser = #applyUser#
+         </isNotNull>
+			<isNotNull property="applyCad" prepend="and ">
+				ApplyCad = #applyCad#
+         </isNotNull>
+			<isNotNull property="applyID" prepend="and ">
+				ApplyID = #applyID#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

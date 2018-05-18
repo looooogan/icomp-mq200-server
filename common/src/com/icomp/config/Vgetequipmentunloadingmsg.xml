@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vgetequipmentunloadingmsg.xml
+		Created on : 2014/12/05 11:05:02
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgetequipmentunloadingmsg">
+	<typeAlias alias="entityVgetequipmentunloadingmsg" type="com.icomp.entity.base.Vgetequipmentunloadingmsg" />
+	<resultMap id="Vgetequipmentunloadingmsg-map" class="entityVgetequipmentunloadingmsg">
+		<!-- RFID标签ID -->
+		<result property="rfid" column="Rfid" />
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisCutterNumber" column="SynthesisCutterNumber" />
+		<!-- 合成刀具编号(例如：001、002、003) -->
+		<result property="synthesisParametersNumber" column="SynthesisParametersNumber" />
+		<!-- 业务-流程中间表ID -->
+		<result property="businessFlowLnkID" column="BusinessFlowLnkID" />
+		<!-- 设备ID -->
+		<result property="equipmentID" column="EquipmentID" />
+		<!-- 设备编码 -->
+		<result property="equipmentCode" column="EquipmentCode" />
+		<!-- 设备名称 -->
+		<result property="equipmentName" column="EquipmentName" />
+		<!-- 工序ID -->
+		<result property="processID" column="ProcessID" />
+		<!-- 工序编码 -->
+		<result property="processCode" column="ProcessCode" />
+		<!-- 工序名称 -->
+		<result property="processName" column="ProcessName" />
+		<!-- 流水线名称 -->
+		<result property="assemblyLineName" column="AssemblyLineName" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVgetequipmentunloadingmsg" resultMap="Vgetequipmentunloadingmsg-map">
+		SELECT
+		Rfid
+		,SynthesisCutterNumber
+		,SynthesisParametersNumber
+		,BusinessFlowLnkID
+		,EquipmentID
+		,EquipmentCode
+		,EquipmentName
+		,ProcessID
+		,ProcessCode
+		,ProcessName
+		,AssemblyLineName
+		from vgetequipmentunloadingmsg
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVgetequipmentunloadingmsg" resultMap="Vgetequipmentunloadingmsg-map">
+		SELECT
+		Rfid
+		,SynthesisCutterNumber
+		,SynthesisParametersNumber
+		,BusinessFlowLnkID
+		,EquipmentID
+		,EquipmentCode
+		,EquipmentName
+		,ProcessID
+		,ProcessCode
+		,ProcessName
+		,AssemblyLineName
+		from vgetequipmentunloadingmsg
+		<dynamic prepend=" where ">
+			<isNotNull property="rfid" prepend="and ">
+				Rfid = #rfid#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumber" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+			<isNotNull property="equipmentCode" prepend="and ">
+				EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="processID" prepend="and ">
+				ProcessID = #processID#
+         </isNotNull>
+			<isNotNull property="processCode" prepend="and ">
+				ProcessCode = #processCode#
+         </isNotNull>
+			<isNotNull property="processName" prepend="and ">
+				ProcessName = #processName#
+         </isNotNull>
+			<isNotNull property="assemblyLineName" prepend="and ">
+				AssemblyLineName = #assemblyLineName#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVgetequipmentunloadingmsg" resultClass="int">
+		SELECT count(1)
+		from vgetequipmentunloadingmsg
+		<dynamic prepend=" where ">
+			<isNotNull property="rfid" prepend="and ">
+				Rfid = #rfid#
+         </isNotNull>
+			<isNotNull property="synthesisCutterNumber" prepend="and ">
+				SynthesisCutterNumber = #synthesisCutterNumber#
+         </isNotNull>
+			<isNotNull property="synthesisParametersNumber" prepend="and ">
+				SynthesisParametersNumber = #synthesisParametersNumber#
+         </isNotNull>
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+			<isNotNull property="equipmentCode" prepend="and ">
+				EquipmentCode = #equipmentCode#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="processID" prepend="and ">
+				ProcessID = #processID#
+         </isNotNull>
+			<isNotNull property="processCode" prepend="and ">
+				ProcessCode = #processCode#
+         </isNotNull>
+			<isNotNull property="processName" prepend="and ">
+				ProcessName = #processName#
+         </isNotNull>
+			<isNotNull property="assemblyLineName" prepend="and ">
+				AssemblyLineName = #assemblyLineName#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

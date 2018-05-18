@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Oplink.xml
+    Created on : 2016/03/03 10:24:38
+    Author : 工具自动生成
+    Description: 工具自动生成包含的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Oplink">
+    <typeAlias alias="entityOplink" type="com.icomp.entity.base.Oplink"/>
+    <resultMap id="Oplink-map" class="entityOplink">
+        <!-- OplinkID -->
+        <result property="oplinkID" column="OplinkID"/>
+        <!-- 工序ID -->
+        <result property="processID" column="ProcessID"/>
+        <!-- 设备ID -->
+        <result property="equipmentID" column="EquipmentID"/>
+        <!-- 流水线ID -->
+        <result property="assemblyLineID" column="AssemblyLineID"/>
+        <!-- 合成刀具参数ID -->
+        <result property="synthesisParametersID" column="SynthesisParametersID"/>
+        <!-- 零部件ID -->
+        <result property="partsID" column="PartsID"/>
+        <!-- 轴ID -->
+        <result property="axleID" column="AxleID"/>
+        <!-- 耐用度 -->
+        <result property="toolDurable" column="ToolDurable"/>
+
+    </resultMap>
+
+    <!--2017/08/14 王冉 追加↓↓↓　dazhong@YMSC-->
+    <resultMap id="Oplink-map2" class="entityOplink">
+        <!-- 零部件ID -->
+        <result property="partsID" column="PartsID"/>
+        <!-- 耐用度 -->
+        <result property="toolDurable" column="ToolDurable"/>
+
+        <!-- 零部件名称 -->
+        <result property="partsName" column="PartsName"/>
+        <!-- 零部件类型 -->
+        <result property="partsType" column="PartsType"/>
+    </resultMap>
+    <!--2017/08/14 王冉 追加↑↑↑　dazhong@YMSC-->
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityOplink" resultMap="Oplink-map">
+        SELECT
+        OplinkID
+        ,ProcessID
+        ,EquipmentID
+        ,AssemblyLineID
+        ,SynthesisParametersID
+        ,PartsID
+        ,AxleID
+        ,ToolDurable
+        from oplink
+        <dynamic prepend=" where ">
+            <isNotNull property="oplinkID" prepend="and ">
+                OplinkID = #oplinkID#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            OplinkID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityOplink" resultMap="Oplink-map">
+        SELECT
+        OplinkID
+        ,ProcessID
+        ,EquipmentID
+        ,AssemblyLineID
+        ,SynthesisParametersID
+        ,PartsID
+        ,AxleID
+        ,ToolDurable
+        from oplink
+        <dynamic prepend=" where ">
+            <isNotNull property="oplinkID" prepend="and ">
+                OplinkID = #oplinkID#
+            </isNotNull>
+            <isNotNull property="processID" prepend="and ">
+                ProcessID = #processID#
+            </isNotNull>
+            <isNotNull property="equipmentID" prepend="and ">
+                EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="assemblyLineID" prepend="and ">
+                AssemblyLineID = #assemblyLineID#
+            </isNotNull>
+            <isNotNull property="synthesisParametersID" prepend="and ">
+                SynthesisParametersID = #synthesisParametersID#
+            </isNotNull>
+            <isNotNull property="partsID" prepend="and ">
+                PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="axleID" prepend="and ">
+                AxleID = #axleID#
+            </isNotNull>
+            <isNotNull property="toolDurable" prepend="and ">
+                ToolDurable = #toolDurable#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+            OplinkID
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityOplink" resultClass="int">
+        SELECT count(1)
+        from oplink
+        <dynamic prepend=" where ">
+            <isNotNull property="oplinkID" prepend="and ">
+                OplinkID = #oplinkID#
+            </isNotNull>
+            <isNotNull property="processID" prepend="and ">
+                ProcessID = #processID#
+            </isNotNull>
+            <isNotNull property="equipmentID" prepend="and ">
+                EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="assemblyLineID" prepend="and ">
+                AssemblyLineID = #assemblyLineID#
+            </isNotNull>
+            <isNotNull property="synthesisParametersID" prepend="and ">
+                SynthesisParametersID = #synthesisParametersID#
+            </isNotNull>
+            <isNotNull property="partsID" prepend="and ">
+                PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="axleID" prepend="and ">
+                AxleID = #axleID#
+            </isNotNull>
+            <isNotNull property="toolDurable" prepend="and ">
+                ToolDurable = #toolDurable#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+    <!-- 任意条件更新处理(未指定字段更新为：null) -->
+    <update id="update" parameterClass="entityOplink">
+        update oplink
+        <dynamic prepend="set">
+            <isNotNull property="oplinkID">
+                OplinkID = #oplinkID#
+            </isNotNull>
+            <isNull property="oplinkID">
+                OplinkID = null
+            </isNull>
+            <isNotNull property="processID">
+                ,ProcessID = #processID#
+            </isNotNull>
+            <isNull property="processID">
+                ,ProcessID = null
+            </isNull>
+            <isNotNull property="equipmentID">
+                ,EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNull property="equipmentID">
+                ,EquipmentID = null
+            </isNull>
+            <isNotNull property="assemblyLineID">
+                ,AssemblyLineID = #assemblyLineID#
+            </isNotNull>
+            <isNull property="assemblyLineID">
+                ,AssemblyLineID = null
+            </isNull>
+            <isNotNull property="synthesisParametersID">
+                ,SynthesisParametersID = #synthesisParametersID#
+            </isNotNull>
+            <isNull property="synthesisParametersID">
+                ,SynthesisParametersID = null
+            </isNull>
+            <isNotNull property="partsID">
+                ,PartsID = #partsID#
+            </isNotNull>
+            <isNull property="partsID">
+                ,PartsID = null
+            </isNull>
+            <isNotNull property="axleID">
+                ,AxleID = #axleID#
+            </isNotNull>
+            <isNull property="axleID">
+                ,AxleID = null
+            </isNull>
+            <isNotNull property="toolDurable">
+                ,ToolDurable = #toolDurable#
+            </isNotNull>
+            <isNull property="toolDurable">
+                ,ToolDurable = null
+            </isNull>
+        </dynamic>
+        <dynamic prepend=" where ">
+            <isNotNull property="oplinkIDWhere" prepend="and ">
+                OplinkID = #oplinkIDWhere#
+            </isNotNull>
+            <isNotNull property="processIDWhere" prepend="and ">
+                ProcessID = #processIDWhere#
+            </isNotNull>
+            <isNotNull property="equipmentIDWhere" prepend="and ">
+                EquipmentID = #equipmentIDWhere#
+            </isNotNull>
+            <isNotNull property="assemblyLineIDWhere" prepend="and ">
+                AssemblyLineID = #assemblyLineIDWhere#
+            </isNotNull>
+            <isNotNull property="synthesisParametersIDWhere" prepend="and ">
+                SynthesisParametersID = #synthesisParametersIDWhere#
+            </isNotNull>
+            <isNotNull property="partsIDWhere" prepend="and ">
+                PartsID = #partsIDWhere#
+            </isNotNull>
+            <isNotNull property="axleIDWhere" prepend="and ">
+                AxleID = #axleIDWhere#
+            </isNotNull>
+            <isNotNull property="toolDurableWhere" prepend="and ">
+                ToolDurable = #toolDurableWhere#
+            </isNotNull>
+        </dynamic>
+    </update>
+
+    <!-- 任意条件更新处理(未指定字段不更新) -->
+    <update id="updateNonQuery" parameterClass="entityOplink">
+        <!-- 2017/07/03 宋健 变更↓↓↓　dazhong@YMSC -->
+        update oplink
+        SET
+        OplinkID = #oplinkID#,
+        ProcessID = #processID#,
+        EquipmentID = #equipmentID#,
+        AssemblyLineID = #assemblyLineID#,
+        SynthesisParametersID = #synthesisParametersID#,
+        PartsID = #partsID#,
+        AxleID = #axleID#,
+        ToolDurable = #toolDurable#
+        WHERE
+        OplinkID = #oplinkID#
+
+        <!--<dynamic prepend="set">-->
+            <!--<isNotNull property="oplinkID" prepend=",">-->
+                <!--OplinkID = #oplinkID#-->
+            <!--</isNotNull>-->
+            <!--<isNotNull property="processID" prepend=",">-->
+                <!--ProcessID = #processID#-->
+            <!--</isNotNull>-->
+            <!--<isNotNull property="equipmentID" prepend=",">-->
+                <!--EquipmentID = #equipmentID#-->
+            <!--</isNotNull>-->
+            <!--<isNotNull property="assemblyLineID" prepend=",">-->
+                <!--AssemblyLineID = #assemblyLineID#-->
+            <!--</isNotNull>-->
+            <!--<isNotNull property="synthesisParametersID" prepend=",">-->
+                <!--SynthesisParametersID = #synthesisParametersID#-->
+            <!--</isNotNull>-->
+            <!--<isNotNull property="partsID" prepend=",">-->
+                <!--PartsID = #partsID#-->
+            <!--</isNotNull>-->
+            <!--<isNotNull property="axleID" prepend=",">-->
+                <!--AxleID = #axleID#-->
+            <!--</isNotNull>-->
+            <!--<isNotNull property="toolDurable" prepend=",">-->
+                <!--ToolDurable = #toolDurable#-->
+            <!--</isNotNull>-->
+        <!--</dynamic>-->
+        <!--<dynamic prepend=" where ">-->
+            <!--<isNotNull property="oplinkIDWhere" prepend="and ">-->
+                <!--OplinkID = #oplinkIDWhere#-->
+            <!--</isNotNull>-->
+            <!--<isNotNull property="processIDWhere" prepend="and ">-->
+                <!--ProcessID = #processIDWhere#-->
+            <!--</isNotNull>-->
+            <!--<isNotNull property="equipmentIDWhere" prepend="and ">-->
+                <!--EquipmentID = #equipmentIDWhere#-->
+            <!--</isNotNull>-->
+            <!--<isNotNull property="assemblyLineIDWhere" prepend="and ">-->
+                <!--AssemblyLineID = #assemblyLineIDWhere#-->
+            <!--</isNotNull>-->
+            <!--<isNotNull property="synthesisParametersIDWhere" prepend="and ">-->
+                <!--SynthesisParametersID = #synthesisParametersIDWhere#-->
+            <!--</isNotNull>-->
+            <!--<isNotNull property="partsIDWhere" prepend="and ">-->
+                <!--PartsID = #partsIDWhere#-->
+            <!--</isNotNull>-->
+            <!--<isNotNull property="axleIDWhere" prepend="and ">-->
+                <!--AxleID = #axleIDWhere#-->
+            <!--</isNotNull>-->
+            <!--<isNotNull property="toolDurableWhere" prepend="and ">-->
+                <!--ToolDurable = #toolDurableWhere#-->
+            <!--</isNotNull>-->
+        <!--</dynamic>-->
+        <!-- 2017/07/03 宋健 变更↑↑↑　dazhong@YMSC -->
+    </update>
+
+    <!-- 插入处理 -->
+    <insert id="insert" parameterClass="entityOplink">
+        <selectKey resultClass="java.lang.String" keyProperty="oplinkID">
+            SELECT #oplinkID# as oplinkID FROM DUAL
+        </selectKey>
+        insert into oplink(
+        OplinkID
+        ,ProcessID
+        ,EquipmentID
+        ,AssemblyLineID
+        ,SynthesisParametersID
+        ,PartsID
+        ,AxleID
+        ,ToolDurable
+        )
+        Values (
+        <isNotNull property="oplinkID">
+            #oplinkID#
+        </isNotNull>
+        <isNull property="oplinkID">
+            null
+        </isNull>
+        <isNotNull property="processID">
+            ,#processID#
+        </isNotNull>
+        <isNull property="processID">
+            ,null
+        </isNull>
+        <isNotNull property="equipmentID">
+            ,#equipmentID#
+        </isNotNull>
+        <isNull property="equipmentID">
+            ,null
+        </isNull>
+        <isNotNull property="assemblyLineID">
+            ,#assemblyLineID#
+        </isNotNull>
+        <isNull property="assemblyLineID">
+            ,null
+        </isNull>
+        <isNotNull property="synthesisParametersID">
+            ,#synthesisParametersID#
+        </isNotNull>
+        <isNull property="synthesisParametersID">
+            ,null
+        </isNull>
+        <isNotNull property="partsID">
+            ,#partsID#
+        </isNotNull>
+        <isNull property="partsID">
+            ,null
+        </isNull>
+        <isNotNull property="axleID">
+            ,#axleID#
+        </isNotNull>
+        <isNull property="axleID">
+            ,null
+        </isNull>
+        <isNotNull property="toolDurable">
+            ,#toolDurable#
+        </isNotNull>
+        <isNull property="toolDurable">
+            ,null
+        </isNull>
+        )
+    </insert><!-- 插入处理 -->
+
+    <insert id="insertBatchs" parameterClass="java.util.List">
+        insert into oplink(
+        OplinkID
+        ,ProcessID
+        ,EquipmentID
+        ,AssemblyLineID
+        ,SynthesisParametersID
+        ,PartsID
+        ,AxleID
+        ,ToolDurable
+        )
+        values
+        <iterate conjunction=",">
+            (
+            #list[].oplinkID#,
+            #list[].processID#,
+            #list[].equipmentID#,
+            #list[].assemblyLineID#,
+            #list[].synthesisParametersID#,
+            #list[].partsID#,
+            #list[].axleID#,
+            #list[].toolDurable#
+            )
+        </iterate>
+    </insert>
+    <!-- 任意条件删除处理 -->
+    <delete id="delete" parameterClass="entityOplink">
+        delete from oplink
+        <dynamic prepend=" where ">
+            <isNotNull property="oplinkIDWhere" prepend="and ">
+                OplinkID = #oplinkIDWhere#
+            </isNotNull>
+            <isNotNull property="processIDWhere" prepend="and ">
+                ProcessID = #processIDWhere#
+            </isNotNull>
+            <isNotNull property="equipmentIDWhere" prepend="and ">
+                EquipmentID = #equipmentIDWhere#
+            </isNotNull>
+            <isNotNull property="assemblyLineIDWhere" prepend="and ">
+                AssemblyLineID = #assemblyLineIDWhere#
+            </isNotNull>
+            <isNotNull property="synthesisParametersIDWhere" prepend="and ">
+                SynthesisParametersID = #synthesisParametersIDWhere#
+            </isNotNull>
+            <isNotNull property="partsIDWhere" prepend="and ">
+                PartsID = #partsIDWhere#
+            </isNotNull>
+            <isNotNull property="axleIDWhere" prepend="and ">
+                AxleID = #axleIDWhere#
+            </isNotNull>
+            <isNotNull property="toolDurableWhere" prepend="and ">
+                ToolDurable = #toolDurableWhere#
+            </isNotNull>
+        </dynamic>
+    </delete>
+    <select id="searchByListWhere" parameterClass="entityOplink" resultMap="Oplink-map">
+        SELECT
+        *
+        FROM oplink op
+        where op.ProcessID = #processID#
+        and op.EquipmentID =#equipmentID#
+        and op.AxleID= #axleID#
+        and op.AssemblyLineID= #assemblyLineID#
+        AND op.SynthesisParametersID= #synthesisParametersID#
+        AND op.PartsID =#partsID#
+
+    </select>
+    <select id="searchSyn" parameterClass="entityOplink" resultMap="Oplink-map">
+        SELECT
+        *
+        FROM oplink op
+        WHERE op.EquipmentID =#equipmentID#
+        AND op.AxleID= #axleID#
+        AND op.SynthesisParametersID= #synthesisParametersID#
+
+    </select>
+
+    <!--2017/08/14 王冉 追加↓↓↓　dazhong@YMSC-->
+    <select id="searchOplinkList" parameterClass="entityOplink" resultMap="Oplink-map2">
+       SELECT
+        op.PartsID,
+        p.PartsName,
+        p.PartsType,
+        op.ToolDurable
+    FROM
+        oplink op
+    LEFT JOIN parts p on op.PartsID = p.PartsID
+    WHERE
+        op.SynthesisParametersID = #synthesisParametersID# and DelFlag = '0'
+    GROUP BY op.SynthesisParametersID,p.PartsName
+    </select>
+    <!--2017/08/14 王冉 追加↑↑↑　dazhong@YMSC-->
+
+</sqlMap>
+

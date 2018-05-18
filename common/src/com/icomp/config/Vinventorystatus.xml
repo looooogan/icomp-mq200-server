@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vinventorystatus.xml
+		Created on : 2016/05/13 14:40:40
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vinventorystatus">
+	<typeAlias alias="entityVinventorystatus" type="com.icomp.entity.base.Vinventorystatus" />
+	<resultMap id="Vinventorystatus-map" class="entityVinventorystatus">
+		<!--  -->
+		<result property="toolCode" column="ToolCode" />
+		<!--  -->
+		<result property="toolName" column="ToolName" />
+		<!--  -->
+		<result property="toolType" column="ToolType" />
+		<!--  -->
+		<result property="toolUnitnumber" column="ToolUnitnumber" />
+		<!--  -->
+		<result property="toolSpecifications" column="ToolSpecifications" />
+		<!--  -->
+		<result property="toolSupplier" column="ToolSupplier" />
+		<!--  -->
+		<result property="toolBrand" column="ToolBrand" />
+		<!--  -->
+		<result property="toolID" column="ToolID" />
+		<!--  -->
+		<result property="toolDurable" column="ToolDurable" />
+		<!--  -->
+		<result property="toolSharpenCriterion" column="ToolSharpenCriterion" />
+		<!--  -->
+		<result property="toolLength" column="ToolLength" />
+		<!--  -->
+		<result property="toolSharpenLength" column="ToolSharpenLength" />
+		<!--  -->
+		<result property="delFlag" column="DelFlag" />
+		<!--  -->
+		<result property="knifeInventoryType" column="KnifeInventoryType" />
+		<!--  -->
+		<result property="amount" column="amount" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVinventorystatus" resultMap="Vinventorystatus-map">
+		SELECT
+		ToolCode
+		,ToolName
+		,ToolType
+		,ToolUnitnumber
+		,ToolSpecifications
+		,ToolSupplier
+		,ToolBrand
+		,ToolID
+		,ToolDurable
+		,ToolSharpenCriterion
+		,ToolLength
+		,ToolSharpenLength
+		,DelFlag
+		,KnifeInventoryType
+		,amount
+		from vinventorystatus
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVinventorystatus" resultMap="Vinventorystatus-map">
+		SELECT
+		ToolCode
+		,ToolName
+		,ToolType
+		,ToolUnitnumber
+		,ToolSpecifications
+		,ToolSupplier
+		,ToolBrand
+		,ToolID
+		,ToolDurable
+		,ToolSharpenCriterion
+		,ToolLength
+		,ToolSharpenLength
+		,DelFlag
+		,KnifeInventoryType
+		,amount
+		from vinventorystatus
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="toolType" prepend="and ">
+				ToolType = #toolType#
+         </isNotNull>
+			<isNotNull property="toolUnitnumber" prepend="and ">
+				ToolUnitnumber = #toolUnitnumber#
+         </isNotNull>
+			<isNotNull property="toolSpecifications" prepend="and ">
+				ToolSpecifications = #toolSpecifications#
+         </isNotNull>
+			<isNotNull property="toolSupplier" prepend="and ">
+				ToolSupplier = #toolSupplier#
+         </isNotNull>
+			<isNotNull property="toolBrand" prepend="and ">
+				ToolBrand = #toolBrand#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolProcuredID" prepend="and ">
+				ToolProcuredID = #toolProcuredID#
+         </isNotNull>
+			<isNotNull property="toolDurable" prepend="and ">
+				ToolDurable = #toolDurable#
+         </isNotNull>
+			<isNotNull property="toolSharpenCriterion" prepend="and ">
+				ToolSharpenCriterion = #toolSharpenCriterion#
+         </isNotNull>
+			<isNotNull property="toolLength" prepend="and ">
+				ToolLength = #toolLength#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="knifeInventoryType" prepend="and ">
+				KnifeInventoryType = #knifeInventoryType#
+         </isNotNull>
+			<isNotNull property="amount" prepend="and ">
+				amount = #amount#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+	<!-- 任意条件查询执行- ToolCode模糊查询-->
+	<select id="searchByList_F" parameterClass="entityVinventorystatus" resultMap="Vinventorystatus-map">
+		SELECT
+		ToolCode
+		,ToolName
+		,ToolType
+		,ToolUnitnumber
+		,ToolSpecifications
+		,ToolSupplier
+		,ToolBrand
+		,ToolID
+		,ToolProcuredID
+		,ToolDurable
+		,ToolSharpenCriterion
+		,ToolLength
+		,ToolSharpenLength
+		,DelFlag
+		,KnifeInventoryType
+		,amount
+		from vinventorystatus
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="toolType" prepend="and ">
+				ToolType = #toolType#
+         </isNotNull>
+			<isNotNull property="toolUnitnumber" prepend="and ">
+				ToolUnitnumber = #toolUnitnumber#
+         </isNotNull>
+			<isNotNull property="toolSpecifications" prepend="and ">
+				ToolSpecifications = #toolSpecifications#
+         </isNotNull>
+			<isNotNull property="toolSupplier" prepend="and ">
+				ToolSupplier = #toolSupplier#
+         </isNotNull>
+			<isNotNull property="toolBrand" prepend="and ">
+				ToolBrand = #toolBrand#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+
+			<isNotNull property="toolDurable" prepend="and ">
+				ToolDurable = #toolDurable#
+         </isNotNull>
+			<isNotNull property="toolSharpenCriterion" prepend="and ">
+				ToolSharpenCriterion = #toolSharpenCriterion#
+         </isNotNull>
+			<isNotNull property="toolLength" prepend="and ">
+				ToolLength = #toolLength#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="knifeInventoryType" prepend="and ">
+				KnifeInventoryType = #knifeInventoryType#
+         </isNotNull>
+			<isNotNull property="amount" prepend="and ">
+				amount = #amount#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVinventorystatus" resultClass="int">
+		SELECT count(1)
+		from vinventorystatus
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolName" prepend="and ">
+				ToolName = #toolName#
+         </isNotNull>
+			<isNotNull property="toolType" prepend="and ">
+				ToolType = #toolType#
+         </isNotNull>
+			<isNotNull property="toolUnitnumber" prepend="and ">
+				ToolUnitnumber = #toolUnitnumber#
+         </isNotNull>
+			<isNotNull property="toolSpecifications" prepend="and ">
+				ToolSpecifications = #toolSpecifications#
+         </isNotNull>
+			<isNotNull property="toolSupplier" prepend="and ">
+				ToolSupplier = #toolSupplier#
+         </isNotNull>
+			<isNotNull property="toolBrand" prepend="and ">
+				ToolBrand = #toolBrand#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolDurable" prepend="and ">
+				ToolDurable = #toolDurable#
+         </isNotNull>
+			<isNotNull property="toolSharpenCriterion" prepend="and ">
+				ToolSharpenCriterion = #toolSharpenCriterion#
+         </isNotNull>
+			<isNotNull property="toolLength" prepend="and ">
+				ToolLength = #toolLength#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="knifeInventoryType" prepend="and ">
+				KnifeInventoryType = #knifeInventoryType#
+         </isNotNull>
+			<isNotNull property="amount" prepend="and ">
+				amount = #amount#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

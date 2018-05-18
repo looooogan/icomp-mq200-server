@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document : Vtoolsmachining.xml
+    Created on : 2016/05/07 15:39:29
+    Author : 工具自动生成
+    Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+    searchByPrimaryKey ： 主键查询
+    searchByList ： 任意条件查询
+    searchByCount ：任意条件条数查询
+    insert ： 插入处理
+    update ： 更新处理（未指定项目更新为null）
+    updateNonQuery ：更新处理（未指定项目不更新）
+    delete ： 删除处理
+-->
+
+<!DOCTYPE sqlMap
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vtoolsmachining">
+    <typeAlias alias="entityVtoolsmachining" type="com.icomp.entity.base.Vtoolsmachining"/>
+    <resultMap id="Vtoolsmachining-map" class="entityVtoolsmachining">
+        <!-- 刀具ID -->
+        <result property="toolID" column="ToolID"/>
+        <!-- 刀具分类(0刀具1辅具2配套9其他） -->
+        <result property="toolType" column="ToolType"/>
+        <!-- 刀具编码 -->
+        <result property="toolCode" column="ToolCode"/>
+        <!-- 流水线名称 -->
+        <result property="assemblyLineName" column="AssemblyLineName"/>
+        <!-- 流水线ID -->
+        <result property="assemblyLineID" column="AssemblyLineID"/>
+        <!-- 工序名称 -->
+        <result property="processName" column="ProcessName"/>
+        <!-- 工序ID -->
+        <result property="processID" column="ProcessID"/>
+        <!-- 零部件型号（0:1.6L,1:1.4T） -->
+        <result property="partsType" column="PartsType"/>
+        <!-- 零部件ID -->
+        <result property="partsID" column="PartsID"/>
+        <!-- 零部件名称 -->
+        <result property="partsName" column="PartsName"/>
+        <!-- 设备名称 -->
+        <result property="equipmentName" column="EquipmentName"/>
+        <!-- 设备ID -->
+        <result property="equipmentID" column="EquipmentID"/>
+        <!-- 合成刀具参数ID -->
+        <result property="synthesisParametersID" column="SynthesisParametersID"/>
+        <!-- 合成刀具编码(系统唯一) -->
+        <result property="synthesisParametersCode" column="SynthesisParametersCode"/>
+        <!-- 卸下时间 -->
+        <result property="outerTime" column="OuterTime"/>
+        <!--  -->
+        <result property="outerUser" column="OuterUser"/>
+        <!-- 轴编码 -->
+        <result property="axleCode" column="axleCode"/>
+        <!-- 轴ID -->
+        <result property="axleID" column="AxleID"/>
+        <!-- 耐用度 -->
+        <result property="toolDurable" column="ToolDurable"/>
+        <!-- 加工数量 -->
+        <result property="processAmount" column="ProcessAmount"/>
+    </resultMap>
+    <!-- 主键查询执行 -->
+    <select id="searchByPrimaryKey" parameterClass="entityVtoolsmachining" resultMap="Vtoolsmachining-map">
+        SELECT
+        ToolID
+        ,ToolType
+        ,ToolCode
+        ,AssemblyLineName
+        ,AssemblyLineID
+        ,ProcessName
+        ,ProcessID
+        ,PartsType
+        ,PartsID
+        ,PartsName
+        ,EquipmentName
+        ,EquipmentID
+        ,SynthesisParametersID
+        ,SynthesisParametersCode
+        ,OuterTime
+        ,OuterUser
+        ,axleCode
+        ,AxleID
+        ,ToolDurable
+        ,ProcessAmount
+        from vtoolsmachining
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isNull property="orderString">
+            order by
+        </isNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询执行 -->
+    <select id="searchByList" parameterClass="entityVtoolsmachining" resultMap="Vtoolsmachining-map">
+        SELECT
+        ToolID
+        ,ToolType
+        ,ToolCode
+        ,AssemblyLineName
+        ,AssemblyLineID
+        ,ProcessName
+        ,ProcessID
+        ,PartsType
+        ,PartsID
+        ,PartsName
+        ,EquipmentName
+        ,EquipmentID
+        ,SynthesisParametersID
+        ,SynthesisParametersCode
+        ,OuterTime
+        ,OuterUser
+        ,axleCode
+        ,AxleID
+        ,ToolDurable
+        ,ProcessAmount
+        from vtoolsmachining
+        <dynamic prepend=" where ">
+            <isNotNull property="toolID" prepend="and ">
+                ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="toolType" prepend="and ">
+                ToolType = #toolType#
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+            </isNotNull>
+            <isNotNull property="assemblyLineName" prepend="and ">
+                AssemblyLineName = #assemblyLineName#
+            </isNotNull>
+            <isNotNull property="assemblyLineID" prepend="and ">
+                AssemblyLineID = #assemblyLineID#
+            </isNotNull>
+            <isNotNull property="processName" prepend="and ">
+                ProcessName = #processName#
+            </isNotNull>
+            <isNotNull property="processID" prepend="and ">
+                ProcessID = #processID#
+            </isNotNull>
+            <isNotNull property="partsType" prepend="and ">
+                PartsType = #partsType#
+            </isNotNull>
+            <isNotNull property="partsID" prepend="and ">
+                PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="partsName" prepend="and ">
+                PartsName = #partsName#
+            </isNotNull>
+            <isNotNull property="equipmentName" prepend="and ">
+                EquipmentName = #equipmentName#
+            </isNotNull>
+            <isNotNull property="equipmentID" prepend="and ">
+                EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="synthesisParametersID" prepend="and ">
+                SynthesisParametersID = #synthesisParametersID#
+            </isNotNull>
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode = #synthesisParametersCode#
+            </isNotNull>
+            <isNotNull property="dateStar" prepend="and ">
+                <![CDATA[
+				OuterTime >= #dateStar#
+				]]>
+            </isNotNull>
+            <isNotNull property="dateEnd" prepend="and ">
+                <![CDATA[
+				OuterTime <= #dateEnd#
+				]]>
+            </isNotNull>
+            <isNotNull property="outerUser" prepend="and ">
+                OuterUser = #outerUser#
+            </isNotNull>
+            <isNotNull property="axleCode" prepend="and ">
+                axleCode = #axleCode#
+            </isNotNull>
+            <isNotNull property="axleID" prepend="and ">
+                AxleID = #axleID#
+            </isNotNull>
+            <isNotNull property="toolDurable" prepend="and ">
+                ToolDurable = #toolDurable#
+            </isNotNull>
+            <isNotNull property="processAmount" prepend="and ">
+                ProcessAmount = #processAmount#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+    <select id="searchByList1" parameterClass="entityVtoolsmachining" resultMap="Vtoolsmachining-map">
+        SELECT
+        bb.ToolID
+        ,bb.ToolType
+        ,bb.ToolCode
+        ,bb.AssemblyLineID
+        ,bb.AssemblyLineName
+        ,bb.ProcessID
+        ,bb.ProcessName
+        ,bb.PartsID
+        ,bb.PartsType
+        ,bb.PartsName
+        ,bb.EquipmentName
+        ,bb.EquipmentID
+        ,bb.SynthesisParametersID
+        ,bb.SynthesisParametersCode
+        ,bb.OuterTime
+        ,bb.OuterUser
+        ,bb.AxleID
+        ,bb.axleCode
+        ,bb.ToolDurable
+        ,bb.ProcessAmount
+        FROM
+        (SELECT
+        aa.ToolID
+        ,aa.ToolType
+        ,aa.ToolCode
+        ,aa.AssemblyLineID
+        ,aa.AssemblyLineName
+        ,aa.ProcessID
+        ,aa.ProcessName
+        ,aa.PartsID
+        ,aa.PartsType
+        ,aa.PartsName
+        ,aa.EquipmentName
+        ,aa.EquipmentID
+        ,aa.SynthesisParametersID
+        ,aa.SynthesisParametersCode
+        ,aa.OuterTime
+        ,aa.OuterUser
+        ,aa.AxleID
+        ,aa.axleCode
+        ,aa.ToolDurable
+        ,aa.ProcessAmount
+        FROM
+        (
+        SELECT
+        sp.SynthesisParametersID AS ToolID,
+        sp.CreateType AS ToolType,
+        sy.SynthesisParametersCode AS ToolCode,
+        sy.AssemblyLineID AS AssemblyLineID,
+        al.AssemblyLineName AS AssemblyLineName,
+        sy.ProcessID AS ProcessID,
+        pr.ProcessName AS ProcessName,
+        sy.PartsID AS PartsID,
+        pa.PartsType AS PartsType,
+        pa.PartsName AS PartsName,
+        eq.EquipmentName AS EquipmentName,
+        sy.EquipmentID AS EquipmentID,
+        sp.SynthesisParametersID AS SynthesisParametersID,
+        sy.SynthesisParametersCode AS SynthesisParametersCode,
+        sy.RfidContainerID,
+        sy.OuterTime AS OuterTime,
+        (SELECT us.UserName
+        FROM
+        userdetail us
+        WHERE
+        (
+        us.CustomerID = sy.OuterUser
+        )
+        ) AS OuterUser,
+        sy.AxleID AS AxleID,
+        ax.axleCode AS axleCode,
+        o.ToolDurable AS ToolDurable,
+        sy.ProcessAmount AS ProcessAmount
+        FROM synthesistoolsmachining sy
+        LEFT JOIN synthesisparameters sp ON sp.SynthesisParametersCode = sy.SynthesisParametersCode
+        LEFT JOIN assemblyline al ON al.AssemblyLineID = sy.AssemblyLineID
+        LEFT JOIN process pr ON pr.ProcessID = sy.ProcessID
+        LEFT JOIN parts pa ON pa.PartsID = sy.PartsID
+        LEFT JOIN equipment eq ON eq.EquipmentID = sy.EquipmentID
+        LEFT JOIN axle ax ON ax.axleID = sy.AxleID
+        INNER JOIN oplink o ON (o.AssemblyLineID = sy.AssemblyLineID AND o.AxleID=sy.AxleID AND o.EquipmentID=sy.EquipmentID AND o.PartsID=sy.PartsID AND o.ProcessID = sy.ProcessID
+        AND sp.SynthesisParametersID = o.SynthesisParametersID)
+        WHERE sy.DelFlag = '0'
+        AND (sp.DelFlag = '0')
+        AND (al.DelFlag = '0')
+        AND (pr.DelFlag = '0')
+        AND (pa.DelFlag = '0')
+        AND (eq.DelFlag = '0')
+        AND (ax.DelFlag = '0')
+        AND (sy.OuterTime IS NOT NULL)
+        AND (sy.OuterUser IS NOT NULL)
+        AND sy.RfidContainerID IS NOT NULL
+        GROUP BY sy.OuterTime
+        )aa
+        where <![CDATA[
+			  ((aa.ToolDurable - aa.ProcessAmount) >= 50)
+             or ((aa.ProcessAmount - aa.ToolDurable) >= 50)
+				]]>
+        )bb
+        <dynamic prepend=" where ">
+
+            <isNotNull property="toolID" prepend="and ">
+                bb.ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="toolType" prepend="and ">
+                bb.ToolType = #toolType#
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">
+                bb.ToolCode = #toolCode#
+            </isNotNull>
+            <isNotNull property="assemblyLineName" prepend="and ">
+                bb.AssemblyLineName = #assemblyLineName#
+            </isNotNull>
+            <isNotNull property="assemblyLineID" prepend="and ">
+                bb.AssemblyLineID = #assemblyLineID#
+            </isNotNull>
+            <isNotNull property="processName" prepend="and ">
+                bb.ProcessName = #processName#
+            </isNotNull>
+            <isNotNull property="processID" prepend="and ">
+                bb.ProcessID = #processID#
+            </isNotNull>
+            <isNotNull property="partsType" prepend="and ">
+                bb.PartsType = #partsType#
+            </isNotNull>
+            <isNotNull property="partsID" prepend="and ">
+                bb.PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="partsName" prepend="and ">
+                bb.PartsName = #partsName#
+            </isNotNull>
+            <isNotNull property="equipmentName" prepend="and ">
+                bb.EquipmentName = #equipmentName#
+            </isNotNull>
+            <isNotNull property="equipmentID" prepend="and ">
+                bb.EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="synthesisParametersID" prepend="and ">
+                bb.SynthesisParametersID = #synthesisParametersID#
+            </isNotNull>
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                bb.SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+            </isNotNull>
+            <isNotNull property="dateStar" prepend="and ">
+                <![CDATA[
+				bb.OuterTime >= #dateStar#
+				]]>
+            </isNotNull>
+            <isNotNull property="dateEnd" prepend="and ">
+                <![CDATA[
+				bb.OuterTime <= #dateEnd#
+				]]>
+            </isNotNull>
+            <isNotNull property="outerUser" prepend="and ">
+                bb.OuterUser = #outerUser#
+            </isNotNull>
+            <isNotNull property="axleCode" prepend="and ">
+                bb.axleCode = #axleCode#
+            </isNotNull>
+            <isNotNull property="axleID" prepend="and ">
+                bb.AxleID = #axleID#
+            </isNotNull>
+            <isNotNull property="toolDurable" prepend="and ">
+                bb.ToolDurable = #toolDurable#
+            </isNotNull>
+            <isNotNull property="processAmount" prepend="and ">
+                bb.ProcessAmount = #processAmount#
+            </isNotNull>
+        </dynamic>
+        <isNotNull property="orderString">
+            order by $orderString$
+        </isNotNull>
+        <isGreaterThan property="staIndex" compareValue="-1">
+            LIMIT $rowCount$ offset $staIndex$
+        </isGreaterThan>
+    </select>
+
+    <!-- 任意条件查询条数 -->
+    <select id="searchByCount" parameterClass="entityVtoolsmachining" resultClass="int">
+        SELECT count(1)
+        FROM
+        (
+        SELECT
+        *
+        FROM (
+        SELECT
+        sp.SynthesisParametersID AS ToolID,
+        sp.CreateType AS ToolType,
+        sy.SynthesisParametersCode AS ToolCode,
+        sy.AssemblyLineID AS AssemblyLineID,
+        al.AssemblyLineName AS AssemblyLineName,
+        sy.ProcessID AS ProcessID,
+        pr.ProcessName AS ProcessName,
+        sy.PartsID AS PartsID,
+        pa.PartsType AS PartsType,
+        pa.PartsName AS PartsName,
+        eq.EquipmentName AS EquipmentName,
+        sy.EquipmentID AS EquipmentID,
+        sp.SynthesisParametersID AS SynthesisParametersID,
+        sy.SynthesisParametersCode AS SynthesisParametersCode,
+        sy.RfidContainerID,
+        sy.OuterTime AS OuterTime,
+        (SELECT us.UserName
+        FROM
+        userdetail us
+        WHERE
+        (
+        us.CustomerID = sy.OuterUser
+        )
+        ) AS OuterUser,
+        sy.AxleID AS AxleID,
+        ax.axleCode AS axleCode,
+        o.ToolDurable AS ToolDurable,
+        sy.ProcessAmount AS ProcessAmount
+        FROM synthesistoolsmachining sy
+        LEFT JOIN synthesisparameters sp ON sp.SynthesisParametersCode = sy.SynthesisParametersCode
+        LEFT JOIN assemblyline al ON al.AssemblyLineID = sy.AssemblyLineID
+        LEFT JOIN process pr ON pr.ProcessID = sy.ProcessID
+        LEFT JOIN parts pa ON pa.PartsID = sy.PartsID
+        LEFT JOIN equipment eq ON eq.EquipmentID = sy.EquipmentID
+        LEFT JOIN axle ax ON ax.axleID = sy.AxleID
+        INNER JOIN oplink o ON (o.AssemblyLineID = sy.AssemblyLineID AND o.AxleID=sy.AxleID AND o.EquipmentID=sy.EquipmentID AND o.PartsID=sy.PartsID AND o.ProcessID = sy.ProcessID
+        AND sp.SynthesisParametersID = o.SynthesisParametersID)
+        WHERE sy.DelFlag = '0'
+        AND (sp.DelFlag = '0')
+        AND (al.DelFlag = '0')
+        AND (pr.DelFlag = '0')
+        AND (pa.DelFlag = '0')
+        AND (eq.DelFlag = '0')
+        AND (ax.DelFlag = '0')
+        AND (sy.OuterTime IS NOT NULL)
+        AND (sy.OuterUser IS NOT NULL)
+        AND sy.RfidContainerID IS NOT NULL
+        GROUP BY sy.OuterTime
+        )aa
+        where
+        <![CDATA[
+					  ((aa.ToolDurable - aa.ProcessAmount) >= 50)
+             or ((aa.ProcessAmount - aa.ToolDurable) >= 50)
+				]]>)bb
+        <dynamic prepend=" where ">
+
+            <isNotNull property="toolID" prepend="and ">
+                bb.ToolID = #toolID#
+            </isNotNull>
+            <isNotNull property="toolType" prepend="and ">
+                bb.ToolType = #toolType#
+            </isNotNull>
+            <isNotNull property="toolCode" prepend="and ">
+                bb.ToolCode = #toolCode#
+            </isNotNull>
+            <isNotNull property="assemblyLineName" prepend="and ">
+                bb.AssemblyLineName = #assemblyLineName#
+            </isNotNull>
+            <isNotNull property="assemblyLineID" prepend="and ">
+                bb.AssemblyLineID = #assemblyLineID#
+            </isNotNull>
+            <isNotNull property="processName" prepend="and ">
+                bb.ProcessName = #processName#
+            </isNotNull>
+            <isNotNull property="processID" prepend="and ">
+                bb.ProcessID = #processID#
+            </isNotNull>
+            <isNotNull property="partsType" prepend="and ">
+                bb.PartsType = #partsType#
+            </isNotNull>
+            <isNotNull property="partsID" prepend="and ">
+                bb.PartsID = #partsID#
+            </isNotNull>
+            <isNotNull property="partsName" prepend="and ">
+                bb.PartsName = #partsName#
+            </isNotNull>
+            <isNotNull property="equipmentName" prepend="and ">
+                bb.EquipmentName = #equipmentName#
+            </isNotNull>
+            <isNotNull property="equipmentID" prepend="and ">
+                bb.EquipmentID = #equipmentID#
+            </isNotNull>
+            <isNotNull property="synthesisParametersID" prepend="and ">
+                bb.SynthesisParametersID = #synthesisParametersID#
+            </isNotNull>
+            <isNotNull property="synthesisParametersCode" prepend="and ">
+                bb.SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+            </isNotNull>
+            <isNotNull property="outerTime" prepend="and ">
+                bb.OuterTime = #outerTime#
+            </isNotNull>
+            <isNotNull property="outerUser" prepend="and ">
+                bb.OuterUser = #outerUser#
+            </isNotNull>
+            <isNotNull property="axleCode" prepend="and ">
+                bb.axleCode = #axleCode#
+            </isNotNull>
+            <isNotNull property="axleID" prepend="and ">
+                bb.AxleID = #axleID#
+            </isNotNull>
+            <isNotNull property="toolDurable" prepend="and ">
+                bb.ToolDurable = #toolDurable#
+            </isNotNull>
+            <isNotNull property="processAmount" prepend="and ">
+                bb.ProcessAmount = #processAmount#
+            </isNotNull>
+        </dynamic>
+    </select>
+
+</sqlMap>
+

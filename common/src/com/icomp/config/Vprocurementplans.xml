@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vprocurementplans.xml
+		Created on : 2014/08/28 15:44:50
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vprocurementplans">
+	<typeAlias alias="entityVprocurementplans" type="com.icomp.entity.base.Vprocurementplans" />
+	<resultMap id="Vprocurementplans-map" class="entityVprocurementplans">
+		<!-- 采购计划ID -->
+		<result property="procurementPlansID" column="ProcurementPlansID" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 采购者(关联用户ID) -->
+		<result property="procuredUser" column="ProcuredUser" />
+		<!-- 采购日期 -->
+		<result property="procuredTime" column="ProcuredTime" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVprocurementplans" resultMap="Vprocurementplans-map">
+		SELECT
+		ProcurementPlansID
+		,ToolID
+		,ProcuredUser
+		,ProcuredTime
+		from vprocurementplans
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVprocurementplans" resultMap="Vprocurementplans-map">
+		SELECT
+		ProcurementPlansID
+		,ToolID
+		,ProcuredUser
+		,ProcuredTime
+		from vprocurementplans
+		<dynamic prepend=" where ">
+			<isNotNull property="procurementPlansID" prepend="and ">
+				ProcurementPlansID = #procurementPlansID#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="procuredUser" prepend="and ">
+				ProcuredUser = #procuredUser#
+         </isNotNull>
+			<isNotNull property="procuredTime" prepend="and ">
+				ProcuredTime = #procuredTime#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVprocurementplans" resultClass="int">
+		SELECT count(1)
+		from vprocurementplans
+		<dynamic prepend=" where ">
+			<isNotNull property="procurementPlansID" prepend="and ">
+				ProcurementPlansID = #procurementPlansID#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="procuredUser" prepend="and ">
+				ProcuredUser = #procuredUser#
+         </isNotNull>
+			<isNotNull property="procuredTime" prepend="and ">
+				ProcuredTime = #procuredTime#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vtoollibraryhistory.xml
+		Created on : 2016/04/25 18:28:50
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vtoollibraryhistory">
+	<typeAlias alias="entityVtoollibraryhistory" type="com.icomp.entity.base.Vtoollibraryhistory" />
+	<resultMap id="Vtoollibraryhistory-map" class="entityVtoollibraryhistory">
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 刀具分类(0刀具1辅具2配套9其他） -->
+		<result property="toolType" column="ToolType" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 领取时间 -->
+		<result property="receiveTime" column="ReceiveTime" />
+		<!--  -->
+		<result property="libraryUser" column="LibraryUser" />
+		<!--  -->
+		<result property="receiveUser" column="ReceiveUser" />
+		<!-- 出库原因(0申领1换领2外借) -->
+		<result property="libraryCause" column="LibraryCause" />
+		<!-- 出库原因(0申领1换领2外借) -->
+		<result property="replacementReason" column="ReplacementReason" />
+		<!-- 领取数量 -->
+		<result property="receiveCount" column="ReceiveCount" />
+		<result property="receiveCard" column="ReceiveCard" />
+		<result property="libraryCard" column="LibraryCard" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVtoollibraryhistory" resultMap="Vtoollibraryhistory-map">
+		SELECT
+		ToolID
+		,ToolType
+		,ToolCode
+		,ReceiveTime
+		,LibraryUser
+		,ReceiveUser
+		,LibraryCause
+		,ReplacementReason
+		,ReceiveCount
+		,receiveCard
+		,libraryCard
+		from vtoollibraryhistory
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVtoollibraryhistory" resultMap="Vtoollibraryhistory-map">
+		SELECT
+		ToolID
+		,ToolType
+		,ToolCode
+		,ReceiveTime
+		,LibraryUser
+		,ReceiveUser
+		,LibraryCause
+		,ReplacementReason
+		,ReceiveCount
+		,receiveCard
+		,libraryCard
+		from vtoollibraryhistory
+		<dynamic prepend=" where ">
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolType" prepend="and ">
+				ToolType like concat('%',#toolType#,'%')
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				ReceiveTime >= #dateStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				ReceiveTime <= #dateEnd#
+				]]>
+         </isNotNull>
+			<isNotNull property="libraryUser" prepend="and ">
+				LibraryUser like concat('%',#libraryUser#,'%')
+         </isNotNull>
+			<isNotNull property="libraryCard" prepend="or ">
+				LibraryCard like concat('%',#libraryCard#,'%')
+			</isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser like concat('%',#receiveUser#,'%')
+         </isNotNull>
+			<isNotNull property="receiveCard" prepend="or ">
+				ReceiveCard like concat('%',#receiveCard#,'%')
+			</isNotNull>
+			<isNotNull property="libraryCause" prepend="and ">
+				LibraryCause = #libraryCause#
+         </isNotNull>
+			<isNotNull property="replacementReason" prepend="and ">
+				ReplacementReason = #replacementReason#
+         </isNotNull>
+			<isNotNull property="receiveCount" prepend="and ">
+				ReceiveCount = #receiveCount#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVtoollibraryhistory" resultClass="int">
+		SELECT count(1)
+		from vtoollibraryhistory
+		<dynamic prepend=" where ">
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolType" prepend="and ">
+				ToolType = #toolType#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="receiveTime" prepend="and ">
+				ReceiveTime = #receiveTime#
+         </isNotNull>
+			<isNotNull property="libraryUser" prepend="and ">
+				LibraryUser = #libraryUser#
+         </isNotNull>
+			<isNotNull property="receiveUser" prepend="and ">
+				ReceiveUser = #receiveUser#
+         </isNotNull>
+			<isNotNull property="libraryCause" prepend="and ">
+				LibraryCause = #libraryCause#
+         </isNotNull>
+			<isNotNull property="replacementReason" prepend="and ">
+				ReplacementReason = #replacementReason#
+         </isNotNull>
+			<isNotNull property="receiveCount" prepend="and ">
+				ReceiveCount = #receiveCount#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

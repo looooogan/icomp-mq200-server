@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Stocking.xml
+		Created on : 2014/11/11 14:37:02
+		Author : 工具自动生成
+		Description: 工具自动生成包含库存盘点的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Stocking">
+	<typeAlias alias="entityStocking" type="com.icomp.entity.base.Stocking" />
+	<resultMap id="Stocking-map" class="entityStocking">
+		<!--  -->
+		<result property="stockingID" column="StockingID" />
+		<!-- RFID载体ID -->
+		<result property="rfidContainerID" column="RfidContainerID" />
+		<!-- 盘点时间 -->
+		<result property="checkTime" column="CheckTime" />
+		<!-- 盘点人 -->
+		<result property="checkUser" column="CheckUser" />
+		<!-- 厂区 -->
+		<result property="complex" column="Complex" />
+		<!-- 库房号 -->
+		<result property="depot" column="Depot" />
+		<!-- 货架 -->
+		<result property="shelf" column="Shelf" />
+		<!-- 层 -->
+		<result property="layer" column="Layer" />
+		<!-- 货位 -->
+		<result property="stack" column="Stack" />
+		<!-- 批次 -->
+		<result property="procuredBatch" column="ProcuredBatch" />
+		<!-- 应在库数量 -->
+		<result property="libraryCount" column="LibraryCount" />
+		<!-- 实际在库数量 -->
+		<result property="realLibraryCount" column="RealLibraryCount" />
+		<!-- 单价 -->
+		<result property="unitPrice" column="UnitPrice" />
+		<!-- 在库金额 -->
+		<result property="baseAmount" column="BaseAmount" />
+		<!-- 授权人(盘点出现盘亏盘盈授权) -->
+		<result property="removeUser" column="RemoveUser" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 操作人 -->
+		<result property="systemLogUser" column="SystemLogUser" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityStocking" resultMap="Stocking-map">
+		SELECT
+		StockingID
+		,RfidContainerID
+		,CheckTime
+		,CheckUser
+		,Complex
+		,Depot
+		,Shelf
+		,Layer
+		,Stack
+		,ProcuredBatch
+		,LibraryCount
+		,RealLibraryCount
+		,UnitPrice
+		,BaseAmount
+		,RemoveUser
+		,DelFlag
+		,UpdateUser
+		,UpdateTime
+		,SystemLogUser
+		,Version
+		from stocking
+		<dynamic prepend=" where ">
+			<isNotNull property="stockingID" prepend="and ">
+				StockingID = #stockingID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					StockingID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityStocking" resultMap="Stocking-map">
+		SELECT
+		StockingID
+		,RfidContainerID
+		,CheckTime
+		,CheckUser
+		,Complex
+		,Depot
+		,Shelf
+		,Layer
+		,Stack
+		,ProcuredBatch
+		,LibraryCount
+		,RealLibraryCount
+		,UnitPrice
+		,BaseAmount
+		,RemoveUser
+		,DelFlag
+		,UpdateUser
+		,UpdateTime
+		,SystemLogUser
+		,Version
+		from stocking
+		<dynamic prepend=" where ">
+			<isNotNull property="stockingID" prepend="and ">
+				StockingID = #stockingID#
+         </isNotNull>
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="checkTime" prepend="and ">
+				CheckTime = #checkTime#
+         </isNotNull>
+			<isNotNull property="checkUser" prepend="and ">
+				CheckUser = #checkUser#
+         </isNotNull>
+			<isNotNull property="complex" prepend="and ">
+				Complex = #complex#
+         </isNotNull>
+			<isNotNull property="depot" prepend="and ">
+				Depot = #depot#
+         </isNotNull>
+			<isNotNull property="shelf" prepend="and ">
+				Shelf = #shelf#
+         </isNotNull>
+			<isNotNull property="layer" prepend="and ">
+				Layer = #layer#
+         </isNotNull>
+			<isNotNull property="stack" prepend="and ">
+				Stack = #stack#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="libraryCount" prepend="and ">
+				LibraryCount = #libraryCount#
+         </isNotNull>
+			<isNotNull property="realLibraryCount" prepend="and ">
+				RealLibraryCount = #realLibraryCount#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+			<isNotNull property="baseAmount" prepend="and ">
+				BaseAmount = #baseAmount#
+         </isNotNull>
+			<isNotNull property="removeUser" prepend="and ">
+				RemoveUser = #removeUser#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="systemLogUser" prepend="and ">
+				SystemLogUser = #systemLogUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					StockingID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityStocking" resultClass="int">
+		SELECT count(1)
+		from stocking
+		<dynamic prepend=" where ">
+			<isNotNull property="stockingID" prepend="and ">
+				StockingID = #stockingID#
+         </isNotNull>
+			<isNotNull property="rfidContainerID" prepend="and ">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="checkTime" prepend="and ">
+				CheckTime = #checkTime#
+         </isNotNull>
+			<isNotNull property="checkUser" prepend="and ">
+				CheckUser = #checkUser#
+         </isNotNull>
+			<isNotNull property="complex" prepend="and ">
+				Complex = #complex#
+         </isNotNull>
+			<isNotNull property="depot" prepend="and ">
+				Depot = #depot#
+         </isNotNull>
+			<isNotNull property="shelf" prepend="and ">
+				Shelf = #shelf#
+         </isNotNull>
+			<isNotNull property="layer" prepend="and ">
+				Layer = #layer#
+         </isNotNull>
+			<isNotNull property="stack" prepend="and ">
+				Stack = #stack#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="libraryCount" prepend="and ">
+				LibraryCount = #libraryCount#
+         </isNotNull>
+			<isNotNull property="realLibraryCount" prepend="and ">
+				RealLibraryCount = #realLibraryCount#
+         </isNotNull>
+			<isNotNull property="unitPrice" prepend="and ">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+			<isNotNull property="baseAmount" prepend="and ">
+				BaseAmount = #baseAmount#
+         </isNotNull>
+			<isNotNull property="removeUser" prepend="and ">
+				RemoveUser = #removeUser#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="systemLogUser" prepend="and ">
+				SystemLogUser = #systemLogUser#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityStocking">
+		update stocking
+		<dynamic prepend="set">
+			<isNotNull property="stockingID">
+				StockingID = #stockingID#
+         </isNotNull>
+			<isNull property="stockingID">
+				StockingID = null
+         </isNull>
+			<isNotNull property="rfidContainerID">
+				,RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNull property="rfidContainerID">
+				,RfidContainerID = null
+         </isNull>
+			<isNotNull property="checkTime">
+				,CheckTime = #checkTime#
+         </isNotNull>
+			<isNull property="checkTime">
+				,CheckTime = null
+         </isNull>
+			<isNotNull property="checkUser">
+				,CheckUser = #checkUser#
+         </isNotNull>
+			<isNull property="checkUser">
+				,CheckUser = null
+         </isNull>
+			<isNotNull property="complex">
+				,Complex = #complex#
+         </isNotNull>
+			<isNull property="complex">
+				,Complex = null
+         </isNull>
+			<isNotNull property="depot">
+				,Depot = #depot#
+         </isNotNull>
+			<isNull property="depot">
+				,Depot = null
+         </isNull>
+			<isNotNull property="shelf">
+				,Shelf = #shelf#
+         </isNotNull>
+			<isNull property="shelf">
+				,Shelf = null
+         </isNull>
+			<isNotNull property="layer">
+				,Layer = #layer#
+         </isNotNull>
+			<isNull property="layer">
+				,Layer = null
+         </isNull>
+			<isNotNull property="stack">
+				,Stack = #stack#
+         </isNotNull>
+			<isNull property="stack">
+				,Stack = null
+         </isNull>
+			<isNotNull property="procuredBatch">
+				,ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNull property="procuredBatch">
+				,ProcuredBatch = null
+         </isNull>
+			<isNotNull property="libraryCount">
+				,LibraryCount = #libraryCount#
+         </isNotNull>
+			<isNull property="libraryCount">
+				,LibraryCount = null
+         </isNull>
+			<isNotNull property="realLibraryCount">
+				,RealLibraryCount = #realLibraryCount#
+         </isNotNull>
+			<isNull property="realLibraryCount">
+				,RealLibraryCount = null
+         </isNull>
+			<isNotNull property="unitPrice">
+				,UnitPrice = #unitPrice#
+         </isNotNull>
+			<isNull property="unitPrice">
+				,UnitPrice = null
+         </isNull>
+			<isNotNull property="baseAmount">
+				,BaseAmount = #baseAmount#
+         </isNotNull>
+			<isNull property="baseAmount">
+				,BaseAmount = null
+         </isNull>
+			<isNotNull property="removeUser">
+				,RemoveUser = #removeUser#
+         </isNotNull>
+			<isNull property="removeUser">
+				,RemoveUser = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+			<isNotNull property="systemLogUser">
+				,SystemLogUser = #systemLogUser#
+         </isNotNull>
+			<isNull property="systemLogUser">
+				,SystemLogUser = null
+         </isNull>
+			<isNotNull property="version">
+				,Version = #version#
+         </isNotNull>
+			<isNull property="version">
+				,Version = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="stockingIDWhere" prepend="and ">
+				StockingID = #stockingIDWhere#
+         </isNotNull>
+			<isNotNull property="rfidContainerIDWhere" prepend="and ">
+				RfidContainerID = #rfidContainerIDWhere#
+         </isNotNull>
+			<isNotNull property="checkTimeWhere" prepend="and ">
+				CheckTime = #checkTimeWhere#
+         </isNotNull>
+			<isNotNull property="checkUserWhere" prepend="and ">
+				CheckUser = #checkUserWhere#
+         </isNotNull>
+			<isNotNull property="complexWhere" prepend="and ">
+				Complex = #complexWhere#
+         </isNotNull>
+			<isNotNull property="depotWhere" prepend="and ">
+				Depot = #depotWhere#
+         </isNotNull>
+			<isNotNull property="shelfWhere" prepend="and ">
+				Shelf = #shelfWhere#
+         </isNotNull>
+			<isNotNull property="layerWhere" prepend="and ">
+				Layer = #layerWhere#
+         </isNotNull>
+			<isNotNull property="stackWhere" prepend="and ">
+				Stack = #stackWhere#
+         </isNotNull>
+			<isNotNull property="procuredBatchWhere" prepend="and ">
+				ProcuredBatch = #procuredBatchWhere#
+         </isNotNull>
+			<isNotNull property="libraryCountWhere" prepend="and ">
+				LibraryCount = #libraryCountWhere#
+         </isNotNull>
+			<isNotNull property="realLibraryCountWhere" prepend="and ">
+				RealLibraryCount = #realLibraryCountWhere#
+         </isNotNull>
+			<isNotNull property="unitPriceWhere" prepend="and ">
+				UnitPrice = #unitPriceWhere#
+         </isNotNull>
+			<isNotNull property="baseAmountWhere" prepend="and ">
+				BaseAmount = #baseAmountWhere#
+         </isNotNull>
+			<isNotNull property="removeUserWhere" prepend="and ">
+				RemoveUser = #removeUserWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="systemLogUserWhere" prepend="and ">
+				SystemLogUser = #systemLogUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityStocking">
+		update stocking
+		<dynamic prepend="set">
+			<isNotNull property="stockingID"  prepend=",">
+				StockingID = #stockingID#
+         </isNotNull>
+			<isNotNull property="rfidContainerID"  prepend=",">
+				RfidContainerID = #rfidContainerID#
+         </isNotNull>
+			<isNotNull property="checkTime"  prepend=",">
+				CheckTime = #checkTime#
+         </isNotNull>
+			<isNotNull property="checkUser"  prepend=",">
+				CheckUser = #checkUser#
+         </isNotNull>
+			<isNotNull property="complex"  prepend=",">
+				Complex = #complex#
+         </isNotNull>
+			<isNotNull property="depot"  prepend=",">
+				Depot = #depot#
+         </isNotNull>
+			<isNotNull property="shelf"  prepend=",">
+				Shelf = #shelf#
+         </isNotNull>
+			<isNotNull property="layer"  prepend=",">
+				Layer = #layer#
+         </isNotNull>
+			<isNotNull property="stack"  prepend=",">
+				Stack = #stack#
+         </isNotNull>
+			<isNotNull property="procuredBatch"  prepend=",">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="libraryCount"  prepend=",">
+				LibraryCount = #libraryCount#
+         </isNotNull>
+			<isNotNull property="realLibraryCount"  prepend=",">
+				RealLibraryCount = #realLibraryCount#
+         </isNotNull>
+			<isNotNull property="unitPrice"  prepend=",">
+				UnitPrice = #unitPrice#
+         </isNotNull>
+			<isNotNull property="baseAmount"  prepend=",">
+				BaseAmount = #baseAmount#
+         </isNotNull>
+			<isNotNull property="removeUser"  prepend=",">
+				RemoveUser = #removeUser#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="systemLogUser"  prepend=",">
+				SystemLogUser = #systemLogUser#
+         </isNotNull>
+			<isNotNull property="version"  prepend=",">
+				Version = #version#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="stockingIDWhere" prepend="and ">
+				StockingID = #stockingIDWhere#
+         </isNotNull>
+			<isNotNull property="rfidContainerIDWhere" prepend="and ">
+				RfidContainerID = #rfidContainerIDWhere#
+         </isNotNull>
+			<isNotNull property="checkTimeWhere" prepend="and ">
+				CheckTime = #checkTimeWhere#
+         </isNotNull>
+			<isNotNull property="checkUserWhere" prepend="and ">
+				CheckUser = #checkUserWhere#
+         </isNotNull>
+			<isNotNull property="complexWhere" prepend="and ">
+				Complex = #complexWhere#
+         </isNotNull>
+			<isNotNull property="depotWhere" prepend="and ">
+				Depot = #depotWhere#
+         </isNotNull>
+			<isNotNull property="shelfWhere" prepend="and ">
+				Shelf = #shelfWhere#
+         </isNotNull>
+			<isNotNull property="layerWhere" prepend="and ">
+				Layer = #layerWhere#
+         </isNotNull>
+			<isNotNull property="stackWhere" prepend="and ">
+				Stack = #stackWhere#
+         </isNotNull>
+			<isNotNull property="procuredBatchWhere" prepend="and ">
+				ProcuredBatch = #procuredBatchWhere#
+         </isNotNull>
+			<isNotNull property="libraryCountWhere" prepend="and ">
+				LibraryCount = #libraryCountWhere#
+         </isNotNull>
+			<isNotNull property="realLibraryCountWhere" prepend="and ">
+				RealLibraryCount = #realLibraryCountWhere#
+         </isNotNull>
+			<isNotNull property="unitPriceWhere" prepend="and ">
+				UnitPrice = #unitPriceWhere#
+         </isNotNull>
+			<isNotNull property="baseAmountWhere" prepend="and ">
+				BaseAmount = #baseAmountWhere#
+         </isNotNull>
+			<isNotNull property="removeUserWhere" prepend="and ">
+				RemoveUser = #removeUserWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="systemLogUserWhere" prepend="and ">
+				SystemLogUser = #systemLogUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityStocking">
+		<selectKey resultClass="java.lang.String" keyProperty="stockingID">
+			SELECT #stockingID# as stockingID FROM DUAL
+     </selectKey>
+		insert into stocking(
+		StockingID
+		,RfidContainerID
+		,CheckTime
+		,CheckUser
+		,Complex
+		,Depot
+		,Shelf
+		,Layer
+		,Stack
+		,ProcuredBatch
+		,LibraryCount
+		,RealLibraryCount
+		,UnitPrice
+		,BaseAmount
+		,RemoveUser
+		,DelFlag
+		,UpdateUser
+		,UpdateTime
+		,SystemLogUser
+		,Version
+		)
+		Values (
+			<isNotNull property="stockingID">
+				#stockingID#
+         </isNotNull>
+			<isNull property="stockingID">
+				null
+         </isNull>
+			<isNotNull property="rfidContainerID">
+				,#rfidContainerID#
+         </isNotNull>
+			<isNull property="rfidContainerID">
+				,null
+         </isNull>
+			<isNotNull property="checkTime">
+				,#checkTime#
+         </isNotNull>
+			<isNull property="checkTime">
+				,null
+         </isNull>
+			<isNotNull property="checkUser">
+				,#checkUser#
+         </isNotNull>
+			<isNull property="checkUser">
+				,null
+         </isNull>
+			<isNotNull property="complex">
+				,#complex#
+         </isNotNull>
+			<isNull property="complex">
+				,null
+         </isNull>
+			<isNotNull property="depot">
+				,#depot#
+         </isNotNull>
+			<isNull property="depot">
+				,null
+         </isNull>
+			<isNotNull property="shelf">
+				,#shelf#
+         </isNotNull>
+			<isNull property="shelf">
+				,null
+         </isNull>
+			<isNotNull property="layer">
+				,#layer#
+         </isNotNull>
+			<isNull property="layer">
+				,null
+         </isNull>
+			<isNotNull property="stack">
+				,#stack#
+         </isNotNull>
+			<isNull property="stack">
+				,null
+         </isNull>
+			<isNotNull property="procuredBatch">
+				,#procuredBatch#
+         </isNotNull>
+			<isNull property="procuredBatch">
+				,null
+         </isNull>
+			<isNotNull property="libraryCount">
+				,#libraryCount#
+         </isNotNull>
+			<isNull property="libraryCount">
+				,null
+         </isNull>
+			<isNotNull property="realLibraryCount">
+				,#realLibraryCount#
+         </isNotNull>
+			<isNull property="realLibraryCount">
+				,null
+         </isNull>
+			<isNotNull property="unitPrice">
+				,#unitPrice#
+         </isNotNull>
+			<isNull property="unitPrice">
+				,null
+         </isNull>
+			<isNotNull property="baseAmount">
+				,#baseAmount#
+         </isNotNull>
+			<isNull property="baseAmount">
+				,null
+         </isNull>
+			<isNotNull property="removeUser">
+				,#removeUser#
+         </isNotNull>
+			<isNull property="removeUser">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+			<isNotNull property="systemLogUser">
+				,#systemLogUser#
+         </isNotNull>
+			<isNull property="systemLogUser">
+				,null
+         </isNull>
+			<isNotNull property="version">
+				,#version#
+         </isNotNull>
+			<isNull property="version">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityStocking">
+		delete  fromstocking
+		<dynamic prepend=" where ">
+			<isNotNull property="stockingIDWhere" prepend="and ">
+				StockingID = #stockingIDWhere#
+         </isNotNull>
+			<isNotNull property="rfidContainerIDWhere" prepend="and ">
+				RfidContainerID = #rfidContainerIDWhere#
+         </isNotNull>
+			<isNotNull property="checkTimeWhere" prepend="and ">
+				CheckTime = #checkTimeWhere#
+         </isNotNull>
+			<isNotNull property="checkUserWhere" prepend="and ">
+				CheckUser = #checkUserWhere#
+         </isNotNull>
+			<isNotNull property="complexWhere" prepend="and ">
+				Complex = #complexWhere#
+         </isNotNull>
+			<isNotNull property="depotWhere" prepend="and ">
+				Depot = #depotWhere#
+         </isNotNull>
+			<isNotNull property="shelfWhere" prepend="and ">
+				Shelf = #shelfWhere#
+         </isNotNull>
+			<isNotNull property="layerWhere" prepend="and ">
+				Layer = #layerWhere#
+         </isNotNull>
+			<isNotNull property="stackWhere" prepend="and ">
+				Stack = #stackWhere#
+         </isNotNull>
+			<isNotNull property="procuredBatchWhere" prepend="and ">
+				ProcuredBatch = #procuredBatchWhere#
+         </isNotNull>
+			<isNotNull property="libraryCountWhere" prepend="and ">
+				LibraryCount = #libraryCountWhere#
+         </isNotNull>
+			<isNotNull property="realLibraryCountWhere" prepend="and ">
+				RealLibraryCount = #realLibraryCountWhere#
+         </isNotNull>
+			<isNotNull property="unitPriceWhere" prepend="and ">
+				UnitPrice = #unitPriceWhere#
+         </isNotNull>
+			<isNotNull property="baseAmountWhere" prepend="and ">
+				BaseAmount = #baseAmountWhere#
+         </isNotNull>
+			<isNotNull property="removeUserWhere" prepend="and ">
+				RemoveUser = #removeUserWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+			<isNotNull property="systemLogUserWhere" prepend="and ">
+				SystemLogUser = #systemLogUserWhere#
+         </isNotNull>
+			<isNotNull property="versionWhere" prepend="and ">
+				Version = #versionWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vgetshelfinformation.xml
+		Created on : 2014/10/21 18:10:14
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vgetshelfinformation">
+	<typeAlias alias="entityVgetshelfinformation" type="com.icomp.entity.base.Vgetshelfinformation" />
+	<resultMap id="Vgetshelfinformation-map" class="entityVgetshelfinformation">
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 库位码主键 -->
+		<result property="libraryCodeID" column="LibraryCodeID" />
+		<!-- 系统编码 -->
+		<result property="systeCode" column="SysteCode" />
+		<!-- 自定义编码 -->
+		<result property="customerCode" column="CustomerCode" />
+		<!-- 货架ID -->
+		<result property="stackID" column="StackID" />
+		<!--  -->
+		<result property="layerText" column="LayerText" />
+		<!--  -->
+		<result property="stackText" column="StackText" />
+		<!--  -->
+		<result property="shelfText" column="ShelfText" />
+		<!--  -->
+		<result property="depotText" column="DepotText" />
+		<!--  -->
+		<result property="a_inverntoryCount" column="A_inverntoryCount" />
+		<!--  -->
+		<result property="b_inverntoryCount" column="B_inverntoryCount" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVgetshelfinformation" resultMap="Vgetshelfinformation-map">
+		SELECT
+		ToolCode
+		,ToolID
+		,LibraryCodeID
+		,SysteCode
+		,CustomerCode
+		,StackID
+		,LayerText
+		,StackText
+		,ShelfText
+		,DepotText
+		,A_inverntoryCount
+		,B_inverntoryCount
+		from vgetshelfinformation
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="0">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVgetshelfinformation" resultMap="Vgetshelfinformation-map">
+		SELECT
+		ToolCode
+		,ToolID
+		,LibraryCodeID
+		,SysteCode
+		,CustomerCode
+		,StackID
+		,LayerText
+		,StackText
+		,ShelfText
+		,DepotText
+		,A_inverntoryCount
+		,B_inverntoryCount
+		from vgetshelfinformation
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="libraryCodeID" prepend="and ">
+				LibraryCodeID = #libraryCodeID#
+         </isNotNull>
+			<isNotNull property="systeCode" prepend="and ">
+				SysteCode = #systeCode#
+         </isNotNull>
+			<isNotNull property="customerCode" prepend="and ">
+				CustomerCode = #customerCode#
+         </isNotNull>
+			<isNotNull property="stackID" prepend="and ">
+				StackID = #stackID#
+         </isNotNull>
+			<isNotNull property="layerText" prepend="and ">
+				LayerText = #layerText#
+         </isNotNull>
+			<isNotNull property="stackText" prepend="and ">
+				StackText = #stackText#
+         </isNotNull>
+			<isNotNull property="shelfText" prepend="and ">
+				ShelfText = #shelfText#
+         </isNotNull>
+			<isNotNull property="depotText" prepend="and ">
+				DepotText = #depotText#
+         </isNotNull>
+			<isNotNull property="a_inverntoryCount" prepend="and ">
+				A_inverntoryCount = #a_inverntoryCount#
+         </isNotNull>
+			<isNotNull property="b_inverntoryCount" prepend="and ">
+				B_inverntoryCount = #b_inverntoryCount#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="0">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVgetshelfinformation" resultClass="int">
+		SELECT count(1)
+		from vgetshelfinformation
+		<dynamic prepend=" where ">
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="libraryCodeID" prepend="and ">
+				LibraryCodeID = #libraryCodeID#
+         </isNotNull>
+			<isNotNull property="systeCode" prepend="and ">
+				SysteCode = #systeCode#
+         </isNotNull>
+			<isNotNull property="customerCode" prepend="and ">
+				CustomerCode = #customerCode#
+         </isNotNull>
+			<isNotNull property="stackID" prepend="and ">
+				StackID = #stackID#
+         </isNotNull>
+			<isNotNull property="layerText" prepend="and ">
+				LayerText = #layerText#
+         </isNotNull>
+			<isNotNull property="stackText" prepend="and ">
+				StackText = #stackText#
+         </isNotNull>
+			<isNotNull property="shelfText" prepend="and ">
+				ShelfText = #shelfText#
+         </isNotNull>
+			<isNotNull property="depotText" prepend="and ">
+				DepotText = #depotText#
+         </isNotNull>
+			<isNotNull property="a_inverntoryCount" prepend="and ">
+				A_inverntoryCount = #a_inverntoryCount#
+         </isNotNull>
+			<isNotNull property="b_inverntoryCount" prepend="and ">
+				B_inverntoryCount = #b_inverntoryCount#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

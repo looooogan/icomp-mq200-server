@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+	http://www.springframework.org/schema/task
+	http://www.springframework.org/schema/task/spring-task-3.1.xsd"
+       xmlns:task="http://www.springframework.org/schema/task">
+
+<!-- ************************************************************************************************************************   -->
+    <bean id="sendEmailDao" class="com.icomp.common.timer.SendSAutoEmail">
+        <property name="warningDao" ref="warningDao"/>
+        <property name="vtoolsmachiningDao" ref="vtoolsmachiningDao"/>
+        <property name="vtoolalarmparamDao" ref="vtoolalarmparamDao"/>
+    </bean>
+    <!-- 第二步：spring配置文件中配置作业类JobDetailBean -->
+    <bean id="znrwdbBean1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="sendEmailDao"></property>
+        <property name="targetMethod" value="znrwdb"></property>
+
+    </bean>
+    <!-- 第三步：配置作业调度的触发方式（触发器） -->
+    <bean id="znrwdbBean2" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="znrwdbBean1"/>
+        </property>
+        <property name="cronExpression">
+            <value>${wxb.emailAutoSend}</value>
+        </property>
+    </bean>
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="znrwdbBean2"/>
+            </list>
+        </property>
+    </bean>
+<!-- ************************************************************************************************************************   -->
+    <bean id="getAvgPrice" class="com.icomp.common.timer.GetAvgToolsPrices">
+        <property name="toolDao" ref="toolDao"/>
+        <property name="toolspriceDao" ref="toolspriceDao"/>
+    </bean>
+    <!-- 第二步：spring配置文件中配置作业类JobDetailBean -->
+    <bean id="avgPriceBean" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="getAvgPrice"></property>
+        <property name="targetMethod" value="getSapPrice"></property>
+
+    </bean>
+    <!-- 第三步：配置作业调度的触发方式（触发器） -->
+    <bean id="avgPriceBean2" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="avgPriceBean"/>
+        </property>
+        <property name="cronExpression">
+            <value>${wxb.sapgetPrice}</value>
+        </property>
+    </bean>
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="avgPriceBean2"/>
+            </list>
+        </property>
+    </bean>
+<!-- ************************************************************************************************************************   -->
+    <bean id="synsSapDao" class="com.icomp.common.timer.SynSAPOrderDate">
+            <property name="toolprocuredDao" ref="toolprocuredDao"/>
+            <property name="werkzeugeanforderunDao" ref="werkzeugeanforderunDao"/>
+    </bean>
+    <!-- 第二步：spring配置文件中配置作业类JobDetailBean -->
+    <bean id="synsSapBean" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="synsSapDao"></property>
+        <property name="targetMethod" value="synSAPOrderDateByTime"></property>
+
+    </bean>
+    <!-- 第三步：配置作业调度的触发方式（触发器） -->
+    <bean id="synSapBean2" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="synsSapBean"/>
+        </property>
+        <property name="cronExpression">
+            <value>${wxb.synsSapBean}</value>
+        </property>
+    </bean>
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="synSapBean2"/>
+            </list>
+        </property>
+    </bean>
+<!-- ************************************************************************************************************************   -->
+        <bean id="autoToolsNumbers" class="com.icomp.common.timer.AutoToolsNumbers">
+        <property name="toolDao" ref="toolDao"/>
+        <property name="scrapDao" ref="scrapDao"/>
+    </bean>
+    <!-- 第二步：spring配置文件中配置作业类JobDetailBean -->
+    <bean id="autoToolsBean" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="autoToolsNumbers"></property>
+        <property name="targetMethod" value="getAutoToolsNumbers"></property>
+    </bean>
+    <!-- 第三步：配置作业调度的触发方式（触发器） -->
+    <bean id="autoToolsBean2" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="autoToolsBean"/>
+        </property>
+        <property name="cronExpression">
+            <value>${wxb.autoToolsNumber}</value>
+        </property>
+    </bean>
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="autoToolsBean2"/>
+            </list>
+        </property>
+    </bean>
+<!-- ************************************************************************************************************************   -->
+</beans>

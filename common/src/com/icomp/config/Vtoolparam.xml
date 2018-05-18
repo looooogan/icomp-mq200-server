@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vtoolparam.xml
+		Created on : 2014/08/28 18:35:53
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vtoolparam">
+	<typeAlias alias="entityVtoolparam" type="com.icomp.entity.base.Vtoolparam" />
+	<resultMap id="Vtoolparam-map" class="entityVtoolparam">
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 库位码 -->
+		<result property="libraryCodeID" column="LibraryCodeID" />
+		<!-- 系统编码 -->
+		<result property="systeCode" column="SysteCode" />
+		<!-- 自定义编码 -->
+		<result property="customerCode" column="CustomerCode" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 刀具每盒数量 -->
+		<result property="toolUnitnumber" column="ToolUnitnumber" />
+		<!-- 刀具分类(0刀具1辅具2配套9其他） -->
+		<result property="toolType" column="ToolType" />
+		<!-- 消耗类别(0:可刃磨钻头1可刃磨刀片2一次性刀片9其他 -->
+		<result property="toolConsumetype" column="ToolConsumetype" />
+		<!-- 厂区 -->
+		<result property="complex" column="Complex" />
+		<!-- 库房号 -->
+		<result property="depot" column="Depot" />
+		<!-- 货架 -->
+		<result property="shelf" column="Shelf" />
+		<!-- 层 -->
+		<result property="layer" column="Layer" />
+		<!-- 货位 -->
+		<result property="stack" column="Stack" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVtoolparam" resultMap="Vtoolparam-map">
+		SELECT
+		ToolID
+		,LibraryCodeID
+		,SysteCode
+		,CustomerCode
+		,ToolCode
+		,ToolUnitnumber
+		,ToolType
+		,ToolConsumetype
+		,Complex
+		,Depot
+		,Shelf
+		,Layer
+		,Stack
+		from vtoolparam
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVtoolparam" resultMap="Vtoolparam-map">
+		SELECT
+		ToolID
+		,LibraryCodeID
+		,SysteCode
+		,CustomerCode
+		,ToolCode
+		,ToolUnitnumber
+		,ToolType
+		,ToolConsumetype
+		,Complex
+		,Depot
+		,Shelf
+		,Layer
+		,Stack
+		from vtoolparam
+		<dynamic prepend=" where ">
+			
+		<isNotNull property="systeCode" prepend="or ">
+				SysteCode = #systeCode#
+         </isNotNull>
+			<isNotNull property="customerCode" prepend="or ">
+				CustomerCode = #customerCode#
+         </isNotNull>
+         <isNotNull property="toolCode" prepend="or ">
+				ToolCode = #toolCode#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVtoolparam" resultClass="int">
+		SELECT count(1)
+		from vtoolparam
+		<dynamic prepend=" where ">
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="libraryCodeID" prepend="and ">
+				LibraryCodeID = #libraryCodeID#
+         </isNotNull>
+			<isNotNull property="systeCode" prepend="and ">
+				SysteCode = #systeCode#
+         </isNotNull>
+			<isNotNull property="customerCode" prepend="and ">
+				CustomerCode = #customerCode#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="toolUnitnumber" prepend="and ">
+				ToolUnitnumber = #toolUnitnumber#
+         </isNotNull>
+			<isNotNull property="toolType" prepend="and ">
+				ToolType = #toolType#
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="complex" prepend="and ">
+				Complex = #complex#
+         </isNotNull>
+			<isNotNull property="depot" prepend="and ">
+				Depot = #depot#
+         </isNotNull>
+			<isNotNull property="shelf" prepend="and ">
+				Shelf = #shelf#
+         </isNotNull>
+			<isNotNull property="layer" prepend="and ">
+				Layer = #layer#
+         </isNotNull>
+			<isNotNull property="stack" prepend="and ">
+				Stack = #stack#
+         </isNotNull>
+		</dynamic>
+	</select>
+</sqlMap>
+

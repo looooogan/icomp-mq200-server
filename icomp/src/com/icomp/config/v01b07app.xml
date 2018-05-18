@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+<!--  BUSINESS注入	-->
+	<!--  在途计划报警BUSINESS注入	-->
+    <bean id="b07s001Business" class="com.icomp.v01b07.b07s001.business.impl.B07S001BusinessImpl">
+    	<property name="service" ref="commonService"/>		
+		<property name="icompv01b07s001Service" ref="icompv01b07s001Service" />
+
+
+    </bean>
+    
+	<!--  库存异常报警BUSINESS注入	-->
+    <bean id="b07s002Business" class="com.icomp.v01b07.b07s002.business.impl.B07S002BusinessImpl">
+    	<property name="service" ref="commonService"/>		
+		<property name="icompv01b07s002Service" ref="icompv01b07s002Service" />
+    </bean>
+    
+    <!--  采购计划处理BUSINESS注入	-->
+    <bean id="b07s003Business" class="com.icomp.v01b07.b07s003.business.impl.B07S003BusinessImpl">
+    	<property name="service" ref="commonService"/>		
+		<property name="icompv01b07s003Service" ref="icompv01b07s003Service" />
+    </bean>
+    
+    <!--  采购订单BUSINESS注入	-->
+    <bean id="b07s004Business" class="com.icomp.v01b07.b07s004.business.impl.B07S004BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b07s004Service" ref="icompv01b07s004Service" />
+    </bean>
+    
+    <!--  建议采购计划查询BUSINESS注入	-->
+    <bean id="b07s005Business" class="com.icomp.v01b07.b07s005.business.impl.B07S005BusinessImpl">
+        <property name="service" ref="commonService"/>	
+		<property name="icompv01b07s005Service" ref="icompv01b07s005Service" />
+    </bean>
+    
+    <!--  工作记录查询BUSINESS注入	-->
+    <bean id="b07s006Business" class="com.icomp.v01b07.b07s006.business.impl.B07S006BusinessImpl">
+       	<property name="service" ref="commonService"/>		
+		<property name="icompv01b07s006Service" ref="icompv01b07s006Service" />
+    </bean>  
+    
+	<!--  标签采购BUSINESS注入	-->
+    <bean id="b07s007Business" class="com.icomp.v01b07.b07s007.business.impl.B07S007BusinessImpl">
+    	<property name="service" ref="commonService"/>		
+		<property name="icompv01b07s007Service" ref="icompv01b07s007Service" />
+    </bean>
+    
+    
+ <!--  Service注入	-->   
+    
+	  <!-- 在途计划报警Service注入 -->
+	<bean id="icompv01b07s001Service" class="com.icomp.common.service.impl.icomp.v01b07.s001.ICOMPV01B07S001ServiceImpl"  scope="prototype">
+		<property name="vtransitalarmDao" ref="vtransitalarmDao" />
+		<property name="toolalarmparamDao" ref="toolalarmparamDao" />
+		<property name="werkzeugeanforderunDao" ref="werkzeugeanforderunDao" />
+		<property name="toolprocuredDao" ref="toolprocuredDao" />
+		<property name="vtoolprocuredsDao" ref="vtoolprocuredsDao" />
+	</bean>
+	
+    <!-- 库存异常报警Service注入 -->
+	<bean id="icompv01b07s002Service" class="com.icomp.common.service.impl.icomp.v01b07.s002.ICOMPV01B07S002ServiceImpl"  scope="prototype">
+		<property name="vinventoryalarmDao" ref="vinventoryalarmDao" />
+		<property name="subToolProcessAmountDao" ref="subToolProcessAmountDao" />
+		<property name="subToolAvgToolSharpennumDao" ref="subToolAvgToolSharpennumDao" />
+		<property name="vtoolalarmparamDao" ref="vtoolalarmparamDao" />
+		<property name="tooltransferDao" ref="tooltransferDao" />
+		<property name="toolDao" ref="toolDao" />
+		<property name="vtoolshertoolDao" ref="vtoolshertoolDao" />
+
+	</bean>	
+
+    <!-- 采购计划处理Service注入 -->
+	<bean id="icompv01b07s003Service" class="com.icomp.common.service.impl.icomp.v01b07.s003.ICOMPV01B07S003ServiceImpl"  scope="prototype">
+			<property name="vsuggestionpurchaseplanDao" ref="vsuggestionpurchaseplanDao" />
+			<property name="displayeditemconfigurationDao" ref="displayeditemconfigurationDao" />
+			<property name="procurementplansDao" ref="procurementplansDao" />
+			<property name="toolprocuredDao" ref="toolprocuredDao" />
+	</bean>	
+	
+    <!-- 采购订单Service注入 -->
+	<bean id="icompv01b07s004Service" class="com.icomp.common.service.impl.icomp.v01b07.s004.ICOMPV01B07S004ServiceImpl"  scope="prototype">
+<!--			<property name="displayeditemconfigurationDao" ref="displayeditemconfigurationDao" />-->
+			<property name="vpurchasingorderDao" ref="vpurchasingorderDao" />
+			<property name="vcustomerDao" ref="vcustomerDao" />
+			<property name="toolprocuredDao" ref="toolprocuredDao" />
+			<property name="deliveryplanDao" ref="deliveryplanDao" />
+		<property name="vtoolprocuredsDao" ref="vtoolprocuredsDao" />
+
+			
+	</bean>	
+	
+    <!-- 建议采购计划查询Service注入 -->
+	<bean id="icompv01b07s005Service" class="com.icomp.common.service.impl.icomp.v01b07.s005.ICOMPV01B07S005ServiceImpl"  scope="prototype">
+			<property name="displayeditemconfigurationDao" ref="displayeditemconfigurationDao" />
+			<property name="vsuggestionpurchaseplanDao" ref="vsuggestionpurchaseplanDao" />
+			<property name="werkzeugeanforderunDao" ref="werkzeugeanforderunDao" />
+			<property name="vpartsmachiningmsgDao" ref="vpartsmachiningmsgDao" />
+			<property name="toolprocuredDao" ref="toolprocuredDao" />
+			<property name="toolsmachiningDao" ref="toolsmachiningDao" />
+			<property name="formulasDao" ref="formulasDao" />
+			<property name="partsDao" ref="partsDao" />
+	</bean>
+	
+    <!-- 工作记录查询Service注入 -->
+	<bean id="icompv01b07s006Service" class="com.icomp.common.service.impl.icomp.v01b07.s006.ICOMPV01B07S006ServiceImpl"  scope="prototype">
+			<property name="vtoolprocuredDao" ref="vtoolprocuredDao" />
+	</bean>		
+		
+    <!-- 标签采购Service注入 -->
+	<bean id="icompv01b07s007Service" class="com.icomp.common.service.impl.icomp.v01b07.s007.ICOMPV01B07S007ServiceImpl"  scope="prototype">
+		<property name="rfidpurchaseDao" ref="rfidpurchaseDao" />
+	</bean>		
+		
+</beans>

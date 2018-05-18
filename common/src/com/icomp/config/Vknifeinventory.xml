@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vknifeinventory.xml
+		Created on : 2016/04/25 15:31:07
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vknifeinventory">
+	<typeAlias alias="entityVknifeinventory" type="com.icomp.entity.base.Vknifeinventory" />
+	<resultMap id="Vknifeinventory-map" class="entityVknifeinventory">
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 消耗类别(0:可刃磨钻头1可刃磨刀片2一次性刀片9其他 -->
+		<result property="toolConsumetype" column="ToolConsumetype" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 刀具入库编码 -->
+		<result property="knifeinventoryCode" column="knifeinventoryCode" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 库存类型(0新刀1出厂回库2封存3返厂4外借5借入9其他) -->
+		<result property="knifeInventoryType" column="KnifeInventoryType" />
+		<!-- 姓名 -->
+		<result property="userName" column="UserName" />
+		<!-- 采购批次 -->
+		<result property="procuredBatch" column="ProcuredBatch" />
+		<!--数量-->
+		<result property="inLiberNumber" column="inLiberNumber" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVknifeinventory" resultMap="Vknifeinventory-map">
+		SELECT
+		ToolID
+		,ToolConsumetype
+		,ToolCode
+		,knifeinventoryCode
+		,CreateTime
+		,KnifeInventoryType
+		,UserName
+		,ProcuredBatch
+		,inLiberNumber
+		from vknifeinventory
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVknifeinventory" resultMap="Vknifeinventory-map">
+		SELECT
+		ToolID
+		,ToolConsumetype
+		,ToolCode
+		,knifeinventoryCode
+		,CreateTime
+		,KnifeInventoryType
+		,UserName
+		,ProcuredBatch
+		,inLiberNumber
+		from vknifeinventory
+		<dynamic prepend=" where ">
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype like concat('%',#toolConsumetype#,'%')
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="knifeinventoryCode" prepend="and ">
+				knifeinventoryCode = #knifeinventoryCode#
+         </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				CreateTime >= #dateStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				CreateTime <= #dateEnd#
+				]]>
+			</isNotNull>
+			<isNotNull property="knifeInventoryType" prepend="and ">
+				KnifeInventoryType = #knifeInventoryType#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName like concat('%',#userName#,'%')
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="inLiberNumber" prepend="and ">
+				inLiberNumber = #inLiberNumber#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVknifeinventory" resultClass="int">
+		SELECT count(1)
+		from vknifeinventory
+		<dynamic prepend=" where ">
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype like concat('%',#toolConsumetype#,'%')
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="knifeinventoryCode" prepend="and ">
+				knifeinventoryCode = #knifeinventoryCode#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="knifeInventoryType" prepend="and ">
+				KnifeInventoryType = #knifeInventoryType#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+			<isNotNull property="procuredBatch" prepend="and ">
+				ProcuredBatch = #procuredBatch#
+         </isNotNull>
+			<isNotNull property="inLiberNumber" prepend="and ">
+				inLiberNumber = #inLiberNumber#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

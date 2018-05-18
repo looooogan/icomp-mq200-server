@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vanalysis.xml
+		Created on : 2016/03/25 15:26:55
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vanalysis">
+	<typeAlias alias="entityVanalysis" type="com.icomp.entity.base.Vanalysis" />
+	<resultMap id="Vanalysis-map" class="entityVanalysis">
+		<!-- 刀具分类(0刀具1辅具2配套9其他） -->
+		<result property="toolType" column="ToolType" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 刀具ID -->
+		<result property="toolID" column="ToolID" />
+		<!-- 零部件ID -->
+		<result property="partsID" column="PartsID" />
+		<!-- 零部件名称 -->
+		<result property="partsName" column="PartsName" />
+		<!-- 工序ID -->
+		<result property="processID" column="ProcessID" />
+		<!-- 工序名称 -->
+		<result property="processName" column="ProcessName" />
+		<!-- 设备ID -->
+		<result property="equipmentID" column="EquipmentID" />
+		<!-- 设备名称 -->
+		<result property="equipmentName" column="EquipmentName" />
+		<!-- 卸下时间 -->
+		<result property="outerTime" column="OuterTime" />
+		<!-- 卸下原因(0正常卸下1打刀2不合格9其他)(可维护) -->
+		<result property="removeReason" column="RemoveReason" />
+		<!--  -->
+		<result property="outerUser" column="OuterUser" />
+		<result property="empCard" column="EmpCard" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVanalysis" resultMap="Vanalysis-map">
+		SELECT
+		ToolType
+		,ToolCode
+		,ToolID
+		,PartsID
+		,PartsName
+		,ProcessID
+		,ProcessName
+		,EquipmentID
+		,EquipmentName
+		,OuterTime
+		,RemoveReason
+		,OuterUser
+		,EmpCard
+		from vanalysis
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVanalysis" resultMap="Vanalysis-map">
+		SELECT
+		ToolType
+		,ToolCode
+		,ToolID
+		,PartsID
+		,PartsName
+		,ProcessID
+		,ProcessName
+		,EquipmentID
+		,EquipmentName
+		,OuterTime
+		,RemoveReason
+		,OuterUser
+		,EmpCard
+		from vanalysis
+		<dynamic prepend=" where ">
+			<isNotNull property="toolType" prepend="and ">
+				ToolType like concat('%',#toolType#,'%')
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="partsID" prepend="and ">
+				PartsID = #partsID#
+         </isNotNull>
+			<isNotNull property="partsName" prepend="and ">
+				PartsName = #partsName#
+         </isNotNull>
+			<isNotNull property="processID" prepend="and ">
+				ProcessID = #processID#
+         </isNotNull>
+			<isNotNull property="processName" prepend="and ">
+				ProcessName = #processName#
+         </isNotNull>
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[
+				OuterTime >= #dateStar#
+				]]>
+			</isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[
+				OuterTime <= #dateEnd#
+				]]>
+			</isNotNull>
+			<isNotNull property="removeReason" prepend="and ">
+				RemoveReason = #removeReason#
+         </isNotNull>
+			<isNotNull property="outerUser" prepend="and ">
+				OuterUser like concat('%',#outerUser#,'%')
+         </isNotNull>
+			<isNotNull property="lineID" prepend="and">
+				AssemblyLineID = #lineID#
+			</isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVanalysis" resultClass="int">
+		SELECT count(1)
+		from vanalysis
+		<dynamic prepend=" where ">
+			<isNotNull property="toolType" prepend="and ">
+				ToolType = #toolType#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolID" prepend="and ">
+				ToolID = #toolID#
+         </isNotNull>
+			<isNotNull property="partsID" prepend="and ">
+				PartsID = #partsID#
+         </isNotNull>
+			<isNotNull property="partsName" prepend="and ">
+				PartsName = #partsName#
+         </isNotNull>
+			<isNotNull property="processID" prepend="and ">
+				ProcessID = #processID#
+         </isNotNull>
+			<isNotNull property="processName" prepend="and ">
+				ProcessName = #processName#
+         </isNotNull>
+			<isNotNull property="equipmentID" prepend="and ">
+				EquipmentID = #equipmentID#
+         </isNotNull>
+			<isNotNull property="equipmentName" prepend="and ">
+				EquipmentName = #equipmentName#
+         </isNotNull>
+			<isNotNull property="outerTime" prepend="and ">
+				OuterTime = #outerTime#
+         </isNotNull>
+			<isNotNull property="removeReason" prepend="and ">
+				RemoveReason = #removeReason#
+         </isNotNull>
+			<isNotNull property="outerUser" prepend="and ">
+				OuterUser = #outerUser#
+         </isNotNull>
+			<isNotNull property="lineID" prepend="and">
+				AssemblyLineID = #lineID#
+			</isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

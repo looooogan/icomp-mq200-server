@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vapplyuser.xml
+		Created on : 2016/05/16 19:07:36
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vapplyuser">
+	<typeAlias alias="entityVapplyuser" type="com.icomp.entity.base.Vapplyuser" />
+	<resultMap id="Vapplyuser-map" class="entityVapplyuser">
+		<!-- 用户ID[自动生成20位字符串] -->
+		<result property="customerID" column="CustomerID" />
+		<!-- 姓名 -->
+		<result property="userName" column="UserName" />
+		<!-- 身份证号 -->
+		<result property="userCardID" column="UserCardID" />
+		<!-- 部门名称 -->
+		<result property="departmentName" column="DepartmentName" />
+		<!-- 部门ID -->
+		<result property="departmentID" column="DepartmentID" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVapplyuser" resultMap="Vapplyuser-map">
+		SELECT
+		CustomerID
+		,UserName
+		,UserCardID
+		,DepartmentName
+		,DepartmentID
+		from vapplyuser
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVapplyuser" resultMap="Vapplyuser-map">
+		SELECT
+		CustomerID
+		,UserName
+		,UserCardID
+		,DepartmentName
+		,DepartmentID
+		from vapplyuser
+		<dynamic prepend=" where ">
+			<isNotNull property="customerID" prepend="and ">
+				CustomerID = #customerID#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+			<isNotNull property="userCardID" prepend="and ">
+				UserCardID = #userCardID#
+         </isNotNull>
+			<isNotNull property="departmentName" prepend="and ">
+				DepartmentName = #departmentName#
+         </isNotNull>
+			<isNotNull property="departmentID" prepend="and ">
+				DepartmentID = #departmentID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVapplyuser" resultClass="int">
+		SELECT count(1)
+		from vapplyuser
+		<dynamic prepend=" where ">
+			<isNotNull property="customerID" prepend="and ">
+				CustomerID = #customerID#
+         </isNotNull>
+			<isNotNull property="userName" prepend="and ">
+				UserName = #userName#
+         </isNotNull>
+			<isNotNull property="userCardID" prepend="and ">
+				UserCardID = #userCardID#
+         </isNotNull>
+			<isNotNull property="departmentName" prepend="and ">
+				DepartmentName = #departmentName#
+         </isNotNull>
+			<isNotNull property="departmentID" prepend="and ">
+				DepartmentID = #departmentID#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

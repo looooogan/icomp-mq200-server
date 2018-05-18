@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Businessflowlnk.xml Created on : 2014/08/19 15:48:44 Author
+		: 工具自动生成 Description: 工具自动生成包含业务-流程中间表的单表增删改查SQL语句. searchByPrimaryKey
+		： 主键查询 searchByList ： 任意条件查询 searchByCount ：任意条件条数查询 insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null） updateNonQuery ：更新处理（未指定项目不更新） delete ：
+		删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Businessflowlnk">
+	<typeAlias alias="entityBusinessflowlnk" type="com.icomp.entity.base.Businessflowlnk" />
+	<resultMap id="Businessflowlnk-map" class="entityBusinessflowlnk">
+		<!-- 业务-流程中间表ID -->
+		<result property="businessFlowLnkID" column="BusinessFlowLnkID" />
+		<!-- 业务流程ID -->
+		<result property="businessID" column="BusinessID" />
+		<!-- 业务流ID -->
+		<result property="businessFlowID" column="BusinessFlowID" />
+		<!-- 功能ID -->
+		<result property="capabilityID" column="CapabilityID" />
+		<!-- 流程顺序 -->
+		<result property="orderNumber" column="OrderNumber" />
+	</resultMap>
+	
+	<resultMap id="Businessflowlnk-map-order" class="entityBusinessflowlnk">
+		<!-- 业务-流程中间表ID -->
+		<result property="businessFlowLnkID" column="BusinessFlowLnkID" />
+		<!-- 业务流程ID -->
+		<result property="businessID" column="BusinessID" />
+		<!-- 业务流ID -->
+		<result property="businessFlowID" column="BusinessFlowID" />
+		<!-- 功能ID -->
+		<result property="capabilityID" column="CapabilityID" />
+		<!-- 流程顺序 -->
+		<result property="orderNumber" column="OrderNumber" />
+		<!--统计orderNumber-->
+		<result property="totalCount" column="TotalCount" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityBusinessflowlnk"
+		resultMap="Businessflowlnk-map">
+		SELECT
+		BusinessFlowLnkID
+		,BusinessID
+		,BusinessFlowID
+		,CapabilityID
+		,OrderNumber
+		from businessflowlnk
+		<dynamic prepend=" where ">
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+			BusinessFlowLnkID
+     </isNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityBusinessflowlnk"
+		resultMap="Businessflowlnk-map">
+		SELECT
+		BusinessFlowLnkID
+		,BusinessID
+		,BusinessFlowID
+		,CapabilityID
+		,OrderNumber
+		from businessflowlnk
+		<dynamic prepend=" where ">
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="businessID" prepend="and ">
+				BusinessID =
+				#businessID#
+         </isNotNull>
+			<isNotNull property="businessFlowID" prepend="and ">
+				BusinessFlowID = #businessFlowID#
+         </isNotNull>
+			<isNotNull property="capabilityID" prepend="and ">
+				CapabilityID =
+				#capabilityID#
+         </isNotNull>
+			<isNotNull property="orderNumber" prepend="and ">
+				OrderNumber =
+				#orderNumber#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+			BusinessFlowLnkID
+     </isNull>
+		<isGreaterThan property="staIndex" compareValue="-1">
+			LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityBusinessflowlnk"
+		resultClass="int">
+		SELECT count(1)
+		from businessflowlnk
+		<dynamic prepend=" where ">
+			<isNotNull property="businessFlowLnkID" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkID#
+         </isNotNull>
+			<isNotNull property="businessID" prepend="and ">
+				BusinessID =
+				#businessID#
+         </isNotNull>
+			<isNotNull property="businessFlowID" prepend="and ">
+				BusinessFlowID = #businessFlowID#
+         </isNotNull>
+			<isNotNull property="capabilityID" prepend="and ">
+				CapabilityID =
+				#capabilityID#
+         </isNotNull>
+			<isNotNull property="orderNumber" prepend="and ">
+				OrderNumber =
+				#orderNumber#
+         </isNotNull>
+		</dynamic>
+	</select>
+	<!-- order统计条数 -->
+	<select id="countByOrder" parameterClass="entityBusinessflowlnk"
+		resultMap="Businessflowlnk-map-order">
+		SELECT
+		BusinessFlowLnkID
+		,BusinessID
+		,BusinessFlowID
+		,CapabilityID
+		,OrderNumber
+		,count(OrderNumber) TotalCount
+		from businessflowlnk
+		<dynamic prepend=" where ">
+			<isNotNull property="businessFlowID" prepend="and ">
+				BusinessFlowID = #businessFlowID#
+         </isNotNull>
+		</dynamic>
+		group by OrderNumber
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityBusinessflowlnk">
+		update businessflowlnk
+		<dynamic prepend="set">
+			<isNotNull property="businessFlowLnkID">
+				BusinessFlowLnkID = #businessFlowLnkID#
+			</isNotNull>
+			<isNull property="businessFlowLnkID">
+				BusinessFlowLnkID = null
+         </isNull>
+			<isNotNull property="businessID">
+				,BusinessID = #businessID#
+         </isNotNull>
+			<isNull property="businessID">
+				,BusinessID = null
+         </isNull>
+			<isNotNull property="businessFlowID">
+				,BusinessFlowID = #businessFlowID#
+			</isNotNull>
+			<isNull property="businessFlowID">
+				,BusinessFlowID = null
+         </isNull>
+			<isNotNull property="capabilityID">
+				,CapabilityID = #capabilityID#
+			</isNotNull>
+			<isNull property="capabilityID">
+				,CapabilityID = null
+         </isNull>
+			<isNotNull property="orderNumber">
+				,OrderNumber = #orderNumber#
+			</isNotNull>
+			<isNull property="orderNumber">
+				,OrderNumber = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="businessFlowLnkIDWhere" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkIDWhere#
+         </isNotNull>
+			<isNotNull property="businessIDWhere" prepend="and ">
+				BusinessID =
+				#businessIDWhere#
+         </isNotNull>
+			<isNotNull property="businessFlowIDWhere" prepend="and ">
+				BusinessFlowID = #businessFlowIDWhere#
+         </isNotNull>
+			<isNotNull property="capabilityIDWhere" prepend="and ">
+				CapabilityID = #capabilityIDWhere#
+         </isNotNull>
+			<isNotNull property="orderNumberWhere" prepend="and ">
+				OrderNumber
+				= #orderNumberWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityBusinessflowlnk">
+		update businessflowlnk
+		<dynamic prepend="set">
+			<isNotNull property="businessID" prepend=",">
+				BusinessID =
+				#businessID#
+         </isNotNull>
+			<isNotNull property="businessFlowID" prepend=",">
+				BusinessFlowID = #businessFlowID#
+         </isNotNull>
+			<isNotNull property="capabilityID" prepend=",">
+				CapabilityID =
+				#capabilityID#
+         </isNotNull>
+			<isNotNull property="orderNumber" prepend=",">
+				OrderNumber =
+				#orderNumber#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="businessFlowLnkIDWhere" prepend="and ">
+				BusinessFlowLnkID = #businessFlowLnkIDWhere#
+         </isNotNull>
+			<isNotNull property="businessIDWhere" prepend="and ">
+				BusinessID =
+				#businessIDWhere#
+         </isNotNull>
+			<isNotNull property="businessFlowIDWhere" prepend="and ">
+				BusinessFlowID = #businessFlowIDWhere#
+         </isNotNull>
+			<isNotNull property="capabilityIDWhere" prepend="and ">
+				CapabilityID = #capabilityIDWhere#
+         </isNotNull>
+			<isNotNull property="orderNumberWhere" prepend="and ">
+				OrderNumber
+				= #orderNumberWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityBusinessflowlnk">
+		<selectKey resultClass="java.lang.String" keyProperty="businessFlowLnkID">
+			SELECT #businessFlowLnkID# as businessFlowLnkID FROM DUAL
+     </selectKey>
+		insert into businessflowlnk(
+		BusinessFlowLnkID
+		,BusinessID
+		,BusinessFlowID
+		,CapabilityID
+		,OrderNumber
+		)
+		Values (
+		<isNotNull property="businessFlowLnkID">
+			#businessFlowLnkID#
+         </isNotNull>
+		<isNull property="businessFlowLnkID">
+			null
+         </isNull>
+		<isNotNull property="businessID">
+			,#businessID#
+         </isNotNull>
+		<isNull property="businessID">
+			,null
+         </isNull>
+		<isNotNull property="businessFlowID">
+			,#businessFlowID#
+         </isNotNull>
+		<isNull property="businessFlowID">
+			,null
+         </isNull>
+		<isNotNull property="capabilityID">
+			,#capabilityID#
+         </isNotNull>
+		<isNull property="capabilityID">
+			,null
+         </isNull>
+		<isNotNull property="orderNumber">
+			,#orderNumber#
+         </isNotNull>
+		<isNull property="orderNumber">
+			,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityBusinessflowlnk">
+		delete from businessflowlnk
+		<dynamic prepend=" where ">
+			<isNotNull property="businessFlowLnkIDWhere" prepend="and " >
+				BusinessFlowLnkID = #businessFlowLnkIDWhere#
+         </isNotNull>
+			<isNotNull property="businessIDWhere" prepend="and ">
+				BusinessID =
+				#businessIDWhere#
+         </isNotNull>
+			<isNotNull property="businessFlowIDWhere" prepend="and ">
+				BusinessFlowID = #businessFlowIDWhere#
+         </isNotNull>
+			<isNotNull property="capabilityIDWhere" prepend="and ">
+				CapabilityID = #capabilityIDWhere#
+         </isNotNull>
+			<isNotNull property="orderNumberWhere" prepend="and ">
+				OrderNumber
+				= #orderNumberWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

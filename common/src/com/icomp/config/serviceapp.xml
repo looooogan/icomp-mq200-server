@@ -1,0 +1,705 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <!-- 共通Service注入 -->
+    <bean id="commonService"
+          class="com.icomp.common.service.impl.CommonServiceImpl" scope="prototype">
+        <property name="vcustomerDao" ref="vcustomerDao"></property>
+        <property name="customerDao" ref="customerDao"></property>
+        <property name="languagetableDao" ref="languagetableDao"></property>
+        <property name="displayeditemconfigurationDao" ref="displayeditemconfigurationDao"></property>
+        <property name="comlistDao" ref="comlistDao"></property>
+        <property name="vagencyDao" ref="vagencyDao"></property>
+        <property name="vdepartmentDao" ref="vdepartmentDao"></property>
+        <property name="vpositionDao" ref="vpositionDao"></property>
+        <property name="vprocessDao" ref="vprocessDao"></property>
+        <property name="assemblylineDao" ref="assemblylineDao"></property>
+        <property name="vbusinessDao" ref="vbusinessDao"></property>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"></property>
+        <property name="tooltransferDao" ref="tooltransferDao"></property>
+        <property name="synthesisknifeDao" ref="synthesisknifeDao"></property>
+        <property name="businessDao" ref="businessDao"></property>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"></property>
+        <property name="vequipmentDao" ref="vequipmentDao"></property>
+        <property name="vinventoryalarmDao" ref="vinventoryalarmDao"></property>
+        <property name="subToolProcessAmountDao" ref="subToolProcessAmountDao"></property>
+        <property name="subToolAvgToolSharpennumDao" ref="subToolAvgToolSharpennumDao"></property>
+        <property name="knifeinventoryDao" ref="knifeinventoryDao"></property>
+        <property name="vgetpositioncapabilityDao" ref="vgetpositioncapabilityDao"/>
+        <property name="vgetsynthesisexperienceDao" ref="vgetsynthesisexperienceDao"/>
+        <property name="userdetailDao" ref="userdetailDao"/>
+        <property name="toolDao" ref="toolDao"/>
+        <property name="equipmentDao" ref="equipmentDao"/>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"/>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"/>
+        <property name="authorizationDao" ref="authorizationDao"/>
+        <property name="synthesisparametersDao" ref="synthesisparametersDao"/>
+        <property name="containercarrierDao" ref="containercarrierDao"/>
+        <property name="partsDao" ref="partsDao"/>
+        <property name="formulasDao" ref="formulasDao"/>
+        <property name="onoffDao" ref="onoffDao"/>
+        <!--2017/08/14 王冉 追加↓↓↓　dazhong@YMSC-->
+        <property name="vsynthesisconditionDao" ref="vsynthesisconditionDao"/>
+        <property name="synthesiscutterlocationDao" ref="synthesiscutterlocationDao"/>
+        <property name="toolsmachiningDao" ref="toolsmachiningDao"/>
+        <property name="synthesistoolsmachiningDao" ref="synthesistoolsmachiningDao"/>
+        <property name="toolnoticehistoryDao" ref="toolnoticehistoryDao"/>
+        <!--2017/08/14 王冉 追加↑↑↑　dazhong@YMSC-->
+</bean>
+
+<!-- 用户登录Service注入 -->
+    <bean id="iCOMPV01B00S000Service"
+          class="com.icomp.common.service.impl.icomp.v01b00.s000.ICOMPV01B00S000ServiceImpl" scope="prototype">
+        <property name="vgrantlistDao" ref="vgrantlistDao"></property>
+        <property name="dao" ref="customerDao"></property>
+    </bean>
+    <!-- 用户管理Service注入 -->
+    <bean id="iCOMPV01B11S004Service"
+          class="com.icomp.common.service.impl.icomp.v01b11.s004.ICOMPV01B11S004ServiceImpl" scope="prototype">
+        <property name="vcustomerDao" ref="vcustomerDao"/>
+        <property name="userdetailDao" ref="userdetailDao"/>
+        <property name="customerDao" ref="customerDao"/>
+        <property name="displayeditemconfigurationDao" ref="displayeditemconfigurationDao"/>
+        <!-- 2017/09/16 宋健 追加↓↓↓　dazhong@YMSC -->
+        <property name="tubedetailinfoDao" ref="tubedetailinfoDao"/>
+        <!-- 2017/09/16 宋健 追加↑↑↑　dazhong@YMSC -->
+
+    </bean>
+
+    <!-- 角色管理Service注入 -->
+    <bean id="iCOMPV01B11S003Service"
+          class="com.icomp.common.service.impl.icomp.v01b11.s003.ICOMPV01B11S003ServiceImpl" scope="prototype">
+        <property name="vpositionsDao" ref="vpositionsDao"></property>
+        <property name="displayeditemconfigurationDao" ref="displayeditemconfigurationDao"></property>
+        <property name="positionDao" ref="positionDao"></property>
+        <property name="dplinkDao" ref="dplinkDao"></property>
+    </bean>
+
+    <!-- 功能管理Service注入 -->
+    <bean id="iCOMPV01B08S001Service"
+          class="com.icomp.common.service.impl.icomp.v01b08.s001.ICOMPV01B08S001ServiceImpl" scope="prototype">
+        <property name="displayeditemconfigurationDao" ref="displayeditemconfigurationDao"></property>
+        <property name="capabilityDao" ref="capabilityDao"></property>
+        <property name="systemDao" ref="systemDao"></property>
+        <property name="sclinkDao" ref="sclinkDao"></property>
+    </bean>
+
+    <!-- 权限管理Service注入 -->
+    <bean id="iCOMPV01B11S001Service"
+          class="com.icomp.common.service.impl.icomp.v01b11.s001.ICOMPV01B11S001ServiceImpl" scope="prototype">
+        <property name="capabilityDao" ref="capabilityDao"></property>
+        <property name="vcaplistDao" ref="vcaplistDao"></property>
+        <property name="polinkDao" ref="polinkDao"></property>
+    </bean>
+
+
+    <!-- 移动终端用户登录Service注入 -->
+    <bean id="iCOMPV01C00S000Service"
+          class="com.icomp.common.service.impl.icomp.v01c00.s000.ICOMPV01C00S000ServiceImpl" scope="prototype">
+        <property name="vgrantlistDao" ref="vgrantlistDao"></property>
+        <property name="dao" ref="customerDao"></property>
+        <property name="languagetableDao" ref="languagetableDao"></property>
+        <property name="handsetDao" ref="handsetDao"></property>
+        <property name="userdetailDao" ref="userdetailDao"></property>
+    </bean>
+
+    <!-- 移动终端新刀入库Service注入 -->
+    <bean id="iCOMPV01C01S001Service"
+          class="com.icomp.common.service.impl.icomp.v01c01.s001.ICOMPV01C01S001ServiceImpl" scope="prototype">
+        <property name="toolDao" ref="toolDao"></property>
+        <property name="toolprocuredDao" ref="toolprocuredDao"></property>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"></property>
+        <property name="knifeinventoryDao" ref="knifeinventoryDao"></property>
+        <property name="tooltransferDao" ref="tooltransferDao"></property>
+        <property name="storagerecordDao" ref="storagerecordDao"></property>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"/>
+
+    </bean>
+
+    <!-- 移动终端授权Service注入 -->
+    <bean id="iCOMPV01C01S002Service" class="com.icomp.common.service.impl.icomp.v01c01.s002.ICOMPV01C01S002ServiceImpl" scope="prototype">
+        <property name="authorizationDao" ref="authorizationDao"/>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+        <property name="customerDao" ref="customerDao"/>
+    </bean>
+
+    <!-- 移动终端刀具换领Service注入 -->
+    <bean id="iCOMPV01C01S003Service" class="com.icomp.common.service.impl.icomp.v01c01.s003.ICOMPV01C01S003ServiceImpl" scope="prototype">
+        <property name="redemptionappliedDao" ref="redemptionappliedDao"/>
+        <property name="vgetredemptionappdetailedmsgDao" ref="vgetredemptionappdetailedmsgDao"/>
+        <property name="vgetshelfinformationDao" ref="vgetshelfinformationDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"/>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+        <property name="knifeinventoryDao" ref="knifeinventoryDao"/>
+        <property name="vbusinessDao" ref="vbusinessDao"/>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"/>
+        <property name="businessDao" ref="businessDao"/>
+        <property name="toolDao" ref="toolDao"/>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"/>
+        <property name="ledplaneDao" ref="ledplaneDao"/>
+        <property name="vledplanelistDao" ref="vledplanelistDao"/>
+        <property name="vquerytoollistDao" ref="vquerytoollistDao"/>
+        <property name="toollibraryhistoryDao" ref="toollibraryhistoryDao"/>
+        <property name="userdetailDao" ref="userdetailDao"/>
+        <property name="vredemptionappdetailedmsgnewDao" ref="vredemptionappdetailedmsgnewDao"/>
+        <property name="containercarrierDao" ref="containercarrierDao"/>
+    </bean>
+
+    <!-- 移动终端刀具申领Service注入 -->
+    <bean id="iCOMPV01C01S004Service" class="com.icomp.common.service.impl.icomp.v01c01.s004.ICOMPV01C01S004ServiceImpl" scope="prototype">
+        <property name="vgetshelfinformationDao" ref="vgetshelfinformationDao"/>
+        <property name="librarycodeDao" ref="librarycodeDao"/>
+        <property name="replacementDao" ref="replacementDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"/>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+        <property name="knifeinventoryDao" ref="knifeinventoryDao"/>
+        <property name="businessDao" ref="businessDao"/>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"/>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"/>
+        <property name="toollibraryhistoryDao" ref="toollibraryhistoryDao"/>
+        <property name="toolDao" ref="toolDao"/>
+        <property name="vreplacementDao" ref="vreplacementDao"/>
+        <property name="containercarrierDao" ref="containercarrierDao"/>
+        <property name="scrapDao" ref="scrapDao"/>
+    </bean>
+
+    <!-- 移动终端报废Service注入 -->
+    <bean id="iCOMPV01C01S005Service" class="com.icomp.common.service.impl.icomp.v01c01.s005.ICOMPV01C01S005ServiceImpl" scope="prototype">
+        <property name="scrapDao" ref="scrapDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="knifeinventoryDao" ref="knifeinventoryDao"/>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"/>
+    </bean>
+
+    <!-- 移动终端刀具返厂Service注入 -->
+    <bean id="iCOMPV01C01S006Service" class="com.icomp.common.service.impl.icomp.v01c01.s006.ICOMPV01C01S006ServiceImpl" scope="prototype">
+        <property name="vgetreturnfactorytoolDao" ref="vgetreturnfactorytoolDao"/>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+        <property name="vgetboxmessageDao" ref="vgetboxmessageDao"/>
+        <property name="vgetboxmessagesDao" ref="vgetboxmessagesDao"/>
+        <property name="toolprocuredDao" ref="toolprocuredDao"/>
+        <property name="vgetsealedsafekeepingtoolDao" ref="vgetsealedsafekeepingtoolDao"/>
+        <property name="knifeinventoryDao" ref="knifeinventoryDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+    </bean>
+
+    <!-- 移动终端刀具封存Service注入 -->
+    <bean id="iCOMPV01C01S007Service" class="com.icomp.common.service.impl.icomp.v01c01.s007.ICOMPV01C01S007ServiceImpl" scope="prototype">
+        <property name="vgetsealedsafekeepingtoolDao" ref="vgetsealedsafekeepingtoolDao"/>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+        <property name="vgetreturnfactorytoolDao" ref="vgetreturnfactorytoolDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="knifeinventoryDao" ref="knifeinventoryDao"/>
+    </bean>
+
+    <!-- 移动终端刀具卸下辅具Service注入 -->
+    <bean id="iCOMPV01C01S008Service" class="com.icomp.common.service.impl.icomp.v01c01.s008.ICOMPV01C01S008ServiceImpl" scope="prototype">
+        <property name="vgetsynthesistoolinfoDao" ref="vgetsynthesistoolinfoDao"/>
+        <property name="vgetsynthesistooldownmsgDao" ref="vgetsynthesistooldownmsgDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+        <property name="synthesisknifeDao" ref="synthesisknifeDao"/>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"/>
+        <property name="vtoolplatemessagelistDao" ref="vtoolplatemessagelistDao"/>
+        <property name="businessDao" ref="businessDao"/>
+        <property name="toolDao" ref="toolDao"/>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"/>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"/>
+        <property name="synthesisexperienceDao" ref="synthesisexperienceDao"/>
+        <property name="toolshelflnkDao" ref="toolshelflnkDao"/>
+    </bean>
+
+    <!-- 移动终端刀具送回车间Service注入 -->
+    <bean id="iCOMPV01C01S009Service" class="com.icomp.common.service.impl.icomp.v01c01.s009.ICOMPV01C01S009ServiceImpl" scope="prototype">
+        <property name="vgetbackworkshopmagDao" ref="vgetbackworkshopmagDao"/>
+        <property name="synthesisknifeDao" ref="synthesisknifeDao"/>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"/>
+        <property name="synthesisexperienceDao" ref="synthesisexperienceDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="businessDao" ref="businessDao"/>
+        <property name="toolDao" ref="toolDao"/>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"/>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"/>
+    </bean>
+
+    <!-- 移动终端刀具换装Service注入 -->
+    <bean id="iCOMPV01C01S010Service" class="com.icomp.common.service.impl.icomp.v01c01.s010.ICOMPV01C01S010ServiceImpl" scope="prototype">
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="synthesisknifeDao" ref="synthesisknifeDao"/>
+        <property name="synthesisparametersDao" ref="synthesisparametersDao"/>
+        <property name="toolDao" ref="toolDao"/>
+        <property name="businessDao" ref="businessDao"/>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"/>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"/>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"/>
+        <property name="containercarrierDao" ref="containercarrierDao"/>
+        <property name="knifeinventoryDao" ref="knifeinventoryDao"/>
+    </bean>
+
+    <!-- 移动终端设备安上Service注入 -->
+    <bean id="iCOMPV01C01S011Service" class="com.icomp.common.service.impl.icomp.v01c01.s011.ICOMPV01C01S011ServiceImpl" scope="prototype">
+        <property name="synthesisknifeDao" ref="synthesisknifeDao"/>
+
+        <property name="toolsmachiningDao" ref="toolsmachiningDao"/>
+        <property name="vgetequipmentnamebyrfidDao" ref="vgetequipmentnamebyrfidDao"/>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"/>
+        <property name="businessDao" ref="businessDao"/>
+        <property name="toolDao" ref="toolDao"/>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"/>
+        <property name="synthesistoolsmachiningDao" ref="synthesistoolsmachiningDao"/>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"/>
+        <property name="equipmentDao" ref="equipmentDao"/>
+        <property name="synthesisparametersDao" ref="synthesisparametersDao"/>
+        <property name="oplinkDao" ref="oplinkDao"/>
+        <property name="assemblylineDao" ref="assemblylineDao"/>
+        <property name="synthesisexperienceDao" ref="synthesisexperienceDao"/>
+        <property name="vgetequipmentlistDao" ref="vgetequipmentlistDao"/>
+        <!-- 2017/08/14 王冉 追加↓↓↓　dazhong@YMSC -->
+        <property name="vsynthesisconditionDao" ref="vsynthesisconditionDao"/>
+        <!-- 2017/08/14 王冉 追加↑↑↑　dazhong@YMSC -->
+
+</bean>
+
+
+<!-- 移动终端旧刀回收Service注入 -->
+    <bean id="iCOMPV01C01S012Service" class="com.icomp.common.service.impl.icomp.v01c01.s012.ICOMPV01C01S012ServiceImpl" scope="prototype">
+        <property name="vgetbacktoolnamebyrfidDao" ref="vgetbacktoolnamebyrfidDao"/>
+        <property name="synthesisknifeDao" ref="synthesisknifeDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"/>
+        <property name="businessDao" ref="businessDao"/>
+        <property name="toolDao" ref="toolDao"/>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"/>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"/>
+        <property name="synthesisexperienceDao" ref="synthesisexperienceDao"/>
+    </bean>
+
+    <!-- 移动终端设备卸下Service注入 -->
+    <bean id="iCOMPV01C01S013Service" class="com.icomp.common.service.impl.icomp.v01c01.s013.ICOMPV01C01S013ServiceImpl" scope="prototype">
+        <property name="vgetequipmentunloadingmsgDao" ref="vgetequipmentunloadingmsgDao"/>
+        <property name="synthesistoolsmachiningDao" ref="synthesistoolsmachiningDao"/>
+        <property name="synthesisknifeDao" ref="synthesisknifeDao"/>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"/>
+        <property name="businessDao" ref="businessDao"/>
+        <property name="toolDao" ref="toolDao"/>
+        <property name="synthesisExchangeDao" ref="synthesisExchangeDao"/>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"/>
+        <property name="machiningexperienceDao" ref="machiningexperienceDao"/>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"/>
+        <property name="synthesisexperienceDao" ref="synthesisexperienceDao"/>
+        <property name="vgetdownsynthistoolsmsgDao" ref="vgetdownsynthistoolsmsgDao"/>
+        <property name="oplinkDao" ref="oplinkDao"/>
+        <property name="toolsmachiningDao" ref="toolsmachiningDao"/>
+        <property name="partsDao" ref="partsDao"/>
+        <property name="vgetwheelsmachiningmsgDao" ref="vgetwheelsmachiningmsgDao"/>
+        <property name="equipmentDao" ref="equipmentDao"/>
+        <property name="vgetwheelinfoDao" ref="vgetwheelinfoDao"/>
+        <property name="synthesisparametersDao" ref="synthesisparametersDao"/>
+        <property name="assemblylineDao" ref="assemblylineDao"/>
+        <!-- 2017/08/14 王冉 追加↓↓↓　dazhong@YMSC -->
+        <property name="vsynthesisconditionDao" ref="vsynthesisconditionDao"/>
+        <property name="synthesiscutterlocationDao" ref="synthesiscutterlocationDao"/>
+        <property name="redemptionappliedDao" ref="redemptionappliedDao"/>
+        <property name="scrapDao" ref="scrapDao"/>
+        <!-- 2017/08/14 王冉 追加↑↑↑　dazhong@YMSC -->
+    </bean>
+
+    <!-- 移动终端刀具修复通知单Service注入 -->
+    <bean id="iCOMPV01C01S014Service" class="com.icomp.common.service.impl.icomp.v01c01.s014.ICOMPV01C01S014ServiceImpl" scope="prototype">
+        <property name="vgetrepairnoticetoolmsgDao" ref="vgetrepairnoticetoolmsgDao"/>
+        <property name="toolrepairnoticeDao" ref="toolrepairnoticeDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="toolDao" ref="toolDao"/>
+        <property name="businessDao" ref="businessDao"/>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"/>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"/>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"/>
+        <property name="knifeinventoryDao" ref="knifeinventoryDao"/>
+        <property name="containercarrierDao" ref="containercarrierDao"/>
+    </bean>
+    <!-- 移动终端回库刀具处理Service注入 -->
+    <bean id="iCOMPV01C01S015Service" class="com.icomp.common.service.impl.icomp.v01c01.s015.ICOMPV01C01S015ServiceImpl" scope="prototype">
+        <property name="vgetbacktoollibraryDao" ref="vgetbacktoollibraryDao"/>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="businessDao" ref="businessDao"/>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"/>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"/>
+        <property name="toolDao" ref="toolDao"/>
+    </bean>
+
+    <!-- 移动终端旧刀入库交接Service注入 -->
+    <bean id="iCOMPV01C01S016Service"
+          class="com.icomp.common.service.impl.icomp.v01c01.s016.ICOMPV01C01S016ServiceImpl" scope="prototype">
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+        <property name="toolDao" ref="toolDao"/>
+        <property name="scrapDao" ref="scrapDao"/>
+        <property name="toolrepairnoticeDao" ref="toolrepairnoticeDao"/>
+        <property name="comlistDao" ref="comlistDao"/>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"/>
+        <property name="businessDao" ref="businessDao"/>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"/>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"/>
+        <property name="redemptionappliedDao" ref="redemptionappliedDao"/>
+        <property name="knifeinventoryDao" ref="knifeinventoryDao"/>
+    </bean>
+    <!-- 移动终端刀具复磨卸下Service注入 -->
+    <bean id="iCOMPV01C01S017Service" class="com.icomp.common.service.impl.icomp.v01c01.s017.ICOMPV01C01S017ServiceImpl" scope="prototype">
+        <property name="noticeequipmentDao" ref="noticeequipmentDao"/>
+        <property name="vgrindingtoolmsgDao" ref="vgrindingtoolmsgDao"/>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="businessDao" ref="businessDao"/>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"/>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"/>
+        <property name="toolDao" ref="toolDao"/>
+        <property name="machiningexperienceDao" ref="machiningexperienceDao"/>
+        <property name="toolnoticehistoryDao" ref="toolnoticehistoryDao"/>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+    </bean>
+
+    <!-- 移动终端刀具复磨安上Service注入 -->
+    <bean id="iCOMPV01C01S018Service" class="com.icomp.common.service.impl.icomp.v01c01.s018.ICOMPV01C01S018ServiceImpl" scope="prototype">
+        <property name="vgetgrindingonmsgDao" ref="vgetgrindingonmsgDao"/>
+        <property name="noticeequipmentDao" ref="noticeequipmentDao"/>
+        <property name="toolnoticehistoryDao" ref="toolnoticehistoryDao"/>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"/>
+        <property name="businessDao" ref="businessDao"/>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+        <property name="synthesistoolsmachiningDao" ref="synthesistoolsmachiningDao"/>
+        <property name="toolDao" ref="toolDao"/>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"/>
+        <property name="machiningexperienceDao" ref="machiningexperienceDao"/>
+        <property name="vgetnoticeequipmentlistDao" ref="vgetnoticeequipmentlistDao"/>
+        <property name="vgettoolinfolistDao" ref="vgettoolinfolistDao"/>
+    </bean>
+
+    <!-- 移动终端刀身打码Service注入 -->
+    <bean id="iCOMPV01C01S019Service"
+          class="com.icomp.common.service.impl.icomp.v01c01.s019.ICOMPV01C01S019ServiceImpl" scope="prototype">
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+        <property name="knifeinventoryDao" ref="knifeinventoryDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="toolDao" ref="toolDao"/>
+        <property name="vgettoolbindinginfoDao" ref="vgettoolbindinginfoDao"/>
+        <property name="toolprocuredDao" ref="toolprocuredDao"></property>
+        <property name="outsidefactoryDao" ref="outsidefactoryDao"/>
+        <property name="leasertabeDao" ref="leasertabeDao"/>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"/>
+    </bean>
+
+    <!-- 移动终端回厂识别Service注入 -->
+    <bean id="iCOMPV01C01S020Service"
+          class="com.icomp.common.service.impl.icomp.v01c01.s020.ICOMPV01C01S020ServiceImpl" scope="prototype">
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="businessDao" ref="businessDao"/>
+        <property name="toolDao" ref="toolDao"/>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"/>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"/>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"/>
+        <property name="outsidefactoryDao" ref="outsidefactoryDao"/>
+        <property name="knifeinventoryDao" ref="knifeinventoryDao"/>
+    </bean>
+
+    <!-- 移动终端修复通知领取Service注入 -->
+    <bean id="iCOMPV01C01S021Service" class="com.icomp.common.service.impl.icomp.v01c01.s021.ICOMPV01C01S021ServiceImpl" scope="prototype">
+        <property name="toolrepairnoticeDao" ref="toolrepairnoticeDao"/>
+        <property name="vgettoolcodeandnumberbyidDao" ref="vgettoolcodeandnumberbyidDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"/>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"/>
+        <property name="businessDao" ref="businessDao"/>
+        <property name="toolnoticehistoryDao" ref="toolnoticehistoryDao"/>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+    </bean>
+
+    <!-- 移动终端异常刀具处理Service注入 -->
+    <bean id="iCOMPV01C01S022Service" class="com.icomp.common.service.impl.icomp.v01c01.s022.ICOMPV01C01S022ServiceImpl" scope="prototype">
+        <property name="vgettoolshelfmessageDao" ref="vgettoolshelfmessageDao"/>
+        <property name="toolshelflnkDao" ref="toolshelflnkDao"/>
+        <property name="toolshelfplaceDao" ref="toolshelfplaceDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="businessDao" ref="businessDao"/>
+        <property name="vreplacerfidDao" ref="vreplacerfidDao"/>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"/>
+    </bean>
+
+    <!-- 移动终端快速查询Service注入 -->
+    <bean id="iCOMPV01C01S023Service" class="com.icomp.common.service.impl.icomp.v01c01.s023.ICOMPV01C01S023ServiceImpl" scope="prototype">
+        <property name="vquerytoollistDao" ref="vquerytoollistDao"/>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+        <property name="knifeinventoryDao" ref="knifeinventoryDao"/>
+        <property name="toolDao" ref="toolDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+    </bean>
+
+    <!-- 移动终端刀具状态查询Service注入 -->
+    <bean id="iCOMPV01C01S024Service"
+          class="com.icomp.common.service.impl.icomp.v01c01.s024.ICOMPV01C01S024ServiceImpl" scope="prototype">
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+        <property name="knifeinventoryDao" ref="knifeinventoryDao"/>
+        <property name="toolDao" ref="toolDao"/>
+        <property name="userdetailDao" ref="userdetailDao"/>
+        <property name="customerDao" ref="customerDao"/>
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="synthesisknifeDao" ref="synthesisknifeDao"/>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"/>
+        <property name="businessDao" ref="businessDao"/>
+        <property name="vprocessamountDao" ref="vprocessamountDao"/>
+        <property name="synthesisparametersDao" ref="synthesisparametersDao"/>
+        <property name="synthesiscutterlocationDao" ref="synthesiscutterlocationDao"/>
+        <property name="toolnoticehistoryDao" ref="toolnoticehistoryDao"/>
+        <property name="synthesistoolsmachiningDao" ref="synthesistoolsmachiningDao"/>
+        <property name="vgettoolinformationDao" ref="vgettoolinformationDao"/>
+        <property name="vgetuserinfoDao" ref="vgetuserinfoDao"/>
+        <property name="vgetsynthsisinfoDao" ref="vgetsynthsisinfoDao"/>
+        <property name="vgetsynthsistooltransferinfoDao" ref="vgetsynthsistooltransferinfoDao"/>
+        <property name="vgetequipmentinfoDao" ref="vgetequipmentinfoDao"/>
+        <property name="vgetcontainercarrierinfoDao" ref="vgetcontainercarrierinfoDao"/>
+        <property name="vgetinventorymsgDao" ref="vgetinventorymsgDao"/>
+        <property name="noticeequipmentDao" ref="noticeequipmentDao"/>
+        <property name="containercarrierDao" ref="containercarrierDao"/>
+        <property name="vgetknifeinventoryinfoDao" ref="vgetknifeinventoryinfoDao"/>
+        <property name="vgetcustomermsgDao" ref="vgetcustomermsgDao"/>
+    </bean>
+
+    <!-- 移动终端对刀开始Service注入 -->
+    <bean id="iCOMPV01C01S025Service"
+          class="com.icomp.common.service.impl.icomp.v01c01.s025.ICOMPV01C01S025ServiceImpl" scope="prototype">
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"></property>
+        <property name="tooltransferDao" ref="tooltransferDao"></property>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"></property>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"></property>
+        <property name="synthesisknifeDao" ref="synthesisknifeDao"></property>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"></property>
+        <property name="toolDao" ref="toolDao"></property>
+        <property name="synthesisexperienceDao" ref="synthesisexperienceDao"></property>
+        <property name="businessDao" ref="businessDao"></property>
+        <property name="equipmentDao" ref="equipmentDao"></property>
+    </bean>
+
+    <!-- 移动终端对刀结束Service注入 -->
+    <bean id="iCOMPV01C01S026Service"
+          class="com.icomp.common.service.impl.icomp.v01c01.s026.ICOMPV01C01S026ServiceImpl" scope="prototype">
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"></property>
+        <property name="tooltransferDao" ref="tooltransferDao"></property>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"></property>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"></property>
+        <property name="synthesisknifeDao" ref="synthesisknifeDao"></property>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"></property>
+        <property name="toolDao" ref="toolDao"></property>
+        <property name="synthesisexperienceDao" ref="synthesisexperienceDao"></property>
+        <property name="vsynthesisDao" ref="vsynthesisDao"></property>
+        <property name="businessDao" ref="businessDao"></property>
+        <property name="equipmentDao" ref="equipmentDao"></property>
+    </bean>
+    <!-- 移动终端刀具交接Service注入 -->
+    <bean id="iCOMPV01C01S027Service"
+          class="com.icomp.common.service.impl.icomp.v01c01.s027.ICOMPV01C01S027ServiceImpl" scope="prototype">
+        <property name="tooltransferDao" ref="tooltransferDao"/>
+        <property name="businessDao" ref="businessDao"/>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"/>
+        <property name="toolDao" ref="toolDao"/>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"/>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"/>
+        <property name="outsidefactoryDao" ref="outsidefactoryDao"/>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+        <property name="knifeinventoryDao" ref="knifeinventoryDao"/>
+    </bean>
+
+    <!-- 移动终端屏幕亮度Service注入 -->
+    <bean id="iCOMPV01C02S001Service"
+          class="com.icomp.common.service.impl.icomp.v01c02.s001.ICOMPV01C02S001ServiceImpl" scope="prototype">
+    </bean>
+
+    <!-- 移动终端音量设置Service注入 -->
+    <bean id="iCOMPV01C02S002Service"
+          class="com.icomp.common.service.impl.icomp.v01c02.s002.ICOMPV01C02S002ServiceImpl" scope="prototype">
+    </bean>
+
+    <!-- 移动终端网络配置Service注入 -->
+    <bean id="iCOMPV01C02S003Service"
+          class="com.icomp.common.service.impl.icomp.v01c02.s003.ICOMPV01C02S003ServiceImpl" scope="prototype">
+    </bean>
+
+    <!-- 移动终端日期时间Service注入 -->
+    <bean id="iCOMPV01C02S004Service"
+          class="com.icomp.common.service.impl.icomp.v01c02.s004.ICOMPV01C02S004ServiceImpl" scope="prototype">
+    </bean>
+
+    <!-- 移动终端读头信号Service注入 -->
+    <bean id="iCOMPV01C02S005Service"
+          class="com.icomp.common.service.impl.icomp.v01c02.s005.ICOMPV01C02S005ServiceImpl" scope="prototype">
+    </bean>
+
+    <!-- 移动终端注册本机Service注入 -->
+    <bean id="iCOMPV01C02S006Service"
+          class="com.icomp.common.service.impl.icomp.v01c02.s006.ICOMPV01C02S006ServiceImpl" scope="prototype">
+
+        <property name="departmentDao" ref="departmentDao"></property>
+        <property name="handsetDao" ref="handsetDao"></property>
+    </bean>
+
+    <!-- 移动终端语言设定Service注入 -->
+    <bean id="iCOMPV01C02S007Service"
+          class="com.icomp.common.service.impl.icomp.v01c02.s007.ICOMPV01C02S007ServiceImpl" scope="prototype">
+        <property name="languagetableDao" ref="languagetableDao"></property>
+    </bean>
+
+    <!-- 移动终端员工卡绑定Service注入 -->
+    <bean id="iCOMPV01C02S008Service"
+          class="com.icomp.common.service.impl.icomp.v01c02.s008.ICOMPV01C02S008ServiceImpl" scope="prototype">
+        <property name="customerDao" ref="customerDao"></property>
+    </bean>
+
+    <!-- 移动终端屏幕校对Service注入 -->
+    <bean id="iCOMPV01C02S009Service"
+          class="com.icomp.common.service.impl.icomp.v01c02.s009.ICOMPV01C02S009ServiceImpl" scope="prototype">
+    </bean>
+
+    <!-- 移动终端屏幕保护Service注入 -->
+    <bean id="iCOMPV01C02S010Service"
+          class="com.icomp.common.service.impl.icomp.v01c02.s010.ICOMPV01C02S010ServiceImpl" scope="prototype">
+    </bean>
+
+    <!-- 移动终端电池设定Service注入 -->
+    <bean id="iCOMPV01C02S011Service"
+          class="com.icomp.common.service.impl.icomp.v01c02.s011.ICOMPV01C02S011ServiceImpl" scope="prototype">
+    </bean>
+
+    <!-- 移动终端工作模式Service注入 -->
+    <bean id="iCOMPV01C02S012Service"
+          class="com.icomp.common.service.impl.icomp.v01c02.s012.ICOMPV01C02S012ServiceImpl" scope="prototype">
+    </bean>
+
+    <!-- 移动终端输入法Service注入 -->
+    <bean id="iCOMPV01C02S013Service"
+          class="com.icomp.common.service.impl.icomp.v01c02.s013.ICOMPV01C02S013ServiceImpl" scope="prototype">
+    </bean>
+
+    <!-- 移动终端使用帮助Service注入 -->
+    <bean id="iCOMPV01C02S014Service"
+          class="com.icomp.common.service.impl.icomp.v01c02.s014.ICOMPV01C02S014ServiceImpl" scope="prototype">
+    </bean>
+
+    <!-- 移动终端库房|刃磨室-初始化Service注入 -->
+    <bean id="iCOMPV01C03S001Service"
+          class="com.icomp.common.service.impl.icomp.v01c03.s001.ICOMPV01C03S001ServiceImpl"
+          scope="prototype">
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"></property>
+        <property name="vtoolparamDao" ref="vtoolparamDao"></property>
+        <property name="vtoolstackDao" ref="vtoolstackDao"></property>
+        <property name="toolDao" ref="toolDao"></property>
+        <property name="knifeinventoryDao" ref="knifeinventoryDao"></property>
+        <property name="businessDao" ref="businessDao"></property>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"></property>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"></property>
+        <property name="tooltransferDao" ref="tooltransferDao"></property>
+        <property name="vknifeinventoryinfoDao" ref="vknifeinventoryinfoDao"></property>
+        <property name="synthesisknifeDao" ref="synthesisknifeDao"></property>
+        <property name="synthesisparametersDao" ref="synthesisparametersDao"></property>
+        <property name="synthesiscutterlocationDao" ref="synthesiscutterlocationDao"></property>
+        <property name="vgetsynsistoolmsgDao" ref="vgetsynsistoolmsgDao"></property>
+        <property name="toolprocuredDao" ref="toolprocuredDao"></property>
+        <property name="synthesisexperienceDao" ref="synthesisexperienceDao"></property>
+        <property name="synthesistoolsmachiningDao" ref="synthesistoolsmachiningDao"></property>
+        <property name="vsynthesisparametersDao" ref="vsynthesisparametersDao"></property>
+        <property name="oplinkDao" ref="oplinkDao"></property>
+    </bean>
+
+    <!-- 移动终端车间|对刀室-初始化Service注入 -->
+    <bean id="iCOMPV01C03S002Service"
+          class="com.icomp.common.service.impl.icomp.v01c03.s002.ICOMPV01C03S002ServiceImpl"
+          scope="prototype">
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"></property>
+        <property name="synthesisparametersDao" ref="synthesisparametersDao"></property>
+        <property name="vtoollistDao" ref="vtoollistDao"></property>
+        <property name="synthesiscutterlocationDao" ref="synthesiscutterlocationDao"></property>
+        <property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"></property>
+        <property name="businessDao" ref="businessDao"></property>
+        <property name="businessflowlnkDao" ref="businessflowlnkDao"></property>
+        <property name="toolDao" ref="toolDao"></property>
+        <property name="tooltransferDao" ref="tooltransferDao"></property>
+        <property name="synthesisknifeDao" ref="synthesisknifeDao"></property>
+        <property name="tooltransferhistoryDao" ref="tooltransferhistoryDao"></property>
+        <property name="synthesisexperienceDao" ref="synthesisexperienceDao"></property>
+        <property name="vgetassequipmentlistDao" ref="vgetassequipmentlistDao"></property>
+        <property name="equipmentDao" ref="equipmentDao"></property>
+        <property name="noticeequipmentDao" ref="noticeequipmentDao"></property>
+        <property name="containercarrierDao" ref="containercarrierDao"></property>
+        <property name="onoffDao" ref="onoffDao"></property>
+    </bean>
+
+    <!-- 移动终端设备初始化Service注入 -->
+    <bean id="iCOMPV01C03S003Service"
+          class="com.icomp.common.service.impl.icomp.v01c03.s003.ICOMPV01C03S003ServiceImpl"
+          scope="prototype">
+        <property name="comlistDao" ref="comlistDao"></property>
+        <property name="equipmentDao" ref="equipmentDao"></property>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"></property>
+        <property name="customerDao" ref="customerDao"></property>
+        <property name="userdetailDao" ref="userdetailDao"></property>
+        <property name="vgetcustomerinfoDao" ref="vgetcustomerinfoDao"></property>
+    </bean>
+
+    <!-- 移动终端快速盘点Service注入 -->
+    <bean id="iCOMPV01C04S001Service"
+          class="com.icomp.common.service.impl.icomp.v01c04.s001.ICOMPV01C04S001ServiceImpl" scope="prototype">
+        <property name="vstockinglistDao" ref="vstockinglistDao"></property>
+        <property name="toolDao" ref="toolDao"></property>
+        <property name="rfidcontainerDao" ref="rfidcontainerDao"></property>
+        <property name="knifeinventoryDao" ref="knifeinventoryDao"></property>
+        <property name="tooltransferDao" ref="tooltransferDao"></property>
+        <property name="stockingDao" ref="stockingDao"></property>
+        <property name="stackDao" ref="stackDao"></property>
+        <property name="vgettoolinformationDao" ref="vgettoolinformationDao"></property>
+    </bean>
+
+    <!-- 移动终端重新启动Service注入 -->
+    <bean id="iCOMPV01C05S001Service"
+          class="com.icomp.common.service.impl.icomp.v01c05.s001.ICOMPV01C05S001ServiceImpl" scope="prototype">
+    </bean>
+
+    <!-- 移动终端设备关闭Service注入 -->
+    <bean id="iCOMPV01C05S002Service"
+          class="com.icomp.common.service.impl.icomp.v01c05.s002.ICOMPV01C05S002ServiceImpl" scope="prototype">
+    </bean>
+
+    <!-- 移动终端用户注销Service注入 -->
+    <bean id="iCOMPV01C05S003Service"
+          class="com.icomp.common.service.impl.icomp.v01c05.s003.ICOMPV01C05S003ServiceImpl" scope="prototype">
+    </bean>
+
+    <!-- 部门管理Service注入 -->
+    <bean id="iCOMPV01B11S002Service"
+          class="com.icomp.common.service.impl.icomp.v01b11.s002.ICOMPV01B11S002ServiceImpl" scope="prototype">
+        <property name="vdeptDao" ref="vdeptDao"></property>
+        <property name="displayeditemconfigurationDao" ref="displayeditemconfigurationDao"></property>
+        <property name="departmentDao" ref="departmentDao"></property>
+        <property name="agencyDao" ref="agencyDao"></property>
+    </bean>
+    <!--刀具激光码绑定-->
+    <bean id="icompv01B11S005Service"
+          class="com.icomp.common.service.impl.icomp.v01b11.s005.ICOMPV01B11S005ServiceImpl" scope="prototype">
+        <property name="leasertabeDao" ref="leasertabeDao"></property>
+
+    </bean>
+
+
+</beans>

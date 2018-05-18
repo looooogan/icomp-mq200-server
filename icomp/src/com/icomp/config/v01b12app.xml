@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- v01b12s001Business注入 -->
+	<bean id="b12S001Business"
+		class="com.icomp.v01b12.b12s001.business.impl.B12S001BusinessImpl"  scope="prototype">
+		<property name="commonService" ref="commonService"></property>
+		<property name="icompv01b12s001Service" ref="icompv01b12s001Service"></property>
+	</bean>
+	
+    <!-- icompv01b12s001Service注入 -->
+	<bean id="icompv01b12s001Service" class="com.icomp.common.service.impl.icomp.v01b12.s001.ICOMPV01B12S001ServiceImpl"  scope="prototype">
+	      <property name="vbusinessDao" ref="vbusinessDao"></property>
+	      <property name="capabilityDao" ref="capabilityDao"></property>
+	      <property name="businessDao" ref="businessDao"></property>
+	      <property name="businessflowDao" ref="businessflowDao"></property>
+	      <property name="businessflowlnkDao" ref="businessflowlnkDao"></property>
+	</bean>	
+</beans>

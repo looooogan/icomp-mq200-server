@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vstack.xml
+		Created on : 2014/10/28 10:57:52
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vstack">
+	<typeAlias alias="entityVstack" type="com.icomp.entity.base.Vstack" />
+	<resultMap id="Vstack-map" class="entityVstack">
+		<!-- 厂区 -->
+		<result property="complex" column="Complex" />
+		<!-- 库房号 -->
+		<result property="depot" column="Depot" />
+		<!-- 层 -->
+		<result property="layer" column="Layer" />
+		<!-- 货架 -->
+		<result property="shelf" column="Shelf" />
+		<!-- 货位 -->
+		<result property="stack" column="Stack" />
+				<!-- 备注 -->
+		<result property="remark" column="Remark" />
+		<!-- 区分文本 -->
+		<result property="complexName" column="ComplexName" />
+		<!-- 区分文本 -->
+		<result property="depotName" column="DepotName" />
+		<!-- 区分文本 -->
+		<result property="layerName" column="LayerName" />
+		<!-- 区分文本 -->
+		<result property="shelfName" column="ShelfName" />
+		<!-- 区分文本 -->
+		<result property="stackName" column="StackName" />
+		<!-- 库位码主键 -->
+		<result property="libraryCodeID" column="LibraryCodeID" />
+		<!-- 货架ID -->
+		<result property="stackID" column="StackID" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+		<!-- 版本号 -->
+		<result property="version" column="Version" />
+		<!-- 系统编码 -->
+		<result property="systeCode" column="SysteCode" />
+		<!-- 自定义编码 -->
+		<result property="customerCode" column="CustomerCode" />
+		<!--  -->
+		<result property="systeCodeShow" column="SysteCodeShow" />
+		<!-- 操作人 -->
+		<result property="systemLogUser" column="SystemLogUser" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVstack" resultMap="Vstack-map">
+		SELECT
+		Complex
+		,Depot
+		,Layer
+		,Shelf
+		,Remark
+		,Stack
+		,ComplexName
+		,DepotName
+		,LayerName
+		,ShelfName
+		,StackName
+		,LibraryCodeID
+		,StackID
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		,SysteCode
+		,CustomerCode
+		,SysteCodeShow
+		,SystemLogUser
+		from vstack
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVstack" resultMap="Vstack-map">
+		SELECT
+		Complex
+		,Depot
+		,Layer
+		,Shelf
+		,Stack
+		,ComplexName
+		,DepotName
+		,LayerName
+		,ShelfName
+		,Remark
+		,StackName
+		,LibraryCodeID
+		,StackID
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		,Version
+		,SysteCode
+		,CustomerCode
+		,SysteCodeShow
+		,SystemLogUser
+		from vstack
+		<dynamic prepend=" where ">
+			<isNotNull property="complex" prepend="and ">
+				Complex = #complex#
+         </isNotNull>
+			<isNotNull property="depot" prepend="and ">
+				Depot = #depot#
+         </isNotNull>
+			<isNotNull property="layer" prepend="and ">
+				Layer = #layer#
+         </isNotNull>
+			<isNotNull property="shelf" prepend="and ">
+				Shelf = #shelf#
+         </isNotNull>
+			<isNotNull property="stack" prepend="and ">
+				Stack = #stack#
+         </isNotNull>
+			<isNotNull property="complexName" prepend="and ">
+				ComplexName = #complexName#
+         </isNotNull>
+			<isNotNull property="depotName" prepend="and ">
+				DepotName = #depotName#
+         </isNotNull>
+			<isNotNull property="layerName" prepend="and ">
+				LayerName = #layerName#
+         </isNotNull>
+			<isNotNull property="shelfName" prepend="and ">
+				ShelfName = #shelfName#
+         </isNotNull>
+			<isNotNull property="stackName" prepend="and ">
+				StackName = #stackName#
+         </isNotNull>
+			<isNotNull property="libraryCodeID" prepend="and ">
+				LibraryCodeID = #libraryCodeID#
+         </isNotNull>
+			<isNotNull property="stackID" prepend="and ">
+				StackID = #stackID#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="systeCode" prepend="and ">
+				SysteCode = #systeCode#
+         </isNotNull>
+			<isNotNull property="customerCode" prepend="and ">
+				CustomerCode = #customerCode#
+         </isNotNull>
+			<isNotNull property="systeCodeShow" prepend="and ">
+				SysteCodeShow = #systeCodeShow#
+         </isNotNull>
+			<isNotNull property="systemLogUser" prepend="and ">
+				SystemLogUser = #systemLogUser#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVstack" resultClass="int">
+		SELECT count(1)
+		from vstack
+		<dynamic prepend=" where ">
+			<isNotNull property="complex" prepend="and ">
+				Complex = #complex#
+         </isNotNull>
+			<isNotNull property="depot" prepend="and ">
+				Depot = #depot#
+         </isNotNull>
+			<isNotNull property="layer" prepend="and ">
+				Layer = #layer#
+         </isNotNull>
+			<isNotNull property="shelf" prepend="and ">
+				Shelf = #shelf#
+         </isNotNull>
+			<isNotNull property="stack" prepend="and ">
+				Stack = #stack#
+         </isNotNull>
+			<isNotNull property="complexName" prepend="and ">
+				ComplexName = #complexName#
+         </isNotNull>
+			<isNotNull property="depotName" prepend="and ">
+				DepotName = #depotName#
+         </isNotNull>
+			<isNotNull property="layerName" prepend="and ">
+				LayerName = #layerName#
+         </isNotNull>
+			<isNotNull property="shelfName" prepend="and ">
+				ShelfName = #shelfName#
+         </isNotNull>
+			<isNotNull property="stackName" prepend="and ">
+				StackName = #stackName#
+         </isNotNull>
+			<isNotNull property="libraryCodeID" prepend="and ">
+				LibraryCodeID = #libraryCodeID#
+         </isNotNull>
+			<isNotNull property="stackID" prepend="and ">
+				StackID = #stackID#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+			<isNotNull property="version" prepend="and ">
+				Version = #version#
+         </isNotNull>
+			<isNotNull property="systeCode" prepend="and ">
+				SysteCode = #systeCode#
+         </isNotNull>
+			<isNotNull property="customerCode" prepend="and ">
+				CustomerCode = #customerCode#
+         </isNotNull>
+			<isNotNull property="systeCodeShow" prepend="and ">
+				SysteCodeShow = #systeCodeShow#
+         </isNotNull>
+			<isNotNull property="systemLogUser" prepend="and ">
+				SystemLogUser = #systemLogUser#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

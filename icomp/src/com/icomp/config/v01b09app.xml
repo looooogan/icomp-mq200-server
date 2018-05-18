@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- b09s001Business注入 -->
+	<bean id="b09s001Business" class="com.icomp.v01b09.b09s001.business.impl.B09S001BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="iCOMPV01B09S001Service" ref="iCOMPV01B09S001Service"></property>
+	</bean>
+	<bean id="iCOMPV01B09S001Service" class="com.icomp.common.service.impl.icomp.v01b09.s001.ICOMPV01B09S001ServiceImpl">
+		<property name="toolDao" ref="toolDao"></property>
+		<property name="vtoolDao" ref="vtoolDao"></property>
+		<property name="vlibrarycodeDao" ref="vlibrarycodeDao"></property>
+	</bean>
+
+	<!-- b09s002Business注入 -->
+	<bean id="b09s002Business" class="com.icomp.v01b09.b09s002.business.impl.B09S002BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="iCOMPV01B09S002Service" ref="iCOMPV01B09S002Service"></property>
+	</bean>
+	<bean id="iCOMPV01B09S002Service" class="com.icomp.common.service.impl.icomp.v01b09.s002.ICOMPV01B09S002ServiceImpl">
+		<property name="synthesisparametersDao" ref="synthesisparametersDao"></property>
+		<property name="vsynthesisparametersDao" ref="vsynthesisparametersDao"></property>
+		<property name="synthesiscutterlocationDao" ref="synthesiscutterlocationDao"></property>
+		<property name="equipmentDao" ref="equipmentDao"></property>
+		<property name="toolDao" ref="toolDao"></property>
+		<property name="toolReplaceDao" ref="toolReplaceDao"></property>
+		<property name="partsDao" ref="partsDao"></property>
+	</bean>
+	<!-- b09s003Business注入 -->
+	<bean id="b09s003Business" class="com.icomp.v01b09.b09s003.business.impl.B09S003BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="iCOMPV01B09S003Service" ref="iCOMPV01B09S003Service"></property>
+	</bean>
+	<bean id="iCOMPV01B09S003Service" class="com.icomp.common.service.impl.icomp.v01b09.s003.ICOMPV01B09S003ServiceImpl">
+		<property name="displayeditemconfigurationDao" ref="displayeditemconfigurationDao"></property>
+		<property name="vdisplayeditemconfigurationDao" ref="vdisplayeditemconfigurationDao"></property>
+		<property name="toolwholelifecycleDao" ref="toolwholelifecycleDao"></property>
+		<property name="toolDao" ref="toolDao"></property>
+		<property name="userdetailDao" ref="userdetailDao"></property>
+		<property name="tooltransferDao" ref="tooltransferDao"></property>
+	</bean>
+	<!-- b09s004Business注入 -->
+	<bean id="b09s004Business" class="com.icomp.v01b09.b09s004.business.impl.B09S004BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="iCOMPV01B09S004Service" ref="iCOMPV01B09S004Service"></property>
+	</bean>
+	<bean id="iCOMPV01B09S004Service" class="com.icomp.common.service.impl.icomp.v01b09.s004.ICOMPV01B09S004ServiceImpl">
+		<property name="displayeditemconfigurationDao" ref="displayeditemconfigurationDao"></property>
+		<property name="vdisplayeditemconfigurationDao" ref="vdisplayeditemconfigurationDao"></property>
+		<property name="containercarrierDao" ref="containercarrierDao"></property>
+		<!-- 2017/09/13 宋健 追加↓↓↓　dazhong@YMSC -->
+		<property name="tooltransferDao" ref="tooltransferDao"></property>
+		<!-- 2017/09/13 宋健 追加↑↑↑　dazhong@YMSC -->
+	</bean>
+	<!--0900注入-->
+	<bean id="b09s005Business" class="com.icomp.v01b09.b09s005.business.impl.B09S005BusinessImpl">
+
+		<property name="service" ref="commonService"></property>
+		<property name="iCOMPV01B09S005Service" ref="iCOMPV01B09S005ervice"></property>
+	</bean>
+	<bean id="iCOMPV01B09S005ervice" class="com.icomp.common.service.impl.icomp.v01b09.s005.ICOMPV01B09S005ServiceImpl">
+		<property name="tooltransferDao" ref="tooltransferDao"></property>
+		<property name="toolDao" ref="toolDao"></property>
+		<property name="vsingleproductDao" ref="vsingleproductDao"></property>
+		<property name="knifeinventoryDao" ref="knifeinventoryDao"></property>
+		<property name="containercarrierDao" ref="containercarrierDao"></property>
+	</bean>
+	<bean id="b09s006Business" class="com.icomp.v01b09.b09s006.business.impl.B09S006BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="b09S006Service" ref="b09S006Service"/>
+
+	</bean>
+	<bean id="b09S006Service" class="com.icomp.common.service.impl.icomp.v01b09.s006.ICOMPV01B09S006ServiceImpl">
+		<property name="tooloptimizationDao" ref="tooloptimizationDao"> </property>
+		<property name="toolDao" ref="toolDao"> </property>
+		<property name="userdetailDao" ref="userdetailDao"> </property>
+
+	</bean>
+
+	<bean id="b09s007Business" class="com.icomp.v01b09.b09s007.business.impl.B09S007BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b09S007Service" ref="icompv01b09S007Service"/>
+	</bean>
+
+	<bean id="icompv01b09S007Service" class="com.icomp.common.service.impl.icomp.v01b09.s007.ICOMPV01B09S007ServiceImpl">
+		<property name="vrepairticketDao" ref="vrepairticketDao"/>
+		<property name="voutsidefactoryDao" ref="voutsidefactoryDao"/>
+		<property name="outsidefactoryDao" ref="outsidefactoryDao"/>
+		<property name="toolDao" ref="toolDao"/>
+		<property name="merchantsDao" ref="merchantsDao"/>
+		<!-- 2017/09/12 宋健 追加↓↓↓　dazhong@YMSC -->
+		<property name="rfidcontainerDao" ref="rfidcontainerDao"/>
+		<property name="synthesisknifeDao" ref="synthesisknifeDao"/>
+		<property name="authorizationDao" ref="authorizationDao"/>
+		<property name="tooltransferDao" ref="tooltransferDao"></property>
+		<!-- 2017/09/12 宋健 追加↑↑↑　dazhong@YMSC -->
+	</bean>
+
+	<!-- 刃磨记录查询注入BUSINESS注入	-->
+	<bean id="b09s008Business" class="com.icomp.v01b09.b09s008.business.impl.B09S008BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b09S008Service" ref="icompv01b09S008Service"/>
+	</bean>
+
+	<!-- 刃磨记录查询注入Service注入 -->
+	<bean id="icompv01b09S008Service" class="com.icomp.common.service.impl.icomp.v01b09.s008.ICOMPV01B09S008ServiceImpl">
+		<property name="vrepairticketDao" ref="vrepairticketDao"/>
+		<property name="voutsidefactoryDao" ref="voutsidefactoryDao"/>
+		<property name="outsidefactoryDao" ref="outsidefactoryDao"/>
+		<property name="toolDao" ref="toolDao"/>
+		<property name="merchantsDao" ref="merchantsDao"/>
+	</bean>
+
+</beans>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- v01b11s004Business注入 -->
+	<bean id="v01b11s004Business"
+		class="com.icomp.v01b11.b11s004.business.impl.B11S004BusinessImpl"  scope="prototype">
+		<property name="service" ref="commonService"></property>
+		<property name="iCOMPV01B11S004Service" ref="iCOMPV01B11S004Service"></property>
+	</bean>
+	<!-- v01b11s003Business注入 -->
+	<bean id="v01b11s003Business"
+		class="com.icomp.v01b11.b11s003.business.impl.B11S003BusinessImpl"  scope="prototype">
+		<property name="service" ref="commonService"></property>
+		<property name="iCOMPV01B11S003Service" ref="iCOMPV01B11S003Service"></property>
+	</bean>
+	<!-- v01b11s001Business注入 -->
+	<bean id="v01b11s001Business"
+		class="com.icomp.v01b11.b11s001.business.impl.B11S001BusinessImpl"  scope="prototype">
+		<property name="service" ref="commonService"></property>
+		<property name="iCOMPV01B11S001Service" ref="iCOMPV01B11S001Service"></property>
+	</bean>
+	<!-- v01b11s002Business注入 -->
+	<bean id="v01b11s002Business"
+		class="com.icomp.v01b11.b11s002.business.impl.B11S002BusinessImpl"  scope="prototype">
+		<property name="service" ref="commonService"></property>
+		<property name="iCOMPV01B11S002Service" ref="iCOMPV01B11S002Service"/>
+	</bean>
+	<!-- v01b11s005Business注入 -->
+	<bean id="v01b11s005Business"
+		  class="com.icomp.v01b11.b11s005.business.impl.B11S005BusinessImpl"  scope="prototype">
+
+		<property name="icompv01B11S005Service" ref="icompv01B11S005Service"/>
+
+
+	</bean>
+</beans>

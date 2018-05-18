@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Vprocessingquickquery.xml
+		Created on : 2015/01/04 17:34:49
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByList_B04S006 ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		searchByCount_B04S006 ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Vprocessingquickquery">
+	<typeAlias alias="entityVprocessingquickquery" type="com.icomp.entity.base.Vprocessingquickquery" />
+	<resultMap id="Vprocessingquickquery-map" class="entityVprocessingquickquery">
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!-- 刀具编码 -->
+		<result property="toolCode" column="ToolCode" />
+		<!-- 业务流程名 -->
+		<result property="businessName" column="BusinessName" />
+		<!-- 刀具状态(0断刀1丢失2不合格3借入4申领9其他) -->
+		<result property="toolState" column="toolState" />
+		<!-- 加工数量 -->
+		<result property="processAmount" column="ProcessAmount" />
+		<!-- 刀具入库编码 -->
+		<result property="knifeInventoryCode" column="KnifeInventoryCode" />
+		<!--  -->
+		<result property="sumProcessAmount" column="sumProcessAmount" />
+		<!--  -->
+		<result property="avgProcessAmount" column="avgProcessAmount" />
+		<!-- 消耗类别(0:可刃磨钻头1可刃磨刀片2一次性刀片9其他 -->
+		<result property="toolConsumetype" column="ToolConsumetype" />
+		<!-- 可使用次数 -->
+		<result property="toolSharpennum" column="ToolSharpennum" />
+		<!-- 可刃磨长度 -->
+		<result property="toolSharpenLength" column="ToolSharpenLength" />
+		<!-- 刀具长度 -->
+		<result property="toolLength" column="ToolLength" />
+		<!-- 刀具已刃磨长度 -->
+		<result property="toolGrindingLength" column="ToolGrindingLength" />
+		<!-- 已使用(刃磨)次数[当使用次数等于可复用次数时刀具报废] -->
+		<result property="usageCounter" column="UsageCounter" />
+		<!--  -->
+		<result property="salvageValue" column="salvageValue" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVprocessingquickquery" resultMap="Vprocessingquickquery-map">
+		SELECT
+		SynthesisParametersCode
+		,ToolCode
+		,BusinessName
+		,toolState
+		,ProcessAmount
+		,KnifeInventoryCode
+		,sumProcessAmount
+		,avgProcessAmount
+		,ToolConsumetype
+		,ToolSharpennum
+		,ToolSharpenLength
+		,ToolLength
+		,ToolGrindingLength
+		,UsageCounter
+		,salvageValue
+		from vprocessingquickquery
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList_B04S006" parameterClass="entityVprocessingquickquery" resultMap="Vprocessingquickquery-map">
+		SELECT
+		SynthesisParametersCode
+		,ToolCode
+		,BusinessName
+		,toolState
+		,ProcessAmount
+		,KnifeInventoryCode
+		,sum(sumProcessAmount) as sumProcessAmount
+		,avg(avgProcessAmount) as avgProcessAmount
+		,ToolConsumetype
+		,sum(ToolSharpennum) as ToolSharpennum
+		,ToolSharpenLength
+		,ToolLength
+		,ToolGrindingLength
+		,sum(UsageCounter) as UsageCounter
+		,salvageValue
+		from vprocessingquickquery
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="businessName" prepend="and ">
+				BusinessName = #businessName#
+         </isNotNull>
+			<isNotNull property="toolState" prepend="and ">
+				toolState = #toolState#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="sumProcessAmount" prepend="and ">
+				sumProcessAmount = #sumProcessAmount#
+         </isNotNull>
+			<isNotNull property="avgProcessAmount" prepend="and ">
+				avgProcessAmount = #avgProcessAmount#
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="toolSharpennum" prepend="and ">
+				ToolSharpennum = #toolSharpennum#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="toolLength" prepend="and ">
+				ToolLength = #toolLength#
+         </isNotNull>
+			<isNotNull property="toolGrindingLength" prepend="and ">
+				ToolGrindingLength = #toolGrindingLength#
+         </isNotNull>
+			<isNotNull property="usageCounter" prepend="and ">
+				UsageCounter = #usageCounter#
+         </isNotNull>
+			<isNotNull property="salvageValue" prepend="and ">
+				salvageValue = #salvageValue#
+         </isNotNull>
+		</dynamic>
+		group by ToolCode,toolState
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVprocessingquickquery" resultMap="Vprocessingquickquery-map">
+		SELECT
+		SynthesisParametersCode
+		,ToolCode
+		,BusinessName
+		,toolState
+		,ProcessAmount
+		,KnifeInventoryCode
+		,sumProcessAmount
+		,avgProcessAmount
+		,ToolConsumetype
+		,ToolSharpennum
+		,ToolSharpenLength
+		,ToolLength
+		,ToolGrindingLength
+		,as UsageCounter
+		,salvageValue
+		from vprocessingquickquery
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+                SynthesisParametersCode like concat('%',#synthesisParametersCode#,'%')
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="businessName" prepend="and ">
+				BusinessName = #businessName#
+         </isNotNull>
+			<isNotNull property="toolState" prepend="and ">
+				toolState = #toolState#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="sumProcessAmount" prepend="and ">
+				sumProcessAmount = #sumProcessAmount#
+         </isNotNull>
+			<isNotNull property="avgProcessAmount" prepend="and ">
+				avgProcessAmount = #avgProcessAmount#
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="toolSharpennum" prepend="and ">
+				ToolSharpennum = #toolSharpennum#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="toolLength" prepend="and ">
+				ToolLength = #toolLength#
+         </isNotNull>
+			<isNotNull property="toolGrindingLength" prepend="and ">
+				ToolGrindingLength = #toolGrindingLength#
+         </isNotNull>
+			<isNotNull property="usageCounter" prepend="and ">
+				UsageCounter = #usageCounter#
+         </isNotNull>
+			<isNotNull property="salvageValue" prepend="and ">
+				salvageValue = #salvageValue#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVprocessingquickquery" resultClass="int">
+		SELECT count(1)
+		from vprocessingquickquery
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+				ToolCode = #toolCode#
+         </isNotNull>
+			<isNotNull property="businessName" prepend="and ">
+				BusinessName = #businessName#
+         </isNotNull>
+			<isNotNull property="toolState" prepend="and ">
+				toolState = #toolState#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="sumProcessAmount" prepend="and ">
+				sumProcessAmount = #sumProcessAmount#
+         </isNotNull>
+			<isNotNull property="avgProcessAmount" prepend="and ">
+				avgProcessAmount = #avgProcessAmount#
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="toolSharpennum" prepend="and ">
+				ToolSharpennum = #toolSharpennum#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="toolLength" prepend="and ">
+				ToolLength = #toolLength#
+         </isNotNull>
+			<isNotNull property="toolGrindingLength" prepend="and ">
+				ToolGrindingLength = #toolGrindingLength#
+         </isNotNull>
+			<isNotNull property="usageCounter" prepend="and ">
+				UsageCounter = #usageCounter#
+         </isNotNull>
+			<isNotNull property="salvageValue" prepend="and ">
+				salvageValue = #salvageValue#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount_B04S006" parameterClass="entityVprocessingquickquery" resultClass="int">
+	select count(*) from(
+		SELECT count(1)
+		from vprocessingquickquery
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="toolCode" prepend="and ">
+                ToolCode like concat('%',#toolCode#,'%')
+         </isNotNull>
+			<isNotNull property="businessName" prepend="and ">
+				BusinessName = #businessName#
+         </isNotNull>
+			<isNotNull property="toolState" prepend="and ">
+				toolState = #toolState#
+         </isNotNull>
+			<isNotNull property="processAmount" prepend="and ">
+				ProcessAmount = #processAmount#
+         </isNotNull>
+			<isNotNull property="knifeInventoryCode" prepend="and ">
+				KnifeInventoryCode = #knifeInventoryCode#
+         </isNotNull>
+			<isNotNull property="sumProcessAmount" prepend="and ">
+				sumProcessAmount = #sumProcessAmount#
+         </isNotNull>
+			<isNotNull property="avgProcessAmount" prepend="and ">
+				avgProcessAmount = #avgProcessAmount#
+         </isNotNull>
+			<isNotNull property="toolConsumetype" prepend="and ">
+				ToolConsumetype = #toolConsumetype#
+         </isNotNull>
+			<isNotNull property="toolSharpennum" prepend="and ">
+				ToolSharpennum = #toolSharpennum#
+         </isNotNull>
+			<isNotNull property="toolSharpenLength" prepend="and ">
+				ToolSharpenLength = #toolSharpenLength#
+         </isNotNull>
+			<isNotNull property="toolLength" prepend="and ">
+				ToolLength = #toolLength#
+         </isNotNull>
+			<isNotNull property="toolGrindingLength" prepend="and ">
+				ToolGrindingLength = #toolGrindingLength#
+         </isNotNull>
+			<isNotNull property="usageCounter" prepend="and ">
+				UsageCounter = #usageCounter#
+         </isNotNull>
+			<isNotNull property="salvageValue" prepend="and ">
+				salvageValue = #salvageValue#
+         </isNotNull>
+		</dynamic>
+		group by ToolCode,toolState)a
+	</select>
+
+</sqlMap>
+

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Voperationrecord.xml
+		Created on : 2014/11/19 09:33:34
+		Author : 工具自动生成
+		Description: 工具自动生成包含VIEW的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Voperationrecord">
+	<typeAlias alias="entityVoperationrecord" type="com.icomp.entity.base.Voperationrecord" />
+	<resultMap id="Voperationrecord-map" class="entityVoperationrecord">
+		<!-- 合成刀具编码(系统唯一) -->
+		<result property="synthesisParametersCode" column="SynthesisParametersCode" />
+		<!-- 业务流程名 -->
+		<result property="businessName" column="BusinessName" />
+		<!-- 业务流编码 -->
+		<result property="businessCode" column="BusinessCode" />
+		<!-- 操作时间 -->
+		<result property="operationTime" column="OperationTime" />
+		<!--  -->
+		<result property="recipientUser" column="RecipientUser" />
+		<!-- 交接原因(0送入车间1旧刀回收2不合格送回3对刀) -->
+		<result property="transitionBecause" column="TransitionBecause" />
+		<!--  -->
+		<result property="count" column="count" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityVoperationrecord" resultMap="Voperationrecord-map">
+		SELECT
+		SynthesisParametersCode
+		,BusinessName
+		,BusinessCode
+		,OperationTime
+		,RecipientUser
+		,TransitionBecause
+		,count
+		from voperationrecord
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityVoperationrecord" resultMap="Voperationrecord-map">
+		SELECT
+		SynthesisParametersCode
+		,BusinessName
+		,BusinessCode
+		,OperationTime
+		,RecipientUser
+		,TransitionBecause
+		,count
+		from voperationrecord
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="businessName" prepend="and ">
+				BusinessName = #businessName#
+         </isNotNull>
+			<isNotNull property="businessCode" prepend="and ">
+			    BusinessCode = #businessCode#
+         </isNotNull>
+			<isNotNull property="operationTime" prepend="and ">
+				OperationTime = #operationTime#
+         </isNotNull>
+         	<isNotNull property="dateStar" prepend="and ">
+				<![CDATA[ 
+				OperationTime >= #dateStar#
+				]]>
+         </isNotNull>
+			<isNotNull property="dateEnd" prepend="and ">
+				<![CDATA[ 
+				OperationTime <= #dateEnd#
+				]]>
+         </isNotNull>
+			<isNotNull property="recipientUser" prepend="and ">
+				RecipientUser = #recipientUser#
+         </isNotNull>
+			<isNotNull property="transitionBecause" prepend="and ">
+				TransitionBecause = #transitionBecause#
+         </isNotNull>
+			<isNotNull property="count" prepend="and ">
+				count = #count#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityVoperationrecord" resultClass="int">
+		SELECT count(1)
+		from voperationrecord
+		<dynamic prepend=" where ">
+			<isNotNull property="synthesisParametersCode" prepend="and ">
+				SynthesisParametersCode = #synthesisParametersCode#
+         </isNotNull>
+			<isNotNull property="businessName" prepend="and ">
+				BusinessName = #businessName#
+         </isNotNull>
+			<isNotNull property="businessCode" prepend="and ">
+				BusinessCode = #businessCode#
+         </isNotNull>
+			<isNotNull property="operationTime" prepend="and ">
+				OperationTime = #operationTime#
+         </isNotNull>
+			<isNotNull property="recipientUser" prepend="and ">
+				RecipientUser = #recipientUser#
+         </isNotNull>
+			<isNotNull property="transitionBecause" prepend="and ">
+				TransitionBecause = #transitionBecause#
+         </isNotNull>
+			<isNotNull property="count" prepend="and ">
+				count = #count#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+</sqlMap>
+

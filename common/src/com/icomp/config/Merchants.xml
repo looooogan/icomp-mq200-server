@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		Document : Merchants.xml
+		Created on : 2016/04/29 15:29:28
+		Author : 工具自动生成
+		Description: 工具自动生成包含厂外修复商家的单表增删改查SQL语句.
+		searchByPrimaryKey ： 主键查询 
+		searchByList ： 任意条件查询
+		searchByCount ：任意条件条数查询
+		insert ： 插入处理
+		update ： 更新处理（未指定项目更新为null）
+		updateNonQuery ：更新处理（未指定项目不更新）
+		delete ： 删除处理
+	-->
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Merchants">
+	<typeAlias alias="entityMerchants" type="com.icomp.entity.base.Merchants" />
+	<resultMap id="Merchants-map" class="entityMerchants">
+		<!-- 商家ID -->
+		<result property="merchantsID" column="merchantsID" />
+		<!-- 厂家编号 -->
+		<result property="merchantsCold" column="merchantsCold" />
+		<!-- 商家名称 -->
+		<result property="merchantsName" column="merchantsName" />
+		<!-- 厂家类型 -->
+		<result property="merchantsType" column="merchantsType" />
+		<!-- 厂家地址-->
+		<result property="merchantsAddrss" column="merchantsAddrss" />
+		<!-- 联系人(真实姓名) -->
+		<result property="innerName" column="innerName" />
+		<!-- 联系电话 -->
+		<result property="merchantsTel" column="merchantsTel" />
+		<!-- 删除区分(0有效1删除) -->
+		<result property="delFlag" column="DelFlag" />
+		<!-- 创建者 -->
+		<result property="createUser" column="CreateUser" />
+		<!-- 创建时间 -->
+		<result property="createTime" column="CreateTime" />
+		<!-- 更新者 -->
+		<result property="updateUser" column="UpdateUser" />
+		<!-- 更新时间 -->
+		<result property="updateTime" column="UpdateTime" />
+	</resultMap>
+	<!-- 主键查询执行 -->
+	<select id="searchByPrimaryKey" parameterClass="entityMerchants" resultMap="Merchants-map">
+		SELECT
+		merchantsID
+		,merchantsCold
+		,merchantsName
+		,merchantsType
+		,merchantsAddrss
+		,innerName
+		,merchantsTel
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		from merchants
+		<dynamic prepend=" where ">
+			<isNotNull property="merchantsID" prepend="and ">
+				merchantsID = #merchantsID#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					merchantsID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询执行 -->
+	<select id="searchByList" parameterClass="entityMerchants" resultMap="Merchants-map">
+		SELECT
+		merchantsID
+		,merchantsCold
+		,merchantsName
+		,merchantsType
+		,merchantsAddrss
+		,innerName
+		,merchantsTel
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		from merchants
+		<dynamic prepend=" where ">
+			<isNotNull property="merchantsID" prepend="and ">
+				merchantsID = #merchantsID#
+         </isNotNull>
+			<isNotNull property="merchantsCold" prepend="and ">
+				merchantsCold = #merchantsCold#
+         </isNotNull>
+			<isNotNull property="merchantsName" prepend="and ">
+				merchantsName like concat('%',#merchantsName#,'%')
+         </isNotNull>
+			<isNotNull property="merchantsType" prepend="and ">
+				merchantsType = #merchantsType#
+         </isNotNull>
+			<isNotNull property="merchantsAddrss" prepend="and ">
+			  merchantsAddrss like concat('%',#merchantsAddrss#,'%')
+         </isNotNull>
+			<isNotNull property="innerName" prepend="and ">
+				innerName like concat('%',#innerName#,'%')
+         </isNotNull>
+			<isNotNull property="merchantsTel" prepend="and ">
+				merchantsTel = #merchantsTel#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+		</dynamic>
+		<isNotNull property="orderString">
+			order by $orderString$
+     </isNotNull>
+		<isNull property="orderString">
+			order by
+					merchantsID
+     </isNull>
+     <isGreaterThan property="staIndex" compareValue="-1">
+         LIMIT $rowCount$ offset $staIndex$
+     </isGreaterThan>
+	</select>
+
+	<!-- 任意条件查询条数 -->
+	<select id="searchByCount" parameterClass="entityMerchants" resultClass="int">
+		SELECT count(1)
+		from merchants
+		<dynamic prepend=" where ">
+			<isNotNull property="merchantsID" prepend="and ">
+				merchantsID = #merchantsID#
+         </isNotNull>
+			<isNotNull property="merchantsCold" prepend="and ">
+				merchantsCold = #merchantsCold#
+         </isNotNull>
+			<isNotNull property="merchantsName" prepend="and ">
+				merchantsName = #merchantsName#
+         </isNotNull>
+			<isNotNull property="merchantsType" prepend="and ">
+				merchantsType = #merchantsType#
+         </isNotNull>
+			<isNotNull property="merchantsAddrss" prepend="and ">
+				merchantsAddrss = #merchantsAddrss#
+         </isNotNull>
+			<isNotNull property="innerName" prepend="and ">
+				innerName = #innerName#
+         </isNotNull>
+			<isNotNull property="merchantsTel" prepend="and ">
+				merchantsTel = #merchantsTel#
+         </isNotNull>
+			<isNotNull property="delFlag" prepend="and ">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser" prepend="and ">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime" prepend="and ">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser" prepend="and ">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime" prepend="and ">
+				UpdateTime = #updateTime#
+         </isNotNull>
+		</dynamic>
+	</select>
+
+	<!-- 任意条件更新处理(未指定字段更新为：null) -->
+	<update id="update" parameterClass="entityMerchants">
+		update merchants
+		<dynamic prepend="set">
+			<isNotNull property="merchantsID">
+				merchantsID = #merchantsID#
+         </isNotNull>
+			<isNull property="merchantsID">
+				merchantsID = null
+         </isNull>
+			<isNotNull property="merchantsCold">
+				,merchantsCold = #merchantsCold#
+         </isNotNull>
+			<isNull property="merchantsCold">
+				,merchantsCold = null
+         </isNull>
+			<isNotNull property="merchantsName">
+				,merchantsName = #merchantsName#
+         </isNotNull>
+			<isNull property="merchantsName">
+				,merchantsName = null
+         </isNull>
+			<isNotNull property="merchantsType">
+				,merchantsType = #merchantsType#
+         </isNotNull>
+			<isNull property="merchantsType">
+				,merchantsType = null
+         </isNull>
+			<isNotNull property="merchantsAddrss">
+				,merchantsAddrss = #merchantsAddrss#
+         </isNotNull>
+			<isNull property="merchantsAddrss">
+				,merchantsAddrss = null
+         </isNull>
+			<isNotNull property="innerName">
+				,innerName = #innerName#
+         </isNotNull>
+			<isNull property="innerName">
+				,innerName = null
+         </isNull>
+			<isNotNull property="merchantsTel">
+				,merchantsTel = #merchantsTel#
+         </isNotNull>
+			<isNull property="merchantsTel">
+				,merchantsTel = null
+         </isNull>
+			<isNotNull property="delFlag">
+				,DelFlag = #delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,DelFlag = null
+         </isNull>
+			<isNotNull property="createUser">
+				,CreateUser = #createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,CreateUser = null
+         </isNull>
+			<isNotNull property="createTime">
+				,CreateTime = #createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,CreateTime = null
+         </isNull>
+			<isNotNull property="updateUser">
+				,UpdateUser = #updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,UpdateUser = null
+         </isNull>
+			<isNotNull property="updateTime">
+				,UpdateTime = #updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,UpdateTime = null
+         </isNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="merchantsIDWhere" prepend="and ">
+				merchantsID = #merchantsIDWhere#
+         </isNotNull>
+			<isNotNull property="merchantsColdWhere" prepend="and ">
+				merchantsCold = #merchantsColdWhere#
+         </isNotNull>
+			<isNotNull property="merchantsNameWhere" prepend="and ">
+				merchantsName = #merchantsNameWhere#
+         </isNotNull>
+			<isNotNull property="merchantsTypeWhere" prepend="and ">
+				merchantsType = #merchantsTypeWhere#
+         </isNotNull>
+			<isNotNull property="merchantsAddrssWhere" prepend="and ">
+				merchantsAddrss = #merchantsAddrssWhere#
+         </isNotNull>
+			<isNotNull property="innerNameWhere" prepend="and ">
+				innerName = #innerNameWhere#
+         </isNotNull>
+			<isNotNull property="merchantsTelWhere" prepend="and ">
+				merchantsTel = #merchantsTelWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 任意条件更新处理(未指定字段不更新) -->
+	<update id="updateNonQuery" parameterClass="entityMerchants">
+		update merchants
+		<dynamic prepend="set">
+			<isNotNull property="merchantsID"  prepend=",">
+				merchantsID = #merchantsID#
+         </isNotNull>
+			<isNotNull property="merchantsCold"  prepend=",">
+				merchantsCold = #merchantsCold#
+         </isNotNull>
+			<isNotNull property="merchantsName"  prepend=",">
+				merchantsName = #merchantsName#
+         </isNotNull>
+			<isNotNull property="merchantsType"  prepend=",">
+				merchantsType = #merchantsType#
+         </isNotNull>
+			<isNotNull property="merchantsAddrss"  prepend=",">
+				merchantsAddrss = #merchantsAddrss#
+         </isNotNull>
+			<isNotNull property="innerName"  prepend=",">
+				innerName = #innerName#
+         </isNotNull>
+			<isNotNull property="merchantsTel"  prepend=",">
+				merchantsTel = #merchantsTel#
+         </isNotNull>
+			<isNotNull property="delFlag"  prepend=",">
+				DelFlag = #delFlag#
+         </isNotNull>
+			<isNotNull property="createUser"  prepend=",">
+				CreateUser = #createUser#
+         </isNotNull>
+			<isNotNull property="createTime"  prepend=",">
+				CreateTime = #createTime#
+         </isNotNull>
+			<isNotNull property="updateUser"  prepend=",">
+				UpdateUser = #updateUser#
+         </isNotNull>
+			<isNotNull property="updateTime"  prepend=",">
+				UpdateTime = #updateTime#
+         </isNotNull>
+		</dynamic>
+		<dynamic prepend=" where ">
+			<isNotNull property="merchantsIDWhere" prepend="and ">
+				merchantsID = #merchantsIDWhere#
+         </isNotNull>
+			<isNotNull property="merchantsColdWhere" prepend="and ">
+				merchantsCold = #merchantsColdWhere#
+         </isNotNull>
+			<isNotNull property="merchantsNameWhere" prepend="and ">
+				merchantsName = #merchantsNameWhere#
+         </isNotNull>
+			<isNotNull property="merchantsTypeWhere" prepend="and ">
+				merchantsType = #merchantsTypeWhere#
+         </isNotNull>
+			<isNotNull property="merchantsAddrssWhere" prepend="and ">
+				merchantsAddrss = #merchantsAddrssWhere#
+         </isNotNull>
+			<isNotNull property="innerNameWhere" prepend="and ">
+				innerName = #innerNameWhere#
+         </isNotNull>
+			<isNotNull property="merchantsTelWhere" prepend="and ">
+				merchantsTel = #merchantsTelWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+		</dynamic>
+	</update>
+
+	<!-- 插入处理 -->
+	<insert id="insert" parameterClass="entityMerchants">
+		<selectKey resultClass="java.lang.String" keyProperty="merchantsID">
+			SELECT #merchantsID# as merchantsID FROM DUAL
+     </selectKey>
+		insert into merchants(
+		merchantsID
+		,merchantsCold
+		,merchantsName
+		,merchantsType
+		,merchantsAddrss
+		,innerName
+		,merchantsTel
+		,DelFlag
+		,CreateUser
+		,CreateTime
+		,UpdateUser
+		,UpdateTime
+		)
+		Values (
+			<isNotNull property="merchantsID">
+				#merchantsID#
+         </isNotNull>
+			<isNull property="merchantsID">
+				null
+         </isNull>
+			<isNotNull property="merchantsCold">
+				,#merchantsCold#
+         </isNotNull>
+			<isNull property="merchantsCold">
+				,null
+         </isNull>
+			<isNotNull property="merchantsName">
+				,#merchantsName#
+         </isNotNull>
+			<isNull property="merchantsName">
+				,null
+         </isNull>
+			<isNotNull property="merchantsType">
+				,#merchantsType#
+         </isNotNull>
+			<isNull property="merchantsType">
+				,null
+         </isNull>
+			<isNotNull property="merchantsAddrss">
+				,#merchantsAddrss#
+         </isNotNull>
+			<isNull property="merchantsAddrss">
+				,null
+         </isNull>
+			<isNotNull property="innerName">
+				,#innerName#
+         </isNotNull>
+			<isNull property="innerName">
+				,null
+         </isNull>
+			<isNotNull property="merchantsTel">
+				,#merchantsTel#
+         </isNotNull>
+			<isNull property="merchantsTel">
+				,null
+         </isNull>
+			<isNotNull property="delFlag">
+				,#delFlag#
+         </isNotNull>
+			<isNull property="delFlag">
+				,null
+         </isNull>
+			<isNotNull property="createUser">
+				,#createUser#
+         </isNotNull>
+			<isNull property="createUser">
+				,null
+         </isNull>
+			<isNotNull property="createTime">
+				,#createTime#
+         </isNotNull>
+			<isNull property="createTime">
+				,null
+         </isNull>
+			<isNotNull property="updateUser">
+				,#updateUser#
+         </isNotNull>
+			<isNull property="updateUser">
+				,null
+         </isNull>
+			<isNotNull property="updateTime">
+				,#updateTime#
+         </isNotNull>
+			<isNull property="updateTime">
+				,null
+         </isNull>
+		)
+	</insert>
+
+	<!-- 任意条件删除处理 -->
+	<delete id="delete" parameterClass="entityMerchants">
+		delete  from merchants
+		<dynamic prepend=" where ">
+			<isNotNull property="merchantsIDWhere" prepend="and ">
+				merchantsID = #merchantsIDWhere#
+         </isNotNull>
+			<isNotNull property="merchantsColdWhere" prepend="and ">
+				merchantsCold = #merchantsColdWhere#
+         </isNotNull>
+			<isNotNull property="merchantsNameWhere" prepend="and ">
+				merchantsName = #merchantsNameWhere#
+         </isNotNull>
+			<isNotNull property="merchantsTypeWhere" prepend="and ">
+				merchantsType = #merchantsTypeWhere#
+         </isNotNull>
+			<isNotNull property="merchantsAddrssWhere" prepend="and ">
+				merchantsAddrss = #merchantsAddrssWhere#
+         </isNotNull>
+			<isNotNull property="innerNameWhere" prepend="and ">
+				innerName = #innerNameWhere#
+         </isNotNull>
+			<isNotNull property="merchantsTelWhere" prepend="and ">
+				merchantsTel = #merchantsTelWhere#
+         </isNotNull>
+			<isNotNull property="delFlagWhere" prepend="and ">
+				DelFlag = #delFlagWhere#
+         </isNotNull>
+			<isNotNull property="createUserWhere" prepend="and ">
+				CreateUser = #createUserWhere#
+         </isNotNull>
+			<isNotNull property="createTimeWhere" prepend="and ">
+				CreateTime = #createTimeWhere#
+         </isNotNull>
+			<isNotNull property="updateUserWhere" prepend="and ">
+				UpdateUser = #updateUserWhere#
+         </isNotNull>
+			<isNotNull property="updateTimeWhere" prepend="and ">
+				UpdateTime = #updateTimeWhere#
+         </isNotNull>
+		</dynamic>
+	</delete>
+</sqlMap>
+

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- 加工信息 BUSINESS注入-->
+	<!--  工作量查询BUSINESS注入	-->
+	<bean id="b04s001Business" class="com.icomp.v01b04.b04s001.business.impl.B04S001BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b04s001Service" ref="icompv01b04s001Service"/>
+		<property name="icompv01b04s003Service" ref="icompv01b04s003Service"/>
+	</bean>
+
+	<!--  车间刀具状态查询BUSINESS注入	-->
+	<bean id="b04s002Business" class="com.icomp.v01b04.b04s002.business.impl.B04S002BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b04s002Service" ref="icompv01b04s002Service"/>
+	</bean>
+
+	<!--  加工量异常报警询BUSINESS注入	-->
+	<bean id="b04s003Business" class="com.icomp.v01b04.b04s003.business.impl.B04S003BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b04s003Service" ref="icompv01b04s003Service"/>
+	</bean>
+
+	<!--  刀具消耗查询注入BUSINESS注入	-->
+	<bean id="b04s004Business" class="com.icomp.v01b04.b04s004.business.impl.B04S004BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b04s004Service" ref="icompv01b04s004Service"/>
+	</bean>
+
+	<!--  车间工作量汇总注入BUSINESS注入	-->
+	<bean id="b04s005Business" class="com.icomp.v01b04.b04s005.business.impl.B04S005BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b04s005Service" ref="icompv01b04s005Service"/>
+	</bean>
+
+	<!--  刃磨信息快速查询BUSINESS注入	-->
+	<bean id="b04s006Business" class="com.icomp.v01b04.b04s006.business.impl.B04S006BusinessImpl">
+		<property name="service" ref="commonService"/>
+		<property name="icompv01b04s006Service" ref="icompv01b04s006Service"/>
+	</bean>
+	<bean id="b04s007Business" class="com.icomp.v01b04.b04s007.business.impl.B04S007BusinessImpl">
+
+		<property name="icompv01b04s007Service" ref="icompv01b04s007Service"/>
+	</bean>
+
+	<!-- 加工信息 Service注入-->
+
+	<!-- 工作量查询注入Service注入 -->
+	<bean id="icompv01b04s001Service" class="com.icomp.common.service.impl.icomp.v01b04.s001.ICOMPV01B04S001ServiceImpl">
+		<property name="vworkloadqueriesDao" ref="vworkloadqueriesDao"/>
+	</bean>
+
+	<!-- 车间刀具状态查询Service注入 -->
+	<bean id="icompv01b04s002Service" class="com.icomp.common.service.impl.icomp.v01b04.s002.ICOMPV01B04S002ServiceImpl">
+		<property name="vcuttingtoolstateDao" ref="vcuttingtoolstateDao"/>
+		<property name="vsynthesisconditionDao" ref="vsynthesisconditionDao"/>
+		<property name="assemblylineDao" ref="assemblylineDao"/>
+		<property name="processDao" ref="processDao"/>
+		<property name="voplinkdownDao" ref="voplinkdownDao"/>
+		<!-- 2017/08/30 宋健 变更↓↓↓　dazhong@YMSC -->
+		<property name="synthesisknifeDao" ref="synthesisknifeDao"/>
+		<!-- 2017/08/30 宋健 变更↑↑↑　dazhong@YMSC -->
+	</bean>
+
+	<!-- 加工量异常报警询Service注入 -->
+	<bean id="icompv01b04s003Service" class="com.icomp.common.service.impl.icomp.v01b04.s003.ICOMPV01B04S003ServiceImpl">
+		<property name="vprocessingabnormalalarmDao" ref="vprocessingabnormalalarmDao"/>
+		<property name="vtoolsmachiningDao" ref="vtoolsmachiningDao"/>
+		<property name="assemblylineDao" ref="assemblylineDao"/>
+		<property name="axleDao" ref="axleDao"/>
+		<property name="processDao" ref="processDao"/>
+		<property name="equipmentDao" ref="equipmentDao"/>
+		<property name="partsDao" ref="partsDao"/>
+		<property name="businessDao" ref="businessDao"/>
+		<property name="oplinkDao" ref="oplinkDao"/>
+		<property name="voplinkdownDao" ref="voplinkdownDao"/>
+		<property name="synthesistoolsmachiningDao" ref="synthesistoolsmachiningDao"/>
+	</bean>
+
+	<!-- 刀具消耗查询注入Service注入 -->
+	<bean id="icompv01b04s004Service" class="com.icomp.common.service.impl.icomp.v01b04.s004.ICOMPV01B04S004ServiceImpl">
+		<property name="vtoolconsumptionqueryDao" ref="vtoolconsumptionqueryDao"/>
+		<property name="vamortizationDao" ref="vamortizationDao"/>
+
+		<property name="assemblylineDao" ref="assemblylineDao"/>
+		<property name="axleDao" ref="axleDao"/>
+		<property name="processDao" ref="processDao"/>
+		<property name="equipmentDao" ref="equipmentDao"/>
+		<property name="partsDao" ref="partsDao"/>
+		<property name="businessDao" ref="businessDao"/>
+		<property name="oplinkDao" ref="oplinkDao"/>
+		<property name="voplinkdownDao" ref="voplinkdownDao"/>
+
+
+	</bean>
+
+	<!-- 车间工作量汇总注入Service注入 -->
+	<bean id="icompv01b04s005Service" class="com.icomp.common.service.impl.icomp.v01b04.s005.ICOMPV01B04S005ServiceImpl">
+		<property name="synthesistoolsmachiningDao" ref="synthesistoolsmachiningDao"/>
+		<property name="vsynthesistoolsmachiningDao" ref="vsynthesistoolsmachiningDao"/>
+		<property name="assemblylineDao" ref="assemblylineDao"/>
+		<property name="axleDao" ref="axleDao"/>
+		<property name="processDao" ref="processDao"/>
+		<property name="equipmentDao" ref="equipmentDao"/>
+		<property name="vworkshopsummaryDao" ref="vworkshopsummaryDao"/>
+		<property name="partsDao" ref="partsDao"/>
+
+	</bean>
+
+	<!-- 刃磨信息快速查询Service注入 -->
+	<bean id="icompv01b04s006Service" class="com.icomp.common.service.impl.icomp.v01b04.s006.ICOMPV01B04S006ServiceImpl">
+		<property name="vprocessingquickqueryDao" ref="vprocessingquickqueryDao"/>
+	</bean>
+	<!--预警service注入-->
+	<bean id="icompv01b04s007Service" class="com.icomp.common.service.impl.icomp.v01b04.s007.ICOMPV01B04S007ServiceImpl">
+		<property name="vwarningDao" ref="vwarningDao"/>
+		<property name="customerDao" ref="customerDao"/>
+		<property name="warningDao" ref="warningDao"/>
+	</bean>
+
+</beans>
